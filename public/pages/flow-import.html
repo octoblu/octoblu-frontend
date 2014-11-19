@@ -1,4 +1,4 @@
-<md-toolbar md-theme="indigo" md-scroll-shrink>
+<md-toolbar md-theme="indigo">
   <h2 class="md-toolbar-tools page-heading">
     <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="toggleNav()">
       <i class="fa fa-bars"></i>
@@ -9,21 +9,23 @@
 </md-toolbar>
 
 <div layout="column" layout-fill flex class="flow-image-but-really-the-flow" ng-class="{importing: importing}">
-  <div flex>
+  <div flex layout="column">
     <flow-editor flow="template.flow" readonly="true"></flow-editor>
 
-    <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2); right: 28px" ng-click="import()" title="Import">
+    <md-button class="md-fab md-primary"  style="position:fixed; bottom: 260px; right: 28px" ng-click="import()" title="Import" ng-class="{importing: importing}">
       <i class="fa fa-cloud-download fa-2x"></i>
     </md-button>
-  </div>
 
-  <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around" ng-hide="importing">
-    <div layout="column" ng-repeat="material in billOfMaterials">
-      <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }">
+    <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around" ng-class="{importing: importing}">
+      <div layout="column" ng-repeat="material in billOfMaterials">
+        <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }">
+        </div>
+        <div class="md-tile-content">
+          <h3 class="text-center">{{material.name}}</h3>
+        </div>
       </div>
-      <div class="md-tile-content">
-        <h3 class="text-center">{{material.name}}</h3>
-      </div>
-    </div>
-  </md-content>
+    </md-content>
+  </div>
 </div>
+
+

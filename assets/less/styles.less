@@ -10,19 +10,31 @@ html, body, .full-height {
   .flow-image-but-really-the-flow {
     background-color: lightgrey;
     transition: 1s all;
-
+    .flow-editor {
+      min-height:100vh;
+      flex-shrink: 0;
+    }
     &.importing {
       background-color: #fff;
     }
+
+    button.importing {
+      -webkit-animation: 1s bounceOutRight ease;
+      -ms-animation: 1s bounceOutRight ease;
+      animation: 1s bounceOutRight ease;
+    }
   }
 
-
   .bill-of-materials {
-    &.ng-hide-add {
-      -webkit-animation: 1s bounceOutDown ease;
-      -ms-animation: 1s bounceOutDown ease;
-      animation: 1s bounceOutDown ease;
+    transform: translateY(-350px);
+    min-height:350px;
+
+    &.importing {
+        -webkit-animation: 1s bounceOutDown ease;
+        -ms-animation: 1s bounceOutDown ease;
+        animation: 1s bounceOutDown ease;
     }
+
   }
 }
 

@@ -1,5 +1,5 @@
-<div class="flow-editor full-height" ui-on-drop="addNode($data, $event.originalEvent.offsetX, $event.originalEvent.offsetY)">
-  <svg class="flow-editor-workspace" xmlns="http://www.w3.org/2000/svg" version="1.1"  pointer-events="all">
+<div class="flow-editor" ui-on-drop="addNode($data, $event.originalEvent.offsetX, $event.originalEvent.offsetY)" flex layout="column">
+  <svg class="flow-editor-workspace" xmlns="http://www.w3.org/2000/svg" version="1.1"  pointer-events="all" flex>
     <defs>
       <pattern id="small-blue-grid" width="8" height="8" patternUnits="userSpaceOnUse">
         <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#1E4F95" stroke-width="0.25"/>
