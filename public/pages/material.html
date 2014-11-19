@@ -1,0 +1,42 @@
+<div class="materialize" layout="row">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('md')" md-is-open="navIsOpen">
+    <md-toolbar class="md-medium-tall md-indigo-theme" layout-align="center">
+      <a href class="navbar-logo">
+        <img src="/assets/images/octoblu_logo.png">
+      </a>
+    </md-toolbar>
+
+    <md-content>
+      <a href ui-sref=".home" layout="row" layout-align="start center">
+        <i class="fa fa-home fa-lg"></i>
+        <span>Home</span>
+      </a>
+      <a href ui-sref=".connector.nodes.all" layout="row" layout-align="start center">
+        <i class="fa fa-plug fa-lg"></i>
+        <span>Connect</span>
+      </a>
+      <a href ui-sref="design" layout="row" layout-align="start center">
+        <i class="fa fa-edit fa-lg"></i>
+        <span>Design</span>
+      </a>
+      <a href ui-sref=".process" layout="row" layout-align="start center">
+        <i class="fa fa-tasks fa-lg"></i>
+        <span>Process</span>
+      </a>
+      <a href ui-sref=".analyze" layout="row" layout-align="start center">
+        <i class="fa fa-bar-chart-o fa-lg"></i>
+        <span>Analyze</span>
+      </a>
+      <a href ui-sref=".admin.all" layout="row" layout-align="start center">
+        <i class="fa fa-lock fa-lg"></i>
+        <span>Admin</span>
+      </a>
+      <a href ui-sref=".community" layout="row" layout-align="start center">
+        <i class="fa fa-group fa-lg"></i>
+        <span>Community</span>
+      </a>
+    </md-content>
+  </md-sidenav>
+
+  <ui-view layout="column" layout-fill></ui-view>
+</div>
