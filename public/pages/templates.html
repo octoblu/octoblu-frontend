@@ -27,18 +27,22 @@
         </div>
       </md-content>
 
-      <md-content flex layout="column">
-        <div flex style="background-color: #ddd;">
-          <md-button class="md-fab md-primary" clip-copy="currentTemplate.url" style="position:absolute; top: calc(100%/2 - 28px); right: 28px"><i class="fa fa-share-alt fa-2x"></i></md-button>
+      <div layout-fill flex layout="column">
+        <div flex class="flow-image-but-really-the-flow">
+          <flow-editor flow="currentTemplate.flow" readonly="true"></flow-editor>
+
+          <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2); right: 28px">
+            <i class="fa fa-share-alt fa-2x"></i>
+          </md-button>
         </div>
-        <div flex layout="column">
+        <div flex style="background-color: white;" layout="column">
           <div flex layout-padding>
             <form>
               <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
             </form>
           </div>
         </div>
-      </md-content>
+      </div>
     </div>
   </div>
 </div>
