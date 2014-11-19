@@ -1,6 +1,6 @@
 <md-toolbar md-theme="indigo" md-scroll-shrink>
   <h2 class="md-toolbar-tools page-heading">
-    <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="navIsOpen = !navIsOpen">
+    <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="toggleNav()">
       <i class="fa fa-bars"></i>
     </a>
 
@@ -8,34 +8,17 @@
   </h2>
 </md-toolbar>
 
-<md-content>
-  <div layout="row" layout-align="center" layout-padding>
-    <md-whiteframe class="bill-of-materials md-whiteframe-z2">
-      <md-toolbar>
-        <section layout="row">
-          <h2 class="md-toolbar-tools">
-            <span>Bill of Materials</span>
-          </h2>
-          <section style="padding-right: 40px" layout="column" layout-align="center center">
-            <md-button ng-click="import()">Import</md-button>
-          </section>
-        </section>
-      </md-toolbar>
-      <md-content>
-        <md-list>
-          <md-item ng-repeat="material in billOfMaterials">
-            <md-item-content>
-                  <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }"></div>
-                  <div class="md-tile-content">
-                    <h3>{{material.name}}</h3>
-                    <h4>
-                      {{material.description}}
-                    </h4>
-                  </div>
-                </md-item-content>
-          </md-item>
-        </md-list>
-      </md-content>
-    </md-whiteframe>
+<div layout="column" layout-fill flex>
+  <div class="flow-image-but-really-the-flow" flex>
   </div>
-</md-content>
+
+  <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around">
+    <div layout="column" ng-repeat="material in billOfMaterials">
+      <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }">
+      </div>
+      <div class="md-tile-content">
+        <h3 class="text-center">{{material.name}}</h3>
+      </div>
+    </div>
+  </md-content>
+</div>

@@ -76,6 +76,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
 
       .state('material', {
         templateUrl: '/pages/material.html',
+        controller: 'MaterialController',
         abstract: true
       })
 
