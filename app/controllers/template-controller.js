@@ -33,6 +33,14 @@ var TemplateController = function (options) {
     });
   };
 
+  self.getAllTemplates = function(req, res) {
+    return Template.withUserUUID(req.user.resource.uuid).then(function(templates) {
+      res.send(200, templates);
+    }, function(error) {
+      res.send(404, error);
+    });
+  };
+
   self.importTemplate = function(req, res) {
     Template.importTemplate(req.user.resource.uuid, req.params.id, meshblu).then(function(flow){
       res.send(201, flow);

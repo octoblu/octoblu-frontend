@@ -73,34 +73,4 @@
       </form>
     </div>
   </div>
-
-  <md-content class="full-height" layout="row">
-    <section flex>
-      <md-toolbar>
-        <h2>Templates</h2>
-      </md-toolbar>
-
-      <md-item ng-repeat="template in templates">
-        <md-item-content>
-          <div class="md-tile-left">
-            <img ng-src="https://ds78apnml6was.cloudfront.net/device/flow.svg" class="template-list-icon">
-          </div>
-          <div class="md-tile-content">
-            <section class="pull-right" layout="column" layout-sm="horizontal" layout-align="center center">
-              <md-button class="md-primary" ng-href="/design/import/{{template.uuid}}">Import</md-button>
-              <md-button class="md-warn" ng-click="confirmDeleteTemplate(template.uuid)">Delete</md-button>
-            </section>
-            <h3>{{template.name}}</h3>
-            <h4>{{template.flow.name}}</h4>
-            <p>
-              {{template.created | date: 'short'}}
-            </p>
-          </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-item>
-    </section>
-  </md-content>
-
-
 </div>

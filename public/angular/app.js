@@ -73,18 +73,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })
-
       .state('material', {
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
       })
-
       .state('material.templates', {
         url: '/templates',
-        templateUrl: '/pages/templates.html'
+        templateUrl: '/pages/templates.html',
+        controller: 'TemplatesController'
       })
-
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',

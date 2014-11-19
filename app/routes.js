@@ -321,6 +321,7 @@ module.exports = function(app, passport) {
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);
+            app.get('/api/templates', templateController.getAllTemplates);
             app.delete('/api/templates/:id', templateController.delete);
             app.get('/api/templates/:id', templateController.findOne);
             app.post('/api/templates/:id/flows', templateController.importTemplate);
