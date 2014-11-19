@@ -6,7 +6,8 @@ angular.module('octobluApp')
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {
       $scope.templates = _.map(templates, function(template) {
-        template.url = UrlService.withNewPath('/templates/' + template.uuid);
+        template.url = UrlService.withNewPath('/design/import/' + template.uuid);
+        console.log(template.url);
         return template;
       });
       $scope.currentTemplate = _.first($scope.templates);

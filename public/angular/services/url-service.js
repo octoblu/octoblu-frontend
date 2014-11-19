@@ -4,6 +4,6 @@ angular.module('octobluApp')
 
   self.withNewPath = function(path) {
     var url = $location.absUrl();
-    return url.replace($location.path() + $location.search(), path);
+    return url.replace($location.path(), path);
   };
 });
