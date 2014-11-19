@@ -1,16 +1,16 @@
-<md-card layout="vertical" class="flow-node-editor ng-hide" ng-show="flowNodeType">  
+<md-card layout="column" class="flow-node-editor ng-hide" ng-show="flowNodeType">  
   <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2><span>Edit Node</span></h2>    
-        <span flex></span>  
+        <h2><span>Edit Node</span></h2>
+        <span flex></span>
         <md-button ng-click="close()">Close</md-button>
-      </div>      
+      </div>
     </md-toolbar>
     <md-content>
-      <form style="padding:20px;" layout="vertical">
+      <form style="padding:20px;" layout="column">
         <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
-        <br>      
-        <md-switch ng-model="flowNode.debug">Debug</md-switch>        
+        <br>
+        <md-switch ng-model="flowNode.debug">Debug</md-switch>
       </form>
     </md-content>
 </md-card>

@@ -1,6 +1,6 @@
 <div class="full-height flow-browser-shareflows" ng-class="{ 'has-error' : shareFlowError, 'has-success' : shareFlowSuccess }">
 
-  <md-content class="full-height" layout="horizontal">
+  <md-content class="full-height" layout="row">
     <section flex>
       <md-subheader class="md-primary">Templates</md-subheader>
 
@@ -10,7 +10,7 @@
             <img ng-src="https://ds78apnml6was.cloudfront.net/device/flow.svg" class="template-list-icon">
           </div>
           <div class="md-tile-content">
-            <section class="pull-right" layout="vertical" layout-sm="horizontal" layout-align="center center">
+            <section class="pull-right" layout="column" layout-sm="horizontal" layout-align="center center">
               <md-button class="md-primary" ng-href="/design/import/{{template.uuid}}">Import</md-button>
               <md-button class="md-warn" ng-click="confirmDeleteTemplate(template.uuid)">Delete</md-button>
             </section>
@@ -24,7 +24,7 @@
       </md-item>
     </section>
 
-    <section flex layout-align="center" layout="horizontal">
+    <section flex layout-align="center" layout="row">
       <div flex class="md-whiteframe-z2" style="width: 300px; margin-left: 40px; padding: 20px">
         <h2>New Template</h2>
         <form style="padding: 0 20px;">

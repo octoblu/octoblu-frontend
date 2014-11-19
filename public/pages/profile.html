@@ -74,7 +74,7 @@
     </div>
   </div>
 
-  <md-content class="full-height" layout="horizontal">
+  <md-content class="full-height" layout="row">
     <section flex>
       <md-toolbar>
         <h2>Templates</h2>
@@ -86,7 +86,7 @@
             <img ng-src="https://ds78apnml6was.cloudfront.net/device/flow.svg" class="template-list-icon">
           </div>
           <div class="md-tile-content">
-            <section class="pull-right" layout="vertical" layout-sm="horizontal" layout-align="center center">
+            <section class="pull-right" layout="column" layout-sm="horizontal" layout-align="center center">
               <md-button class="md-primary" ng-href="/design/import/{{template.uuid}}">Import</md-button>
               <md-button class="md-warn" ng-click="confirmDeleteTemplate(template.uuid)">Delete</md-button>
             </section>
