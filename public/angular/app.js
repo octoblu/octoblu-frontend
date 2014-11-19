@@ -73,12 +73,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
       })
-      
+
       .state('flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })
+
+      .state('templates', {
+        url: '/templates',
+        templateUrl: '/pages/templates.html'
+      })
+
       .state('ob', {
         abstract: true,
         controller: 'OctobluController',
@@ -539,7 +545,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
       });
 
     $locationProvider.html5Mode({
-      enabled: true, 
+      enabled: true,
       requireBase: false
     });
 
