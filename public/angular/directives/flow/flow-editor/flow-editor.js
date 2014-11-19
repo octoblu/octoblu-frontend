@@ -7,7 +7,8 @@ angular.module('octobluApp')
       templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
-        flow: '='
+        flow: '=',
+        readonly: '='
       },
 
       link: function ($scope, element) {
@@ -15,7 +16,7 @@ angular.module('octobluApp')
         var renderScope = d3
           .select(element.find('.flow-editor-render-area')[0]);
 
-        var flowRenderer = new FlowRenderer(renderScope);
+        var flowRenderer = new FlowRenderer(renderScope, {readonly: $scope.readonly});
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
