@@ -36,6 +36,7 @@ describe('FlowService', function () {
   describe('#getAllFlows', function () {
     it('should return an array', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, ['hi']);
+      $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
 
       sut.getAllFlows().then(function (flows) {
         expect(flows.length).to.eq(1);
@@ -47,6 +48,7 @@ describe('FlowService', function () {
 
     it('should return an array with objects', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, [{}]);
+      $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
 
       sut.getAllFlows().then(function (flows) {
         expect(flows[0]).to.be.instanceof(Object);
