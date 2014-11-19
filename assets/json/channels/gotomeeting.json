@@ -32,9 +32,9 @@
     "resources": [
       {
         "path": "/G2M/rest/meetings",
-        "displayName": "/G2M/rest/meetings",
+        "displayName": "Create Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/create-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
@@ -87,15 +87,15 @@
       },
       {
         "path": "/G2M/rest/meetings/:meetingId",
-        "displayName": "/G2M/rest/meetings/:meetingId",
+        "displayName": "Delete Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/delete-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [
           {
-            "name": ":meetingId",
+            "name": "meetingId",
             "style": "url",
             "type": "string",
             "value": "",
@@ -106,15 +106,15 @@
       },
       {
         "path": "/G2M/rest/meetings/:meetingId",
-        "displayName": "/G2M/rest/meetings/:meetingId",
+        "displayName": "Get Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [
           {
-            "name": ":meetingId",
+            "name": "meetingId",
             "style": "url",
             "type": "string",
             "value": "",
@@ -125,9 +125,9 @@
       },
       {
         "path": "/G2M/rest/meetings",
-        "displayName": "/G2M/rest/meetings",
+        "displayName": "Get Meetings",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
@@ -159,9 +159,9 @@
       },
       {
         "path": "/G2M/rest/groups/:groupKey/meetings",
-        "displayName": "/G2M/rest/groups/:groupKey/meetings",
+        "displayName": "Get Meetings by Group",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings-group"
+          "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/meetings"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
@@ -189,7 +189,7 @@
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": ":groupKey",
+            "name": "groupKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -200,15 +200,15 @@
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey/meetings",
-        "displayName": "/G2M/rest/organizers/:organizerKey/meetings",
+        "displayName": "Get Meetings by Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}/meetings"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [
           {
-            "name": ":organizerKey",
+            "name": "organizerKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -243,15 +243,15 @@
       },
       {
         "path": "/G2M/rest/meetings/:meetingId/start",
-        "displayName": "/G2M/rest/meetings/:meetingId/start",
+        "displayName": "Start Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/start-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}/start"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [
           {
-            "name": ":meetingId",
+            "name": "meetingId",
             "style": "url",
             "type": "string",
             "value": "",
@@ -262,9 +262,9 @@
       },
       {
         "path": "/G2M/rest/meetings/:meetingId",
-        "displayName": "/G2M/rest/meetings/:meetingId",
+        "displayName": "Update Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/update-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
@@ -318,7 +318,7 @@
             "name": "uniquemeetinginstance"
           },
           {
-            "name": ":meetingId",
+            "name": "meetingId",
             "style": "url",
             "type": "string",
             "value": "",
@@ -329,9 +329,9 @@
       },
       {
         "path": "/G2M/rest/groups/:groupKey/organizers",
-        "displayName": "/G2M/rest/groups/:groupKey/organizers",
+        "displayName": "Create Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/create-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/organizers"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
@@ -361,7 +361,7 @@
             "required": true
           },
           {
-            "name": ":groupKey",
+            "name": "groupKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -372,15 +372,15 @@
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey",
-        "displayName": "/G2M/rest/organizers/:organizerKey",
+        "displayName": "Delete Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/delete-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [
           {
-            "name": ":organizerKey",
+            "name": "organizerKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -391,9 +391,9 @@
       },
       {
         "path": "/G2M/rest/organizers?email=:organizer_email",
-        "displayName": "/G2M/rest/organizers?email=:organizer_email",
+        "displayName": "Delete Organizer by Email",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/delete-organizer-email"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers?email={organizer_email}"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
@@ -402,15 +402,15 @@
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey",
-        "displayName": "/G2M/rest/organizers/:organizerKey",
+        "displayName": "Get Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [
           {
-            "name": ":organizerKey",
+            "name": "organizerKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -421,26 +421,32 @@
       },
       {
         "path": "/G2M/rest/organizers?email=:organizer_email",
-        "displayName": "/G2M/rest/organizers?email=:organizer_email",
+        "displayName": "Get Organizer by Email",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-organizer-email"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers?email={organizer_email}"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+            "name": "organizer_email",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }],
         "url": "https://api.citrixonline.com/G2M/rest/organizers?email=:organizer_email"
       },
       {
         "path": "/G2M/rest/groups/:groupKey/organizers",
-        "displayName": "/G2M/rest/groups/:groupKey/organizers",
+        "displayName": "Get Organizers by Group",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-organizers-group"
+          "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/organizers"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [
           {
-            "name": ":groupKey",
+            "name": "groupKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -451,9 +457,9 @@
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey",
-        "displayName": "/G2M/rest/organizers/:organizerKey",
+        "displayName": "Update Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/update-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
@@ -465,7 +471,7 @@
             "required": true
           },
           {
-            "name": ":organizerKey",
+            "name": "organizerKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -476,9 +482,9 @@
       },
       {
         "path": "/G2M/rest/groups/:groupKey/attendees",
-        "displayName": "/G2M/rest/groups/:groupKey/attendees",
+        "displayName": "Get Attendees by Group",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-attendees-group"
+          "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/attendees"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
@@ -498,7 +504,7 @@
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": ":groupKey",
+            "name": "groupKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -509,9 +515,9 @@
       },
       {
         "path": "/G2M/rest/meetings/:meeting_instance_id/attendees",
-        "displayName": "/G2M/rest/meetings/:meeting_instance_id/attendees",
+        "displayName": "Get Attendees by Meeting",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-attendees-meeting"
+          "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingInstanceKey}/attendees"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
@@ -531,7 +537,7 @@
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": ":meeting_instance_id",
+            "name": "meeting_instance_id",
             "displayName": "Meeting Instance ID",
             "style": "url",
             "type": "string",
@@ -543,9 +549,9 @@
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey/attendees",
-        "displayName": "/G2M/rest/organizers/:organizerKey/attendees",
+        "displayName": "Get Attendees by Organizer",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-attendees-organizer"
+          "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}/attendees"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
@@ -565,7 +571,7 @@
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": ":organizerKey",
+            "name": "organizerKey",
             "style": "url",
             "type": "string",
             "value": "",
@@ -576,9 +582,9 @@
       },
       {
         "path": "/G2M/rest/groups",
-        "displayName": "/G2M/rest/groups",
+        "displayName": "Get Groups",
         "doc": {
-          "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-groups"
+          "url": "https://api.citrixonline.com/G2M/rest/groups"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",

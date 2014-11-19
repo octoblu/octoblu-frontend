@@ -1,12 +1,15 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap'])
+angular.module('octobluApp', ['ngClipboard', 'ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
     }
   })
+  .config(['ngClipProvider', function(ngClipProvider) {
+    ngClipProvider.setPath('lib/zeroclipboard/dist/ZeroClipboard.swf');
+  }])
   .service('skynetConfig', function ($location) {
     var config = {
       host: 'wss://meshblu.octoblu.com',
