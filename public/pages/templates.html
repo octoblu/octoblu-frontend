@@ -45,5 +45,36 @@
         <span>Toolbar: light-theme (default)</span>
       </h2>
     </md-toolbar>
+    <div layout="row">
+
+      <md-content flex layout="row" layout-phone="column" style="flex-wrap: wrap; padding: 3px; background-color: #ddd">
+        <div class="grid-item" ng-repeat="template in templates" layout="column">
+          <div flex style="flex: 3; background-color: #ddf">
+          </div>
+          <div flex layout="row" style="padding: 0 10px;">
+            <section flex style="flex: 6; padding: 10px">
+              <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
+              <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
+            </section>
+            <section flex style="padding: 15px">
+              <md-button ng-click="setCurrentTemplate(template)"><i class="fa fa-pencil fa-2x"></i></md-button>
+            </section>
+          </div>
+        </div>
+      </md-content>
+
+      <md-content flex layout="column">
+        <div flex style="background-color: #ddd;">
+          <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2 - 28px); right: 28px"><i class="fa fa-share-alt fa-2x"></i></md-button>
+        </div>
+        <div flex layout="column">
+          <div flex layout-padding>
+            <form>
+              <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
+            </form>
+          </div>
+        </div>
+      </md-content>
+    </div>
   </div>
 </div>

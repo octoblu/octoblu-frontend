@@ -20,6 +20,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getAllTemplates = function() {
+    return $http.get('/api/templates').then(function(response) {
+      return response.data;
+    });
+  };
+  
   self.getTemplate = function(id) {
     return $http.get('/api/templates/' + id).then(function(response){
       return response.data;

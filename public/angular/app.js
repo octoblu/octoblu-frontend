@@ -80,10 +80,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'FlowController'
       })
 
-      .state('templates', {
-        url: '/templates',
-        templateUrl: '/pages/templates.html'
-      })
 
       .state('ob', {
         abstract: true,
@@ -134,6 +130,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/contact.html',
         controller: 'contactController',
         unsecured: true
+      })
+      .state('templates', {
+        url: '/templates',
+        templateUrl: '/pages/templates.html',
+        controller: 'TemplatesController'
       })
       .state('ob.profile', {
         url: '/profile',
