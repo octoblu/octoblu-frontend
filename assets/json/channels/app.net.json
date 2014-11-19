@@ -52,7 +52,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/lookup/#retrieve-a-user"
         },
-        "displayName": "/users/:user_id",
+        "displayName": "Retrieve a User",
         "path": "/users/:user_id",
         "url": "https://api.app.net/users/:user_id"
       },
@@ -72,7 +72,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/profile/#update-a-user"
         },
-        "displayName": "/users/me",
+        "displayName": "Update a User",
         "path": "/users/me",
         "url": "https://api.app.net/users/me"
       },
@@ -92,7 +92,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/profile/#partially-update-a-user"
         },
-        "displayName": "/users/me",
+        "displayName": "Partially Update a User",
         "path": "/users/me",
         "url": "https://api.app.net/users/me"
       },
@@ -112,7 +112,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/following/#follow-a-user"
         },
-        "displayName": "/users/:user_id/follow",
+        "displayName": "Follow a User",
         "path": "/users/:user_id/follow",
         "url": "https://api.app.net/users/:user_id/follow"
       },
@@ -132,7 +132,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/following/#unfollow-a-user"
         },
-        "displayName": "/users/:user_id/follow",
+        "displayName": "Unfollow a User",
         "path": "/users/:user_id/follow",
         "url": "https://api.app.net/users/:user_id/follow"
       },
@@ -152,7 +152,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/muting/#mute-a-user"
         },
-        "displayName": "/users/:user_id/mute",
+        "displayName": "Mute a User",
         "path": "/users/:user_id/mute",
         "url": "https://api.app.net/users/:user_id/mute"
       },
@@ -172,7 +172,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/muting/#unmute-a-user"
         },
-        "displayName": "/users/:user_id/mute",
+        "displayName": "Unmute a User",
         "path": "/users/:user_id/mute",
         "url": "https://api.app.net/users/:user_id/mute"
       },
@@ -192,7 +192,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/blocking/#block-a-user"
         },
-        "displayName": "/users/:user_id/block",
+        "displayName": "Block a User",
         "path": "/users/:user_id/block",
         "url": "https://api.app.net/users/:user_id/block"
       },
@@ -212,7 +212,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/blocking/#unblock-a-user"
         },
-        "displayName": "/users/:user_id/block",
+        "displayName": "Unblock a User",
         "path": "/users/:user_id/block",
         "url": "https://api.app.net/users/:user_id/block"
       },
@@ -232,7 +232,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/lookup/#retrieve-multiple-users"
         },
-        "displayName": "/users",
+        "displayName": "Retrieve multiple Users",
         "path": "/users",
         "url": "https://api.app.net/users"
       },
@@ -260,7 +260,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/search/#search-for-users"
         },
-        "displayName": "/users/search",
+        "displayName": "Search for Users",
         "path": "/users/search",
         "url": "https://api.app.net/users/search"
       },
@@ -280,7 +280,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/muting/#retrieve-muted-user-ids-for-multiple-users"
         },
-        "displayName": "/users/muted/ids",
+        "displayName": "Retrieve muted User IDs for multiple Users",
         "path": "/users/muted/ids",
         "url": "https://api.app.net/users/muted/ids"
       },
@@ -300,7 +300,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user/blocking/#retrieve-blocked-user-ids-for-multiple-users"
         },
-        "displayName": "/users/blocked/ids",
+        "displayName": "Retrieve blocked User IDs for multiple Users",
         "path": "/users/blocked/ids",
         "url": "https://api.app.net/users/blocked/ids"
       },
@@ -328,7 +328,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/lifecycle/#create-a-post"
         },
-        "displayName": "/posts",
+        "displayName": "Create a Post",
         "path": "/posts",
         "url": "https://api.app.net/posts"
       },
@@ -348,7 +348,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/lookup/#retrieve-a-post"
         },
-        "displayName": "/posts/:post_id",
+        "displayName": "Retrieve a Post",
         "path": "/posts/:post_id",
         "url": "https://api.app.net/posts/:post_id"
       },
@@ -368,7 +368,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/lifecycle/#delete-a-post"
         },
-        "displayName": "/posts/:post_id",
+        "displayName": "Delete a Post",
         "path": "/posts/:post_id",
         "url": "https://api.app.net/posts/:post_id"
       },
@@ -388,7 +388,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/reposts/#repost-a-post"
         },
-        "displayName": "/posts/:post_id/repost",
+        "displayName": "Repost a Post",
         "path": "/posts/:post_id/repost",
         "url": "https://api.app.net/posts/:post_id/repost"
       },
@@ -408,7 +408,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/reposts/#unrepost-a-post"
         },
-        "displayName": "/posts/:post_id/repost",
+        "displayName": "Unrepost a Post",
         "path": "/posts/:post_id/repost",
         "url": "https://api.app.net/posts/:post_id/repost"
       },
@@ -428,7 +428,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/stars/#star-a-post"
         },
-        "displayName": "/posts/:post_id/star",
+        "displayName": "Star a Post",
         "path": "/posts/:post_id/star",
         "url": "https://api.app.net/posts/:post_id/star"
       },
@@ -448,7 +448,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/stars/#unstar-a-post"
         },
-        "displayName": "/posts/:post_id/star",
+        "displayName": "Unstar a Post",
         "path": "/posts/:post_id/star",
         "url": "https://api.app.net/posts/:post_id/star"
       },
@@ -468,7 +468,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/lookup/#retrieve-multiple-posts"
         },
-        "displayName": "/posts",
+        "displayName": "Retrieve multiple Posts",
         "path": "/posts",
         "url": "https://api.app.net/posts"
       },
@@ -488,7 +488,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/streams/#retrieve-posts-mentioning-a-user"
         },
-        "displayName": "/users/:user_id/mentions",
+        "displayName": "Retrieve Posts mentioning a User",
         "path": "/users/:user_id/mentions",
         "url": "https://api.app.net/users/:user_id/mentions"
       },
@@ -508,7 +508,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/streams/#retrieve-the-global-stream"
         },
-        "displayName": "/posts/stream/global",
+        "displayName": "Retrieve the Global stream",
         "path": "/posts/stream/global",
         "url": "https://api.app.net/posts/stream/global"
       },
@@ -528,7 +528,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/report/#report-a-post"
         },
-        "displayName": "/posts/:post_id/report",
+        "displayName": "Report a Post",
         "path": "/posts/:post_id/report",
         "url": "https://api.app.net/posts/:post_id/report"
       },
@@ -556,7 +556,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/post/search/#search-for-posts"
         },
-        "displayName": "/posts/search",
+        "displayName": "Search for Posts",
         "path": "/posts/search",
         "url": "https://api.app.net/posts/search"
       },
@@ -576,7 +576,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lifecycle/#create-a-channel"
         },
-        "displayName": "/channels",
+        "displayName": "Create a Channel",
         "path": "/channels",
         "url": "https://api.app.net/channels"
       },
@@ -596,7 +596,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-a-channel"
         },
-        "displayName": "/channels/:channel_id",
+        "displayName": "Retrieve a Channel",
         "path": "/channels/:channel_id",
         "url": "https://api.app.net/channels/:channel_id"
       },
@@ -616,7 +616,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-multiple-channels"
         },
-        "displayName": "/channels",
+        "displayName": "Retrieve multiple Channels",
         "path": "/channels",
         "url": "https://api.app.net/channels"
       },
@@ -636,7 +636,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-my-channels"
         },
-        "displayName": "/users/me/channels",
+        "displayName": "Retrieve my Channels",
         "path": "/users/me/channels",
         "url": "https://api.app.net/users/me/channels"
       },
@@ -656,7 +656,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-number-of-unread-pm-channels"
         },
-        "displayName": "/users/me/channels/pm/num_unread",
+        "displayName": "Retrieve number of unread PM Channels",
         "path": "/users/me/channels/pm/num_unread",
         "url": "https://api.app.net/users/me/channels/pm/num_unread"
       },
@@ -676,7 +676,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-number-of-unread-broadcast-channels"
         },
-        "displayName": "/users/me/channels/broadcast/num_unread",
+        "displayName": "Retrieve number of unread Broadcast Channels",
         "path": "/users/me/channels/broadcast/num_unread",
         "url": "https://api.app.net/users/me/channels/broadcast/num_unread"
       },
@@ -696,7 +696,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lifecycle/#update-a-channel"
         },
-        "displayName": "/channels/:channel_id",
+        "displayName": "Update a Channel",
         "path": "/channels/:channel_id",
         "url": "https://api.app.net/channels/:channel_id"
       },
@@ -716,7 +716,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/lifecycle/#deactivate-a-channel"
         },
-        "displayName": "/channels/:channel_id",
+        "displayName": "Deactivate a Channel",
         "path": "/channels/:channel_id",
         "url": "https://api.app.net/channels/:channel_id"
       },
@@ -736,7 +736,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/subscriptions/#subscribe-to-a-channel"
         },
-        "displayName": "/channels/:channel_id/subscribe",
+        "displayName": "Subscribe to a Channel",
         "path": "/channels/:channel_id/subscribe",
         "url": "https://api.app.net/channels/:channel_id/subscribe"
       },
@@ -756,7 +756,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/subscriptions/#unsubscribe-from-a-channel"
         },
-        "displayName": "/channels/:channel_id/subscribe",
+        "displayName": "Unsubscribe from a Channel",
         "path": "/channels/:channel_id/subscribe",
         "url": "https://api.app.net/channels/:channel_id/subscribe"
       },
@@ -776,7 +776,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-users-subscribed-to-a-channel"
         },
-        "displayName": "/channels/:channel_id/subscribers",
+        "displayName": "Retrieve users subscribed to a Channel",
         "path": "/channels/:channel_id/subscribers",
         "url": "https://api.app.net/channels/:channel_id/subscribers"
       },
@@ -796,7 +796,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-user-ids-subscribed-to-a-channel"
         },
-        "displayName": "/channels/:channel_id/subscribers/ids",
+        "displayName": "Retrieve user ids subscribed to a Channel",
         "path": "/channels/:channel_id/subscribers/ids",
         "url": "https://api.app.net/channels/:channel_id/subscribers/ids"
       },
@@ -816,7 +816,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-user-ids-subscribed-to-a-channel"
         },
-        "displayName": "/channels/subscribers/ids",
+        "displayName": "Retrieve user ids subscribed to multiple Channels",
         "path": "/channels/subscribers/ids",
         "url": "https://api.app.net/channels/subscribers/ids"
       },
@@ -836,7 +836,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/muting/#mute-a-channel"
         },
-        "displayName": "/channels/:channel_id/mute",
+        "displayName": "Mute a Channel",
         "path": "/channels/:channel_id/mute",
         "url": "https://api.app.net/channels/:channel_id/mute"
       },
@@ -856,7 +856,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/muting/#unmute-a-channel"
         },
-        "displayName": "/channels/:channel_id/mute",
+        "displayName": "Unmute a Channel",
         "path": "/channels/:channel_id/mute",
         "url": "https://api.app.net/channels/:channel_id/mute"
       },
@@ -876,7 +876,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/channel/search/#search-for-channels"
         },
-        "displayName": "/channels/search",
+        "displayName": "Search for Channels",
         "path": "/channels/search",
         "url": "https://api.app.net/channels/search"
       },
@@ -896,7 +896,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/lifecycle/#retrieve-the-messages-in-a-channel"
         },
-        "displayName": "/channels/:channel_id/messages",
+        "displayName": "Retrieve the Messages in a Channel",
         "path": "/channels/:channel_id/messages",
         "url": "https://api.app.net/channels/:channel_id/messages"
       },
@@ -916,7 +916,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/lifecycle/#create-a-message"
         },
-        "displayName": "/channels/:channel_id/messages",
+        "displayName": "Create a Message",
         "path": "/channels/:channel_id/messages",
         "url": "https://api.app.net/channels/:channel_id/messages"
       },
@@ -944,7 +944,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/lookup/#retrieve-a-message"
         },
-        "displayName": "/channels/:channel_id/messages/:message_id",
+        "displayName": "Retrieve a Message",
         "path": "/channels/:channel_id/messages/:message_id",
         "url": "https://api.app.net/channels/:channel_id/messages/:message_id"
       },
@@ -964,7 +964,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/lookup/#retrieve-multiple-messages"
         },
-        "displayName": "/channels/messages",
+        "displayName": "Retrieve multiple Messages",
         "path": "/channels/messages",
         "url": "https://api.app.net/channels/messages"
       },
@@ -992,7 +992,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/lifecycle/#delete-a-message"
         },
-        "displayName": "/channels/:channel_id/messages/:message_id",
+        "displayName": "Delete a Message",
         "path": "/channels/:channel_id/messages/:message_id",
         "url": "https://api.app.net/channels/:channel_id/messages/:message_id"
       },
@@ -1020,7 +1020,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/message/search/#search-for-messages"
         },
-        "displayName": "/channels/messages/search",
+        "displayName": "Search for Messages",
         "path": "/channels/messages/search",
         "url": "https://api.app.net/channels/messages/search"
       },
@@ -1040,7 +1040,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/lifecycle/#create-a-file"
         },
-        "displayName": "/files",
+        "displayName": "Create a File",
         "path": "/files",
         "url": "https://api.app.net/files"
       },
@@ -1060,7 +1060,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/lookup/#retrieve-a-file"
         },
-        "displayName": "/files/:file_id",
+        "displayName": "Retrieve a File",
         "path": "/files/:file_id",
         "url": "https://api.app.net/files/:file_id"
       },
@@ -1080,7 +1080,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/lookup/#retrieve-multiple-files"
         },
-        "displayName": "/files",
+        "displayName": "Retrieve multiple Files",
         "path": "/files",
         "url": "https://api.app.net/files"
       },
@@ -1100,7 +1100,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/lifecycle/#delete-a-file"
         },
-        "displayName": "/files/:file_id",
+        "displayName": "Delete a File",
         "path": "/files/:file_id",
         "url": "https://api.app.net/files/:file_id"
       },
@@ -1120,7 +1120,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/lifecycle/#update-a-file"
         },
-        "displayName": "/files/:file_id",
+        "displayName": "Update a File",
         "path": "/files/:file_id",
         "url": "https://api.app.net/files/:file_id"
       },
@@ -1140,7 +1140,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/content/#get-file-content"
         },
-        "displayName": "/files/:file_id/content",
+        "displayName": "Get File content",
         "path": "/files/:file_id/content",
         "url": "https://api.app.net/files/:file_id/content"
       },
@@ -1160,7 +1160,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/content/#set-file-content"
         },
-        "displayName": "/files/:file_id/content",
+        "displayName": "Set File content",
         "path": "/files/:file_id/content",
         "url": "https://api.app.net/files/:file_id/content"
       },
@@ -1188,7 +1188,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/file/content/#set-derived-file-content"
         },
-        "displayName": "/files/:file_id/content/:derived_file_key",
+        "displayName": "Set Derived File content",
         "path": "/files/:file_id/content/:derived_file_key",
         "url": "https://api.app.net/files/:file_id/content/:derived_file_key"
       },
@@ -1208,7 +1208,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/#delete-a-user-stream"
         },
-        "displayName": "/users/me/streams/:connection_id",
+        "displayName": "Delete a User Stream",
         "path": "/users/me/streams/:connection_id",
         "url": "https://api.app.net/users/me/streams/:connection_id"
       },
@@ -1236,7 +1236,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/#delete-a-user-stream-subscription"
         },
-        "displayName": "/users/me/streams/:connection_id/:subscription_id",
+        "displayName": "Delete a User Stream subscription",
         "path": "/users/me/streams/:connection_id/:subscription_id",
         "url": "https://api.app.net/users/me/streams/:connection_id/:subscription_id"
       },
@@ -1256,7 +1256,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/filter/lifecycle/#create-a-filter"
         },
-        "displayName": "/filters",
+        "displayName": "Create a Filter",
         "path": "/filters",
         "url": "https://api.app.net/filters"
       },
@@ -1276,7 +1276,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/filter/lifecycle/#retrieve-a-filter"
         },
-        "displayName": "/filters/:filter_id",
+        "displayName": "Retrieve a Filter",
         "path": "/filters/:filter_id",
         "url": "https://api.app.net/filters/:filter_id"
       },
@@ -1296,7 +1296,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/filter/lifecycle/#update-a-filter"
         },
-        "displayName": "/filters/:filter_id",
+        "displayName": "Update a Filter",
         "path": "/filters/:filter_id",
         "url": "https://api.app.net/filters/:filter_id"
       },
@@ -1316,7 +1316,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/filter/lifecycle/#delete-a-filter"
         },
-        "displayName": "/filters/:filter_id",
+        "displayName": "Delete a Filter",
         "path": "/filters/:filter_id",
         "url": "https://api.app.net/filters/:filter_id"
       },
@@ -1336,7 +1336,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/text-processor/"
         },
-        "displayName": "/text/process",
+        "displayName": "Process text",
         "path": "/text/process",
         "url": "https://api.app.net/text/process"
       },
@@ -1356,7 +1356,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/token/#retrieve-authorized-user-ids-for-an-app"
         },
-        "displayName": "/apps/me/tokens/user_ids",
+        "displayName": "Retrieve authorized User IDs for an app",
         "path": "/apps/me/tokens/user_ids",
         "url": "https://api.app.net/apps/me/tokens/user_ids"
       },
@@ -1376,7 +1376,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/place/#retrieve-a-place"
         },
-        "displayName": "/places/:factual_id",
+        "displayName": "Retrieve a Place",
         "path": "/places/:factual_id",
         "url": "https://api.app.net/places/:factual_id"
       },
@@ -1396,7 +1396,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/explore/#retrieve-all-explore-streams"
         },
-        "displayName": "/posts/stream/explore",
+        "displayName": "Retrieve all Explore Streams",
         "path": "/posts/stream/explore",
         "url": "https://api.app.net/posts/stream/explore"
       },
@@ -1416,7 +1416,7 @@
         "doc": {
           "url": "https://developers.app.net/reference/resources/explore/#retrieve-an-explore-stream"
         },
-        "displayName": "/posts/stream/explore/:slug",
+        "displayName": "Retrieve an Explore Stream",
         "path": "/posts/stream/explore/:slug",
         "url": "https://api.app.net/posts/stream/explore/:slug"
       }
