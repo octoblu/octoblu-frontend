@@ -1,6 +1,6 @@
 <div class="materialize" layout="row">
 
-  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('md')">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('md')" md-is-open="navIsOpen">
     <md-toolbar class="md-medium-tall md-default-theme">
       <h1 class="md-toolbar-tools" style="padding-top:25px;">
         <a href="" ng-click="goHome()" tabindex="0">Angular<br>Material Design</a>
@@ -42,7 +42,11 @@
   <div layout="column" layout-fill>
     <md-toolbar md-theme="indigo">
       <h2 class="md-toolbar-tools">
-        <span>Toolbar: light-theme (default)</span>
+        <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="navIsOpen = !navIsOpen">
+          <i class="fa fa-bars"></i>
+        </a>
+
+        <span>Manage Yer Templates Dawg</span>
       </h2>
     </md-toolbar>
   </div>
