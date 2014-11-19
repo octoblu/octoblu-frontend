@@ -52,7 +52,7 @@ angular.module('octobluApp')
   };
 
   self.processFlows = function(flows){
-    FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
+    return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
       _.each(flows, function(flow){
         _.each(flow.nodes, function(node){
           node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
@@ -67,8 +67,8 @@ angular.module('octobluApp')
           }
         });
       });
+      return flows;
     });
-    return flows;
   };
 
   self.getAllFlows = function () {

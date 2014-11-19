@@ -60,6 +60,7 @@ describe('FlowService', function () {
       beforeEach(function(){
         $httpBackend.expectGET('/api/flows').respond(200, []);
         $httpBackend.expectPOST('/api/demo_flows').respond(201, {flowId: '101', name: 'Flow 1'});
+        $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
       });
 
       it('should inject an empty flow with a name and flowId', function(done){
