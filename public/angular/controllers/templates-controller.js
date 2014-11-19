@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($scope, TemplateService, UrlService) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, TemplateService, UrlService) {
 
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {
@@ -16,6 +16,18 @@ angular.module('octobluApp')
   $scope.setCurrentTemplate = function(template) {
     $scope.currentTemplate = template;
   };
+
+  $scope.toastTemplateUrl = function(url) {
+    var message = 'Copied ' + url + ' to clipboard';
+    $mdToast.show($mdToast.simple({position: 'top right'}).content(message));
+  }
+
+  $scope.dialogTemplateUrl = function(url) {
+    var alert = $mdDialog.alert().content(url).title('Share this template').ok('OKAY');
+    $mdDialog.show(alert).finally(function(){
+      alert = undefined;
+    });
+  }
 
   $scope.refreshTemplates();
 });
