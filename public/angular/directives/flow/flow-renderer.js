@@ -35,8 +35,7 @@ angular.module('octobluApp')
           dispatch.nodeSelected(node);
           dispatch.nodeButtonClicked(node);
         };
-        var button = nodeElement.selectAll('.flow-node-button');
-        button.on('click', buttonClicked);
+        nodeElement.on('click', buttonClicked);
       }
       nodeElement.on('dblclick', function(){
         d3.event.preventDefault();
@@ -120,7 +119,8 @@ angular.module('octobluApp')
         }
         addDragBehavior(nodeElement, node, flow);
         addNodeClickBehavior(nodeElement, node, flow);
-        addButtonClickBehavior(nodeElement, node);
+        var button = renderScope.select('#node-button-' + node.id);
+        addButtonClickBehavior(button, node);
       });
     }
 

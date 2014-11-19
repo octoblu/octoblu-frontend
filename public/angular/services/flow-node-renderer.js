@@ -259,15 +259,20 @@ angular.module('octobluApp')
         }
 
         if (node.type === 'operation:trigger') {
-          nodeElement
-            .append('rect')
-            .attr('width', 30)
-            .attr('height', 30)
-            .attr('rx', 2)
-            .attr('ry', 2)
-            .attr('x', -35)
-            .attr('y', (nodeHeight / 2) - 15)
-            .classed('flow-node-button', true);
+          var buttonElement = renderScope.select('#node-button-' + node.id);
+          if (!buttonElement[0][0]) {
+            buttonElement = renderScope
+              .append('rect')
+              .attr('id', 'node-button-' + node.id)
+              .attr('width', 30)
+              .attr('height', 30)
+              .attr('rx', 2)
+              .attr('ry', 2)
+              .classed('flow-node-button', true);
+          }
+          buttonElement
+            .attr('x', node.x - (FlowNodeDimensions.width / 2) + 5)
+            .attr('y', node.y + (FlowNodeDimensions.minHeight / 2) - 15);
         }
 
         var label = node.name || node.class || '';
