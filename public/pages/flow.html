@@ -24,34 +24,34 @@
 
       <div class="flow-toolbar-btn-toolbar">
         <div class="btn-group">
-          <button class="btn btn-default button-shadow" ng-click="deleteFlow(activeFlow)" tooltip="Delete Flow" tooltip-placement="bottom">
+          <button class="btn btn-default button-shadow" ng-click="deleteFlow(activeFlow)" title="Delete Flow" tooltip="Delete Flow" tooltip-placement="bottom">
             <i class="fa fa-lg fa-trash-o"></i>
           </button>
-          <button class="btn btn-default button-shadow" ng-click="createTemplate(activeFlow)" tooltip="Create a Template" tooltip-placement="bottom">
+          <button class="btn btn-default button-shadow" ng-click="createTemplate(activeFlow)" title="Create a Template" tooltip="Create a Template" tooltip-placement="bottom">
             <i class="fa fa-lg fa-share-alt"></i>
           </button>
         </div>
 
         <div class="btn-group">
-          <button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="bottom">
+          <button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" class="btn btn-default button-shadow" title="Zoom Out" tooltip="Zoom Out" tooltip-placement="bottom">
             <i class="fa fa-minus"></i>
           </button>
-          <button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="bottom">
+          <button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" class="btn btn-default button-shadow" title="Zoom In" tooltip="Zoom In" tooltip-placement="bottom">
             <i class="fa fa-plus"></i>
           </button>
         </div>
 
         <div class="btn-group">
-          <button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
+          <button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" class="stop-button btn btn-default button-shadow" title="Stop" tooltip="Stop" tooltip-placement="bottom">
             <i class="fa fa-stop"></i>
           </button>
-          <button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" class="start-button btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
+          <button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" class="start-button btn btn-default button-shadow" title="Start" tooltip="Start" tooltip-placement="bottom">
             <i class="fa fa-play"></i>
           </button>
         </div>
 
         <div class="btn-group" dropdown is-open="menuIsOpen">
-          <button class="btn btn-default button-shadow dropdown-toggle" tooltip="Menu" tooltip-placement="left" ng-click="menuIsOpen = !menuIsOpen">
+          <button class="btn btn-default button-shadow dropdown-toggle" title="Menu" tooltip="Menu" tooltip-placement="left" ng-click="menuIsOpen = !menuIsOpen">
             <i class="fa fa-bars"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
