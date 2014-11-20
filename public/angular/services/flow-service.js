@@ -73,13 +73,17 @@ angular.module('octobluApp')
 
   self.getAllFlows = function () {
     return $http.get('/api/flows').then(function(response){
-      if (_.isEmpty(response.data)) {
+      var flowData = _.reject(response.data, function(flow){
+        return !flow.flowId;
+      });
+
+      if (_.isEmpty(flowData)) {
         return self.createDemoFlow().then(function(flow){
           return self.processFlows([flow]);
         });
       }
 
-      return self.processFlows(response.data).then(function(flows) {
+      return self.processFlows(flowData).then(function(flows) {
         return _.map(flows, function(flow) {
           return new FlowModel(flow);
         });

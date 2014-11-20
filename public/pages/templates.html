@@ -11,13 +11,13 @@
           </h2>
         </md-toolbar>
 
-        <md-content flex layout="row" layout-phone="column" style="flex-wrap: wrap; padding: 3px; background-color: #ddd">
+        <md-content flex layout="row" layout-phone="column" layout-wrap="wrap" style="padding: 3px; background-color: #ddd">
           <div class="grid-item" ng-repeat="template in templates" layout="column">
-            <div flex style="flex: 3;" layout="column">
+            <div layout="column" style="flex: 3; -webkit-flex: 3;">
               <flow-editor flow="template.flow" display-only="true"></flow-editor>
             </div>
             <div flex layout="row" style="background-color: white; padding: 0 10px;">
-              <section flex style="flex: 6; padding: 10px">
+              <section style="padding: 10px; flex: 6; -wekbit-flex: 6;">
                 <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
                 <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
               </section>
