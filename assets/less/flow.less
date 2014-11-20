@@ -800,10 +800,16 @@
 }
 
 .grid-item {
-  width: calc(100% / 2);
-  height: 300px;
+  width: 100%;
+  cursor: pointer;
   border: 3px solid #ddd;
   background-color: white;
+  transition: 0.25s all;
+
+  &.selected {
+    background-color: #03a9f4;
+    color: white;
+  }
 }
 
 
