@@ -66,9 +66,10 @@ var groupController = {
             name: req.body.name,
             resource: {
                 uuid: newUuid,
-                owner: user.resourceId,
+                owner: user.resource,
                 type: 'group'
             },
+            members: [],
             type: 'group'
         };
         Group.insert(newGroup).then(function () {
