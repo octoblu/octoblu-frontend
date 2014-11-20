@@ -1,38 +1,39 @@
-<md-toolbar md-theme="indigo" md-scroll-shrink>
-  <h2 class="md-toolbar-tools page-heading">
-    <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-    </a>
-
-    <span>Manage Templates</span>
-  </h2>
-</md-toolbar>
-
   <div layout="column" layout-fill>
     <div layout="row">
+      <div flex layout="column">
+        <md-toolbar md-theme="indigo" md-scroll-shrink>
+          <h2 class="md-toolbar-tools page-heading">
+            <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="toggleNav()">
+              <i class="fa fa-bars"></i>
+            </a>
 
-      <md-content flex layout="row" layout-phone="column" style="flex-wrap: wrap; padding: 3px; background-color: #ddd">
-        <div class="grid-item" ng-repeat="template in templates" layout="column">
-          <div flex style="flex: 3;" layout="column">
-            <flow-editor flow="template.flow" display-only="true"></flow-editor>
+            <span>Manage Templates</span>
+          </h2>
+        </md-toolbar>
+
+        <md-content flex layout="row" layout-phone="column" style="flex-wrap: wrap; padding: 3px; background-color: #ddd">
+          <div class="grid-item" ng-repeat="template in templates" layout="column">
+            <div flex style="flex: 3;" layout="column">
+              <flow-editor flow="template.flow" display-only="true"></flow-editor>
+            </div>
+            <div flex layout="row" style="background-color: white; padding: 0 10px;">
+              <section flex style="flex: 6; padding: 10px">
+                <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
+                <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
+              </section>
+              <section flex style="padding: 15px">
+                <md-button ng-click="setCurrentTemplate(template)"><i class="fa fa-pencil fa-2x"></i></md-button>
+              </section>
+            </div>
           </div>
-          <div flex layout="row" style="background-color: white; padding: 0 10px;">
-            <section flex style="flex: 6; padding: 10px">
-              <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
-              <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
-            </section>
-            <section flex style="padding: 15px">
-              <md-button ng-click="setCurrentTemplate(template)"><i class="fa fa-pencil fa-2x"></i></md-button>
-            </section>
-          </div>
-        </div>
-      </md-content>
+        </md-content>
+      </div>
 
       <div layout-fill flex layout="column">
         <div flex layout="column">
           <flow-editor flow="currentTemplate.flow" readonly="true"></flow-editor>
 
-          <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2); right: 28px">
+          <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2 - 28px); right: 28px">
             <i class="fa fa-share-alt fa-2x"></i>
           </md-button>
         </div>
