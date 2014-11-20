@@ -71,7 +71,7 @@
   </div>
 
   <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
-    <div class="workspace-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}">
+    <div class="workspace-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" layout="column">
       <flow-editor flow="activeFlow"></flow-editor>
     </div>
   </div>
