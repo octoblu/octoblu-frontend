@@ -69,7 +69,7 @@ branches:
     - staging
     - develop
 before_script:
-  # - node_modules/.bin/npm rebuild # Uncomment this if bcrypt gives you trouble.
+  - node_modules/.bin/npm rebuild # Uncomment this if bcrypt gives you trouble.
   - node_modules/.bin/bower install
   - node_modules/.bin/gulp
 after_success:
