@@ -64,7 +64,7 @@
           }
         ],
         "path": "/activities",
-        "displayName": "/activities",
+        "displayName": "Activity List (get activities)",
         "authentication": {
           "required": "true"
         },
@@ -127,7 +127,7 @@
           }
         ],
         "path": "/comments",
-        "displayName": "/comments",
+        "displayName": "get comments",
         "authentication": {
           "required": "true"
         },
@@ -148,7 +148,7 @@
           }
         ],
         "path": "/comment/{id}",
-        "displayName": "/comment/{id}",
+        "displayName": "get comment",
         "authentication": {
           "required": "true"
         },
@@ -196,8 +196,8 @@
             "name": "time_tracking_on"
           }
         ],
-        "path": "/comment/{id}",
-        "displayName": "/comment/{id}",
+        "path": "/comments",
+        "displayName": "create new comment",
         "authentication": {
           "required": "true"
         },
@@ -253,7 +253,7 @@
           }
         ],
         "path": "/comment/{id}",
-        "displayName": "/comment/{id}",
+        "displayName": "update a single comment",
         "authentication": {
           "required": "true"
         },
@@ -274,7 +274,7 @@
           }
         ],
         "path": "/comment/{id}",
-        "displayName": "/comment/{id}",
+        "displayName": "delete a comment",
         "authentication": {
           "required": "true"
         },
@@ -323,7 +323,7 @@
           }
         ],
         "path": "/conversations",
-        "displayName": "/conversations",
+        "displayName": "get conversations",
         "authentication": {
           "required": "true"
         },
@@ -344,7 +344,7 @@
           }
         ],
         "path": "/conversations/{id}",
-        "displayName": "/conversations/{id}",
+        "displayName": "get conversation",
         "authentication": {
           "required": "true"
         },
@@ -385,8 +385,8 @@
             "name": "is_private"
           }
         ],
-        "path": "/conversations/{id}",
-        "displayName": "/conversations/{id}",
+        "path": "/conversations",
+        "displayName": "create new conversation",
         "authentication": {
           "required": "true"
         },
@@ -394,7 +394,7 @@
           "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
         },
         "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/conversations/{id}"
+        "url": "https://redbooth.com/api/3/conversations"
       },
       {
         "params": [
@@ -435,7 +435,7 @@
           }
         ],
         "path": "/conversations/{id}",
-        "displayName": "/conversations/{id}",
+        "displayName": "update a single conversation",
         "authentication": {
           "required": "true"
         },
@@ -456,7 +456,7 @@
           }
         ],
         "path": "/conversations/{id}",
-        "displayName": "/conversations/{id}",
+        "displayName": "delete a conversation",
         "authentication": {
           "required": "true"
         },
@@ -468,7 +468,7 @@
       },
       {
         "path": "/me",
-        "displayName": "/me",
+        "displayName": "get user information",
         "authentication": {
           "required": "true"
         },
@@ -531,7 +531,7 @@
           }
         ],
         "path": "/me",
-        "displayName": "/me",
+        "displayName": "update your information",
         "authentication": {
           "required": "true"
         },
@@ -552,7 +552,7 @@
           }
         ],
         "path": "/me",
-        "displayName": "/me",
+        "displayName": "delete your user",
         "authentication": {
           "required": "true"
         },
@@ -608,7 +608,7 @@
           }
         ],
         "path": "/memberships",
-        "displayName": "/memberships",
+        "displayName": "get memberships",
         "authentication": {
           "required": "true"
         },
@@ -629,7 +629,7 @@
           }
         ],
         "path": "/memberships/{id}",
-        "displayName": "/memberships/{id}",
+        "displayName": "get membership",
         "authentication": {
           "required": "true"
         },
@@ -663,8 +663,8 @@
             "name": "role"
           }
         ],
-        "path": "/memberships/{id}",
-        "displayName": "/memberships/{id}",
+        "path": "/memberships",
+        "displayName": "create new membership",
         "authentication": {
           "required": "true"
         },
@@ -672,7 +672,7 @@
           "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
         },
         "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/memberships/{id}"
+        "url": "https://redbooth.com/api/3/memberships"
       },
       {
         "params": [
@@ -706,7 +706,7 @@
           }
         ],
         "path": "/memberships/{id}",
-        "displayName": "/memberships/{id}",
+        "displayName": "update a single membership",
         "authentication": {
           "required": "true"
         },
@@ -727,7 +727,7 @@
           }
         ],
         "path": "/memberships/{id}",
-        "displayName": "/memberships/{id}",
+        "displayName": "delete a membership",
         "authentication": {
           "required": "true"
         },
@@ -783,7 +783,7 @@
           }
         ],
         "path": "/notes",
-        "displayName": "/notes",
+        "displayName": "get notes",
         "authentication": {
           "required": "true"
         },
@@ -804,7 +804,7 @@
           }
         ],
         "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
+        "displayName": "get note",
         "authentication": {
           "required": "true"
         },
@@ -852,8 +852,8 @@
             "name": "shared"
           }
         ],
-        "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
+        "path": "/notes",
+        "displayName": "create new notes",
         "authentication": {
           "required": "true"
         },
@@ -861,7 +861,7 @@
           "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
         },
         "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/notes/{id}"
+        "url": "https://redbooth.com/api/3/notes"
       },
       {
         "params": [
@@ -909,7 +909,7 @@
           }
         ],
         "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
+        "displayName": "update a single note",
         "authentication": {
           "required": "true"
         },
@@ -930,7 +930,7 @@
           }
         ],
         "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
+        "displayName": "delete a note",
         "authentication": {
           "required": "true"
         },
@@ -965,7 +965,7 @@
           }
         ],
         "path": "/notifications",
-        "displayName": "/notifications",
+        "displayName": "get notifications",
         "authentication": {
           "required": "true"
         },
@@ -986,7 +986,7 @@
           }
         ],
         "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
+        "displayName": "get notification",
         "authentication": {
           "required": "true"
         },
@@ -997,8 +997,8 @@
         "url": "https://redbooth.com/api/3/notifications/{id}"
       },
       {
-        "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
+        "path": "/notifications",
+        "displayName": "create new notification",
         "authentication": {
           "required": "true"
         },
@@ -1006,7 +1006,7 @@
           "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
         },
         "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/notifications/{id}"
+        "url": "https://redbooth.com/api/3/notifications"
       },
       {
         "params": [
@@ -1026,7 +1026,7 @@
           }
         ],
         "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
+        "displayName": "update a single organization",
         "authentication": {
           "required": "true"
         },
@@ -1047,7 +1047,7 @@
           }
         ],
         "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
+        "displayName": "delete a notification",
         "authentication": {
           "required": "true"
         },
@@ -1082,7 +1082,7 @@
           }
         ],
         "path": "/organizations",
-        "displayName": "/organizations",
+        "displayName": "get organizations",
         "authentication": {
           "required": "true"
         },
@@ -1103,7 +1103,7 @@
           }
         ],
         "path": "/organizations/{id}",
-        "displayName": "/organizations/{id}",
+        "displayName": "get organization",
         "authentication": {
           "required": "true"
         },
@@ -1137,8 +1137,8 @@
             "name": "domain"
           }
         ],
-        "path": "/organizations/{id}",
-        "displayName": "/organizations/{id}",
+        "path": "/organizations",
+        "displayName": "create new organization",
         "authentication": {
           "required": "true"
         },
@@ -1146,7 +1146,7 @@
           "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
         },
         "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/organizations/{id}"
+        "url": "https://redbooth.com/api/3/organizations"
       },
       {
         "params": [
@@ -1180,7 +1180,7 @@
           }
         ],
         "path": "/organizations/{id}",
-        "displayName": "/organizations/{id}",
+        "displayName": "update a single organization",
         "authentication": {
           "required": "true"
         },
@@ -1201,7 +1201,7 @@
           }
         ],
         "path": "/organizations/{id}",
-        "displayName": "/organizations/{id}",
+        "displayName": "delete a organization",
         "authentication": {
           "required": "true"
         },
@@ -1264,7 +1264,7 @@
           }
         ],
         "path": "/people",
-        "displayName": "/people",
+        "displayName": "get people",
         "authentication": {
           "required": "true"
         },
@@ -1285,7 +1285,7 @@
           }
         ],
         "path": "/people/{id}",
-        "displayName": "/people/{id}",
+        "displayName": "get person",
         "authentication": {
           "required": "true"
         },
@@ -1303,8 +1303,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{id}",
-        "path": "/people/{id}",
+        "displayName": "create new person",
+        "path": "/people",
         "params": [
           {
             "name": "project_id",
@@ -1328,7 +1328,7 @@
             "required": "false"
           }
         ],
-        "url": "https://redbooth.com/api/3/people/{id}"
+        "url": "https://redbooth.com/api/3/people"
       },
       {
         "httpMethod": "PUT",
@@ -1338,7 +1338,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{id}",
+        "displayName": "update a single person",
         "path": "/people/{id}",
         "params": [
           {
@@ -1373,7 +1373,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{id}",
+        "displayName": "delete a person",
         "path": "/people/{id}",
         "params": [
           {
@@ -1394,7 +1394,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects",
+        "displayName": "get projects",
         "path": "/projects",
         "params": [
           {
@@ -1443,7 +1443,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}",
+        "displayName": "get project",
         "path": "/projects/{id}",
         "params": [
           {
@@ -1464,8 +1464,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}",
-        "path": "/projects/{id}",
+        "displayName": "create new project",
+        "path": "/projects",
         "params": [
           {
             "name": "organizations_id",
@@ -1503,7 +1503,7 @@
             "required": "true"
           }
         ],
-        "url": "https://redbooth.com/api/3/projects/{id}"
+        "url": "https://redbooth.com/api/3/projects"
       },
       {
         "httpMethod": "PUT",
@@ -1513,7 +1513,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}",
+        "displayName": "update a single project",
         "path": "/projects/{id}",
         "params": [
           {
@@ -1576,7 +1576,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}",
+        "displayName": "delete a project",
         "path": "/projects/{id}",
         "params": [
           {
@@ -1597,7 +1597,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subtasks",
+        "displayName": "get subtasks",
         "path": "/subtasks",
         "params": [
           {
@@ -1639,7 +1639,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subtasks",
+        "displayName": "create new subtask",
         "path": "/subtasks",
         "params": [
           {
@@ -1681,7 +1681,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subtasks",
+        "displayName": "update a single subtask",
         "path": "/subtasks",
         "params": [
           {
@@ -1730,7 +1730,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subtasks",
+        "displayName": "delete a subtask",
         "path": "/subtasks",
         "params": [
           {
@@ -1751,7 +1751,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/task_lists",
+        "displayName": "get tasklist",
         "path": "/task_lists",
         "params": [
           {
@@ -1814,7 +1814,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/task_lists/{id}",
+        "displayName": "get tasklist",
         "path": "/task_lists/{id}",
         "params": [
           {
@@ -1835,8 +1835,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/task_lists/{id}",
-        "path": "/task_lists/{id}",
+        "displayName": "create new tasklist",
+        "path": "/task_lists",
         "params": [
           {
             "name": "project_id",
@@ -1860,7 +1860,7 @@
             "required": "false"
           }
         ],
-        "url": "https://redbooth.com/api/3/task_lists/{id}"
+        "url": "https://redbooth.com/api/3/task_lists"
       },
       {
         "httpMethod": "PUT",
@@ -1870,7 +1870,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/task_lists/{id}",
+        "displayName": "update a single tasklist",
         "path": "/task_lists/{id}",
         "params": [
           {
@@ -1912,7 +1912,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/task_lists/{id}",
+        "displayName": "delete a tasklist",
         "path": "/task_lists/{id}",
         "params": [
           {
@@ -1933,7 +1933,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks",
+        "displayName": "get tasks",
         "path": "/tasks",
         "params": [
           {
@@ -2024,7 +2024,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}",
+        "displayName": "get task",
         "path": "/tasks/{id}",
         "params": [
           {
@@ -2045,8 +2045,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}",
-        "path": "/tasks/{id}",
+        "displayName": "create new task",
+        "path": "/tasks",
         "params": [
           {
             "name": "project_id",
@@ -2091,7 +2091,7 @@
             "required": "false"
           }
         ],
-        "url": "https://redbooth.com/api/3/tasks/{id}"
+        "url": "https://redbooth.com/api/3/tasks"
       },
       {
         "httpMethod": "PUT",
@@ -2101,7 +2101,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}",
+        "displayName": "update a single task",
         "path": "/tasks/{id}",
         "params": [
           {
@@ -2171,7 +2171,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}",
+        "displayName": "delete a task",
         "path": "/tasks/{id}",
         "params": [
           {
@@ -2187,14 +2187,26 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.redbooth.com/api-docs/#page:users,header:users-user-list"
+          "url": "https://redbooth.com/api/3/users"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me",
-        "path": "/me",
-        "url": "https://redbooth.com/api/3/me"
+        "displayName": "get user",
+        "path": "/users",
+        "url": "https://redbooth.com/api/3/users"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://redbooth.com/api/3/users/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "get user",
+        "path": "/users/{id}",
+        "url": "https://redbooth.com/api/3/users/{id}"
       }
     ]
   },
