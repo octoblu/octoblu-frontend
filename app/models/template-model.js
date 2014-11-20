@@ -50,6 +50,7 @@ function TemplateModel() {
       delete newFlow._id;
       delete newFlow.flowId;
       delete newFlow.resource;
+      delete newFlow.token;
 
       newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);
 

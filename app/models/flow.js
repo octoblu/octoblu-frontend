@@ -88,7 +88,7 @@ var mergeFlowData = function (userUUID, flowData, device) {
       }
     }
   };
-  return _.extend({}, data, flowData);
+  return _.extend({}, flowData, data);
 };
 
 module.exports = new FlowModel();
