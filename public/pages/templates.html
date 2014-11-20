@@ -1,5 +1,5 @@
-  <div layout="column" layout-fill>
-    <div layout="row">
+  <div flex layout="column">
+    <div flex layout="row">
       <div flex layout="column">
         <md-toolbar md-theme="indigo" md-scroll-shrink>
           <h2 class="md-toolbar-tools page-heading">
@@ -31,6 +31,8 @@
 
       <div layout-fill flex layout="column">
         <div flex layout="column">
+
+          <i ng-click="confirmDeleteTemplate(currentTemplate.uuid)" class="fa fa-trash fa-2x" style="position: absolute; right: 20px; top: 10px"></i>
           <flow-editor flow="currentTemplate.flow" readonly="true"></flow-editor>
 
           <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2 - 28px); right: 28px">
