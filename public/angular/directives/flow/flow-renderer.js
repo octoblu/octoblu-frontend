@@ -116,6 +116,7 @@ angular.module('octobluApp')
 
     function renderNodes(flow) {
       renderScope.selectAll('.flow-node').remove();
+      renderScope.selectAll('.flow-node-button').remove();
       _.each(flow.nodes, function (node) {
         var nodeElement = FlowNodeRenderer.render(renderScope, node, flow);
         if(readonly){
