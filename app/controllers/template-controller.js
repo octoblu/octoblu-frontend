@@ -14,6 +14,18 @@ var TemplateController = function (options) {
     });
   };
 
+  self.update = function(req, res) {
+    var query = {uuid: req.params.id};
+    Template.findOne(query).then(function(template){
+      var updatedTemplate = _.extend({}, template, req.body);
+      return Template.update(query, updatedTemplate);
+    }).then(function(){
+      res.send(204);
+    }, function(error) {
+      res.send(422, error);
+    });
+  };
+
   self.findOne = function(req, res) {
     var query = {
       uuid: req.params.id

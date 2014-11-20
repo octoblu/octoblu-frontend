@@ -10,6 +10,16 @@ angular.module('octobluApp')
     });
   };
 
+  self.update = function(uuid, data) {
+    var template = {
+      name: data.name,
+      flow: data.flow
+    };
+    return $http.put('/api/templates/' + uuid, template).then(function(response){
+      return response.data;
+    });
+  };
+
   self.withFlowId = function(flowId) {
     return $http.get('/api/flows/' + flowId + '/templates').then(function(response) {
       return response.data;

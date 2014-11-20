@@ -13,9 +13,10 @@
 
       <md-content flex layout="row" layout-phone="column" style="flex-wrap: wrap; padding: 3px; background-color: #ddd">
         <div class="grid-item" ng-repeat="template in templates" layout="column">
-          <div flex style="flex: 3; background-color: #ddf">
+          <div flex style="flex: 3;" layout="column">
+            <flow-editor flow="template.flow" display-only="true"></flow-editor>
           </div>
-          <div flex layout="row" style="padding: 0 10px;">
+          <div flex layout="row" style="background-color: white; padding: 0 10px;">
             <section flex style="flex: 6; padding: 10px">
               <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
               <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
@@ -28,7 +29,7 @@
       </md-content>
 
       <div layout-fill flex layout="column">
-        <div flex class="flow-image-but-really-the-flow" layout="column">
+        <div flex layout="column">
           <flow-editor flow="currentTemplate.flow" readonly="true"></flow-editor>
 
           <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2); right: 28px">

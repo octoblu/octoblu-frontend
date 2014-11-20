@@ -323,6 +323,7 @@ module.exports = function(app, passport) {
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);
             app.delete('/api/templates/:id', templateController.delete);
+            app.put('/api/templates/:id', templateController.update);
             app.get('/api/templates/:id', templateController.findOne);
             app.post('/api/templates/:id/flows', templateController.importTemplate);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
