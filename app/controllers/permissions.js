@@ -36,7 +36,7 @@ var permissionsController = {
             resource: {
                 uuid: newUuid,
                 type: 'permission',
-                owner: user.resourceId
+                owner: user.resource
             }
         };
 
@@ -76,7 +76,9 @@ var permissionsController = {
                 'resource.uuid': newTargetGroup.resource.uuid
             })
         ]).then(function (results) {
-            var dbPermission = results[0], dbSourceGroup = results[1], dbTargetGroup = results[2];
+            var dbPermission = results[0],
+                dbSourceGroup = results[1],
+                dbTargetGroup = results[2];
             var membersToUpdate = _.uniq(_.union(dbTargetGroup.members, newTargetGroup.members), function (member) {
                 return member.uuid;
             });
