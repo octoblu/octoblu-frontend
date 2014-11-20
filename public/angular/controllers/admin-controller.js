@@ -7,7 +7,6 @@ angular.module('octobluApp')
 
     this.refreshGroups = function () {
       GroupPermissionsService.all().then(function (groupPermissions) {
-        console.log(groupPermissions);
         $scope.groups = groupPermissions;
       });
     };
@@ -16,7 +15,6 @@ angular.module('octobluApp')
 
     $scope.addGroup = function (name) {
       GroupPermissionsService.add({name: name}).then(function (groupPermission) {
-        console.log('added', name, groupPermission);
         self.refreshGroups();
       });
     };
