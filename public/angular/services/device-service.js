@@ -75,8 +75,8 @@ angular.module('octobluApp')
                        });
                 });
             },
-            getDeviceByUUID: function(uuid){
-                return service.getDevices().then(function(devices){
+            getDeviceByUUID: function(uuid, force){
+                return service.getDevices(force).then(function(devices){
                     return _.findWhere(devices, {uuid: uuid});
                 });
             },
