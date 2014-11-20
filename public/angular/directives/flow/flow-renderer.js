@@ -22,7 +22,6 @@ angular.module('octobluApp')
           return;
         }
         d3.event.preventDefault();
-        dispatch.nodeSelected(node);
       };
       nodeElement.on('click', nodeClicked);
       nodeElement.on('dblclick', function(){
