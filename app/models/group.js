@@ -5,7 +5,7 @@ var when      = require('when');
 var uuid      = require('node-uuid');
 
 function GroupModel() {
-  var collection = octobluDB.getCollection('flows');
+  var collection = octobluDB.getCollection('group');
 
   var methods = {
     updateProperties : ['name', 'members'],
