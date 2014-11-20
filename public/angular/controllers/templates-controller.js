@@ -1,18 +1,31 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, TemplateService, UrlService) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, UrlService) {
 
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {
       $scope.templates = _.map(templates, function(template) {
         template.url = UrlService.withNewPath('/design/import/' + template.uuid);
-        console.log(template.url);
         return template;
       });
-      $scope.currentTemplate = _.first($scope.templates);
+
+      var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId });
+      $scope.setCurrentTemplate(currentTemplate || _.first($scope.templates));
     });
   };
+
+  $scope.confirmDeleteTemplate = function(id){
+    var confirm = $mdDialog.confirm()
+      .content("Are you sure you want to delete this template?")
+      .ok("Delete")
+      .cancel("Cancel");
+    $mdDialog.show(confirm).then(function(){
+      TemplateService.deleteTemplate(id).then(function(){
+        $scope.refreshTemplates();
+      });
+    });
+  }
 
   $scope.setCurrentTemplate = function(template) {
     $scope.currentTemplate = template;

@@ -86,6 +86,11 @@ angular.module('octobluApp', ['ngClipboard', 'ngAnimate', 'ngSanitize', 'ngCooki
         templateUrl: '/pages/templates.html',
         controller: 'TemplatesController'
       })
+      .state('material.template', {
+        url: '/templates/:templateId',
+        templateUrl: '/pages/templates.html',
+        controller: 'TemplatesController'
+      })
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',

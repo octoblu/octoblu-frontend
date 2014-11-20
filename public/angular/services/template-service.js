@@ -5,7 +5,9 @@ angular.module('octobluApp')
   self = this;
 
   self.createTemplate = function(template) {
-    return $http.post("/api/templates", template);
+    return $http.post("/api/templates", template).then(function(response) {
+      return response.data;
+    });
   };
 
   self.withFlowId = function(flowId) {

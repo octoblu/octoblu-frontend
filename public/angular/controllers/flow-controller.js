@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties) {
+  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
@@ -275,6 +275,12 @@ angular.module('octobluApp')
       $scope.currentMouseX = null;
       $scope.currentMouseY = null;
     };
+
+    $scope.createTemplate = function(flow) {
+      TemplateService.createTemplate({name: flow.name, flowId: flow.flowId}).then(function(template) {
+        $state.go('material.template', {templateId: template.uuid});
+      });
+    }
 
     var immediateCalculateFlowHash = function(newFlow, oldFlow) {
       if(! newFlow){
