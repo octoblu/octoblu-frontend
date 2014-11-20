@@ -63,6 +63,7 @@ angular.module('octobluApp')
 
             node.channelActivationId = matchingNode.defaults.channelActivationId;
             node.uuid                = matchingNode.defaults.uuid;
+            node.token               = matchingNode.defaults.token;
             node.needsConfiguration  = false;
           }
         });
