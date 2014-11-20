@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, TemplateService, reservedProperties) {
+  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, reservedProperties) {
     var tabs = {
       debug: {
         name: 'debug',
@@ -48,30 +48,6 @@ angular.module('octobluApp')
     $scope.addFlowNodeType = function(flowNodeType) {
       $scope.$emit('flow-node-type-selected', flowNodeType);
     };
-
-    $scope.refreshTemplates = function(){
-      TemplateService.withFlowId($scope.flow.flowId).then(function(templates) {
-        $scope.templates = templates;
-      });
-    }
-
-    $scope.createTemplate = function() {
-      TemplateService.createTemplate({name: $scope.template.name, flowId: $scope.flow.flowId}).then(function(){
-        $scope.refreshTemplates();
-      });
-    }
-
-    $scope.confirmDeleteTemplate = function(id){
-      var confirm = $mdDialog.confirm()
-        .content("Are you sure you want to delete this template?")
-        .ok("Delete")
-        .cancel("Cancel");
-      $mdDialog.show(confirm).then(function(){
-        TemplateService.deleteTemplate(id).then(function(){
-          $scope.refreshTemplates();
-        });
-      });
-    }
 
     $scope.maximize = function() {
       $scope.maximized = true;
@@ -137,7 +113,6 @@ angular.module('octobluApp')
     $scope.$watch('activeFlow', function(newFlow, oldFlow){
        if(newFlow){
          $scope.flowBrowser.activeFlowJson = angular.toJson(newFlow, true);
-         $scope.refreshTemplates();
        }
     }, true);
 
