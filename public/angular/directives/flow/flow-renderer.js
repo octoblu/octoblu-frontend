@@ -3,6 +3,10 @@ angular.module('octobluApp')
   return function (renderScope, options) {
     var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
     var readonly = options && options.readonly;
+    var displayOnly = options && options.displayOnly;
+    if (displayOnly) {
+      readonly = true;
+    }
 
     renderScope.on('click', function () {
       if (d3.event.defaultPrevented) {
@@ -169,7 +173,9 @@ angular.module('octobluApp')
         flow.zoomY = -flow.selectedFlowNode.y + height;
       },
       render: function (flow) {
-        addZoomBehaviour(flow);
+        if (!displayOnly) {
+          addZoomBehaviour(flow);
+        }
         renderNodes(flow);
         renderLinks(flow);
         zoom(flow);

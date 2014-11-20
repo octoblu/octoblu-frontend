@@ -34,14 +34,26 @@ angular.module('octobluApp')
   $scope.toastTemplateUrl = function(url) {
     var message = 'Copied ' + url + ' to clipboard';
     $mdToast.show($mdToast.simple({position: 'top right'}).content(message));
-  }
+  };
 
   $scope.dialogTemplateUrl = function(url) {
     var alert = $mdDialog.alert().content(url).title('Share this template').ok('OKAY');
     $mdDialog.show(alert).finally(function(){
       alert = undefined;
     });
-  }
+  };
+
+  var immediateUpdateTemplate = function(newTemplate, oldTemplate){
+    if (!newTemplate || !oldTemplate) {
+      return;
+    }
+
+    TemplateService.update(newTemplate.uuid, newTemplate);
+  };
+
+  var updateTemplate = _.debounce(immediateUpdateTemplate, 500);
+
+  $scope.$watch('currentTemplate', updateTemplate, true);
 
   $scope.refreshTemplates();
 });
