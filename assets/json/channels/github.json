@@ -33,7 +33,7 @@
     "resources": [
       {
         "path": "/events",
-        "displayName": "Public Events",
+        "displayName": "Get Public Events",
         "authentication": {
           "required": "true"
         },
@@ -46,7 +46,7 @@
       },
       {
         "path": "/repos/:owner/:repo/events",
-        "displayName": "Repository Events",
+        "displayName": "Get Repository Events",
         "authentication": {
           "required": "true"
         },
@@ -74,7 +74,7 @@
       },
       {
         "path": "/repos/:owner/:repo/issues/events",
-        "displayName": "Issue Events",
+        "displayName": "Get Issue Events",
         "authentication": {
           "required": "true"
         },
@@ -102,7 +102,7 @@
       },
       {
         "path": "/networks/:owner/:repo/events",
-        "displayName": "Public Events For A Network Of Repositories",
+        "displayName": "Get Public Events For A Network Of Repositories",
         "authentication": {
           "required": "true"
         },
@@ -130,7 +130,7 @@
       },
       {
         "path": "/orgs/:org/events",
-        "displayName": "Public Events For An Organization",
+        "displayName": "Get Public Events For An Organization",
         "authentication": {
           "required": "true"
         },
@@ -151,7 +151,7 @@
       },
       {
         "path": "/users/:username/received_events",
-        "displayName": "Received Events",
+        "displayName": "Get Received Events",
         "authentication": {
           "required": "true"
         },
@@ -172,7 +172,7 @@
       },
       {
         "path": "/users/:username/received_events/public",
-        "displayName": "Received Public Events",
+        "displayName": "Get Received Public Events",
         "authentication": {
           "required": "true"
         },
@@ -192,7 +192,7 @@
         ]
       },
       {
-        "displayName": "Events By User",
+        "displayName": "Get Events By User",
         "path": "/users/:username/events",
         "authentication": {
           "required": "true"
@@ -214,7 +214,7 @@
       },
       {
         "path": "/users/:username/events/public",
-        "displayName": "Public Events By User",
+        "displayName": "Get Public Events By User",
         "authentication": {
           "required": "true"
         },
@@ -235,7 +235,7 @@
       },
       {
         "path": "/users/:username/events/orgs/:org",
-        "displayName": "Events For An Organization",
+        "displayName": "Get Events For An Organization",
         "authentication": {
           "required": "true"
         },
@@ -269,7 +269,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Feeds",
+        "displayName": "Get Feeds",
         "path": "/feeds",
         "url": "https://api.github.com/feeds",
         "params": []
@@ -282,7 +282,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Notifications",
+        "displayName": "Get Notifications",
         "path": "/notifications",
         "params": [
           {
@@ -317,7 +317,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Notifications By Repository",
+        "displayName": "Get Notifications By Repository",
         "path": "/repos/:owner/:repo/notifications",
         "params": [
           {
@@ -422,7 +422,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Single Thread",
+        "displayName": "Get Single Thread",
         "path": "/notifications/threads/:id",
         "url": "https://api.github.com/notifications/threads/:id",
         "params": [
@@ -465,7 +465,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Thread Subscription",
+        "displayName": "Get Thread Subscription",
         "path": "/notifications/threads/:id/subscription",
         "url": "https://api.github.com/notifications/threads/:id/subscription",
         "params": [
@@ -521,7 +521,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Thread Subscription",
+        "displayName": "Unsubscribe From A Thread",
         "path": "/notifications/threads/:id/subscription",
         "url": "https://api.github.com/notifications/threads/:id/subscription",
         "params": [
@@ -542,7 +542,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Stargazers",
+        "displayName": "Get Stargazers",
         "path": "/repos/:owner/:repo/stargazers",
         "url": "https://api.github.com/repos/:owner/:repo/stargazers",
         "params": [
@@ -570,7 +570,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Starred Repositories By User",
+        "displayName": "Get Starred Repositories By User",
         "path": "/users/:username/starred",
         "url": "https://api.github.com/users/:username/starred",
         "params": [
@@ -591,7 +591,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Starred Repositories",
+        "displayName": "Get Starred Repositories",
         "path": "/user/starred",
         "params": [
           {
@@ -703,7 +703,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Watchers",
+        "displayName": "Get Watchers",
         "path": "/repos/:owner/:repo/subscribers",
         "url": "https://api.github.com/repos/:owner/:repo/subscribers",
         "params": [
@@ -731,7 +731,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Watched Repositories By User",
+        "displayName": "Get Watched Repositories By User",
         "path": "/users/:username/subscriptions",
         "url": "https://api.github.com/users/:username/subscriptions",
         "params": [
@@ -752,7 +752,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Watched Repositories",
+        "displayName": "Get Watched Repositories",
         "path": "/user/subscriptions",
         "url": "https://api.github.com/user/subscriptions",
         "params": []
@@ -765,7 +765,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Check If Watching Repository",
+        "displayName": "Check If You're Watching A Repository",
         "path": "/repos/:owner/:repo/subscription",
         "url": "https://api.github.com/repos/:owner/:repo/subscription",
         "params": [
@@ -863,7 +863,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gist By User",
+        "displayName": "Get Gist By User",
         "path": "/users/:username/gists",
         "url": "https://api.github.com/users/:username/gists",
         "params": [
@@ -884,7 +884,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gists",
+        "displayName": "Get Gists",
         "path": "/gists",
         "url": "https://api.github.com/gists",
         "params": []
@@ -897,7 +897,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Public Gists",
+        "displayName": "Get Public Gists",
         "path": "/gists/public",
         "url": "https://api.github.com/gists/public",
         "params": []
@@ -910,7 +910,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Starred Gists",
+        "displayName": "Get Starred Gists",
         "path": "/gists/starred",
         "params": [
           {
@@ -931,7 +931,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gists By ID",
+        "displayName": "Get Gists By ID",
         "path": "/gists/:id",
         "url": "https://api.github.com/gists/:id",
         "params": [
@@ -952,7 +952,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gist Comments",
+        "displayName": "Get Gist Comments",
         "path": "/gists/:id/commits",
         "url": "https://api.github.com/gists/:id/commits",
         "params": [
@@ -1057,7 +1057,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gist Forks",
+        "displayName": "Get Gist Forks",
         "path": "/gists/:id/forks",
         "url": "https://api.github.com/gists/:id/forks",
         "params": [
@@ -1099,7 +1099,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gist Comments",
+        "displayName": "Get Gist Comments",
         "path": "/gists/:gist_id/comments",
         "url": "https://api.github.com/gists/:gist_id/comments",
         "params": [
@@ -1120,7 +1120,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Gist Comments By ID",
+        "displayName": "Get Gist Comments By ID",
         "path": "/gists/:gist_id/comments/:id",
         "url": "https://api.github.com/gists/:gist_id/comments/:id",
         "params": [
@@ -1240,7 +1240,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Blob",
+        "displayName": "Get Blob",
         "path": "/repos/:owner/:repo/git/blobs/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/blobs/:sha",
         "params": [
@@ -1303,7 +1303,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Commit",
+        "displayName": "Get Commit",
         "path": "/repos/:owner/:repo/git/commits/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/commits/:sha",
         "params": [
@@ -1408,7 +1408,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Reference",
+        "displayName": "Get Reference",
         "path": "/repos/:owner/:repo/git/refs/:ref",
         "url": "https://api.github.com/repos/:owner/:repo/git/refs/:ref",
         "params": [
@@ -1443,37 +1443,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "References",
+        "displayName": "Get References",
         "path": "/repos/:owner/:repo/git/refs",
         "url": "https://api.github.com/repos/:owner/:repo/git/refs",
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://developer.github.com/v3/git/refs/"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/repos/:owner/:repo/git/refs/tags",
-        "path": "/repos/:owner/:repo/git/refs/tags",
-        "url": "https://api.github.com/repos/:owner/:repo/git/refs/tags",
         "params": [
           {
             "name": ":owner",
@@ -1499,7 +1471,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/refs",
+        "displayName": "Create A Reference",
         "path": "/repos/:owner/:repo/git/refs",
         "params": [
           {
@@ -1542,7 +1514,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/refs/:ref",
+        "displayName": "Update A Reference",
         "path": "/repos/:owner/:repo/git/refs/:ref",
         "params": [
           {
@@ -1591,7 +1563,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/refs/:ref",
+        "displayName": "Delete Reference",
         "path": "/repos/:owner/:repo/git/refs/:ref",
         "url": "https://api.github.com/repos/:owner/:repo/git/refs/:ref",
         "params": [
@@ -1626,7 +1598,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/tags/:sha",
+        "displayName": "Get A Tag",
         "path": "/repos/:owner/:repo/git/tags/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/tags/:sha",
         "params": [
@@ -1661,7 +1633,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/tags",
+        "displayName": "Create A Tag Object",
         "path": "/repos/:owner/:repo/git/tags",
         "params": [
           {
@@ -1744,7 +1716,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/trees/:sha",
+        "displayName": "Get A Tree",
         "path": "/repos/:owner/:repo/git/trees/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/trees/:sha",
         "params": [
@@ -1779,7 +1751,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/trees",
+        "displayName": "Create A Tree",
         "path": "/repos/:owner/:repo/git/trees",
         "params": [
           {
@@ -1856,7 +1828,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/issues",
+        "displayName": "Get Issues",
         "path": "/issues",
         "url": "https://api.github.com/issues",
         "params": []
@@ -1869,7 +1841,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/issues",
+        "displayName": "Get User Issues",
         "path": "/user/issues",
         "url": "https://api.github.com/user/issues",
         "params": []
@@ -1882,7 +1854,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orgs/:org/issues",
+        "displayName": "Get Organization Issues",
         "path": "/orgs/:org/issues",
         "params": [
           {
@@ -1945,7 +1917,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues",
+        "displayName": "Get Repository Issues",
         "path": "/repos/:owner/:repo/issues",
         "params": [
           {
@@ -2036,7 +2008,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number",
+        "displayName": "Get A Single Issue",
         "path": "/repos/:owner/:repo/issues/:number",
         "url": "https://api.github.com/repos/:owner/:repo/issues/:number",
         "params": [
@@ -2071,7 +2043,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues",
+        "displayName": "Create An Issue",
         "path": "/repos/:owner/:repo/issues",
         "params": [
           {
@@ -2135,7 +2107,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number",
+        "displayName": "Update An Issue",
         "path": "/repos/:owner/:repo/issues/:number",
         "params": [
           {
@@ -2212,7 +2184,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/assignees",
+        "displayName": "List Assignees",
         "path": "/repos/:owner/:repo/assignees",
         "url": "https://api.github.com/repos/:owner/:repo/assignees",
         "params": [
@@ -2240,7 +2212,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/assignees/:assignee",
+        "displayName": "Check Assignee",
         "path": "/repos/:owner/:repo/assignees/:assignee",
         "url": "https://api.github.com/repos/:owner/:repo/assignees/:assignee",
         "params": [
@@ -2275,7 +2247,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number/comments",
+        "displayName": "Get Issue Comments",
         "path": "/repos/:owner/:repo/issues/:number/comments",
         "url": "https://api.github.com/repos/:owner/:repo/issues/:number/comments",
         "params": [
@@ -2310,7 +2282,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/comments",
+        "displayName": "Get Repository Comments",
         "path": "/repos/:owner/:repo/issues/comments",
         "params": [
           {
@@ -2359,7 +2331,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/comments/:id",
+        "displayName": "Get Single Comment",
         "path": "/repos/:owner/:repo/issues/comments/:id",
         "url": "https://api.github.com/repos/:owner/:repo/issues/comments/:id",
         "params": [
@@ -2394,7 +2366,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number/comments",
+        "displayName": "Create A Comment",
         "path": "/repos/:owner/:repo/issues/:number/comments",
         "params": [
           {
@@ -2437,7 +2409,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/comments/:id",
+        "displayName": "Edit A Comment",
         "path": "/repos/:owner/:repo/issues/comments/:id",
         "params": [
           {
@@ -2479,7 +2451,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/comments/:id",
+        "displayName": "Delete A Comment",
         "path": "/repos/:owner/:repo/issues/comments/:id",
         "url": "https://api.github.com/repos/:owner/:repo/issues/comments/:id",
         "params": [
@@ -2514,7 +2486,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:issue_number/events",
+        "displayName": "Get Issue Events",
         "path": "/repos/:owner/:repo/issues/:issue_number/events",
         "url": "https://api.github.com/repos/:owner/:repo/issues/:issue_number/events",
         "params": [
@@ -2549,7 +2521,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/events",
+        "displayName": "Get Repository Events",
         "path": "/repos/:owner/:repo/issues/events",
         "url": "https://api.github.com/repos/:owner/:repo/issues/events",
         "params": [
@@ -2577,7 +2549,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/events/:id",
+        "displayName": "Get A Single Event",
         "path": "/repos/:owner/:repo/issues/events/:id",
         "url": "https://api.github.com/repos/:owner/:repo/issues/events/:id",
         "params": [
@@ -2612,7 +2584,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/labels",
+        "displayName": "Get All Repository Labels",
         "path": "/repos/:owner/:repo/labels",
         "url": "https://api.github.com/repos/:owner/:repo/labels",
         "params": [
@@ -2640,7 +2612,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/labels/:name",
+        "displayName": "Get A Single Label",
         "path": "/repos/:owner/:repo/labels/:name",
         "url": "https://api.github.com/repos/:owner/:repo/labels/:name",
         "params": [
@@ -2675,7 +2647,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/labels",
+        "displayName": "Create A Label",
         "path": "/repos/:owner/:repo/labels",
         "params": [
           {
@@ -2717,7 +2689,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/labels/:name",
+        "displayName": "Update A Label",
         "path": "/repos/:owner/:repo/labels/:name",
         "params": [
           {
@@ -2765,7 +2737,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/labels/:name",
+        "displayName": "Delete A Label",
         "path": "/repos/:owner/:repo/labels/:name",
         "url": "https://api.github.com/repos/:owner/:repo/labels/:name",
         "params": [
@@ -2800,7 +2772,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number/labels",
+        "displayName": "Get Issue Labels",
         "path": "/repos/:owner/:repo/issues/:number/labels",
         "url": "https://api.github.com/repos/:owner/:repo/issues/:number/labels",
         "params": [
@@ -2835,7 +2807,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/issues/:number/labels",
+        "displayName": "Add Labels To An Issue",
         "path": "/repos/:owner/:repo/issues/:number/labels",
         "url": "https://api.github.com/repos/:owner/:repo/issues/:number/labels",
         "params": [
@@ -2864,7 +2836,7 @@
       },
       {
         "path": "/repos/:owner/:repo/issues/:number/labels/:name",
-        "displayName": "/repos/:owner/:repo/issues/:number/labels/:name",
+        "displayName": "Delete Label From An Issue",
         "authentication": {
           "required": "true"
         },
@@ -2906,7 +2878,7 @@
       },
       {
         "path": "/repos/:owner/:repo/issues/:number/labels",
-        "displayName": "/repos/:owner/:repo/issues/:number/labels",
+        "displayName": "Replace Issue Labels",
         "authentication": {
           "required": "true"
         },
@@ -2941,7 +2913,7 @@
       },
       {
         "path": "/repos/:owner/:repo/issues/:number/labels",
-        "displayName": "/repos/:owner/:repo/issues/:number/labels",
+        "displayName": "Delete Issue Labels",
         "authentication": {
           "required": "true"
         },
@@ -2976,7 +2948,7 @@
       },
       {
         "path": "/repos/:owner/:repo/milestones/:number/labels",
-        "displayName": "/repos/:owner/:repo/milestones/:number/labels",
+        "displayName": "Get Labels For Issue Milestones",
         "authentication": {
           "required": "true"
         },
@@ -3048,7 +3020,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/milestones",
-        "displayName": "/repos/:owner/:repo/milestones",
+        "displayName": "Get All Milestones",
         "authentication": {
           "required": "true"
         },
@@ -3060,7 +3032,7 @@
       },
       {
         "path": "/repos/:owner/:repo/milestones/:number",
-        "displayName": "/repos/:owner/:repo/milestones/:number",
+        "displayName": "Get A Single Milestone",
         "authentication": {
           "required": "true"
         },
@@ -3139,7 +3111,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/milestones",
-        "displayName": "/repos/:owner/:repo/milestones",
+        "displayName": "Create A Milestone",
         "authentication": {
           "required": "true"
         },
@@ -3202,7 +3174,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/milestones/:number",
-        "displayName": "/repos/:owner/:repo/milestones/:number",
+        "displayName": "Update A Milestone",
         "authentication": {
           "required": "true"
         },
@@ -3215,7 +3187,7 @@
       },
       {
         "path": "/repos/:owner/:repo/milestones/:number",
-        "displayName": "/repos/:owner/:repo/milestones/:number",
+        "displayName": "Delete A Milestone",
         "authentication": {
           "required": "true"
         },
@@ -3250,7 +3222,7 @@
       },
       {
         "path": "/emojis",
-        "displayName": "/emojis",
+        "displayName": "Emojis",
         "authentication": {
           "required": "true"
         },
@@ -3263,7 +3235,7 @@
       },
       {
         "path": "/gitignore/templates",
-        "displayName": "/gitignore/templates",
+        "displayName": "Get .gitignore Templates",
         "authentication": {
           "required": "true"
         },
@@ -3276,7 +3248,7 @@
       },
       {
         "path": "/gitignore/templates/C",
-        "displayName": "/gitignore/templates/C",
+        "displayName": "Get A Single .gitignore Template",
         "authentication": {
           "required": "true"
         },
@@ -3310,7 +3282,7 @@
           }
         ],
         "path": "/markdown",
-        "displayName": "/markdown",
+        "displayName": "Render An Arbitrary Markdown Document",
         "authentication": {
           "required": "true"
         },
@@ -3322,7 +3294,7 @@
       },
       {
         "path": "/markdown/raw",
-        "displayName": "/markdown/raw",
+        "displayName": "Render A Markdown Document In Raw Mode",
         "authentication": {
           "required": "true"
         },
@@ -3334,40 +3306,8 @@
         "params": []
       },
       {
-        "params": [
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "name": "hooks"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "name": "git"
-          },
-          {
-            "required": "false",
-            "type": "boolean",
-            "style": "query",
-            "name": "verifiable_password_authentication"
-          }
-        ],
-        "path": "/meta",
-        "displayName": "/meta",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/meta/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/meta"
-      },
-      {
         "path": "/rate_limit",
-        "displayName": "/rate_limit",
+        "displayName": "Get Current Rate Limit Status",
         "authentication": {
           "required": "true"
         },
@@ -3380,7 +3320,7 @@
       },
       {
         "path": "/users/:username/orgs",
-        "displayName": "/users/:username/orgs",
+        "displayName": "Get All User Organizations",
         "authentication": {
           "required": "true"
         },
@@ -3401,7 +3341,7 @@
       },
       {
         "path": "/user/orgs",
-        "displayName": "/user/orgs",
+        "displayName": "Get Public User Organizations",
         "authentication": {
           "required": "true"
         },
@@ -3414,7 +3354,7 @@
       },
       {
         "path": "/orgs/:org",
-        "displayName": "/orgs/:org",
+        "displayName": "Get An Organization",
         "authentication": {
           "required": "true"
         },
@@ -3475,7 +3415,7 @@
           }
         ],
         "path": "/orgs/:org",
-        "displayName": "/orgs/:org",
+        "displayName": "Edit An Organization",
         "authentication": {
           "required": "true"
         },
@@ -3488,7 +3428,7 @@
       },
       {
         "path": "/orgs/:org/members",
-        "displayName": "/orgs/:org/members",
+        "displayName": "Get Organization Member List",
         "authentication": {
           "required": "true"
         },
@@ -3516,7 +3456,7 @@
       },
       {
         "path": "/orgs/:org/members/:username",
-        "displayName": "/orgs/:org/members/:username",
+        "displayName": "Check Membership OF User In Organization",
         "authentication": {
           "required": "true"
         },
@@ -3544,7 +3484,7 @@
       },
       {
         "path": "/orgs/:org/members/:username",
-        "displayName": "/orgs/:org/members/:username",
+        "displayName": "Remove A Member From Organization",
         "authentication": {
           "required": "true"
         },
@@ -3572,7 +3512,7 @@
       },
       {
         "path": "/orgs/:org/public_members",
-        "displayName": "/orgs/:org/public_members",
+        "displayName": "Get Public Members List",
         "authentication": {
           "required": "true"
         },
@@ -3593,7 +3533,7 @@
       },
       {
         "path": "/orgs/:org/public_members/:username",
-        "displayName": "/orgs/:org/public_members/:username",
+        "displayName": "Check Public Membership",
         "authentication": {
           "required": "true"
         },
@@ -3621,7 +3561,7 @@
       },
       {
         "path": "/orgs/:org/public_members/:username",
-        "displayName": "/orgs/:org/public_members/:username",
+        "displayName": "Publicize User's Membership",
         "authentication": {
           "required": "true"
         },
@@ -3649,7 +3589,7 @@
       },
       {
         "path": "/orgs/:org/public_members/:username",
-        "displayName": "/orgs/:org/public_members/:username",
+        "displayName": "Conceal User's Membership",
         "authentication": {
           "required": "true"
         },
@@ -3677,7 +3617,7 @@
       },
       {
         "path": "/user/memberships/orgs/:org",
-        "displayName": "/user/memberships/orgs/:org",
+        "displayName": "Get Organization Memberships",
         "authentication": {
           "required": "true"
         },
@@ -3693,12 +3633,18 @@
             "style": "url",
             "type": "string",
             "required": "true"
+          },
+          {
+            "name": "state",
+            "displayName": "Active Or Pending?",
+            "style": "query",
+            "type": "string"
           }
         ]
       },
       {
         "path": "/user/memberships/orgs/:org",
-        "displayName": "/user/memberships/orgs/:org",
+        "displayName": "Edit Organization Membership",
         "authentication": {
           "required": "true"
         },
@@ -3727,7 +3673,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls",
-        "displayName": "/repos/:owner/:repo/pulls",
+        "displayName": "Get Pull Requests",
         "authentication": {
           "required": "true"
         },
@@ -3790,7 +3736,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number",
-        "displayName": "/repos/:owner/:repo/pulls/:number",
+        "displayName": "Get A Single Pull Request",
         "authentication": {
           "required": "true"
         },
@@ -3825,7 +3771,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls",
-        "displayName": "/repos/:owner/:repo/pulls",
+        "displayName": "Create A Pull Request",
         "authentication": {
           "required": "true"
         },
@@ -3888,7 +3834,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number",
-        "displayName": "/repos/:owner/:repo/pulls/:number",
+        "displayName": "Update A Pull Request",
         "authentication": {
           "required": "true"
         },
@@ -3945,7 +3891,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number/commits",
-        "displayName": "/repos/:owner/:repo/pulls/:number/commits",
+        "displayName": "Get Commits On A Pull Request",
         "authentication": {
           "required": "true"
         },
@@ -3980,7 +3926,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number/files",
-        "displayName": "/repos/:owner/:repo/pulls/:number/files",
+        "displayName": "Get Pull Request Files",
         "authentication": {
           "required": "true"
         },
@@ -4015,7 +3961,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number/merge",
-        "displayName": "/repos/:owner/:repo/pulls/:number/merge",
+        "displayName": "Check If A Pull Request Has Been Merged",
         "authentication": {
           "required": "true"
         },
@@ -4080,7 +4026,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/pulls/:number/merge",
-        "displayName": "/repos/:owner/:repo/pulls/:number/merge",
+        "displayName": "Merge A Pull Request",
         "authentication": {
           "required": "true"
         },
@@ -4092,7 +4038,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number/comments",
-        "displayName": "/repos/:owner/:repo/pulls/:number/comments",
+        "displayName": "Get Pull Request Comments",
         "authentication": {
           "required": "true"
         },
@@ -4164,7 +4110,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/pulls/comments",
-        "displayName": "/repos/:owner/:repo/pulls/comments",
+        "displayName": "Get Repository Comments",
         "authentication": {
           "required": "true"
         },
@@ -4176,7 +4122,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/comments/:number",
-        "displayName": "/repos/:owner/:repo/pulls/comments/:number",
+        "displayName": "Get A Single Comment",
         "authentication": {
           "required": "true"
         },
@@ -4276,7 +4222,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/pulls/:number/comments",
-        "displayName": "/repos/:owner/:repo/pulls/:number/comments",
+        "displayName": "Create A Comment",
         "authentication": {
           "required": "true"
         },
@@ -4318,7 +4264,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/pulls/comments/:number",
-        "displayName": "/repos/:owner/:repo/pulls/comments/:number",
+        "displayName": "Edit A Comment",
         "authentication": {
           "required": "true"
         },
@@ -4331,7 +4277,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pulls/comments/:number",
-        "displayName": "/repos/:owner/:repo/pulls/comments/:number",
+        "displayName": "Delete A Comment",
         "authentication": {
           "required": "true"
         },
@@ -4389,7 +4335,7 @@
           }
         ],
         "path": "/user/repos",
-        "displayName": "/user/repos",
+        "displayName": "Get Repositories",
         "authentication": {
           "required": "true"
         },
@@ -4431,7 +4377,7 @@
           }
         ],
         "path": "/users/:username/repos",
-        "displayName": "/users/:username/repos",
+        "displayName": "Get Repositories By Username",
         "authentication": {
           "required": "true"
         },
@@ -4459,7 +4405,7 @@
           }
         ],
         "path": "/orgs/:org/repos",
-        "displayName": "/orgs/:org/repos",
+        "displayName": "Get Organization Repositories",
         "authentication": {
           "required": "true"
         },
@@ -4480,7 +4426,7 @@
           }
         ],
         "path": "/repositories",
-        "displayName": "/repositories",
+        "displayName": "Get All Public Repositories",
         "authentication": {
           "required": "true"
         },
@@ -4492,7 +4438,7 @@
       },
       {
         "path": "/user/repos",
-        "displayName": "/user/repos",
+        "displayName": "Create A Repository",
         "authentication": {
           "required": "true"
         },
@@ -4501,7 +4447,84 @@
         },
         "httpMethod": "POST",
         "url": "https://api.github.com/user/repos",
-        "params": []
+        "params": [{
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "displayName": "Name",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Description",
+            "name": "description"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Homepage",
+            "name": "homepage"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Private",
+            "name": "private"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Has Issues",
+            "name": "has_issues"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Has Wiki",
+            "name": "has_wiki"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Has Downloads",
+            "name": "has_downloads"
+          },
+          {
+            "required": "false",
+            "type": "number",
+            "style": "body",
+            "displayName": "Team ID",
+            "name": "team_id"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Auto Init",
+            "name": "auto_init"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": ".gitignore Template",
+            "name": "gitignore_template"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "License Template",
+            "name": "license_template"
+          }
+          ]
       },
       {
         "params": [
@@ -4591,7 +4614,7 @@
           }
         ],
         "path": "/orgs/:org/repos",
-        "displayName": "/orgs/:org/repos",
+        "displayName": "Create An Organization Repository",
         "authentication": {
           "required": "true"
         },
@@ -4603,7 +4626,7 @@
       },
       {
         "path": "/repos/:owner/:repo",
-        "displayName": "/repos/:owner/:repo",
+        "displayName": "Get Repository Information",
         "authentication": {
           "required": "true"
         },
@@ -4623,27 +4646,6 @@
           {
             "name": ":repo",
             "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/repositories/:id",
-        "displayName": "/repositories/:id",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/repositories/:id",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -4723,7 +4725,7 @@
           }
         ],
         "path": "/repos/:owner/:repo",
-        "displayName": "/repos/:owner/:repo",
+        "displayName": "Edit A Repository",
         "authentication": {
           "required": "true"
         },
@@ -4759,7 +4761,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/contributors",
-        "displayName": "/repos/:owner/:repo/contributors",
+        "displayName": "Get Repository Contributors",
         "authentication": {
           "required": "true"
         },
@@ -4771,7 +4773,7 @@
       },
       {
         "path": "/repos/:owner/:repo/languages",
-        "displayName": "/repos/:owner/:repo/languages",
+        "displayName": "Get Repository Languages",
         "authentication": {
           "required": "true"
         },
@@ -4799,7 +4801,7 @@
       },
       {
         "path": "/repos/:owner/:repo/teams",
-        "displayName": "/repos/:owner/:repo/teams",
+        "displayName": "Get Repository Teams",
         "authentication": {
           "required": "true"
         },
@@ -4827,7 +4829,7 @@
       },
       {
         "path": "/repos/:owner/:repo/tags",
-        "displayName": "/repos/:owner/:repo/tags",
+        "displayName": "Get Repository Tags",
         "authentication": {
           "required": "true"
         },
@@ -4855,7 +4857,7 @@
       },
       {
         "path": "/repos/:owner/:repo/branches",
-        "displayName": "/repos/:owner/:repo/branches",
+        "displayName": "Get Repository Branches",
         "authentication": {
           "required": "true"
         },
@@ -4883,7 +4885,7 @@
       },
       {
         "path": "/repos/:owner/:repo/branches/:branch",
-        "displayName": "/repos/:owner/:repo/branches/:branch",
+        "displayName": "Get Repository Branch",
         "authentication": {
           "required": "true"
         },
@@ -4918,7 +4920,7 @@
       },
       {
         "path": "/repos/:owner/:repo",
-        "displayName": "/repos/:owner/:repo",
+        "displayName": "Delete A Repository",
         "authentication": {
           "required": "true"
         },
@@ -4946,7 +4948,7 @@
       },
       {
         "path": "/repos/:owner/:repo/collaborators",
-        "displayName": "/repos/:owner/:repo/collaborators",
+        "displayName": "Get Repository Collaborators",
         "authentication": {
           "required": "true"
         },
@@ -4974,7 +4976,7 @@
       },
       {
         "path": "/repos/:owner/:repo/collaborators/:username",
-        "displayName": "/repos/:owner/:repo/collaborators/:username",
+        "displayName": "Check If User Is A Collaborator",
         "authentication": {
           "required": "true"
         },
@@ -5009,7 +5011,7 @@
       },
       {
         "path": "/repos/:owner/:repo/collaborators/:username",
-        "displayName": "/repos/:owner/:repo/collaborators/:username",
+        "displayName": "Add A User As A Collaborator",
         "authentication": {
           "required": "true"
         },
@@ -5043,7 +5045,7 @@
         ]
       },
       {
-        "displayName": "/repos/:owner/:repo/collaborators/:username",
+        "displayName": "Remove Collaborator",
         "path": "/repos/:owner/:repo/collaborators/:username",
         "authentication": {
           "required": "true"
@@ -5079,7 +5081,7 @@
       },
       {
         "path": "/repos/:owner/:repo/comments",
-        "displayName": "/repos/:owner/:repo/comments",
+        "displayName": "Get Commit Comments For A Repository",
         "authentication": {
           "required": "true"
         },
@@ -5107,7 +5109,7 @@
       },
       {
         "path": "/repos/:owner/:repo/commits/:ref/comments",
-        "displayName": "/repos/:owner/:repo/commits/:ref/comments",
+        "displayName": "Get Comments From A Single Commit",
         "authentication": {
           "required": "true"
         },
@@ -5193,7 +5195,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/commits/:sha/comments",
-        "displayName": "/repos/:owner/:repo/commits/:sha/comments",
+        "displayName": "Create A Commit Comment",
         "authentication": {
           "required": "true"
         },
@@ -5205,7 +5207,7 @@
       },
       {
         "path": "/repos/:owner/:repo/comments/:id",
-        "displayName": "/repos/:owner/:repo/comments/:id",
+        "displayName": "Get A Single Comment From A Commit",
         "authentication": {
           "required": "true"
         },
@@ -5270,7 +5272,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/comments/:id",
-        "displayName": "/repos/:owner/:repo/comments/:id",
+        "displayName": "Update A Commit Comment",
         "authentication": {
           "required": "true"
         },
@@ -5283,7 +5285,7 @@
       },
       {
         "path": "/repos/:owner/:repo/comments/:id",
-        "displayName": "/repos/:owner/:repo/comments/:id",
+        "displayName": "Delete Commit Comment",
         "authentication": {
           "required": "true"
         },
@@ -5369,7 +5371,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/commits",
-        "displayName": "/repos/:owner/:repo/commits",
+        "displayName": "Get Repository Commits",
         "authentication": {
           "required": "true"
         },
@@ -5381,7 +5383,7 @@
       },
       {
         "path": "/repos/:owner/:repo/commits/:sha",
-        "displayName": "/repos/:owner/:repo/commits/:sha",
+        "displayName": "Get A Single Commit",
         "authentication": {
           "required": "true"
         },
@@ -5416,7 +5418,7 @@
       },
       {
         "path": "/repos/:owner/:repo/compare/:base...:head",
-        "displayName": "/repos/:owner/:repo/compare/:base...:head",
+        "displayName": "Compare Two Commits",
         "authentication": {
           "required": "true"
         },
@@ -5458,7 +5460,7 @@
       },
       {
         "path": "/repos/:owner/:repo/compare/user1:branchname...user2:branchname",
-        "displayName": "/repos/:owner/:repo/compare/user1:branchname...user2:branchname",
+        "displayName": "Compare Two Commits Across Users",
         "authentication": {
           "required": "true"
         },
@@ -5537,7 +5539,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/readme",
-        "displayName": "/repos/:owner/:repo/readme",
+        "displayName": "Get A Repository's Readme",
         "authentication": {
           "required": "true"
         },
@@ -5586,7 +5588,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/contents/:path",
-        "displayName": "/repos/:owner/:repo/contents/:path",
+        "displayName": "Get Repository Contents",
         "authentication": {
           "required": "true"
         },
@@ -5656,7 +5658,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/contents/:path",
-        "displayName": "/repos/:owner/:repo/contents/:path",
+        "displayName": "Create A File",
         "authentication": {
           "required": "true"
         },
@@ -5719,7 +5721,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/contents/:path",
-        "displayName": "/repos/:owner/:repo/contents/:path",
+        "displayName": "Update A File",
         "authentication": {
           "required": "true"
         },
@@ -5775,7 +5777,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/contents/:path",
-        "displayName": "/repos/:owner/:repo/contents/:path",
+        "displayName": "Delete A File",
         "authentication": {
           "required": "true"
         },
@@ -5816,7 +5818,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/:archive_format/:ref",
-        "displayName": "/repos/:owner/:repo/:archive_format/:ref",
+        "displayName": "Get Archive Link",
         "authentication": {
           "required": "true"
         },
@@ -5828,7 +5830,7 @@
       },
       {
         "path": "/repos/:owner/:repo/keys",
-        "displayName": "/repos/:owner/:repo/keys",
+        "displayName": "List Deploy Keys",
         "authentication": {
           "required": "true"
         },
@@ -5856,7 +5858,7 @@
       },
       {
         "path": "/repos/:owner/:repo/keys/:id",
-        "displayName": "/repos/:owner/:repo/keys/:id",
+        "displayName": "Get A Deploy Key",
         "authentication": {
           "required": "true"
         },
@@ -5891,7 +5893,7 @@
       },
       {
         "path": "/repos/:owner/:repo/keys",
-        "displayName": "/repos/:owner/:repo/keys",
+        "displayName": "Add A New Deploy Key",
         "authentication": {
           "required": "true"
         },
@@ -5911,356 +5913,6 @@
           {
             "name": ":repo",
             "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/repos/:owner/:repo/keys/:id",
-        "displayName": "/repos/:owner/:repo/keys/:id",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/keys/"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://api.github.com/repos/:owner/:repo/keys/:id",
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "displayName": "SHA",
-            "name": "sha"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "displayName": "Task",
-            "name": "task"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "displayName": "Environment",
-            "name": "environment"
-          },
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "path": "/repos/:owner/:repo/deployments",
-        "displayName": "/repos/:owner/:repo/deployments",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/deployments/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/deployments"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "string",
-            "style": "body",
-            "displayName": "Reference",
-            "name": "ref"
-          },
-          {
-            "required": "true",
-            "type": "string",
-            "style": "body",
-            "displayName": "Task",
-            "name": "task"
-          },
-          {
-            "required": "false",
-            "type": "boolean",
-            "style": "body",
-            "displayName": "Auto Merge",
-            "name": "auto_merge"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Required Contexts",
-            "name": "required_contexts"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Payload",
-            "name": "payload"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Environment",
-            "name": "environment"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Description",
-            "name": "description"
-          },
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "path": "/repos/:owner/:repo/deployments",
-        "displayName": "/repos/:owner/:repo/deployments",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/deployments/"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.github.com/repos/:owner/:repo/deployments"
-      },
-      {
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "path": "/repos/:owner/:repo/deployments/:id/statuses",
-        "displayName": "/repos/:owner/:repo/deployments/:id/statuses",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/deployments/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/deployments/:id/statuses"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "string",
-            "style": "body",
-            "displayName": "State",
-            "name": "state"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Target URL",
-            "name": "target_url"
-          },
-          {
-            "required": "false",
-            "type": "string",
-            "style": "body",
-            "displayName": "Description",
-            "name": "description"
-          },
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "path": "/repos/:owner/:repo/deployments/:id/statuses",
-        "displayName": "/repos/:owner/:repo/deployments/:id/statuses",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/deployments/"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.github.com/repos/:owner/:repo/deployments/:id/statuses"
-      },
-      {
-        "path": "/repos/:owner/:repo/downloads",
-        "displayName": "/repos/:owner/:repo/downloads",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/downloads/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/downloads",
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/repos/:owner/:repo/downloads/:id",
-        "displayName": "/repos/:owner/:repo/downloads/:id",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/downloads/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/downloads/:id",
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/repos/:owner/:repo/downloads/:id",
-        "displayName": "/repos/:owner/:repo/downloads/:id",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/repos/downloads/"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://api.github.com/repos/:owner/:repo/downloads/:id",
-        "params": [
-          {
-            "name": ":owner",
-            "displayName": "Owner",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "displayName": "Repository",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -6292,7 +5944,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/forks",
-        "displayName": "/repos/:owner/:repo/forks",
+        "displayName": "Get Repository Forks",
         "authentication": {
           "required": "true"
         },
@@ -6327,7 +5979,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/forks",
-        "displayName": "/repos/:owner/:repo/forks",
+        "displayName": "Create A Repository Fork",
         "authentication": {
           "required": "true"
         },
@@ -6339,7 +5991,7 @@
       },
       {
         "path": "/repos/:owner/:repo/hooks",
-        "displayName": "/repos/:owner/:repo/hooks",
+        "displayName": "Get Hooks",
         "authentication": {
           "required": "true"
         },
@@ -6367,7 +6019,7 @@
       },
       {
         "path": "/repos/:owner/:repo/hooks/:id",
-        "displayName": "/repos/:owner/:repo/hooks/:id",
+        "displayName": "Get A Single Hook",
         "authentication": {
           "required": "true"
         },
@@ -6446,7 +6098,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/hooks",
-        "displayName": "/repos/:owner/:repo/hooks",
+        "displayName": "Create A Hook",
         "authentication": {
           "required": "true"
         },
@@ -6516,7 +6168,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/hooks/:id",
-        "displayName": "/repos/:owner/:repo/hooks/:id",
+        "displayName": "Edit A Hook",
         "authentication": {
           "required": "true"
         },
@@ -6529,7 +6181,7 @@
       },
       {
         "path": "/repos/:owner/:repo/hooks/:id/tests",
-        "displayName": "/repos/:owner/:repo/hooks/:id/tests",
+        "displayName": "Test A Push Hook",
         "authentication": {
           "required": "true"
         },
@@ -6564,7 +6216,7 @@
       },
       {
         "path": "/repos/:owner/:repo/hooks/:id/pings",
-        "displayName": "/repos/:owner/:repo/hooks/:id/pings",
+        "displayName": "Ping A Hook",
         "authentication": {
           "required": "true"
         },
@@ -6599,7 +6251,7 @@
       },
       {
         "path": "/repos/:owner/:repo/hooks/:id",
-        "displayName": "/repos/:owner/:repo/hooks/:id",
+        "displayName": "Delete A Hook",
         "authentication": {
           "required": "true"
         },
@@ -6671,7 +6323,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/merges",
-        "displayName": "/repos/:owner/:repo/merges",
+        "displayName": "Perform A Merge",
         "authentication": {
           "required": "true"
         },
@@ -6683,7 +6335,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pages",
-        "displayName": "/repos/:owner/:repo/pages",
+        "displayName": "Get Page Information",
         "authentication": {
           "required": "true"
         },
@@ -6711,7 +6363,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pages/builds",
-        "displayName": "/repos/:owner/:repo/pages/builds",
+        "displayName": "Get Page Builds",
         "authentication": {
           "required": "true"
         },
@@ -6739,7 +6391,7 @@
       },
       {
         "path": "/repos/:owner/:repo/pages/builds/latest",
-        "displayName": "/repos/:owner/:repo/pages/builds/latest",
+        "displayName": "Get Latest Page Builds",
         "authentication": {
           "required": "true"
         },
@@ -6767,7 +6419,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases",
-        "displayName": "/repos/:owner/:repo/releases",
+        "displayName": "Get Releases For A Repository",
         "authentication": {
           "required": "true"
         },
@@ -6795,7 +6447,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/:id",
-        "displayName": "/repos/:owner/:repo/releases/:id",
+        "displayName": "Get A Single Release",
         "authentication": {
           "required": "true"
         },
@@ -6888,7 +6540,7 @@
           }
         ],
         "path": "/repos/:owner/:repo/releases",
-        "displayName": "/repos/:owner/:repo/releases",
+        "displayName": "Create A Repository Release",
         "authentication": {
           "required": "true"
         },
@@ -6978,7 +6630,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/:id",
-        "displayName": "/repos/:owner/:repo/releases/:id",
+        "displayName": "Delete A Release",
         "authentication": {
           "required": "true"
         },
@@ -7013,7 +6665,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/:id/assets",
-        "displayName": "/repos/:owner/:repo/releases/:id/assets",
+        "displayName": "Get Assets For A Release",
         "authentication": {
           "required": "true"
         },
@@ -7048,7 +6700,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/assets/:id",
-        "displayName": "/repos/:owner/:repo/releases/assets/:id",
+        "displayName": "Get A Single Asset From A Release",
         "authentication": {
           "required": "true"
         },
@@ -7083,7 +6735,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/assets/:id",
-        "displayName": "/repos/:owner/:repo/releases/assets/:id",
+        "displayName": "Edit A Release Asset",
         "authentication": {
           "required": "true"
         },
@@ -7132,7 +6784,7 @@
       },
       {
         "path": "/repos/:owner/:repo/releases/assets/:id",
-        "displayName": "/repos/:owner/:repo/releases/assets/:id",
+        "displayName": "Delete A Release Asset",
         "authentication": {
           "required": "true"
         },
@@ -7167,7 +6819,7 @@
       },
       {
         "path": "/repos/:owner/:repo/stats/contributors",
-        "displayName": "/repos/:owner/:repo/stats/contributors",
+        "displayName": "Get Contributors List",
         "authentication": {
           "required": "true"
         },
@@ -7195,7 +6847,7 @@
       },
       {
         "path": "/repos/:owner/:repo/stats/commit_activity",
-        "displayName": "/repos/:owner/:repo/stats/commit_activity",
+        "displayName": "Get Last Year Of Commit Activity",
         "authentication": {
           "required": "true"
         },
@@ -7223,7 +6875,7 @@
       },
       {
         "path": "/repos/:owner/:repo/stats/participation",
-        "displayName": "/repos/:owner/:repo/stats/participation",
+        "displayName": "Get Weekly Commit Count",
         "authentication": {
           "required": "true"
         },
@@ -7251,7 +6903,7 @@
       },
       {
         "path": "/repos/:owner/:repo/stats/punch_card",
-        "displayName": "/repos/:owner/:repo/stats/punch_card",
+        "displayName": "Get Commits Per Hour Each Day",
         "authentication": {
           "required": "true"
         },
@@ -7279,7 +6931,7 @@
       },
       {
         "path": "/repos/:owner/:repo/statuses/:sha",
-        "displayName": "/repos/:owner/:repo/statuses/:sha",
+        "displayName": "Create A Status",
         "authentication": {
           "required": "true"
         },
@@ -7342,7 +6994,7 @@
       },
       {
         "path": "/repos/:owner/:repo/commits/:ref/statuses",
-        "displayName": "/repos/:owner/:repo/commits/:ref/statuses",
+        "displayName": "Get Statuses For A Specific Reference",
         "authentication": {
           "required": "true"
         },
@@ -7377,7 +7029,7 @@
       },
       {
         "path": "/repos/:owner/:repo/commits/:ref/status",
-        "displayName": "/repos/:owner/:repo/commits/:ref/status",
+        "displayName": "Get Combined Status For A Specific Reference",
         "authentication": {
           "required": "true"
         },
@@ -7412,7 +7064,7 @@
       },
       {
         "path": "/search/repositories",
-        "displayName": "/search/repositories",
+        "displayName": "Search Repositories",
         "authentication": {
           "required": "true"
         },
@@ -7447,7 +7099,7 @@
       },
       {
         "path": "/search/code",
-        "displayName": "/search/code",
+        "displayName": "Search Code",
         "authentication": {
           "required": "true"
         },
@@ -7482,7 +7134,7 @@
       },
       {
         "path": "/search/issues",
-        "displayName": "/search/issues",
+        "displayName": "Search Issues",
         "authentication": {
           "required": "true"
         },
@@ -7517,7 +7169,7 @@
       },
       {
         "path": "/search/users",
-        "displayName": "/search/users",
+        "displayName": "Search Users",
         "authentication": {
           "required": "true"
         },
@@ -7573,7 +7225,7 @@
       },
       {
         "path": "/user",
-        "displayName": "Authenticated User's Info",
+        "displayName": "Get Your Information",
         "authentication": {
           "required": "true"
         },
@@ -7586,7 +7238,7 @@
       },
       {
         "path": "/user",
-        "displayName": "/user",
+        "displayName": "Update Profile",
         "authentication": {
           "required": "true"
         },
@@ -7671,7 +7323,7 @@
       },
       {
         "path": "/user/emails",
-        "displayName": "/user/emails",
+        "displayName": "Get Email Addresses",
         "authentication": {
           "required": "true"
         },
@@ -7684,7 +7336,7 @@
       },
       {
         "path": "/user/emails",
-        "displayName": "/user/emails",
+        "displayName": "Add Email Address",
         "authentication": {
           "required": "true"
         },
@@ -7697,7 +7349,7 @@
       },
       {
         "path": "/user/emails",
-        "displayName": "/user/emails",
+        "displayName": "Delete Email Address",
         "authentication": {
           "required": "true"
         },
@@ -7710,7 +7362,7 @@
       },
       {
         "path": "/users/:username/followers",
-        "displayName": "/users/:username/followers",
+        "displayName": "Get Followers By User",
         "authentication": {
           "required": "true"
         },
@@ -7731,7 +7383,7 @@
       },
       {
         "path": "/user/followers",
-        "displayName": "/user/followers",
+        "displayName": "Get Your Followers",
         "authentication": {
           "required": "true"
         },
@@ -7744,7 +7396,7 @@
       },
       {
         "path": "/users/:username/following",
-        "displayName": "/users/:username/following",
+        "displayName": "Get Following Users By Username",
         "authentication": {
           "required": "true"
         },
@@ -7765,7 +7417,7 @@
       },
       {
         "path": "/user/following",
-        "displayName": "/user/following",
+        "displayName": "Get Users Following You",
         "authentication": {
           "required": "true"
         },
@@ -7778,7 +7430,7 @@
       },
       {
         "path": "/user/following/:username",
-        "displayName": "/user/following/:username",
+        "displayName": "Check If You're Following A User",
         "authentication": {
           "required": "true"
         },
@@ -7799,7 +7451,7 @@
       },
       {
         "path": "/users/:username/following/:target_user",
-        "displayName": "/users/:username/following/:target_user",
+        "displayName": "Check If One User Follows Another",
         "authentication": {
           "required": "true"
         },
@@ -7826,7 +7478,7 @@
       },
       {
         "path": "/user/following/:username",
-        "displayName": "/user/following/:username",
+        "displayName": "Follow A User",
         "authentication": {
           "required": "true"
         },
@@ -7847,7 +7499,7 @@
       },
       {
         "path": "/user/following/:username",
-        "displayName": "/user/following/:username",
+        "displayName": "Unfollow A User",
         "authentication": {
           "required": "true"
         },
@@ -7868,7 +7520,7 @@
       },
       {
         "path": "/users/:username/keys",
-        "displayName": "/users/:username/keys",
+        "displayName": "Get User's Public Keys",
         "authentication": {
           "required": "true"
         },
@@ -7889,7 +7541,7 @@
       },
       {
         "path": "/user/keys",
-        "displayName": "/user/keys",
+        "displayName": "Get Your Public Keys",
         "authentication": {
           "required": "true"
         },
@@ -7902,7 +7554,7 @@
       },
       {
         "path": "/user/keys/:id",
-        "displayName": "/user/keys/:id",
+        "displayName": "Get A Single Public Key",
         "authentication": {
           "required": "true"
         },
@@ -7923,7 +7575,7 @@
       },
       {
         "path": "/user/keys",
-        "displayName": "/user/keys",
+        "displayName": "Create A Key",
         "authentication": {
           "required": "true"
         },
@@ -7936,7 +7588,7 @@
       },
       {
         "path": "/user/keys/:id",
-        "displayName": "/user/keys/:id",
+        "displayName": "Delete A Key",
         "authentication": {
           "required": "true"
         },
@@ -7957,7 +7609,7 @@
       },
       {
         "path": "/user/:username/site_admin",
-        "displayName": "/user/:username/site_admin",
+        "displayName": "Promote User To Site Administrator",
         "authentication": {
           "required": "true"
         },
@@ -7985,7 +7637,7 @@
       },
       {
         "path": "/user/:username/site_admin",
-        "displayName": "/user/:username/site_admin",
+        "displayName": "Demote User From Site Administrator",
         "authentication": {
           "required": "true"
         },
@@ -8013,7 +7665,7 @@
       },
       {
         "path": "/user/:username/suspended",
-        "displayName": "/user/:username/suspended",
+        "displayName": "Suspend A User",
         "authentication": {
           "required": "true"
         },
@@ -8041,7 +7693,7 @@
       },
       {
         "path": "/user/:username/suspended",
-        "displayName": "/user/:username/suspended",
+        "displayName": "Unsuspend A User",
         "authentication": {
           "required": "true"
         },
@@ -8069,7 +7721,7 @@
       },
       {
         "path": "/enterprise/stats/:type",
-        "displayName": "/enterprise/stats/:type",
+        "displayName": "Get Statistics",
         "authentication": {
           "required": "true"
         },
@@ -8097,7 +7749,7 @@
       },
       {
         "path": "/enterprise/settings/license",
-        "displayName": "/enterprise/settings/license",
+        "displayName": "Get License Information",
         "authentication": {
           "required": "true"
         },
@@ -8118,7 +7770,7 @@
       },
       {
         "path": "/staff/indexing_jobs",
-        "displayName": "/staff/indexing_jobs",
+        "displayName": "Queue An Indexing Job",
         "authentication": {
           "required": "true"
         },
@@ -8146,7 +7798,7 @@
       },
       {
         "path": "/setup/api/start",
-        "displayName": "/setup/api/start",
+        "displayName": "Upload License/Software Package For First Time",
         "authentication": {
           "required": "true"
         },
@@ -8188,7 +7840,7 @@
       },
       {
         "path": "/setup/api/upgrade",
-        "displayName": "/setup/api/upgrade",
+        "displayName": "Upgrade Software Package/License",
         "authentication": {
           "required": "true"
         },
@@ -8230,7 +7882,7 @@
       },
       {
         "path": "/setup/api/configcheck",
-        "displayName": "/setup/api/configcheck",
+        "displayName": "Check Configuration Status",
         "authentication": {
           "required": "true"
         },
@@ -8258,7 +7910,7 @@
       },
       {
         "path": "/setup/api/configure",
-        "displayName": "/setup/api/configure",
+        "displayName": "Start A Configuration Process",
         "authentication": {
           "required": "true"
         },
@@ -8293,7 +7945,7 @@
       },
       {
         "path": "/setup/api/settings",
-        "displayName": "/setup/api/settings",
+        "displayName": "Retrieve Settings",
         "authentication": {
           "required": "true"
         },
@@ -8321,7 +7973,7 @@
       },
       {
         "path": "/setup/api/settings",
-        "displayName": "/setup/api/settings",
+        "displayName": "Modify Settings",
         "authentication": {
           "required": "true"
         },
@@ -8356,7 +8008,7 @@
       },
       {
         "path": "/setup/api/maintenance",
-        "displayName": "/setup/api/maintenance",
+        "displayName": "Check Maintenance Status",
         "authentication": {
           "required": "true"
         },
@@ -8384,7 +8036,7 @@
       },
       {
         "path": "/setup/api/maintenance",
-        "displayName": "/setup/api/maintenance",
+        "displayName": "Enable/Disable Maintenance Mode",
         "authentication": {
           "required": "true"
         },
@@ -8419,7 +8071,7 @@
       },
       {
         "path": "/setup/api/settings/authorized-keys",
-        "displayName": "/setup/api/settings/authorized-keys",
+        "displayName": "Retrieve Authorized SSH Keys",
         "authentication": {
           "required": "true"
         },
@@ -8447,7 +8099,7 @@
       },
       {
         "path": "/setup/api/settings/authorized-keys",
-        "displayName": "/setup/api/settings/authorized-keys",
+        "displayName": "Add A New Authorized SSH Key",
         "authentication": {
           "required": "true"
         },
@@ -8482,7 +8134,7 @@
       },
       {
         "path": "/setup/api/settings/authorized-keys",
-        "displayName": "/setup/api/settings/authorized-keys",
+        "displayName": "Remove An Authorized SSH Key",
         "authentication": {
           "required": "true"
         },
