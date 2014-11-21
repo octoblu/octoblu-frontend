@@ -37,7 +37,7 @@
     "resources": [
       {
         "path": "/statuses/mentions_timeline.json",
-        "displayName": "Mentions Timeline",
+        "displayName": "Get Mentions Timeline",
         "authentication": {
           "required": "true"
         },
@@ -90,7 +90,7 @@
       },
       {
         "path": "/statuses/user_timeline.json",
-        "displayName": "User Timeline",
+        "displayName": "Get User Timeline",
         "authentication": {
           "required": "true"
         },
@@ -164,7 +164,7 @@
       },
       {
         "path": "/statuses/home_timeline.json",
-        "displayName": "Home Timeline",
+        "displayName": "Get Home Timeline",
         "authentication": {
           "required": "true"
         },
@@ -224,7 +224,7 @@
       },
       {
         "path": "/statuses/retweets_of_me.json",
-        "displayName": "My Retweets",
+        "displayName": "Get My Retweets",
         "authentication": {
           "required": "true"
         },
@@ -277,7 +277,7 @@
       },
       {
         "path": "/statuses/retweets/:id.json",
-        "displayName": "Tweet Retweets",
+        "displayName": "Get Tweet Retweets",
         "authentication": {
           "required": "true"
         },
@@ -309,7 +309,7 @@
       },
       {
         "path": "/statuses/show/id.json",
-        "displayName": "Status By ID",
+        "displayName": "Get Tweet By ID",
         "authentication": {
           "required": "true"
         },
@@ -373,7 +373,7 @@
       },
       {
         "path": "/statuses/update.json",
-        "displayName": "Status Update",
+        "displayName": "Post Tweet",
         "authentication": {
           "required": "true"
         },
@@ -440,7 +440,7 @@
       },
       {
         "path": "/statuses/retweet/:id.json",
-        "displayName": "Retweet Status",
+        "displayName": "Retweet Tweet",
         "authentication": {
           "required": "true"
         },
@@ -464,7 +464,7 @@
         ]
       },
       {
-        "displayName": "Update Status With Media",
+        "displayName": "Update Tweet With Media",
         "path": "/statuses/update_with_media.json",
         "authentication": {
           "required": "true"
@@ -532,7 +532,7 @@
       },
       {
         "path": "/statuses/oembed.json",
-        "displayName": "Oembed Tweet",
+        "displayName": "Get oEmbed Formatted Tweet",
         "authentication": {
           "required": "true"
         },
@@ -606,7 +606,7 @@
       },
       {
         "path": "/statuses/retweeters/ids.json",
-        "displayName": "Users By Retweet",
+        "displayName": "Get Users By Retweet",
         "authentication": {
           "required": "true"
         },
@@ -726,7 +726,7 @@
       },
       {
         "path": "/direct_messages.json",
-        "displayName": "Direct Messages",
+        "displayName": "Get Direct Messages",
         "authentication": {
           "required": "true"
         },
@@ -772,7 +772,7 @@
       },
       {
         "path": "/direct_messages/sent.json",
-        "displayName": "Sent Direct Messages",
+        "displayName": "Get Sent Direct Messages",
         "authentication": {
           "required": "true"
         },
@@ -818,7 +818,7 @@
       },
       {
         "path": "/direct_messages/show.json",
-        "displayName": "Single Direct Message",
+        "displayName": "Get Single Direct Message",
         "authentication": {
           "required": "true"
         },
@@ -893,7 +893,7 @@
       },
       {
         "path": "/friendships/no_retweets/ids.json",
-        "displayName": "Friends User Does Not Recieve Retweets From",
+        "displayName": "Get Friends With Retweets Turned Off",
         "authentication": {
           "required": "true"
         },
@@ -911,7 +911,7 @@
       },
       {
       "path": "/friends/ids.json",
-        "displayName": "Users You Follow",
+        "displayName": "Get Users You Follow",
         "authentication": {
           "required": "true"
         },
@@ -957,7 +957,7 @@
       },
       {
         "path": "/followers/ids.json",
-        "displayName": "Users Following You",
+        "displayName": "Get Users Following You",
         "authentication": {
           "required": "true"
         },
@@ -1003,7 +1003,7 @@
       },
       {
         "path": "/friendships/incoming.json",
-        "displayName": "Pending Follower Requests",
+        "displayName": "Get Pending Follower Requests",
         "authentication": {
           "required": "true"
         },
@@ -1028,7 +1028,7 @@
       },
       {
         "path": "/friendships/outgoing.format",
-        "displayName": "Pending Following Requests",
+        "displayName": "Get Pending Following Requests",
         "authentication": {
           "required": "true"
         },
@@ -1188,7 +1188,7 @@
       },
       {
         "path": "/friends/list.json",
-        "displayName": "Users Following",
+        "displayName": "Get Users Following",
         "httpMethod": "GET",
         "authentication": {
           "required": "true"
@@ -1245,7 +1245,7 @@
           "required": "true"
         },
         "path": "/followers/list.json",
-        "displayName": "Followers",
+        "displayName": "Get Followers",
         "params": [
           {
             "name": "user_id",
@@ -1322,7 +1322,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Account Settings",
+        "displayName": "Get Account Settings",
         "path": "/account/settings.json",
         "url": "https://api.twitter.com/1.1/account/settings.json"
       },
@@ -1356,7 +1356,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Account Settings",
+        "displayName": "Update Account Settings",
         "path": "/account/settings.json",
         "params": [
           {
@@ -1625,7 +1625,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Blocked Users",
+        "displayName": "Get Blocked Users",
         "path": "/blocks/list.json",
         "params": [
           {
@@ -1657,7 +1657,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Blocked User IDs",
+        "displayName": "Get Blocked User IDs",
         "path": "/blocks/ids.json",
         "params": [
           {
@@ -1863,7 +1863,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Users You Can Contribute To",
+        "displayName": "Get Users You Can Contribute To",
         "path": "/users/contributees.json",
         "params": [
           {
@@ -1903,7 +1903,7 @@
           "required": "true"
         },
         "path": "/users/contributors.json",
-        "displayName": "Users That Can Contribute To You",
+        "displayName": "Get Users That Can Contribute To You",
         "params": [
           {
             "name": "user_id",
@@ -1996,7 +1996,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Profile Banner",
+        "displayName": "Get Profile Banner",
         "path": "/users/profile_banner.json",
         "params": [
           {
@@ -2071,7 +2071,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Muted User IDs",
+        "displayName": "Get Muted User IDs",
         "path": "/mutes/users/ids.json",
         "params": [
           {
@@ -2089,7 +2089,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Muted Users",
+        "displayName": "Get Muted Users",
         "path": "/mutes/users/list.json",
         "params": [
           {
@@ -2121,7 +2121,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Suggested User List",
+        "displayName": "Get Suggested User List",
         "path": "/users/suggestions/:slug.json",
         "params": [
           {
@@ -2146,7 +2146,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Suggested Users",
+        "displayName": "Get Suggested Users",
         "path": "/users/suggestions.json",
         "params": [
           {
@@ -2164,7 +2164,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Suggested User Members",
+        "displayName": "Get Suggested User Members",
         "path": "/users/suggestions/:slug/members.json",
         "params": [
           {
@@ -2182,7 +2182,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Favorites List",
+        "displayName": "Get Favorites List",
         "path": "/favorites/list.json",
         "params": [
           {
@@ -2285,7 +2285,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "User Lists",
+        "displayName": "Get User Lists",
         "path": "/lists/list.json",
         "params": [
           {
@@ -2478,7 +2478,7 @@
           }
         ],
         "path": "/lists/memberships.json",
-        "displayName": "Lists You Are On",
+        "displayName": "Get Lists You Are On",
         "authentication": {
           "required": "true"
         },
@@ -2538,7 +2538,7 @@
           }
         ],
         "path": "/lists/subscribers.json",
-        "displayName": "List Subscribers",
+        "displayName": "Get List Subscribers",
         "authentication": {
           "required": "true"
         },
@@ -2862,7 +2862,7 @@
           }
         ],
         "path": "/lists/members.json",
-        "displayName": "List Members On List",
+        "displayName": "Get Members On List",
         "authentication": {
           "required": "true"
         },
@@ -3216,7 +3216,7 @@
           }
         ],
         "path": "/lists/ownerships.json",
-        "displayName": "Lists You Own",
+        "displayName": "Get Lists You Own",
         "authentication": {
           "required": "true"
         },
@@ -3297,7 +3297,7 @@
           }
         ],
         "path": "/geo/id/:place_id.json",
-        "displayName": "Place Information",
+        "displayName": "Get Place Information",
         "authentication": {
           "required": "true"
         },
@@ -3350,7 +3350,7 @@
           }
         ],
         "path": "/geo/reverse_geocode.json",
-        "displayName": "Reverse Geocode",
+        "displayName": "Get Reverse Geocode",
         "authentication": {
           "required": "true"
         },
@@ -3443,7 +3443,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Similar Places",
+        "displayName": "Get Similar Places",
         "path": "/geo/similar_places.json",
         "params": [
           {
@@ -3496,7 +3496,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Places Trending",
+        "displayName": "Get Places Trending",
         "path": "/trends/place.json",
         "params": [
           {
@@ -3521,7 +3521,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Trends Available",
+        "displayName": "Get Trends Available",
         "path": "/trends/available.json",
         "url": "https://api.twitter.com/1.1/trends/available.json"
       },
@@ -3530,7 +3530,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Closest Trends",
+        "displayName": "Get Closest Trends",
         "path": "/trends/closest.json",
         "params": [
           {
@@ -3636,7 +3636,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Oauth Access Token",
+        "displayName": "Post Oauth Access Token",
         "path": "/oauth/access_token",
         "params": [
           {
@@ -3676,7 +3676,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Oauth Request Token",
+        "displayName": "Post Oauth Request Token",
         "path": "/oauth/request_token",
         "params": [
           {
@@ -3702,7 +3702,7 @@
           "required": "true"
         },
         "path": "/oauth2/token",
-        "displayName": "Oauth2 Token",
+        "displayName": "Post Oauth2 Token",
         "params": [
           {
             "name": "grant_type",
@@ -3719,7 +3719,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Oauth2 Invalidate Token",
+        "displayName": "Invalidate Oauth2 Token",
         "path": "/oauth2/invalidate_token",
         "params": [
           {
@@ -3743,7 +3743,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Configuration",
+        "displayName": "Get Configuration",
         "path": "/help/configuration.json",
         "url": "https://api.twitter.com/1.1/help/configuration.json"
       },
@@ -3752,7 +3752,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Languages",
+        "displayName": "Get Languages",
         "path": "/help/languages.json",
         "url": "https://api.twitter.com/1.1/help/languages.json"
       },
@@ -3761,7 +3761,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Privacy Policy",
+        "displayName": "Get Privacy Policy",
         "path": "/help/privacy.json",
         "url": "https://api.twitter.com/1.1/help/privacy.json"
       },
@@ -3771,7 +3771,7 @@
           "required": "true"
         },
         "path": "/help/tos.json",
-        "displayName": "Terms Of Service",
+        "displayName": "Get Terms Of Service",
         "url": "https://api.twitter.com/1.1/help/tos.json"
       },
       {
@@ -3779,7 +3779,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Rate Limit Status",
+        "displayName": "Get Rate Limit Status",
         "path": "/application/rate_limit_status.json",
         "params": [
           {
@@ -3797,7 +3797,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Lookup Statuses",
+        "displayName": "Lookup Tweets",
         "path": "/statuses/lookup.json",
         "params": [
           {
