@@ -7,12 +7,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359043-activity-item"
+          "url": "https://:subdomain.crisply.com/api/activity_items.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/activity_items.xml",
+        "displayName": "CREATE Activity Item",
         "path": "/activity_items.xml",
         "url": "https://:subdomain.crisply.com/api/activity_items.xml",
         "params": [{
@@ -26,12 +26,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359043-activity-item"
+          "url": "https://:subdomain.crisply.com/api/activity_items.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/activity_items.xml",
+        "displayName": "GET Activity Items",
         "path": "/activity_items.xml",
         "params": [
           {
@@ -54,12 +54,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+          "url": "https://:subdomain.crisply.com/api/clients.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/clients.xml",
+        "displayName": "CREATE Client",
         "path": "/clients.xml",
         "url": "https://:subdomain.crisply.com/api/clients.xml",
         "params": [{
@@ -73,12 +73,12 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+          "url": "https://:subdomain.crisply.com/api/clients/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/clients/{id}.xml",
+        "displayName": "UPDATE Client",
         "path": "/clients/{id}.xml",
         "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
         "params": [{
@@ -92,12 +92,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+          "url": "https://:subdomain.crisply.com/api/clients.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/clients.xml",
+        "displayName": "GET Clients",
         "path": "/clients.xml",
         "url": "https://:subdomain.crisply.com/api/clients.xml",
         "params": [{
@@ -111,12 +111,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+          "url": "https://:subdomain.crisply.com/api/clients/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/clients/{id}.xml",
+        "displayName": "GET Client",
         "path": "/clients/{id}.xml",
         "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
         "params": [{
@@ -130,12 +130,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+          "url": "https://:subdomain.crisply.com/api/projects.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects.xml",
+        "displayName": "CREATE Project",
         "path": "/projects.xml",
         "url": "https://:subdomain.crisply.com/api/projects.xml",
         "params": [{
@@ -149,12 +149,12 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+          "url": "https://:subdomain.crisply.com/api/projects/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}.xml",
+        "displayName": "UPDATE Project",
         "path": "/projects/{id}.xml",
         "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
         "params": [{
@@ -168,12 +168,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+          "url": "https://:subdomain.crisply.com/api/projects.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects.xml",
+        "displayName": "GET Projects",
         "path": "/projects.xml",
         "url": "https://:subdomain.crisply.com/api/projects.xml",
         "params": [{
@@ -187,12 +187,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+          "url": "https://:subdomain.crisply.com/api/projects/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}.xml",
+        "displayName": "GET Project",
         "path": "/projects/{id}.xml",
         "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
         "params": [{
@@ -206,12 +206,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+          "url": "https://:subdomain.crisply.com/api/users.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users.xml",
+        "displayName": "CREATE User",
         "path": "/users.xml",
         "url": "https://:subdomain.crisply.com/api/users.xml",
         "params": [{
@@ -225,13 +225,13 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+          "url": "https://:subdomain.crisply.com/api/user/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/user/{id}.xml",
-        "displayName": "/user/{id}.xml",
+        "displayName": "UPDATE User",
         "url": "https://:subdomain.crisply.com/api/user/{id}.xml",
         "params": [{
             "name": ":subdomain",
@@ -244,12 +244,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+          "url": "https://:subdomain.crisply.com/api/users.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users.xml",
+        "displayName": "GET Users",
         "path": "/users.xml",
         "url": "https://:subdomain.crisply.com/api/users.xml",
         "params": [{
@@ -263,12 +263,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+          "url": "https://:subdomain.crisply.com/api/users/{id}.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/{id}.xml",
+        "displayName": "GET User",
         "path": "/users/{id}.xml",
         "url": "https://:subdomain.crisply.com/api/users/{id}.xml",
         "params": [{
@@ -282,12 +282,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+          "url": "https://:subdomain.crisply.com/api/users/me.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/me.xml",
+        "displayName": "GET Myself",
         "path": "/users/me.xml",
         "url": "https://:subdomain.crisply.com/api/users/me.xml",
         "params": [{
@@ -301,12 +301,12 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359425-project-assignment"
+          "url": "https://:subdomain.crisply.com/api/project_assignments.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/project_assignments.xml",
+        "displayName": "CREATE/UPDATE Project Assignment",
         "path": "/project_assignments.xml",
         "url": "https://:subdomain.crisply.com/api/project_assignments.xml",
         "params": [{
@@ -320,12 +320,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359425-project-assignment"
+          "url": "https://:subdomain.crisply.com/api/project_assignments.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/project_assignments.xml",
+        "displayName": "GET Project Assignments",
         "path": "/project_assignments.xml",
         "params": [
           {
@@ -355,12 +355,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://support.crisply.com/customer/portal/articles/359563-time-entry"
+          "url": "https://:subdomain.crisply.com/api/time_entries.xml"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/time_entries.xml",
+        "displayName": "GET Time Entries",
         "path": "/time_entries.xml",
         "params": [
           {
