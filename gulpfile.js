@@ -23,7 +23,7 @@ gulp.task('bower:concat', ['bower'], function(){
 });
 
 gulp.task('less:compile', function(){
-  gulp.src('./assets/less/manifest.less')
+  return gulp.src('./assets/less/manifest.less')
     .pipe(plumber())
     // .pipe(sourcemaps.init())
     .pipe(less())
@@ -33,7 +33,7 @@ gulp.task('less:compile', function(){
 });
 
 gulp.task('javascript:concat', function(){
-  gulp.src(['./public/angular/app.js', './public/angular/**/*.js'])
+  return gulp.src(['./public/angular/app.js', './public/angular/**/*.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
       .pipe(concat('application.js'))
@@ -42,7 +42,7 @@ gulp.task('javascript:concat', function(){
 });
 
 gulp.task('channels:concat', function(){
-  gulp.src('./assets/json/channels/*.json')
+  return gulp.src('./assets/json/channels/*.json')
     .pipe(jsoncombine('channels.json', function(data){
       return new Buffer(JSON.stringify(_.values(data)));
     }))
@@ -55,7 +55,7 @@ gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'chan
 gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
-  gulp.watch(['./public/angular/**/*.js'], ['javascript:concat']);
+  gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
 
   nodemon({
