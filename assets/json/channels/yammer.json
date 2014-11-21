@@ -7,12 +7,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages.json",
+        "displayName": "GET All public messages in the user’s Yammer network",
         "path": "/messages.json",
         "params": [
           {
@@ -56,12 +56,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/my_feed.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/my_feed.json",
+        "displayName": "GET user’s feed",
         "path": "/messages/my_feed.json",
         "params": [
           {
@@ -98,7 +98,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/algo.json"
         },
         "authentication": {
           "required": "true"
@@ -133,19 +133,19 @@
             "required": "false"
           }
         ],
-        "displayName": "/messages/algo.json",
+        "displayName": "GET feed for the user that corresponds to “Top” conversations",
         "path": "/messages/algo.json",
         "url": "https://www.yammer.com/api/v1/messages/algo.json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/following.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/following.json",
+        "displayName": "GET The “Following” feed which is conversations involving people, groups and topics that the user is following",
         "path": "/messages/following.json",
         "params": [
           {
@@ -182,12 +182,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/sent.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/sent.json",
+        "displayName": "GET All messages sent by the user",
         "path": "/messages/sent.json",
         "params": [
           {
@@ -224,12 +224,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/private.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/private.json",
+        "displayName": "GET Private messages received by the user",
         "path": "/messages/private.json",
         "params": [
           {
@@ -261,17 +261,17 @@
             "required": "false"
           }
         ],
-        "url": "https://www.yammer.com/api/v1/messages/private.json"
+      "url": "https://www.yammer.com/api/v1/messages/private.json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/received.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/received.json",
+        "displayName": "GET All messages received by the user",
         "path": "/messages/received.json",
         "params": [
           {
@@ -308,12 +308,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages.json",
+        "displayName": "Create a new message",
         "path": "/messages.json",
         "params": [
           {
@@ -441,12 +441,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/[:id]"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/[:id]",
+        "displayName": "Remove a message",
         "path": "/messages/[:id]",
         "params": [
           {
@@ -574,13 +574,13 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/pending_attachments"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/pending_attachments",
-        "displayName": "/pending_attachments",
+        "displayName": "Create a new pending attachment",
         "params": [
           {
             "name": "attachment",
@@ -595,12 +595,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/pending_attachments/[:id]"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/pending_attachments/[:id]",
+        "displayName": "Delete a pending attachment owned by the current user",
         "path": "/pending_attachments/[:id]",
         "params": [
           {
@@ -616,36 +616,36 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/email"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/email",
+        "displayName": "Send the current user a copy of the message specified by the numeric string ID",
         "path": "/messages/email",
         "url": "https://www.yammer.com/api/v1/messages/email"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/threads/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/threads/[:id].json",
+        "displayName": "The “conversation view” for a thread specified by the numeric string ID",
         "path": "/threads/[:id].json",
         "url": "https://www.yammer.com/api/v1/threads/[:id].json"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/liked_by/current.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/liked_by/current.json",
+        "displayName": "Marks the specified message as liked by the current user",
         "path": "/messages/liked_by/current.json",
         "params": [
           {
@@ -661,13 +661,13 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/liked_by/current.json"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/messages/liked_by/current.json",
-        "displayName": "/messages/liked_by/current.json",
+        "displayName": "Removes the like mark from the specified message",
         "params": [
           {
             "name": "message_id",
@@ -682,36 +682,36 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/topics/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/topics/[:id].json",
+        "displayName": "The users that have used the topic specified by the numeric string ID",
         "path": "/topics/[:id].json",
         "url": "https://www.yammer.com/api/v1/topics/[:id].json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-messages"
+          "url": "https://www.yammer.com/api/v1/messages/about_topic/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/about_topic/[:id].json",
+        "displayName": "The feed of messages for a hashtag specified by the numeric string ID",
         "path": "/messages/about_topic/[:id].json",
         "url": "https://www.yammer.com/api/v1/messages/about_topic/[:id].json"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-groups"
+          "url": "https://www.yammer.com/api/v1/group_memberships.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/group_memberships.json",
+        "displayName": "Join the group specified by the numeric string ID",
         "path": "/group_memberships.json",
         "params": [
           {
@@ -727,12 +727,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-groups"
+          "url": "https://www.yammer.com/api/v1/group_memberships.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/group_memberships.json",
+        "displayName": "Leave a group",
         "path": "/group_memberships.json",
         "params": [
           {
@@ -748,12 +748,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users.json",
+        "displayName": "Retrieve users in the current user’s Yammer network",
         "path": "/users.json",
         "params": [
           {
@@ -797,12 +797,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/current.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/current.json",
+        "displayName": "View data about the current user",
         "path": "/users/current.json",
         "params": [
           {
@@ -846,13 +846,13 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/users/[:id].json",
-        "displayName": "/users/[:id].json",
+        "displayName": "View data about a user",
         "params": [
           {
             "name": "page",
@@ -895,12 +895,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/by_email.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/by_email.json",
+        "displayName": "Search by email address",
         "path": "/users/by_email.json",
         "params": [
           {
@@ -951,12 +951,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/in_group/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/in_group/[:id].json",
+        "displayName": "GET Users in a group",
         "path": "/users/in_group/[:id].json",
         "params": [
           {
@@ -1000,12 +1000,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users.json",
+        "displayName": "Create a new user",
         "path": "/users.json",
         "params": [
           {
@@ -1140,12 +1140,12 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/[:id].json",
+        "displayName": "Update information about a user",
         "path": "/users/[:id].json",
         "params": [
           {
@@ -1280,12 +1280,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-users"
+          "url": "https://www.yammer.com/api/v1/users/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/[:id].json",
+        "displayName": "Suspend or delete a user",
         "path": "/users/[:id].json",
         "params": [
           {
@@ -1329,12 +1329,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+          "url": "https://www.yammer.com/api/v1/relationships.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/relationships.json",
+        "displayName": "Show org chart relationships",
         "path": "/relationships.json",
         "params": [
           {
@@ -1371,12 +1371,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+          "url": "https://www.yammer.com/api/v1/relationships.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/relationships.json",
+        "displayName": "Add an org chart relationship",
         "path": "/relationships.json",
         "params": [
           {
@@ -1413,12 +1413,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+          "url": "https://www.yammer.com/api/v1/relationships/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/relationships/[:id].json",
+        "displayName": "Remove the relationship",
         "path": "/relationships/[:id].json",
         "params": [
           {
@@ -1455,24 +1455,24 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-notifications"
+          "url": "https://www.yammer.com/api/v1/streams/notifications.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/streams/notifications.json",
+        "displayName": "Get the notifications feed for the current user",
         "path": "/streams/notifications.json",
         "url": "https://www.yammer.com/api/v1/streams/notifications.json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-suggestions"
+          "url": "https://www.yammer.com/api/v1/suggestions.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/suggestions.json",
+        "displayName": "Show suggested groups to join and users to follow",
         "path": "/suggestions.json",
         "params": [
           {
@@ -1488,13 +1488,13 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-suggestions"
+          "url": "https://www.yammer.com/api/v1/suggestions/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/suggestions/[:id].json",
-        "displayName": "/suggestions/[:id].json",
+        "displayName": "Decline a suggestion",
         "params": [
           {
             "name": "limit",
@@ -1509,12 +1509,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+          "url": "https://www.yammer.com/api/v1/subscriptions/to_user/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subscriptions/to_user/[:id].json",
+        "displayName": "Check to see if you are subscribed to the user with the given id",
         "path": "/subscriptions/to_user/[:id].json",
         "params": [
           {
@@ -1537,12 +1537,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+          "url": "https://www.yammer.com/api/v1/subscriptions/to_thread/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subscriptions/to_thread/[:id].json",
+        "displayName": "Check to see if you are subscribed to thread with the given id",
         "path": "/subscriptions/to_thread/[:id].json",
         "params": [
           {
@@ -1565,12 +1565,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+          "url": "https://www.yammer.com/api/v1/subscriptions/to_topic/[:id].json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subscriptions/to_topic/[:id].json",
+        "displayName": "Check to see if you are subscribed to topic with the given id",
         "path": "/subscriptions/to_topic/[:id].json",
         "params": [
           {
@@ -1593,12 +1593,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+          "url": "https://www.yammer.com/api/v1/subscriptions"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subscriptions",
+        "displayName": "Subscribe to a user or topic",
         "path": "/subscriptions",
         "params": [
           {
@@ -1619,14 +1619,14 @@
         "url": "https://www.yammer.com/api/v1/subscriptions"
       },
       {
-        "httpMethod": "GET",
+        "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+          "url": "https://www.yammer.com/api/v1/subscriptions"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subscriptions",
+        "displayName": "Unsubscribe to a user or topic",
         "path": "/subscriptions",
         "params": [
           {
@@ -1649,12 +1649,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-autocomplete"
+          "url": "https://www.yammer.com/api/v1/autocomplete/ranked"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/autocomplete/ranked",
+        "displayName": "Return typeahead suggestions for the prefix passed",
         "path": "/autocomplete/ranked",
         "params": [
           {
@@ -1677,12 +1677,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-invitations"
+          "url": "https://www.yammer.com/api/v1/invitations.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/invitations.json",
+        "displayName": "Invites a user to the current user’s Yammer network",
         "path": "/invitations.json",
         "params": [
           {
@@ -1698,12 +1698,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-search"
+          "url": "https://www.yammer.com/api/v1/search.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/search.json",
+        "displayName": "searches for",
         "path": "/search.json",
         "params": [
           {
@@ -1733,12 +1733,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.yammer.com/restapi/#rest-networks"
+          "url": "https://www.yammer.com/api/v1/networks/current.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/networks/current.json",
+        "displayName": "Returns a list of networks to which the current user has access",
         "path": "/networks/current.json",
         "params": [
           {

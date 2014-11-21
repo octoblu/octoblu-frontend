@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
   var originalNode;
 
   $scope.zoomLevel = 0;
@@ -14,6 +14,14 @@ angular.module('octobluApp')
   var subscribeToFlow = function(skynetConnection, flowId){
     skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
   };
+
+  var setCookie = function(flowId) {
+    $cookies.currentFlowId = flowId;
+  };
+
+  var deleteCookie = function() {
+    delete $cookies.currentFlowId;
+  }
 
   var setDeviceStatus = function(status) {
     $scope.deviceOnline = status;
@@ -68,6 +76,7 @@ angular.module('octobluApp')
   };
 
   refreshFlows().then(function(){
+    deleteCookie();
     var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
     if(activeFlow){
       return $scope.setActiveFlow(activeFlow);
@@ -132,6 +141,7 @@ angular.module('octobluApp')
 
   $scope.setActiveFlow = function (flow) {
     $scope.activeFlow = flow;
+    setCookie(flow.flowId);
     FlowService.setActiveFlow($scope.activeFlow);
   };
 
@@ -140,6 +150,7 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
+    deleteCookie();
     var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
     if (deleteFlowConfirmed) {
       FlowService.deleteFlow(flow.flowId).then(function(){
