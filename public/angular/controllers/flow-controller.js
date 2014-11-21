@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
   var originalNode;
 
   $scope.zoomLevel = 0;
@@ -13,6 +13,10 @@ angular.module('octobluApp')
 
   var subscribeToFlow = function(skynetConnection, flowId){
     skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
+  };
+
+  var setCookie = function(flowId) {
+    $cookies.currentFlowId = flowId;
   };
 
   var setDeviceStatus = function(status) {
@@ -62,6 +66,7 @@ angular.module('octobluApp')
     });
 
   var refreshFlows = function () {
+    delete $cookies.currentFlowId;
     return FlowService.getAllFlows().then(function (flows) {
       $scope.flows = flows;
     });
@@ -132,6 +137,7 @@ angular.module('octobluApp')
 
   $scope.setActiveFlow = function (flow) {
     $scope.activeFlow = flow;
+    setCookie(flow.flowId);
     FlowService.setActiveFlow($scope.activeFlow);
   };
 

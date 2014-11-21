@@ -1,10 +1,15 @@
 angular.module('octobluApp')
-.controller('DesignerController', function ($state, $scope, FlowService) {
+.controller('DesignerController', function ($state, $scope, $cookies, FlowService) {
 
   FlowService.getAllFlows().then(function (flows) {
-    var flow = _.first(flows);
+    var flowId;
     $state.flows = flows;
-    $state.go('flow', {flowId: flow.flowId}, {location: 'replace'});
+    if ($cookies.currentFlowId) {
+      flowId = $cookies.currentFlowId;
+    } else {
+      flowId = _.first(flows).flowId;
+    }
+    $state.go('flow', {flowId: flowId}, {location: 'replace'});
   });
 
   $scope.getActiveFlow = function () {
