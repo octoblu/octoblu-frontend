@@ -45,6 +45,10 @@ angular.module('octobluApp')
       }
     };
 
+    $scope.toggleViewSource = function() {
+      $scope.viewSource = !$scope.viewSource;
+    }
+
     $scope.addFlowNodeType = function(flowNodeType) {
       $scope.$emit('flow-node-type-selected', flowNodeType);
     };
