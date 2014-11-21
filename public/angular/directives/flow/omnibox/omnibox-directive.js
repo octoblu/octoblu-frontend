@@ -2,7 +2,7 @@ angular.module('octobluApp')
   .directive('flowEditorOmnibox', function ($window) {
     return {
       restrict: 'E',
-      replace: true,
+      replace: false,
       templateUrl: '/pages/flow-editor-omnibox.html',
       controller: 'OmniboxController',
       scope : {

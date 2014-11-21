@@ -47,13 +47,47 @@
 
 .flow-top-bar {
   position: fixed;
-  top: 20px;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding-left: 20px;
-  padding-right: 20px;
+  top: 0;
+  margin-left: 10px;
+}
+
+.flow-top-bar > div {
+  margin: 15px 15px 0;
+}
+
+.flow-top-bar {
+  .flow-name.dropdown {
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}
+
+.flow-controls {
+  min-width: 275px;
+
+  .md-button.md-default-theme {
+    background-color: white;
+    border: solid 1px #ccc;
+    width: 35px;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
+
+    &:not([disabled]):hover {
+      background-color: #eee;
+    }
+
+    &.btn-danger {
+      background-color: #FF0000;
+    }
+  }
+}
+
+.floating-omnibox {
+  margin-left: 10px;
 }
 
 .floating-omnibox .dropdown-menu {
@@ -62,19 +96,8 @@
 }
 
 .flow-toolbar {
-  transition: all 0;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
   .flow-name {
     width: 400px;
-    margin-bottom: 15px;
-    margin-left: 15px;
-
-    .input-group {
-    }
 
     .button-shadow;
     .flow-dropdown {
@@ -94,18 +117,18 @@
     }
   }
 
-  .flow-toolbar-btn-toolbar {
-    display: flex;
-    display: -webkit-flex;
-    margin-left: 10px;
+  // .flow-toolbar-btn-toolbar {
+  //   display: flex;
+  //   display: -webkit-flex;
+  //   margin-left: 10px;
 
-    .btn-group {
-      margin: 0 5px;
-      display: flex;
-      display: -webkit-flex;
-      align-items: flex-start;
-    }
-  }
+  //   .btn-group {
+  //     margin: 0 5px;
+  //     display: flex;
+  //     display: -webkit-flex;
+  //     align-items: flex-start;
+  //   }
+  // }
 }
 
 .logo-toolbar {

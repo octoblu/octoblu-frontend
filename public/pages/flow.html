@@ -3,12 +3,33 @@
     <img src="/assets/images/octoblu.png" height="50px"/>
   </div>
 
-  <div class="flow-top-bar">
-    <flow-editor-omnibox omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
+  <flow-node-editor flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
 
-    <div class="flow-toolbar">
+  <div class="flow-top-bar" layout="row" layout-phone="column" layout-tablet="column">
+    <div flex layout="row">
+      <div class="btn-group" dropdown is-open="menuIsOpen">
+        <button class="btn btn-default button-shadow dropdown-toggle" title="Menu" tooltip="Menu" tooltip-placement="left" ng-click="menuIsOpen = !menuIsOpen">
+          <i class="fa fa-bars"></i>
+        </button>
 
-      <div class="input-group flow-name dropdown" >
+        <ul class="dropdown-menu dropdown-menu-left" role="menu">
+          <li><a href ui-sref="ob.home"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href ui-sref="ob.connector.nodes.all"><i class="fa fa-plug"></i> Connect</a></li>
+          <li><a href ui-sref="ob.process"><i class="fa fa-tasks"></i> Process</a></li>
+          <li><a href ui-sref="ob.analyze"><i class="fa fa-bar-chart"></i> Analyze</a></li>
+          <li><a href ui-sref="material.templates"><i class="fa fa-file-text"></i> Templates</a></li>
+          <li><a href ui-sref="ob.community"><i class="fa fa-group"></i> Community</a></li>
+          <li><a href ui-sref="ob.profile"><i class="fa fa-user"></i> Profile</a></li>
+          <li><a href ui-sref="ob.admin.all"><i class="fa fa-lock"></i> Security</a></li>
+          <li><a href ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
+        </ul>
+      </div>
+
+      <flow-editor-omnibox flex omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
+    </div>
+
+    <div flex layout="row" layout-align="end">
+      <div class="input-group flow-name dropdown">
         <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name">
         <span class="input-group-addon flow-dropdown dropdown-toggle" id="flowMenuDropdown" data-toggle="dropdown"  ng-click="flowMenuIsOpen = !flowMenuIsOpen">
             <i class="fa fa-lg fa-angle-down"></i>
@@ -21,51 +42,43 @@
           </li>
         </ul>
       </div>
+    </div>
 
-      <div class="flow-toolbar-btn-toolbar">
-        <div class="btn-group">
-          <button class="btn btn-default button-shadow" ng-click="deleteFlow(activeFlow)" title="Delete Flow" tooltip="Delete Flow" tooltip-placement="bottom">
-            <i class="fa fa-lg fa-trash-o"></i>
-          </button>
-          <button class="btn btn-default button-shadow" ng-click="createTemplate(activeFlow)" title="Create a Template" tooltip="Create a Template" tooltip-placement="bottom">
-            <i class="fa fa-lg fa-share-alt"></i>
-          </button>
-        </div>
+    <div flex="0" layout="row" layout-align="end" class="flow-controls">
+      <div flex>
+        <md-button ng-click="deleteFlow(activeFlow)" class="">
+          <md-tooltip>Delete Flow</md-tooltip>
+          <i class="fa fa-lg fa-trash-o"></i>
+        </md-button>
 
-        <div class="btn-group">
-          <button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" class="btn btn-default button-shadow" title="Zoom Out" tooltip="Zoom Out" tooltip-placement="bottom">
-            <i class="fa fa-minus"></i>
-          </button>
-          <button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" class="btn btn-default button-shadow" title="Zoom In" tooltip="Zoom In" tooltip-placement="bottom">
-            <i class="fa fa-plus"></i>
-          </button>
-        </div>
+        <md-button ng-click="createTemplate(activeFlow)" class="">
+          <md-tooltip>Create a Template</md-tooltip>
+          <i class="fa fa-lg fa-share-alt"></i>
+        </md-button>
+      </div>
 
-        <div class="btn-group">
-          <button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" class="stop-button btn btn-default button-shadow" title="Stop" tooltip="Stop" tooltip-placement="bottom">
-            <i class="fa fa-stop"></i>
-          </button>
-          <button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" class="start-button btn btn-default button-shadow" title="Start" tooltip="Start" tooltip-placement="bottom">
-            <i class="fa fa-play"></i>
-          </button>
-        </div>
+      <div flex>
+        <md-button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+          <md-tooltip>Zoom Out</md-tooltip>
+          <i class="fa fa-minus"></i>
+        </md-button>
 
-        <div class="btn-group" dropdown is-open="menuIsOpen">
-          <button class="btn btn-default button-shadow dropdown-toggle" title="Menu" tooltip="Menu" tooltip-placement="left" ng-click="menuIsOpen = !menuIsOpen">
-            <i class="fa fa-bars"></i>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><a href ui-sref="ob.home"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href ui-sref="ob.connector.nodes.all"><i class="fa fa-plug"></i> Connect</a></li>
-            <li><a href ui-sref="ob.process"><i class="fa fa-tasks"></i> Process</a></li>
-            <li><a href ui-sref="ob.analyze"><i class="fa fa-bar-chart"></i> Analyze</a></li>
-            <li><a href ui-sref="material.templates"><i class="fa fa-file-text"></i> Templates</a></li>
-            <li><a href ui-sref="ob.community"><i class="fa fa-group"></i> Community</a></li>
-            <li><a href ui-sref="ob.profile"><i class="fa fa-user"></i> Profile</a></li>
-            <li><a href ui-sref="ob.admin.all"><i class="fa fa-lock"></i> Security</a></li>
-            <li><a href ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
-          </ul>
-        </div>
+        <md-button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+          <md-tooltip>Zoom In</md-tooltip>
+          <i class="fa fa-plus"></i>
+        </md-button>
+      </div>
+
+      <div flex>
+        <md-button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }">
+          <md-tooltip>Stop</md-tooltip>
+          <i class="fa fa-stop"></i>
+        </md-button>
+
+        <md-button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }">
+          <md-tooltip>Start</md-tooltip>
+          <i class="fa fa-play"></i>
+        </md-button>
       </div>
     </div>
   </div>
@@ -73,8 +86,9 @@
   <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
     <div class="workspace-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" layout="column">
       <flow-editor flow="activeFlow"></flow-editor>
+
     </div>
   </div>
 
-<flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
-  </div>
+  <flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
+</div>

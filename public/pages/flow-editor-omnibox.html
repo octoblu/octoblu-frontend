@@ -1,11 +1,10 @@
-<div class="floating-omnibox col-xs-12 col-md-4">
-  <div class="input-group">
-    <input type="text" ng-model="omniSearch" placeholder="Search" typeahead="item as item.name for item in omniList | filter : {name : $viewValue }" typeahead-template-url="/pages/omnibox-item.html" class="form-control omnibox input button-shadow">
+<div class="floating-omnibox">
+  <div class="floating-omnibox-input input-group">
+    <input type="text" ng-model="omniSearch" placeholder="Search" typeahead="item as item.name for item in omniList | filter : {name : $viewValue }" typeahead-template-url="/pages/omnibox-item.html" class="input form-control omnibox button-shadow">
     <span class="input-group-btn">
       <button class="btn btn-primary button-shadow" type="button"><i class="fa fa-search"></i></button>
     </span>
   </div>
-
   <div ng-show="nodeType">
     <br>
     <div class="panel panel-default">
@@ -26,9 +25,5 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div>
-    <br>
-    <flow-node-editor flow-node="selectedFlowNode"></flow-node-editor>
-  </div>
- </div>
