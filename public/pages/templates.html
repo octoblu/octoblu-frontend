@@ -11,8 +11,8 @@
           </h2>
         </md-toolbar>
 
-        <md-content flex layout="row" layout-phone="column" layout-wrap="wrap" style="padding: 3px; background-color: #ddd">
-          <div class="grid-item" ng-repeat="template in templates" layout="column" ng-class="{selected: (template === currentTemplate)}">
+        <md-content flex layout="column" style="padding: 3px; background-color: #ddd">
+          <div class="grid-item" flex ng-repeat="template in templates" layout="column" ng-class="{selected: (template === currentTemplate)}">
             <div flex layout="row" style="padding: 0 10px;" ng-click="setCurrentTemplate(template)">
               <section style="padding: 10px; flex: 6; -wekbit-flex: 6;">
                 <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
