@@ -12,7 +12,7 @@
     "resources": [
       {
         "url": "https://api.cloud.com/push/channels/:name",
-        "displayName": "Channel Name",
+        "displayName": "Delete Channel",
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
@@ -27,7 +27,7 @@
       },
       {
         "url": "https://api.cloud.com/push/apns/connections",
-        "displayName": "APNS Connections",
+        "displayName": "Get APNS Connections",
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
@@ -49,7 +49,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels",
-        "displayName": "Channels",
+        "displayName": "Get Channels",
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
@@ -92,7 +92,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name",
-        "displayName": "Channel By Name",
+        "displayName": "Get Channel By Name",
         "path": "push/channels/:name",
         "httpMethod": "GET",
         "params": [
@@ -107,7 +107,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/devices",
-        "displayName": "Device On Channel",
+        "displayName": "Get Device On Channel",
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
@@ -136,7 +136,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/notifications",
-        "displayName": "Channel Notifications",
+        "displayName": "Get Channel Notifications",
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
@@ -179,7 +179,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/stats",
-        "displayName": "Channel Stats",
+        "displayName": "Get Channel Stats",
         "path": "/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
@@ -194,7 +194,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections",
-        "displayName": "Connections",
+        "displayName": "Get Connections",
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
@@ -216,7 +216,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices",
-        "displayName": "Devices",
+        "displayName": "Get Devices",
         "path": "/push/devices",
         "httpMethod": "GET",
         "params": [
@@ -238,7 +238,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices/connected",
-        "displayName": "Connected Devices",
+        "displayName": "Get Connected Devices",
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
@@ -260,7 +260,7 @@
       },
       {
         "url": "https://api.cloud.com/push/gcm/connections",
-        "displayName": "Google Cloud Messaging Connections",
+        "displayName": "Get Google Cloud Messaging Connections",
         "path": "/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
@@ -282,7 +282,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications",
-        "displayName": "Notifications",
+        "displayName": "Get Notifications",
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
@@ -318,7 +318,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications/:uid",
-        "displayName": "Notifications By Device",
+        "displayName": "Get Notifications By Device",
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
@@ -361,7 +361,7 @@
       },
       {
         "url": "https://api.cloud.com/push/stats",
-        "displayName": "Stats",
+        "displayName": "Get Stats",
         "path": "/push/stats",
         "httpMethod": "GET",
         "params": [
@@ -383,7 +383,7 @@
       },
             {
         "url": "https://api.cloud.com/push/subscribe",
-        "displayName": "Subscriptions",
+        "displayName": "Get Subscriptions",
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
@@ -492,7 +492,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notify",
-        "displayName": "Notification",
+        "displayName": "Create A Notification",
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [

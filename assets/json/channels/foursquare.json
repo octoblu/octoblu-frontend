@@ -19,7 +19,7 @@
     "resources": [
       {
         "path": "/users/USER_ID",
-        "displayName": "User Information",
+        "displayName": "Get User Information",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID"
         },
@@ -38,7 +38,7 @@
       },
       {
         "path": "/users/leaderboard",
-        "displayName": "User Leaderboard",
+        "displayName": "Get User Leaderboard",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/leaderboard"
         },
@@ -102,7 +102,7 @@
       },
       {
         "path": "/users/USER_ID/lists",
-        "displayName": "User Lists",
+        "displayName": "Get User Lists",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/lists"
         },
@@ -143,7 +143,7 @@
       },
       {
         "path": "/users/USER_ID/photos",
-        "displayName": "User Photos",
+        "displayName": "Get User Photos",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/photos"
         },
@@ -172,7 +172,7 @@
       },
       {
         "path": "/users/USER_ID/tastes",
-        "displayName": "User Tastes",
+        "displayName": "Get User Tastes",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/tastes"
         },
@@ -190,7 +190,7 @@
       },
       {
         "path": "/users/USER_ID/tips",
-        "displayName": "User Tips",
+        "displayName": "Get User Tips",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/tips"
         },
@@ -225,7 +225,7 @@
       },
       {
         "path": "/users/USER_ID/venuelikes",
-        "displayName": "User Venue Likes",
+        "displayName": "Get User Venue Likes",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/venuelikes"
         },
@@ -272,7 +272,7 @@
       },
       {
         "path": "/venues/VENUE_ID",
-        "displayName": "Venue Info",
+        "displayName": "Get Venue Info",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID"
         },
@@ -387,7 +387,7 @@
       },
       {
         "path": "/venues/categories",
-        "displayName": "Venue Categories",
+        "displayName": "Get Venue Categories",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/categories"
         },
@@ -397,7 +397,7 @@
       },
       {
         "path": "/venues/explore",
-        "displayName": "Nearby Venue Recommendations",
+        "displayName": "Get Nearby Venue Recommendations",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/explore"
         },
@@ -536,7 +536,7 @@
       },
       {
         "path": "/venues/managed",
-        "displayName": "Managed Venues",
+        "displayName": "Get Managed Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/managed"
         },
@@ -736,7 +736,7 @@
       },
       {
         "path": "/venues/timeseries",
-        "displayName": "Daily Venue Stats Over A Time Range",
+        "displayName": "Get Daily Venue Stats Over A Time Range",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/timeseries"
         },
@@ -771,7 +771,7 @@
       },
       {
         "path": "/venues/VENUE_ID/events",
-        "displayName": "Venue Events",
+        "displayName": "Get Venue Events",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/events"
         },
@@ -789,7 +789,7 @@
       },
       {
         "path": "/venues/VENUE_ID/hours",
-        "displayName": "Venue Hours",
+        "displayName": "Get Venue Hours",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/hours"
         },
@@ -807,7 +807,7 @@
       },
       {
         "path": "/venues/VENUE_ID/likes",
-        "displayName": "Venue Likes",
+        "displayName": "Get Venue Likes",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/likes"
         },
@@ -825,7 +825,7 @@
       },
       {
         "path": "/venues/VENUE_ID/links",
-        "displayName": "Venue Links",
+        "displayName": "Get Venue Links",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/links"
         },
@@ -843,7 +843,7 @@
       },
       {
         "path": "/venues/VENUE_ID/listed",
-        "displayName": "Lists A Venue Appears On",
+        "displayName": "Get Lists A Venue Appears On",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
         },
@@ -878,7 +878,7 @@
       },
       {
         "path": "/venues/VENUE_ID/menu",
-        "displayName": "Venue Menu",
+        "displayName": "Get Venue Menu",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/menu"
         },
@@ -896,7 +896,7 @@
       },
       {
         "path": "/venues/VENUE_ID/photos",
-        "displayName": "Photos From A Venue",
+        "displayName": "Get Photos From A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/photos"
         },
@@ -932,7 +932,7 @@
       },
       {
         "path": "/venues/VENUE_ID/similar",
-        "displayName": "Similar Venues",
+        "displayName": "Get Similar Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/similar"
         },
@@ -950,7 +950,7 @@
       },
       {
         "path": "/venues/VENUE_ID/stats",
-        "displayName": "Venue Stats",
+        "displayName": "Get Venue Stats",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/stats"
         },
@@ -980,7 +980,7 @@
       },
       {
         "path": "/venues/VENUE_ID/tips",
-        "displayName": "Venue Tips",
+        "displayName": "Get Venue Tips",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/tips"
         },
@@ -1411,7 +1411,7 @@
       },
       {
         "path": "/venuegroups/GROUP_ID",
-        "displayName": "Venue Group Information",
+        "displayName": "Get Venue Group Information",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID"
         },
@@ -1470,7 +1470,7 @@
       },
       {
         "path": "/venuegroups/list",
-        "displayName": "Venue Group List",
+        "displayName": "Get Venue Group List",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/list"
         },
@@ -1480,7 +1480,7 @@
       },
       {
         "path": "/venuegroups/GROUP_ID/timeseries",
-        "displayName": "Daily Venue Stats For A Group",
+        "displayName": "Get Daily Venue Stats For A Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/timeseries"
         },
@@ -1673,7 +1673,7 @@
       },
       {
         "path": "/tips/TIP_ID",
-        "displayName": "Tip Details",
+        "displayName": "Get Tip Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID"
         },
@@ -1728,7 +1728,7 @@
       },
       {
         "path": "/tips/TIP_ID/likes",
-        "displayName": "Tip Like Count",
+        "displayName": "Get Tip Like Count",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/likes"
         },
@@ -1745,7 +1745,7 @@
       },
       {
         "path": "/tips/TIP_ID/listed",
-        "displayName": "Lists A Tip Appears On",
+        "displayName": "Get Lists A Tip Appears On",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/listed"
         },
@@ -1768,7 +1768,7 @@
       },
       {
         "path": "/tips/TIP_ID/saves",
-        "displayName": "Users Who Have Saved A Tip",
+        "displayName": "Get Users Who Have Saved A Tip",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/saves"
         },
@@ -1856,7 +1856,7 @@
       },
       {
         "path": "/lists/LIST_ID",
-        "displayName": "Lists",
+        "displayName": "Get Lists",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID"
         },
@@ -1940,7 +1940,7 @@
       },
       {
         "path": "/lists/LIST_ID/followers",
-        "displayName": "List Followers",
+        "displayName": "Get List Followers",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/followers"
         },
@@ -1958,7 +1958,7 @@
       },
       {
         "path": "/lists/LIST_ID/ITEM_ID",
-        "displayName": "List Item Details",
+        "displayName": "Get List Item Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/ITEM_ID"
         },
@@ -1983,7 +1983,7 @@
       },
       {
         "path": "/lists/LIST_ID/saves",
-        "displayName": "List Saves",
+        "displayName": "Get List Saves",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/saves"
         },
@@ -2000,7 +2000,7 @@
       },
       {
         "path": "/lists/LIST_ID/suggestphoto",
-        "displayName": "List Photo Suggestions",
+        "displayName": "Get List Photo Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2//lists/LIST_ID/suggestphoto"
         },
@@ -2025,7 +2025,7 @@
       },
       {
         "path": "/lists/LIST_ID/suggesttip",
-        "displayName": "List Tip Suggestions",
+        "displayName": "Get List Tip Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggesttip"
         },
@@ -2050,7 +2050,7 @@
       },
       {
         "path": "/lists/LIST_ID/suggestvenues",
-        "displayName": "List Venue Suggestions",
+        "displayName": "Get List Venue Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggestvenues"
         },
@@ -2340,7 +2340,7 @@
       },
       {
         "path": "/updates/UPDATE_ID",
-        "displayName": "Updates",
+        "displayName": "Get Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/updates/UPDATE_ID"
         },
@@ -2358,7 +2358,7 @@
       },
       {
         "path": "/updates/notifications",
-        "displayName": "Notification Updates",
+        "displayName": "Get Notification Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/updates/notifications"
         },
@@ -2393,7 +2393,7 @@
       },
       {
         "path": "/photos/PHOTO_ID",
-        "displayName": "Photo Details",
+        "displayName": "Get Photo Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/photos/PHOTO_ID"
         },
@@ -2500,7 +2500,7 @@
       },
       {
         "path": "/settings/SETTING_ID",
-        "displayName": "A Setting",
+        "displayName": "Get A Setting",
         "doc": {
           "url": "https://api.foursquare.com/v2/settings/SETTING_ID"
         },
@@ -2517,7 +2517,7 @@
       },
       {
         "path": "/settings/all",
-        "displayName": "All Settings",
+        "displayName": "Get All Settings",
         "doc": {
           "url": "https://api.foursquare.com/v2/settings/all"
         },
@@ -2552,7 +2552,7 @@
       },
       {
         "path": "/specials/SPECIAL_ID",
-        "displayName": "Details About A Special",
+        "displayName": "Get Details About A Special",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID"
         },
@@ -2582,7 +2582,7 @@
       },
       {
         "path": "/specials/add",
-        "displayName": "Add Special",
+        "displayName": "Add A Special",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/add"
         },
@@ -2637,7 +2637,7 @@
       },
       {
         "path": "/specials/list",
-        "displayName": "Specials List",
+        "displayName": "Get Specials List",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/list"
         },
@@ -2660,7 +2660,7 @@
       },
       {
         "path": "/specials/search",
-        "displayName": "Search Specials",
+        "displayName": "Get Search Specials",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/search"
         },
@@ -2746,7 +2746,7 @@
       },
       {
         "path": "/events/EVENT_ID",
-        "displayName": "Event Details",
+        "displayName": "Get Event Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/EVENT_ID"
         },
@@ -2763,7 +2763,7 @@
       },
       {
         "path": "/events/categories",
-        "displayName": "Event Categories",
+        "displayName": "Get Event Categories",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/categories"
         },
@@ -2851,7 +2851,7 @@
       },
       {
         "path": "/pages/managing",
-        "displayName": "Managed Pages",
+        "displayName": "Get Managed Pages",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/managing"
         },
@@ -2861,7 +2861,7 @@
       },
       {
         "path": "/pages/USER_ID/access",
-        "displayName": "Oauth Access Token For Page",
+        "displayName": "Get Oauth Access Token For Page",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/USER_ID/access"
         },
@@ -2879,7 +2879,7 @@
       },
       {
         "path": "/pages/USER_ID/similar",
-        "displayName": "Similar Pages",
+        "displayName": "Get Similar Pages",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/USER_ID/similar"
         },
@@ -2915,7 +2915,7 @@
       },
       {
         "path": "/pages/PAGE_ID/timeseries",
-        "displayName": "Daily Page Details Over Time Period",
+        "displayName": "Get Daily Page Details Over Time Period",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/PAGE_ID/timeseries"
         },
@@ -2951,7 +2951,7 @@
       },
       {
         "path": "/pages/PAGE_ID/venues",
-        "displayName": "Page Venues",
+        "displayName": "Get Page Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/PAGE_ID/venues"
         },
@@ -3112,7 +3112,7 @@
       },
       {
         "path": "/pageupdates/list",
-        "displayName": "List Page Updates",
+        "displayName": "Get List Page Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/list"
         },
