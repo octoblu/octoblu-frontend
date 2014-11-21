@@ -19,6 +19,10 @@ angular.module('octobluApp')
     $cookies.currentFlowId = flowId;
   };
 
+  var deleteCookie = function() {
+    delete $cookies.currentFlowId;
+  }
+
   var setDeviceStatus = function(status) {
     $scope.deviceOnline = status;
     $scope.deploying = false;
@@ -66,13 +70,13 @@ angular.module('octobluApp')
     });
 
   var refreshFlows = function () {
-    delete $cookies.currentFlowId;
     return FlowService.getAllFlows().then(function (flows) {
       $scope.flows = flows;
     });
   };
 
   refreshFlows().then(function(){
+    deleteCookie();
     var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
     if(activeFlow){
       return $scope.setActiveFlow(activeFlow);
@@ -146,6 +150,7 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
+    deleteCookie();
     var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
     if (deleteFlowConfirmed) {
       FlowService.deleteFlow(flow.flowId).then(function(){
