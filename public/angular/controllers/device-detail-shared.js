@@ -54,7 +54,7 @@ angular.module('octobluApp')
                 function () {
                     deviceService.unregisterDevice(device)
                         .then(function () {
-                            $state.go('ob.connector.nodes.all');
+                            $state.go('material.nodes');
                         }, function (error) {
                             console.log(error);
                         });

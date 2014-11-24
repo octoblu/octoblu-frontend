@@ -80,16 +80,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })
-      .state('material.templates', {
-        url: '/templates',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
-      })
-      .state('material.template', {
-        url: '/templates/:templateId',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
-      })
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
@@ -99,6 +89,21 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/home',
         templateUrl: '/pages/home.html',
         controller: 'homeController'
+      })
+      .state('material.nodes', {
+        url: '/connect',
+        controller: 'NodeController',
+        templateUrl: '/pages/connector/nodes/index.html'
+      })
+      .state('material.templates', {
+        url: '/templates',
+        templateUrl: '/pages/templates.html',
+        controller: 'TemplatesController'
+      })
+      .state('material.template', {
+        url: '/templates/:templateId',
+        templateUrl: '/pages/templates.html',
+        controller: 'TemplatesController'
       })
 
       .state('ob', {
@@ -179,11 +184,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/nodes',
         abstract: true,
         template: '<ui-view></ui-view>'
-      })
-      .state('ob.connector.nodes.all', {
-        url: '/',
-        controller: 'NodeController',
-        templateUrl: '/pages/connector/nodes/index.html'
       })
       .state('ob.connector.nodes.device-detail', {
         url: '/device/:uuid',

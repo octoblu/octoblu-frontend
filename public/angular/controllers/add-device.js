@@ -51,7 +51,7 @@ angular.module('octobluApp')
     }
 
     promise.then(function () {
-      $state.go("ob.connector.nodes.all");
+      $state.go("material.nodes");
     }, function (error) {
       $scope.errorMessage = error;
     });
