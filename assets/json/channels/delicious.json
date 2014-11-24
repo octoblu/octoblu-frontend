@@ -25,7 +25,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Get Posts",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/all?hashes"
       },
@@ -34,7 +34,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -51,7 +51,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Get Post Suggestions",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/suggest"
       },
@@ -60,7 +60,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -69,7 +69,7 @@
           },
           {
             "name": "description",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -78,7 +78,7 @@
           },
           {
             "name": "extended",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -87,7 +87,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -96,7 +96,8 @@
           },
           {
             "name": "dt",
-            "type": "xsd:string",
+            "displayName": "Date Stamp",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -105,7 +106,7 @@
           },
           {
             "name": "replace",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "default": "no",
             "required": "true",
@@ -115,7 +116,7 @@
           },
           {
             "name": "shared",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "default": "no",
             "required": "true",
@@ -133,7 +134,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_PUT",
+        "displayName": "Create Post",
         "httpMethod": "PUT",
         "url": "https://api.del.icio.us/v1/posts/add"
       },
@@ -142,7 +143,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -159,7 +160,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_DELETE",
+        "displayName": "Delete Post",
         "httpMethod": "DELETE",
         "url": "https://api.del.icio.us/v1/posts/delete"
       },
@@ -168,7 +169,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -177,7 +178,7 @@
           },
           {
             "name": "hashes",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -186,7 +187,7 @@
           },
           {
             "name": "meta",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "default": "yes",
             "required": "true",
@@ -196,7 +197,7 @@
           },
           {
             "name": "tag",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -205,7 +206,8 @@
           },
           {
             "name": "dt",
-            "type": "xsd:string",
+            "displayName": "Date Stamp",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -222,7 +224,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Search Posts",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/get"
       },
@@ -231,7 +233,7 @@
         "params": [
           {
             "name": "tag",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -248,7 +250,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Get Post Dates",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/dates"
       },
@@ -257,7 +259,7 @@
         "params": [
           {
             "name": "tag",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -266,7 +268,7 @@
           },
           {
             "name": "count",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "default": "15",
             "required": "true",
@@ -284,7 +286,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Get Recent Posts",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/recent"
       },
@@ -299,7 +301,7 @@
           "required": "true"
         },
         "category": "Posts",
-        "displayName": "Posts_GET",
+        "displayName": "Get All Posts",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/all"
       },
@@ -308,7 +310,7 @@
         "params": [
           {
             "name": "bundle",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -325,7 +327,7 @@
           "required": "true"
         },
         "category": "Tag Bundles",
-        "displayName": "Tag Bundles_DELETE",
+        "displayName": "Delete Bundle",
         "httpMethod": "DELETE",
         "url": "https://api.del.icio.us/v1/tags/bundles/delete"
       },
@@ -334,7 +336,7 @@
         "params": [
           {
             "name": "bundle",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -351,7 +353,7 @@
           "required": "true"
         },
         "category": "Tag Bundles",
-        "displayName": "Tag Bundles_GET",
+        "displayName": "Retrieve Bundles",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/tags/bundles/all"
       },
@@ -360,7 +362,7 @@
         "params": [
           {
             "name": "bundle",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -369,7 +371,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -386,7 +388,7 @@
           "required": "true"
         },
         "category": "Tag Bundles",
-        "displayName": "Tag Bundles_PUT",
+        "displayName": "Set Tag on Bundle",
         "httpMethod": "PUT",
         "url": "https://api.del.icio.us/v1/tags/bundles/set"
       },
@@ -395,7 +397,7 @@
         "params": [
           {
             "name": "old",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -404,7 +406,7 @@
           },
           {
             "name": "new",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -421,7 +423,7 @@
           "required": "true"
         },
         "category": "Tags",
-        "displayName": "Tags_POST",
+        "displayName": "Rename Tag",
         "httpMethod": "POST",
         "url": "https://api.del.icio.us/v1/tags/rename"
       },
@@ -430,7 +432,7 @@
         "params": [
           {
             "name": "tag",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -447,7 +449,7 @@
           "required": "true"
         },
         "category": "Tags",
-        "displayName": "Tags_DELETE",
+        "displayName": "Delete Tag",
         "httpMethod": "DELETE",
         "url": "https://api.del.icio.us/v1/tags/delete"
       },
@@ -462,7 +464,7 @@
           "required": "true"
         },
         "category": "Tags",
-        "displayName": "Tags_GET",
+        "displayName": "Retrieve Tags",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/tags/get"
       },
@@ -477,7 +479,7 @@
           "required": "true"
         },
         "category": "Update",
-        "displayName": "Update_GET",
+        "displayName": "Get User Updates",
         "httpMethod": "GET",
         "url": "https://api.del.icio.us/v1/posts/update"
       }
