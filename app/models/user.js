@@ -168,6 +168,13 @@ function UserModel() {
       self.overwriteOrAddApi(user, channel, options);
     },
 
+    removeApiByChannelId: function(user, channelid){
+      // Old channel activations used strings, new ones use ObjectIds
+      user.api = _.reject(user.api, {channelid: channelid});
+      user.api = _.reject(user.api, {channelid: this.ObjectId(channelid)});
+      return this.update({_id: user._id}, user);
+    },
+
     updatePassword : function (user, oldPassword, newPassword) {
       var self = this;
       if (!self.validPassword(user, oldPassword)) {

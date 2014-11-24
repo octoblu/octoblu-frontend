@@ -1,37 +1,38 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addDefaultOptionsController', function($scope, $state, nodeType, userService, channelService, currentUser) {
+.controller('addDefaultOptionsController', function($scope, $state, nodeType, userService, channelService, AuthService) {
 	var AUTH_DESTINATIONS = {
-    'aws'                    : 'ob.nodewizard.addchannel.aws',
-    'basic'                  : 'ob.nodewizard.addchannel.basic',
-    'clouddotcom'            : 'ob.nodewizard.addchannel.clouddotcom',
-    'meshblu'                : 'ob.nodewizard.addchannel.meshblu',
-    'none'                   : 'ob.nodewizard.addchannel.noauth',
-    'oauth'                  : 'ob.nodewizard.addchannel.oauth',
-    'simple'                 : 'ob.nodewizard.addchannel.simple',
-    'echosign'               : 'ob.nodewizard.addchannel.echosign',
-    'apikey-basic'           : 'ob.nodewizard.addchannel.apikey-basic',
-    'header'                 : 'ob.nodewizard.addchannel.header',
-    'existing'               : 'ob.nodewizard.addchannel.existing',
-    'docusign'               : 'ob.nodewizard.addchannel.docusign',
-    'apikey-dummypass-basic' : 'ob.nodewizard.addchannel.apikey-dummypass-basic'
+    'aws'                    : 'material.nodewizard.addchannel.aws',
+    'basic'                  : 'material.nodewizard.addchannel.basic',
+    'clouddotcom'            : 'material.nodewizard.addchannel.clouddotcom',
+    'meshblu'                : 'material.nodewizard.addchannel.meshblu',
+    'none'                   : 'material.nodewizard.addchannel.noauth',
+    'oauth'                  : 'material.nodewizard.addchannel.oauth',
+    'simple'                 : 'material.nodewizard.addchannel.simple',
+    'echosign'               : 'material.nodewizard.addchannel.echosign',
+    'apikey-basic'           : 'material.nodewizard.addchannel.apikey-basic',
+    'header'                 : 'material.nodewizard.addchannel.header',
+    'existing'               : 'material.nodewizard.addchannel.existing',
+    'docusign'               : 'material.nodewizard.addchannel.docusign',
+    'apikey-dummypass-basic' : 'material.nodewizard.addchannel.apikey-dummypass-basic'
   };
 
   $scope.channelDefaultParams = {};
 
   $scope.saveDefaultParams = function(){
-  	userService
-  		.saveConnection(
-  				currentUser.skynet.uuid,
-  				nodeType.channelid,
-  				undefined,
-  				undefined,
-  				{},
-          function () {
-              $scope.goToNextStep();
-          },
-          $scope.channelDefaultParams);
+    AuthService.getCurrentUser().then(function(user){
+      userService.saveConnection(
+        user.resource.uuid,
+        nodeType.channelid,
+        undefined,
+        undefined,
+        {},
+        function () {
+          $scope.goToNextStep();
+        },
+        $scope.channelDefaultParams);
+    });
   };
 
   $scope.goToNextStep = function(){

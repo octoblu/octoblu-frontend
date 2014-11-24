@@ -7,7 +7,7 @@
 <div class="row row-centered">
   <div ng-repeat="gateblu in gateblus | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
     <h4 class="text-center">
-      <a href ui-sref="ob.nodewizard.addsubdevice.form({gatebluId: gateblu.uuid})" class="">
+      <a href ui-sref="material.nodewizard.addsubdevice.form({gatebluId: gateblu.uuid})" class="">
         <div title="{{gateblu.name}}" class="spiral-thumbnail animated-popout"></div>
         <strong class="muted-link">{{gateblu.name}}</strong>
       </a>
@@ -15,7 +15,7 @@
   </div>
   <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
     <h4 class="text-center">
-      <a href ui-sref="ob.nodewizard.addsubdevice.addGateblu" class="">
+      <a href ui-sref="material.nodewizard.addsubdevice.addGateblu" class="">
         <div title="{{gateblu.name}}" class="ghost-thumbnail animated-popout">
           <div>
             <i class="fa fa-2x fa-plus"></i>

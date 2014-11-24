@@ -27,7 +27,7 @@ angular.module('octobluApp')
 
   $scope.addFlow = function () {
     return FlowService.createFlow().then(function (newFlow) {
-      $state.go('flow', {flowId: newFlow.flowId});
+      $state.go('material.flow', {flowId: newFlow.flowId});
     });
   };
 

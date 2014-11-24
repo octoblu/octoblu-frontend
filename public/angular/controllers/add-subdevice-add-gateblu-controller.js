@@ -35,7 +35,7 @@ angular.module('octobluApp')
           }
 
           promise.then(function(device){
-            $state.go("ob.nodewizard.addsubdevice.form", {gatebluId: device.uuid});
+            $state.go("material.nodewizard.addsubdevice.form", {gatebluId: device.uuid});
           }, function(error){
             $scope.errorMessage = error;
           });

@@ -3,18 +3,18 @@ angular.module('octobluApp')
   'use strict';
 
   NodeTypeService.getById($state.params.nodeTypeId).then(function(nodeType){
-    var state = 'ob.nodewizard.adddevice';
+    var state = 'material.nodewizard.adddevice';
 
     if(nodeType.type === 'device:gateblu'){
-      state = 'ob.nodewizard.addgateblu';
+      state = 'material.nodewizard.addgateblu';
     }
 
     if(nodeType.category === 'channel'){
-      state = 'ob.nodewizard.addchannel.default-options';
+      state = 'material.nodewizard.addchannel.default-options';
     }
 
     if(nodeType.connector){
-      state = 'ob.nodewizard.addsubdevice.selectgateblu';
+      state = 'material.nodewizard.addsubdevice.selectgateblu';
     }
 
 

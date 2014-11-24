@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelCloudDotComController', function($scope, $state, currentUser, nodeType, userService) {
+.controller('addChannelCloudDotComController', function($scope, $state, nodeType, userService, AuthService) {
   $scope.activate = function(){
-    userService.saveCloudDotComApi(currentUser.skynet.uuid, nodeType.channelid, 
-     $scope.newChannel.user, $scope.newChannel.pass,
-     function () {
-      $state.go('design');
+    AuthService.getCurrentUser().then(function(user){
+      userService.saveCloudDotComApi(user.resource.uuid, nodeType.channelid,
+       $scope.newChannel.user, $scope.newChannel.pass,
+       function () {
+        $state.go('material.design');
+      });
     });
   };
 });

@@ -66,7 +66,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
     });
 
     $stateProvider
-      .state('design', {
+      .state('material.design', {
         url: '/design',
         controller: 'DesignerController'
       })
@@ -74,6 +74,134 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.nodewizard', {
+        url: '/node-wizard',
+        abstract: true,
+        controller: 'nodeWizardController',
+        templateUrl: '/pages/node-wizard/index.html'
+      })
+      .state('material.nodewizard.add', {
+        url: '/add/:nodeTypeId',
+        controller: 'AddNodeWizardController',
+        templateUrl: '/pages/node-wizard/add.html'
+      })
+      .state('material.nodewizard.adddevice', {
+        url: '/add-device/:nodeTypeId',
+        controller: 'addDeviceController',
+        templateUrl: '/pages/node-wizard/add-device/index.html'
+      })
+      .state('material.nodewizard.addnode', {
+        url: '',
+        controller: 'addNodeController',
+        templateUrl: '/pages/node-wizard/add-node.html'
+      })
+      .state('material.nodewizard.addchannel', {
+        url: '/node-wizard/add-channel/:nodeTypeId',
+        controller: 'addChannelController',
+        templateUrl: '/pages/node-wizard/add-channel/index.html',
+        abstract: true,
+        resolve: {
+          nodeType: function ($stateParams, NodeTypeService) {
+            return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
+          }
+        }
+      })
+      .state('material.nodewizard.addchannel.default-options', {
+        url: '',
+        controller: 'addDefaultOptionsController',
+        templateUrl: '/pages/node-wizard/add-channel/default-options.html'
+      })
+      .state('material.nodewizard.addchannel.existing', {
+        url: '/existing',
+        controller: 'addChannelExistingController',
+        templateUrl: '/pages/node-wizard/add-channel/existing.html'
+      })
+      .state('material.nodewizard.addchannel.noauth', {
+        url: '/noauth',
+        controller: 'addChannelNoauthController',
+        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
+      })
+      .state('material.nodewizard.addchannel.oauth', {
+        url: '/oauth',
+        controller: 'addChannelOauthController',
+        templateUrl: '/pages/node-wizard/add-channel/oauth.html'
+      })
+      .state('material.nodewizard.addchannel.simple', {
+        url: '/simple',
+        controller: 'addChannelSimpleController',
+        templateUrl: '/pages/node-wizard/add-channel/simple.html'
+      })
+      .state('material.nodewizard.addchannel.header', {
+        url: '/header',
+        controller: 'addChannelHeaderController',
+        templateUrl: '/pages/node-wizard/add-channel/simple.html'
+      })
+      .state('material.nodewizard.addchannel.aws', {
+        url: '/aws',
+        controller: 'addChannelAWSController',
+        templateUrl: '/pages/node-wizard/add-channel/aws.html'
+      })
+      .state('material.nodewizard.addchannel.clouddotcom', {
+        url: '/clouddotcom',
+        controller: 'addChannelCloudDotComController',
+        templateUrl: '/pages/node-wizard/add-channel/clouddotcom.html'
+      })
+      .state('material.nodewizard.addchannel.echosign', {
+        url: '/echosign',
+        controller: 'addChannelEchoSignController',
+        templateUrl: '/pages/node-wizard/add-channel/echosign.html'
+      })
+      .state('material.nodewizard.addchannel.basic', {
+        url: '/basic',
+        controller: 'addChannelBasicController',
+        templateUrl: '/pages/node-wizard/add-channel/basic.html'
+      })
+      .state('material.nodewizard.addchannel.docusign', {
+        url: '/docusign',
+        controller: 'addChannelDocuSignController',
+        templateUrl: '/pages/node-wizard/add-channel/docusign.html'
+      })
+      .state('material.nodewizard.addchannel.apikey-basic', {
+        url: '/apikey-basic',
+        controller: 'addChannelApiKeyBasicController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
+      })
+      .state('material.nodewizard.addchannel.apikey-dummypass-basic', {
+        url: '/apikey-dummypass-basic',
+        controller: 'addChannelApiKeyDummyPassBasicController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
+      })
+      .state('material.nodewizard.addchannel.meshblu', {
+        url: '/meshblu',
+        controller: 'addChannelMeshbluController',
+        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
+      })
+      .state('material.channel', {
+        url: '/channel/:id',
+        templateUrl: '/pages/connector/channels/detail.html',
+        controller: 'apiController'
+      })
+      .state('material.nodewizard.addsubdevice', {
+        url: '/add-subdevice/:nodeTypeId',
+        controller: 'addSubdeviceController',
+        templateUrl: '/pages/node-wizard/add-subdevice/index.html',
+        abstract: true
+      })
+      .state('material.nodewizard.addsubdevice.addGateblu', {
+        url: '/add-gateblu',
+        controller: 'AddSubdeviceAddGatebluController',
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
+      })
+      .state('material.nodewizard.addsubdevice.selectgateblu', {
+        url: '',
+        controller: 'AddSubdeviceSelectGatebluController',
+        templateUrl: '/pages/node-wizard/add-subdevice/select-gateblu.html'
+      })
+      .state('material.nodewizard.addsubdevice.form', {
+        url: '/gateblus/:gatebluId',
+        controller: 'addSubdeviceFormController',
+        templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('material.flow', {
         url: '/design/:flowId',
@@ -94,6 +222,26 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/connect',
         controller: 'NodeController',
         templateUrl: '/pages/connector/nodes/index.html'
+      })
+      .state('material.device', {
+        url: '/device/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+                return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
+      })
+      .state('material.microblu', {
+        url: '/device/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+                return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
       })
       .state('material.templates', {
         url: '/templates',
@@ -171,149 +319,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/process.html',
         controller: 'processController'
       })
-      .state('ob.connector', {
-        url: '/connect',
-        templateUrl: '/pages/connector/index.html',
-        resolve: {
-          availableNodeTypes: function (NodeTypeService) {
-            return NodeTypeService.getNodeTypes();
-          }
-        }
-      })
-      .state('ob.connector.nodes', {
-        url: '/nodes',
-        abstract: true,
-        template: '<ui-view></ui-view>'
-      })
-      .state('ob.connector.nodes.device-detail', {
-        url: '/device/:uuid',
-        controller: 'DeviceDetailController',
-        templateUrl: '/pages/connector/devices/detail/index.html',
-        resolve: {
-          device: function(deviceService, $stateParams){
-                return deviceService.getDeviceByUUID($stateParams.uuid);
-          }
-        }
-      })
-      .state('ob.connector.nodes.microblu-detail', {
-        url: '/microblu/:uuid',
-        controller: 'DeviceDetailController',
-        templateUrl: '/pages/connector/devices/detail/index.html',
-        resolve: {
-          device: function(deviceService, $stateParams){
-            return deviceService.getDeviceByUUID($stateParams.uuid);
-          }
-        }
-      })
-      .state('ob.connector.nodes.shared-device-detail', {
-        url: '/device-shared/:uuid',
-        controller: 'DeviceDetailSharedController',
-        templateUrl: '/pages/connector/devices/detail/index.html'
-      })
-      .state('ob.connector.nodes.channel-detail', {
-        url: '/channel/:id',
-        templateUrl: '/pages/connector/channels/detail.html',
-        controller: 'apiController'
-      })
-      .state('ob.connector.devices.wizard', {
-        url: '/wizard',
-        abstract: true,
-        controller: 'DeviceWizardController',
-        templateUrl: '/pages/connector/devices/wizard/index.html',
-        resolve: {
-          unclaimedDevices: function (deviceService) {
-            return deviceService.getUnclaimedNodes();
-          }
-        }
-      })
-      .state('ob.connector.devices.wizard.instructions', {
-        url: '/instructions?claim',
-        templateUrl: '/pages/connector/devices/wizard/hub-install-instructions.html'
-      })
-      .state('ob.connector.devices.wizard.finddevice', {
-        url: '/finddevice?claim',
-        templateUrl: '/pages/connector/devices/wizard/find-device.html'
-      })
-      //begin refactor states
-      .state('ob.connector.channels', {
-        abstract: true,
-        url: '/channels',
-        template: '<ui-view />',
-        controller: 'ChannelController',
-        resolve: {
-          activeChannels: function (channelService) {
-            return channelService.getActiveChannels();
-
-          },
-          availableChannels: function (channelService) {
-            return channelService.getAvailableChannels();
-          }
-        }
-      })
-      .state('ob.connector.channels.index', {
-        url: '',
-        templateUrl: '/pages/connector/channels/index.html'
-      })
-
-      .state('ob.connector.channels.resources', {
-        url: '/resources',
-        templateUrl: '/pages/connector/channels/resources/index.html',
-        controller: 'apiResourcesController'
-      })
-      .state('ob.connector.channels.resources.detail', {
-        url: '/:id',
-        templateUrl: '/pages/connector/channels/resources/detail.html',
-        controller: 'apiResourcesController'
-      })
-      .state('ob.connector.advanced', {
-        url: '/advanced',
-        templateUrl: '/pages/connector/advanced/index.html'
-      })
-      .state('ob.connector.advanced.channels', {
-        // abstract: true,
-        url: '/custom_channels',
-        // template: '<ui-view />',
-        templateUrl: '/pages/connector/advanced/channels.html',
-        controller: 'CustomChannelController',
-        resolve: {
-          customChannels: function (channelService) {
-            return channelService.getCustomList();
-          }
-        }
-      })
-      .state('ob.connector.advanced.channels.editor', {
-        url: '/editor/:id',
-        templateUrl: '/pages/connector/channels/editor.html',
-        controller: 'apiEditorController'
-      })
-      .state('ob.connector.advanced.messaging', {
-        url: '/messaging',
-        controller: 'MessagingController',
-        templateUrl: '/pages/connector/advanced/messaging.html',
-        resolve: {
-          myGateways: function (myDevices, deviceService) {
-            var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-            _.map(gateways, function (gateway) {
-              gateway.subdevices = [];
-              gateway.plugins = [];
-              return deviceService.gatewayConfig({
-                "uuid": gateway.uuid,
-                "token": gateway.token,
-                "method": "configurationDetails"
-              }).then(function (response) {
-                if (response && response.result) {
-                  gateway.subdevices = response.result.subdevices || [];
-                  gateway.plugins = response.result.plugins || [];
-                }
-              }, function () {
-                console.log('couldn\'t get data for: ', gateway);
-              });
-            });
-            return gateways;
-          }
-        }
-      })
-      //end refactor states
 
       .state('ob.admin', {
         abstract: true,
@@ -407,110 +412,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/services.html',
         controller: 'servicesController'
       })
-      .state('ob.nodewizard', {
-        url: '/node-wizard',
-        abstract: true,
-        controller: 'nodeWizardController',
-        templateUrl: '/pages/node-wizard/index.html'
-      })
       .state('ob.nodewizard.addnode', {
         url: '',
         controller: 'addNodeController',
         templateUrl: '/pages/node-wizard/add-node.html'
       })
 
-      .state('ob.nodewizard.add', {
-        url: '/add/:nodeTypeId',
-        controller: 'AddNodeWizardController',
-        templateUrl: '/pages/node-wizard/add.html'
-      })
 
-      .state('ob.nodewizard.addchannel', {
-        url: '/node-wizard/add-channel/:nodeTypeId',
-        controller: 'addChannelController',
-        templateUrl: '/pages/node-wizard/add-channel/index.html',
-        abstract: true,
-        resolve: {
-          nodeType: function ($stateParams, NodeTypeService) {
-            return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
-          }
-        }
-      })
-      .state('ob.nodewizard.addchannel.default-options', {
-        url: '',
-        controller: 'addDefaultOptionsController',
-        templateUrl: '/pages/node-wizard/add-channel/default-options.html'
-      })
-      .state('ob.nodewizard.addchannel.existing', {
-        url: '/existing',
-        controller: 'addChannelExistingController',
-        templateUrl: '/pages/node-wizard/add-channel/existing.html'
-      })
-      .state('ob.nodewizard.addchannel.noauth', {
-        url: '/noauth',
-        controller: 'addChannelNoauthController',
-        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
-      })
-      .state('ob.nodewizard.addchannel.oauth', {
-        url: '/oauth',
-        controller: 'addChannelOauthController',
-        templateUrl: '/pages/node-wizard/add-channel/oauth.html'
-      })
-      .state('ob.nodewizard.addchannel.simple', {
-        url: '/simple',
-        controller: 'addChannelSimpleController',
-        templateUrl: '/pages/node-wizard/add-channel/simple.html'
-      })
-      .state('ob.nodewizard.addchannel.header', {
-        url: '/header',
-        controller: 'addChannelHeaderController',
-        templateUrl: '/pages/node-wizard/add-channel/simple.html'
-      })
-      .state('ob.nodewizard.addchannel.aws', {
-        url: '/aws',
-        controller: 'addChannelAWSController',
-        templateUrl: '/pages/node-wizard/add-channel/aws.html'
-      })
-      .state('ob.nodewizard.addchannel.clouddotcom', {
-        url: '/clouddotcom',
-        controller: 'addChannelCloudDotComController',
-        templateUrl: '/pages/node-wizard/add-channel/clouddotcom.html'
-      })
-      .state('ob.nodewizard.addchannel.echosign', {
-        url: '/echosign',
-        controller: 'addChannelEchoSignController',
-        templateUrl: '/pages/node-wizard/add-channel/echosign.html'
-      })
-      .state('ob.nodewizard.addchannel.basic', {
-        url: '/basic',
-        controller: 'addChannelBasicController',
-        templateUrl: '/pages/node-wizard/add-channel/basic.html'
-      })
-      .state('ob.nodewizard.addchannel.docusign', {
-        url: '/docusign',
-        controller: 'addChannelDocuSignController',
-        templateUrl: '/pages/node-wizard/add-channel/docusign.html'
-      })
-      .state('ob.nodewizard.addchannel.apikey-basic', {
-        url: '/apikey-basic',
-        controller: 'addChannelApiKeyBasicController',
-        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
-      })
-      .state('ob.nodewizard.addchannel.apikey-dummypass-basic', {
-        url: '/apikey-dummypass-basic',
-        controller: 'addChannelApiKeyDummyPassBasicController',
-        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
-      })
-      .state('ob.nodewizard.addchannel.meshblu', {
-        url: '/meshblu',
-        controller: 'addChannelMeshbluController',
-        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
-      })
-      .state('ob.nodewizard.adddevice', {
-        url: '/add-device/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
       .state('ob.nodewizard.addgateblu', {
         url: '/add-gateblu/:nodeTypeId',
         controller: 'addDeviceController',
@@ -520,27 +428,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/add-microblu/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
-      .state('ob.nodewizard.addsubdevice', {
-        url: '/add-subdevice/:nodeTypeId',
-        controller: 'addSubdeviceController',
-        templateUrl: '/pages/node-wizard/add-subdevice/index.html',
-        abstract: true
-      })
-      .state('ob.nodewizard.addsubdevice.addGateblu', {
-        url: '/add-gateblu',
-        controller: 'AddSubdeviceAddGatebluController',
-        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
-      })
-      .state('ob.nodewizard.addsubdevice.selectgateblu', {
-        url: '',
-        controller: 'AddSubdeviceSelectGatebluController',
-        templateUrl: '/pages/node-wizard/add-subdevice/select-gateblu.html'
-      })
-      .state('ob.nodewizard.addsubdevice.form', {
-        url: '/gateblus/:gatebluId',
-        controller: 'addSubdeviceFormController',
-        templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('signup', {
         url: '/signup',
@@ -572,7 +459,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
       console.log(error.stack);
     });
 
-    $rootScope.$on('$stateChangeStart', function (event, toState) {
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+      // console.log('transition', fromState.name, toState.name);
       if (!toState.unsecured) {
         return AuthService.getCurrentUser(true).then(null, function (err) {
           console.log('LOGIN ERROR:');
