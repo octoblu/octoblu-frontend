@@ -1,6 +1,6 @@
 
 angular.module('octobluApp')
-.controller('addDeviceController', function ($scope, $state, $stateParams, currentUser, NodeTypeService, deviceService) {
+.controller('addDeviceController', function ($scope, $state, $stateParams, NodeTypeService, deviceService, AuthService) {
   'use strict';
 
   $scope.newDevice = {};
@@ -21,40 +21,40 @@ angular.module('octobluApp')
   });
 
   $scope.addDevice = function () {
-    var deviceOptions, promise;
-    delete $scope.errorMessage;
+    AuthService.getCurrentUser().then(function(currentUser){
 
-    deviceOptions = {
-      type: $scope.nodeType.type,
-      name: $scope.newDevice.name
-    };
+      var deviceOptions, promise;
+      delete $scope.errorMessage;
 
-    if($scope.nodeType.payloadOnly){
-      deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;
-    }
+      deviceOptions = {
+        type: $scope.nodeType.type,
+        name: $scope.newDevice.name
+      };
 
-
-
-    if ($scope.newDevice.selectedDevice) {
-      if ($scope.newDevice.selectedDevice.type === 'existing') {
-        deviceOptions.uuid = $scope.existingDevice.uuid;
-        deviceOptions.token = $scope.existingDevice.token;
-        deviceOptions.owner = currentUser.skynet.uuid;
-        deviceOptions.isChanged = true;
-        promise = deviceService.updateDevice(deviceOptions);
-      } else {
-        deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-        promise = deviceService.claimDevice(deviceOptions);
+      if($scope.nodeType.payloadOnly){
+        deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;
       }
-    } else {
-      promise = deviceService.registerDevice(deviceOptions);
-    }
 
-    promise.then(function () {
-      $state.go("material.nodes");
-    }, function (error) {
-      $scope.errorMessage = error;
+      if ($scope.newDevice.selectedDevice) {
+        if ($scope.newDevice.selectedDevice.type === 'existing') {
+          deviceOptions.uuid = $scope.existingDevice.uuid;
+          deviceOptions.token = $scope.existingDevice.token;
+          deviceOptions.owner = currentUser.skynet.uuid;
+          deviceOptions.isChanged = true;
+          promise = deviceService.updateDevice(deviceOptions);
+        } else {
+          deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
+          promise = deviceService.claimDevice(deviceOptions);
+        }
+      } else {
+        promise = deviceService.registerDevice(deviceOptions);
+      }
+
+      promise.then(function () {
+        $state.go("material.nodes");
+      }, function (error) {
+        $scope.errorMessage = error;
+      });
     });
-
   };
 });
