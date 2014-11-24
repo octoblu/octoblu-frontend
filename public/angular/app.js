@@ -309,7 +309,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'contactController',
         unsecured: true
       })
-      .state('ob.profile', {
+      .state('material.profile', {
         url: '/profile',
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
@@ -397,10 +397,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/analyze',
         templateUrl: '/pages/analyze.html',
         controller: 'analyzeController'
-      })
-      .state('ob.community', {
-        url: '/community',
-        templateUrl: '/pages/community.html'
       })
       .state('ob.faqs', {
         url: '/faqs',
