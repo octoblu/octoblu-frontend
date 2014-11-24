@@ -1,13 +1,13 @@
   <div flex layout="column">
     <div flex layout="row">
-      <div flex="20" layout="column">
+      <div flex="30" layout="column">
         <md-toolbar md-theme="indigo">
           <h2 class="md-toolbar-tools page-heading">
-            <a href class="menu-icon" hide="true" show-phone="true" show-tablet="true" ng-click="toggleNav()">
+            <a href class="menu-icon" ng-click="toggleNav()">
               <i class="fa fa-bars"></i>
             </a>
 
-            <span>Available Templates</span>
+            <span>Templates</span>
           </h2>
         </md-toolbar>
 
@@ -23,7 +23,7 @@
         </md-content>
       </div>
 
-      <div layout-fill flex="80" layout="column">
+      <div layout-fill flex="70" layout="column">
         <div flex layout="column">
 
           <i ng-click="confirmDeleteTemplate(currentTemplate.uuid)" class="fa fa-trash fa-2x" style="position: absolute; right: 20px; top: 10px"></i>
