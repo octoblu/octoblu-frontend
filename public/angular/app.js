@@ -66,14 +66,24 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
     });
 
     $stateProvider
-      .state('material.design', {
-        url: '/design',
-        controller: 'DesignerController'
-      })
       .state('material', {
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.analyze', {
+        url: '/analyze',
+        templateUrl: '/pages/analyze.html',
+        controller: 'analyzeController',
+        resolve: {
+          myDevices: function (NodeService) {
+            return NodeService.getNodes({cache: false})
+          }
+        }
+      })
+      .state('material.design', {
+        url: '/design',
+        controller: 'DesignerController'
       })
       .state('material.nodewizard', {
         url: '/node-wizard',
@@ -393,11 +403,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         unsecured: true
       })
 
-      .state('ob.analyze', {
-        url: '/analyze',
-        templateUrl: '/pages/analyze.html',
-        controller: 'analyzeController'
-      })
       .state('ob.faqs', {
         url: '/faqs',
         templateUrl: '/pages/faqs.html',
