@@ -393,10 +393,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/analyze.html',
         controller: 'analyzeController'
       })
-      .state('ob.community', {
-        url: '/community',
-        templateUrl: '/pages/community.html'
-      })
       .state('ob.faqs', {
         url: '/faqs',
         templateUrl: '/pages/faqs.html',
