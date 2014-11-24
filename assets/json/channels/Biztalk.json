@@ -16,18 +16,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":action",
+            "displayName": "Action",
             "required": true
           }
         ],
@@ -46,24 +49,28 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "SchemaVersion",
+            "displayName": "Schema Version",
             "required": true
           },
           {
@@ -75,12 +82,14 @@
           {
             "style": "body",
             "type": "string",
-            "name": "CustomDomainUrl"
+            "name": "CustomDomainUrl",
+            "displayName": "Custom Domain URL"
           },
           {
             "style": "body",
             "type": "string",
             "name": "ServiceVersion",
+            "displayName": "Service Version",
             "required": true
           },
           {
@@ -93,49 +102,58 @@
             "style": "body",
             "type": "string",
             "name": "UnitCount",
+            "displayName": "Unit Count",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceCertificate/Data"
+            "name": "ServiceCertificate.Data",
+            "displayName": "Service Certificate Data"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceCertificate/Password"
+            "name": "ServiceCertificate.Password",
+            "displayName": "Service Certificate Password"
           },
           {
             "style": "body",
             "type": "string",
             "name": "TrackingStoreConnectionString",
+            "displayName": "Tracking Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "MonitoringStoreConnectionString",
+            "displayName": "Monitoring Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ArchivingStoreConnectionString"
+            "name": "ArchivingStoreConnectionString",
+            "displayName": "Archiving Store Connection String"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/Namespace"
+            "name": "ServiceAcsParameters.Namespace",
+            "displayName": "Service Acs Parameters Namespace"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/ManagementUserName"
+            "name": "ServiceAcsParameters.ManagementUserName",
+            "displayName": "Service Acs Parameters Management Username"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/ManagementPassword"
+            "name": "ServiceAcsParameters.ManagementPassword",
+            "displayName": "Service Acs Parameters Management Password"
           }
         ],
         "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name"
@@ -153,12 +171,14 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           }
         ],
@@ -177,6 +197,7 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           }
         ],
@@ -195,18 +216,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": "CloudServiceName",
+            "displayName" : "Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "resource-name",
+            "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           }
         ],
@@ -225,6 +249,7 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
@@ -236,17 +261,19 @@
           {
             "style": "url",
             "type": "string",
-            "name": "resource-name",
+            "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
-            "style": "url",
+            "style": "query",
             "type": "string",
-            "name": "comp=suspend",
+            "name": "comp",
+            "displayName": "Comp",
             "required": true
           }
         ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=suspend"
+        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name"
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=resume",
@@ -261,24 +288,28 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
             "name": "comp",
+            "displayName": "Comp",
             "default": "resume",
             "required": true
           }
@@ -298,18 +329,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
@@ -322,6 +356,7 @@
             "style": "url",
             "type": "string",
             "name": ":request-id",
+            "displayName": "Request ID",
             "required": true
           }
         ],
@@ -340,18 +375,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           }
         ],
@@ -370,24 +408,28 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "resource-name",
+            "name": ":resource-name",
+            "displayName": "Resource Name",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "SchemaVersion",
+            "displayName":"Schema Version",
             "required": true
           },
           {
@@ -399,19 +441,22 @@
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceBackupSettings/BackupStoreConnectionString",
+            "name": "ServiceBackupSettings.BackupStoreConnectionString",
+            "displayName": "Service Backup Settings Backup Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceBackupSettings/BackupName",
+            "name": "ServiceBackupSettings.BackupName",
+            "displayName": "Service Backup Settings Backup Name",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "CustomDomainUrl",
+            "displayName": "Custom Domain Url",
             "required": true
           },
           {
@@ -423,49 +468,57 @@
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceCertificate/Data",
+            "name": "ServiceCertificate.Data",
+            "displayName": "Service Certificate Data",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceCertificate/Password",
+            "name": "ServiceCertificate.Password",
+            "displayName": "Service Certificate Password",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "TrackingStoreConnectionString",
+            "displayName": "Tracking Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "ArchivingStoreConnectionString",
+            "displayName": "Archiving Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
             "name": "MonitoringStoreConnectionString",
+            "displayName": "Monitoring Store Connection String",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/Namespace",
+            "name": "ServiceAcsParameters.Namespace",
+            "displayName": "Service Acs Parameters Namespace",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/ManagementUserName",
+            "name": "ServiceAcsParameters.ManagementUserName",
+            "displayName": "Service Acs Parameters Management Username",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ServiceAcsParameters/ManagementPassword",
+            "name": "ServiceAcsParameters.ManagementPassword",
+            "displayName": "Service Acs Parameters Management Password",
             "required": true
           }
         ],
@@ -484,30 +537,35 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":biztalk-service-name",
+            "displayName": "Biztalk Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":hybrid-connection-name",
+            "displayName":"Hybrid Connection Name",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "HostName"
+            "name": "HostName",
+            "displayName": "Host Name"
           },
           {
             "style": "body",
@@ -530,18 +588,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":biztalk-service-name",
+            "displayName": "Biztalk Service Name",
             "required": true
           }
         ],
@@ -560,24 +621,28 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":biztalk-service-name",
+            "displayName": "Biztalk Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":hybrid-connection-name",
+            "displayName":"Hybrid Connection Name",
             "required": true
           },
           {
@@ -608,18 +673,21 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":biztalk-service-name",
+            "displayName": "Biztalk Service Name",
             "required": true
           }
         ],
@@ -638,24 +706,28 @@
             "style": "url",
             "type": "string",
             "name": ":subscription-id",
+            "displayName" : "Subscription ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":cloud-service-name",
+            "displayName":"Cloud Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":biztalk-service-name",
+            "displayName": "Biztalk Service Name",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
             "name": ":hybrid-connection-name",
+            "displayName":"Hybrid Connection Name",
             "required": true
           }
         ],
@@ -671,6 +743,7 @@
       "style": "header",
       "type": "string",
       "name": "x-ms-version",
+      "displayName": "API Version",
       "default": "2012-08-01",
       "required": true
     },
@@ -678,6 +751,7 @@
       "style": "header",
       "type": "string",
       "name": "x-ms-client-request-id",
+      "displayName": "Client ID",
       "default": "",
       "required": true
     },
@@ -685,6 +759,7 @@
       "style": "header",
       "type": "string",
       "name": "If-Match",
+      "displayName": "IF Match",
       "default": "",
       "required": true
     }
