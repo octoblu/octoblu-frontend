@@ -223,6 +223,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'NodeController',
         templateUrl: '/pages/connector/nodes/index.html'
       })
+      .state('material.process', {
+        url: '/process',
+        templateUrl: '/pages/process.html',
+        controller: 'processController'
+      })
       .state('material.device', {
         url: '/device/:uuid',
         controller: 'DeviceDetailController',
@@ -313,11 +318,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/clearauth',
         templateUrl: '/pages/clear-auth.html',
         controller:  'clearAuthController'
-      })
-      .state('ob.process', {
-        url: '/process',
-        templateUrl: '/pages/process.html',
-        controller: 'processController'
       })
 
       .state('ob.admin', {
