@@ -66,14 +66,61 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
     });
 
     $stateProvider
-      .state('material.design', {
-        url: '/design',
-        controller: 'DesignerController'
-      })
       .state('material', {
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.admin', {
+        abstract: true,
+        url: '/admin',
+        templateUrl: '/pages/admin/index.html',
+        controller: 'AdminController',
+        resolve: {
+          operatorsGroup: function (GroupService) {
+            return GroupService.getOperatorsGroup();
+          },
+          allDevices: function (deviceService) {
+            return deviceService.getDevices();
+          },
+          allGroupResourcePermissions: function (PermissionsService) {
+            return PermissionsService.allGroupPermissions();
+          }
+        }
+      })
+      .state('material.admin.all', {
+        url: '/groups',
+        templateUrl: '/pages/admin/groups/all.html'
+      })
+      .state('material.admin.detail', {
+        url: '/groups/:uuid',
+        templateUrl: '/pages/admin/groups/detail.html',
+        controller: 'adminGroupDetailController',
+        resolve: {
+          resourcePermission: function (allGroupResourcePermissions, $stateParams) {
+            return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
+          },
+          sourcePermissionsGroup: function (resourcePermission, GroupService) {
+            return GroupService.getGroup(resourcePermission.source.uuid);
+          },
+          targetPermissionsGroup: function (resourcePermission, GroupService) {
+            return GroupService.getGroup(resourcePermission.target.uuid);
+          }
+        }
+      })
+      .state('material.analyze', {
+        url: '/analyze',
+        templateUrl: '/pages/analyze.html',
+        controller: 'analyzeController',
+        resolve: {
+          myDevices: function (NodeService) {
+            return NodeService.getNodes({cache: false})
+          }
+        }
+      })
+      .state('material.design', {
+        url: '/design',
+        controller: 'DesignerController'
       })
       .state('material.nodewizard', {
         url: '/node-wizard',
@@ -320,43 +367,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller:  'clearAuthController'
       })
 
-      .state('ob.admin', {
-        abstract: true,
-        url: '/admin',
-        templateUrl: '/pages/admin/index.html',
-        controller: 'AdminController',
-        resolve: {
-          operatorsGroup: function (GroupService) {
-            return GroupService.getOperatorsGroup();
-          },
-          allDevices: function (deviceService) {
-            return deviceService.getDevices();
-          },
-          allGroupResourcePermissions: function (PermissionsService) {
-            return PermissionsService.allGroupPermissions();
-          }
-        }
-      })
-      .state('ob.admin.all', {
-        url: '/groups',
-        templateUrl: '/pages/admin/groups/all.html'
-      })
-      .state('ob.admin.detail', {
-        url: '/groups/:uuid',
-        templateUrl: '/pages/admin/groups/detail.html',
-        controller: 'adminGroupDetailController',
-        resolve: {
-          resourcePermission: function (allGroupResourcePermissions, $stateParams) {
-            return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
-          },
-          sourcePermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.source.uuid);
-          },
-          targetPermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.target.uuid);
-          }
-        }
-      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
@@ -393,11 +403,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         unsecured: true
       })
 
-      .state('ob.analyze', {
-        url: '/analyze',
-        templateUrl: '/pages/analyze.html',
-        controller: 'analyzeController'
-      })
       .state('ob.faqs', {
         url: '/faqs',
         templateUrl: '/pages/faqs.html',
