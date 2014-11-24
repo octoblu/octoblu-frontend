@@ -95,6 +95,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
       })
+      .state('material.home', {
+        url: '/home',
+        templateUrl: '/pages/home.html',
+        controller: 'homeController'
+      })
 
       .state('ob', {
         abstract: true,
@@ -396,11 +401,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/faqs',
         templateUrl: '/pages/faqs.html',
         controller: 'faqsController'
-      })
-      .state('ob.home', {
-        url: '/home',
-        templateUrl: '/pages/home.html',
-        controller: 'homeController'
       })
       .state('ob.services', {
         url: '/services',

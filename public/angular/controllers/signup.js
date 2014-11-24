@@ -30,7 +30,7 @@ angular.module('octobluApp')
       signupParams.testerId,
       signupParams.code
     ).then(function(){
-      $state.go('ob.home');
+      $state.go('material.home');
     }, function(error){
       $scope.loading = false;
       $scope.errorMsg = error;
