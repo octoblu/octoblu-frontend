@@ -9,7 +9,7 @@ angular.module('octobluApp')
     } else {
       flowId = _.first(flows).flowId;
     }
-    $state.go('flow', {flowId: flowId}, {location: 'replace'});
+    $state.go('material.flow', {flowId: flowId}, {location: 'replace'});
   });
 
   $scope.getActiveFlow = function () {
