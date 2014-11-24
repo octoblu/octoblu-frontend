@@ -12,7 +12,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/connect/action-link-group-definitions",
+        "displayName": "Post Action Link Definitions",
         "path": "/connect/action-link-group-definitions",
         "params": [
           {
@@ -47,7 +47,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/connect/action-link-group-definitions/actionLinkGroupId",
+        "displayName": "Get Action Link Group Definitions",
         "path": "/connect/action-link-group-definitions/actionLinkGroupId",
         "url": "https://na1.salesforce.com/services/data/v31.0/connect/action-link-group-definitions/actionLinkGroupId"
       },
@@ -59,7 +59,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/connect/action-link-group-definitions/actionLinkGroupId",
+        "displayName": "Delete Action Link Group",
         "path": "/connect/action-link-group-definitions/actionLinkGroupId",
         "url": "https://na1.salesforce.com/services/data/v31.0/connect/action-link-group-definitions/actionLinkGroupId"
       },
@@ -71,7 +71,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/connect/action-link-groups/actionLinkGroupId",
+        "displayName": "Get Action Link Group",
         "path": "/connect/action-link-groups/actionLinkGroupId",
         "url": "https://na1.salesforce.com/services/data/v31.0/connect/action-link-groups/actionLinkGroupId"
       },
@@ -93,7 +93,7 @@
           }
         ],
         "path": "/connect/action-links/actionLinkId",
-        "displayName": "/connect/action-links/actionLinkId",
+        "displayName": "Get Action Link",
         "url": "https://na1.salesforce.com/services/data/v31.0/connect/action-links/actionLinkId"
       }
     ]

@@ -9,6 +9,7 @@ describe('InvitationService', function () {
       $httpBackend = _$httpBackend_;
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('/pages/octoblu.html').respond(200);
+      $httpBackend.whenGET('/pages/material.html').respond(200);
       $httpBackend.whenGET('/pages/home.html').respond(200);
       $httpBackend.flush();
     });

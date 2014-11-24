@@ -12,7 +12,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/projectid/stories/storyid/attachments",
+        "displayName": "Get Story Attachments",
         "path": "/projects/:projectid/stories/:storyid/attachments",
         "params": [
           {
@@ -40,7 +40,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/attachments",
+        "displayName": "Create Story Attachments",
         "path": "/projects/:projectid/stories/:storyid/attachments",
         "params": [
           {
@@ -68,7 +68,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
+        "displayName": "Get Single Story Attachment",
         "path": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
         "params": [
           {
@@ -103,7 +103,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
+        "displayName": "Update Story Attachment",
         "path": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
         "params": [
           {
@@ -144,7 +144,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
+        "displayName": "Delete Story Attachment",
         "path": "/projects/:projectid/stories/:storyid/attachments/:attachmentid",
         "params": [
           {
@@ -179,7 +179,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/comments",
+        "displayName": "Get Story Comments",
         "path": "/projects/:projectid/stories/:storyid/comments",
         "params": [
           {
@@ -207,7 +207,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/comments",
+        "displayName": "Create Story Comment",
         "path": "/projects/:projectid/stories/:storyid/comments",
         "params": [
           {
@@ -242,7 +242,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/comments/:commentid",
+        "displayName": "Get Single Story Comment",
         "path": "/projects/:projectid/stories/:storyid/comments/:commentid",
         "params": [
           {
@@ -277,7 +277,7 @@
         "authentication": {
           "required": "false"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/comments/:commentid",
+        "displayName": "Update Story Comment",
         "path": "/projects/:projectid/stories/:storyid/comments/:commentid",
         "params": [
           {
@@ -319,7 +319,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/comments/:commentid",
+        "displayName": "Delete Story Comment",
         "path": "/projects/:projectid/stories/:storyid/comments/:commentid",
         "params": [
           {
@@ -354,7 +354,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/invites",
+        "displayName": "Get Project Invites",
         "path": "/projects/:projectid/invites",
         "params": [
           {
@@ -375,7 +375,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/invites/:inviteid",
+        "displayName": "Get Project Invitee",
         "path": "/projects/:projectid/invites/:inviteid",
         "params": [
           {
@@ -403,7 +403,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/invites",
+        "displayName": "Create Project Invitee",
         "path": "/projects/:projectid/invites",
         "params": [
           {
@@ -438,7 +438,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/invites/:inviteid",
+        "displayName": "Delete Project Invitee",
         "path": "/projects/:projectid/invites/:inviteid",
         "params": [
           {
@@ -466,7 +466,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me",
+        "displayName": "Retrieve My Profile",
         "path": "/me",
         "url": "https://agilezen.com/api/v1/me"
       },
@@ -478,7 +478,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me",
+        "displayName": "Update My Profile",
         "path": "/me",
         "params": [
           {
@@ -521,7 +521,7 @@
           "required": "true"
         },
         "path": "/me/stories",
-        "displayName": "/me/stories",
+        "displayName": "Get My Stories",
         "url": "https://agilezen.com/api/v1/me/stories"
       },
       {
@@ -532,7 +532,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me?with=stories",
+        "displayName": "Get My Stories",
+        "enabled" : false,
         "path": "/me?with=stories",
         "url": "https://agilezen.com/api/v1/me?with=stories"
       },
@@ -544,7 +545,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases",
+        "displayName": "Get Project Phases",
         "path": "/projects/:projectid/phases",
         "params": [
           {
@@ -565,7 +566,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases",
+        "displayName": "Get Project Phases",
         "path": "/projects/:projectid/phases",
         "params": [
           {
@@ -612,7 +613,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases/:phaseid",
+        "displayName": "Get Project Phase",
         "path": "/projects/:projectid/phases/:phaseid",
         "params": [
           {
@@ -639,7 +640,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases/:phaseid",
+        "displayName": "Update Project Phase",
         "path": "/projects/:projectid/phases/:phaseid",
         "params": [
           {
@@ -692,7 +693,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases",
+        "displayName": "Update Project Phases",
         "path": "/projects/:projectid/phases",
         "params": [
           {
@@ -713,7 +714,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases/:phaseid",
+        "displayName": "Delete Project Phase",
         "path": "/projects/:projectid/phases/:phaseid",
         "params": [
           {
@@ -740,7 +741,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases/:phaseid/stories",
+        "displayName": "Get Phase Stories",
         "path": "/projects/:projectid/phases/:phaseid/stories",
         "params": [
           {
@@ -767,7 +768,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/phases/:phaseid/stories",
+        "displayName": "Update Phase Stories",
         "path": "/projects/:projectid/phases/:phaseid/stories",
         "params": [
           {
@@ -794,7 +795,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects",
+        "displayName": "Get Projects",
         "path": "/projects",
         "url": "https://agilezen.com/api/v1/projects"
       },
@@ -806,7 +807,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid",
+        "displayName": "Get Project",
         "path": "/projects/:projectid",
         "params": [
           {
@@ -827,7 +828,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid",
+        "displayName": "Update Project",
         "path": "/projects/:projectid",
         "params": [
           {
@@ -876,7 +877,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/members",
+        "displayName": "Get Project Members",
         "path": "/projects/:projectid/members",
         "params": [
           {
@@ -897,7 +898,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/members",
+        "displayName": "Create Project Members",
         "path": "/projects/:projectid/members",
         "params": [
           {
@@ -918,7 +919,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/members",
+        "displayName": "Update Project Members",
         "path": "/projects/:projectid/members",
         "params": [
           {
@@ -933,7 +934,7 @@
       },
       {
         "path": "/projects/:projectid/members/:userid",
-        "displayName": "/projects/:projectid/members/:userid",
+        "displayName": "Get Specific Project Member",
         "authentication": {
           "required": "true"
         },
@@ -945,7 +946,7 @@
       },
       {
         "path": "/projects/:projectid/tags",
-        "displayName": "/projects/:projectid/tags",
+        "displayName": "Get Project Tags",
         "authentication": {
           "required": "true"
         },
@@ -966,7 +967,7 @@
       },
       {
         "path": "/tags",
-        "displayName": "/tags",
+        "displayName": "Create Tags",
         "authentication": {
           "required": "true"
         },
@@ -994,7 +995,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag",
-        "displayName": "/projects/:projectid/tags/:tag",
+        "displayName": "Get Project Tag",
         "authentication": {
           "required": "true"
         },
@@ -1022,7 +1023,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag",
-        "displayName": "/projects/:projectid/tags/:tag",
+        "displayName": "Update Project Tag",
         "authentication": {
           "required": "true"
         },
@@ -1057,7 +1058,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag",
-        "displayName": "/projects/:projectid/tags/:tag",
+        "displayName": "Delete Project Tag",
         "authentication": {
           "required": "true"
         },
@@ -1085,7 +1086,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag/stories",
-        "displayName": "/projects/:projectid/tags/:tag/stories",
+        "displayName": "Get Tag Stories",
         "authentication": {
           "required": "true"
         },
@@ -1113,7 +1114,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag/stories",
-        "displayName": "/projects/:projectid/tags/:tag/stories",
+        "displayName": "Create Tag Story",
         "authentication": {
           "required": "true"
         },
@@ -1141,7 +1142,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag/stories",
-        "displayName": "/projects/:projectid/tags/:tag/stories",
+        "displayName": "Update Tag Story",
         "authentication": {
           "required": "true"
         },
@@ -1169,7 +1170,7 @@
       },
       {
         "path": "/projects/:projectid/tags/:tag/stories/:storyid",
-        "displayName": "/projects/:projectid/tags/:tag/stories/:storyid",
+        "displayName": "Delete Tag Story",
         "authentication": {
           "required": "true"
         },
@@ -1204,7 +1205,7 @@
       },
       {
         "path": "/projects/:projectid/stories/:storyid/tasks",
-        "displayName": "/projects/:projectid/stories/:storyid/tasks",
+        "displayName": "Get Story Tasks",
         "authentication": {
           "required": "true"
         },
@@ -1232,7 +1233,7 @@
       },
       {
         "path": "/projects/:projectid/stories/:storyid/tasks",
-        "displayName": "/projects/:projectid/stories/:storyid/tasks",
+        "displayName": "Create Story Task",
         "authentication": {
           "required": "true"
         },
@@ -1279,7 +1280,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tasks",
+        "displayName": "Update Story Tasks",
         "path": "/projects/:projectid/stories/:storyid/tasks",
         "params": [
           {
@@ -1307,7 +1308,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tasks/:taskid",
+        "displayName": "Get Specific Task",
         "path": "/projects/:projectid/stories/:storyid/tasks/:taskid",
         "params": [
           {
@@ -1342,7 +1343,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tasks/:taskid",
+        "displayName": "Update Task",
         "path": "/projects/:projectid/stories/:storyid/tasks/:taskid",
         "params": [
           {
@@ -1391,7 +1392,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tasks/:taskid",
+        "displayName": "Delete Task",
         "path": "/projects/:projectid/stories/:storyid/tasks/:taskid",
         "params": [
           {
@@ -1426,7 +1427,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles",
+        "displayName": "Get Roles",
         "path": "/projects/:projectid/roles",
         "params": [
           {
@@ -1447,7 +1448,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles",
+        "displayName": "Create Role",
         "path": "/projects/:projectid/roles",
         "params": [
           {
@@ -1482,7 +1483,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid",
+        "displayName": "Get Role",
         "path": "/projects/:projectid/roles/:roleid",
         "params": [
           {
@@ -1510,7 +1511,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid",
+        "displayName": "Update Role",
         "path": "/projects/:projectid/roles/:roleid",
         "params": [
           {
@@ -1552,7 +1553,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid",
+        "displayName": "Delete Role",
         "path": "/projects/:projectid/roles/:roleid",
         "params": [
           {
@@ -1580,7 +1581,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid/members",
+        "displayName": "Get Role Members",
         "path": "/projects/:projectid/roles/:roleid/members",
         "params": [
           {
@@ -1608,7 +1609,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid/members",
+        "displayName": "Create Role Member",
         "path": "/projects/:projectid/roles/:roleid/members",
         "params": [
           {
@@ -1636,7 +1637,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid/members",
+        "displayName": "Update Role Members",
         "path": "/projects/:projectid/roles/:roleid/members",
         "params": [
           {
@@ -1664,7 +1665,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/roles/:roleid/members/:userid",
+        "displayName": "Delete Role Member",
         "path": "/projects/:projectid/roles/:roleid/members/:userid",
         "params": [
           {
@@ -1699,7 +1700,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories",
+        "displayName": "Get Project Stories",
         "path": "/projects/:projectid/stories",
         "params": [
           {
@@ -1720,7 +1721,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories",
+        "displayName": "Create Project Story",
         "path": "/projects/:projectid/stories",
         "params": [
           {
@@ -1804,7 +1805,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid",
+        "displayName": "Get Project Story",
         "path": "/projects/:projectid/stories/:storyid",
         "params": [
           {
@@ -1832,7 +1833,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid",
+        "displayName": "Update Project Story",
         "path": "/projects/:projectid/stories/:storyid",
         "params": [
           {
@@ -1922,7 +1923,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid",
+        "displayName": "Delete Project Story",
         "path": "/projects/:projectid/stories/:storyid",
         "params": [
           {
@@ -1950,7 +1951,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories?where=:filter",
+        "displayName": "Update Multiple Project Stories",
         "path": "/projects/:projectid/stories?where=:filter",
         "params": [
           {
@@ -1963,12 +1964,12 @@
           {
             "name": "filter",
             "displayName": "Filter",
-            "style": "body",
+            "style": "query",
             "type": "string",
             "required": "true"
           }
         ],
-        "url": "https://agilezen.com/api/v1/projects/:projectid/stories?where=:filter"
+        "url": "https://agilezen.com/api/v1/projects/:projectid/stories"
       },
       {
         "httpMethod": "DELETE",
@@ -1978,7 +1979,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories?where=:filter",
+        "displayName": "Delete Multiple Project Stories",
         "path": "/projects/:projectid/stories?where=:filter",
         "params": [
           {
@@ -2006,7 +2007,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tags",
+        "displayName": "Get Story Tags",
         "path": "/projects/:projectid/stories/:storyid/tags",
         "params": [
           {
@@ -2034,7 +2035,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/projectid/stories/storyid/tags",
+        "displayName": "Create Story Tag",
         "path": "/projects/:projectid/stories/:storyid/tags",
         "params": [
           {
@@ -2062,7 +2063,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/projectid/stories/storyid/tags",
+        "displayName": "Update Story Tags",
         "path": "/projects/:projectid/stories/:storyid/tags",
         "params": [
           {
@@ -2090,7 +2091,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tags/:tag",
+        "displayName": "Delete Story Tag",
         "path": "/projects/:projectid/stories/:storyid/tags/:tag",
         "params": [
           {

@@ -24,7 +24,7 @@
           <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
           <li role="presentation"  class="divider"></li>
           <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
-            <a ui-sref="flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'text-muted' : !flow.online, 'text-success' : flow.online}"></i> {{flow.name}}</a>
+            <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'text-muted' : !flow.online, 'text-success' : flow.online}"></i> {{flow.name}}</a>
           </li>
         </ul>
       </div>
