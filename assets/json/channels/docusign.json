@@ -5,7 +5,7 @@
     "base": "https://demo.docusign.net/restapi/v2",
     "resources": [{
         "path": "/login_information",
-        "displayName": "/login_information",
+        "displayName": "Get Login Information",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/login_information"
         },
@@ -28,7 +28,7 @@
       },
       {
         "path": "/login_information/password",
-        "displayName": "/login_information/password",
+        "displayName": "Update Password",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/login_information/password"
         },
@@ -54,42 +54,8 @@
         "url": "https://demo.docusign.net/restapi/v2/login_information/password"
       },
       {
-        "path": "/oauth2/token",
-        "displayName": "/oauth2/token",
-        "doc": {
-          "url": "https://demo.docusign.net/restapi/v2/oauth2/token"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "grant_type"
-        },{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "scope"
-        }],
-        "url": "https://demo.docusign.net/restapi/v2/oauth2/token"
-      },
-      {
-        "path": "/oauth2/revoke",
-        "displayName": "/oauth2/revoke",
-        "doc": {
-          "url": "https://demo.docusign.net/restapi/v2/oauth2/revoke"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "ref_type"
-        }],
-        "url": "https://demo.docusign.net/restapi/v2/oauth2/revoke"
-      },
-      {
         "path": "/accounts/:accountId/envelopes",
-        "displayName": "/accounts/:accountId/envelopes",
+        "displayName": "Get Account Envelopes",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
         },
@@ -140,7 +106,7 @@
       },
       {
         "path": "/accounts/:accountId/envelopes",
-        "displayName": "/accounts/:accountId/envelopes",
+        "displayName": "Create Account Envelope",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
         },
@@ -191,19 +157,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId",
+        "displayName": "Update Account Envelope",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -216,24 +182,24 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/documents/:documentId",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/documents/:documentId",
+        "displayName": "Update Envelope Document",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "documentId",
           "required": true
@@ -242,19 +208,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients",
+        "displayName": "Set Envelope Recipients",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -287,19 +253,19 @@
       },
       {
         "path": "/accounts/:accountId/views/console",
-        "displayName": "/accounts/:accountId/views/console",
+        "displayName": "Post Authentication View",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/views/console"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -308,19 +274,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/views/correct",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/views/correct",
+        "displayName": "Post an Envelope Correction",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/correct"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -339,19 +305,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/views/sender",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/views/sender",
+        "displayName": "Post Sender View",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/sender"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -365,19 +331,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/views/recipient",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/views/recipient",
+        "displayName": "Post Recipient View",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/recipient"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -411,14 +377,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes",
-        "displayName": "/accounts/:accountId/envelopes",
+        "displayName": "Get Account Envelopes",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -436,14 +402,14 @@
       },
       {
         "path": "/accounts/:accountId/search_folders/:searchFolderType",
-        "displayName": "/accounts/:accountId/search_folders/:searchFolderType",
+        "displayName": "Get List of Envelopes in a Folder",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/search_folders/:searchFolderType"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -488,14 +454,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId",
+        "displayName": "Get Individual Envelope Status",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -509,14 +475,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients",
+        "displayName": "Get Envelope Recipients",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -535,19 +501,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients",
+        "displayName": "Add Recipients to Envelope",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -560,19 +526,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients",
+        "displayName": "Modify or Correct and Resend Recipient Information",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -605,22 +571,22 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId",
+        "displayName": "Delete Envelope",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId"
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "envelopeId"
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "recipientId"
         }],
@@ -628,14 +594,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
+        "displayName": "Get Recipient Tabs",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -653,19 +619,19 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
       },{
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
+        "displayName": "Add Tab to Recipient",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -707,19 +673,19 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
+        "displayName": "Set Signature Image for Accountless Signer",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
@@ -761,14 +727,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/:envelopeAssets",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/:envelopeAssets",
+        "displayName": "Get Enveloper Assets",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/:envelopeAssets"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -786,14 +752,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/documents/:documentId",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/documents/:documentId",
+        "displayName": "Get List of Envelope Documents",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -816,14 +782,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/documents/combined",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/documents/combined",
+        "displayName": "Get Envelope Documents Combined",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/combined"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -849,24 +815,24 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/documents",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/documents",
+        "displayName": "Delete Envelope Documents",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "documents"
         }],
@@ -874,14 +840,14 @@
       },
       {
         "path": "/accounts/:accountId/envelopes/:envelopeId/templates",
-        "displayName": "/accounts/:accountId/envelopes/:envelopeId/templates",
+        "displayName": "Get Envelope Templates",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/templates"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -895,14 +861,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/profile",
-        "displayName": "/accounts/:accountId/users/:userId/profile",
+        "displayName": "Get User Profile",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -914,14 +880,14 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
         },{
         "path": "/accounts/:accountId/users/:userId/profile",
-        "displayName": "/accounts/:accountId/users/:userId/profile",
+        "displayName": "Update User Profile",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -964,14 +930,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/profile/image",
-        "displayName": "/accounts/:accountId/users/:userId/profile/image",
+        "displayName": "Get Profile Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -985,14 +951,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/profile/image",
-        "displayName": "/accounts/:accountId/users/:userId/profile/image",
+        "displayName": "Update Profile Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1010,19 +976,19 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/profile/image",
-        "displayName": "/accounts/:accountId/users/:userId/profile/image",
+        "displayName": "Delete Profile Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "userId",
           "required": true
@@ -1031,14 +997,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures",
-        "displayName": "/accounts/:accountId/users/:userId/signatures",
+        "displayName": "Get User Signatures",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1056,14 +1022,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName",
+        "displayName": "Update User Signature",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1091,14 +1057,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName",
+        "displayName": "Get Signature by Name",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1117,14 +1083,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image",
+        "displayName": "Get Signature Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1143,14 +1109,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
+        "displayName": "Get Initials Signature Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1169,14 +1135,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
+        "displayName": "Update Initials Signature Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1199,22 +1165,22 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image",
+        "displayName": "Delete Signature Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId"
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "userId"
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "signatureName"
         }],
@@ -1222,24 +1188,24 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
-        "displayName": "/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image",
+        "displayName": "Delete Initials Signature Image",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "userId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "signatureName",
           "required": true
@@ -1248,14 +1214,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/settings",
-        "displayName": "/accounts/:accountId/users/:userId/settings",
+        "displayName": "Get User Settings",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/settings"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1269,14 +1235,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/settings",
-        "displayName": "/accounts/:accountId/users/:userId/settings",
+        "displayName": "Update User Settings",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/settings"
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1294,14 +1260,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/social",
-        "displayName": "/accounts/:accountId/users/:userId/social",
+        "displayName": "Get User Social",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1315,14 +1281,14 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/social",
-        "displayName": "/accounts/:accountId/users/:userId/social",
+        "displayName": "Update User Social",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1351,34 +1317,34 @@
       },
       {
         "path": "/accounts/:accountId/users/:userId/social",
-        "displayName": "/accounts/:accountId/users/:userId/social",
+        "displayName": "Get User Social",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "userId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "provider",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "email",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "userName",
           "required": true
@@ -1387,7 +1353,7 @@
       },
       {
         "path": "/accounts/provisioning",
-        "displayName": "/accounts/provisioning",
+        "displayName": "Get Account Provisioning",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/provisioning"
         },
@@ -1398,7 +1364,7 @@
       },
       {
         "path": "/accounts",
-        "displayName": "/accounts",
+        "displayName": "Create Account",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts"
         },
@@ -1452,14 +1418,14 @@
       },
       {
         "path": "/accounts/:accountId",
-        "displayName": "/accounts/:accountId",
+        "displayName": "Get Account",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1468,14 +1434,14 @@
       },
       {
         "path": "/accounts/:accountId/billing_plan",
-        "displayName": "/accounts/:accountId/billing_plan",
+        "displayName": "Get Account Billing Plan",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/billing_plan"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1483,14 +1449,14 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/billing_plan"
       },{
         "path": "/accounts/:accountId",
-        "displayName": "/accounts/:accountId",
+        "displayName": "Delete Account",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1499,14 +1465,14 @@
       },
       {
         "path": "/accounts/:accountId/folders",
-        "displayName": "/accounts/:accountId/folders",
+        "displayName": "Get Account Folders",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1515,14 +1481,14 @@
       },
       {
         "path": "/accounts/:accountId/folders/:folderId",
-        "displayName": "/accounts/:accountId/folders/:folderId",
+        "displayName": "Get Specific Folder",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1536,14 +1502,14 @@
       },
       {
         "path": "/accounts/:accountId/folders/:folderId",
-        "displayName": "/accounts/:accountId/folders/:folderId",
+        "displayName": "Update Specific Folder",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1566,14 +1532,14 @@
       },
       {
         "path": "/accounts/:accountId/recipient_names",
-        "displayName": "/accounts/:accountId/recipient_names",
+        "displayName": "Get Recipient Names",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1587,14 +1553,14 @@
       },
       {
         "path": "/accounts/:accountId/settings",
-        "displayName": "/accounts/:accountId/settings",
+        "displayName": "Get Account Settings",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/settings"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1603,14 +1569,14 @@
       },
       {
         "path": "/accounts/:accountId/custom_fields",
-        "displayName": "/accounts/:accountId/custom_fields",
+        "displayName": "Get Custom Fields",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/custom_fields"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1619,14 +1585,14 @@
       },
       {
         "path": "/accounts/:accountId/templates",
-        "displayName": "/accounts/:accountId/templates",
+        "displayName": "Get Account Templates",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1640,14 +1606,14 @@
       },
       {
         "path": "/accounts/:accountId/templates/:templateId",
-        "displayName": "/accounts/:accountId/templates/:templateId",
+        "displayName": "Get Account Template",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates/:templateId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1660,36 +1626,15 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates/:templateId"
       },
       {
-        "path": "/accounts/:accountId/recipient_names",
-        "displayName": "/accounts/:accountId/recipient_names",
-        "doc": {
-          "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "email",
-          "required": true
-        }],
-        "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
-      },
-      {
         "path": "/accounts/:accountId/permission_profiles",
-        "displayName": "/accounts/:accountId/permission_profiles",
+        "displayName": "Get Account Permission Profiles",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/permission_profiles"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1698,14 +1643,14 @@
       },
       {
         "path": "/accounts/:accountId/groups",
-        "displayName": "/accounts/:accountId/groups",
+        "displayName": "Update Account Groups",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1718,14 +1663,14 @@
       },
       {
         "path": "/accounts/:accountId/groups",
-        "displayName": "/accounts/:accountId/groups",
+        "displayName": "Get Account Groups",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1734,14 +1679,14 @@
       },
       {
         "path": "/accounts/:accountId/users",
-        "displayName": "/accounts/:accountId/users",
+        "displayName": "Get Account Users",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1750,14 +1695,14 @@
       },
       {
         "path": "/accounts/:accountId/users",
-        "displayName": "/accounts/:accountId/users",
+        "displayName": "Get Users List",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1770,34 +1715,37 @@
       },
       {
         "path": "/accounts/:accountId/users",
-        "displayName": "/accounts/:accountId/users",
+        "displayName": "Delete User",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
         },
+        "enabled":false,
         "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
-        },{
-          "style": "",
-          "type": "array",
-          "name": "users"
+        },
+        {
+          "style": "url",
+          "type": "string",
+          "name": "accountId",
+          "required": true
         }],
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
       },
       {
         "path": "/accounts/:accountId/unsupported_file_types",
-        "displayName": "/accounts/:accountId/unsupported_file_types",
+        "displayName": "Get Unsupported File Types",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/unsupported_file_types"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1806,14 +1754,14 @@
       },
       {
         "path": "/accounts/:accountId/brands",
-        "displayName": "/accounts/:accountId/brands",
+        "displayName": "Update Brands",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1822,14 +1770,14 @@
       },
       {
         "path": "/accounts/:accountId/brands",
-        "displayName": "/accounts/:accountId/brands",
+        "displayName": "Get Brands",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1838,19 +1786,19 @@
       },
       {
         "path": "/accounts/:accountId/brands",
-        "displayName": "/accounts/:accountId/brands",
+        "displayName": "Delete Brands",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "brands"
         }],
@@ -1858,7 +1806,7 @@
       },
       {
         "path": "/billing_plans",
-        "displayName": "/billing_plans",
+        "displayName": "Get Billing Plans",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/billing_plans"
         },
@@ -1869,7 +1817,7 @@
       },
       {
         "path": "/billing_plans/:planId",
-        "displayName": "/billing_plans/:planId",
+        "displayName": "Get Billing Plan",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/billing_plans/:planId"
         },
@@ -1885,14 +1833,14 @@
       },
       {
         "path": "/accounts/:accountId/connect",
-        "displayName": "/accounts/:accountId/connect",
+        "displayName": "Get All Connect Configurations",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1900,14 +1848,14 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
       },{
         "path": "/accounts/:accountId/connect/:connectId",
-        "displayName": "/accounts/:accountId/connect/:connectId",
+        "displayName": "Get Connect Configuration",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -1921,14 +1869,14 @@
       },
       {
         "path": "/accounts/:accountId/connect",
-        "displayName": "/accounts/:accountId/connect",
+        "displayName": "Set up Connect Configuration",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2003,14 +1951,14 @@
       },
       {
         "path": "/accounts/:accountId/connect",
-        "displayName": "/accounts/:accountId/connect",
+        "displayName": "Update Connect Configuration",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2099,19 +2047,19 @@
       },
       {
         "path": "/accounts/:accountId/connect/:connectId",
-        "displayName": "/accounts/:accountId/connect/:connectId",
+        "displayName": "Delete Connect Configuration",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "connectId",
           "required": true
@@ -2120,14 +2068,14 @@
       },
       {
         "path": "/accounts/:accountId/connect/logs",
-        "displayName": "/accounts/:accountId/connect/logs",
+        "displayName": "Get Connect Logs",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2136,14 +2084,14 @@
       },
       {
         "path": "/accounts/:accountId/connect/logs/:logId",
-        "displayName": "/accounts/:accountId/connect/logs/:logId",
+        "displayName": "Get Connect Log",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2161,14 +2109,14 @@
       },
       {
         "path": "/accounts/:accountId/connect/failures",
-        "displayName": "/accounts/:accountId/connect/failures",
+        "displayName": "Get Connect Failures",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2177,14 +2125,14 @@
       },
       {
         "path": "/accounts/:accountId/connect/failures/:failureId",
-        "displayName": "/accounts/:accountId/connect/failures/:failureId",
+        "displayName": "Get Connect Failure",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
         "params": [{
-          "style": "query",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2197,14 +2145,14 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
         },{
         "path": "/accounts/:accountId/connect/logs",
-        "displayName": "/accounts/:accountId/connect/logs",
+        "displayName": "Delete Connect Logs",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2213,19 +2161,19 @@
       },
       {
         "path": "/accounts/:accountId/connect/logs/:logId",
-        "displayName": "/accounts/:accountId/connect/logs/:logId",
+        "displayName": "Delete Connect Log",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "logId",
           "required": true
@@ -2234,19 +2182,19 @@
       },
       {
         "path": "/accounts/:accountId/connect/failures/:failureId",
-        "displayName": "/accounts/:accountId/connect/failures/:failureId",
+        "displayName": "Delete Connect Failure",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X",
         "params": [{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "",
+          "style": "url",
           "type": "string",
           "name": "failureId",
           "required": true
@@ -2255,14 +2203,14 @@
       },
       {
         "path": "/accounts/:accountId/connect/envelopes/retry_queue",
-        "displayName": "/accounts/:accountId/connect/envelopes/retry_queue",
+        "displayName": "Republish Connect for Multiple Envelopes",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/retry_queue"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
@@ -2275,19 +2223,19 @@
       },
       {
         "path": "/accounts/:accountId/connect/envelopes/:envelopeId/retry_queue",
-        "displayName": "/accounts/:accountId/connect/envelopes/:envelopeId/retry_queue",
+        "displayName": "Republish Connect Envelopes",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/:envelopeId/retry_queue"
         },
         "httpMethod": "PUT",
         "curl": "curl -X",
         "params": [{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         },{
-          "style": "body",
+          "style": "url",
           "type": "string",
           "name": "envelopeId",
           "required": true
