@@ -7,7 +7,6 @@ angular.module('octobluApp')
     $scope.targetPermissionsGroup = targetPermissionsGroup;
 
     $scope.allResources = _.union(operatorsGroup.members, allDevices);
-    console.log($scope.allResources);
 
     $scope.getDisplayName = function (resource) {
       if (resource.properties) {
