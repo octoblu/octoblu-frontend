@@ -7,7 +7,7 @@ angular.module('octobluApp')
   });
 
   $scope.nextStepUrl = function (node) {
-    var sref = 'ob.connector.nodes.' + node.category + '-detail';
+    var sref = 'material.' + node.category;
     var params = {};
     if (node.category === 'device' || node.category === 'microblu') {
       params.uuid = node.uuid;

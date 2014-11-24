@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, device, availableNodeTypes, PermissionsService, deviceService, NodeService, NodeTypeService) {
+.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, device, PermissionsService, deviceService, NodeService, NodeTypeService) {
   'use strict';
   $scope.device = device;
 

@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-  .controller('addChannelMeshbluController', function($scope, $state, currentUser, nodeType, userService) {
-    $scope.activate = function(){
-      userService.saveBasicApi(currentUser.skynet.uuid, nodeType.channelid,
-        currentUser.skynet.uuid, currentUser.skynet.token,
+.controller('addChannelMeshbluController', function($scope, $state, nodeType, userService, AuthService) {
+  $scope.activate = function(){
+    AuthService.getCurrentUser().then(function(user){
+      userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
+        user.resource.uuid, user.resource.token,
         function () {
-          $state.go('design');
+          $state.go('material.design');
         });
-    };
-  });
+    });
+  };
+});

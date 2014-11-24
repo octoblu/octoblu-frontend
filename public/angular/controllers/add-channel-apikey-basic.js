@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelApiKeyBasicController', function($scope, $state, currentUser, nodeType, userService) {
+.controller('addChannelApiKeyBasicController', function($scope, $state, nodeType, userService, AuthService) {
   $scope.activate = function(){
-    userService.saveBasicApi(currentUser.skynet.uuid, nodeType.channelid,
-     $scope.newChannel.apiKey, '',
-     function () {
-      $state.go('design');
+    AuthService.getCurrentUser().then(function(user){
+      userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
+       $scope.newChannel.apiKey, '',
+       function () {
+        $state.go('material.design');
+      });
     });
   };
 });
