@@ -5,4 +5,8 @@ angular.module('octobluApp')
   $scope.toggleNav = function() {
     $scope.navIsOpen = !$scope.navIsOpen;
   };
+
+  $scope.closeNav = function(){
+    $scope.navIsOpen = false;
+  };
 });

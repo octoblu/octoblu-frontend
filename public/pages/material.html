@@ -1,48 +1,48 @@
 <div class="materialize" layout="row">
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="navIsOpen">
     <md-toolbar class="md-medium-tall md-indigo-theme" layout-align="center">
-      <a href class="navbar-logo">
+      <a href ng-click="closeNav()" ui-sref="material.home" class="navbar-logo">
         <img src="/assets/images/octoblu_logo.png">
       </a>
     </md-toolbar>
 
     <md-content>
-      <a href ui-sref="material.home" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.home" layout="row" layout-align="start center">
         <i class="fa fa-home fa-lg"></i>
         <span>Home</span>
       </a>
-      <a href ui-sref="material.nodes" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.nodes" layout="row" layout-align="start center">
         <i class="fa fa-plug fa-lg"></i>
         <span>Connect</span>
       </a>
-      <a href ui-sref="design" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="design" layout="row" layout-align="start center">
         <i class="fa fa-edit fa-lg"></i>
         <span>Design</span>
       </a>
-      <a href ui-sref="ob.process" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="ob.process" layout="row" layout-align="start center">
         <i class="fa fa-tasks fa-lg"></i>
         <span>Process</span>
       </a>
-      <a href ui-sref="ob.analyze" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="ob.analyze" layout="row" layout-align="start center">
         <i class="fa fa-bar-chart-o fa-lg"></i>
         <span>Analyze</span>
       </a>
-      <a href ui-sref="material.templates" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.templates" layout="row" layout-align="start center">
         <i class="fa fa-file-text fa-lg"></i>
         <span>Templates</span>
       </a>
-      <a href ui-sref="ob.admin.all" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="ob.admin.all" layout="row" layout-align="start center">
         <i class="fa fa-lock fa-lg"></i>
         <span>Admin</span>
       </a>
-      <a href ui-sref="ob.community" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="ob.community" layout="row" layout-align="start center">
         <i class="fa fa-group fa-lg"></i>
         <span>Community</span>
       </a>
 
       <md-divider></md-divider>
 
-      <a href ui-sref="ob.profile" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="ob.profile" layout="row" layout-align="start center">
         <i class="fa fa-user fa-lg"></i>
         <span>Profile</span>
       </a>

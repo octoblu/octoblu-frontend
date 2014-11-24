@@ -66,7 +66,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
     });
 
     $stateProvider
-      .state('design', {
+      .state('material.design', {
         url: '/design',
         controller: 'DesignerController'
       })
@@ -94,6 +94,26 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/connect',
         controller: 'NodeController',
         templateUrl: '/pages/connector/nodes/index.html'
+      })
+      .state('material.device', {
+        url: '/device/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+                return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
+      })
+      .state('material.microblu', {
+        url: '/device/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+                return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
       })
       .state('material.templates', {
         url: '/templates',

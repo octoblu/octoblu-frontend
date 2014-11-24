@@ -12,7 +12,7 @@ angular.module('octobluApp')
 
   $scope.submit = function(){
     deviceService.updateDevice($scope.device).then(function(){
-      $state.go('ob.connector.nodes.device-detail', {uuid: $scope.device.uuid}, {replace: true});
+      $state.go('material.device', {uuid: $scope.device.uuid}, {replace: true});
     });
   };
 });

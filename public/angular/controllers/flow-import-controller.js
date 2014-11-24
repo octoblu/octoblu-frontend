@@ -12,7 +12,7 @@ angular.module('octobluApp')
     TemplateService.importTemplate($stateParams.flowTemplateId).then(function(flow){
       $scope.importing = true;
       _.delay(function(){
-        $state.go('flow', {flowId: flow.flowId});
+        $state.go('material.flow', {flowId: flow.flowId});
       }, 1000);
     })
   };
