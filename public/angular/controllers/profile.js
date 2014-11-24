@@ -3,6 +3,10 @@
 angular.module('octobluApp')
 .controller('profileController', function ($rootScope, $scope, AuthService) {
 
+  AuthService.getCurrentUser().then(function(user){
+    $scope.currentUser = user;
+  });
+
   $scope.updatePassword = function(passwordForm){
     AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
       $scope.passwordUpdated = true;

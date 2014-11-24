@@ -304,7 +304,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'contactController',
         unsecured: true
       })
-      .state('ob.profile', {
+      .state('material.profile', {
         url: '/profile',
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
