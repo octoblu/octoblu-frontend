@@ -1,4 +1,4 @@
-<div class="design2 designer-container full-height">
+<div class="design2 designer-container" flex layout-fill layout="column">
   <div class="logo-toolbar"> <!-- Defined first so its on the bottom layer -->
     <img src="/assets/images/octoblu.png" height="50px"/>
   </div>
@@ -7,23 +7,9 @@
 
   <div class="flow-top-bar" layout="row" layout-phone="column" layout-tablet="column">
     <div flex layout="row">
-      <div class="btn-group" dropdown is-open="menuIsOpen">
-        <button class="btn btn-default button-shadow dropdown-toggle" title="Menu" tooltip="Menu" tooltip-placement="left" ng-click="menuIsOpen = !menuIsOpen">
-          <i class="fa fa-bars"></i>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-left" role="menu">
-          <li><a href ui-sref="ob.home"><i class="fa fa-home"></i> Home</a></li>
-          <li><a href ui-sref="ob.connector.nodes.all"><i class="fa fa-plug"></i> Connect</a></li>
-          <li><a href ui-sref="ob.process"><i class="fa fa-tasks"></i> Process</a></li>
-          <li><a href ui-sref="ob.analyze"><i class="fa fa-bar-chart"></i> Analyze</a></li>
-          <li><a href ui-sref="material.templates"><i class="fa fa-file-text"></i> Templates</a></li>
-          <li><a href ui-sref="ob.community"><i class="fa fa-group"></i> Community</a></li>
-          <li><a href ui-sref="ob.profile"><i class="fa fa-user"></i> Profile</a></li>
-          <li><a href ui-sref="ob.admin.all"><i class="fa fa-lock"></i> Security</a></li>
-          <li><a href ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
-        </ul>
-      </div>
+      <button class="btn btn-default button-shadow" title="Menu" tooltip="Menu" tooltip-placement="left" ng-click="toggleNav()">
+        <i class="fa fa-bars"></i>
+      </button>
 
       <flow-editor-omnibox flex omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
     </div>
@@ -83,12 +69,9 @@
     </div>
   </div>
 
-  <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
-    <div class="workspace-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" layout="column">
-      <flow-editor flow="activeFlow"></flow-editor>
-
-    </div>
+  <div class="workspace-container" flex layout-fill layout="column" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+    <flow-editor flow="activeFlow"></flow-editor>
   </div>
 
-  <flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
+  <flow-browser flex flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
 </div>

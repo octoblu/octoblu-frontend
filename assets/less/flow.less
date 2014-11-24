@@ -169,47 +169,24 @@
 }
 
 .design2.designer-container {
-  margin: 0 -25px;
-
-  display: flex;
-  flex-direction: column;
-  .page-header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex: 1;
-  }
-
-  .workspace-container {
-    overflow: hidden;
-    margin: 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-content: stretch;
-    .flow-editor {
-      .flow-editor-workspace {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .flow-editor-zoom-controls {
-      text-align: right;
-      position: absolute;
-      right: 60px;
-    }
-  }
-  .edit-panel {
-    min-width: 305px;
-    //    position: absolute;
-    right: 10px;
-    top: 5px;
-    bottom: 10px;
-    /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
-    background-color: #f3f3f3;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  // .workspace-container {
+  //   overflow: hidden;
+  //   margin: 0 10px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-content: stretch;
+  //   .flow-editor {
+  //     .flow-editor-workspace {
+  //       width: 100%;
+  //       height: 100%;
+  //     }
+  //   }
+  //   .flow-editor-zoom-controls {
+  //     text-align: right;
+  //     position: absolute;
+  //     right: 60px;
+  //   }
+  // }
 
   div.btn-group, a.btn {
     -webkit-user-select: none;
@@ -345,20 +322,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-
-  .workspace-container, .palette, .edit-panel {
-    border: 1px solid #000;
-    border-radius: 3px;
-  }
-  #sidebar-content {
-    font-size: 1.2em;
-    overflow-y: auto;
-    //    position: absolute;
-    top: 30px;
-    left: 0px;
-    right: 0;
-    bottom: 1px;
   }
 
   .tool_arrow {

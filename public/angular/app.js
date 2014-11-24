@@ -70,16 +70,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/design',
         controller: 'DesignerController'
       })
-
-      .state('flow', {
-        url: '/design/:flowId',
-        templateUrl: '/pages/flow.html',
-        controller: 'FlowController'
-      })
       .state('material', {
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.flow', {
+        url: '/design/:flowId',
+        templateUrl: '/pages/flow.html',
+        controller: 'FlowController'
       })
       .state('material.templates', {
         url: '/templates',
