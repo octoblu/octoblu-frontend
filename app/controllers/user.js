@@ -63,19 +63,10 @@ module.exports = function (app) {
     app.put('/api/user/activate/:channnelid', isAuthenticated, getUserActivation);
 
     var deleteUserChannel = function (req, res) {
-        var found = false,
-            channelid = req.params.channelid;
-        var channel = Channel.syncFindById(channelid);
-        var user = req.user;
-        user.api = user.api || [];
-        user.api = _.where(user.api, function(api){
-            return api.type !== channel.type;
-        });
-        User.update({_id: user._id}, user).then(function(){
-          res.json({'message': 'success'});
-        }).catch(function (error) {
-          console.error(error);
-          res.json(404, {'message': 'not found'});
+        User.removeApiByChannelId(req.user, req.params.channelid).then(function(){
+            res.send(204);
+        }, function(){
+            res.send(404, {'error': 'not found'});
         });
     };
     app.delete('/api/user/:id/channel/:channelid', isAuthenticated, deleteUserChannel);

@@ -136,17 +136,9 @@ this.saveConnection = function (uuid, channelid, key, token, custom_tokens, call
 
 };
 
-this.removeConnection = function (uuid, channelid, callback) {
-
-  $http.delete('/api/user/' + uuid+ '/channel/' + channelid, {})
-  .success(function (data) {
-    callback(data);
-  })
-  .error(function (data) {
-    console.log('Error: ' + data);
-    callback({});
-  });
-
+this.removeConnection = function (channelid) {
+  return $http.delete('/api/user/channel/' + channelid);
 };
+
 });
 

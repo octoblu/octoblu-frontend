@@ -75,6 +75,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'MaterialController',
         abstract: true
       })
+      .state('material.channel', {
+        url: '/channel/:id',
+        templateUrl: '/pages/connector/channels/detail.html',
+        controller: 'apiController'
+      })
       .state('material.flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
