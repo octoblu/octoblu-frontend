@@ -5,7 +5,7 @@
     "resources": [
       {
         "path": "/:subscription-id/services?service=:resource-name&action=:action",
-        "displayName": "/:subscription-id/services?service=:resource-name&action=:action",
+        "displayName": "Update Subscription Service",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/services?service={resource-name}&action={action}"
         },
@@ -35,7 +35,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name",
+        "displayName": "Update Cloud Service Resource",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/biztalk/{resource-name}"
         },
@@ -142,7 +142,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/",
+        "displayName": "Get Cloud Services by Name",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/"
         },
@@ -166,7 +166,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/",
-        "displayName": "/:subscription-id/cloudservices/",
+        "displayName": "Get Cloud Services",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/"
         },
@@ -184,7 +184,7 @@
       },
       {
         "path": "/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/properties",
-        "displayName": "/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/properties",
+        "displayName": "Get Cloud Services Properties",
         "doc": {
           "url": "https://management.core.windows.net/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/properties"
         },
@@ -214,7 +214,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=suspend",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=suspend",
+        "displayName": "Create Cloud Services Resource",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{resource-name}?comp=suspend"
         },
@@ -250,7 +250,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=resume",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=resume",
+        "displayName": "Create Resource",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{resource-name}?comp=resume"
         },
@@ -286,45 +286,8 @@
         "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name"
       },
       {
-        "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=restart",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?comp=restart",
-        "doc": {
-          "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{resource-name}?comp=restart"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":subscription-id",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "cloud-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "resource-name",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "comp",
-            "default": "resume",
-            "required": true
-          }
-        ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name"
-      },
-      {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?OperationStatus/:request-id",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?OperationStatus/:request-id",
+        "displayName": "Get Resource Operation Status",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{resource-name}?OperationStatus/{request-id}"
         },
@@ -365,45 +328,8 @@
         "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:resource-name?OperationStatus/:request-id"
       },
       {
-        "path": "/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/?comp=syncacskeys",
-        "displayName": "/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/?comp=syncacskeys",
-        "doc": {
-          "url": "https://management.core.windows.net/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/?comp=syncacskeys"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":subscription-id",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "CloudServiceName",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "resource-name",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "comp",
-            "default": "syncacskeys",
-            "required": true
-          }
-        ],
-        "url": "https://management.core.windows.net/subscription-id/cloudservices/CloudServiceName/resources/biztalkservices/~/biztalk/resource-name/"
-      },
-      {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/{resource-name",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/{resource-name",
+        "displayName": "Delete Resource",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/biztalk/{resource-name"
         },
@@ -432,57 +358,8 @@
         "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name"
       },
       {
-        "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name?comp=backup",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name?comp=backup",
-        "doc": {
-          "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/biztalk/{resource-name}?comp=backup"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":subscription-id",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":cloud-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":resource-name",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "comp",
-            "default": "backup",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "BackupStoreConnectionString",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "BackupName",
-            "required": true
-          }
-        ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name"
-      },
-      {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/biztalk/:resource-name",
+        "displayName": "Update Resource",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/biztalk/{resource-name}"
         },
@@ -596,7 +473,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name",
+        "displayName": "Update Hybrid Connection",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/{hybrid-connection-name}"
         },
@@ -641,44 +518,8 @@
         "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name"
       },
       {
-        "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?validating=nameAvailability",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?validating=nameAvailability",
-        "doc": {
-          "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/{hybrid-connection-name}?validating=nameAvailability"
-        },
-        "httpMethod": "PUT",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":subscription-id",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "cloud-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "biztalk-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": "hybrid-connection-name",
-            "required": true
-          }
-        ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?validating=nameAvailability"
-      },
-      {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/",
+        "displayName": "Get Hybrid Connection",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/"
         },
@@ -708,45 +549,9 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name/listConnectionStrings",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name/listConnectionStrings",
+        "displayName": "Create Hybrid Connection",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/{hybrid-connection-name}/listConnectionStrings"
-        },
-        "httpMethod": "POST",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":subscription-id",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":cloud-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":biztalk-service-name",
-            "required": true
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":hybrid-connection-name",
-            "required": true
-          }
-        ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name/listConnectionStrings"
-      },
-      {
-        "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?comp=regeneratekey&ruleName=:RuleName&keyType=:KeyType",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?comp=regeneratekey&ruleName=:RuleName&keyType=:KeyType",
-        "doc": {
-          "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/{hybrid-connection-name}?comp=regeneratekey&ruleName={RuleName}&keyType={KeyType}"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
@@ -788,11 +593,11 @@
             "required": true
           }
         ],
-        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name?comp=regeneratekey&ruleName=:RuleName&keyType=:KeyType"
+        "url": "https://management.core.windows.net/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name/listConnectionStrings"
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/usage",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/usage",
+        "displayName": "Get Usage",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/usage"
         },
@@ -822,7 +627,7 @@
       },
       {
         "path": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name",
-        "displayName": "/:subscription-id/cloudservices/:cloud-service-name/resources/biztalkservices/~/biztalk/:biztalk-service-name/hybridconnection/:hybrid-connection-name",
+        "displayName": "Delete Hybrid Connection",
         "doc": {
           "url": "https://management.core.windows.net/{subscription-id}/cloudservices/{cloud-service-name}/resources/biztalkservices/~/biztalk/{biztalk-service-name}/hybridconnection/{hybrid-connection-name}"
         },
