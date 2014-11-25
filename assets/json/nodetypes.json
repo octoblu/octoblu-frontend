@@ -1202,7 +1202,7 @@
       "type" : "device",
       "subtype" : "meshlium"
     },
-    "connector": "meshlium",
+    "connector": "meshblu-meshlium",
     "type" : "device:meshlium"
   }
 ]
