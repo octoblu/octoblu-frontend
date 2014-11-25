@@ -10,7 +10,7 @@ angular.module('octobluApp')
     $scope.navIsOpen = false;
   };
 
-  $scope.logout = function () {
+  $scope.logout = function(){
     AuthService.logout().then(function () {
       $state.go('login');
     });
