@@ -33,36 +33,36 @@
 
     <div flex="0" layout="row" layout-align="end" class="flow-controls">
       <div flex>
-        <md-button ng-click="deleteFlow(activeFlow)" class="">
+        <md-button ng-click="deleteFlow(activeFlow)" md-theme="default">
           <md-tooltip>Delete Flow</md-tooltip>
           <i class="fa fa-lg fa-trash-o"></i>
         </md-button>
 
-        <md-button ng-click="createTemplate(activeFlow)" class="">
+        <md-button ng-click="createTemplate(activeFlow)" md-theme="default">
           <md-tooltip>Create a Template</md-tooltip>
           <i class="fa fa-lg fa-share-alt"></i>
         </md-button>
       </div>
 
       <div flex>
-        <md-button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+        <md-button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" md-theme="default">
           <md-tooltip>Zoom Out</md-tooltip>
           <i class="fa fa-minus"></i>
         </md-button>
 
-        <md-button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+        <md-button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" md-theme="default">
           <md-tooltip>Zoom In</md-tooltip>
           <i class="fa fa-plus"></i>
         </md-button>
       </div>
 
       <div flex>
-        <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }">
+        <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" md-theme="default">
           <md-tooltip>Stop</md-tooltip>
           <i class="fa fa-stop"></i>
         </md-button>
 
-        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }">
+        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" md-theme="default">
           <md-tooltip>Start</md-tooltip>
           <i class="fa fa-play"></i>
         </md-button>
