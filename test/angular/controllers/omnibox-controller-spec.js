@@ -75,7 +75,7 @@ describe('OmniboxController', function () {
         $rootScope.$apply();
       });
 
-      it('should set the returned item on the scope', function(){
+      xit('should set the returned item on the scope', function(){
         expect(scope.nodeType).to.equal(selectedItem);
       });
     });

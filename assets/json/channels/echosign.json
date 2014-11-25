@@ -5,7 +5,7 @@
     "resources": [
       {
         "path": "/widgets",
-        "displayName": "/widgets",
+        "displayName": "Get Widgets",
         "authentication": {
           "required": "true"
         },
@@ -39,7 +39,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/widgets",
+        "displayName": "Create Widget",
         "path": "/widgets",
         "params": [
         ],

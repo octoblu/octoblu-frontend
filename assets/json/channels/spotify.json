@@ -4,27 +4,14 @@
     "base": "http://api.spotify.com/v1",
     "resources": [
       {
-        "path": "/lookup/1/.json",
+        "path": "/album/:id",
         "params": [
           {
-            "name": "uri",
-            "type": "xsd:string",
+            "name": ":id",
+            "displayName": "Album ID",
+            "type": "string",
             "style": "query",
-            "default": "spotify:album:6G9fHYDCoyEErUkHrFYfs4",
-            "required": "true",
-            "doc": {
-              "t": "A Spotify URI. Either album."
-            }
-          },
-          {
-            "name": "extras",
-            "type": "xsd:string",
-            "style": "query",
-            "default": "trackdetail",
-            "required": "true",
-            "doc": {
-              "t": "A comma-separated list of words that defines the detail level expected in the response. Options: - Track: Returns basic information about all tracks in the album. - Trackdetail: Returns detailed information about all tracks in the album."
-            }
+            "required": "true"
           }
         ],
         "doc": {
@@ -36,89 +23,19 @@
           "required": "false"
         },
         "category": "Album",
-        "displayName": "Album_GET",
+        "displayName": "Retrieve Album",
         "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/lookup/1/.json"
+        "url": "http://api.spotify.com/v1/albums/:id"
       },
       {
-        "path": "/search/1/album.json",
-        "doc": {
-          "t": "Search for Spotify metadata by album.",
-          "url": "http://developer.spotify.com/en/metadata-api/search/album/"
-        },
-        "curl": "curl -X GET  http://api.spotify.com/v1/search/1/album?q={q}",
-        "authentication": {
-          "required": "false"
-        },
-        "category": "Album",
-        "displayName": "Album_GET",
-        "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/search/1/album.json"
-      },
-      {
-        "path": "/lookup/1/.json",
+        "path": "/tracks/:id",
         "params": [
           {
-            "name": "uri",
-            "type": "xsd:string",
+            "name": ":id",
+            "displayName": "Track ID",
+            "type": "string",
             "style": "query",
-            "default": "spotify:artist:4YrKBkKSVeqDamzBPWVnSJ",
-            "required": "true",
-            "doc": {
-              "t": "A Spotify URI. Either artist."
-            }
-          },
-          {
-            "name": "extras",
-            "type": "xsd:string",
-            "style": "query",
-            "default": "albumdetail",
-            "required": "true",
-            "doc": {
-              "t": "A comma-separated list of words that defines the detail level expected in the response. Options: - Album: Returns basic information about all the albums the artist is featured in. - Albumdetail: Returns detailed information about all the albums the artist is featured in."
-            }
-          }
-        ],
-        "doc": {
-          "t": "Lookup data related to a Spotify artist URI.A Spotify URI. Either artist.A comma-separated list of words that defines the detail level expected in the response. Options: - Album: Returns basic information about all the albums the artist is featured in. - Albumdetail: Returns detailed information about all the albums the artist is featured in.",
-          "url": "http://developer.spotify.com/en/metadata-api/lookup/artist/"
-        },
-        "curl": "curl -X GET  -d 'uri=spotify:artist:4YrKBkKSVeqDamzBPWVnSJ&extras=albumdetail' http://api.spotify.com/v1/lookup/1/?uri=spotify:artist:{artistId}",
-        "authentication": {
-          "required": "false"
-        },
-        "category": "Artist",
-        "displayName": "Artist_GET",
-        "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/lookup/1/.json"
-      },
-      {
-        "path": "/search/1/artist.json",
-        "doc": {
-          "t": "Search for Spotify metadata by artist.",
-          "url": "http://developer.spotify.com/en/metadata-api/search/artist/"
-        },
-        "curl": "curl -X GET  http://api.spotify.com/v1/search/1/artist?q={q}",
-        "authentication": {
-          "required": "false"
-        },
-        "category": "Artist",
-        "displayName": "Artist_GET",
-        "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/search/1/artist.json"
-      },
-      {
-        "path": "/lookup/1/.json",
-        "params": [
-          {
-            "name": "uri",
-            "type": "xsd:string",
-            "style": "query",
-            "default": "spotify:track:6NmXV4o6bmp704aPGyTVVG",
-            "required": "true",
-            "doc": {
-              "t": "A Spotify URI. Either track."
-            }
+            "required": "true"
           }
         ],
         "doc": {
@@ -130,12 +47,52 @@
           "required": "false"
         },
         "category": "Track",
-        "displayName": "Track_GET",
+        "displayName": "Retrieve Track",
         "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/lookup/1/.json"
+        "url": "http://api.spotify.com/v1/tracks/:id"
       },
       {
-        "path": "/search/1/track.json",
+        "path": "/artists/:id",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Artist ID",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          }
+        ],
+        "curl": "",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Retrieve Artist",
+        "httpMethod": "GET",
+        "url": "http://api.spotify.com/v1/artists/:id"
+      },
+      {
+        "path": "/artists/:id",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Artist ID",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          }
+        ],
+        "curl": "",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Retrieve Artist",
+        "httpMethod": "GET",
+        "url": "http://api.spotify.com/v1/artists/:id"
+      },
+      {
+        "path": "/search",
         "doc": {
           "t": "Search for Spotify metadata by track.",
           "url": "http://developer.spotify.com/en/metadata-api/search/track/"
@@ -144,10 +101,47 @@
         "authentication": {
           "required": "false"
         },
+        "params": [
+          {
+            "name": "q",
+            "displayName": "Query",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          },
+          {
+            "name": "type",
+            "displayName": "Type",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          },
+          {
+            "name": "market",
+            "displayName": "Market",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "type": "string",
+            "style": "query",
+            "required": "true"
+          }
+        ],
         "category": "Track",
-        "displayName": "Track_GET",
+        "displayName": "Search Tracks / Albums / Artist / Playlist",
         "httpMethod": "GET",
-        "url": "http://api.spotify.com/v1/search/1/track.json"
+        "url": "http://api.spotify.com/v1/search"
       }
     ]
   },

@@ -1,6 +1,6 @@
 angular.module('octobluApp')
 .controller('addSubdeviceFormController', function($scope, $state, $stateParams, GatebluService, deviceService, NodeTypeService) {
-'use strict';
+  'use strict';
 
   NodeTypeService.getNodeTypeById($stateParams.nodeTypeId).then(function(nodeType){
     $scope.nodeType = nodeType;
@@ -12,7 +12,7 @@ angular.module('octobluApp')
 
   $scope.submit = function(){
     deviceService.updateDevice($scope.device).then(function(){
-      $state.go('material.device', {uuid: $scope.device.uuid}, {replace: true});
+      $state.go('material.design');
     });
   };
 });
