@@ -1,7 +1,8 @@
-'use strict';
 
 angular.module('octobluApp')
 .controller('addChannelEchoSignController', function($scope, $window, nodeType, channelService) {
+  'use strict';
+
   var channelPromise, getPath;
 
   channelPromise = channelService.getById(nodeType.channelid);

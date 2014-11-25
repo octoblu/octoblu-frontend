@@ -12,9 +12,9 @@ var GoogleController = function(){
 		'https://www.googleapis.com/auth/dfp'
 	];
   this.authorize = passport.authenticate('google', { scope: scope });
-  this.callback  = passport.authenticate('google', { failureRedirect: '/home' });
+  this.callback  = passport.authenticate('google', { failureRedirect: '/design' });
   this.redirectToDesigner = function(req, res){
-    res.redirect('/home');
+    res.redirect('/design');
   };
 };
 

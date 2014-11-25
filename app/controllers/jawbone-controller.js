@@ -10,7 +10,7 @@ var JawboneController = function() {
         failureRedirect: '/home'
     });
     this.redirectToDesigner = function(req, res) {
-        res.redirect('/home');
+        res.redirect('/design');
     };
 };
 

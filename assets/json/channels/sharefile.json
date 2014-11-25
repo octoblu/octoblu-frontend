@@ -36,7 +36,7 @@
     }
   },
   "application": {
-    "base": "https://octoblu.sf-api.com/sf/v3",
+    "base": "https://octobluServerAdmin.sf-api.com/sf/v3",
     "resources": [
       {
         "httpMethod": "GET",
@@ -46,25 +46,25 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/AccessControls",
+        "displayName": "Get Access Controls by Principle ID and Item ID",
         "path": "/AccessControls",
         "params": [
           {
             "name": "principalid",
-            "displayName": "Principal ID",
+            "displayName": "User, Group, or Zone ID",
             "style": "query",
             "type": "string",
             "required": "false"
           },
           {
             "name": "itemid",
-            "displayName": "Item ID",
+            "displayName": "File or Folder ID",
             "style": "query",
             "type": "string",
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/AccessControls"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AccessControls"
       },
       {
         "httpMethod": "GET",
@@ -74,39 +74,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Items/:id/AccessControls",
+        "displayName": "Get the Access Controls Item ID",
         "path": "/Items/:id/AccessControls",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "File or Folder ID",
             "style": "url",
             "type": "string",
             "required": "true"
-          },
-          {
-            "name": "recursive",
-            "displayName": "Recursive",
-            "style": "query",
-            "type": "boolean",
-            "required": "false"
-          },
-          {
-            "name": "message",
-            "displayName": "Message",
-            "style": "query",
-            "type": "string",
-            "required": "false"
-          },
-          {
-            "name": "sendDefaultNotification",
-            "displayName": "Send Default Notification",
-            "style": "query",
-            "type": "boolean",
-            "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/AccessControls"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/AccessControls"
       },
       {
         "httpMethod": "POST",
@@ -148,7 +127,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/AccessControls"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/AccessControls"
       },
       {
         "httpMethod": "DELETE",
@@ -176,7 +155,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/AccessControls"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AccessControls"
       },
       {
         "httpMethod": "GET",
@@ -188,7 +167,7 @@
         },
         "displayName": "/Accounts",
         "path": "/Accounts",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts",
         "params": [
         ]
       },
@@ -202,7 +181,7 @@
         },
         "displayName": "/Accounts/Branding",
         "path": "/Accounts/Branding",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Branding",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Branding",
         "params": [
         ]
       },
@@ -216,7 +195,7 @@
         },
         "displayName": "/Accounts/Employees",
         "path": "/Accounts/Employees",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Employees",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Employees",
         "params": [
         ]
       },
@@ -230,7 +209,7 @@
         },
         "path": "/Accounts/Clients",
         "displayName": "/Accounts/Clients",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Clients",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Clients",
         "params": [
         ]
       },
@@ -260,7 +239,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/AddressBook"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/AddressBook"
       },
       {
         "httpMethod": "GET",
@@ -272,7 +251,7 @@
         },
         "displayName": "/Accounts/MobileSecuritySettings",
         "path": "/Accounts/MobileSecuritySettings",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
         "params": [
         ]
       },
@@ -295,7 +274,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SSO"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SSO"
       },
       {
         "params": [
@@ -337,7 +316,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/GetByUser"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/GetByUser"
       },
       {
         "params": [
@@ -358,7 +337,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SendToEmail"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SendToEmail"
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
@@ -370,7 +349,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
         ]
       },
@@ -384,7 +363,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
         ]
       },
@@ -398,7 +377,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
         ]
       },
@@ -412,7 +391,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
         ]
       },
@@ -427,7 +406,7 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
         ]
       },
@@ -442,7 +421,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "PUT",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
         ]
       },
@@ -456,7 +435,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
         ]
       },
@@ -470,7 +449,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
         ]
       },
@@ -507,7 +486,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/RequireWebPop"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/RequireWebPop"
       },
       {
         "params": [
@@ -535,7 +514,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/RequireSubdomain"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/RequireSubdomain"
       },
       {
         "params": [
@@ -556,7 +535,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FindSubdomain"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FindSubdomain"
       },
       {
         "path": "/Accounts/OutlookInformation",
@@ -568,7 +547,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/OutlookInformation",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/OutlookInformation",
         "params": [
         ]
       },
@@ -591,7 +570,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SSOInfo"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SSOInfo"
       },
       {
         "path": "/AsyncOperations(:id)",
@@ -603,7 +582,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
@@ -624,7 +603,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
         "params": [
           {
             "name": ":id",
@@ -645,7 +624,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
         "params": [
           {
             "name": ":id",
@@ -666,7 +645,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
         "params": [
           {
             "name": ":id",
@@ -687,7 +666,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
@@ -708,7 +687,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
         "params": [
           {
             "name": ":id",
@@ -729,7 +708,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
         "params": [
           {
             "name": ":id",
@@ -751,7 +730,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "PUT",
-        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
@@ -772,7 +751,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Capabilities"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Capabilities",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Capabilities",
         "params": [
         ]
       },
@@ -786,7 +765,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
             "name": ":id",
@@ -807,7 +786,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
             "name": ":id",
@@ -844,7 +823,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/Wipe"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/Wipe"
       },
       {
         "path": "/Devices",
@@ -856,7 +835,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices",
         "params": [
         ]
       },
@@ -886,7 +865,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/WipeDone"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/WipeDone"
       },
       {
         "path": "/Devices(:deviceID)/Status",
@@ -898,7 +877,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/Status",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/Status",
         "params": [
           {
             "name": ":deviceID",
@@ -919,7 +898,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
@@ -940,7 +919,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
         "params": [
           {
             "name": ":userid",
@@ -968,7 +947,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
         "params": [
           {
             "name": ":userid",
@@ -996,7 +975,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
@@ -1017,7 +996,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
         "params": [
           {
             "name": ":id",
@@ -1045,7 +1024,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups",
         "params": [
         ]
       },
@@ -1059,7 +1038,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
             "name": ":id",
@@ -1080,7 +1059,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
             "name": ":id",
@@ -1103,7 +1082,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups"
       },
       {
         "path": "/Groups(:id)",
@@ -1125,7 +1104,7 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)"
       },
       {
         "path": "/Groups(:id)/Contacts",
@@ -1146,7 +1125,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
         "path": "/Groups(:id)/Contacts",
@@ -1174,7 +1153,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
         "path": "/Groups(:id)/Contacts",
@@ -1202,7 +1181,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "DELETE",
-        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
         "path": "/Items",
@@ -1216,7 +1195,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items"
       },
       {
         "displayName": "/Items(:id)",
@@ -1228,7 +1207,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)",
         "params": [
           {
             "name": ":id",
@@ -1262,7 +1241,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Stream"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Stream"
       },
       {
         "params": [
@@ -1283,7 +1262,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/ByPath"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/ByPath"
       },
       {
         "displayName": "/Items(:id)/Parent",
@@ -1304,7 +1283,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Parent"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Parent"
       },
       {
         "path": "/Items(:id)/Children",
@@ -1325,7 +1304,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Children"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Children"
       },
       {
         "path": "/Items(:id)/Info",
@@ -1337,7 +1316,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Info",
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Info",
         "params": [
           {
             "name": ":id",
@@ -1374,7 +1353,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Download"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Download"
       },
       {
         "params": [
@@ -1409,7 +1388,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Folder"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Folder"
       },
       {
         "path": "/Items(:parentid)/Note",
@@ -1430,7 +1409,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Note"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Note"
       },
       {
         "path": "/Items(:parentid)/Link",
@@ -1451,7 +1430,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Link"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Link"
       },
       {
         "params": [
@@ -1472,7 +1451,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/SymbolicLink"
       },
       {
         "httpMethod": "PUT",
@@ -1494,7 +1473,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -1523,7 +1502,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/Link(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Link(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -1552,7 +1531,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/Note(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Note(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -1574,7 +1553,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
       },
       {
         "httpMethod": "POST",
@@ -1595,7 +1574,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/BulkDelete"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/BulkDelete"
       },
       {
         "httpMethod": "GET",
@@ -1623,7 +1602,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
       },
       {
         "httpMethod": "POST",
@@ -1658,7 +1637,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Copy"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Copy"
       },
       {
         "httpMethod": "POST",
@@ -1825,7 +1804,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Upload"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Upload"
       },
       {
         "httpMethod": "POST",
@@ -1853,7 +1832,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/CheckIn"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/CheckIn"
       },
       {
         "httpMethod": "POST",
@@ -1874,7 +1853,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/CheckOut"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/CheckOut"
       },
       {
         "httpMethod": "GET",
@@ -1895,7 +1874,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/Search"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Search"
       },
       {
         "httpMethod": "POST",
@@ -1909,7 +1888,7 @@
         "path": "/Items/AdvancedSearch",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items/AdvancedSearch"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/AdvancedSearch"
       },
       {
         "httpMethod": "GET",
@@ -1930,7 +1909,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/WebView"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/WebView"
       },
       {
         "httpMethod": "GET",
@@ -1951,7 +1930,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
       },
       {
         "httpMethod": "GET",
@@ -1972,7 +1951,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
       },
       {
         "httpMethod": "GET",
@@ -2000,7 +1979,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata"
       },
       {
         "httpMethod": "GET",
@@ -2021,7 +2000,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata"
       },
       {
         "httpMethod": "POST",
@@ -2042,7 +2021,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata"
       },
       {
         "httpMethod": "PUT",
@@ -2064,7 +2043,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(:metadataId)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata(:metadataId)"
       },
       {
         "httpMethod": "PUT",
@@ -2079,7 +2058,7 @@
         "path": "/Metadata",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata"
       },
       {
         "httpMethod": "DELETE",
@@ -2107,7 +2086,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
       },
       {
         "httpMethod": "DELETE",
@@ -2135,7 +2114,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
       },
       {
         "httpMethod": "GET",
@@ -2149,7 +2128,7 @@
         "path": "/Queues",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues"
       },
       {
         "httpMethod": "GET",
@@ -2170,7 +2149,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)"
       },
       {
         "httpMethod": "GET",
@@ -2198,7 +2177,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "POST",
@@ -2219,7 +2198,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Entries"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Entries"
       },
       {
         "httpMethod": "POST",
@@ -2240,7 +2219,7 @@
           }
         ],
         "displayName": "/Queues(:id)/Receive",
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Receive"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Receive"
       },
       {
         "httpMethod": "POST",
@@ -2261,7 +2240,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Complete"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Complete"
       },
       {
         "httpMethod": "PUT",
@@ -2290,7 +2269,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "DELETE",
@@ -2318,7 +2297,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "GET",
@@ -2332,7 +2311,7 @@
         "path": "/Sessions",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions"
       },
       {
         "httpMethod": "DELETE",
@@ -2346,7 +2325,7 @@
         "path": "/Sessions",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions"
       },
       {
         "httpMethod": "GET",
@@ -2374,7 +2353,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Sessions/Login"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions/Login"
       },
       {
         "httpMethod": "GET",
@@ -2388,7 +2367,7 @@
         "path": "/Shares",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares"
       },
       {
         "httpMethod": "GET",
@@ -2409,7 +2388,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "GET",
@@ -2430,7 +2409,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Recipients"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Recipients"
       },
       {
         "httpMethod": "GET",
@@ -2451,7 +2430,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Items"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Items"
       },
       {
         "httpMethod": "GET",
@@ -2479,7 +2458,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
       },
       {
         "httpMethod": "GET",
@@ -2532,7 +2511,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Download"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Download"
       },
       {
         "httpMethod": "POST",
@@ -2560,7 +2539,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares"
       },
       {
         "httpMethod": "PUT",
@@ -2582,7 +2561,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "DELETE",
@@ -2603,7 +2582,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "POST",
@@ -2638,7 +2617,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Alias"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Alias"
       },
       {
         "httpMethod": "POST",
@@ -2670,7 +2649,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares/Send"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares/Send"
       },
       {
         "httpMethod": "POST",
@@ -2710,7 +2689,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares/Request"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares/Request"
       },
       {
         "httpMethod": "POST",
@@ -2864,7 +2843,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Upload"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Upload"
       },
       {
         "httpMethod": "GET",
@@ -2885,7 +2864,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -2907,7 +2886,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "DELETE",
@@ -2928,7 +2907,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "GET",
@@ -2949,7 +2928,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
       },
       {
         "httpMethod": "POST",
@@ -2970,7 +2949,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
       },
       {
         "httpMethod": "PUT",
@@ -2999,7 +2978,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
       },
       {
         "httpMethod": "DELETE",
@@ -3027,7 +3006,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
       },
       {
         "httpMethod": "GET",
@@ -3055,7 +3034,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "POST",
@@ -3083,7 +3062,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "DELETE",
@@ -3118,7 +3097,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "GET",
@@ -3146,7 +3125,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "POST",
@@ -3188,7 +3167,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users"
       },
       {
         "httpMethod": "POST",
@@ -3230,7 +3209,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/AccountUser"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AccountUser"
       },
       {
         "httpMethod": "PUT",
@@ -3252,7 +3231,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -3281,7 +3260,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
         "httpMethod": "PUT",
@@ -3310,7 +3289,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
         "httpMethod": "PUT",
@@ -3332,7 +3311,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/AccountUser(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AccountUser(:id)"
       },
       {
         "httpMethod": "GET",
@@ -3353,7 +3332,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/HomeFolder"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/HomeFolder"
       },
       {
         "httpMethod": "GET",
@@ -3374,7 +3353,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Preferences"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Preferences"
       },
       {
         "httpMethod": "GET",
@@ -3395,7 +3374,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Security"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Security"
       },
       {
         "httpMethod": "GET",
@@ -3416,7 +3395,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Security"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Security"
       },
       {
         "httpMethod": "POST",
@@ -3451,7 +3430,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/ResetPassword"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/ResetPassword"
       },
       {
         "httpMethod": "POST",
@@ -3472,7 +3451,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
       },
       {
         "httpMethod": "DELETE",
@@ -3500,7 +3479,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "GET",
@@ -3514,7 +3493,7 @@
         "path": "/Users/AllSharedFolders",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/AllSharedFolders"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AllSharedFolders"
       },
       {
         "httpMethod": "GET",
@@ -3528,7 +3507,7 @@
         "path": "/Users/TopFolders",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/TopFolders"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/TopFolders"
       },
       {
         "httpMethod": "GET",
@@ -3542,7 +3521,7 @@
         "params": [
         ],
         "displayName": "/Users/NetworkShareConnectors",
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/NetworkShareConnectors"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/NetworkShareConnectors"
       },
       {
         "httpMethod": "GET",
@@ -3556,7 +3535,7 @@
         "path": "/Users/SharepointConnectors",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/SharepointConnectors"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/SharepointConnectors"
       },
       {
         "httpMethod": "POST",
@@ -3577,7 +3556,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/Confirm"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/Confirm"
       },
       {
         "httpMethod": "GET",
@@ -3591,7 +3570,7 @@
         "path": "/Users/Info",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users/Info"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/Info"
       },
       {
         "httpMethod": "GET",
@@ -3619,7 +3598,7 @@
             "required": "false"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones"
       },
       {
         "httpMethod": "GET",
@@ -3647,7 +3626,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "POST",
@@ -3661,7 +3640,7 @@
         "path": "/Zones",
         "params": [
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones"
       },
       {
         "httpMethod": "PUT",
@@ -3683,7 +3662,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "DELETE",
@@ -3711,7 +3690,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "POST",
@@ -3732,7 +3711,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
       },
       {
         "httpMethod": "GET",
@@ -3753,7 +3732,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
       },
       {
         "httpMethod": "POST",
@@ -3774,7 +3753,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
       },
       {
         "httpMethod": "DELETE",
@@ -3802,7 +3781,7 @@
             "required": "true"
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
       }
     ]
   }
