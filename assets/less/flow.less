@@ -1,21 +1,27 @@
-/**
- * Copyright 2013 IBM Corp.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- **/
-/*
-  move to a style.less or similar.
-*/
+@-webkit-keyframes startPulse {
+  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
+  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+@keyframes startPulse {
+  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
+  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+
+@-webkit-keyframes stopPulse {
+  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
+  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+@keyframes stopPulse {
+  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
+  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+}
 
 /*This needs to go in a general less file.*/
 .flow-font {
@@ -81,7 +87,39 @@
     }
 
     &.btn-danger {
-      background-color: #FF0000;
+      background-color: #880000;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        background-color: #AA0000;
+      }
+    }
+
+    &.btn-info {
+      background-color: #008800;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        background-color: #00AA00;
+      }
+    }
+
+    &.start-button.deploying {
+      -webkit-animation-name: startPulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: startPulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    &.stop-button.stopping {
+      -webkit-animation-name: stopPulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: stopPulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
     }
   }
 }
@@ -731,52 +769,6 @@
   max-height: 500px;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-@-webkit-keyframes startPulse {
-  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
-  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
-  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
-}
-
-@keyframes startPulse {
-  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
-  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
-  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
-}
-
-.start-button {
-  &.deploying {
-    -webkit-animation-name: startPulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: startPulse;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-  }
-}
-
-@-webkit-keyframes stopPulse {
-  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
-  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
-  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
-}
-
-@keyframes stopPulse {
-  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
-  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
-  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
-}
-
-.stop-button {
-  &.stopping {
-    -webkit-animation-name: stopPulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: stopPulse;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-  }
 }
 
 .template-list-icon {
