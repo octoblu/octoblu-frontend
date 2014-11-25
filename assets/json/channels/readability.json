@@ -1,190 +1,5 @@
 {
   "_id": "52f9b3b66970a8d041000001",
-  "application": {
-    "base": "https://www.readability.com/api/rest/v1",
-    "resources": [
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/articles/{article_id}",
-          "t": "Retrieve a single Article, including its content. Accessible by any authenticated user."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/articles/1234abcd",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Articles",
-        "displayName": "Articles_GET",
-        "httpMethod": "GET",
-        "path": "/articles/{articleId}",
-        "url": "https://www.readability.com/api/rest/v1/articles/{articleId}"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/bookmarks",
-          "t": "Retrieve the bookmarks collection. Automatically filtered to the current user. Only administrators may change the user filter."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Bookmarks",
-        "displayName": "Bookmarks_GET",
-        "httpMethod": "GET",
-        "path": "/bookmarks",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/bookmarks",
-          "t": "Add a bookmark to a URL for this user."
-        },
-        "curl": "curl -X POST -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Bookmarks",
-        "displayName": "Bookmarks_POST",
-        "httpMethod": "POST",
-        "path": "/bookmarks",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
-          "t": "Retrieve a single Article, including its content. Accessible by any authenticated user."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Bookmarks",
-        "displayName": "Bookmarks_GET",
-        "httpMethod": "GET",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
-          "t": "Update a single article."
-        },
-        "curl": "curl -X POST -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Bookmarks",
-        "displayName": "Bookmarks_POST",
-        "httpMethod": "POST",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
-          "t": "Remove a single bookmark from this user's history. NOTE: THIS IS PROBABLY NOT WHAT YOU WANT. This is particularly for the case where a user accidentally bookmarks something they have no intention of reading or supporting. In almost all cases, you'll probably want to use archive by POSTing archive=1 to this bookmark. If you use DELETE and this months bookmarks have not yet been tallied, the site associated with this bookmark will not receive any contributions for this bookmark. Use archive! It's better. Returns a 204 on successful remove."
-        },
-        "curl": "curl -X DELETE -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Bookmarks",
-        "displayName": "Bookmarks_DELETE",
-        "httpMethod": "DELETE",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/contributions",
-          "t": "Retrieve the contributions collection, which is a set of payments by a user to a specific domain. Automatically filtered to the current user. Only administrators may change the user filter."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/contributions",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Contributions",
-        "displayName": "Contributions_GET",
-        "httpMethod": "GET",
-        "path": "/contributions",
-        "url": "https://www.readability.com/api/rest/v1/contributions"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/domains",
-          "t": "Retrieve the domains collection. Only admins may access this collection."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/domains",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Domains",
-        "displayName": "Domains_GET",
-        "httpMethod": "GET",
-        "path": "/domains",
-        "url": "https://www.readability.com/api/rest/v1/domains"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/domains/{domain}",
-          "t": "Retrieve a specific domain. Only admins may access this resource."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/domains/blog.arc90.com",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Domains",
-        "displayName": "Domains_GET",
-        "httpMethod": "GET",
-        "path": "/domains/{domain}",
-        "url": "https://www.readability.com/api/rest/v1/domains/{domain}"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/users",
-          "t": "Retrieve the users collection. Only admins may access this collection."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Users",
-        "displayName": "Users_GET",
-        "httpMethod": "GET",
-        "path": "/users",
-        "url": "https://www.readability.com/api/rest/v1/users"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/users/{user}",
-          "t": "Retrieve the currently logged in user."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users/_current",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Users",
-        "displayName": "Users_GET",
-        "httpMethod": "GET",
-        "path": "/users/_current",
-        "url": "https://www.readability.com/api/rest/v1/users/_current"
-      },
-      {
-        "doc": {
-          "url": "https://www.readability.com/api/rest/v1/users/{user}",
-          "t": "Retrieve a user. Only admins or the current user may access this resource."
-        },
-        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users/chrisdary",
-        "authentication": {
-          "required": "true"
-        },
-        "category": "Users",
-        "displayName": "Users_GET",
-        "httpMethod": "GET",
-        "path": "/users/{username}",
-        "url": "https://www.readability.com/api/rest/v1/users/{username}"
-      }
-    ]
-  },
   "auth_strategy": "oauth",
   "disabled": true,
   "enabled": true,
@@ -200,5 +15,256 @@
     "version": "1.0"
   },
   "useCustom": true,
-  "type": "channel:readability"
+  "type": "channel:readability",
+  "application": {
+    "base": "https://www.readability.com/api/rest/v1",
+    "resources": [
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/articles/{article_id}",
+          "t": "Retrieve a single Article, including its content. Accessible by any authenticated user."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/articles/1234abcd",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Articles",
+        "displayName": "Get an Article",
+        "httpMethod": "GET",
+        "path": "/articles/:articleId",
+        "url": "https://www.readability.com/api/rest/v1/articles/:articleId",
+        "params": [
+          {
+            "name": ":articleId",
+            "displayName" : "Article ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/bookmarks",
+          "t": "Retrieve the bookmarks collection. Automatically filtered to the current user. Only administrators may change the user filter."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Bookmarks",
+        "displayName": "Get Bookmarks",
+        "httpMethod": "GET",
+        "path": "/bookmarks",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/bookmarks",
+          "t": "Add a bookmark to a URL for this user."
+        },
+        "curl": "curl -X POST -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Bookmarks",
+        "displayName": "Create a Bookmark",
+        "httpMethod": "POST",
+        "path": "/bookmarks",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
+          "t": "Retrieve a single Article, including its content. Accessible by any authenticated user."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Bookmarks",
+        "displayName": "Get a Bookmark",
+        "httpMethod": "GET",
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
+          "t": "Update a single article."
+        },
+        "curl": "curl -X POST -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Bookmarks",
+        "displayName": "Update a Bookmark",
+        "httpMethod": "POST",
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}",
+          "t": "Remove a single bookmark from this user's history. NOTE: THIS IS PROBABLY NOT WHAT YOU WANT. This is particularly for the case where a user accidentally bookmarks something they have no intention of reading or supporting. In almost all cases, you'll probably want to use archive by POSTing archive=1 to this bookmark. If you use DELETE and this months bookmarks have not yet been tallied, the site associated with this bookmark will not receive any contributions for this bookmark. Use archive! It's better. Returns a 204 on successful remove."
+        },
+        "curl": "curl -X DELETE -u 'username:password' https://www.readability.com/api/rest/v1/bookmarks/2332",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Bookmarks",
+        "displayName": "Delete a Bookmark",
+        "httpMethod": "DELETE",
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/contributions",
+          "t": "Retrieve the contributions collection, which is a set of payments by a user to a specific domain. Automatically filtered to the current user. Only administrators may change the user filter."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/contributions",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Contributions",
+        "displayName": "Get Contributions",
+        "httpMethod": "GET",
+        "path": "/contributions",
+        "url": "https://www.readability.com/api/rest/v1/contributions",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/domains",
+          "t": "Retrieve the domains collection. Only admins may access this collection."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/domains",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Domains",
+        "displayName": "Get Domains",
+        "httpMethod": "GET",
+        "path": "/domains",
+        "url": "https://www.readability.com/api/rest/v1/domains",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/domains/{domain}",
+          "t": "Retrieve a specific domain. Only admins may access this resource."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/domains/blog.arc90.com",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Domains",
+        "displayName": "Get a Domain",
+        "httpMethod": "GET",
+        "path": "/domains/:domain",
+        "url": "https://www.readability.com/api/rest/v1/domains/:domain",
+        "params": [
+          {
+            "name": ":domain",
+            "displayName": "Domain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/users",
+          "t": "Retrieve the users collection. Only admins may access this collection."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Users",
+        "displayName": "Get Users",
+        "httpMethod": "GET",
+        "path": "/users",
+        "url": "https://www.readability.com/api/rest/v1/users",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/users/{user}",
+          "t": "Retrieve the currently logged in user."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users/_current",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Users",
+        "displayName": "Get Current User",
+        "httpMethod": "GET",
+        "path": "/users/_current",
+        "url": "https://www.readability.com/api/rest/v1/users/_current",
+        "params": []
+      },
+      {
+        "doc": {
+          "url": "https://www.readability.com/api/rest/v1/users/{user}",
+          "t": "Retrieve a user. Only admins or the current user may access this resource."
+        },
+        "curl": "curl -X GET -u 'username:password' https://www.readability.com/api/rest/v1/users/chrisdary",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Users",
+        "displayName": "Get a User",
+        "httpMethod": "GET",
+        "path": "/users/:username",
+        "url": "https://www.readability.com/api/rest/v1/users/:username",
+        "params": [
+          {
+            "name": ":username",
+            "displayName": "Username",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
 }
