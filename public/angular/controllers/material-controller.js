@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('MaterialController', function($rootScope, $scope, $http, $injector) {
+.controller('MaterialController', function($rootScope, $scope, $http, $injector, AuthService) {
   'use strict';
 
   $scope.toggleNav = function() {
@@ -8,5 +8,9 @@ angular.module('octobluApp')
 
   $scope.closeNav = function(){
     $scope.navIsOpen = false;
+  };
+
+  $scope.logout = function(){
+    AuthService.logout();
   };
 });
