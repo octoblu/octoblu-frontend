@@ -34,7 +34,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#list-payment-resources"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/payment",
         "path": "/v1/payments/payment",
@@ -70,7 +69,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#create-a-payment"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/payment",
         "path": "/v1/payments/payment",
@@ -82,14 +80,12 @@
             "name": ":paymentId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-payment-resource"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/payment/:paymentId",
         "path": "/v1/payments/payment/:paymentId",
@@ -113,14 +109,12 @@
             "name": ":paymentId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#execute-an-approved-paypal-payment\t"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/payment/:paymentId/execute",
         "path": "/v1/payments/payment/:paymentId/execute",
@@ -132,14 +126,12 @@
             "name": ":transactionId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-sale"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/sale/:transactionId",
         "path": "/v1/payments/sale/:transactionId",
@@ -151,14 +143,12 @@
             "name": ":transactionId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#refund-a-sale"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/sale/:transactionId/refund",
         "path": "/v1/payments/sale/:transactionId/refund",
@@ -170,14 +160,12 @@
             "name": ":refundId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-refund"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/refund/:refundId",
         "path": "/v1/payments/refund/:refundId",
@@ -201,14 +189,12 @@
             "name": ":authorizationId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-an-authorization"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/authorization/:authorizationId",
         "path": "/v1/payments/authorization/:authorizationId",
@@ -220,14 +206,12 @@
             "name": ":authorizationId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#capture-an-authorization"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/authorization/:authorizationId/capture",
         "path": "/v1/payments/authorization/:authorizationId/capture",
@@ -239,14 +223,12 @@
             "name": ":authorizationId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#void-an-authorization"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/authorization/:authorizationId/void",
         "path": "/v1/payments/authorization/:authorizationId/void",
@@ -258,14 +240,12 @@
             "name": ":authorizationId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#reauthorize-a-payment"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/authorization/:authorizationId/reauthorize",
         "path": "/v1/payments/authorization/:authorizationId/reauthorize",
@@ -277,14 +257,12 @@
             "name": ":captureId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-captured-payment"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/payments/capture/:captureId",
         "path": "/v1/payments/capture/:captureId",
@@ -302,14 +280,12 @@
             "name": ":captureId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#refund-a-captured-payment"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/payments/capture/:captureId/refund",
         "path": "/v1/payments/capture/:captureId/refund",
@@ -375,7 +351,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#store-a-credit-card"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/vault/credit-card",
         "path": "/v1/vault/credit-card",
@@ -387,14 +362,12 @@
             "name": ":creditCardId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#delete-a-stored-credit-card"
         },
-        "curl": "",
         "httpMethod": "DELETE",
         "displayName": "/v1/vault/credit-card/:creditCardId",
         "path": "/v1/vault/credit-card/:creditCardId",
@@ -406,14 +379,12 @@
             "name": ":creditCardId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-stored-credit-card"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/vault/credit-card/:creditCardId",
         "path": "/v1/vault/credit-card/:creditCardId",
@@ -443,7 +414,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#grant-token-from-authorization-code"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/identity/openidconnect/tokenservice",
         "path": "/v1/identity/openidconnect/tokenservice",
@@ -473,7 +443,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#grant-token-from-refresh-token"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/identity/openidconnect/tokenservice",
         "path": "/v1/identity/openidconnect/tokenservice",
@@ -490,7 +459,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#get-user-information"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/identity/openidconnect/userinfo/?:schema",
         "path": "/v1/identity/openidconnect/userinfo/?:schema",
@@ -507,7 +475,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#get-invoices-of-a-merchant"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/invoicing/invoices",
         "path": "/v1/invoicing/invoices",
@@ -615,7 +582,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#create-an-invoice"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/invoicing/invoices",
         "path": "/v1/invoicing/invoices",
@@ -632,14 +598,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#retrieve-an-invoice"
         },
-        "curl": "",
         "httpMethod": "GET",
         "displayName": "/v1/invoicing/invoices/:invoiceId",
         "path": "/v1/invoicing/invoices/:invoiceId",
@@ -747,14 +711,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#update-an-invoice"
         },
-        "curl": "",
         "httpMethod": "PUT",
         "displayName": "/v1/invoicing/invoices/:invoiceId",
         "path": "/v1/invoicing/invoices/:invoiceId",
@@ -766,14 +728,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#delete-an-invoice"
         },
-        "curl": "",
         "httpMethod": "DELETE",
         "displayName": "/v1/invoicing/invoices/:invoiceId",
         "path": "/v1/invoicing/invoices/:invoiceId",
@@ -784,7 +744,6 @@
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#search-for-invoices"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/invoicing/invoices?:query-string",
         "path": "/v1/invoicing/invoices?:query-string",
@@ -796,14 +755,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/invoicing/invoices/:invoiceId/send",
         "path": "/v1/invoicing/invoices/:invoiceId/send",
@@ -815,14 +772,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice-reminder"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/invoicing/invoices/:invoiceId/remind",
         "path": "/v1/invoicing/invoices/:invoiceId/remind",
@@ -834,14 +789,12 @@
             "name": ":invoiceId",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#cancel-an-invoice"
         },
-        "curl": "",
         "httpMethod": "POST",
         "displayName": "/v1/invoicing/invoices/:invoiceId/cancel",
         "path": "/v1/invoicing/invoices/:invoiceId/cancel",

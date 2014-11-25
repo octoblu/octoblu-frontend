@@ -37,49 +37,54 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "name": "subject",
+            "displayName": "Subject",
             "style": "body",
             "type": "string",
-            "required": true,
+            "required": "true",
             "default": "New Meeting"
           },
           {
             "name": "starttime",
+            "displayName": "Start Time",
             "style": "body",
             "type": "string",
-            "required": true,
+            "required": "true",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "name": "endtime",
+            "displayName": "End Time",
             "style": "body",
             "type": "string",
-            "required": true,
+            "required": "true",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "name": "passwordrequired",
+            "displayName": "Password Required",
             "style": "body",
             "type": "string",
-            "required": true,
+            "required": "true",
             "hidden": true,
             "default": "false"
           },
           {
             "name": "conferencecallinfo",
+            "displayName": "Conference Call Information",
             "style": "body",
             "type": "string",
-            "required": true,
+            "required": "true",
             "default": "Free"
           },
           {
             "style": "body",
             "type": "string",
             "name": "meetingtype",
-            "required": true,
+            "displayName": "Meeting Type",
+            "required": "true",
             "default": "Scheduled"
           }
         ],
@@ -92,13 +97,12 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "DELETE",
-        "curl": "curl -X",
         "params": [
           {
-            "name": "meetingId",
+            "name": ":meetingId",
+            "displayName": "Meeting ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -111,13 +115,12 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
-            "name": "meetingId",
+            "name": ":meetingId",
+            "displayName": "Meeting ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -130,28 +133,31 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "scheduled"
+            "name": "scheduled",
+            "displayName": "Scheduled"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "history"
+            "name": "history",
+            "displayName": "History"
           },
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
+            "displayName": "Start Date",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
+            "displayName": "End Date",
             "default": "2014-10-26T22:00:00+00:00"
           }
         ],
@@ -164,35 +170,38 @@
           "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/meetings"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "scheduled"
+            "name": "scheduled",
+            "displayName": "Scheduled"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "history"
+            "name": "history",
+            "displayName": "History"
           },
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
+            "displayName": "Start Date",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
+            "displayName": "End Date",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": "groupKey",
+            "name": ":groupKey",
+            "displayName": "Group Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -205,37 +214,40 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}/meetings"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
-            "name": "organizerKey",
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
+            "displayName": "Start Date",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
+            "displayName": "End Date",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "history",
+            "displayName": "History",
             "value": ""
           },
           {
             "style": "query",
             "type": "string",
             "name": "schedule",
+            "displayName": "Schedule",
             "value": ""
           }
         ],
@@ -248,13 +260,12 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}/start"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
-            "name": "meetingId",
+            "name": ":meetingId",
+            "displayName": "Meeting ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -267,61 +278,68 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingId}"
         },
         "httpMethod": "PUT",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "subject",
-            "required": true
+            "displayName": "Subject",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "starttime",
-            "required": true,
+            "displayName": "Start Time",
+            "required": "true",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "body",
             "type": "string",
             "name": "endtime",
-            "required": true,
+            "displayName": "End Time",
+            "required": "true",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "style": "body",
             "type": "string",
             "name": "passwordrequired",
-            "required": true
+            "displayName": "Password Required",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "conferencecallinfo",
-            "required": true
+            "displayName": "Conference Call Information",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "timezonekey"
+            "name": "timezonekey",
+            "displayName": "Time Zone Key"
           },
           {
             "style": "body",
             "type": "string",
             "name": "meetingtype",
-            "required": true
+            "displayName": "Meeting Type",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "uniquemeetinginstance"
+            "name": "uniquemeetinginstance",
+            "displayName": "Unique Meeting Instance"
           },
           {
-            "name": "meetingId",
+            "name": ":meetingId",
+            "displayName": "Meeting ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -334,37 +352,40 @@
           "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/organizers"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "organizerEmail",
-            "required": true
+            "displayName": "Organizer Email",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "firstName",
-            "required": true
+            "displayName": "First Name",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "lastName",
-            "required": true
+            "displayName": "Last Name",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "productType",
-            "required": true
+            "displayName": "Product Type",
+            "required": "true"
           },
           {
-            "name": "groupKey",
+            "name": ":groupKey",
+            "displayName": "Group Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -377,13 +398,12 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "DELETE",
-        "curl": "curl -X",
         "params": [
           {
-            "name": "organizerKey",
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -396,9 +416,16 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers?email={organizer_email}"
         },
         "httpMethod": "DELETE",
-        "curl": "curl -X",
-        "params": [],
-        "url": "https://api.citrixonline.com/G2M/rest/organizers?email=:organizer_email"
+        "params": [
+          {
+            "name": "email",
+            "style": "query",
+            "displayName": "Organizer Email",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2M/rest/organizers"
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey",
@@ -407,34 +434,32 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
-            "name": "organizerKey",
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "url": "https://api.citrixonline.com/G2M/rest/organizers/:organizerKey"
       },
       {
-        "path": "/G2M/rest/organizers?email=:organizer_email",
+        "path": "/G2M/rest/organizers",
         "displayName": "Get Organizer by Email",
         "doc": {
           "url": "https://api.citrixonline.com/G2M/rest/organizers?email={organizer_email}"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [{
-            "name": "organizer_email",
-            "style": "url",
+            "name": "email",
+            "displayName": "Organizer Email",
+            "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           }],
-        "url": "https://api.citrixonline.com/G2M/rest/organizers?email=:organizer_email"
+        "url": "https://api.citrixonline.com/G2M/rest/organizers"
       },
       {
         "path": "/G2M/rest/groups/:groupKey/organizers",
@@ -443,13 +468,12 @@
           "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/organizers"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
-            "name": "groupKey",
+            "name": ":groupKey",
+            "displayName": "Group Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -462,19 +486,19 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}"
         },
         "httpMethod": "PUT",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "status",
-            "required": true
+            "displayName": "Status",
+            "required": "true"
           },
           {
-            "name": "organizerKey",
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -487,27 +511,28 @@
           "url": "https://api.citrixonline.com/G2M/rest/groups/{groupKey}/attendees"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true,
+            "displayName": "Start Date",
+            "required": "true",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true,
+            "displayName": "End Date",
+            "required": "true",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": "groupKey",
+            "name": ":groupKey",
+            "displayName": "Group Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -520,20 +545,21 @@
           "url": "https://api.citrixonline.com/G2M/rest/meetings/{meetingInstanceKey}/attendees"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true,
+            "displayName": "Start Date",
+            "required": "true",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true,
+            "displayName": "End Date",
+            "required": "true",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
@@ -541,7 +567,6 @@
             "displayName": "Meeting Instance ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -554,27 +579,28 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers/{organizerKey}/attendees"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true,
+            "displayName": "Start Date",
+            "required": "true",
             "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true,
+            "displayName": "End Date",
+            "required": "true",
             "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": "organizerKey",
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -587,7 +613,6 @@
           "url": "https://api.citrixonline.com/G2M/rest/groups"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [],
         "url": "https://api.citrixonline.com/G2M/rest/groups"
       }

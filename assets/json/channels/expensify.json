@@ -5,131 +5,156 @@
     "resources": [
       {
         "path": "/ReportExporter",
-        "displayName": "/ReportExporter",
+        "displayName": "Export Expense Or Report Data",
         "doc": {
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "onReceive",
+            "displayName": "On Receive",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "outputSettings",
+            "displayName": "Output Settings",
             "required": true
           },{
             "style": "query",
-            "type": "String",
-            "name": "test"
+            "type": "string",
+            "name": "test",
+            "displayName": "Test"
           },{
             "style": "query",
-            "type": "String",
-            "name": "limit"
+            "type": "string",
+            "name": "limit",
+            "displayName": "Limit"
         },{
             "style": "query",
             "type": "array",
-            "name": "onFinish"
+            "name": "onFinish",
+            "displayName": "On Finish"
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "immediateResponse",
+            "displayName": "Immediate Response",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "query",
             "type": "object",
             "name": "filters",
+            "displayName": "Filters",
             "required": true
           },{
             "style": "query",
-            "type": "String",
-            "name": "reportState"
+            "type": "string",
+            "name": "reportState",
+            "displayName": "Report State"
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
+            "displayName": "Employee Email",
             "name": "employeeEmail"
         },{
             "style": "query",
-            "type": "String",
-            "name": "reportIDList"
+            "type": "string",
+            "name": "reportIDList",
+            "displayName": "Report ID List"
           },{
             "style": "query",
-            "type": "String",
-            "name": "policyIDList"
+            "type": "string",
+            "name": "policyIDList",
+            "displayName": "Policy ID List"
           },{
             "style": "query",
             "type": "Date",
             "name": "startDate",
+            "displayName": "Start Date",
             "required": true
         },{
             "style": "query",
             "type": "Date",
-            "name": "endDate"
+            "name": "endDate",
+            "displayName": "End Date"
           },{
             "style": "query",
-            "type": "String",
-            "name": "markedAsExported"
+            "type": "string",
+            "name": "markedAsExported",
+            "displayName": "Marked As Exported"
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "fileExtension",
+            "displayName": "File Extension",
             "required": true
           },{
             "style": "query",
-            "type": "String",
-            "name": "fileBasename"
+            "type": "string",
+            "name": "fileBasename",
+            "displayName": "File Basename"
           },{
             "style": "query",
-            "type": "String",
-            "name": "actionName"
+            "type": "string",
+            "name": "actionName",
+            "displayName": "Action Name"
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "recipients",
+            "displayName": "Recipients",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "message",
+            "displayName": "Message",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "label",
+            "displayName": "Label",
             "required": true
         },{
             "style": "query",
@@ -138,23 +163,27 @@
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "host",
+            "displayName": "Host",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "login",
+            "displayName": "Login",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "password",
+            "displayName": "Password",
             "required": true
           },{
             "style": "query",
             "type": "Integer",
             "name": "port",
+            "displayName": "Port",
             "required": true
           }
         ],
@@ -167,126 +196,151 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "onReceive",
+            "displayName": "On Receive",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "outputSettings",
+            "displayName": "Output Settings",
             "required": true
           },{
             "style": "body",
-            "type": "String",
-            "name": "test"
+            "type": "string",
+            "name": "test",
+            "displayName": "Test"
           },{
             "style": "body",
-            "type": "String",
-            "name": "limit"
+            "type": "string",
+            "name": "limit",
+            "displayName": "Limit"
         },{
             "style": "body",
             "type": "array",
-            "name": "onFinish"
+            "name": "onFinish",
+            "displayName": "On Finish"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "immediateResponse",
+            "displayName": "Immediate Response",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
             "type": "object",
             "name": "filters",
+            "displayName": "Filters",
             "required": true
           },{
             "style": "body",
-            "type": "String",
-            "name": "reportState"
+            "type": "string",
+            "name": "reportState",
+            "displayName": "Report State"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
+            "displayName": "Employee Email",
             "name": "employeeEmail"
         },{
             "style": "body",
-            "type": "String",
-            "name": "reportIDList"
+            "type": "string",
+            "name": "reportIDList",
+            "displayName": "Report ID List"
           },{
             "style": "body",
-            "type": "String",
-            "name": "policyIDList"
+            "type": "string",
+            "name": "policyIDList",
+            "displayName": "Policy ID List"
           },{
             "style": "body",
             "type": "Date",
             "name": "startDate",
+            "displayName": "Start Date",
             "required": true
         },{
             "style": "body",
             "type": "Date",
-            "name": "endDate"
+            "name": "endDate",
+            "displayName": "End Date"
           },{
             "style": "body",
-            "type": "String",
-            "name": "markedAsExported"
+            "type": "string",
+            "name": "markedAsExported",
+            "displayName": "Marked As Exported"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "fileExtension",
+            "displayName": "File Extension",
             "required": true
           },{
             "style": "body",
-            "type": "String",
-            "name": "fileBasename"
+            "type": "string",
+            "name": "fileBasename",
+            "displayName": "File Basename"
           },{
             "style": "body",
-            "type": "String",
-            "name": "actionName"
+            "type": "string",
+            "name": "actionName",
+            "displayName": "Action Name"
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "recipients",
+            "displayName": "Recipients",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "message",
+            "displayName": "Message",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "label",
+            "displayName": "Label",
             "required": true
         },{
             "style": "body",
@@ -295,23 +349,27 @@
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "host",
+            "displayName": "Host",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "login",
+            "displayName": "Login",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "password",
+            "displayName": "Password",
             "required": true
           },{
             "style": "body",
             "type": "Integer",
             "name": "port",
+            "displayName": "Port",
             "required": true
           }
         ],
@@ -324,35 +382,40 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
+            "displayName": "Employee Email",
             "name": "employeeEmail",
             "required": true
           },{
@@ -366,12 +429,12 @@
             "name": "expenses"
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "policyID",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "title",
             "required": true
           },{
@@ -380,12 +443,12 @@
             "name": "fields"
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "merchant",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "currency",
             "required": true
           },{
@@ -408,36 +471,41 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
+            "displayName": "Employee Email",
             "name": "employeeEmail",
             "required": true
           },{
@@ -451,12 +519,12 @@
             "name": "expenses"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "policyID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "title",
             "required": true
           },{
@@ -465,12 +533,12 @@
             "name": "fields"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "merchant",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "currency",
             "required": true
           },{
@@ -494,32 +562,36 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
+            "displayName": "Employee Email",
             "name": "employeeEmail",
             "required": true
           },
@@ -530,12 +602,12 @@
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "merchant",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "created",
             "required": true
           },
@@ -546,7 +618,7 @@
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "currency",
             "required": true
           }],
@@ -559,36 +631,39 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "policyName",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "plan"
           }
         ],
@@ -601,36 +676,39 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "policyName",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "plan"
           }
         ],
@@ -643,34 +721,37 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "get",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },
           {
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "fileName",
             "required": true
           },
           {
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "query",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
           }
         ],
@@ -683,34 +764,37 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "fileName",
             "required": true
           },
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
           }
         ],
@@ -722,56 +806,61 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserID",
+            "displayName": "Partner User ID",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "partnerUserSecret",
+            "displayName": "Partner User Secret",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "fileType",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "policyID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "EmployeeEmail",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "ManagerEmail",
             "required": true
           },{
@@ -781,15 +870,15 @@
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "EmployeeUserId"
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "EmployeePayrollId"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "ForwardManagerEmail"
           }
         ],
@@ -802,48 +891,51 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "categories"
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "tags"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "reportFields"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "policyID",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "action",
             "required": true
           },{
@@ -853,7 +945,7 @@
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "name",
             "required": true
           },{
@@ -863,11 +955,11 @@
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "glCode"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "payrollCode"
           },{
             "style": "body",
@@ -875,7 +967,7 @@
             "name": "areCommentsRequired"
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "commentHint"
           },{
             "style": "body",
@@ -883,26 +975,26 @@
             "name": "maxExpenseAmount"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "action",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "data"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "name",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "tags",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "name",
             "required": true
           },{
@@ -911,11 +1003,11 @@
             "name": "enabled"
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "glCode"
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "action",
             "required": true
           },{
@@ -925,22 +1017,23 @@
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "name",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "values",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "defaultValue"
           }
         ],
@@ -953,50 +1046,57 @@
           "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "credentials",
+            "displayName": "Credentials",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "inputSettings",
+            "displayName": "Input Settings",
             "required": true
           },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "type",
+            "displayName": "Type",
             "required": true
         },{
             "style": "body",
-            "type": "String",
+            "type": "string",
             "name": "status",
             "required": true
           },{
             "style": "body",
             "type": "object",
             "name": "filters",
+            "displayName": "Filters",
             "required": true
           },{
             "style": "body",
-            "type": "String",
-            "name": "reportIDList"
+            "type": "string",
+            "name": "reportIDList",
+            "displayName": "Report ID List"
         },{
             "style": "body",
             "type": "Date",
             "name": "startDate",
+            "displayName": "Start Date",
             "required": true
           },{
             "style": "body",
             "type": "Date",
-            "name": "endDate"
+            "name": "endDate",
+            "displayName": "End Date"
           }],
         "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
       }
