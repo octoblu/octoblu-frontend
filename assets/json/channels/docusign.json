@@ -3,27 +3,34 @@
   "__v": 0,
   "application": {
     "base": "https://demo.docusign.net/restapi/v2",
-    "resources": [{
+    "resources": [
+      {
         "path": "/login_information",
         "displayName": "Get Login Information",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/login_information"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "Enumerated",
-          "name": "api_password"
-        },{
-          "style": "query",
-          "type": "Enumerated",
-          "name": "include_account_id_guid"
-        },{
-          "style": "query",
-          "type": "Enumerated",
-          "name": "login_settings"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "api_password",
+            "displayName": "Show API Password In Response?"
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "include_account_id_guid",
+            "displayName": "Show Account ID GUID In Response?"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "login_settings",
+            "displayName": "Login Settings"
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/login_information"
       },
       {
@@ -33,75 +40,137 @@
           "url": "https://demo.docusign.net/restapi/v2/login_information/password"
         },
         "httpMethod": "PUT",
-        "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "currentPassword"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "email"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "newPassword"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "forgottenPasswordInfo"
-        }],
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "currentPassword"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "email"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "newPassword"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "forgottenPasswordInfo"
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/login_information/password"
       },
       {
+        "path": "/oauth2/token",
+        "displayName": "Create An Authorization Token",
+        "doc": {
+          "url": "https://demo.docusign.net/restapi/v2/oauth2/token"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "access_token",
+            "displayName": "Access Token Information"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "token_type",
+            "value": "bearer",
+            "hidden": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "scope",
+            "value": "api",
+            "hidden": "true"
+          }
+        ],
+        "url": "https://demo.docusign.net/restapi/v2/oauth2/token"
+      },
+      {
+        "path": "/oauth2/revoke",
+        "displayName": "/oauth2/revoke",
+        "doc": {
+          "url": "https://demo.docusign.net/restapi/v2/oauth2/revoke"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "ref_type"
+          }
+        ],
+        "url": "https://demo.docusign.net/restapi/v2/oauth2/revoke"
+      },
+      {
+>>>>>>> Stashed changes
         "path": "/accounts/:accountId/envelopes",
         "displayName": "Get Account Envelopes",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "accountId"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "emailSubject"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "emailBlurb"
-        },{
-          "style": "body",
-          "type": "object",
-          "name": "customFields"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "templateId"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "brandId"
-        },{
-          "style": "body",
-          "type": "array",
-          "name": "templateRoles"
-        },{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "status"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "eventNotification"
-        },{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "messageLock"
-        }],
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "emailSubject"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "emailBlurb"
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "customFields"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "templateId"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "brandId"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "templateRoles"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "status"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "eventNotification"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "messageLock"
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
       },
       {
@@ -111,48 +180,58 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "accountId"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "emailBlurb"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "emailSubject"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "brandId"
-        },{
-          "style": "body",
-          "type": "object",
-          "name": "customFields"
-        },{
-          "style": "body",
-          "type": "object",
-          "name": "recipients"
-        },{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "status"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "eventNotification"
-        },{
-          "style": "body",
-          "type": "Enumerated",
-          "name": "messageLock"
-        },{
-          "style": "body",
-          "type": "array",
-          "name": "imageParts"
-        }],
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "emailBlurb"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "emailSubject"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "brandId"
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "customFields"
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "recipients"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "status"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "eventNotification"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "messageLock"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "imageParts"
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
       },
       {
@@ -162,6 +241,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -178,6 +258,27 @@
           "type": "Enumerated",
           "name": "status"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "status"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId"
       },
       {
@@ -187,6 +288,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -204,6 +306,28 @@
           "name": "documentId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "documentId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
       },
       {
@@ -213,6 +337,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -249,6 +374,52 @@
           "type": "array",
           "name": "carbonCopies"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "signers"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "agents"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "editors"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "inPersonSigners"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "intermediaries"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "carbonCopies"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
       },
       {
@@ -258,6 +429,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/views/console"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -270,6 +442,22 @@
           "name": "envelopeId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/views/console"
       },
       {
@@ -279,6 +467,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/correct"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -301,6 +490,34 @@
           "name": "supressNavigation",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "returnUrl",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "supressNavigation",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/correct"
       },
       {
@@ -311,6 +528,7 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -327,6 +545,28 @@
           "name": "returnUrl",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "returnUrl",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/sender"
       },
       {
@@ -337,6 +577,7 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -373,6 +614,52 @@
           "name": "clientUserId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "authenticationMethod",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "email",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "returnUrl",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "clientUserId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/views/recipient"
       },
       {
@@ -383,6 +670,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -398,6 +686,27 @@
           "type": "Enumerated",
           "name": "from_to_status"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "datetime",
+            "name": "from_date",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "from_to_status"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes"
       },
       {
@@ -408,6 +717,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -450,6 +760,60 @@
           "type": "Enumerated",
           "name": "include_recipients"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "searchFolderType"
+          },
+          {
+            "style": "query",
+            "type": "datetime",
+            "name": "from_date",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "datetime",
+            "name": "to_date",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "start_position",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "order"
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "order_by"
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "include_recipients"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/search_folders/:searchFolderType"
       },
       {
@@ -460,6 +824,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -471,6 +836,22 @@
           "name": "envelopeId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId"
       },
       {
@@ -481,6 +862,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -497,6 +879,28 @@
           "name": "Enumerated",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "Enumerated",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
       },
       {
@@ -507,6 +911,7 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -522,6 +927,27 @@
           "type": "array",
           "name": "signers"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "signers"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
       },
       {
@@ -532,6 +958,7 @@
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -567,6 +994,52 @@
           "type": "array",
           "name": "carbonCopies"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "signers"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "agents"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "editors"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "inPersonSigners"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "intermediaries"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "carbonCopies"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients"
       },
       {
@@ -577,6 +1050,7 @@
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -590,6 +1064,25 @@
           "type": "string",
           "name": "recipientId"
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId"
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "envelopeId"
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "recipientId"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId"
       },
       {
@@ -600,6 +1093,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -616,14 +1110,38 @@
           "name": "recipientId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "recipientId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
-      },{
+      },
+      {
         "path": "/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs",
         "displayName": "Add Tab to Recipient",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -669,6 +1187,63 @@
           "type": "array",
           "name": "companyTabs"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "recipientId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "signHereTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "initialHereTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "fullNameTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "emailTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "textTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "titleTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "companyTabs"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
       },
       {
@@ -678,6 +1253,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -723,6 +1299,63 @@
           "type": "array",
           "name": "companyTabs"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "recipientId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "signHereTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "initialHereTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "fullNameTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "emailTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "textTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "titleTabs"
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "companyTabs"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/recipients/:recipientId/tabs"
       },
       {
@@ -732,6 +1365,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/:envelopeAssets"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -748,6 +1382,27 @@
           "type": "string",
           "name": "envelopeAssets"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeAssets"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/:envelopeAssets"
       },
       {
@@ -757,6 +1412,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -778,6 +1434,33 @@
           "type": "string",
           "name": "show_changes"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "documentId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "show_changes"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/:documentId"
       },
       {
@@ -787,6 +1470,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/combined"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -811,6 +1495,37 @@
           "type": "Enumerated",
           "name": "certificate"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "show_changes"
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "watermark"
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "certificate"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents/combined"
       },
       {
@@ -820,6 +1535,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -836,6 +1552,27 @@
           "type": "string",
           "name": "documents"
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "documents"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/documents"
       },
       {
@@ -845,6 +1582,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/templates"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -857,6 +1595,22 @@
           "name": "envelopeId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/envelopes/:envelopeId/templates"
       },
       {
@@ -866,6 +1620,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -877,14 +1632,31 @@
           "type": "string",
           "name": "userId"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
-        },{
+      },
+      {
         "path": "/accounts/:accountId/users/:userId/profile",
         "displayName": "Update User Profile",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -926,6 +1698,58 @@
           "type": "set",
           "name": "userDetails"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "address"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "companyName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "displayOrganizationInfo"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "displayPersonalInfo"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "displayProfile"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "displayUsageHistory"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "userDetails"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile"
       },
       {
@@ -935,6 +1759,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -947,6 +1772,22 @@
           "name": "userId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
       },
       {
@@ -956,6 +1797,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -972,6 +1814,27 @@
           "type": "string",
           "name": "image"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "image"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
       },
       {
@@ -981,6 +1844,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -993,6 +1857,22 @@
           "name": "userId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/profile/image"
       },
       {
@@ -1002,6 +1882,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1018,6 +1899,27 @@
           "type": "string",
           "name": "userSignatures"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userSignatures"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures"
       },
       {
@@ -1027,6 +1929,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1053,6 +1956,39 @@
           "name": "signatureInitials",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "signatureFont"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "signatureInitials",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
       },
       {
@@ -1062,6 +1998,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1079,6 +2016,28 @@
           "name": "signatureName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName"
       },
       {
@@ -1088,6 +2047,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1105,6 +2065,28 @@
           "name": "signatureName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
       },
       {
@@ -1114,6 +2096,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1131,6 +2114,28 @@
           "name": "signatureName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
       },
       {
@@ -1140,6 +2145,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1161,6 +2167,33 @@
           "type": "string",
           "name": "image"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "image"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
       },
       {
@@ -1170,6 +2203,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1184,6 +2218,25 @@
           "type": "string",
           "name": "signatureName"
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId"
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "userId"
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "signatureName"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/signature_image"
       },
       {
@@ -1194,6 +2247,7 @@
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1210,6 +2264,28 @@
           "name": "signatureName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "signatureName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/signatures/:signatureName/initials_image"
       },
       {
@@ -1220,6 +2296,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1231,6 +2308,22 @@
           "name": "userId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/settings"
       },
       {
@@ -1241,6 +2334,7 @@
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1256,6 +2350,27 @@
           "type": "string",
           "name": "userSettings"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userSettings"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/settings"
       },
       {
@@ -1266,6 +2381,7 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1277,6 +2393,22 @@
           "name": "userId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
       },
       {
@@ -1287,6 +2419,7 @@
         },
         "httpMethod": "PUT",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1313,6 +2446,40 @@
           "name": "userName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "provider",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "email",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
       },
       {
@@ -1323,6 +2490,7 @@
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1349,6 +2517,40 @@
           "name": "userName",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "userId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "provider",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "email",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "userName",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users/:userId/social"
       },
       {
@@ -1370,50 +2572,61 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "accountName",
-          "required": true
-        },{
-          "style": "body",
-          "type": "array",
-          "name": "accountSettings"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "addressInformation"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "creditCardInformation"
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "distributorCode",
-          "required": true
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "distributorPassword",
-          "required": true
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "initialUser"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "planInformation"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "referalInformation"
-        },{
-          "style": "body",
-          "type": "set",
-          "name": "socialAccountInformation"
-        }],
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "accountSettings"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "addressInformation"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "creditCardInformation"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "distributorCode",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "distributorPassword",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "initialUser"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "planInformation"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "referalInformation"
+          },
+          {
+            "style": "body",
+            "type": "set",
+            "name": "socialAccountInformation"
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/accounts"
       },
       {
@@ -1424,12 +2637,23 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId"
       },
       {
@@ -1440,20 +2664,33 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/billing_plan"
-      },{
+      },
+      {
         "path": "/accounts/:accountId",
         "displayName": "Delete Account",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1461,6 +2698,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId"
       },
       {
@@ -1470,6 +2717,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1477,6 +2725,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders"
       },
       {
@@ -1486,6 +2744,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1498,6 +2757,22 @@
           "name": "folderId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "folderId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
       },
       {
@@ -1507,6 +2782,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1528,6 +2804,33 @@
           "name": "fromFolderId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "folderId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeIds"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "fromFolderId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/folders/:folderId"
       },
       {
@@ -1537,6 +2840,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1549,6 +2853,22 @@
           "name": "email",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "email",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
       },
       {
@@ -1558,6 +2878,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/settings"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1565,6 +2886,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/settings"
       },
       {
@@ -1574,6 +2905,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/custom_fields"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1581,6 +2913,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/custom_fields"
       },
       {
@@ -1590,6 +2932,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1602,6 +2945,22 @@
           "name": "folder",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "folder",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates"
       },
       {
@@ -1611,6 +2970,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates/:templateId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1626,12 +2986,55 @@
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates/:templateId"
       },
       {
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "templateId",
+            "required": true
+          }
+        ],
+        "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/templates/:templateId"
+      },
+      {
+        "path": "/accounts/:accountId/recipient_names",
+        "displayName": "/accounts/:accountId/recipient_names",
+        "doc": {
+          "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "email",
+            "required": true
+          }
+        ],
+        "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/recipient_names"
+      },
+      {
+>>>>>>> Stashed changes
         "path": "/accounts/:accountId/permission_profiles",
         "displayName": "Get Account Permission Profiles",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/permission_profiles"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1639,6 +3042,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/permission_profiles"
       },
       {
@@ -1648,6 +3061,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1659,6 +3073,21 @@
           "type": "string",
           "name": "groups"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "groups"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
       },
       {
@@ -1668,6 +3097,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1675,6 +3105,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/groups"
       },
       {
@@ -1685,12 +3125,23 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
       },
       {
@@ -1701,6 +3152,7 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1711,6 +3163,21 @@
           "type": "string",
           "name": "newUsers"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "newUsers"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
       },
       {
@@ -1722,6 +3189,7 @@
         "enabled":false,
         "httpMethod": "DELETE",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1734,6 +3202,21 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "array",
+            "name": "users"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/users"
       },
       {
@@ -1744,12 +3227,23 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/unsupported_file_types"
       },
       {
@@ -1760,12 +3254,23 @@
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
       },
       {
@@ -1776,12 +3281,23 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
       },
       {
@@ -1792,6 +3308,7 @@
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
@@ -1802,6 +3319,21 @@
           "type": "string",
           "name": "brands"
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "brands"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/brands"
       },
       {
@@ -1823,12 +3355,14 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "planId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "planId",
+            "required": true
+          }
+        ],
         "url": "https://demo.docusign.net/restapi/v2/billing_plans/:planId"
       },
       {
@@ -1839,20 +3373,33 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
+<<<<<<< Updated upstream
         "params": [{
           "style": "url",
           "type": "string",
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
-      },{
+      },
+      {
         "path": "/accounts/:accountId/connect/:connectId",
         "displayName": "Get Connect Configuration",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1865,6 +3412,22 @@
           "name": "connectId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "connectId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
       },
       {
@@ -1874,6 +3437,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
         },
         "httpMethod": "POST",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -1947,6 +3511,97 @@
           "name": "userIds",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "allUsers"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "allowEnvelopePublish"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "enableLog"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeEvents",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "includeDocuments"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "includeSenderAccountasCustomField"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "includeTimeZoneInformation"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "name",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "recipientEvents",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "requiresAcknowledgement"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "signMessagewithX509Certificate"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "soapNamespace",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "urlToPublishTo",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "useSoapInterface"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userIds",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
       },
       {
@@ -1956,6 +3611,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2043,6 +3699,114 @@
           "name": "userIds",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "allUsers"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "allowEnvelopePublish"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "connectId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "enableLog"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeEvents",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "includeDocuments"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "includeSenderAccountasCustomField"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "name"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "includeTimeZoneInformation",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "requiresAcknowledgement"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "name",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "recipientEvents",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "requiresAcknowledgement"
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "signMessagewithX509Certificate"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "soapNamespace",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "urlToPublishTo",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Enumerated",
+            "name": "useSoapInterface"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "userIds",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect"
       },
       {
@@ -2052,6 +3816,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2064,6 +3829,22 @@
           "name": "connectId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "connectId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/:connectId"
       },
       {
@@ -2073,6 +3854,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2080,6 +3862,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
       },
       {
@@ -2089,6 +3881,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2105,6 +3898,27 @@
           "type": "Enumerated",
           "name": "additional_info"
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "logId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "Enumerated",
+            "name": "additional_info"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
       },
       {
@@ -2114,6 +3928,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2121,6 +3936,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures"
       },
       {
@@ -2130,6 +3955,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
         },
         "httpMethod": "GET",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2142,14 +3968,32 @@
           "name": "failureId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "failureId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
-        },{
+      },
+      {
         "path": "/accounts/:accountId/connect/logs",
         "displayName": "Delete Connect Logs",
         "doc": {
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2157,6 +4001,16 @@
           "name": "accountId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs"
       },
       {
@@ -2166,6 +4020,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2178,6 +4033,22 @@
           "name": "logId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "logId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/logs/:logId"
       },
       {
@@ -2187,6 +4058,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
         },
         "httpMethod": "DELETE",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2199,6 +4071,22 @@
           "name": "failureId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "string",
+            "name": "failureId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/failures/:failureId"
       },
       {
@@ -2208,6 +4096,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/retry_queue"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2219,6 +4108,21 @@
           "type": "array",
           "name": "envelopeIds"
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "envelopeIds"
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/retry_queue"
       },
       {
@@ -2228,6 +4132,7 @@
           "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/:envelopeId/retry_queue"
         },
         "httpMethod": "PUT",
+<<<<<<< Updated upstream
         "curl": "curl -X",
         "params": [{
           "style": "url",
@@ -2240,23 +4145,40 @@
           "name": "envelopeId",
           "required": true
         }],
+=======
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "envelopeId",
+            "required": true
+          }
+        ],
+>>>>>>> Stashed changes
         "url": "https://demo.docusign.net/restapi/v2/accounts/:accountId/connect/envelopes/:envelopeId/retry_queue"
-      }]
+      }
+    ]
   },
-  "oauth" : {
-  	"development" : {
-  		"IntegratorKey" : "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
-  		"tokenMethod" : "docusign"
-  	},
-  	"staging" : {
-  		"IntegratorKey" : "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
-  		"tokenMethod" : "docusign"
-  	},
-  	"production" : {
-  		"IntegratorKey" : "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
-  		"tokenMethod" : "docusign"
-  	}
-	},
+  "oauth": {
+    "development": {
+      "IntegratorKey": "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
+      "tokenMethod": "docusign"
+    },
+    "staging": {
+      "IntegratorKey": "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
+      "tokenMethod": "docusign"
+    },
+    "production": {
+      "IntegratorKey": "OCTO-be766589-0a17-42c3-b060-6e72710634b1",
+      "tokenMethod": "docusign"
+    }
+  },
   "auth_strategy": "docusign",
   "custom_tokens": [],
   "description": "",
@@ -2264,5 +4186,5 @@
   "enabled": true,
   "name": "DocuSign",
   "type": "channel:docusign",
-  "bodyFormat" : "json"
+  "bodyFormat": "json"
 }

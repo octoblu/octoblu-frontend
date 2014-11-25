@@ -15,13 +15,7 @@
         "displayName": "CREATE Activity Item",
         "path": "/activity_items.xml",
         "url": "https://:subdomain.crisply.com/api/activity_items.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -36,17 +30,9 @@
         "params": [
           {
             "name": "user_id",
+            "displayName": "User ID",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
+            "type": "string"
           }
         ],
         "url": "https://:subdomain.crisply.com/api/activity_items.xml"
@@ -62,13 +48,7 @@
         "displayName": "CREATE Client",
         "path": "/clients.xml",
         "url": "https://:subdomain.crisply.com/api/clients.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "PUT",
@@ -79,15 +59,18 @@
           "required": "true"
         },
         "displayName": "UPDATE Client",
-        "path": "/clients/{id}.xml",
-        "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "path": "/clients/:id.xml",
+        "url": "https://:subdomain.crisply.com/api/clients/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -100,13 +83,7 @@
         "displayName": "GET Clients",
         "path": "/clients.xml",
         "url": "https://:subdomain.crisply.com/api/clients.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -117,15 +94,18 @@
           "required": "true"
         },
         "displayName": "GET Client",
-        "path": "/clients/{id}.xml",
-        "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "path": "/clients/:id.xml",
+        "url": "https://:subdomain.crisply.com/api/clients/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -138,13 +118,7 @@
         "displayName": "CREATE Project",
         "path": "/projects.xml",
         "url": "https://:subdomain.crisply.com/api/projects.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "PUT",
@@ -155,15 +129,18 @@
           "required": "true"
         },
         "displayName": "UPDATE Project",
-        "path": "/projects/{id}.xml",
-        "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "path": "/projects/:id.xml",
+        "url": "https://:subdomain.crisply.com/api/projects/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -176,13 +153,7 @@
         "displayName": "GET Projects",
         "path": "/projects.xml",
         "url": "https://:subdomain.crisply.com/api/projects.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -193,15 +164,18 @@
           "required": "true"
         },
         "displayName": "GET Project",
-        "path": "/projects/{id}.xml",
-        "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "path": "/projects/:id.xml",
+        "url": "https://:subdomain.crisply.com/api/projects/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -214,13 +188,7 @@
         "displayName": "CREATE User",
         "path": "/users.xml",
         "url": "https://:subdomain.crisply.com/api/users.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "PUT",
@@ -230,16 +198,19 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/user/{id}.xml",
+        "path": "/user/:id.xml",
         "displayName": "UPDATE User",
-        "url": "https://:subdomain.crisply.com/api/user/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "url": "https://:subdomain.crisply.com/api/user/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -252,13 +223,7 @@
         "displayName": "GET Users",
         "path": "/users.xml",
         "url": "https://:subdomain.crisply.com/api/users.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -269,15 +234,18 @@
           "required": "true"
         },
         "displayName": "GET User",
-        "path": "/users/{id}.xml",
-        "url": "https://:subdomain.crisply.com/api/users/{id}.xml",
-        "params": [{
-            "name": ":subdomain",
+        "path": "/users/:id.xml",
+        "url": "https://:subdomain.crisply.com/api/users/:id.xml",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": true
-          }]
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -290,13 +258,7 @@
         "displayName": "GET Myself",
         "path": "/users/me.xml",
         "url": "https://:subdomain.crisply.com/api/users/me.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "PUT",
@@ -309,13 +271,7 @@
         "displayName": "CREATE/UPDATE Project Assignment",
         "path": "/project_assignments.xml",
         "url": "https://:subdomain.crisply.com/api/project_assignments.xml",
-        "params": [{
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
-          }]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -330,24 +286,15 @@
         "params": [
           {
             "name": "project_id",
+            "displayName": "Project ID",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "user_id",
+            "displayName": "User ID",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
+            "type": "string"
           }
         ],
         "url": "https://:subdomain.crisply.com/api/project_assignments.xml"
@@ -365,17 +312,9 @@
         "params": [
           {
             "name": "user_id",
+            "displayName": "User ID",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":subdomain",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": true
+            "type": "string"
           }
         ],
         "url": "https://:subdomain.crisply.com/api/time_entries.xml"
@@ -384,6 +323,15 @@
   },
   "auth_strategy": "header",
   "custom_tokens": [],
+  "defaultParams": [
+    {
+      "name": ":subdomain",
+      "displayName": "Subdomain",
+      "style": "url",
+      "type": "string",
+      "required": true
+    }
+  ],
   "description": "",
   "oauth": {
     "development": {

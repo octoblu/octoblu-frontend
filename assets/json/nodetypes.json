@@ -333,7 +333,7 @@
     "_id" : "53c9b833f400e177dca325b5",
     "category" : "channel",
     "description" : "",
-    "enabled" : true,
+    "enabled" : false,
     "name" : "LinkedIn",
     "skynet" : {
       "type" : "channel",
@@ -1014,7 +1014,7 @@
     "_id" : "576ac129-0ddd-4f56-95e9-ed983ce5012a",
     "category" : "channel",
     "description" : "Expensify",
-    "enabled" : true,
+    "enabled" : false,
     "name" : "Expensify",
     "skynet" : {
       "type" : "channel",
