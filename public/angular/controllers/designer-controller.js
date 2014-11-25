@@ -35,7 +35,7 @@ angular.module('octobluApp')
     var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
     if (deleteFlowConfirmed) {
       FlowService.deleteFlow(flow.flowId).then(function () {
-        $state.go('design', {}, {reload: true});
+        $state.go('material.design', {}, {reload: true});
       });
     }
   };

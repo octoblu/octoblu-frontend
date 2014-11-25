@@ -81,7 +81,7 @@ angular.module('octobluApp')
     if(activeFlow){
       return $scope.setActiveFlow(activeFlow);
     }
-    $state.go('design');
+    $state.go('material.design');
   });
 
   $scope.logout = function(){
@@ -154,7 +154,7 @@ angular.module('octobluApp')
     var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
     if (deleteFlowConfirmed) {
       FlowService.deleteFlow(flow.flowId).then(function(){
-        $state.go('design');
+        $state.go('material.design');
       });
     }
   };
