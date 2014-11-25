@@ -1,15 +1,17 @@
 angular.module('octobluApp')
-.controller('clearAuthController', function($scope, userService, channelService, currentUser) {
+.controller('clearAuthController', function($scope, userService, channelService, AuthService) {
   'use strict';
 
   $scope.clearAllAuthorizedChannels = function(){
-    channelService.getActiveChannels().then(function(activeChannels){
-      async.each(activeChannels, function(channel, cb){
-        userService.removeConnection(currentUser.skynet.uuid, channel._id, function (data) {
-          cb();
+    AuthService.getCurrentUser().then(function(currentUser){
+      channelService.getActiveChannels().then(function(activeChannels){
+        async.each(activeChannels, function(channel, cb){
+          userService.removeConnection(currentUser.resource.uuid, channel._id, function (data) {
+            cb();
+          });
+        }, function(){
+          $scope.channelsCleared = true;
         });
-  }, function(){
-        $scope.channelsCleared = true;
       });
     });
   };

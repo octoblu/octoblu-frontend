@@ -1,6 +1,24 @@
-<button ng-click="clearAllAuthorizedChannels()" type="button" class="btn btn-danger btn-lg btn-extreme-danger">
-  <i class="fa fa-fire fa-spin"></i>
-  Clear All Authorized Channels
-</button>
+<md-toolbar md-theme="indigo">
+  <h2 class="md-toolbar-tools page-heading">
+    <a href class="menu-icon" ng-click="toggleNav()">
+      <i class="fa fa-bars"></i>
+    </a>
 
-<h1 ng-if="channelsCleared" class="channels-cleared">Channels have been cleared</h1>
+    <span>Clear All Authorized Channels</span>
+  </h2>
+</md-toolbar>
+
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <button ng-click="clearAllAuthorizedChannels()" type="button" class="btn btn-danger btn-lg btn-extreme-danger">
+        <i class="fa fa-fire fa-spin"></i>
+        Clear All Authorized Channels
+      </button>
+
+      <h1 ng-if="channelsCleared" class="channels-cleared">Channels have been cleared</h1>
+    </div>
+  </div>
+</div>

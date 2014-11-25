@@ -118,6 +118,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
           }
         }
       })
+      .state('material.clearauth', {
+        url: '/clearauth',
+        templateUrl: '/pages/clear-auth.html',
+        controller:  'clearAuthController'
+      })
       .state('material.design', {
         url: '/design',
         controller: 'DesignerController'
@@ -305,29 +310,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/templates.html',
         controller: 'TemplatesController'
       })
-
-      .state('ob', {
-        abstract: true,
-        controller: 'OctobluController',
-        templateUrl: "/pages/octoblu.html",
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          },
-          myDevices: function (NodeService) {
-            return NodeService.getNodes({cache: false})
-          }
-        },
-        onEnter: function ($state, currentUser) {
-          var terms_accepted_at = new Date(currentUser.terms_accepted_at || null), // new Date(null) -> Epoch
-            terms_updated_at = new Date('2014-07-01');
-
-          if (terms_accepted_at < terms_updated_at) {
-            $state.go('accept_terms');
-          }
-        },
-        unsecured: true
-      })
       .state('accept_terms', {
         url: '/accept_terms',
         templateUrl: '/pages/accept_terms.html',
@@ -344,12 +326,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'termsController',
         unsecured: true
       })
-      .state('ob.about', {
-        url: '/about',
-        templateUrl: '/pages/about.html',
-        controller: 'aboutController',
-        unsecured: true
-      })
       .state('contact', {
         url: '/contact',
         templateUrl: '/pages/contact.html',
@@ -360,11 +336,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/profile',
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
-      })
-      .state('ob.clearauth', {
-        url: '/clearauth',
-        templateUrl: '/pages/clear-auth.html',
-        controller:  'clearAuthController'
       })
 
       .state('login', {
@@ -403,33 +374,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         unsecured: true
       })
 
-      .state('ob.faqs', {
-        url: '/faqs',
-        templateUrl: '/pages/faqs.html',
-        controller: 'faqsController'
-      })
-      .state('ob.services', {
-        url: '/services',
-        templateUrl: '/pages/services.html',
-        controller: 'servicesController'
-      })
-      .state('ob.nodewizard.addnode', {
-        url: '',
-        controller: 'addNodeController',
-        templateUrl: '/pages/node-wizard/add-node.html'
-      })
-
-
-      .state('ob.nodewizard.addgateblu', {
-        url: '/add-gateblu/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
-      })
-      .state('ob.nodewizard.addmicroblu', {
-        url: '/add-microblu/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',
