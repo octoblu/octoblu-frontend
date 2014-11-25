@@ -2,1171 +2,1311 @@
   "_id": "54078e046b465e1815c63737",
   "__v": 0,
   "application": {
-    "base": "http://foo.teamworkpm.net",
+    "base": "http://:subdomain.teamworkpm.net",
     "resources": [
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "hhttp://foo.teamworkpm.net/account"
+          "url": "hhttp://:subdomain.teamworkpm.net/account"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account.json",
+        "displayName": "Get Account",
         "path": "/account.json",
-        "url": "http://foo.teamworkpm.net/account"
+        "url": "http://:subdomain.teamworkpm.net/account"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/authenticate"
+          "url": "http://:subdomain.teamworkpm.net/latestActivity"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/authenticate.json",
-        "path": "/authenticate.json",
-        "url": "http://foo.teamworkpm.net/authenticate"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/latestActivity"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/latestActivity.json",
+        "displayName": "Get Latest Activity",
         "path": "/latestActivity.json",
         "params": [
           {
             "style": "query",
             "type": "numeric",
-            "name": "maxItems"
-          },{
+            "name": "maxItems",
+            "displayName": "Max Items"
+          },
+          {
             "style": "query",
             "type": "boolean",
-            "name": "onlyStarred"
+            "name": "onlyStarred",
+            "displayName": "Only Starred"
           }
         ],
-        "url": "http://foo.teamworkpm.net/latestActivity/projects/{project_id}/latestActivity"
+        "url": "http://:subdomain.teamworkpm.net/latestActivity/projects/:project_id/latestActivity"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/latestActivity"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/latestActivity"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/latestActivity.json",
-        "path": "/projects/{project_id}/latestActivity.json",
+        "displayName": "Get Project's Latest Activity",
+        "path": "/projects/:project_id/latestActivity.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "number",
-            "name": "maxItems"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/latestActivity"
+            "name": "maxItems",
+            "displayName": "Max Items"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/latestActivity"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/activity/{id}"
+          "url": "http://:subdomain.teamworkpm.net/activity/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/activity/{id}.json",
-        "path": "/activity/{id}.json",
+        "displayName": "Delete Activity",
+        "path": "/activity/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/activity/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/activity/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/messageCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/messageCategories.json",
-        "path": "/projects/{project_id}/messageCategories.json",
+        "displayName": "",
+        "path": "/projects/:project_id/messageCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/messageCategories"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/messageCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/{id}.json",
-        "path": "/messageCategories/{id}.json",
+        "displayName": "/messageCategories/:id.json",
+        "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageCategories/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/messageCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/messageCategories.json",
-        "path": "/projects/{project_id}/messageCategories.json",
+        "displayName": "/projects/:project_id/messageCategories.json",
+        "path": "/projects/:project_id/messageCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/messageCategories"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/messageCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/{id}.json",
-        "path": "/messageCategories/{id}.json",
+        "displayName": "/messageCategories/:id.json",
+        "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageCategories/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/messageCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/{id}.json",
-        "path": "/messageCategories/{id}.json",
+        "displayName": "/messageCategories/:id.json",
+        "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageCategories/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/fileCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/fileCategories.json",
-        "path": "/projects/{project_id}/fileCategories.json",
+        "displayName": "/projects/:project_id/fileCategories.json",
+        "path": "/projects/:project_id/fileCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/fileCategories"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/fileCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/{id}.json",
-        "path": "/fileCategories/{id}.json",
+        "displayName": "/fileCategories/:id.json",
+        "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/fileCategories/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/fileCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/{project_id}/fileCategories.json",
-        "displayName": "/projects/{project_id}/fileCategories.json",
+        "path": "/projects/:project_id/fileCategories.json",
+        "displayName": "/projects/:project_id/fileCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/fileCategories"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/fileCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/{id}.json",
-        "path": "/fileCategories/{id}.json",
+        "displayName": "/fileCategories/:id.json",
+        "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/fileCategories/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/fileCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/{id}.json",
-        "path": "/fileCategories/{id}.json",
+        "displayName": "/fileCategories/:id.json",
+        "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/fileCategories/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/notebookCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/notebookCategories.json",
-        "path": "/projects/{project_id}/notebookCategories.json",
+        "displayName": "/projects/:project_id/notebookCategories.json",
+        "path": "/projects/:project_id/notebookCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebookCategories"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/notebookCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/{id}.json",
-        "path": "/notebookCategories/{id}.json",
+        "displayName": "/notebookCategories/:id.json",
+        "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/notebookCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/notebookCategories.json",
-        "path": "/projects/{project_id}/notebookCategories.json",
+        "displayName": "/projects/:project_id/notebookCategories.json",
+        "path": "/projects/:project_id/notebookCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "description"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "id"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebookCategories"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/notebookCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/{id}.json",
-        "path": "/notebookCategories/{id}.json",
+        "displayName": "/notebookCategories/:id.json",
+        "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/notebookCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/{id}.json",
-        "path": "/notebookCategories/{id}.json",
+        "displayName": "/notebookCategories/:id.json",
+        "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/#{project_id}/linkCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/#{project_id}/linkCategories.json",
-        "displayName": "/projects/#{project_id}/linkCategories.json",
+        "path": "/projects/#:project_id/linkCategories.json",
+        "displayName": "/projects/#:project_id/linkCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/linkCategories"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          "url": "http://:subdomain.teamworkpm.net/linkCategories/#{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#{id}.json",
-        "path": "/linkCategories/#{id}.json",
+        "displayName": "/linkCategories/#:id.json",
+        "path": "/linkCategories/#:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "project"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories"
+          "url": "http://:subdomain.teamworkpm.net/projects/#{project_id}/linkCategories"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/#{project_id}/linkCategories.json",
-        "path": "/projects/#{project_id}/linkCategories.json",
+        "displayName": "/projects/#:project_id/linkCategories.json",
+        "path": "/projects/#:project_id/linkCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "id"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/linkCategories"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          "url": "http://:subdomain.teamworkpm.net/linkCategories/#{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#{id}.json",
-        "path": "/linkCategories/#{id}.json",
+        "displayName": "/linkCategories/#:id.json",
+        "path": "/linkCategories/#:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          "url": "http://:subdomain.teamworkpm.net/linkCategories/#{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#{id}.json",
-        "path": "/linkCategories/#{id}.json",
+        "displayName": "/linkCategories/#:id.json",
+        "path": "/linkCategories/#:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projectcategories"
+          "url": "http://:subdomain.teamworkpm.net/projectcategories"
         },
         "authentication": {
           "required": "true"
         },
         "displayName": "/projectcategories.json",
         "path": "/projectcategories.json",
-        "params": [{
+        "params": [
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projectcategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projectcategories"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projectCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/{id}.json",
-        "path": "/projectCategories/{id}.json",
+        "displayName": "/projectCategories/:id.json",
+        "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          }],
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projectCategories/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projectCategories"
+          "url": "http://:subdomain.teamworkpm.net/projectCategories"
         },
         "authentication": {
           "required": "true"
         },
         "displayName": "/projectCategories.json",
         "path": "/projectCategories.json",
-        "params": [{
+        "params": [
+          {
             "style": "query",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "count"
-          },{
+          },
+          {
             "style": "query",
             "type": "integer",
             "name": "elements_count"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "type"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "id"
-          }],
-        "url": "http://foo.teamworkpm.net/projectCategories"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projectCategories"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projectCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/{id}.json",
-        "path": "/projectCategories/{id}.json",
+        "displayName": "/projectCategories/:id.json",
+        "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          }],
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projectCategories/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projectCategories/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/{id}.json",
-        "path": "/projectCategories/{id}.json",
+        "displayName": "/projectCategories/:id.json",
+        "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projectCategories/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments"
+          "url": "http://:subdomain.teamworkpm.net/{resource}/{resource_id}/comments"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/{resource}/{resource_id}/comments.json",
-        "path": "/{resource}/{resource_id}/comments.json",
+        "displayName": "/:resource/:resource_id/comments.json",
+        "path": "/:resource/:resource_id/comments.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "resource",
             "required": true
-          },{
+          },
+          {
             "style": "url",
             "type": "string",
             "name": "resource_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/:resource/:resource_id/comments"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/comments/{comment_id}"
+          "url": "http://:subdomain.teamworkpm.net/comments/{comment_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/{comment_id}.json",
-        "path": "/comments/{comment_id}.json",
+        "displayName": "/comments/:comment_id.json",
+        "path": "/comments/:comment_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "comment_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/comments/{comment_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/comments/:comment_id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments"
+          "url": "http://:subdomain.teamworkpm.net/{resource}/{resource_id}/comments"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/{resource}/{resource_id}/comments.json",
-        "path": "/{resource}/{resource_id}/comments.json",
+        "displayName": "/:resource/:resource_id/comments.json",
+        "path": "/:resource/:resource_id/comments.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "resource",
             "required": true
-          },{
+          },
+          {
             "style": "url",
             "type": "string",
             "name": "resource_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "body"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "isprivate"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileAttachments"
-          }],
-        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/:resource/:resource_id/comments"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/comments/{id}"
+          "url": "http://:subdomain.teamworkpm.net/comments/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/{id}.json",
-        "path": "/comments/{id}.json",
+        "displayName": "/comments/:id.json",
+        "path": "/comments/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "body"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "isprivate"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileAttachments"
-          }],
-        "url": "http://foo.teamworkpm.net/comments/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/comments/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/comments/{id}"
+          "url": "http://:subdomain.teamworkpm.net/comments/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/{id}.json",
-        "path": "/comments/{id}.json",
+        "displayName": "/comments/:id.json",
+        "path": "/comments/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/comments/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/comments/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies"
+          "url": "http://:subdomain.teamworkpm.net/companies"
         },
         "authentication": {
           "required": "true"
         },
         "displayName": "/companies.json",
         "path": "/companies.json",
-        "params": [{
+        "params": [
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "address_one"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "address_two"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "zip"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "city"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "state"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "countrycode"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "fax"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "website"
-          }],
-        "url": "http://foo.teamworkpm.net/companies"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/companies"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies/{project_id}"
+          "url": "http://:subdomain.teamworkpm.net/companies/{project_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/{project_id}.json",
-        "path": "/companies/{project_id}.json",
+        "displayName": "/companies/:project_id.json",
+        "path": "/companies/:project_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "address_one"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "address_two"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "zip"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "city"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "state"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "countrycode"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "fax"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "website"
-          }],
-        "url": "http://foo.teamworkpm.net/companies/{project_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/companies/:project_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies/{id}"
+          "url": "http://:subdomain.teamworkpm.net/companies/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/{id}.json",
-        "path": "/companies/{id}.json",
+        "displayName": "/companies/:id.json",
+        "path": "/companies/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/companies/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/companies/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies/{company_id}"
+          "url": "http://:subdomain.teamworkpm.net/companies/{company_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/{company_id}.json",
-        "path": "/companies/{company_id}.json",
+        "displayName": "/companies/:company_id.json",
+        "path": "/companies/:company_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "company_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/companies/{company_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/companies/:company_id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies"
+          "url": "http://:subdomain.teamworkpm.net/companies"
         },
         "authentication": {
           "required": "true"
@@ -1174,198 +1314,222 @@
         "displayName": "/companies.json",
         "path": "/companies.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/companies"
+        "url": "http://:subdomain.teamworkpm.net/companies"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/companies"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/companies"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/companies.json",
-        "path": "/projects/{project_id}/companies.json",
+        "displayName": "/projects/:project_id/companies.json",
+        "path": "/projects/:project_id/companies.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/companies"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/companies"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/files"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/files"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/files.json",
-        "path": "/projects/{project_id}/files.json",
+        "displayName": "/projects/:project_id/files.json",
+        "path": "/projects/:project_id/files.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/files"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/files"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/files/{file_id}"
+          "url": "http://:subdomain.teamworkpm.net/files/{file_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/{file_id}.json",
-        "path": "/files/{file_id}.json",
+        "displayName": "/files/:file_id.json",
+        "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "file_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/files/{file_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/files/:file_id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/files"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/files"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/files.json",
-        "path": "/projects/{project_id}/files.json",
+        "displayName": "/projects/:project_id/files.json",
+        "path": "/projects/:project_id/files.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "size"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "version"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "uploaded-date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "uploaded-by-userid"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-parent-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "download-url"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileRef"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/files"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/files"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/files/{file_id}"
+          "url": "http://:subdomain.teamworkpm.net/files/{file_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/{file_id}.json",
-        "path": "/files/{file_id}.json",
+        "displayName": "/files/:file_id.json",
+        "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "file_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileRef"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "version"
-          }],
-        "url": "http://foo.teamworkpm.net/files/{file_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/files/:file_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/files/{file_id}"
+          "url": "http://:subdomain.teamworkpm.net/files/{file_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/{file_id}.json",
-        "path": "/files/{file_id}.json",
+        "displayName": "/files/:file_id.json",
+        "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "file_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/files/{file_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/files/:file_id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/pendingfiles"
+          "url": "http://:subdomain.teamworkpm.net/pendingfiles"
         },
         "authentication": {
           "required": "true"
@@ -1373,12 +1537,12 @@
         "displayName": "/pendingfiles.json",
         "path": "/pendingfiles.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/pendingfiles"
+        "url": "http://:subdomain.teamworkpm.net/pendingfiles"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendarevents"
+          "url": "http://:subdomain.teamworkpm.net/calendarevents"
         },
         "authentication": {
           "required": "true"
@@ -1409,7 +1573,8 @@
             "style": "query",
             "type": "string",
             "required": "false"
-          },{
+          },
+          {
             "name": "where",
             "style": "query",
             "type": "string"
@@ -1428,7 +1593,8 @@
             "name": "attending-user-ids",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "notify-user-names",
             "style": "query",
             "type": "string"
@@ -1447,7 +1613,8 @@
             "name": "owner",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "reminders",
             "style": "query",
             "type": "string"
@@ -1466,7 +1633,8 @@
             "name": "repeat",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "all-day",
             "style": "query",
             "type": "string"
@@ -1490,7 +1658,8 @@
             "name": "last-changed-on",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "privacy",
             "style": "query",
             "type": "string"
@@ -1511,25 +1680,26 @@
             "type": "string"
           }
         ],
-        "url": "http://foo.teamworkpm.net/calendarevents"
+        "url": "http://:subdomain.teamworkpm.net/calendarevents"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          "url": "http://:subdomain.teamworkpm.net/calendarevents/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/calendarevents/{id}.json",
-        "displayName": "/calendarevents/{id}.json",
+        "path": "/calendarevents/:id.json",
+        "displayName": "/calendarevents/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "name": "where",
             "style": "query",
             "type": "string"
@@ -1548,7 +1718,8 @@
             "name": "attending-user-ids",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "notify-user-names",
             "style": "query",
             "type": "string"
@@ -1562,7 +1733,8 @@
             "name": "owner",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "reminders",
             "style": "query",
             "type": "string"
@@ -1581,7 +1753,8 @@
             "name": "repeat",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "all-day",
             "style": "query",
             "type": "string"
@@ -1605,7 +1778,8 @@
             "name": "last-changed-on",
             "style": "query",
             "type": "string"
-          },{
+          },
+          {
             "name": "privacy",
             "style": "query",
             "type": "string"
@@ -1624,13 +1798,14 @@
             "name": "title",
             "style": "query",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/calendarevents/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendarevents"
+          "url": "http://:subdomain.teamworkpm.net/calendarevents"
         },
         "authentication": {
           "required": "true"
@@ -1638,7 +1813,7 @@
         "displayName": "/calendarevents.json",
         "path": "/calendarevents.json",
         "params": [
-        {
+          {
             "name": "start",
             "style": "body",
             "type": "string"
@@ -1657,7 +1832,8 @@
             "name": "title",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "description",
             "style": "body",
             "type": "string"
@@ -1671,7 +1847,8 @@
             "name": "privacy",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "project-id",
             "style": "body",
             "type": "string"
@@ -1690,7 +1867,8 @@
             "name": "attending-user-ids",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "notify-user-ids",
             "style": "body",
             "type": "string"
@@ -1709,26 +1887,28 @@
             "name": "reminders",
             "style": "body",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/calendarevents"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/calendarevents"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          "url": "http://:subdomain.teamworkpm.net/calendarevents/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents/{id}.json",
-        "path": "/calendarevents/{id}.json",
+        "displayName": "/calendarevents/:id.json",
+        "path": "/calendarevents/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "name": "start",
             "style": "body",
             "type": "string"
@@ -1747,7 +1927,8 @@
             "name": "title",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "description",
             "style": "body",
             "type": "string"
@@ -1761,7 +1942,8 @@
             "name": "privacy",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "project-id",
             "style": "body",
             "type": "string"
@@ -1780,7 +1962,8 @@
             "name": "attending-user-ids",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "notify-user-ids",
             "style": "body",
             "type": "string"
@@ -1799,39 +1982,42 @@
             "name": "reminders",
             "style": "body",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/calendarevents/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          "url": "http://:subdomain.teamworkpm.net/calendarevents/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents/{id}.json",
-        "path": "/calendarevents/{id}.json",
+        "displayName": "/calendarevents/:id.json",
+        "path": "/calendarevents/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/calendarevents/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/calendareventtypes"
+          "url": "http://:subdomain.teamworkpm.net/calendareventtypes"
         },
         "authentication": {
           "required": "true"
         },
         "displayName": "/calendareventtypes.json",
         "path": "/calendareventtypes.json",
-        "params": [{
+        "params": [
+          {
             "name": "name",
             "style": "query",
             "type": "string"
@@ -1845,26 +2031,28 @@
             "name": "color",
             "style": "query",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/calendareventtypes"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/calendareventtypes"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/posts"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/posts"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/posts.json",
-        "path": "/projects/{project_id}/posts.json",
+        "displayName": "/projects/:project_id/posts.json",
+        "path": "/projects/:project_id/posts.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "name": "title",
             "style": "body",
             "type": "string"
@@ -1878,7 +2066,8 @@
             "name": "notify",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "private",
             "style": "body",
             "type": "string"
@@ -1897,274 +2086,20 @@
             "name": "pendingFileAttachments",
             "style": "body",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/posts"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/posts/{id}"
+          "url": "http://:subdomain.teamworkpm.net/posts/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/posts/{id}.json",
-        "path": "/posts/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/posts/{id}"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/posts"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "path": "/projects/{project_id}/posts.json",
-        "displayName": "/projects/{project_id}/posts.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/projects/{project_id}/cat/{category_id}/posts.json",
-        "path": "/projects/{project_id}/cat/{category_id}/posts.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
-          },{
-            "style": "url",
-            "type": "string",
-            "name": "category_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/posts/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/posts/{id}.json",
-        "path": "/posts/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "title"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "category-id"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "notify"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "private"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "body"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "attachments"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "pendingFileAttachments"
-          }],
-        "url": "http://foo.teamworkpm.net/posts/{id}"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/posts/archive"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/projects/{project_id}/posts/archive.json",
-        "path": "/projects/{project_id}/posts/archive.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts/archive"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts/archive"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/projects/{project_id}/cat/{category_id}/posts/archive.json",
-        "path": "/projects/{project_id}/cat/{category_id}/posts/archive.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
-          },{
-            "style": "url",
-            "type": "string",
-            "name": "category_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts/archive"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messages/{id}/archive"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messages/{id}/archive.json",
-        "path": "/messages/{id}/archive.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/messages/{id}/archive"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messages/{id}/unarchive"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messages/{id}/unarchive.json",
-        "path": "/messages/{id}/unarchive.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/messages/{id}/unarchive"
-      },
-      {
-        "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/posts/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/posts/{id}.json",
-        "path": "/posts/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/posts/{id}"
-      },
-      {
-        "httpMethod": "post",
-        "doc": {
-          "url": "hhttp://foo.teamworkpm.net/messages/{message_id}/messageReplies"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messages/{message_id}/messageReplies.json",
-        "path": "/messages/{message_id}/messageReplies.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "message_id",
-            "required": true
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "body"
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/messages/{message_id}/messageReplies"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messageReplies/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messageReplies/{id}.json",
-        "path": "/messageReplies/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/messageReplies/{id}"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messages/{id}/replies"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messages/{id}/replies.json",
-        "path": "/messages/{id}/replies.json",
+        "displayName": "/posts/:id.json",
+        "path": "/posts/:id.json",
         "params": [
           {
             "style": "url",
@@ -2173,54 +2108,334 @@
             "required": true
           }
         ],
-        "url": "http://foo.teamworkpm.net/messages/{id}/replies"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messageReplies/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messageReplies/{id}.json",
-        "path": "/messageReplies/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          },{
-            "style": "body",
-            "type": "string",
-            "name": "messagereply"
-          }],
-        "url": "http://foo.teamworkpm.net/messageReplies/{id}"
-      },
-      {
-        "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/messageReplies/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/messageReplies/{id}.json",
-        "path": "/messageReplies/{id}.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/messageReplies/{id}"
+        "url": "http://:subdomain.teamworkpm.net/posts/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/milestones"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/posts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/projects/:project_id/posts.json",
+        "displayName": "/projects/:project_id/posts.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "project_id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/posts"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/:project_id/cat/:category_id/posts.json",
+        "path": "/projects/:project_id/cat/:category_id/posts.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": "category_id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/cat/:category_id/posts"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/posts/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/posts/:id.json",
+        "path": "/posts/:id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "title"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "category-id"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "notify"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "private"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "body"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "attachments"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "pendingFileAttachments"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/posts/:id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/posts/archive"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/:project_id/posts/archive.json",
+        "path": "/projects/:project_id/posts/archive.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "project_id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/posts/archive"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts/archive"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/:project_id/cat/:category_id/posts/archive.json",
+        "path": "/projects/:project_id/cat/:category_id/posts/archive.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": "category_id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/cat/:category_id/posts/archive"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messages/{id}/archive"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/:id/archive.json",
+        "path": "/messages/:id/archive.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messages/:id/archive"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messages/{id}/unarchive"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/:id/unarchive.json",
+        "path": "/messages/:id/unarchive.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messages/:id/unarchive"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/posts/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/posts/:id.json",
+        "path": "/posts/:id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/posts/:id"
+      },
+      {
+        "httpMethod": "post",
+        "doc": {
+          "url": "hhttp://:subdomain.teamworkpm.net/messages/{message_id}/messageReplies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/:message_id/messageReplies.json",
+        "path": "/messages/:message_id/messageReplies.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "message_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "body"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "notify"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messages/:message_id/messageReplies"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messageReplies/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageReplies/:id.json",
+        "path": "/messageReplies/:id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageReplies/:id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messages/{id}/replies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/:id/replies.json",
+        "path": "/messages/:id/replies.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messages/:id/replies"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messageReplies/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageReplies/:id.json",
+        "path": "/messageReplies/:id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "messagereply"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageReplies/:id"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/messageReplies/{id}"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageReplies/:id.json",
+        "path": "/messageReplies/:id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/messageReplies/:id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/milestones"
         },
         "authentication": {
           "required": "true"
@@ -2232,226 +2447,254 @@
             "style": "query",
             "type": "string",
             "name": "find"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "incomplete"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "late"
-          }],
-        "url": "http://foo.teamworkpm.net/milestones"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/#{project_id}/milestones"
+          "url": "http://:subdomain.teamworkpm.net/projects/#{project_id}/milestones"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/#{project_id}/milestones.json",
-        "path": "/projects/#{project_id}/milestones.json",
+        "displayName": "/projects/#:project_id/milestones.json",
+        "path": "/projects/#:project_id/milestones.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "find"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "incomplete"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "late"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/#{project_id}/milestones"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/milestones"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/milestones/#{milestone_id}"
+          "url": "http://:subdomain.teamworkpm.net/milestones/#{milestone_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/#{milestone_id}.json",
-        "path": "/milestones/#{milestone_id}.json",
+        "displayName": "/milestones/#:milestone_id.json",
+        "path": "/milestones/#:milestone_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "milestone_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getProgress"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showTaskLists"
-          }],
-        "url": "http://foo.teamworkpm.net/milestones/#{milestone_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones/#:milestone_id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net//milestones/{id}/complete"
+          "url": "http://:subdomain.teamworkpm.net//milestones/{id}/complete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/{id}/complete.json",
-        "path": "/milestones/{id}/complete.json",
+        "displayName": "/milestones/:id/complete.json",
+        "path": "/milestones/:id/complete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/milestones/{id}/complete"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones/:id/complete"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/milestones/{id}/uncomplete"
+          "url": "http://:subdomain.teamworkpm.net/milestones/{id}/uncomplete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/{id}/uncomplete.json",
-        "path": "/milestones/{id}/uncomplete.json",
+        "displayName": "/milestones/:id/uncomplete.json",
+        "path": "/milestones/:id/uncomplete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/milestones/{id}/uncomplete"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones/:id/uncomplete"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/milestones"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/milestones"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/milestones.json",
-        "path": "/projects/{project_id}/milestones.json",
+        "displayName": "/projects/:project_id/milestones.json",
+        "path": "/projects/:project_id/milestones.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "title"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "date",
             "name": "deadline"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "boolean",
             "name": "reminder"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "responsible-party-ids"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/milestones"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/milestones"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/milestones/{milestone_id}"
+          "url": "http://:subdomain.teamworkpm.net/milestones/{milestone_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/{milestone_id}.json",
-        "path": "/milestones/{milestone_id}.json",
+        "displayName": "/milestones/:milestone_id.json",
+        "path": "/milestones/:milestone_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "milestone_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "title"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "date",
             "name": "deadline"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "boolean",
             "name": "reminder"
-          },{
+          },
+          {
             "style": "body",
             "type": "boolean",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "responsible-party-ids"
-          }],
-        "url": "http://foo.teamworkpm.net/milestones/{milestone_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones/:milestone_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/milestones/{id}"
+          "url": "http://:subdomain.teamworkpm.net/milestones/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/milestones/{id}.json",
-        "displayName": "/milestones/{id}.json",
+        "path": "/milestones/:id.json",
+        "displayName": "/milestones/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/milestones/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/milestones/:id"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks"
+          "url": "http://:subdomain.teamworkpm.net/notebooks"
         },
         "authentication": {
           "required": "true"
@@ -2464,239 +2707,266 @@
             "type": "string",
             "name": "includeContent",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/notebooks"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/notebooks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/notebooks.json",
-        "path": "/projects/{project_id}/notebooks.json",
+        "displayName": "/projects/:project_id/notebooks.json",
+        "path": "/projects/:project_id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeContent",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebooks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebooks"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebookCategories/{id}/notebooks.json"
+          "url": "http://:subdomain.teamworkpm.net/notebookCategories/{id}/notebooks.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/{id}/notebooks.json",
-        "path": "/notebookCategories/{id}/notebooks.json",
+        "displayName": "/notebookCategories/:id/notebooks.json",
+        "path": "/notebookCategories/:id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeContent",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}/notebooks.json"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id/notebooks.json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks/{notebook_id}"
+          "url": "http://:subdomain.teamworkpm.net/notebooks/{notebook_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/{notebook_id}.json",
-        "path": "/notebooks/{notebook_id}.json",
+        "displayName": "/notebooks/:notebook_id.json",
+        "path": "/notebooks/:notebook_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "notebook_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks/{notebook_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks/:notebook_id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/notebooks"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/notebooks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/notebooks.json",
-        "path": "/projects/{project_id}/notebooks.json",
+        "displayName": "/projects/:project_id/notebooks.json",
+        "path": "/projects/:project_id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "content"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebooks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebooks"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks/{notebook_id}"
+          "url": "http://:subdomain.teamworkpm.net/notebooks/{notebook_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/{notebook_id}.json",
-        "path": "/notebooks/{notebook_id}.json",
+        "displayName": "/notebooks/:notebook_id.json",
+        "path": "/notebooks/:notebook_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "notebook_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "content"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "new-version"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "grant-access-to"
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks/{notebook_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks/:notebook_id"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks/{id}/lock"
+          "url": "http://:subdomain.teamworkpm.net/notebooks/{id}/lock"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/{id}/lock.json",
-        "path": "/notebooks/{id}/lock.json",
+        "displayName": "/notebooks/:id/lock.json",
+        "path": "/notebooks/:id/lock.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks/{id}/lock"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks/:id/lock"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks/{id}/unlock"
+          "url": "http://:subdomain.teamworkpm.net/notebooks/{id}/unlock"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/notebooks/{id}/unlock.json",
-        "displayName": "/notebooks/{id}/unlock.json",
+        "path": "/notebooks/:id/unlock.json",
+        "displayName": "/notebooks/:id/unlock.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks/{id}/unlock"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks/:id/unlock"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/notebooks/{id}"
+          "url": "http://:subdomain.teamworkpm.net/notebooks/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/{id}.json",
-        "path": "/notebooks/{id}.json",
+        "displayName": "/notebooks/:id.json",
+        "path": "/notebooks/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/notebooks/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/notebooks/:id"
       },
       {
         "httpMethod": "post",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people"
+          "url": "http://:subdomain.teamworkpm.net/people"
         },
         "authentication": {
           "required": "true"
@@ -2708,255 +2978,309 @@
             "style": "body",
             "type": "string",
             "name": "first-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "last-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "email-address"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "user-type"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "user-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "password"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "company-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "title"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-mobile"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone-number-office"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone-number-office-ext"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-fax"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-home"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "im-handle"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "im-service"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "dateFormat"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "sendWelcomeEmail"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "welcomeEmailMessage"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "receiveDailyReports"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "autoGiveProjectAccess"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "openID"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "notes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "userLanguage"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "administrator"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "canAddProjects"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "timezoneId"
-          }],
-        "url": "http://foo.teamworkpm.net/people"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{id}.json",
-        "path": "/people/{id}.json",
+        "displayName": "/people/:id.json",
+        "path": "/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "first-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "last-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "email-address"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "user-type"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "user-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "password"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "company-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "title"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-mobile"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone-number-office"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "phone-number-office-ext"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-fax"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "phone-number-home"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "im-handle"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "im-service"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "dateFormat"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "sendWelcomeEmail"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "welcomeEmailMessage"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "receiveDailyReports"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "autoGiveProjectAccess"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "openID"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "notes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "userLanguage"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "administrator"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "canAddProjects"
-          },{
+          },
+          {
             "style": "body",
             "type": "integer",
             "name": "timezoneId"
-          }],
-        "url": "http://foo.teamworkpm.net/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{id}.json",
-        "path": "/people/{id}.json",
+        "displayName": "/people/:id.json",
+        "path": "/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:id"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me"
+          "url": "http://:subdomain.teamworkpm.net/me"
         },
         "authentication": {
           "required": "true"
@@ -2964,12 +3288,12 @@
         "displayName": "/me.json",
         "path": "/me.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/me"
+        "url": "http://:subdomain.teamworkpm.net/me"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people"
+          "url": "http://:subdomain.teamworkpm.net/people"
         },
         "authentication": {
           "required": "true"
@@ -2977,111 +3301,118 @@
         "displayName": "/people.json",
         "path": "/people.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/people"
+        "url": "http://:subdomain.teamworkpm.net/people"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.netprojects/{project_id}/people"
+          "url": "http://:subdomain.teamworkpm.netprojects/{project_id}/people"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "projects/{project_id}/people.json",
-        "path": "projects/{project_id}/people.json",
-        "params": [{
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.netprojects/{project_id}/people"
-      },
-      {
-        "httpMethod": "get",
-        "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/people/{person_id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/projects/{project_id}/people/{person_id}.json",
-        "path": "/projects/{project_id}/people/{person_id}.json",
+        "displayName": "projects/:project_id/people.json",
+        "path": "projects/:project_id/people.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
-            "style": "url",
-            "type": "string",
-            "name": "person_id",
-            "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/people/{person_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.netprojects/:project_id/people"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/companies/{company_id}/people"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/people/{person_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/{company_id}/people.json",
-        "path": "/companies/{company_id}/people.json",
+        "displayName": "/projects/:project_id/people/:person_id.json",
+        "path": "/projects/:project_id/people/:person_id.json",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": "person_id",
+            "required": true
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/people/:person_id"
+      },
+      {
+        "httpMethod": "get",
+        "doc": {
+          "url": "http://:subdomain.teamworkpm.net/companies/{company_id}/people"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies/:company_id/people.json",
+        "path": "/companies/:company_id/people.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "company_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/companies/{company_id}/people"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/companies/:company_id/people"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{person_id}"
+          "url": "http://:subdomain.teamworkpm.net/people/{person_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{person_id}.json",
-        "path": "/people/{person_id}.json",
+        "displayName": "/people/:person_id.json",
+        "path": "/people/:person_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "person_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/people/{person_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:person_id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/APIKeys"
+          "url": "http://:subdomain.teamworkpm.net/people/APIKeys"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/{comment_id}.json",
-        "path": "/comments/{comment_id}.json",
+        "displayName": "/comments/:comment_id.json",
+        "path": "/comments/:comment_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "comment_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/people/APIKeys"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/APIKeys"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me/status"
+          "url": "http://:subdomain.teamworkpm.net/me/status"
         },
         "authentication": {
           "required": "true"
@@ -3093,185 +3424,205 @@
             "style": "body",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/me/status"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/me/status"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/me/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status/{status_id}.json",
-        "path": "/me/status/{status_id}.json",
+        "displayName": "/me/status/:status_id.json",
+        "path": "/me/status/:status_id.json",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/me/status/:status_id"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/me/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status/{status_id}.json",
-        "path": "/me/status/{status_id}.json",
+        "displayName": "/me/status/:status_id.json",
+        "path": "/me/status/:status_id.json",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "status_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/me/status/:status_id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/people/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/status/{status_id}.json",
-        "path": "/people/status/{status_id}.json",
-        "params": [{
+        "displayName": "/people/status/:status_id.json",
+        "path": "/people/status/:status_id.json",
+        "params": [
+          {
             "style": "body",
             "type": "string",
             "name": "status_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/people/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/status/:status_id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{person_id}/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/people/{person_id}/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{person_id}/status/{status_id}.json",
-        "path": "/people/{person_id}/status/{status_id}.json",
+        "displayName": "/people/:person_id/status/:status_id.json",
+        "path": "/people/:person_id/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "person_id",
             "required": true
-          },{
+          },
+          {
             "style": "url",
             "type": "string",
             "name": "status_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          }],
-        "url": "http://foo.teamworkpm.net/people/{person_id}/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:person_id/status/:status_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/me/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status/{status_id}.json",
-        "path": "/me/status/{status_id}.json",
+        "displayName": "/me/status/:status_id.json",
+        "path": "/me/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "status_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/me/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/me/status/:status_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/people/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/status/{status_id}.json",
-        "path": "/people/status/{status_id}.json",
+        "displayName": "/people/status/:status_id.json",
+        "path": "/people/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "status_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/people/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/status/:status_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{person_id}/status/{status_id}"
+          "url": "http://:subdomain.teamworkpm.net/people/{person_id}/status/{status_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{person_id}/status/{status_id}.json",
-        "path": "/people/{person_id}/status/{status_id}.json",
-        "params": [{
+        "displayName": "/people/:person_id/status/:status_id.json",
+        "path": "/people/:person_id/status/:status_id.json",
+        "params": [
+          {
             "style": "url",
             "type": "string",
             "name": "person_id",
             "required": true
-          },{
+          },
+          {
             "style": "url",
             "type": "string",
             "name": "status_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/people/{person_id}/status/{status_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:person_id/status/:status_id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/me/status"
+          "url": "http://:subdomain.teamworkpm.net/me/status"
         },
         "authentication": {
           "required": "true"
@@ -3283,68 +3634,79 @@
             "style": "query",
             "type": "string",
             "name": "first-name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "avatar-url"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "last-name"
-          }],
-        "url": "http://foo.teamworkpm.net/me/status"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/me/status"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/{user_id}/statuses"
+          "url": "http://:subdomain.teamworkpm.net/people/{user_id}/statuses"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/{user_id}/statuses.json",
-        "path": "/people/{user_id}/statuses.json",
+        "displayName": "/people/:user_id/statuses.json",
+        "path": "/people/:user_id/statuses.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "user_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "first-name"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "avatar-url"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "last-name"
-          }],
-        "url": "http://foo.teamworkpm.net/people/{user_id}/statuses"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/people/:user_id/statuses"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/people/status"
+          "url": "http://:subdomain.teamworkpm.net/people/status"
         },
         "authentication": {
           "required": "true"
@@ -3352,163 +3714,187 @@
         "displayName": "/people/status.json",
         "path": "/people/status.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/people/status"
+        "url": "http://:subdomain.teamworkpm.net/people/status"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}/people/{id}.json",
-        "path": "/projects/{id}/people/{id}.json",
+        "displayName": "/projects/:id/people/:id.json",
+        "path": "/projects/:id/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}/people/{id}.json",
-        "path": "/projects/{id}/people/{id}.json",
+        "displayName": "/projects/:id/people/:id.json",
+        "path": "/projects/:id/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}/people/{id}.json",
-        "path": "/projects/{id}/people/{id}.json",
+        "displayName": "/projects/:id/people/:id.json",
+        "path": "/projects/:id/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/people/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}/people/{id}.json",
-        "path": "/projects/{id}/people/{id}.json",
-        "params": [{
+        "displayName": "/projects/:id/people/:id.json",
+        "path": "/projects/:id/people/:id.json",
+        "params": [
+          {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-messages-and-files"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-tasks-and-milestones"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-time"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-notebooks"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-risk-register"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-invoices"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "view-links"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-tasks"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-milestones"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-taskLists"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-messages"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-files"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-time"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-notebooks"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-links"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "set-privacy"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "can-be-assigned-to-tasks-and-milestones"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "project-administrator"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "add-people-to-project"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/people/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects"
+          "url": "http://:subdomain.teamworkpm.net/projects"
         },
         "authentication": {
           "required": "true"
@@ -3527,7 +3913,8 @@
             "style": "body",
             "type": "string",
             "required": "false"
-          },{
+          },
+          {
             "name": "startDate",
             "style": "body",
             "type": "string"
@@ -3546,31 +3933,33 @@
             "name": "newCompany",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "category-id",
             "style": "body",
             "type": "string"
           }
         ],
-        "url": "http://foo.teamworkpm.net/projects"
+        "url": "http://:subdomain.teamworkpm.net/projects"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/{project_id}.json",
-        "displayName": "/projects/{project_id}.json",
+        "path": "/projects/:project_id.json",
+        "displayName": "/projects/:project_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "name": "name",
             "style": "body",
             "type": "string",
@@ -3581,7 +3970,8 @@
             "style": "body",
             "type": "string",
             "required": "false"
-          },{
+          },
+          {
             "name": "startDate",
             "style": "body",
             "type": "string"
@@ -3600,40 +3990,44 @@
             "name": "newCompany",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "status",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "name": "category-id",
             "style": "body",
             "type": "string"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}.json",
-        "path": "/projects/{id}.json",
+        "displayName": "/projects/:id.json",
+        "path": "/projects/:id.json",
         "params": [
-        {
+          {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects"
+          "url": "http://:subdomain.teamworkpm.net/projects"
         },
         "authentication": {
           "required": "true"
@@ -3641,35 +4035,37 @@
         "displayName": "/projects.json",
         "path": "/projects.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/projects"
+        "url": "http://:subdomain.teamworkpm.net/projects"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}.json",
-        "path": "/projects/{project_id}.json",
+        "displayName": "/projects/:project_id.json",
+        "path": "/projects/:project_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includePeople"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/starred"
+          "url": "http://:subdomain.teamworkpm.net/projects/starred"
         },
         "authentication": {
           "required": "true"
@@ -3677,69 +4073,72 @@
         "displayName": "/projects/starred.json",
         "path": "/projects/starred.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/projects/starred"
+        "url": "http://:subdomain.teamworkpm.net/projects/starred"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/star"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/star"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/star.json",
-        "path": "/projects/{project_id}/star.json",
+        "displayName": "/projects/:project_id/star.json",
+        "path": "/projects/:project_id/star.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/star"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/star"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/unstar"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/unstar"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/unstar.json",
-        "path": "/projects/{project_id}/unstar.json",
+        "displayName": "/projects/:project_id/unstar.json",
+        "path": "/projects/:project_id/unstar.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/unstar"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/unstar"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/projectroles"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/projectroles"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/{id}/projectroles.json",
-        "displayName": "/projects/{id}/projectroles.json",
+        "path": "/projects/:id/projectroles.json",
+        "displayName": "/projects/:id/projectroles.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/projectroles"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/projectroles"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/links"
+          "url": "http://:subdomain.teamworkpm.net/links"
         },
         "authentication": {
           "required": "true"
@@ -3752,193 +4151,220 @@
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "url",
             "type": "string",
             "name": "category_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/links"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/links"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/links"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/links"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/links.json",
-        "path": "/projects/{project_id}/links.json",
+        "displayName": "/projects/:project_id/links.json",
+        "path": "/projects/:project_id/links.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/links"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/links"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/links/{link_id}"
+          "url": "http://:subdomain.teamworkpm.net/links/{link_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/links/{link_id}.json",
-        "path": "/links/{link_id}.json",
+        "displayName": "/links/:link_id.json",
+        "path": "/links/:link_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "link_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/links/{link_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/links/:link_id"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/links"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/links"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/links.json",
-        "path": "/projects/{project_id}/links.json",
+        "displayName": "/projects/:project_id/links.json",
+        "path": "/projects/:project_id/links.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "code"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "width"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "height"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "open-in-new-window"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/links"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/links"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/links/{link_id}"
+          "url": "http://:subdomain.teamworkpm.net/links/{link_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/links/{link_id}.json",
-        "path": "/links/{link_id}.json",
+        "displayName": "/links/:link_id.json",
+        "path": "/links/:link_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "link_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "code"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "width"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "height"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "category-name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "open-in-new-window"
-          }],
-        "url": "http://foo.teamworkpm.net/links/{link_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/links/:link_id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/links/{link_id}"
+          "url": "http://:subdomain.teamworkpm.net/links/{link_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/links/{link_id}.json",
-        "path": "/links/{link_id}.json",
+        "displayName": "/links/:link_id.json",
+        "path": "/links/:link_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "link_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/links/{link_id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/links/:link_id"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/time_entries"
+          "url": "http://:subdomain.teamworkpm.net/time_entries"
         },
         "authentication": {
           "required": "true"
@@ -3950,564 +4376,645 @@
             "style": "query",
             "type": "numeric",
             "name": "page"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "fromdate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "fromtime"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "todate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "totime"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "sortorder"
-          },{
+          },
+          {
             "style": "query",
             "type": "numeric",
             "name": "userId"
-          }],
-        "url": "http://foo.teamworkpm.net/time_entries"
-      },{
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/time_entries"
+      },
+      {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/time_entries"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/time_entries"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/time_entries.json",
-        "path": "/projects/{project_id}/time_entries.json",
+        "displayName": "/projects/:project_id/time_entries.json",
+        "path": "/projects/:project_id/time_entries.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "numeric",
             "name": "page"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "fromdate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "fromtime"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "todate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "totime"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "sortorder"
-          },{
+          },
+          {
             "style": "query",
             "type": "numeric",
             "name": "userId"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/time_entries"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/time_entries"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
+          "url": "http://:subdomain.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/todo_items/{todo_item_id}/time_entries.json",
-        "path": "/todo_items/{todo_item_id}/time_entries.json",
+        "displayName": "/todo_items/:todo_item_id/time_entries.json",
+        "path": "/todo_items/:todo_item_id/time_entries.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "todo_item_id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/todo_items/:todo_item_id/time_entries"
       },
       {
         "httpMethod": "post",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/time_entries"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/time_entries"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/time_entries.json",
-        "path": "/projects/{project_id}/time_entries.json",
+        "displayName": "/projects/:project_id/time_entries.json",
+        "path": "/projects/:project_id/time_entries.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "person-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "time"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "hours"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "minutes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "isbillable"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/time_entries"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/time_entries"
       },
       {
         "httpMethod": "post",
         "doc": {
-          "url": "http://foo.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
+          "url": "http://:subdomain.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/todo_items/{todo_item_id}/time_entries.json",
-        "path": "/todo_items/{todo_item_id}/time_entries.json",
-        "params": [{
+        "displayName": "/todo_items/:todo_item_id/time_entries.json",
+        "path": "/todo_items/:todo_item_id/time_entries.json",
+        "params": [
+          {
             "style": "url",
             "type": "string",
             "name": "todo_item_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "person-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "time"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "hours"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "minutes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "isbillable"
-          }],
-        "url": "http://foo.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/todo_items/:todo_item_id/time_entries"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          "url": "http://:subdomain.teamworkpm.net/time_entries/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/time_entries/{id}.json",
-        "path": "/time_entries/{id}.json",
+        "displayName": "/time_entries/:id.json",
+        "path": "/time_entries/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/time_entries/:id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          "url": "http://:subdomain.teamworkpm.net/time_entries/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/time_entries/{id}.json",
-        "path": "/time_entries/{id}.json",
+        "displayName": "/time_entries/:id.json",
+        "path": "/time_entries/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "person-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "time"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "hours"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "minutes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "isbillable"
-          }],
-        "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/time_entries/:id"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          "url": "http://:subdomain.teamworkpm.net/time_entries/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/time_entries/{id}.json",
-        "displayName": "/time_entries/{id}.json",
+        "path": "/time_entries/:id.json",
+        "displayName": "/time_entries/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/time_entries/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/time_entries/:id"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/time/total"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/time/total"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{id}/time/total.json",
-        "path": "/projects/{id}/time/total.json",
+        "displayName": "/projects/:id/time/total.json",
+        "path": "/projects/:id/time/total.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/time/total"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/time/total"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasklists/{id}/time/total"
+          "url": "http://:subdomain.teamworkpm.net/tasklists/{id}/time/total"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasklists/{id}/time/total.json",
-        "path": "/tasklists/{id}/time/total.json",
+        "displayName": "/tasklists/:id/time/total.json",
+        "path": "/tasklists/:id/time/total.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/tasklists/{id}/time/total"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasklists/:id/time/total"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}/time/total"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}/time/total"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}/time/total.json",
-        "path": "/tasks/{id}/time/total.json",
+        "displayName": "/tasks/:id/time/total.json",
+        "path": "/tasks/:id/time/total.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}/time/total.json"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id/time/total.json"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/todo_lists"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/todo_lists.json",
-        "path": "/projects/{project_id}/todo_lists.json",
+        "displayName": "/projects/:project_id/todo_lists.json",
+        "path": "/projects/:project_id/todo_lists.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showMilestones"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "responsible-party-id"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getOverdueCount"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getCompletedCount"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "status"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "filter"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "nestSubTasks"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/todo_lists"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/todo_lists/{id}"
+          "url": "http://:subdomain.teamworkpm.net/todo_lists/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/todo_lists/{id}.json",
-        "path": "/todo_lists/{id}.json",
+        "displayName": "/todo_lists/:id.json",
+        "path": "/todo_lists/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showTasks",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "active"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "upcoming"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "late"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "today"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "tomorrow"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "completed"
-          }],
-        "url": "http://foo.teamworkpm.net/todo_lists/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/todo_lists/:id"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/todo_lists/{id}"
+          "url": "http://:subdomain.teamworkpm.net/todo_lists/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/todo_lists/{id}.json",
-        "path": "/todo_lists/{id}.json",
+        "displayName": "/todo_lists/:id.json",
+        "path": "/todo_lists/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "milestone-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          }],
-        "url": "http://foo.teamworkpm.net/todo_lists/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/todo_lists/:id"
       },
       {
         "httpMethod": "post",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/todo_lists"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/todo_lists.json",
-        "path": "/projects/{project_id}/todo_lists.json",
+        "displayName": "/projects/:project_id/todo_lists.json",
+        "path": "/projects/:project_id/todo_lists.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "name"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pinned"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "tracked"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "milestone-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "todo-list-template-id"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/todo_lists"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "hhttp://foo.teamworkpm.net/todo_lists/{id}"
+          "url": "hhttp://:subdomain.teamworkpm.net/todo_lists/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/todo_lists/{id}.json",
-        "path": "/todo_lists/{id}.json",
+        "displayName": "/todo_lists/:id.json",
+        "path": "/todo_lists/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/todo_lists/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/todo_lists/:id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists/reorder"
+          "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/todo_lists/reorder"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/{project_id}/todo_lists/reorder.json",
-        "path": "/projects/{project_id}/todo_lists/reorder.json",
+        "displayName": "/projects/:project_id/todo_lists/reorder.json",
+        "path": "/projects/:project_id/todo_lists/reorder.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "project_id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "todo-list"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "id"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/todo_lists/reorder"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/todo_lists/reorder"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasklists/templates"
+          "url": "http://:subdomain.teamworkpm.net/tasklists/templates"
         },
         "authentication": {
           "required": "true"
@@ -4515,12 +5022,12 @@
         "displayName": "/tasklists/templates.json",
         "path": "/tasklists/templates.json",
         "params": [],
-        "url": "http://foo.teamworkpm.net/tasklists/templates"
+        "url": "http://:subdomain.teamworkpm.net/tasklists/templates"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks"
+          "url": "http://:subdomain.teamworkpm.net/tasks"
         },
         "authentication": {
           "required": "true"
@@ -4532,535 +5039,632 @@
             "style": "query",
             "type": "string",
             "name": "filter"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "page"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "pageSize"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "startdate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "enddate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "updatedAfterDate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showDeleted"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedSubtasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "creator-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "include"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "responsible-party-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "sort"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "nestSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getFiles"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "dataSet"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeToday"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "ignore-start-dates"
-          }],
-        "url": "http://foo.teamworkpm.net/tasks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks"
       },
       {
         "httpMethod": "get",
         "doc": {
-          "url": "http://foo.teamworkpm.net/projects/{id}/tasks"
+          "url": "http://:subdomain.teamworkpm.net/projects/{id}/tasks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "//projects/{id}/tasks.json",
-        "path": "/projects/{id}/tasks.json",
+        "displayName": "//projects/:id/tasks.json",
+        "path": "/projects/:id/tasks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "filter"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "page"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "pageSize"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "startdate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "enddate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "updatedAfterDate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showDeleted"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedSubtasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "creator-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "include"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "responsible-party-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "sort"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "nestSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getFiles"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "dataSet"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeToday"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "ignore-start-dates"
-          }],
-        "url": "http://foo.teamworkpm.net/projects/{id}/tasks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/projects/:id/tasks"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks"
+          "url": "http://:subdomain.teamworkpm.net/tasklists/{id}/tasks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasklists/{id}/tasks.json",
-        "path": "/tasklists/{id}/tasks.json",
+        "displayName": "/tasklists/:id/tasks.json",
+        "path": "/tasklists/:id/tasks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "filter"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "page"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "pageSize"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "startdate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "enddate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "updatedAfterDate"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "showDeleted"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedSubtasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "creator-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "include"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "responsible-party-ids"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "sort"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "nestSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getFiles"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "dataSet"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeToday"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "ignore-start-dates"
-          }],
-        "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasklists/:id/tasks"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}.json",
-        "path": "/tasks/{id}.json",
+        "displayName": "/tasks/:id.json",
+        "path": "/tasks/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "getFiles"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "dataSet"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "nestSubTasks"
-          },{
+          },
+          {
             "style": "query",
             "type": "string",
             "name": "includeCompletedSubtasks"
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}/complete"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}/complete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}/complete.json",
-        "path": "/tasks/{id}/complete.json",
+        "displayName": "/tasks/:id/complete.json",
+        "path": "/tasks/:id/complete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}/complete"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id/complete"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}/uncomplete"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}/uncomplete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}/uncomplete.json",
-        "path": "/tasks/{id}/uncomplete.json",
+        "displayName": "/tasks/:id/uncomplete.json",
+        "path": "/tasks/:id/uncomplete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}/uncomplete"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id/uncomplete"
       },
       {
         "httpMethod": "post",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks"
+          "url": "http://:subdomain.teamworkpm.net/tasklists/{id}/tasks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasklists/{id}/tasks.json",
-        "path": "/tasklists/{id}/tasks.json",
+        "displayName": "/tasklists/:id/tasks.json",
+        "path": "/tasklists/:id/tasks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "content",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "parentTaskId"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "responsible-party-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "start-date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "due-date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "priority"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "attachments"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileAttachments"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "predecessors"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "estimated-minutes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "positionAfterTask"
-          }],
-        "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasklists/:id/tasks"
       },
       {
         "httpMethod": "put",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}.json",
-        "path": "/tasks/{id}.json",
+        "displayName": "/tasks/:id.json",
+        "path": "/tasks/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "content"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "notify"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "description"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "due-date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "start-date"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "private"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "priority"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "estimated-minutes"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "responsible-party-id"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "attachments"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "tasklistId"
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "pendingFileAttachments"
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}.json"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id.json"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasks/{id}"
+          "url": "http://:subdomain.teamworkpm.net/tasks/{id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/tasks/{id}.json",
-        "path": "/tasks/{id}.json",
+        "displayName": "/tasks/:id.json",
+        "path": "/tasks/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          }],
-        "url": "http://foo.teamworkpm.net/tasks/{id}"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasks/:id"
       },
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks/reorder"
+          "url": "http://:subdomain.teamworkpm.net/tasklists/{id}/tasks/reorder"
         },
         "authentication": {
           "required": "true"
         },
-        "path": "/tasklists/{id}/tasks/reorder.json",
-        "displayName": "/tasklists/{id}/tasks/reorder.json",
+        "path": "/tasklists/:id/tasks/reorder.json",
+        "displayName": "/tasklists/:id/tasks/reorder.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "id",
             "required": true
-          },{
+          },
+          {
             "style": "body",
             "type": "string",
             "name": "todo-item"
-          }],
-        "url": "http://foo.teamworkpm.net/tasklists/{id}/tasks/reorder"
+          }
+        ],
+        "url": "http://:subdomain.teamworkpm.net/tasklists/:id/tasks/reorder"
       }
     ]
   },
-  "defaultParams" : [{
-    "name": ":site_url",
-    "style": "url",
-    "type": "string",
-    "value": "foo.teamworkpm.net",
-    "displayName" : "Site Url",
-    "required": true
-  }],
+  "defaultParams": [
+    {
+      "name": ":subdomain",
+      "style": "url",
+      "type": "string",
+      "displayName": "Subdomain",
+      "required": true
+    }
+  ],
   "auth_strategy": "apikey-dummypass-basic",
   "custom_tokens": [],
   "description": "",
