@@ -18,83 +18,74 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/activities"
+          "url": "https://developers.google.com/youtube/v3/docs/activities/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "Activities",
+        "displayName": "Get Activities List",
         "path": "/activities",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "channelId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Channel ID"
           },
           {
             "name": "home",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "maxResults",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
+            "displayName": "Home"
           },
           {
             "name": "mine",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "Mine"
+          },
+          {
+            "name": "maxResults",
+            "style": "query",
+            "type": "number",
+            "displayName": "Max Results"
           },
           {
             "name": "pageToken",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Page Token"
           },
           {
             "name": "publishedAfter",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Published After"
           },
           {
             "name": "publishedBefore",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Published Before"
           },
           {
             "name": "regionCode",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Region Code"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/activities"
@@ -102,27 +93,26 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/activities"
+          "url": "https://developers.google.com/youtube/v3/docs/activities/insert"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/activities",
-        "displayName": "Activities",
+        "displayName": "Post Activities Insert",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/activities"
@@ -130,102 +120,100 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channelBanners"
+          "url": "https://developers.google.com/youtube/v3/docs/channelBanners/insert"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "channelBanner",
-        "path": "channelBanner",
-        "url": "https://www.googleapis.com/youtube/v3channelBanner"
+        "displayName": "Post Channel Banner Insert",
+        "path": "channelBanners/insert",
+        "params": [
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "body",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3channelBanners/insert"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channels"
+          "url": "https://developers.google.com/youtube/v3/docs/channels/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "channels",
+        "displayName": "Get Channels List",
         "path": "/channels",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "categoryId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Category ID"
           },
           {
             "name": "forUsername",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "For Username"
           },
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           },
           {
             "name": "managedByMe",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "maxResults",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
+            "displayName": "Managed By Me"
           },
           {
             "name": "mine",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "Mine"
           },
           {
             "name": "mySubscribers",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "My Subscribers"
+          },
+          {
+            "name": "maxResults",
+            "style": "query",
+            "type": "number",
+            "displayName": "Max Results"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "pageToken",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Page Token"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/channels"
@@ -233,97 +221,169 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channels"
+          "url": "https://developers.google.com/youtube/v3/docs/channels/update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "channels",
+        "displayName": "Put Channels Update",
         "path": "/channels",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/channels"
       },
       {
-        "httpMethod": "DELETE",
+        "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channelSections"
+          "url": "https://developers.google.com/youtube/v3/docs/channelSections/list"
+        },
+        "authentication": {
+          "required": "false"
+        },
+        "displayName": "Get Channel Sections List",
+        "path": "/channelSections",
+        "params": [
+          {
+            "name": "part",
+            "style": "query",
+            "type": "string",
+            "displayName": "Part"
+          },
+          {
+            "name": "channelId",
+            "style": "query",
+            "type": "string",
+            "displayName": "Channel ID"
+          },
+          {
+            "name": "id",
+            "style": "query",
+            "type": "string",
+            "displayName": "ID"
+          },
+          {
+            "name": "mine",
+            "style": "query",
+            "type": "boolean",
+            "displayName": "Mine"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "query",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/channelSections"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/channelSections/insert"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "channelSections",
+        "displayName": "Post Channel Sections Insert",
+        "path": "/channelSections",
+        "params": [
+          {
+            "name": "part",
+            "style": "body",
+            "type": "string",
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "body",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          },
+          {
+            "name": "onBehalfOfContentOwnerChannel",
+            "style": "body",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner Channel"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/channelSections"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/channelSections/update"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Put Channel Sections Update",
+        "path": "/channelSections",
+        "params": [
+          {
+            "name": "part",
+            "style": "body",
+            "type": "string",
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/channelSections"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/channelSections/delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Delete Channel Sections",
         "path": "/channelSections",
         "params": [
           {
             "name": "id",
             "style": "",
             "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "url": "https://www.googleapis.com/youtube/v3/channelSections"
-      },
-      {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channelSections"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "channelSections",
-        "path": "/channelSections",
-        "params": [
-          {
-            "name": "part",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "onBehalfOfContentOwner",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "onBehalfOfContentOwnerChannel",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "fields",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "required": "true",
+            "displayName": "ID"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/channelSections"
@@ -331,132 +391,44 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channelSections"
-        },
-        "authentication": {
-          "required": "false"
-        },
-        "displayName": "channelSections",
-        "path": "/channelSections",
-        "params": [
-          {
-            "name": "part",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "channelId",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "mine",
-            "style": "query",
-            "type": "boolean",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "onBehalfOfContentOwner",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "fields",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://www.googleapis.com/youtube/v3/channelSections"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/channelSections"
+          "url": "https://developers.google.com/youtube/v3/docs/guideCategories/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "channelSections",
-        "path": "/channelSections",
-        "params": [
-          {
-            "name": "part",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "fields",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://www.googleapis.com/youtube/v3/channelSections"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/guideCategories"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "guideCategories",
+        "displayName": "Get Guide Categories List",
         "path": "/guideCategories",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "hl",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Hl"
           },
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           },
           {
             "name": "regionCode",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Region Code"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/guideCategories"
@@ -464,34 +436,32 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/i18nLanguages"
+          "url": "https://developers.google.com/youtube/v3/docs/i18nLanguages/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/i18nLanguages",
+        "displayName": "Get i18n Languages List",
         "path": "/i18nLanguages",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "hl",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Hl"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/i18nLanguages"
@@ -499,125 +469,95 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/i18nRegions"
+          "url": "https://developers.google.com/youtube/v3/docs/i18nRegions/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/i18nRegions",
+        "displayName": "Get i18n Regions List",
         "path": "/i18nRegions",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "hl",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Hl"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/i18nRegions"
       },
       {
-        "httpMethod": "DELETE",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlistItems"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "playlistItems",
-        "path": "/playlistItems",
-        "params": [
-          {
-            "name": "id",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://www.googleapis.com/youtube/v3/playlistItems"
-      },
-      {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlistItems"
+          "url": "https://developers.google.com/youtube/v3/docs/playlistItems/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlistItems",
+        "displayName": "Get Playlist Items List",
         "path": "/playlistItems",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "maxResults",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "onBehalfOfContentOwner",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "pageToken",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           },
           {
             "name": "playlistId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Playlist ID"
+          },
+          {
+            "name": "maxResults",
+            "style": "query",
+            "type": "number",
+            "displayName": "Max Results"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "query",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          },
+          {
+            "name": "pageToken",
+            "style": "query",
+            "type": "string",
+            "displayName": "Page Token"
           },
           {
             "name": "videoId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video ID"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlistItems"
@@ -625,34 +565,32 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlistItems"
+          "url": "https://developers.google.com/youtube/v3/docs/playlistItems/insert"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/playlistItems",
+        "displayName": "Post Playlist Items Insert",
         "path": "/playlistItems",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlistItems"
@@ -660,27 +598,26 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlistItems"
+          "url": "https://developers.google.com/youtube/v3/docs/playlistItems/update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlistItems",
+        "displayName": "Put Playlist Items Update",
         "path": "/playlistItems",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlistItems"
@@ -688,104 +625,88 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlists"
+          "url": "https://developers.google.com/youtube/v3/docs/playlistItems/delete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlists",
-        "path": "/playlists",
+        "displayName": "Delete Playlist Items",
+        "path": "/playlistItems",
         "params": [
           {
             "name": "id",
             "style": "",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "onBehalfOfContentOwner",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           }
         ],
-        "url": "https://www.googleapis.com/youtube/v3/playlists"
+        "url": "https://www.googleapis.com/youtube/v3/playlistItems"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlists"
+          "url": "https://developers.google.com/youtube/v3/docs/playlists/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlists",
+        "displayName": "Get Playlists List",
         "path": "/playlists",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "channelId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Channel ID"
           },
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           },
           {
             "name": "maxResults",
             "style": "query",
             "type": "number",
-            "value": "",
-            "required": "false"
+            "displayName": "Max Results"
           },
           {
             "name": "mine",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "Mine"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "onBehalfOfContentOwnerChannel",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner Channel"
           },
           {
             "name": "pageToken",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Page Token"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlists"
@@ -793,48 +714,43 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlists"
+          "url": "https://developers.google.com/youtube/v3/docs/playlists/insert"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlists",
+        "displayName": "Post Playlists Insert",
         "path": "/playlists",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "onBehalfOfContentOwnerChannel",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner Channel"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           },
           {
             "name": "",
             "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "String"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlists"
@@ -842,34 +758,59 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/playlists"
+          "url": "https://developers.google.com/youtube/v3/docs/playlists/update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "playlists",
+        "displayName": "Put Playlists Update",
         "path": "/playlists",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/playlists"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/playlists/delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Delete Playlists",
+        "path": "/playlists",
+        "params": [
+          {
+            "name": "id",
+            "style": "",
+            "type": "string",
+            "required": "true",
+            "displayName": "ID"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/playlists"
@@ -877,251 +818,334 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/search"
+          "url": "https://developers.google.com/youtube/v3/docs/search/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "search",
+        "displayName": "Get Search List",
         "path": "/search",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "channelId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Channel ID"
           },
           {
             "name": "channelType",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Channel Type"
           },
           {
             "name": "eventType",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Event Type"
           },
           {
             "name": "forContentOwner",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "For Content Owner"
           },
           {
             "name": "forMine",
             "style": "query",
             "type": "boolean",
-            "value": "",
-            "required": "false"
+            "displayName": "For Mine"
           },
           {
             "name": "location",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Location"
           },
           {
             "name": "locationRadius",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Location Radius"
           },
           {
             "name": "maxResults",
             "style": "query",
             "type": "number",
-            "value": "",
-            "required": "false"
+            "displayName": "Max Results"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "order",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Order"
           },
           {
             "name": "pageToken",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Page Token"
           },
           {
             "name": "publishedAfter",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Published After"
           },
           {
             "name": "publishedBefore",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Published Before"
           },
           {
             "name": "q",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Q"
           },
           {
             "name": "regionCode",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Region Code"
           },
           {
             "name": "relatedToVideoId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Related To Video ID"
           },
           {
             "name": "safeSearch",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Safe Search"
           },
           {
             "name": "topicId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Topic ID"
           },
           {
             "name": "type",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Type"
           },
           {
             "name": "videoCaption",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Caption"
           },
           {
             "name": "videoCategoryId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Category ID"
           },
           {
             "name": "videoDefinition",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Definition"
           },
           {
             "name": "videoDimension",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Dimension"
           },
           {
             "name": "videoDuration",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Duration"
           },
           {
             "name": "videoEmbeddable",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Embeddable"
           },
           {
             "name": "videoLicense",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video License"
           },
           {
             "name": "videoSyndicated",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Syndicated"
           },
           {
             "name": "videoType",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Type"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           },
           {
             "name": "",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/search"
       },
       {
-        "httpMethod": "DELETE",
+        "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/subscriptions"
+          "url": "https://developers.google.com/youtube/v3/docs/subscriptions/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "subscriptions",
+        "displayName": "Get Subscriptions List",
+        "path": "/subscriptions",
+        "params": [
+          {
+            "name": "part",
+            "style": "query",
+            "type": "string",
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "channelId",
+            "style": "query",
+            "type": "string",
+            "displayName": "Channel ID"
+          },
+          {
+            "name": "id",
+            "style": "query",
+            "type": "string",
+            "displayName": "ID"
+          },
+          {
+            "name": "mine",
+            "style": "query",
+            "type": "boolean",
+            "displayName": "Mine"
+          },
+          {
+            "name": "mySubscribers",
+            "style": "query",
+            "type": "boolean",
+            "displayName": "My Subscribers"
+          },
+          {
+            "name": "forChannelId",
+            "style": "query",
+            "type": "string",
+            "displayName": "For Channel ID"
+          },
+          {
+            "name": "maxResults",
+            "style": "query",
+            "type": "number",
+            "displayName": "Max Results"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "query",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          },
+          {
+            "name": "onBehalfOfContentOwnerChannel",
+            "style": "query",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner Channel"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "displayName": "Order"
+          },
+          {
+            "name": "pageToken",
+            "style": "query",
+            "type": "string",
+            "displayName": "Page Token"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/subscriptions"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/subscriptions/insert"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Post Subscriptions Insert",
+        "path": "/subscriptions",
+        "params": [
+          {
+            "name": "part",
+            "style": "body",
+            "type": "string",
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "displayName": "Fields"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/subscriptions"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/subscriptions/delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Delete Subscriptions",
         "path": "/subscriptions",
         "params": [
           {
             "name": "id",
             "style": "",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "ID"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/subscriptions"
@@ -1129,317 +1153,203 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/subscriptions"
+          "url": "https://developers.google.com/youtube/v3/docs/thumbnails/set"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "subscriptions",
-        "path": "/subscriptions",
+        "displayName": "Post Thumbnails Set",
+        "path": "/thumbnails/set",
         "params": [
           {
-            "name": "part",
-            "style": "body",
+            "name": "videoId",
+            "style": "",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "fields",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://www.googleapis.com/youtube/v3/subscriptions"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/subscriptions"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "subscriptions",
-        "path": "/subscriptions",
-        "params": [
-          {
-            "name": "part",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "channelId",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "forChannelId",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "maxResults",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "mine",
-            "style": "query",
-            "type": "boolean",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "mySubscribers",
-            "style": "query",
-            "type": "boolean",
-            "value": "",
-            "required": "false"
+            "required": "true",
+            "displayName": "Video ID"
           },
           {
             "name": "onBehalfOfContentOwner",
-            "style": "query",
+            "style": "",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "onBehalfOfContentOwnerChannel",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "order",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "pageToken",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "fields",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           }
         ],
-        "url": "https://www.googleapis.com/youtube/v3/subscriptions"
-      },
-      {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/thumbnails"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/thumbnails/set",
-        "path": "/thumbnails/set",
         "url": "https://www.googleapis.com/youtube/v3/thumbnails/set"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videoCategories"
+          "url": "https://developers.google.com/youtube/v3/docs/videoCategories/list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "videoCategories",
+        "displayName": "Get Video Categories List",
         "path": "/videoCategories",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "id",
+            "style": "query",
+            "type": "string",
+            "displayName": "Video IDs"
+          },
+          {
+            "name": "regionCode",
+            "style": "query",
+            "type": "string",
+            "displayName": "Region Code"
           },
           {
             "name": "hl",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "regionCode",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Language"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videoCategories"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/videos",
-        "path": "/videos",
-        "url": "https://www.googleapis.com/youtube/v3/videos"
-      },
-      {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/list"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/videos",
-        "displayName": "/videos",
+        "displayName": "Get Videos List",
         "params": [
           {
             "name": "part",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "chart",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Chart"
           },
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "locale",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "maxResults",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
+            "displayName": "ID"
           },
           {
             "name": "myRating",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "My Rating"
+          },
+          {
+            "name": "maxResults",
+            "style": "query",
+            "type": "number",
+            "displayName": "Max Results"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "pageToken",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Page Token"
           },
           {
             "name": "regionCode",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Region Code"
           },
           {
             "name": "videoCategoryId",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Video Category ID"
+          },
+          {
+            "name": "locale",
+            "style": "query",
+            "type": "string",
+            "displayName": "Locale"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videos"
       },
       {
-        "httpMethod": "DELETE",
+        "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/insert"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "videos",
+        "displayName": "Post Videos Insert",
         "path": "/videos",
         "params": [
           {
-            "name": "id",
-            "style": "",
+            "name": "part",
+            "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
+          },
+          {
+            "name": "autoLevels",
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Auto Levels"
+          },
+          {
+            "name": "notifySubscribers",
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Notify Subscribers"
           },
           {
             "name": "onBehalfOfContentOwner",
-            "style": "",
+            "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
+          },
+          {
+            "name": "onBehalfOfContentOwnerChannel",
+            "style": "body",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner Channel"
+          },
+          {
+            "name": "stabilize",
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Stabilize"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videos"
@@ -1447,34 +1357,32 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "videos",
+        "displayName": "Put Videos Update",
         "path": "/videos",
         "params": [
           {
             "name": "part",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Part"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "fields",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videos"
@@ -1482,34 +1390,33 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/rate"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/videos/rate",
+        "displayName": "Post Videos Rate",
         "path": "/videos/rate",
         "params": [
           {
             "name": "id",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "ID"
           },
           {
             "name": "rating",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Rating"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videos/rate"
@@ -1517,74 +1424,113 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/videos"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/getRating"
         },
         "authentication": {
           "required": "true"
         },
         "path": "/videos/getRating",
-        "displayName": "videos/getRating",
+        "displayName": "Get Videos Rating",
         "params": [
           {
             "name": "id",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "ID"
           },
           {
-            "name": "onBehalfOfContentOwne",
+            "name": "onBehalfOfContentOwner",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           },
           {
             "name": "fields",
             "style": "query",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Fields"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/videos/getRating"
       },
       {
-        "httpMethod": "POST",
+        "httpMethod": "DELETE",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/watermarks"
+          "url": "https://developers.google.com/youtube/v3/docs/videos/delete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "watermarks/set",
+        "displayName": "Delete Videos",
+        "path": "/videos",
+        "params": [
+          {
+            "name": "id",
+            "style": "",
+            "type": "string",
+            "required": "true",
+            "displayName": "ID"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          }
+        ],
+        "url": "https://www.googleapis.com/youtube/v3/videos"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.google.com/youtube/v3/docs/watermarks/set"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Post Watermarks Set",
         "path": "/watermarks/set",
+        "params": [
+          {
+            "name": "channelId",
+            "style": "body",
+            "type": "string",
+            "required": "true",
+            "displayName": "Channel ID"
+          },
+          {
+            "name": "onBehalfOfContentOwner",
+            "style": "body",
+            "type": "string",
+            "displayName": "On Behalf Of Content Owner"
+          }
+        ],
         "url": "https://www.googleapis.com/youtube/v3/watermarks/set"
       },
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://developers.google.com/youtube/v3/docs/watermarks"
+          "url": "https://developers.google.com/youtube/v3/docs/watermarks/unset"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "watermarks/unset",
+        "displayName": "Post Watermarks Unset",
         "path": "/watermarks/unset",
         "params": [
           {
             "name": "channelId",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "true",
+            "displayName": "Channel ID"
           },
           {
             "name": "onBehalfOfContentOwner",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "On Behalf Of Content Owner"
           }
         ],
         "url": "https://www.googleapis.com/youtube/v3/watermarks/unset"
