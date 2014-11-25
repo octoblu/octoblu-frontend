@@ -13,5 +13,5 @@ angular.module('octobluApp')
     channelPromise.then(function(channel){
       $window.location.href = getPath(channel);
     });
-  }
+  };
 });
