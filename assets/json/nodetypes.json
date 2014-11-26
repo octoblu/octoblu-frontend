@@ -450,7 +450,7 @@
     "_id" : "53c9b837f400e177dca325c0",
     "category" : "channel",
     "description" : "",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "Rdio",
     "skynet" : {
       "subtype" : "Rdio",
@@ -463,7 +463,7 @@
     "_id" : "53c9b837f400e177dca325c1",
     "category" : "channel",
     "description" : "",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "Readability",
     "skynet" : {
       "type" : "channel",

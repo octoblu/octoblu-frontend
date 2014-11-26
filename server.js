@@ -69,6 +69,7 @@ passport.use(require('./config/paypal'));
 passport.use(require('./config/podio'));
 passport.use(require('./config/quickbooks'));
 passport.use(require('./config/rdio'));
+passport.use(require('./config/readability'));
 passport.use(require('./config/redbooth'));
 passport.use(require('./config/salesforce'));
 passport.use(require('./config/sharefile'));

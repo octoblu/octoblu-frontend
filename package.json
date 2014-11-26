@@ -67,7 +67,7 @@
     "passport-paypal": "^0.3.0",
     "passport-podio": "0.0.3",
     "passport-rdio": "^0.1.2",
-    "passport-readability": "~0.1.2",
+    "passport-readability": "^0.1.2",
     "passport-redbooth": "~1.0.0",
     "passport-sharefile": "^1.0.0",
     "passport-smartsheet": "~1.0.1",
