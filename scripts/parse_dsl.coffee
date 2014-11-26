@@ -28,6 +28,8 @@ class ParseDSL
             type = 'integer'
           if /b/.test flags
             type = 'boolean'
+          if /o/.test flags
+            type = 'object'
           displayName = displayName || prettyCamel(name)
           newParam = {
             name: name
