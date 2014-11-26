@@ -245,6 +245,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
+      .state('material.nodewizard.addsubdevice.addGateblu', {
+        url: '/add-gateblu',
+        controller: 'AddSubdeviceAddGatebluController',
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
+      })
       .state('material.nodewizard.addsubdevice.selectgateblu', {
         url: '',
         controller: 'AddSubdeviceSelectGatebluController',

@@ -1,6 +1,35 @@
 {
   "_id": "53d15c363e304fe01a0851ee",
   "__v": 0,
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "",
+  "enabled": false,
+  "bodyFormat": "application/x-www-form-urlencoded",
+  "name": "Rdio",
+  "oauth": {
+    "development": {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging": {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production": {
+      "consumerKey": "jrpmrtppjtps6k3277dzb7yq",
+      "consumerSecret": "WKRnJg7cWa",
+      "callbackURL": "https://app.octoblu.com/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    }
+  },
+  "isPassport": true,
+  "type": "channel:rdio",
   "application": {
     "base": "http://api.rdio.com/1/",
     "resources": [
@@ -8,15 +37,49 @@
         "path": "/?method=getActivityStream",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "scope",
+            "displayName": "Scope ( user / friends / everyone )",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "last_id",
+            "displayName": "Last ID",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "types",
+            "displayName": "Types",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getActivityStream",
+            "displayName": "Get Activity Stream",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
-          "t": "Gets the activity events for a user, a user's friends, or everyone on Rdio.The content type corresponding to a HTML form submit, application/x-www-form-urlencoded.",
+          "t": "Gets the activity events for a user a user's friends, or everyone on Rdio.The content type corresponding to a HTML form submit, application/x-www-form-urlencoded.",
           "url": "http://developer.rdio.com/docs/read/rest/Methods#activity"
         },
         "curl": "curl -X POST  -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=getActivityStream",
@@ -24,7 +87,7 @@
           "required": "false"
         },
         "category": "Activity and Statistics",
-        "displayName": "Activity and Statistics_POST",
+        "displayName": "Get Activity Stream",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getActivityStream"
       },
@@ -32,17 +95,36 @@
         "path": "/?method=getTopCharts",
         "params": [
           {
-            "name": "method",
+            "name": "type",
+            "displayName": "Type ( Album / Artist / Playlist / Track )",
             "style": "body",
-            "hidden": true,
-            "default": "getTopCharts",
-            "required": "true"
+            "required": true
           },
           {
-            "name": "type",
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getTopCharts",
+            "displayName": "Get Top Charts",
             "style": "body",
-            "default": "Album",
-            "required": "true"
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -54,19 +136,44 @@
           "required": "false"
         },
         "category": "Activity and Statistics",
-        "displayName": "Activity and Statistics_POST",
+        "displayName": "Get Top Charts",
         "httpMethod": "POST",
-        "url": "http://api.rdio.com/1/"
+        "url": "http://api.rdio.com/1/?method=getTopCharts"
       },
       {
         "path": "/?method=getNewReleases",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "time",
+            "displayName": "Time ( thisweek / overview / lastweek / twoweeks )",
+            "default": "thisweek",
+            "style": "body"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getNewReleases",
+            "displayName": "Get New Releases",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -78,7 +185,7 @@
           "required": "false"
         },
         "category": "Activity and Statistics",
-        "displayName": "Activity and Statistics_POST",
+        "displayName": "Get New Releases",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getNewReleases"
       },
@@ -86,11 +193,53 @@
         "path": "/?method=getHeavyRotation",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "user",
+            "displayName": "User",
+            "style": "body"
+          },
+          {
+            "name": "type",
+            "displayName": "Type ( albums / artists / playlists / tracks / stations )",
+            "style": "body"
+          },
+          {
+            "name": "friends",
+            "displayName": "Friends",
+            "type": "boolean",
+            "default": false,
+            "style": "body"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getHeavyRotation",
+            "displayName": "Get Heavy Rotation",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -102,7 +251,7 @@
           "required": "false"
         },
         "category": "Activity and Statistics",
-        "displayName": "Activity and Statistics_POST",
+        "displayName": "Get Heavy Rotation",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getHeavyRotation"
       },
@@ -110,11 +259,52 @@
         "path": "/?method=getAlbumsForArtist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "featuring",
+            "displayName": "Featuring",
+            "style": "body"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( releaseDate / playCount / name )",
+            "default": "playCount",
+            "style": "body"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getAlbumsForArtist",
+            "displayName": "Get Albums For Artist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -126,19 +316,134 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Get Albums for Artist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getAlbumsForArtist"
+      },
+      {
+        "path": "/?method=getAlbumsForLabel",
+        "params": [
+          {
+            "name": "label",
+            "displayName": "Label",
+            "default": "Label",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( releaseDate / playCount / name )",
+            "default": "playCount",
+            "style": "body"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getAlbumsForLabel",
+            "displayName": "Get Albums For Label",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          }
+        ],
+        "curl": "curl -X POST  -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=getAlbumsForArtist",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Catalog",
+        "displayName": "Get Albums for Label",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getAlbumsForLabel"
+      },
+      {
+        "path": "/?method=getAristsForLabel",
+        "params": [
+          {
+            "name": "label",
+            "displayName": "Label",
+            "default": "Label",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getArtistsForLabel",
+            "displayName": "Get Artists For Label",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          }
+        ],
+        "curl": "curl -X POST  -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=getAlbumsForArtist",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Catalog",
+        "displayName": "Get Artists for Label",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getArtistsForLabel"
       },
       {
         "path": "/?method=getTracksByISRC",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "isrc",
+            "displayName": "ISRC",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getTracksByISRC",
+            "displayName": "Get Tracks By ISRC",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -150,7 +455,7 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Get Tracks by ISRC",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getTracksByISRC"
       },
@@ -158,11 +463,54 @@
         "path": "/?method=getTracksForArtist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "appears_on",
+            "displayName": "Appears On",
+            "type": "boolean",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( releaseDate / playCount / name )",
+            "default": "playCount",
+            "style": "body"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getTracksForArtist",
+            "displayName": "Get Tracks For Artist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -174,7 +522,7 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Get Tracks for Artist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getTracksForArtist"
       },
@@ -182,11 +530,47 @@
         "path": "/?method=search",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "types",
+            "displayName": "Types ( Album / Artist / Label / MusicGenre / Playlist / Track / User ) comma separated",
+            "style": "body"
+          },
+          {
+            "name": "never_or",
+            "displayName": "Never Or",
+            "type": "boolean",
+            "style": "body"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "search",
+            "displayName": "Search",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -198,7 +582,7 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Search",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=search"
       },
@@ -206,11 +590,46 @@
         "path": "/?method=searchSuggestions",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "types",
+            "displayName": "Types ( Album / Artist / Label / MusicGenre / Playlist / Track / User ) comma separated",
+            "style": "body"
+          },
+          {
+            "name": "countryCode",
+            "displayName": "Country Code",
+            "style": "body"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "type": "integer",
+            "style": "body"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "searchSuggestions",
+            "displayName": "Search Suggestions",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -222,7 +641,7 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Search Suggestions",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=searchSuggestions"
       },
@@ -230,11 +649,24 @@
         "path": "/?method=getAlbumsByUPC",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "upc",
+            "displayName": "UPC",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body"
+          },
+          {
+            "name": "method",
+            "default": "getAlbumsByUPC",
+            "displayName": "Get Albums By UPC",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -246,7 +678,7 @@
           "required": "false"
         },
         "category": "Catalog",
-        "displayName": "Catalog_POST",
+        "displayName": "Get Albums by UPC",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getAlbumsByUPC"
       },
@@ -254,11 +686,19 @@
         "path": "/?method=addToCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "keys",
+            "displayName": "Keys ( Album / Playlist / Track )",
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": "method",
+            "default": "addToCollection",
+            "displayName": "Add To Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
           }
         ],
         "doc": {
@@ -267,10 +707,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=addToCollection",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Add To Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=addToCollection"
       },
@@ -278,11 +718,55 @@
         "path": "/?method=getAlbumsInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getAlbumsInCollection",
+            "displayName": "Get Albums In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( playCount / dateAdded / name / artist )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "string"
           }
         ],
         "doc": {
@@ -294,7 +778,7 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Albums in Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getAlbumsInCollection"
       },
@@ -302,11 +786,49 @@
         "path": "/?method=getArtistsInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getArtistsInCollection",
+            "displayName": "Get Artists In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( playCount / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "string"
           }
         ],
         "doc": {
@@ -318,7 +840,7 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Artists in Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getArtistsInCollection"
       },
@@ -326,11 +848,32 @@
         "path": "/?method=getTracksForAlbumInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getTracksForAlbumInCollection",
+            "displayName": "Get Tracks For Album In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "album",
+            "displayName": "Album",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -342,7 +885,7 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Tracks For Album In Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getTracksForAlbumInCollection"
       },
@@ -350,11 +893,32 @@
         "path": "/?method=getTracksForArtistInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getTracksForArtistInCollection",
+            "displayName": "Get Tracks For Artist In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -366,7 +930,7 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Tracks for Artist in Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getTracksForArtistInCollection"
       },
@@ -374,11 +938,55 @@
         "path": "/?method=getTracksInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getTracksInCollection",
+            "displayName": "Get Tracks In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( album / playCount / dateAdded / name / artist )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -390,7 +998,7 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Tracks in Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getTracksInCollection"
       },
@@ -398,11 +1006,20 @@
         "path": "/?method=removeFromCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "removeFromCollection",
+            "displayName": "Remove From Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Album / Playlist / Track )",
+            "style": "body",
+            "type": "string",
+            "required": true
           }
         ],
         "doc": {
@@ -411,10 +1028,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=removeFromCollection",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Remove from Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=removeFromCollection"
       },
@@ -422,11 +1039,27 @@
         "path": "/?method=setAvailableOffline",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "setAvailableOffline",
+            "displayName": "Set Available Offline",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Playlist / Track )",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "offline",
+            "displayName": "Offline",
+            "style": "body",
+            "type": "boolean",
+            "required": true
           }
         ],
         "doc": {
@@ -435,10 +1068,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=setAvailableOffline",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Set Available Offline",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=setAvailableOffline"
       },
@@ -446,11 +1079,38 @@
         "path": "/?method=getAlbumsForArtistInCollection",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getAlbumsForArtistInCollection",
+            "displayName": "Get Albums For Artist In Collection",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( releaseDate / name )",
+            "style": "body",
+            "type": "string"
           }
         ],
         "doc": {
@@ -462,19 +1122,78 @@
           "required": "false"
         },
         "category": "Collection",
-        "displayName": "Collection_POST",
+        "displayName": "Get Albums for Artist in Collection",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getAlbumsForArtistInCollection"
+      },
+      {
+        "path": "/?method=getOfflineTracks",
+        "params": [
+          {
+            "name": "method",
+            "default": "getOfflineTracks",
+            "displayName": "Get Offline Tracks",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "string"
+          }
+        ],
+        "doc": {
+          "t": "Return the object that the supplied Rdio short-code is a representation of, or null if the short-code is invalid.The content type corresponding to a HTML form submit, application/x-www-form-urlencoded.",
+          "url": "http://developer.rdio.com/docs/read/rest/Methods#core"
+        },
+        "curl": "curl -X POST  -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=getOfflineTracks",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Core",
+        "displayName": "Get Offline Tracks",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getOfflineTracks"
       },
       {
         "path": "/?method=getObjectFromShortCode",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getObjectFromShortCode",
+            "displayName": "Get Object From Short Code",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "short_code",
+            "displayName": "Short Code",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -486,7 +1205,7 @@
           "required": "false"
         },
         "category": "Core",
-        "displayName": "Core_POST",
+        "displayName": "Get Object From Short Code",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getObjectFromShortCode"
       },
@@ -494,11 +1213,26 @@
         "path": "/?method=getObjectFromUrl",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getObjectFromUrl",
+            "displayName": "Get Object From Url",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "url",
+            "displayName": "Url",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -510,7 +1244,7 @@
           "required": "false"
         },
         "category": "Core",
-        "displayName": "Core_POST",
+        "displayName": "Get Object From URL",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getObjectFromUrl"
       },
@@ -518,11 +1252,32 @@
         "path": "/?method=get",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "get",
+            "displayName": "Get",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "options",
+            "displayName": "Options",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -534,7 +1289,7 @@
           "required": "false"
         },
         "category": "Core",
-        "displayName": "Core_POST",
+        "displayName": "Get Object",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=get"
       },
@@ -542,11 +1297,19 @@
         "path": "/?method=getPlaybackToken",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getPlaybackToken",
+            "displayName": "Get Playback Token",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "domain",
+            "displayName": "Domain",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -558,7 +1321,7 @@
           "required": "false"
         },
         "category": "Playback",
-        "displayName": "Playback_POST",
+        "displayName": "Get Playback Token",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getPlaybackToken"
       },
@@ -566,11 +1329,27 @@
         "path": "/?method=setPlaylistCollaborating",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "setPlaylistCollaborating",
+            "displayName": "Set Playlist Collaborating",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "collaborating",
+            "displayName": "Collaborating",
+            "style": "body",
+            "type": "boolean",
+            "required": true
           }
         ],
         "doc": {
@@ -579,10 +1358,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=setPlaylistCollaborating",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Set Playlist Collaborating",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=setPlaylistCollaborating"
       },
@@ -590,11 +1369,27 @@
         "path": "/?method=setPlaylistCollaborationMode",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "setPlaylistCollaborationMode",
+            "displayName": "Set Playlist Collaboration Mode",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "mode",
+            "displayName": "Mode",
+            "style": "body",
+            "type": "integer",
+            "required": true
           }
         ],
         "doc": {
@@ -603,10 +1398,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=setPlaylistCollaborationMode",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Set Playlist Collaboration Mode",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=setPlaylistCollaborationMode"
       },
@@ -614,11 +1409,32 @@
         "path": "/?method=setPlaylistFields",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "setPlaylistFields",
+            "displayName": "Set Playlist Fields",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "description",
+            "displayName": "Description",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -627,10 +1443,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=setPlaylistFields",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Set Playlist Fields",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=setPlaylistFields"
       },
@@ -638,11 +1454,33 @@
         "path": "/?method=setPlaylistOrder",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "setPlaylistOrder",
+            "displayName": "Set Playlist Order",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tracks",
+            "displayName": "Tracks",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -651,10 +1489,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=setPlaylistOrder",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Set Playlist Order",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=setPlaylistOrder"
       },
@@ -662,11 +1500,47 @@
         "path": "/?method=removeFromPlaylist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "removeFromPlaylist",
+            "displayName": "Remove From Playlist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "index",
+            "displayName": "Index",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tracks",
+            "displayName": "Tracks",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -675,10 +1549,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=removeFromPlaylist",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Remove From Playlist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=removeFromPlaylist"
       },
@@ -686,11 +1560,31 @@
         "path": "/?method=getPlaylists",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "getPlaylists",
+            "displayName": "Get Playlists",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "ordered_list",
+            "displayName": "Ordered List",
+            "style": "body",
+            "type": "boolean"
           }
         ],
         "doc": {
@@ -699,22 +1593,86 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=getPlaylists",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Get Playlists",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=getPlaylists"
+      },
+      {
+        "path": "/?method=getUserPlaylists",
+        "params": [
+          {
+            "name": "method",
+            "default": "getUserPlaylists",
+            "displayName": "Get Playlists",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "kind",
+            "displayName": "Kind ( favorites / subscribed / collab / owned )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( name / lastUpdated )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Playlists",
+        "displayName": "Get User Playlists",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getUserPlaylists"
       },
       {
         "path": "/?method=deletePlaylist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "deletePlaylist",
+            "displayName": "Delete Playlist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
           }
         ],
         "doc": {
@@ -723,10 +1681,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=deletePlaylist",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Delete Playlist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=deletePlaylist"
       },
@@ -734,11 +1692,52 @@
         "path": "/?method=createPlaylist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "createPlaylist",
+            "displayName": "Create Playlist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "description",
+            "displayName": "Description",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tracks",
+            "displayName": "Tracks",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "collaborationMode",
+            "displayName": "Collaboration Mode",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "isPublished",
+            "displayName": "Is Published",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -747,10 +1746,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=createPlaylist",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Create Playlist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=createPlaylist"
       },
@@ -758,11 +1757,33 @@
         "path": "/?method=addToPlaylist",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "addToPlaylist",
+            "displayName": "Add To Playlist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "playlist",
+            "displayName": "Playlist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tracks",
+            "displayName": "Tracks",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -771,10 +1792,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=addToPlaylist",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Playlists",
-        "displayName": "Playlists_POST",
+        "displayName": "Add To Playlist",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=addToPlaylist"
       },
@@ -782,11 +1803,62 @@
         "path": "/?method=userFollowing",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "userFollowing",
+            "displayName": "User Following",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "interleave",
+            "displayName": "Interleave",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "inCommon",
+            "displayName": "In Common",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "activityFilter",
+            "displayName": "Activity Filter ( active / all / inactive )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name / recent )",
+            "style": "body",
+            "type": "string"
           }
         ],
         "doc": {
@@ -798,19 +1870,98 @@
           "required": "false"
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "Get User Following",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=userFollowing"
+      },
+      {
+        "path": "/?method=userHiddenFollowers",
+        "params": [
+          {
+            "name": "method",
+            "default": "userHiddenFollowers",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Hidden Followers",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=userHiddenFollowers"
+      },
+      {
+        "path": "/?method=userPendingFollowers",
+        "params": [
+          {
+            "name": "method",
+            "default": "userPendingFollowers",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Hide Follower",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=userPendingFollowers"
       },
       {
         "path": "/?method=addFriend",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "addFriend",
+            "displayName": "Add Friend",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
           }
         ],
         "doc": {
@@ -819,22 +1970,120 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=addFriend",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "Add Friend",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=addFriend"
+      },
+      {
+        "path": "/?method=approveFollower",
+        "params": [
+          {
+            "name": "method",
+            "default": "approveFollower",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Approve Follower",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=approveFollower"
+      },
+      {
+        "path": "/?method=hideFollower",
+        "params": [
+          {
+            "name": "method",
+            "default": "hideFollower",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Hide Follower",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=hideFollower"
+      },
+      {
+        "path": "/?method=unapproveFollower",
+        "params": [
+          {
+            "name": "method",
+            "default": "unapproveFollower",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Unapprove Follower",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=unapproveFollower"
       },
       {
         "path": "/?method=currentUser",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "currentUser",
+            "displayName": "Current User",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -843,10 +2092,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=currentUser",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "Get Current User",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=currentUser"
       },
@@ -854,11 +2103,31 @@
         "path": "/?method=findUser",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "findUser",
+            "displayName": "Find User",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "email",
+            "displayName": "Email",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "vanityName",
+            "displayName": "Vanity Name",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -870,7 +2139,7 @@
           "required": "false"
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "Find User",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=findUser"
       },
@@ -878,11 +2147,20 @@
         "path": "/?method=removeFriend",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "removeFriend",
+            "displayName": "Remove Friend",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
           }
         ],
         "doc": {
@@ -891,10 +2169,10 @@
         },
         "curl": "curl -X POST -u 'username:password' -h 'Content-Type: application/x-www-form-urlencoded' http://api.rdio.com/1/?method=removeFriend",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "Remove Friend",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=removeFriend"
       },
@@ -902,11 +2180,50 @@
         "path": "/?method=userFollowers",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
-            "required": "true"
+            "name": "method",
+            "default": "userFollowers",
+            "displayName": "User Followers",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "inCommon",
+            "displayName": "In Common",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "inNetwork",
+            "displayName": "In Network",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "doc": {
@@ -918,38 +2235,932 @@
           "required": "false"
         },
         "category": "Social Network",
-        "displayName": "Social Network_POST",
+        "displayName": "User Followers",
         "httpMethod": "POST",
         "url": "http://api.rdio.com/1/?method=userFollowers"
+      },
+      {
+        "path": "/?method=addToFavorites",
+        "params": [
+          {
+            "name": "method",
+            "default": "addToFavorites",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Album / AlbumStation / Artist / ArtistStation / ArtistTopSongsStation / AutoplayStation / GenreStation / HeavyRotationStation / HeavyRotationUserStation / LabelStation / Playlist / PlaylistStation / SongStation / TasteProfileStation / Track / UserCollectionStation )",
+            "style": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Add to Favorites",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=addToFavorites"
+      },
+      {
+        "path": "/?method=addToSynced",
+        "params": [
+          {
+            "name": "method",
+            "default": "addToSynced",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Album / Playlist / Track )",
+            "style": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "category": "Synced",
+        "displayName": "Add to Synced",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=addToSynced"
+      },
+      {
+        "path": "/?method=getArtistsFromFavoriteTracks",
+        "params": [
+          {
+            "name": "method",
+            "default": "getArtistsFromFavoriteTracks",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Artists from Favorite Tracks",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getArtistsFromFavoriteTracks"
+      },
+      {
+        "path": "/?method=getArtistsFromSyncedTracks",
+        "params": [
+          {
+            "name": "method",
+            "default": "getArtistsFromSyncedTracks",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded/name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Artists from Synced Tracks",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getArtistsFromSyncedTracks"
+      },
+      {
+        "path": "/?method=getFavorites",
+        "params": [
+          {
+            "name": "method",
+            "default": "getFavorites",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "type",
+            "displayName": "Type ( tracksAndAlbums / stations / playlists / artists )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Favorites",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getFavorites"
+      },
+      {
+        "path": "/?method=getFavoritesByArtist",
+        "params": [
+          {
+            "name": "method",
+            "default": "getFavoritesByArtist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "type",
+            "displayName": "Type ( tracksAndAlbums / stations / playlists / artists )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Favorites by Artist",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getFavoritesByArtist"
+      },
+      {
+        "path": "/?method=getFavoritesTypes",
+        "params": [
+          {
+            "name": "method",
+            "default": "getFavoritesTypes",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Favorites Types",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getFavoritesTypes"
+      },
+      {
+        "path": "/?method=getKeysInFavorites",
+        "params": [
+          {
+            "name": "method",
+            "default": "getKeysInFavorites",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Keys in Favorites",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getKeysInFavorites"
+      },
+      {
+        "path": "/?method=getKeysInFavoritesAndSynced",
+        "params": [
+          {
+            "name": "method",
+            "default": "getKeysInFavoritesAndSynced",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Keys in Favorites and Synced",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getKeysInFavoritesAndSynced"
+      },
+      {
+        "path": "/?method=getKeysInSynced",
+        "params": [
+          {
+            "name": "method",
+            "default": "getKeysInSynced",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Keys in Synced",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getKeysInSynced"
+      },
+      {
+        "path": "/?method=getSynced",
+        "params": [
+          {
+            "name": "method",
+            "default": "getSynced",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "type",
+            "displayName": "Type ( tracksAndAlbums / playlists )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Synced",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getSynced"
+      },
+      {
+        "path": "/?method=getSyncedByArtist",
+        "params": [
+          {
+            "name": "method",
+            "default": "getSyncedByArtist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist",
+            "displayName": "Artist",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort",
+            "displayName": "Sort ( dateAdded / name )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Synced by Artist",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getSyncedByArtist"
+      },
+      {
+        "path": "/?method=getSyncedTypes",
+        "params": [
+          {
+            "name": "method",
+            "default": "getSyncedTypes",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Get Synced Types",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getSyncedTypes"
+      },
+      {
+        "path": "/?method=removeFromFavorites",
+        "params": [
+          {
+            "name": "method",
+            "default": "removeFromFavorites",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Album / AlbumStation / Artist / ArtistStation / ArtistTopSongsStation / AutoplayStation / GenreStation / HeavyRotationStation / HeavyRotationUserStation / LabelStation / Playlist / PlaylistStation / SongStation / TasteProfileStation / Track / UserCollectionStation )",
+            "style": "body",
+            "type": "string"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Remove from Favorites",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=removeFromFavorites"
+      },
+      {
+        "path": "/?method=removeFromSynced",
+        "params": [
+          {
+            "name": "method",
+            "default": "removeFromSynced",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "keys",
+            "displayName": "Keys ( Album / Playlist / Track )",
+            "style": "body",
+            "type": "string"
+          }
+        ],
+        "category": "Favorites",
+        "displayName": "Remove from Synced",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=removeFromSynced"
+      },
+      {
+        "path": "/?method=banArtist",
+        "params": [
+          {
+            "name": "method",
+            "default": "banArtist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist_key",
+            "displayName": "Artist Key",
+            "style": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Ban Artist",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=banArtist"
+      },
+      {
+        "path": "/?method=generateStation",
+        "params": [
+          {
+            "name": "method",
+            "default": "generateStation",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "station_key",
+            "displayName": "Station Key",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "exclude_tracks",
+            "displayName": "Exclude Tracks",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "preset",
+            "displayName": "Preset",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Generate Station",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=generateStation"
+      },
+      {
+        "path": "/?method=getFriendAndTastemakerStations",
+        "params": [
+          {
+            "name": "method",
+            "default": "getFriendAndTastemakerStations",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Friend and Tastemaker Stations",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getFriendAndTastemakerStations"
+      },
+      {
+        "path": "/?method=getGenreStations",
+        "params": [
+          {
+            "name": "method",
+            "default": "getGenreStations",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "genre",
+            "displayName": "Genre ( Reggae / Rock / Latin / Christian_Gospel / World / Classical / Dance / Country / Songwriters_Folk / Jazz / Pop / Indie / R_and_B / Hip_Hop / Alternative / Holiday / Electronic / Blues / More )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Genre Stations",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getGenreStations"
+      },
+      {
+        "path": "/?method=getRecentStationsHistoryForUser",
+        "params": [
+          {
+            "name": "method",
+            "default": "getRecentStationsHistoryForUser",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Recent Stations History For User",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getRecentStationsHistoryForUser"
+      },
+      {
+        "path": "/?method=getStations",
+        "params": [
+          {
+            "name": "method",
+            "default": "getStations",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "user",
+            "displayName": "User",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "start",
+            "displayName": "Start",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "excludeThisUsersStations",
+            "displayName": "Exclude This Users Stations",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Stations",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=getStations"
+      },
+      {
+        "path": "/?method=stationsSearchSuggestions",
+        "params": [
+          {
+            "name": "method",
+            "default": "stationsSearchSuggestions",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "query",
+            "displayName": "Query",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "types",
+            "displayName": "Types ( Album / Artist / Label / MusicGenre / Playlist / Track / User )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "displayName": "Count",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "extras",
+            "displayName": "Extras",
+            "style": "body",
+            "type": "integer"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Get Genre Stations",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=stationsSearchSuggestions"
+      },
+      {
+        "path": "/?method=steerStation",
+        "params": [
+          {
+            "name": "method",
+            "default": "steerStation",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "station_key",
+            "displayName": "Station Key",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "preset",
+            "displayName": "Preset",
+            "style": "body",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Set Preset on Station",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=steerStation"
+      },
+      {
+        "path": "/?method=unbanArtist",
+        "params": [
+          {
+            "name": "method",
+            "default": "unbanArtist",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "artist_key",
+            "displayName": "Artist Key",
+            "style": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Unban Artist",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=unbanArtist"
+      },
+      {
+        "path": "/?method=voteForTrackOnStation",
+        "params": [
+          {
+            "name": "method",
+            "default": "voteForTrackOnStation",
+            "style": "body",
+            "type": "string",
+            "hidden": true,
+            "required": true
+          },
+          {
+            "name": "station_key",
+            "displayName": "Station Key",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "track_key",
+            "displayName": "Track Key",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "vote",
+            "displayName": "Vote ( ban / skip / unfavorite / favorite / unban )",
+            "style": "body",
+            "type": "string"
+          }
+        ],
+        "category": "Social Network",
+        "displayName": "Vote for Track on Station",
+        "httpMethod": "POST",
+        "url": "http://api.rdio.com/1/?method=voteForTrackOnStation"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "",
-  "enabled": false,
-  "name": "Rdio",
-  "oauth": {
-    "development" : {
-      "consumerKey": "INSERT_SECERT_HERE",
-      "consumerSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/rdio/callback",
-      "tokenMethod": "oauth_signed"
-    },
-    "staging" : {
-      "consumerKey": "INSERT_SECERT_HERE",
-      "consumerSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/rdio/callback",
-      "tokenMethod": "oauth_signed"
-    },
-    "production" : {
-      "consumerKey": "jrpmrtppjtps6k3277dzb7yq",
-      "consumerSecret": "WKRnJg7cWa",
-      "callbackURL": "https://app.octoblu.com/api/oauth/rdio/callback",
-      "tokenMethod": "oauth_signed"
-    }
-  },
-  "isPassport": true,
-  "type": "channel:rdio"
+  }
 }

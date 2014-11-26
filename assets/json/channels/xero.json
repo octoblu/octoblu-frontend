@@ -1,21 +1,40 @@
 {
   "_id": "53e3fab413c57e0267403a89",
   "__v": 0,
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://developer.xero.com/documentation/",
+  "enabled": true,
+  "name": "Xero",
+  "type": "channel:xero",
+  "isPassport": true,
+  "oauth": {
+   "development" : {
+    "consumerKey" : "84WQZQV5RDQS8RWOYF5CM0RVMK7WRQ",
+    "consumerSecret" : "1NEC1BSPMFURODOY3RAWPBNSG0WGL8",
+    "callbackURL" : "http://localhost:8080/api/oauth/xero/callback",
+    "tokenMethod" : "oauth_signed"
+   },
+   "production" : {
+    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
+    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
+    "callbackURL" : "https://app.octoblu.com/api/oauth/xero/callback",
+    "tokenMethod" : "oauth_signed"
+   },
+   "staging" : {
+    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
+    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
+    "callbackURL" : "https://staging.octoblu.com/api/oauth/xero/callback",
+    "tokenMethod" : "oauth_signed"
+   }
+  },
   "application": {
     "base": "https://api.xero.com/api.xro/2.0",
     "resources": [
       {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
-          }
-        ],
-        "displayName": "Attachments",
-        "path": "/Attachments",
+        "displayName": "Get Attachments for Document",
+        "path": "/:endpoint/:guid/Attachments",
         "authentication": {
           "required": "true"
         },
@@ -23,20 +42,11 @@
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "GET",
-        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments"
       },
       {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
-          }
-        ],
-        "path": "/Attachments",
-        "displayName": "/Attachments",
+        "path": "/:endpoint/:guid/Attachments/:filename",
+        "displayName": "Upload Attachments to Document",
         "authentication": {
           "required": "true"
         },
@@ -44,11 +54,11 @@
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "POST",
-        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename"
       },
       {
-        "path": "/Attachments",
-        "displayName": "/Attachments",
+        "path": "/:endpoint/:guid/Attachments/:filename",
+        "displayName": "Update Attachment in Document",
         "authentication": {
           "required": "true"
         },
@@ -56,7 +66,7 @@
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "PUT",
-        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename"
       },
       {
         "params": [
@@ -3636,33 +3646,5 @@
         "url": "https://api.xero.com/api.xro/2.0/Users"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "http://developer.xero.com/documentation/",
-  "enabled": true,
-  "name": "Xero",
-  "type": "channel:xero",
-  "isPassport": true,
-  "oauth": {
-   "development" : {
-    "consumerKey" : "84WQZQV5RDQS8RWOYF5CM0RVMK7WRQ",
-    "consumerSecret" : "1NEC1BSPMFURODOY3RAWPBNSG0WGL8",
-    "callbackURL" : "http://localhost:8080/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   },
-   "production" : {
-    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
-    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
-    "callbackURL" : "https://app.octoblu.com/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   },
-   "staging" : {
-    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
-    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
-    "callbackURL" : "https://staging.octoblu.com/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   }
   }
 }

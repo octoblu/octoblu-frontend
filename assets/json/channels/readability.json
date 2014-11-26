@@ -5,14 +5,24 @@
   "enabled": true,
   "name": "Readability",
   "oauth": {
-    "accessTokenURL": "https://www.readability.com/api/rest/v1/oauth/access_token",
-    "authTokenURL": "https://www.readability.com/api/rest/v1/oauth/authorize",
-    "key": "rebootd",
-    "requestTokenURL": "https://www.readability.com/api/rest/v1/oauth/request_token",
-    "scope": "",
-    "secret": "gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF",
-    "tokenMethod": "",
-    "version": "1.0"
+    "development" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "http://localhost:8080/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "https://app.octoblu.com/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    }
   },
   "useCustom": true,
   "type": "channel:readability",
