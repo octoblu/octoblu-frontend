@@ -2681,57 +2681,6 @@
             "displayName": "Message Date"
           }
         ]
-      },
-      {
-        "path": "/Accounts/:AccountSid/Sandbox.json",
-        "displayName": "/Accounts/:AccountSid/Sandbox.json",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/sandbox"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Sandbox.json",
-        "params": []
-      },
-      {
-        "params": [
-          {
-            "type": "string",
-            "style": "body",
-            "name": "VoiceUrl"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "VoiceMethod"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "SmsUrl"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "SmsMethod"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "StatusCallback"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "StatusCallbackMethod"
-          }
-        ],
-        "path": "/Accounts/:AccountSid/Sandbox.json",
-        "displayName": "/Accounts/:AccountSid/Sandbox.json",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/sandbox"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Sandbox.json"
       }
     ]
   }
