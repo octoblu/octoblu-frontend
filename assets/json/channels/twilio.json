@@ -4,6 +4,14 @@
   "auth_strategy": "basic",
   "custom_tokens": [],
   "description": "",
+  "defaultParams": [
+    {
+      "name": ":AccountSid",
+      "style": "url",
+      "type": "string",
+      "displayName": "Account SID"
+    }
+  ],
   "documentation": "http://www.twilio.com/docs/api/rest",
   "enabled": true,
   "name": "Twilio",
@@ -13,232 +21,135 @@
     "resources": [
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/making-calls",
-          "t": "Use for making POTS calls"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Calls.json",
+        "displayName": "Make A Call",
         "path": "/Accounts/:AccountSid/Calls.json",
         "params": [
           {
             "name": "From",
+            "displayName": "From",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "To",
+            "displayName": "To",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "required": "true"
           },
           {
             "name": "Url",
+            "displayName": "Url",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           },
           {
             "name": "ApplicationSid",
+            "displayName": "Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Method",
+            "displayName": "Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FallbackUrl",
+            "displayName": "Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FallbackMethod",
+            "displayName": "Fallback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SendDigits",
+            "displayName": "Send Digits",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "IfMachine",
+            "displayName": "If Machine Answers (Continue / Hangup)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Timeout",
+            "displayName": "Timeout",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Record",
+            "displayName": "Record",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "AnsweredBy",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "CallDuration",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "RecordingUrl",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "RecordingSid",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "RecordingDuration",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "boolean"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Calls.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/making-calls-sip",
-          "t": "Use for making SIP Voice over IP Calls"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Calls.json",
+        "displayName": "Make Calls via SIP",
         "path": "/Accounts/:AccountSid/Calls.json",
         "params": [
           {
             "name": "To",
+            "displayName": "To",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "From",
+            "displayName": "From",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SipAuthUsername",
+            "displayName": "User Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SipAuthPassword",
+            "displayName": "Password",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Calls.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/call"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Calls/:CallSid.json",
+        "displayName": "Get Call Resource Identity",
         "path": "/Accounts/:AccountSid/Calls/:CallSid.json",
         "params": [
           {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CallSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -246,76 +157,56 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/change-call-state"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Calls/:CallSid.json",
+        "displayName": "Modify Live Calls",
         "path": "/Accounts/:AccountSid/Calls/:CallSid.json",
         "params": [
           {
             "name": "Url",
+            "displayName": "Redirect URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Method",
+            "displayName": "Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Status",
+            "displayName": "Status (Canceled / Completed)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FallbackUrl",
+            "displayName": "Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FallbackMethod",
+            "displayName": "Fallback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CallSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -323,62 +214,35 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/outgoing-caller-ids"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
+        "displayName": "Get Outgoing Caller IDs",
         "path": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":OutgoingCallerIdSid",
+            "displayName": "Outgoing Caller ID SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":OutgoingCallerIdSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/outgoing-caller-ids"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
+        "displayName": "Update Outgoing Caller IDs",
         "path": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":OutgoingCallerIdSid",
+            "displayName": "Outgoing Caller ID SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":OutgoingCallerIdSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -386,34 +250,14 @@
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/outgoing-caller-ids"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
+        "displayName": "Delete Caller ID From Account",
         "path": "/Accounts/:AccountSid/OutgoingCallerIds/:OutgoingCallerIdSid.json",
         "params": [
           {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
+            "name": ":OutgoingCallerIdSid",
+            "displayName": "Outgoing Caller ID SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":OutgoingCallerIdSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -421,391 +265,251 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/outgoing-caller-ids"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/OutgoingCallerIds.json",
+        "displayName": "Get Outgoing Caller ID Resources",
         "path": "/Accounts/:AccountSid/OutgoingCallerIds.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/outgoing-caller-ids"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/OutgoingCallerIds.json",
+        "displayName": "Add Caller ID To Account",
         "path": "/Accounts/:AccountSid/OutgoingCallerIds.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CallDelay",
+            "displayName": "Call Delay",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "number"
           },
           {
             "name": "Extension",
+            "displayName": "Extension",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "number"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/transcription"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
+        "displayName": "Get Transcription Resource",
         "path": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":TranscriptionSid",
+            "displayName": "Transcription SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":TranscriptionSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/transcription"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
+        "displayName": "Delete Transcription",
         "path": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":TranscriptionSid",
+            "displayName": "Transcription SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":TranscriptionSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/transcription#list"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Transcriptions.json",
+        "displayName": "Get Transcriptions List",
         "path": "/Accounts/:AccountSid/Transcriptions.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Transcriptions.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/recording"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Recordings/:RecordingSid.json",
+        "displayName": "Get Recording Instance",
         "path": "/Accounts/:AccountSid/Recordings/:RecordingSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":RecordingSid",
+            "displayName": "Recording SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
-          },
+          }
+        ]
+      },
+      {
+        "httpMethod": "DELETE",
+        "displayName": "Delete Recording Instance",
+        "path": "/Accounts/:AccountSid/Recordings/:RecordingSid.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid.json",
+        "params": [
           {
-            "name": ":RecordingSid.json",
+            "name": ":RecordingSid",
+            "displayName": "Recording SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/recording"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Recordings.json",
+        "displayName": "Get Recordings List",
         "path": "/Accounts/:AccountSid/Recordings.json",
         "params": [
           {
             "name": "CallSid",
+            "displayName": "Call SID",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DateCreated",
+            "displayName": "Date Created",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Recordings.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/conference"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid.json",
+        "displayName": "Get Conference Information",
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ConferenceSid",
+            "displayName": "Conference SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ConferenceSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/conference"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences.json",
+        "displayName": "Get Conferences List",
         "path": "/Accounts/:AccountSid/Conferences.json",
         "params": [
           {
             "name": "Status",
+            "displayName": "Status (init / in-progress / completed)",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DateCreated",
+            "displayName": "Date Created",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DateUpdated",
+            "displayName": "Date Updated",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Conferences.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/participant"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
+        "displayName": "Get Participant Information",
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":ConferenceSid",
+            "displayName": "Conference SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":CallSid.json",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/participant"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
+        "displayName": "Update Participant Status",
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
         "params": [
           {
             "name": "Muted",
+            "displayName": "Muted",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "boolean"
           },
           {
             "name": ":ConferenceSid",
+            "displayName": "Conference SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":CallSid.json",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -813,69 +517,42 @@
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/participant"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
+        "displayName": "Kick Participant From Conference",
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":ConferenceSid",
+            "displayName": "Conference SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":CallSid.json",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/participant"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json",
+        "displayName": "Get Conference Participant List",
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json",
         "params": [
           {
             "name": "Muted",
+            "displayName": "Muted",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "boolean"
           },
           {
             "name": ":ConferenceSid",
+            "displayName": "Conference SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -883,203 +560,180 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/queue"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid.json",
+        "displayName": "Get Queue Information",
         "path": "/Accounts/:AccountSid/Queues/:QueueSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":QueueSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/queue"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid.json",
+        "displayName": "Update Queue Information",
         "path": "/Accounts/:AccountSid/Queues/:QueueSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":QueueSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "name": "FriendlyName",
+            "displayName": "Friendly Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "MaxSize",
+            "displayName": "Max Size",
+            "style": "body",
+            "type": "string"
           }
         ]
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/queue"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid.json",
+        "displayName": "Remove A Queue",
         "path": "/Accounts/:AccountSid/Queues/:QueueSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":QueueSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/queue"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues.json",
-        "path": "/Accounts/:AccountSid/Queues.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/member"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
-        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":QueueSid",
+            "displayName": "Queue SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CallSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/member"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
+        "displayName": "Update Queue Resource Information",
+        "path": "/Accounts/:AccountSid/Queues",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid.json",
+        "params": [
+          {
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "FriendlyName",
+            "displayName": "Friendly Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "MaxSize",
+            "displayName": "Max Size",
+            "style": "body",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "Get Queue List Resource",
+        "path": "/Accounts/:AccountSid/Queues.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues.json",
+        "params": []
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "Get Queue Member",
         "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":QueueSid",
+            "displayName": "Queue SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":CallSid.json",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Queues/:QueueSid/Members.json",
-        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members.json",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/member"
-        },
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members.json",
+        "displayName": "Get Member At Front Of Queue",
+        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members/Front",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/Front",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "Dequeue Member From Queue",
+        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json",
+        "params": [
+          {
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
+            "style": "url",
+            "type": "string",
             "required": "true"
           },
           {
-            "name": ":QueueSid",
+            "name": ":CallSid",
+            "displayName": "Call SID",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "Dequeue Member At Front Of Queue",
+        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members/Front",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/Front",
+        "params": [
+          {
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "Get Queue Member List",
+        "path": "/Accounts/:AccountSid/Queues/:QueueSid/Members.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members.json",
+        "params": [
+          {
+            "name": ":QueueSid",
+            "displayName": "Queue SID",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -1089,171 +743,111 @@
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/sending-messages"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Messages.json",
+        "displayName": "Send SMS/MMS",
         "path": "/Accounts/:AccountSid/Messages.json",
         "params": [
           {
             "name": "From",
+            "displayName": "From",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "To",
+            "displayName": "To",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "Body",
+            "displayName": "Text To Send",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           },
           {
             "name": "MediaUrl",
+            "displayName": "Media URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback (failed / sent / delivered / undelivered)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "ApplicationSid",
+            "displayName": "Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "MessageStatus",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "ErrorCode",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/short-codes"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SMS/ShortCodes/:ShortCodeSid.json",
+        "displayName": "Get Short Code",
         "path": "/Accounts/:AccountSid/SMS/ShortCodes/:ShortCodeSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes/:ShortCodeSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ShortCodeSid",
+            "displayName": "Short Code SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ShortCodeSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/short-codes"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SMS/ShortCodes/:ShortCodeSid.json",
+        "displayName": "Update Short Code Properties",
         "path": "/Accounts/:AccountSid/SMS/ShortCodes/:ShortCodeSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "ApiVersion",
+            "displayName": "Api Version (2010-04-01 / 2008-08-01)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsUrl",
+            "displayName": "SMS URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsMethod",
+            "displayName": "SMS Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackUrl",
+            "displayName": "SMS Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackMethod",
+            "displayName": "SMS Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":ShortCodeSid",
+            "displayName": "Short Code SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ShortCodeSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1261,237 +855,146 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/short-codes"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SMS/ShortCodes.json",
+        "displayName": "Get Short Code List",
         "path": "/Accounts/:AccountSid/SMS/ShortCodes.json",
         "params": [
           {
             "name": "ShortCode",
+            "displayName": "Short Code To Filter By",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/message"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Messages/:MessageSid.json",
+        "displayName": "Get Single Message",
         "path": "/Accounts/:AccountSid/Messages/:MessageSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":MessageSid",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":MessageSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/message"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Messages.json",
+        "displayName": "Get Messages List",
         "path": "/Accounts/:AccountSid/Messages.json",
         "params": [
           {
             "name": "To",
+            "displayName": "Filter By To",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "From",
+            "displayName": "Filter By From",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DateSent",
+            "displayName": "Filter By Date Sent",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages.json"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/message"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Messages.json",
-        "path": "/Accounts/:AccountSid/Messages.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
-      },
-      {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/available-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/Local.json",
+        "displayName": "Get Local Available Phone Numbers",
         "path": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/Local.json",
         "params": [
           {
             "name": "AreaCode",
+            "displayName": "Area Code",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Contains",
+            "displayName": "Contains",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsEnabled",
+            "displayName": "SMS Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "MmsEnabled",
+            "displayName": "MMS Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "VoiceEnabled",
+            "displayName": "Voice Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "NearNumber",
+            "displayName": "Near Number",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "NearLatLong",
+            "displayName": "Near Latitutde/Longitude",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Distance",
+            "displayName": "Distance",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "InPostalCode",
+            "displayName": "In Postal Code",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "InRegion",
+            "displayName": "In Region",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "InRateCenter",
+            "displayName": "In Rate Center",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "InLata",
+            "displayName": "In Local Area And Tranport Area",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           },
           {
             "name": ":IsoCountryCode",
+            "displayName": "ISO Country Code",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1499,41 +1002,26 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/available-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/TollFree.json",
+        "displayName": "Get Available Local Toll-Free Phone Numbers",
         "path": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/TollFree.json",
         "params": [
           {
             "name": "AreaCode",
+            "displayName": "Area Code",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Contains",
+            "displayName": "Contains",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           },
           {
             "name": ":IsoCountryCode",
+            "displayName": "ISO Country Code",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1541,55 +1029,38 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/available-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/Mobile.json",
+        "displayName": "Get Available Mobile Phone Numbers",
         "path": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/Mobile.json",
         "params": [
           {
             "name": "Contains",
+            "displayName": "Contains",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsEnabled",
+            "displayName": "SMS Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "MmsEnabled",
+            "displayName": "MMS Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "VoiceEnabled",
+            "displayName": "Voice Enabled",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "boolean"
           },
           {
             "name": ":IsoCountryCode",
+            "displayName": "ISO Country Code",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1600,311 +1071,125 @@
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
+        "displayName": "Get Incoming Phone Number",
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":IncomingPhoneNumberSid",
+            "displayName": "Incoming Phone Number SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IncomingPhoneNumberSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
+        "displayName": "Update Incoming Phone Number Properties",
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "ApiVersion",
+            "displayName": "Api Version (2010-04-01 / 2008-08-01)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceUrl",
+            "displayName": "Voice URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceMethod",
+            "displayName": "Voice Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackUrl",
+            "displayName": "Voice Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackMethod",
+            "displayName": "Voice Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceCallerIdLookup",
+            "displayName": "Lookup Voice Caller ID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "VoiceApplicationSid",
+            "displayName": "Voice Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsUrl",
+            "displayName": "SMS URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsMethod",
+            "displayName": "SMS Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackUrl",
+            "displayName": "SMS Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackMethod",
+            "displayName": "SMS Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsApplicationSid",
+            "displayName": "SMS Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "AccountSid",
+            "displayName": "Account SID To Transfer Phone Number",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":IncomingPhoneNumberSid",
+            "displayName": "Incoming Phone Number SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IncomingPhoneNumberSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json"
-      },
-      {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
-        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
-        "params": [
-          {
-            "name": "FriendlyName",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "ApiVersion",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceUrl",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceMethod",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceFallbackUrl",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceFallbackMethod",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "StatusCallback",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "StatusCallbackMethod",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceCallerIdLookup",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "VoiceApplicationSid",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "SmsUrl",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "SmsMethod",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "SmsFallbackUrl",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "SmsFallbackMethod",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "SmsApplicationSid",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "AccountSid",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IncomingPhoneNumberSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1912,391 +1197,270 @@
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
+        "displayName": "Delete Incoming Phone Number",
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":IncomingPhoneNumberSid",
+            "displayName": "Incoming Phone Number SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IncomingPhoneNumberSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ]
+        ],
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers.json",
+        "displayName": "Get Incoming Phone Number List",
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers.json",
+        "displayName": "Puchase Phone Number For Account",
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number To Puchase",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "AreaCode",
+            "displayName": "Desired Area Code",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceUrl",
+            "displayName": "Voice URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceMethod",
+            "displayName": "Voice Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackUrl",
+            "displayName": "Voice Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackMethod",
+            "displayName": "Voice Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceCallerIdLookup",
+            "displayName": "Lookup Voice Caller ID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "VoiceApplicationSid",
+            "displayName": "Voice Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsUrl",
+            "displayName": "SMS URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsMethod",
+            "displayName": "SMS Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackUrl",
+            "displayName": "SMS Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackMethod",
+            "displayName": "SMS Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsApplicationSid",
+            "displayName": "SMS Application SID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "ApiVersion",
+            "displayName": "Api Version (2010-04-01 / 2008-08-01)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json",
-        "params": [
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "displayName": "Get Local Incoming Phone Number List",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json",
+        "params": []
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json",
+        "displayName": "Add Local Incoming Phone Number To Account",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/Local.json"
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json",
-        "params": [
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "httpMethod": "POST",
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json",
-        "params": [
-          {
-            "name": "PhoneNumber",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/TollFree.json"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json",
-        "params": [
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "displayName": "Get Toll-Free Incoming Phone Number List",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json",
+        "params": []
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/incoming-phone-numbers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json",
-        "path": "/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json",
+        "displayName": "Add Toll-Free Incoming Phone Number To Account",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json",
         "params": [
           {
             "name": "PhoneNumber",
+            "displayName": "Phone Number",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/IncomingPhoneNumbers/Mobile.json"
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-records"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Records.json",
+        "displayName": "Get Mobile Incoming Phone Number List",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json",
+        "params": []
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "Add Mobile Incoming Phone Number To Account",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json",
+        "params": [
+          {
+            "name": "PhoneNumber",
+            "displayName": "Phone Number",
+            "style": "body",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "Get Usage Records",
         "path": "/Accounts/:AccountSid/Usage/Records.json",
         "params": [
           {
             "name": "Category",
+            "displayName": "Filter By Category",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StartDate",
+            "displayName": "Start Date",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "EndDate",
+            "displayName": "End Date",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
+          }
+        ],
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Usage/Records.json"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "Get Usage Records By Subresource",
+        "path": "/Accounts/:AccountSid/Usage/Records/:subResource.json",
+        "params": [
+          {
+            "name": "Category",
+            "displayName": "Filter By Category",
+            "style": "query",
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": "StartDate",
+            "displayName": "Start Date",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "EndDate",
+            "displayName": "End Date",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": ":subResource",
+            "displayName": "Subresource Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2304,76 +1468,47 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-triggers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
+        "displayName": "Get Usage Trigger Properties",
         "path": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":UsageTriggerSid",
+            "displayName": "Usage Trigger SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":UsageTriggerSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-triggers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
+        "displayName": "Update Usage Triggers Properties",
         "path": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CallbackUrl",
+            "displayName": "Callback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CallbackMethod",
+            "displayName": "Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":UsageTriggerSid",
+            "displayName": "Usage Trigger SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":UsageTriggerSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2381,454 +1516,270 @@
       },
       {
         "httpMethod": "DELETE",
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
+        "displayName": "Delete Usage Trigger",
         "path": "/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-triggers"
-        },
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:UsageTriggerSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":UsageTriggerSid",
+            "displayName": "Usage Trigger SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":UsageTriggerSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-triggers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Triggers.json",
+        "displayName": "Get Usage Trigger List",
         "path": "/Accounts/:AccountSid/Usage/Triggers.json",
         "params": [
           {
             "name": "Recurring",
+            "displayName": "Recurring (daily / monthly / yearly / alltime)",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "UsageCategory",
+            "displayName": "Usage Category",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "TriggerBy",
+            "displayName": "Trigger By",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/usage-triggers"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Usage/Triggers.json",
+        "displayName": "Create New Usage Trigger",
         "path": "/Accounts/:AccountSid/Usage/Triggers.json",
         "params": [
           {
             "name": "UsageCategory",
+            "displayName": "Usage Category",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "TriggerValue",
+            "displayName": "Trigger Value",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CallbackUrl",
+            "displayName": "Callback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "TriggerBy",
+            "displayName": "Trigger By",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Recurring",
+            "displayName": "Recurring (daily / monthly / yearly / alltime)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CallbackMethod",
+            "displayName": "Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/account"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid.json",
+        "displayName": "Get Account Information",
         "path": "/Accounts/:AccountSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid.json",
-        "params": [
-          {
-            "name": ":AccountSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/account"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid.json",
+        "displayName": "Update Account Properties",
         "path": "/Accounts/:AccountSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": "Status",
+            "name": "Status (closed / suspended)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/account"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts.json",
+        "displayName": "Get All Accounts",
         "path": "/Accounts.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Status",
+            "displayName": "Status (close / suspended / active)",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts.json"
       },
       {
         "httpMethod": "PUT",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/account"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid.json",
+        "displayName": "Create Subaccount",
         "path": "/Accounts/:AccountSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "Status",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid.json"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/account"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts.json",
-        "path": "/Accounts.json",
-        "url": "https://api.twilio.com/2010-04-01/Accounts.json",
-        "params": []
-      },
-      {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/subaccounts",
-          "t": "subaccounts"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts.json",
-        "path": "/Accounts.json",
-        "params": [
-          {
-            "name": "FriendlyName",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.twilio.com/2010-04-01/Accounts.json"
-      },
-      {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/applications"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
+        "displayName": "Get Application Information",
         "path": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Applications/:ApplicationSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ApplicationSid",
+            "displayName": "Application SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ApplicationSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/applications"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
+        "displayName": "Update Application Properties",
         "path": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "ApiVersion",
+            "displayName": "Api Version (2010-04-01 / 2008-08-01)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceUrl",
+            "displayName": "Voice URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceMethod",
+            "displayName": "Voice Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackUrl",
+            "displayName": "Voice Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackMethod",
+            "displayName": "Voice Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceCallerIdLookup",
+            "displayName": "Lookup Voice Caller ID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "SmsUrl",
+            "displayName": "SMS URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsMethod",
+            "displayName": "SMS Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackUrl",
+            "displayName": "SMS Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackMethod",
+            "displayName": "SMS Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsStatusCallback",
+            "displayName": "SMS Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "MessageStatusCallback",
+            "displayName": "Message Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":ApplicationSid",
+            "displayName": "Application SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ApplicationSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2836,293 +1787,205 @@
       },
       {
         "httpMethod": "DELETE",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/applications"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
+        "displayName": "Delete Application",
         "path": "/Accounts/:AccountSid/Applications/:ApplicationSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Applications/:ApplicationSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ApplicationSid",
+            "displayName": "Application SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ApplicationSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/applications"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Applications.json",
+        "displayName": "Get Applications List",
         "path": "/Accounts/:AccountSid/Applications.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Applications.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/applications"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/Applications.json",
+        "displayName": "Create Application",
         "path": "/Accounts/:AccountSid/Applications.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "ApiVersion",
+            "displayName": "Api Version (2010-04-01 / 2008-08-01)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceUrl",
+            "displayName": "Voice URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceMethod",
+            "displayName": "Voice Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackUrl",
+            "displayName": "Voice Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackMethod",
+            "displayName": "Voice Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallback",
+            "displayName": "Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "StatusCallbackMethod",
+            "displayName": "Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceCallerIdLookup",
+            "displayName": "Lookup Voice Caller ID",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "boolean"
           },
           {
             "name": "SmsUrl",
+            "displayName": "SMS URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsMethod",
+            "displayName": "SMS Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackUrl",
+            "displayName": "SMS Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsFallbackMethod",
+            "displayName": "SMS Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "SmsStatusCallback",
+            "displayName": "SMS Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "MessageStatusCallback",
+            "displayName": "Message Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Applications.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/connect-apps"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/ConnectApps/:ConnectAppSid.json",
+        "displayName": "Get Connect App Properties",
         "path": "/Accounts/:AccountSid/ConnectApps/:ConnectAppSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/ConnectApps/:ConnectAppSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ConnectAppSid",
+            "displayName": "Connect App SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ConnectAppSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/connect-apps"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/ConnectApps/:ConnectAppSid.json",
+        "displayName": "Update Connect App Properties",
         "path": "/Accounts/:AccountSid/ConnectApps/:ConnectAppSid.json",
         "params": [
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "AuthorizeRedirectUrl",
+            "displayName": "Authorize Redirect URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DeauthorizeCallbackUrl",
+            "displayName": "Deauthorize Callback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "DeauthorizeCallbackMethod",
+            "displayName": "Deauthorize Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Permissions",
+            "displayName": "Permissions (get-all / post-all)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "Description",
+            "displayName": "Description",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "CompanyName",
+            "displayName": "Company Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "HomepageUrl",
+            "displayName": "Homepage URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
-            "name": ":AccountSid",
+            "name": ":ConnectAppSid",
+            "displayName": "Connect App SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ConnectAppSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3130,847 +1993,480 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/connect-apps"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/ConnectApps.json",
+        "displayName": "Get Connect App List",
         "path": "/Accounts/:AccountSid/ConnectApps.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/ConnectApps.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/authorized-connect-apps"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/AuthorizedConnectApps/:ConnectAppSid.json",
+        "displayName": "Get Authorized Connect Application Information",
         "path": "/Accounts/:AccountSid/AuthorizedConnectApps/:ConnectAppSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps/:ConnectAppSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":ConnectAppSid",
+            "displayName": "Connect App SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":ConnectAppSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/authorized-connect-apps"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/AuthorizedConnectApps.json",
+        "displayName": "Get All Authorized Connect Applications",
         "path": "/Accounts/:AccountSid/AuthorizedConnectApps.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SIP/Domains.json",
+        "displayName": "Get Domains",
         "path": "/Accounts/:AccountSid/SIP/Domains.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SIP/Domains.json",
+        "displayName": "Create New Domain",
         "path": "/Accounts/:AccountSid/SIP/Domains.json",
         "params": [
           {
             "name": "DomainName",
+            "displayName": "Domain Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "FriendlyName",
+            "displayName": "Friendly Name",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceUrl",
+            "displayName": "Voice URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceMethod",
+            "displayName": "Voice Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackUrl",
+            "displayName": "Voice Fallback URL",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceFallbackMethod",
+            "displayName": "Voice Fallback Method (GET / POST)",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceStatusCallback",
+            "displayName": "Voice Status Callback",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "type": "string"
           },
           {
             "name": "VoiceStatusCallbackMethod",
+            "displayName": "Voice Status Callback Method",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "type": "string"
           }
         ],
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
+        "displayName": "Get Specific Domain Instance",
         "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":SipDomainSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Update Domain Attributes",
         "httpMethod": "POST",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":SipDomainSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Delete A Domain",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":SipDomainSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Get IP Access Control List Mappings For Domain",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":DomainSid",
+            "displayName": "Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
+        "path": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
+        "displayName": "Map An IP Access Control List To Domain",
+        "httpMethod": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IpAccessControlListSid"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "name": "IpAccessControlListSid",
+            "displayName": "IP Access Control List SID"
           },
           {
             "name": ":DomainSid",
+            "displayName": "Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json"
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Delete Mapping From Domain",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":DomainSid",
+            "displayName": "Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Get Domain Credential List Mappings",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
+        "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
+        "displayName": "Map Credential Lists To Domain",
+        "httpMethod": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CredentialListSid"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "name": "CredentialListSid",
+            "displayName": "Credential List SID"
           },
           {
             "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json"
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "displayName": "/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/domain"
-        },
+        "displayName": "Delete Credential Lists From Domain",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/Domains/:SipDomainSid/CredentialListMappings.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":SipDomainSid",
+            "displayName": "SIP Domain SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
+        "displayName": "Get All Ip Access Control Lists",
         "httpMethod": "GET",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
+        "params": []
+      },
+      {
+        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
+        "displayName": "Create New IP Access Control List",
+        "httpMethod": "POST",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
+            "required": "true",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "style": "body",
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "FriendlyName"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json"
-      },
-      {
         "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
+        "displayName": "Get Specific IP Access Control List",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IpAccessControlListSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
+        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
+        "displayName": "Rename An IP Access Control List",
+        "httpMethod": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FriendlyName"
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
           },
           {
-            "name": ":AccountSid",
+            "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IpAccessControlListSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json"
+        ]
       },
       {
+        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
+        "displayName": "Delete IP Access Control List",
+        "httpMethod": "DELETE",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
         "params": [
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
-          },
-          {
-            "name": ":AccountSid",
+            "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IpAccessControlListSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid.json"
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
-        "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
+        "displayName": "Get IP Addresses In Access Control List",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "FriendlyName"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "IpAddress"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":IpAccessControlListSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
         "displayName": "/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
         },
         "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json"
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json",
+        "params": [
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
+          },
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "name": "IpAddress",
+            "displayName": "IP Address"
+          },
+          {
+            "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
+        "displayName": "Get Single IP Address Resource",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":IpAddressSid.json",
+            "name": ":IpAddressSid",
+            "displayName": "IP Address SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
+        "path": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
+        "displayName": "Change IP Address Description",
+        "httpMethod": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FriendlyName"
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IpAddress"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "name": "IpAddress",
+            "displayName": "IP Address"
           },
           {
             "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":IpAddressSid.json",
+            "name": ":IpAddressSid",
+            "displayName": "IP Address SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json"
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/ip-access-control-list"
-        },
+        "displayName": "Delete IP Address From Control List",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP//IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:IpAddressSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":IpAccessControlListSid",
+            "displayName": "IP Access Control List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":IpAddressSid.json",
+            "name": ":IpAddressSid",
+            "displayName": "IP Address SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Get All Credential Lists",
         "httpMethod": "GET",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/.json",
+        "params": []
+      },
+      {
+        "path": "/Accounts/:AccountSid/SIP/CredentialLists/.json",
+        "displayName": "Create Credential List",
+        "httpMethod": "POST",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
+            "required": "true",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "style": "body",
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "FriendlyName"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/CredentialLists/.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/.json"
-      },
-      {
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Get Credential List Resource",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CLSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3978,436 +2474,264 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FriendlyName"
+            "name": "FriendlyName",
+            "displayName": "Friendly Name"
           },
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
-          },
-          {
-            "name": ":AccountSid",
+            "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CLSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Change Credential List Friendly Name",
         "httpMethod": "POST",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json"
       },
       {
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Delete Credential List",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CLSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Get Credentials In Credential List",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "Username"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "Password"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CLSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "displayName": "Add Credential To Credential List",
         "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json"
-      },
-      {
-        "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "params": [
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CLSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CredentialSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/credential-list"
-        },
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "Username"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "Password"
           },
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":CredentialSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
-        "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json"
+        ]
       },
       {
         "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Get Specific Credential In List",
+        "httpMethod": "GET",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
+        "params": [
+          {
+            "name": ":CLSid",
+            "displayName": "Credential List SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":CredentialSid",
+            "displayName": "Credential SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
+      },
+      {
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/credential-list"
         },
+        "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
+        "displayName": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
+        "httpMethod": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
+        "params": [
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "name": "Username",
+            "displayName": "Username"
+          },
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "name": "Password",
+            "displayName": "Password"
+          },
+          {
+            "name": ":CLSid",
+            "displayName": "Credential List SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":CredentialSid",
+            "displayName": "Credential SID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
+        "displayName": "Remove Credential From Credential List",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CLSid/Credentials/:CredentialSid.json",
         "params": [
           {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":CLSid",
+            "displayName": "Credential List SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":CredentialSid.json",
+            "name": ":CredentialSid",
+            "displayName": "Credential SID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/Notifications/:NotificationSid.json",
-        "displayName": "/Accounts/:AccountSid/Notifications/:NotificationSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/notification"
-        },
+        "displayName": "Get Notification",
         "httpMethod": "GET",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Notifications/:NotificationSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":NotificationSid",
+            "displayName": "Notification SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":NotificationSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/Accounts/:AccountSid/Notifications/:NotificationSid.json",
-        "displayName": "/Accounts/:AccountSid/Notifications/:NotificationSid.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/notification"
-        },
+        "displayName": "Delete Notification From Log",
         "httpMethod": "DELETE",
         "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Notifications/:NotificationSid.json",
         "params": [
           {
-            "name": ":AccountSid",
+            "name": ":NotificationSid",
+            "displayName": "Notification SID",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":NotificationSid.json",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
+        "path": "/Accounts/:AccountSid/Notifications.json",
+        "displayName": "Get All Notifications",
+        "httpMethod": "GET",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Notifications.json",
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Log"
+            "name": "Log",
+            "displayName": "Log"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "MessageDate"
-          },
-          {
-            "name": ":AccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
+            "name": "MessageDate",
+            "displayName": "Message Date"
           }
-        ],
-        "path": "/Accounts/:AccountSid/Notifications.json",
-        "displayName": "/Accounts/:AccountSid/Notifications.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://www.twilio.com/docs/api/rest/notification"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Notifications.json"
+        ]
       },
       {
-        "path": "/Accounts/:YourAccountSid/Sandbox.json",
-        "displayName": "/Accounts/:YourAccountSid/Sandbox.json",
-        "authentication": {
-          "required": "true"
-        },
+        "path": "/Accounts/:AccountSid/Sandbox.json",
+        "displayName": "/Accounts/:AccountSid/Sandbox.json",
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/sandbox"
         },
         "httpMethod": "GET",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/Sandbox.json",
-        "params": [
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ]
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Sandbox.json",
+        "params": []
       },
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "VoiceUrl"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "VoiceMethod"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "SmsUrl"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "SmsMethod"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "StatusCallback"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "StatusCallbackMethod"
-          },
-          {
-            "name": ":YourAccountSid",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
-        "path": "/Accounts/:YourAccountSid/Sandbox.json",
-        "displayName": "/Accounts/:YourAccountSid/Sandbox.json",
-        "authentication": {
-          "required": "true"
-        },
+        "path": "/Accounts/:AccountSid/Sandbox.json",
+        "displayName": "/Accounts/:AccountSid/Sandbox.json",
         "doc": {
           "url": "http://www.twilio.com/docs/api/rest/sandbox"
         },
         "httpMethod": "POST",
-        "url": "https://api.twilio.com/2010-04-01/Accounts/:YourAccountSid/Sandbox.json"
+        "url": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Sandbox.json"
       }
     ]
   }

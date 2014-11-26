@@ -1,61 +1,56 @@
-<md-toolbar md-theme="indigo">
-  <h2 class="md-toolbar-tools page-heading">
+<md-toolbar md-theme="octo-blue" class="md-tall">
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
     <a href class="menu-icon" ng-click="toggleNav()">
       <i class="fa fa-bars"></i>
     </a>
 
-    <span>Connect</span>
+    <md-button ui-sref="material.nodewizard.addnode" hide show-phone show-tablet class="" md-theme="octo-blue">
+      <md-tooltip>Add New Node</md-tooltip>
+      <i class="fa fa-2x fa-plus"></i>
+    </md-button>
   </h2>
 </md-toolbar>
 
-<br>
 
-<h2 class="text-center">Your Active Nodes</h2>
+<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
+  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="margin-top: -80px; background: white;">
+    <div layout-align="end" layout="row" style="height: 0; overflow: visible;">
+      <md-button ui-sref="material.nodewizard.addnode" hide-phone hide-tablet class="md-raised md-primary md-fab" md-theme="default" style="position: relative; right: -75px; top: 50px;">
+        <md-tooltip>Add New Node</md-tooltip>
+        <i class="fa fa-plus fa-2x"></i>
+      </md-button>
+    </div>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-    <form class="form">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="nodeSearch" autofocus>
-          <span class="input-group-addon">
-            <i class="fa fa-search"></i>
+    <div layout="row" style="padding: 6px 15px;">
+      <h1 flex>Connect</h1>
+
+      <form flex layout="row" layout-align="end center">
+        <md-text-float ng-model="nodeSearch" style="font-size: 2em;"></md-text-float>
+        <i class="fa fa-2x fa-search"></i>
+      </form>
+    </div>
+
+    <md-divider></md-divider>
+
+    <md-content flex layout-fill>
+      <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
+        <div ng-if="nodes.length" ng-repeat="node in nodes | filter: {name:nodeSearch} | filter: filterFlows | orderBy: 'name'" class="bill-of-materials-icon">
+          <h4 class="text-center">
+            <a href ng-href="{{nextStepUrl(node)}}" class="">
+              <div title="{{node.name}}" class="node-thumbnail animated-popout" ng-style="{ 'background-image': 'url(' + node.logo + ')' }" title="{{node.name}}" ng-class="{faded: !node.online}"></div>
+              <strong class="muted-link">{{node.name}}</strong>
+            </a>
+          </h4>
+        </div>
+        <div class="jumbotron" ng-if="nodes.length === 0">
+          <p class="lead">
+           <span class="fa-stack fa-2x">
+            <i class="fa fa-code-fork fa-stack-1x"></i>
+            <i class="fa fa-ban fa-stack-2x text-danger"></i>
           </span>
+          You currently have no Active Nodes</p>
         </div>
       </div>
-      <div class="form-group">
-        <div class="btn-group btn-group-justified">
-          <a class="btn btn-primary btn-lg" href ui-sref="material.nodewizard.addnode">
-            <i class="fa fa-plus fa-lg"></i>
-            Add New Node
-          </a>
-        </div>
-      </div>
-    </form>
+    </md-content>
   </div>
 </div>
-
-<hr>
-
-<md-content>
-  <div class="row">
-    <div ng-if="nodes.length">
-      <div ng-repeat="node in nodes | filter: {name:nodeSearch} | filter: filterFlows | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-        <h4 class="text-center">
-          <a href ng-href="{{nextStepUrl(node)}}" class="">
-            <div title="{{node.name}}" class="node-thumbnail animated-popout" ng-style="{ 'background-image': 'url(' + node.logo + ')' }" title="{{node.name}}" ng-class="{faded: !node.online}"></div>
-            <strong class="muted-link">{{node.name}}</strong>
-          </a>
-        </h4>
-      </div>
-    </div>
-    <div class="jumbotron" ng-if="nodes.length === 0">
-      <p class="lead">
-       <span class="fa-stack fa-2x">
-        <i class="fa fa-code-fork fa-stack-1x"></i>
-        <i class="fa fa-ban fa-stack-2x text-danger"></i>
-      </span>
-      You currently have no Active Nodes</p>
-    </div>
-  </div>
-</md-content>
