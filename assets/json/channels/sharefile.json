@@ -927,73 +927,72 @@
         "url": "https://octoblu.sf-api.com/sf/v3/Groups"
       },
       {
+        "displayName": "Update Group",
         "path": "/Groups(:id)",
+        "httpMethod": "PATCH",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Group ID",
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "groups",
+            "displayName": "Group",
+            "style": "body",
+            "type": "object",
+            "required": true
           }
         ],
-        "displayName": "/Groups(:id)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups",
-          "t": "patch"
-        },
-        "httpMethod": "PUT",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)"
       },
       {
+        "displayName": "Get Group Contacts",
         "path": "/Groups(:id)/Contacts",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Group ID",
             "style": "url",
             "type": "string",
             "required": true
           }
         ],
-        "displayName": "/Groups(:id)/Contacts",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
+        "displayName": "Add Contacts to Group",
         "path": "/Groups(:id)/Contacts",
-        "displayName": "/Groups(:id)/Contacts",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "POST",
         "params": [
           {
-            "name": "contacts",
-            "displayName": "Array of Contacts",
-            "style": "body",
+            "name": ":id",
+            "displayName": "Group ID",
+            "style": "url",
             "type": "string",
             "required": true
           },
           {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
+            "name": "contacts",
+            "displayName": "Array of Contacts",
+            "style": "body",
+            "type": "object",
             "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
+        "displayName": "Remove Contacts from Group",
         "path": "/Groups(:id)/Contacts",
+        "httpMethod": "DELETE",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Groups ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -1002,71 +1001,67 @@
             "name": "contacts",
             "displayName": "Array of Contacts",
             "style": "body",
-            "type": "string",
+            "type": "object",
             "required": true
           }
         ],
-        "displayName": "/Groups(:id)/Contacts",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
-        "httpMethod": "DELETE",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
+        "displayName": "Get Home Folder for Current User",
         "path": "/Items",
-        "params": [],
-        "displayName": "/Items",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
         "httpMethod": "GET",
+        "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Items"
       },
       {
-        "displayName": "/Items(:id)",
+        "displayName": "Get Item by ID",
         "path": "/Items(:id)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
+            "required": true
+          },
+          {
+            "name": "includeDeleted",
+            "displayName": "Include Deleted",
+            "style": "get",
+            "type": "boolean",
             "required": true
           }
         ]
       },
       {
+        "displayName": "Get Stream",
+        "path": "/Items(:id)/Stream",
+        "httpMethod": "GET",
         "params": [
+          {
+            "name": ":id",
+            "displayName": "Item ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
           {
             "required": true,
             "type": "boolean",
             "style": "query",
             "displayName": "Include Deleted",
             "name": "includeDeleted"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": true
           }
         ],
-        "path": "/Items(:id)/Stream",
-        "displayName": "/Items(:id)/Stream",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Stream"
       },
       {
+        "displayName": "Get Item by Path",
+        "path": "/Items/ByPath",
+        "httpMethod": "GET",
         "params": [
           {
             "required": true,
@@ -1076,48 +1071,43 @@
             "name": "path"
           }
         ],
-        "path": "/Items/ByPath",
-        "displayName": "/Items/ByPath",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items/ByPath"
       },
       {
-        "displayName": "/Items(:id)/Parent",
+        "displayName": "Get Parent Item",
         "path": "/Items(:id)/Parent",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
             "required": true
           }
         ],
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Parent"
       },
       {
+        "displayName": "Get Children",
         "path": "/Items(:id)/Children",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "includeDeleted",
+            "displayName": "Include Deleted",
+            "style": "query",
+            "type": "boolean",
+            "required": true
           }
         ],
-        "displayName": "/Items(:id)/Children",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Children"
       },
       {
