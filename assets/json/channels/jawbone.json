@@ -5,34 +5,9 @@
     "base": "https://jawbone.com/nudge/api/v.1.1/",
     "resources": [
       {
-        "params": [
-          {
-            "type": "number",
-            "style": "query",
-            "name": "date",
-            "displayName" : "Date"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "start_time",
-            "displayName" : "Start Time"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "end_time",
-            "displayName" : "End Time"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "created_after",
-            "displayName" : "Created After"
-          }
-        ],
+        "params": [],
         "path": "/users/@me/bandevents",
-        "displayName": "Get Band Events",
+        "displayName": "/users/@me/bandevents",
         "authentication": {
           "required": "true"
         },
@@ -43,46 +18,9 @@
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/bandevents"
       },
       {
-        "params": [
-          {
-            "type": "string",
-            "style": "query",
-            "name": "date",
-            "displayName" : "Date"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "page_token",
-            "displayName" : "Page Token"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "start_time",
-            "displayName" : "Start Time"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "end_time",
-            "displayName" : "End Time"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "updated_after",
-            "displayName" : "Updated After"
-          },
-          {
-            "type": "number",
-            "style": "query",
-            "name": "limit",
-            "displayName" : "Limit"
-          }
-        ],
+        "params": [],
         "path": "/users/@me/body_events",
-        "displayName": "Get Body Composition Metric Events",
+        "displayName": "/users/@me/body_events",
         "authentication": {
           "required": "true"
         },
@@ -94,7 +32,7 @@
       },
       {
         "path": "/body_events/:event_xid",
-        "displayName": "Get a Body Composition Metric Event",
+        "displayName": "/body_events/:event_xid",
         "authentication": {
           "required": "true"
         },
@@ -103,15 +41,7 @@
         },
         "httpMethod": "GET",
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
-        "params": [
-          {
-            "name": ":event_xid",
-            "displayName" : "Event ID",            
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "POST",
@@ -121,66 +51,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Create A New Body Composition Event",
+        "displayName": "/users/@me/body_events",
         "path": "/users/@me/body_events",
-        "params": [
-          {
-            "name": "title",
-            "style": "body",
-            "type": "string",            
-            "displayName" : "Title"
-          },
-          {
-            "name": "weight",
-            "style": "body",
-            "type": "string",
-            "displayName" : "Weight",
-            "required": "true"
-          },
-          {
-            "name": "body_fat",
-            "style": "body",
-            "type": "string",
-            "displayName" : "Body Fat"
-          },
-          {
-            "name": "lean_mass",
-            "style": "body",
-            "type": "string",
-            "displayName" : "Lean Mass"
-          },
-          {
-            "name": "bmi",
-            "style": "body",
-            "type": "string",
-            "displayName" : "Body Mass Index"
-          },
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "body",
-            "type": "string"
-            
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/body_events"
       },
       {
@@ -191,17 +64,10 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Delete a Body Composition Event",
+        "displayName": "/body_events/:event_xid",
         "path": "/body_events/:event_xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
-        "params": [
-          {
-            "name": ":event_xid",
-            "displayName" : "Event ID",            
-            "style": "url",
-            "type":
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -211,119 +77,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Get a Custom Event",
+        "displayName": "/users/@me/generic_events",
         "path": "/users/@me/generic_events",
-        "params": [
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "page_token",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "start_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "updated_after",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "limit",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_updated",
-            "displayName" : "Time Updated",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_name",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "image",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "attributes",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "size",
-            "displayName" : "Share",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "next",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/generic_events"
       },
       {
@@ -336,77 +92,7 @@
         },
         "displayName": "/users/@me/generic_events",
         "path": "/users/@me/generic_events",
-        "params": [
-          {
-            "name": "title",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "verb",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "attributes",
-            "status": "body",
-            "type": "string"
-          },
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/generic_events"
       },
       {
@@ -419,78 +105,7 @@
         },
         "displayName": "/generic_events/:xid/partialUpdate",
         "path": "/generic_events/:xid/partialUpdate",
-        "params": [
-          {
-            "name": "title",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "verb",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "attributes",
-            "styCreate A New Body Composition Metric",
-            "type": "string"
-          },
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid/partialUpdate"
       },
       {
@@ -504,14 +119,7 @@
         "displayName": "/generic_events/:xid",
         "path": "/generic_events/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -523,43 +131,7 @@
         },
         "displayName": "/users/@me/goals",
         "path": "/users/@me/goals",
-        "params": [
-          {
-            "name": "move_steps",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "sleep_total",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "body_weight",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "body_weight_intent",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "intake_calories_remaining",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "move_steps_remaining",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "sleep_seconds_remaining",
-            "style": "query",
-            "type": "number"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/goals"
       },
       {
@@ -572,28 +144,7 @@
         },
         "displayName": "/users/@me/goals",
         "path": "/users/@me/goals",
-        "params": [
-          {
-            "name": "move_steps",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "sleep_total",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "body_weight",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "body_weight_intent",
-            "style": "body",
-            "type": "number"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/goals"
       },
       {
@@ -606,222 +157,7 @@
         },
         "displayName": "/users/@me/meals",
         "path": "/users/@me/meals",
-        "params": [
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "page_token",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "start_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "updated_after",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sub_type",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_updated",
-            "displayName" : "Time Updated",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_name",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "num_drinks",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "num_foods",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "fiber",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "polyunsaturated_fat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "potassium",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "fat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "Carbohydrate",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "saturated_fat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "protein",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "monounsaturated_fat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sodium",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "vitamin_c",
-            "style": "query",
-            "type": "string"
-          },
-          { "name": "vitamin_a",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "unsaturated_fat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sugar",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "calcium",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "iron",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "cholesterol",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "caffeine",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "displayName" : "Share",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "next",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/meals"
       },
       {
@@ -835,14 +171,7 @@
         "displayName": "/meals/:xid",
         "path": "/meals/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "POST",
@@ -854,172 +183,7 @@
         },
         "displayName": "/users/@me/meals",
         "path": "/users/@me/meals",
-        "params": [
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name":!!,
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "photo",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": "items",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "amount",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "measurement",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "sub_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "category",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "food_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "calcium",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "carbohydrate",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "cholesterol",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "fiber",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "protein",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "saturated_fat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "sodium",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "sugar",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "unsaturated_fat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "caffeine",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/meals"
       },
       {
@@ -1032,173 +196,7 @@
         },
         "displayName": "/meals/:xid/partialUpdate",
         "path": "/meals/:xid/partialUpdate",
-        "params": [
-          {
-            "name": "note",
-            "displayName" : "Note",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name":!!,
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "photo",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": "items",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "amount",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "measurement",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "sub_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "category",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "food_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "calcium",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "carbohydrate",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "cholesterol",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "fiber",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "protein",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "saturated_fat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "sodium",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "sugar",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "unsaturated_fat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "caffeine",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid/partialUpdate"
       },
       {
@@ -1212,14 +210,7 @@
         "displayName": "/meals/:xid",
         "path": "/meals/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1231,93 +222,21 @@
         },
         "displayName": "/users/@me/mood",
         "path": "/users/@me/mood",
-        "params": [
-          {
-            "name": "date",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "query",
-            "type": "number"
-          },
-          { "name": "time_updated",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sub_type",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_name",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/mood"
       },
       {
         "httpMethod": "GET",
-        "url": "https://jawbone.com/up/developer/endpoints/mood",
-        "authentication" : {
+        "doc": {
+          "url": "https://jawbone.com/up/developer/endpoints/mood"
+        },
+        "authentication": {
           "required": "true"
         },
         "displayName": "/mood/:xid",
         "path": "/mood/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "POST",
@@ -1329,36 +248,7 @@
         },
         "displayName": "/users/@me/mood",
         "path": "/users/@me/mood",
-        "params": [
-          {
-            "name": "title",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "sub_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/mood"
       },
       {
@@ -1372,14 +262,7 @@
         "displayName": "/mood/:xid",
         "path": "/mood/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1391,182 +274,7 @@
         },
         "displayName": "/users/@me/moves",
         "path": "/users/@me/moves",
-        "params": [
-          {
-            "name": "date",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "page_token",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "start_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "updated_after",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "xid",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_updated",
-            "displayName" : "Time Updated",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "snapshot_image",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "distance",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "km",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "steps",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "active_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "longest_active",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "inactive_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "longest_idle",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name" : "bmr_day",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "bmr",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "bg_calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "wo_calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "wo_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "wo_active_time",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "wo_count",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "wo_longest",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "tzs",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "hourly_totals",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "Next",
-            "style": "body",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/moves"
       },
       {
@@ -1580,14 +288,7 @@
         "displayName": "/moves/:move_xid",
         "path": "/moves/:move_xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid",
-        "params": [
-          {
-            "name": ":move_xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1600,14 +301,7 @@
         "displayName": "/moves/:move_xid/image",
         "path": "/moves/:move_xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/image",
-        "params": [
-          {
-            "name": ":move_xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1619,44 +313,7 @@
         },
         "path": "/moves/:move_xid/ticks",
         "displayName": "/moves/:move_xid/ticks",
-        "params": [
-          {
-            "name": "distance",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "active_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "steps",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "speed",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": ":move_xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/ticks"
       },
       {
@@ -1669,18 +326,7 @@
         },
         "displayName": "/users/@me/refreshToken",
         "path": "/users/@me/refreshToken",
-        "params": [
-          {
-            "name": "secret",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "refresh_token",
-            "style": "body",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/refreshToken"
       },
       {
@@ -1693,43 +339,7 @@
         },
         "displayName": "/users/@me/settings",
         "path": "/users/@me/settings",
-        "params": [
-          {
-            "name": "XID",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "metric",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "share_sleep",
-            "style": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "share_mood",
-            "style": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "share_body",
-            "style": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "share_eat",
-            "style": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "share_move",
-            "style": "query",
-            "type": "boolean"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/settings"
       },
       {
@@ -1742,161 +352,7 @@
         },
         "displayName": "/users/@me/sleeps",
         "path": "/users/@me/sleeps",
-        "params": [
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "page_token",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "start_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "updated_after",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sub_type",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_name",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "snapshot_image",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "smart_alarm_fire",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "awake_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "asleep_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "awakenings",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "rem",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "light",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "sound",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "awake",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "duration",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "quality",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "displayName" : "Share",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "next",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/sleeps"
       },
       {
@@ -1910,14 +366,7 @@
         "displayName": "/sleeps/:xid",
         "path": "/sleeps/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1930,14 +379,7 @@
         "displayName": "/sleeps/:xid/image",
         "path": "/sleeps/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/image",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -1947,26 +389,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Create A New Body Composition Metric",
+        "displayName": "/sleeps/:xid/ticks",
         "path": "/sleeps/:xid/ticks",
-        "params": [
-          {
-            "name": "depth",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/ticks"
       },
       {
@@ -1979,31 +404,7 @@
         },
         "displayName": "/users/@me/sleeps",
         "path": "/users/@me/sleeps",
-        "params": [
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/sleeps"
       },
       {
@@ -2017,14 +418,7 @@
         "displayName": "/sleeps/:xid",
         "path": "/sleeps/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
-        "params": [
-          {
-            "naCreate A New Body Composition Metric",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -2036,45 +430,7 @@
         },
         "displayName": "/users/@me/timezone",
         "path": "/users/@me/timezone",
-        "params": [
-          {
-            "name": "start_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "timestamp",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "time",
-            "displayName" : "Share",
-            "style": "query",
-            "type": "number"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/timezone"
       },
       {
@@ -2087,228 +443,7 @@
         },
         "displayName": "/users/@me/trends",
         "path": "/users/@me/trends",
-        "params": [
-          {
-            "name": "end_date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "bucket_size",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "num_buckets",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "earliest",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "weight",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "gender",
-            "style": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "age",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "bmr",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "body_fat",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "m_steps",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "m_calories",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "m_total_calories",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "m_active_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "m_workout_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "m_distance",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_carbs",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_cholesterol",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_protein",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_calcium",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_unsat_fat",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_sat_fat",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_sodium",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_sugar",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "e_fiber",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_bedtime",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_asleep_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_awake_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_awakenings",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_light",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_sound",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_awake",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_duration",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "s_quality",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_bedtime",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_asleep_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_awake_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_awakenings",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_light",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_sound",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_awake",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_duration",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "n_quality",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "next",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/trends"
       },
       {
@@ -2321,38 +456,7 @@
         },
         "displayName": "/users/@me",
         "path": "/users/@me",
-        "params": [
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "first",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "last",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "image",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "weight",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "height",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me"
       },
       {
@@ -2365,13 +469,7 @@
         },
         "displayName": "/users/@me/friends",
         "path": "/users/@me/friends",
-        "params": [
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/friends"
       },
       {
@@ -2384,177 +482,7 @@
         },
         "displayName": "/users/@me/workouts",
         "path": "/users/@me/workouts",
-        "params": [
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "page_token",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "start_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "end_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "updated_after",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "limit",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "xid",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "sub_type",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_updated",
-            "displayName" : "Time Updated",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "date",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "place_name",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "route",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "image",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "snapshot_image",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "steps",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "bg_active_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "meters",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "km",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "intensity",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "bmr",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "bg_calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "size",
-            "displayName" : "Share",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "next",
-            "style": "query",
-            "type": "string"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/workouts"
       },
       {
@@ -2568,14 +496,7 @@
         "displayName": "/workouts/:xid",
         "path": "/workouts/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -2588,14 +509,7 @@
         "displayName": "/workouts/:xid/image",
         "path": "/workouts/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/image",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ]
+        "params": []
       },
       {
         "httpMethod": "GET",
@@ -2607,44 +521,7 @@
         },
         "displayName": "/workouts/:xid/ticks",
         "path": "/workouts/:xid/ticks",
-        "params": [
-          {
-            "name": "distance",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "active_time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "calories",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "steps",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "time",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": "speed",
-            "style": "query",
-            "type": "number"
-          },
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/ticks"
       },
       {
@@ -2653,80 +530,11 @@
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
         "authentication": {
-          "requiCreate A New Body Composition Metric"
+          "required": "true"
         },
         "displayName": "/users/@me/workouts",
         "path": "/users/@me/workouts",
-        "params": [
-          {
-            "name": "sub_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": "calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "distance",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "intensity",
-            "style": "body",
-            "type": "number"
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/workouts"
       },
       {
@@ -2735,86 +543,11 @@
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
         "authentication": {
-          "requiCreate A New Body Composition Metric"
+          "required": "true"
         },
         "displayName": "/workouts/:xid/partialUpdate",
         "path": "/workouts/:xid/partialUpdate",
-        "params": [
-          {
-            "name": "sub_type",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_created",
-            "displayName" : "Time Created",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "time_completed",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "place_lat",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_lon",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_acc",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "place_name",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "tz",
-            "displayName": "Time Zone",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "share",
-            "displayName" : "Share",
-            "style": "body",
-            "type": "boolean"
-          },
-          {
-            "name": "calories",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "distance",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": "image_url",
-            "style": "body",
-            "type": "string"
-          },
-          {
-            "name": "intensity",
-            "style": "body",
-            "type": "number"
-          },
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/partialUpdate"
       },
       {
@@ -2827,14 +560,7 @@
         },
         "displayName": "/workouts/:xid",
         "path": "/workouts/:xid",
-        "params": [
-          {
-            "name": ":xid",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
+        "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid"
       }
     ]
