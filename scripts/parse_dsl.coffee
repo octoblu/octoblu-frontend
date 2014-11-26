@@ -5,6 +5,11 @@ _         = require 'lodash'
 commander = require 'commander'
 prettyCamel = require 'pretty-camel'
 
+# Usage:
+# params : [
+#   {"stuff":["user:r","count:ib","type::Account Type:This,Is,A,List"]}
+# ]
+
 class ParseDSL
   constructor: (@options={}) ->
     @channel_filename = @options.channel_filename
@@ -23,6 +28,7 @@ class ParseDSL
         return unless param.stuff?
         _.each param.stuff, (para) ->
           [name,flags,displayName,enums,defaultValue] = para.split ':'
+          style = 'body'
           type = 'string'
           if /i/.test flags
             type = 'integer'
@@ -30,11 +36,13 @@ class ParseDSL
             type = 'boolean'
           if /o/.test flags
             type = 'object'
+          if /q/.test flags
+            style = 'query'
           displayName = displayName || prettyCamel(name)
           newParam = {
             name: name
             displayName: displayName
-            style: 'body'
+            style: style
             type: type
           }
           newParam.displayName += " ( #{enums.split(',').join(' / ')} )" if enums
