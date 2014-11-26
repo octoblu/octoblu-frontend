@@ -4,7 +4,7 @@ angular.module('octobluApp')
 
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
-  $scope.deviceOnline;
+  $scope.deviceOnline = false;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -15,13 +15,19 @@ angular.module('octobluApp')
     skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
   };
 
+  var unsubscribeFromFlow = function(flowId) {
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.unsubscribe({uuid: flowId});
+    });
+  };
+
   var setCookie = function(flowId) {
     $cookies.currentFlowId = flowId;
   };
 
   var deleteCookie = function() {
     delete $cookies.currentFlowId;
-  }
+  };
 
   var setDeviceStatus = function(status) {
     $scope.deviceOnline = status;
@@ -43,21 +49,6 @@ angular.module('octobluApp')
     });
   };
 
-  skynetService.getSkynetConnection().then(function (skynetConnection) {
-    skynetConnection.on('ready', function(){
-      subscribeToFlow(skynetConnection, $stateParams.flowId);
-      checkDeviceStatus(skynetConnection, $stateParams.flowId);
-    });
-
-    subscribeToFlow(skynetConnection, $stateParams.flowId);
-    checkDeviceStatus(skynetConnection, $stateParams.flowId);
-
-    skynetConnection.on('message', function (message) {
-      if (message.topic === 'device-status') {
-        setDeviceStatus(message.payload.online);
-      }
-    });
-  });
 
   FlowNodeTypeService.getFlowNodeTypes()
     .then(function (flowNodeTypes) {
@@ -78,18 +69,27 @@ angular.module('octobluApp')
   refreshFlows().then(function(){
     deleteCookie();
     var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
-    if(activeFlow){
-      return $scope.setActiveFlow(activeFlow);
+    if(!activeFlow){
+      $state.go('material.design');
+      return;
     }
-    $state.go('material.design');
-  });
-
-  $scope.logout = function(){
-    AuthService.logout()
-      .then(function () {
-        $state.go('login');
+    $scope.setActiveFlow(activeFlow);
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.on('ready', function(){
+        subscribeToFlow(skynetConnection, $stateParams.flowId);
+        checkDeviceStatus(skynetConnection, $stateParams.flowId);
       });
-  };
+
+      subscribeToFlow(skynetConnection, $stateParams.flowId);
+      checkDeviceStatus(skynetConnection, $stateParams.flowId);
+
+      skynetConnection.on('message', function (message) {
+        if (message.topic === 'device-status') {
+          setDeviceStatus(message.payload.online);
+        }
+      });
+    });
+  });
 
   function escapeLargeValue(value){
     var str = JSON.stringify(value);
@@ -98,7 +98,7 @@ angular.module('octobluApp')
     }
 
   	return value;
-  }
+  };
 
   function pushDebugLines(message){
     var debug = {}, newMessage, msg;
@@ -110,7 +110,7 @@ angular.module('octobluApp')
     if ($scope.debugLines.length > 100) {
       $scope.debugLines.pop();
     }
-  }
+  };
 
   $scope.$on('flow-node-debug', function (event, options) {
     $log.debug(options);
