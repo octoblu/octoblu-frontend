@@ -5,7 +5,7 @@ angular.module('octobluApp')
   $scope.activate = function(){
     AuthService.getCurrentUser().then(function(user){
       userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
-        user.resource.uuid, user.resource.token,
+        user.skynet.uuid, user.skynet.token,
         function () {
           $state.go('material.design');
         });
