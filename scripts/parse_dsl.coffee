@@ -5,6 +5,11 @@ _         = require 'lodash'
 commander = require 'commander'
 prettyCamel = require 'pretty-camel'
 
+# Usage:
+# params : [
+#   {"stuff":["user:r","count:ib","type::Account Type:This,Is,A,List"]}
+# ]
+
 class ParseDSL
   constructor: (@options={}) ->
     @channel_filename = @options.channel_filename
