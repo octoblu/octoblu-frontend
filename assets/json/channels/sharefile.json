@@ -777,17 +777,14 @@
         ]
       },
       {
+        "displayName": "Get List of Favorite Folders",
         "path": "/Users(:id)/FavoriteFolders",
-        "displayName": "/Users(:id)/FavoriteFolders",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -795,11 +792,8 @@
         ]
       },
       {
+        "displayName": "Get Favorite Folders",
         "path": "/Users(:userid)/FavoriteFolders(:itemid)",
-        "displayName": "/Users(:userid)/FavoriteFolders(:itemid)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
         "params": [
@@ -820,11 +814,8 @@
         ]
       },
       {
+        "displayName": "Get Favorite Folder",
         "path": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
-        "displayName": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
         "params": [
@@ -845,17 +836,14 @@
         ]
       },
       {
-        "displayName": "/Users(:id)/FavoriteFolders",
+        "displayName": "Get List of Favorite Folders for User",
         "path": "/Users(:id)/FavoriteFolders",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "POST",
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -863,17 +851,14 @@
         ]
       },
       {
+        "displayName": "Delete Favorite Folder for User",
         "path": "/Users(:id)/FavoriteFolders(:itemid)",
-        "displayName": "/Users(:id)/FavoriteFolders(:itemid)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "DELETE",
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -888,21 +873,18 @@
         ]
       },
       {
+        "displayName": "Get Group List",
         "path": "/Groups",
-        "displayName": "/Groups",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups",
         "params": []
       },
       {
+        "displayName": "Get Group By ID",
         "path": "/Groups(:id)",
-        "displayName": "/Groups(:id)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
         "params": [
@@ -916,17 +898,14 @@
         ]
       },
       {
+        "displayName": "Delete Group",
         "path": "/Groups(:id)",
-        "displayName": "/Groups(:id)",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "DELETE",
         "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Group ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -934,13 +913,17 @@
         ]
       },
       {
-        "path": "/Groups",
-        "params": [],
+        "path": "Create Group",
         "displayName": "/Groups",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "POST",
+        "params": [
+          {
+            "name": "group",
+            "displayName": "Group",
+            "style": "body",
+            "type": "object"
+          }
+        ],
         "url": "https://octoblu.sf-api.com/sf/v3/Groups"
       },
       {
