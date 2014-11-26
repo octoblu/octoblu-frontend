@@ -36,7 +36,7 @@
         "httpMethod": "GET",
         "fullURL": "https://developer-api.nest.com/devices.json",
         "path": "/devices.json",
-        "displayName": "/devices.json",
+        "displayName": "Get All Devices",
         "doc": {
           "t": "Retrieves information about your Nest devices."
         },
@@ -46,7 +46,7 @@
         "httpMethod": "PATCH",
         "fullURL": "https://developer-api.nest.com/devices/thermostats/:device_id",
         "path": "/devices/thermostats/:device_id",
-        "displayName": "/devices/thermostats/:device_id",
+        "displayName": "Update a thermostat",
         "doc": {
           "t": "Update information on your Nest devices."
         },
@@ -55,80 +55,62 @@
             "name": ":device_id",
             "required": true,
             "style": "url",
-            "doc": {
-              "t": "Device Id"
-            }
+            "displayName": "Device ID"
           },
           {
             "name": "fan_timer_active",
             "required": false,
             "style": "body",
             "type": "boolean",
-            "doc": {
-              "t": true
-            }
+            "displayName": "Fan Timer Active"
           },
           {
             "name": "target_temperature_f",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 76
-            }
+            "displayName": "Target Temperature in Fahrenheit"
           },
           {
             "name": "target_temperature_c",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 21.5
-            }
+            "displayName": "Target Temperature in Celsius"
           },
           {
             "name": "target_temperature_high_f",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 72
-            }
+            "displayName": "Target Temperature High in Fahrenheit"
           },
           {
             "name": "target_temperature_high_c",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 21.5
-            }
+            "displayName": "Target Temperature High in Celsius"
           },
           {
             "name": "target_temperature_low_f",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 64
-            }
+            "displayName": "Target Temperature Low in Fahrenheit"
           },
           {
             "name": "target_temperature_low_c",
             "required": false,
             "style": "body",
             "type": "number",
-            "doc": {
-              "t": 17.5
-            }
+            "displayName": "Target Temperature Low in Celsius"
           },
           {
             "name": "hvac_mode",
             "required": false,
             "style": "body",
-            "doc": {
-              "t": "heat"
-            }
+            "displayName": "HVAC Mode (heat/cool/heat-cool)"
           }
         ],
         "url": "https://developer-api.nest.com/devices/thermostats/:device_id"
@@ -137,7 +119,7 @@
         "httpMethod": "PATCH",
         "fullURL": "https://developer-api.nest.com/structures/:structure_id",
         "path": "/structures/:structure_id",
-        "displayName": "/structures/:structure_id",
+        "displayName": "Update a structure (home)",
         "doc": {
           "t": "Update information on your Nest structures."
         },
@@ -146,17 +128,13 @@
             "name": ":structure_id",
             "required": true,
             "style": "url",
-            "doc": {
-              "t": "Device Id"
-            }
+            "displayName": "Structure ID (home id)"
           },
           {
             "name": "away",
             "required": false,
             "style": "body",
-            "doc": {
-              "t": "away"
-            }
+            "displayName": "Away Status (home/away)"
           }
         ],
         "url": "https://developer-api.nest.com/structures/:structure_id"

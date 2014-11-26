@@ -22,7 +22,7 @@
           }
         ],
         "path": "/trips",
-        "displayName": "/trips",
+        "displayName": "Get Trips",
         "authentication": {
           "required": "true"
         },
@@ -31,16 +31,26 @@
       },
       {
         "path": "/trips/:id",
-        "displayName": "/trips/:id",
+        "displayName": "Get Trip",
         "authentication": {
           "required": "true"
         },
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "displayName": "Trip ID",
+            "name": ":id"
+          }
+        ],
         "httpMethod": "GET",
         "url": "https://api.automatic.com/v1//trips/:id"
       },
       {
         "path": "/user",
-        "displayName": "/user",
+        "displayName": "Get User",
         "authentication": {
           "required": "true"
         },
@@ -49,7 +59,7 @@
       },
       {
         "path": "/vehicles",
-        "displayName": "/vehicles",
+        "displayName": "Get Vehicles",
         "authentication": {
           "required": "true"
         },
@@ -58,10 +68,20 @@
       },
       {
         "path": "/vehicles/:id",
-        "displayName": "/vehicles/:id",
+        "displayName": "Get Vehicle",
         "authentication": {
           "required": "true"
         },
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "displayName": "Vehicle ID",
+            "name": ":id"
+          }
+        ],
         "httpMethod": "GET",
         "url": "https://api.automatic.com/v1//vehicles/:id"
       }

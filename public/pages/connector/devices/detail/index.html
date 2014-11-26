@@ -1,4 +1,4 @@
-<md-toolbar md-theme="indigo">
+<md-toolbar md-theme="octo-blue">
   <h2 class="md-toolbar-tools page-heading">
     <a href class="menu-icon" ng-click="toggleNav()">
       <i class="fa fa-bars"></i>
@@ -59,7 +59,7 @@
                 <div class="panel-body">
                   <ul class="list-group">
                     <li class="list-group-item" ng-repeat="group in targetGroups | orderBy: group.name">
-                      <a href ui-sref="ob.admin.detail({uuid : group.uuid})">{{group.name}}</a>
+                      <a href ui-sref="material.admin.detail({uuid : group.uuid})">{{group.name}}</a>
                     </li>
 
                   </ul>
@@ -72,7 +72,7 @@
                 <div class="panel-body">
                   <ul class="list-group">
                     <li class="list-group-item" ng-repeat="group in sourceGroups | orderBy: group.name">
-                      <a href ui-sref="ob.admin.detail({uuid : group.uuid})">{{group.name}}</a>
+                      <a href ui-sref="material.admin.detail({uuid : group.uuid})">{{group.name}}</a>
                     </li>
                   </ul>
                 </div>

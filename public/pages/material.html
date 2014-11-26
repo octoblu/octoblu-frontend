@@ -1,10 +1,14 @@
-<div class="materialize" layout="row">
+<div class="materialize" layout="row" md-theme="octo-blue">
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="navIsOpen">
-    <md-toolbar class="md-medium-tall md-indigo-theme" layout-align="center">
+    <md-toolbar class="md-medium-tall md-octo-blue-theme" layout-align="center">
       <a href ng-click="closeNav()" ui-sref="material.home" class="navbar-logo">
         <img src="/assets/images/octoblu_logo.png">
       </a>
     </md-toolbar>
+
+    <md-button class="md-fab md-primary" ng-click="closeNav()">
+      <i class="fa fa-bars fa-2x"></i>
+    </md-button>
 
     <md-content>
       <a href ng-click="closeNav()" ui-sref="material.home" layout="row" layout-align="start center">
@@ -19,11 +23,11 @@
         <i class="fa fa-edit fa-lg"></i>
         <span>Design</span>
       </a>
-      <a href ng-click="closeNav()" ui-sref="ob.process" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.process" layout="row" layout-align="start center">
         <i class="fa fa-tasks fa-lg"></i>
         <span>Process</span>
       </a>
-      <a href ng-click="closeNav()" ui-sref="ob.analyze" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.analyze" layout="row" layout-align="start center">
         <i class="fa fa-bar-chart-o fa-lg"></i>
         <span>Analyze</span>
       </a>
@@ -31,7 +35,7 @@
         <i class="fa fa-file-text fa-lg"></i>
         <span>Templates</span>
       </a>
-      <a href ng-click="closeNav()" ui-sref="ob.admin.all" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.admin.all" layout="row" layout-align="start center">
         <i class="fa fa-lock fa-lg"></i>
         <span>Admin</span>
       </a>

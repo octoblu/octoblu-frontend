@@ -1,5 +1,5 @@
 {
-  "_id": "channel-stripe",
+  "_id": "5474c6df02e6ab8febbef00e",
   "__v": 0,
   "auth_strategy": "apikey-basic",
   "custom_tokens": [],
@@ -20,11 +20,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers",
+        "displayName": "Create New Customer",
         "path": "/customers",
         "params": [
           {
             "name": "account_balance",
+            "displayName" : "Account Balance",
             "style": "body",
             "type": "number",
             "value": "",
@@ -32,6 +33,7 @@
           },
           {
             "name": "card",
+            "displayName": "Card ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -39,6 +41,7 @@
           },
           {
             "name": "coupon",
+            "displayNames": "Coupon",
             "style": "body",
             "type": "string",
             "value": "",
@@ -46,6 +49,7 @@
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string",
             "value": "",
@@ -53,6 +57,7 @@
           },
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
             "value": "",
@@ -60,6 +65,7 @@
           },
           {
             "name": "plan",
+            "displayName": "Plan",
             "style": "body",
             "type": "string",
             "value": "",
@@ -67,6 +73,7 @@
           },
           {
             "name": "quantity",
+            "displayName": "Quantity",
             "style": "body",
             "type": "number",
             "value": "",
@@ -74,6 +81,7 @@
           },
           {
             "name": "trial_end",
+            "displayName": "Trail End",
             "style": "body",
             "type": "string",
             "value": "",
@@ -91,11 +99,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/:id",
+        "displayName": "Retrieve Customer",
         "path": "/customers/:id",
         "params": [
           {
             "name": ":id",
+            "displayName": "Customer ID",
             "style": "url",
             "type": "string",
             "value": "",
@@ -113,99 +122,100 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/:customer_id/cards",
+        "displayName": "Create Card",
         "path": "/customers/:customer_id/cards",
         "params": [
           {
             "name": ":customer_id",
+            "displayName": "Customer ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[number]",
-            "displayName": "number",
+            "name": "card.number",
+            "displayName": "Card Number",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[exp_month]",
-            "displayName" : "expiration month",
+            "name": "card.exp_month",
+            "displayName" : "Expiration Month",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[exp_year]",
-            "displayName" : "expiration year",
+            "name": "card.exp_year",
+            "displayName" : "Expiration Year",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[cvc]",
-            "displayName" : "cvc",
+            "name": "card.cvc",
+            "displayName" : "CVC",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[name]",
-            "displayName" : "name",
+            "name": "card.name",
+            "displayName" : "Card Name",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_line1]",
-            "displayName": "address line 1",
+            "name": "card.address_line1",
+            "displayName": "Address Line 1",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_line2]",
-            "displayName": "address line 2",
+            "name": "card.address_line2",
+            "displayName": "Address Line 2",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_city]",
-            "displayName": "address city",
+            "name": "card.address_city",
+            "displayName": "Address City",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_zip]",
-            "displayName": "address zip",
+            "name": "card.address_zip",
+            "displayName": "Address Zip",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_state]",
-            "displayName": "address state",
+            "name": "card.address_state",
+            "displayName": "Address State",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_country]",
-            "displayName": "address country",
+            "name": "card.address_country",
+            "displayName": "Address Country",
             "style": "body",
             "type": "string",
             "value": "",
@@ -223,11 +233,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/:customer_id/cards/:card_id",
+        "displayName": "Retrieve Existing Card",
         "path": "/customers/:customer_id/cards/:card_id",
         "params": [
           {
             "name": ":customer_id",
+            "displayName": "Customer ID",
             "style": "url",
             "type": "string",
             "value": "",
@@ -235,6 +246,7 @@
           },
           {
             "name": ":card_id",
+            "displayName": "Card ID",
             "style": "url",
             "type": "string",
             "value": "",
@@ -252,11 +264,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/charges",
+        "displayName": "Create Charge",
         "path": "/charges",
         "params": [
           {
             "name": "amount",
+            "displayName": "Amount",
             "style": "body",
             "type": "number",
             "value": "50",
@@ -264,6 +277,7 @@
           },
           {
             "name": "currency",
+            "displayName": "Currency",
             "style": "body",
             "type": "string",
             "value": "",
@@ -271,29 +285,30 @@
           },
           {
             "name": "customer",
+            "displayName": "Customer",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[number]",
-            "displayName": "card number",
+            "name": "card.number",
+            "displayName": "Card Number",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[exp_month]",
-            "displayName" : "card expiration month",
+            "name": "card.exp_month",
+            "displayName" : "Card Expiration Month",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card[exp_year]",
+            "name": "card.exp_year",
             "displayName" : "card expiration year",
             "style": "body",
             "type": "string",
@@ -301,64 +316,64 @@
             "required": "true"
           },
           {
-            "name": "card[cvc]",
-            "displayName" : "card cvc",
+            "name": "card.cvc",
+            "displayName" : "Card CVC",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[name]",
-            "displayName" : "card name",
+            "name": "card.name",
+            "displayName" : "Card Name",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_line1]",
-            "displayName": "card address line 1",
+            "name": "card.address_line1",
+            "displayName": "Card Address Line 1",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_line2]",
-            "displayName": "card address line 2",
+            "name": "card.address_line2",
+            "displayName": "Card Address Line 2",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_city]",
-            "displayName": "address city",
+            "name": "card.address_city",
+            "displayName": "Address City",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_zip]",
-            "displayName": "card address zip",
+            "name": "card.address_zip",
+            "displayName": "Card Address Zip",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_state]",
-            "displayName": "card address state",
+            "name": "card.address_state",
+            "displayName": "Card Address State",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card[address_country]",
-            "displayName": "card address country",
+            "name": "card.address_country",
+            "displayName": "Card Address Country",
             "style": "body",
             "type": "string",
             "value": "",
@@ -366,6 +381,7 @@
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string",
             "value": "",
@@ -373,6 +389,7 @@
           },
           {
             "name": "capture",
+            "displayName": "Capture",
             "style": "body",
             "type": "string",
             "value": "",
@@ -380,6 +397,7 @@
           },
           {
             "name": "statement_description",
+            "displayName": "Statement Description",
             "style": "body",
             "type": "string",
             "value": "",
@@ -387,6 +405,7 @@
           },
           {
             "name": "receipt_email",
+            "displayName": "Receipt Email",
             "style": "body",
             "type": "string",
             "value": "",
@@ -404,7 +423,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/charges/:charge_id",
+        "displayName": "Retrieve Existing Charge",
         "path": "/charges/:charge_id",
         "params": [
           {
@@ -427,12 +446,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/charges/:charge_id/capture",
+        "displayName": "Capture an Existing Uncaptured Charge",
         "path": "/charges/:charge_id/capture",
         "params": [
           {
             "name": ":charge_id",
-            "displayName" : "charge id",
+            "displayName" : "Charge ID",
             "style": "url",
             "type": "string",
             "value": "",
@@ -440,7 +459,7 @@
           },
           {
             "name": "amount",
-            "displayName" : "amount",
+            "displayName" : "Amount",
             "style": "body",
             "type": "string",
             "value": "",
@@ -448,7 +467,7 @@
           },
           {
             "name": "receipt_email",
-            "displayName" : "receipt email",
+            "displayName" : "Receipt Email",
             "style": "body",
             "type": "string",
             "value": "",

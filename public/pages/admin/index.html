@@ -1,3 +1,15 @@
+<md-toolbar md-theme="octo-blue">
+  <h2 class="md-toolbar-tools page-heading">
+    <a href class="menu-icon" ng-click="toggleNav()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <span>Admin</span>
+  </h2>
+</md-toolbar>
+
+<br>
+
 <style type="text/css">
     .dashboard-panel {
         text-align: center;
@@ -10,85 +22,81 @@
     }
 </style>
 
-<div class="col-xs-12">
-    <div class="page-header page-header-with-buttons">
-        <h1>
-            <i class="fa fa-lock"></i>
-            <span>Admin</span>
-        </h1>
-    </div>
-    <div class="col-xs-12 text-right">
-        <form class="form-inline" role="form" ng-submit="send()">
-            <div class="form-group">
-                <label class="sr-only" for="recipientEmail">Email address</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail" placeholder="Enter email">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                            <i class="fa fa-users"></i> Invite
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </form>
-        <br>
-    </div>
-</div>
-
-<div class="col-xs-12">
-    <div class="row">
-        <div class="col-xs-12" ui-view=""></div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 group-summary">
-
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <a class="pull-left btn btn-default" ui-sref=".all"><i
-                        class="fa fa-th-large"></i>All</a>
-
-                <form class="form-inline pull-right" role="form" ng-submit="addGroup(groupName)">
-                    <div class="form-group">
-                        <label class="sr-only" for="add-group-name">Email address</label>
-                        <input type="text" ng-model="groupName" name="groupName" class="form-control"
-                               id="add-group-name"
-                               placeholder="Enter a Group Name" required>
+<md-content>
+    <div class="col-xs-12">
+        <div class="col-xs-12 text-right">
+            <form class="form-inline" role="form" ng-submit="send()">
+                <div class="form-group">
+                    <label class="sr-only" for="recipientEmail">Email address</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail" placeholder="Enter email">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="fa fa-users"></i> Invite
+                            </button>
+                        </span>
                     </div>
-                    <button type="submit" class="btn btn-default"><i
-                            class="fa fa-plus"></i>Add Group
-                    </button>
-                </form>
-            </div>
-            <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
-
-            <div data-ng-repeat="resourcePermission in groups | orderBy:'name'"
-                 class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
-                <div class="panel-heading group-summary-panel-heading">
-                    <h4>
-                        <i class="fa fa-users"></i>
-                        <a ui-sref=".detail({ 'uuid' : resourcePermission.resource.uuid })">{{resourcePermission.name}}</a>
-                        <a href class="pull-right" tooltip="Delete {{resourcePermission.name}}"
-                           tooltip-placement="top"
-                           tooltip-popup-delay="5" ng-click="deleteGroup(resourcePermission.resource.uuid)">
-                            <i class="fa fa-trash-o fa-lg"></i>
-                        </a>
-
-                    </h4>
-
                 </div>
-                <div class="panel-body group-summary-panel-body">
-                    <ul>
-                        <li>
-                            <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
-                                class="label label-info pull-right">{{resourcePermission.resource.properties.resourceCounts.user || 0}}</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
-                                class="label label-success pull-right">{{resourcePermission.resource.properties.resourceCounts.device || 0}}</span>
-                        </li>
-                    </ul>
+            </form>
+            <br>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12" ui-view=""></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 group-summary">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <a class="pull-left btn btn-default" ui-sref=".all"><i
+                            class="fa fa-th-large"></i>All</a>
+
+                    <form class="form-inline pull-right" role="form" ng-submit="addGroup(groupName)">
+                        <div class="form-group">
+                            <label class="sr-only" for="add-group-name">Email address</label>
+                            <input type="text" ng-model="groupName" name="groupName" class="form-control"
+                                   id="add-group-name"
+                                   placeholder="Enter a Group Name" required>
+                        </div>
+                        <button type="submit" class="btn btn-default"><i
+                                class="fa fa-plus"></i>Add Group
+                        </button>
+                    </form>
+                </div>
+                <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
+
+                <div data-ng-repeat="resourcePermission in groups | orderBy:'name'"
+                     class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
+                    <div class="panel-heading group-summary-panel-heading">
+                        <h4>
+                            <i class="fa fa-users"></i>
+                            <a ui-sref=".detail({ 'uuid' : resourcePermission.resource.uuid })">{{resourcePermission.name}}</a>
+                            <a href class="pull-right" tooltip="Delete {{resourcePermission.name}}"
+                               tooltip-placement="top"
+                               tooltip-popup-delay="5" ng-click="deleteGroup(resourcePermission.resource.uuid)">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </a>
+
+                        </h4>
+
+                    </div>
+                    <div class="panel-body group-summary-panel-body">
+                        <ul>
+                            <li>
+                                <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
+                                    class="label label-info pull-right">{{resourcePermission.resource.properties.resourceCounts.user || 0}}</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
+                                    class="label label-success pull-right">{{resourcePermission.resource.properties.resourceCounts.device || 0}}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</md-content>

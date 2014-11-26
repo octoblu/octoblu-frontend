@@ -1,5 +1,31 @@
 {
   "_id": "52f9b3b66970a8d041000001",
+  "auth_strategy": "oauth",
+  "disabled": true,
+  "enabled": true,
+  "name": "Readability",
+  "oauth": {
+    "development" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "http://localhost:8080/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production" : {
+      "consumerKey": "octoblu",
+      "consumerSecret": "dycq5CMzxSuDxhgPsRX9G76Kd8RnnDhM",
+      "callbackURL": "https://app.octoblu.com/api/oauth/readability/callback",
+      "tokenMethod": "oauth_signed"
+    }
+  },
+  "useCustom": true,
+  "type": "channel:readability",
   "application": {
     "base": "https://www.readability.com/api/rest/v1",
     "resources": [
@@ -13,10 +39,20 @@
           "required": "true"
         },
         "category": "Articles",
-        "displayName": "Articles_GET",
+        "displayName": "Get an Article",
         "httpMethod": "GET",
-        "path": "/articles/{articleId}",
-        "url": "https://www.readability.com/api/rest/v1/articles/{articleId}"
+        "path": "/articles/:articleId",
+        "url": "https://www.readability.com/api/rest/v1/articles/:articleId",
+        "params": [
+          {
+            "name": ":articleId",
+            "displayName" : "Article ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "doc": {
@@ -28,10 +64,11 @@
           "required": "true"
         },
         "category": "Bookmarks",
-        "displayName": "Bookmarks_GET",
+        "displayName": "Get Bookmarks",
         "httpMethod": "GET",
         "path": "/bookmarks",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks"
+        "url": "https://www.readability.com/api/rest/v1/bookmarks",
+        "params": []
       },
       {
         "doc": {
@@ -43,10 +80,11 @@
           "required": "true"
         },
         "category": "Bookmarks",
-        "displayName": "Bookmarks_POST",
+        "displayName": "Create a Bookmark",
         "httpMethod": "POST",
         "path": "/bookmarks",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks"
+        "url": "https://www.readability.com/api/rest/v1/bookmarks",
+        "params": []
       },
       {
         "doc": {
@@ -58,10 +96,20 @@
           "required": "true"
         },
         "category": "Bookmarks",
-        "displayName": "Bookmarks_GET",
+        "displayName": "Get a Bookmark",
         "httpMethod": "GET",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "doc": {
@@ -73,10 +121,20 @@
           "required": "true"
         },
         "category": "Bookmarks",
-        "displayName": "Bookmarks_POST",
+        "displayName": "Update a Bookmark",
         "httpMethod": "POST",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "doc": {
@@ -88,10 +146,20 @@
           "required": "true"
         },
         "category": "Bookmarks",
-        "displayName": "Bookmarks_DELETE",
+        "displayName": "Delete a Bookmark",
         "httpMethod": "DELETE",
-        "path": "/bookmarks/{bookmark_id}",
-        "url": "https://www.readability.com/api/rest/v1/bookmarks/{bookmark_id}"
+        "path": "/bookmarks/:bookmark_id",
+        "url": "https://www.readability.com/api/rest/v1/bookmarks/:bookmark_id",
+        "params": [
+          {
+            "name": ":bookmark_id",
+            "displayName": "Bookmark ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "doc": {
@@ -103,10 +171,11 @@
           "required": "true"
         },
         "category": "Contributions",
-        "displayName": "Contributions_GET",
+        "displayName": "Get Contributions",
         "httpMethod": "GET",
         "path": "/contributions",
-        "url": "https://www.readability.com/api/rest/v1/contributions"
+        "url": "https://www.readability.com/api/rest/v1/contributions",
+        "params": []
       },
       {
         "doc": {
@@ -118,10 +187,11 @@
           "required": "true"
         },
         "category": "Domains",
-        "displayName": "Domains_GET",
+        "displayName": "Get Domains",
         "httpMethod": "GET",
         "path": "/domains",
-        "url": "https://www.readability.com/api/rest/v1/domains"
+        "url": "https://www.readability.com/api/rest/v1/domains",
+        "params": []
       },
       {
         "doc": {
@@ -133,10 +203,20 @@
           "required": "true"
         },
         "category": "Domains",
-        "displayName": "Domains_GET",
+        "displayName": "Get a Domain",
         "httpMethod": "GET",
-        "path": "/domains/{domain}",
-        "url": "https://www.readability.com/api/rest/v1/domains/{domain}"
+        "path": "/domains/:domain",
+        "url": "https://www.readability.com/api/rest/v1/domains/:domain",
+        "params": [
+          {
+            "name": ":domain",
+            "displayName": "Domain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "doc": {
@@ -148,10 +228,11 @@
           "required": "true"
         },
         "category": "Users",
-        "displayName": "Users_GET",
+        "displayName": "Get Users",
         "httpMethod": "GET",
         "path": "/users",
-        "url": "https://www.readability.com/api/rest/v1/users"
+        "url": "https://www.readability.com/api/rest/v1/users",
+        "params": []
       },
       {
         "doc": {
@@ -163,10 +244,11 @@
           "required": "true"
         },
         "category": "Users",
-        "displayName": "Users_GET",
+        "displayName": "Get Current User",
         "httpMethod": "GET",
         "path": "/users/_current",
-        "url": "https://www.readability.com/api/rest/v1/users/_current"
+        "url": "https://www.readability.com/api/rest/v1/users/_current",
+        "params": []
       },
       {
         "doc": {
@@ -178,27 +260,21 @@
           "required": "true"
         },
         "category": "Users",
-        "displayName": "Users_GET",
+        "displayName": "Get a User",
         "httpMethod": "GET",
-        "path": "/users/{username}",
-        "url": "https://www.readability.com/api/rest/v1/users/{username}"
+        "path": "/users/:username",
+        "url": "https://www.readability.com/api/rest/v1/users/:username",
+        "params": [
+          {
+            "name": ":username",
+            "displayName": "Username",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "disabled": true,
-  "enabled": true,
-  "name": "Readability",
-  "oauth": {
-    "accessTokenURL": "https://www.readability.com/api/rest/v1/oauth/access_token",
-    "authTokenURL": "https://www.readability.com/api/rest/v1/oauth/authorize",
-    "key": "rebootd",
-    "requestTokenURL": "https://www.readability.com/api/rest/v1/oauth/request_token",
-    "scope": "",
-    "secret": "gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF",
-    "tokenMethod": "",
-    "version": "1.0"
-  },
-  "useCustom": true,
-  "type": "channel:readability"
+  }
 }

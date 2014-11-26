@@ -10,6 +10,7 @@
     "resources": [
       {
         "url": "http://weather.octoblu.com/temperature/celsius",
+        "displayName": "Get Temperature In Celsius",
         "path": "/temperature/celsius",
         "httpMethod": "GET",
         "params": [
@@ -35,6 +36,7 @@
       },
       {
         "url": "http://weather.octoblu.com/temperature/fahrenheit",
+        "displayName": "Get Temperature In Fahrenheit",
         "path": "/temperature/fahrenheit",
         "httpMethod": "GET",
         "params": [

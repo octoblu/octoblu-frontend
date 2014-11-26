@@ -66,14 +66,66 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
     });
 
     $stateProvider
-      .state('material.design', {
-        url: '/design',
-        controller: 'DesignerController'
-      })
       .state('material', {
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.admin', {
+        abstract: true,
+        url: '/admin',
+        templateUrl: '/pages/admin/index.html',
+        controller: 'AdminController',
+        resolve: {
+          operatorsGroup: function (GroupService) {
+            return GroupService.getOperatorsGroup();
+          },
+          allDevices: function (deviceService) {
+            return deviceService.getDevices();
+          },
+          allGroupResourcePermissions: function (PermissionsService) {
+            return PermissionsService.allGroupPermissions();
+          }
+        }
+      })
+      .state('material.admin.all', {
+        url: '/groups',
+        templateUrl: '/pages/admin/groups/all.html'
+      })
+      .state('material.admin.detail', {
+        url: '/groups/:uuid',
+        templateUrl: '/pages/admin/groups/detail.html',
+        controller: 'adminGroupDetailController',
+        resolve: {
+          resourcePermission: function (allGroupResourcePermissions, $stateParams) {
+            return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
+          },
+          sourcePermissionsGroup: function (resourcePermission, GroupService) {
+            return GroupService.getGroup(resourcePermission.source.uuid);
+          },
+          targetPermissionsGroup: function (resourcePermission, GroupService) {
+            return GroupService.getGroup(resourcePermission.target.uuid);
+          }
+        }
+      })
+      .state('material.analyze', {
+        url: '/analyze',
+        templateUrl: '/pages/analyze.html',
+        controller: 'analyzeController',
+        resolve: {
+          myDevices: function (NodeService) {
+            return NodeService.getNodes({cache: false})
+          }
+        }
+      })
+      .state('material.clearauth', {
+        url: '/clearauth',
+        templateUrl: '/pages/clear-auth.html',
+        controller:  'clearAuthController'
+      })
+      .state('material.design', {
+        url: '/design',
+        controller: 'DesignerController'
       })
       .state('material.nodewizard', {
         url: '/node-wizard',
@@ -188,9 +240,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
-      .state('material.nodewizard.addsubdevice.addGateblu', {
-        url: '/add-gateblu',
-        controller: 'AddSubdeviceAddGatebluController',
+      .state('material.nodewizard.addgateblu', {
+        url: '/add-gateblu/:nodeTypeId',
+        controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
       .state('material.nodewizard.addsubdevice.selectgateblu', {
@@ -258,29 +310,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/templates.html',
         controller: 'TemplatesController'
       })
-
-      .state('ob', {
-        abstract: true,
-        controller: 'OctobluController',
-        templateUrl: "/pages/octoblu.html",
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          },
-          myDevices: function (NodeService) {
-            return NodeService.getNodes({cache: false})
-          }
-        },
-        onEnter: function ($state, currentUser) {
-          var terms_accepted_at = new Date(currentUser.terms_accepted_at || null), // new Date(null) -> Epoch
-            terms_updated_at = new Date('2014-07-01');
-
-          if (terms_accepted_at < terms_updated_at) {
-            $state.go('accept_terms');
-          }
-        },
-        unsecured: true
-      })
       .state('accept_terms', {
         url: '/accept_terms',
         templateUrl: '/pages/accept_terms.html',
@@ -297,12 +326,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         controller: 'termsController',
         unsecured: true
       })
-      .state('ob.about', {
-        url: '/about',
-        templateUrl: '/pages/about.html',
-        controller: 'aboutController',
-        unsecured: true
-      })
       .state('contact', {
         url: '/contact',
         templateUrl: '/pages/contact.html',
@@ -314,49 +337,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-      .state('ob.clearauth', {
-        url: '/clearauth',
-        templateUrl: '/pages/clear-auth.html',
-        controller:  'clearAuthController'
-      })
 
-      .state('ob.admin', {
-        abstract: true,
-        url: '/admin',
-        templateUrl: '/pages/admin/index.html',
-        controller: 'AdminController',
-        resolve: {
-          operatorsGroup: function (GroupService) {
-            return GroupService.getOperatorsGroup();
-          },
-          allDevices: function (deviceService) {
-            return deviceService.getDevices();
-          },
-          allGroupResourcePermissions: function (PermissionsService) {
-            return PermissionsService.allGroupPermissions();
-          }
-        }
-      })
-      .state('ob.admin.all', {
-        url: '/groups',
-        templateUrl: '/pages/admin/groups/all.html'
-      })
-      .state('ob.admin.detail', {
-        url: '/groups/:uuid',
-        templateUrl: '/pages/admin/groups/detail.html',
-        controller: 'adminGroupDetailController',
-        resolve: {
-          resourcePermission: function (allGroupResourcePermissions, $stateParams) {
-            return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
-          },
-          sourcePermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.source.uuid);
-          },
-          targetPermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.target.uuid);
-          }
-        }
-      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
@@ -393,38 +374,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         unsecured: true
       })
 
-      .state('ob.analyze', {
-        url: '/analyze',
-        templateUrl: '/pages/analyze.html',
-        controller: 'analyzeController'
-      })
-      .state('ob.faqs', {
-        url: '/faqs',
-        templateUrl: '/pages/faqs.html',
-        controller: 'faqsController'
-      })
-      .state('ob.services', {
-        url: '/services',
-        templateUrl: '/pages/services.html',
-        controller: 'servicesController'
-      })
-      .state('ob.nodewizard.addnode', {
-        url: '',
-        controller: 'addNodeController',
-        templateUrl: '/pages/node-wizard/add-node.html'
-      })
-
-
-      .state('ob.nodewizard.addgateblu', {
-        url: '/add-gateblu/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
-      })
-      .state('ob.nodewizard.addmicroblu', {
-        url: '/add-microblu/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',

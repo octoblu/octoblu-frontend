@@ -9,7 +9,7 @@
     "base": "http://stock.octoblu.com",
     "resources": [
       {
-        "path": "/last-trade-price/:symbol",
+        "path": "Get Last Trade Price",
         "httpMethod": "GET",
         "url": "http://stock.octoblu.com/last-trade-price/:symbol",
         "params": [
@@ -17,7 +17,8 @@
             "name": ":symbol",
             "displayName": "Symbol",
             "style": "url",
-            "type": "string"
+            "type": "string",
+            "required": "true"
           }
         ]
       }

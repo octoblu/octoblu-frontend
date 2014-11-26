@@ -6,8 +6,7 @@ angular.module('octobluApp')
             return angular.isObject(text) ? 'Object' : text;
         };
     })
-    .controller('analyzeController', function ($rootScope, $scope, $http, $injector, $location, $log,
-                                               elasticService, channelService, userService, currentUser, myDevices) {
+    .controller('analyzeController', function ($scope, elasticService, myDevices) {
         $scope.debug_logging = true;
 
         if (!Number.prototype.formatCommas){
@@ -156,7 +155,7 @@ angular.module('octobluApp')
       { "title": "Different Event Codes", "value": data.facets.eventCodes.terms.length },
       { "title": "Different UUIDs", "value" : data.facets.uuids.terms.length },
       { "title": "Total Events Returned", "value": data.hits.total }
-        ],      
+        ],
         "myInterval": myTmpInterval,
                     "eventCounts": [
                         { key: "Event Count",
@@ -178,7 +177,7 @@ angular.module('octobluApp')
       };
         }),
         "stacked": { "domain":[], "data": _.map(data.aggregations.events_by_uuid.buckets, function(key) {
-      return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key), 
+      return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
          "values": _.map(key.count_terms.buckets, function(item){
           stackedDomain.push(item.key);
           return { size: item.doc_count, series: key.key, x: item.key, y: item.doc_count };
@@ -187,7 +186,7 @@ angular.module('octobluApp')
         })},
                     "scatter": _.map(data.aggregations.count_by_uuid.buckets, function(key) {
                         return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
-                            "values": _.map(key.events_by_date.buckets, function(item){ 
+                            "values": _.map(key.events_by_date.buckets, function(item){
                                 return { item: item, x: item.key, size: item.value_count_terms.value, y: item.count_terms.buckets[0].key } })
                         };
                     })
@@ -198,22 +197,22 @@ angular.module('octobluApp')
               "ec_by_uuid" : { "title" : "Count of Event Codes by Device", "isCollapsed":false, "data" :$scope.leg.stacked.data }
     };*/
     var myDateFormat = "%-m/%-d %H:%M";
-    $scope.leg.panels = [ 
+    $scope.leg.panels = [
         {
-            "title": "Event Counts over Time", 
-            "isCollapsed" :false, 
-            "data" : $scope.leg.uuid_counts, 
+            "title": "Event Counts over Time",
+            "isCollapsed" :false,
+            "data" : $scope.leg.uuid_counts,
             "graph" : "nvd3-line-with-focus-chart" ,
             "showLegend" : true,
             "axisXLabel" : myTmpInterval ,
             "axisXType" : "date",
             "axisXFormat": myDateFormat,
-            "myInterval":myTmpInterval 
+            "myInterval":myTmpInterval
         },
         {
-            "title" : "Count of Event Codes by Device", 
-            "isCollapsed":false, 
-            "data" :$scope.leg.stacked.data , 
+            "title" : "Count of Event Codes by Device",
+            "isCollapsed":false,
+            "data" :$scope.leg.stacked.data ,
             "graph": "nvd3-multibar-chart",
             "showLegend": true,
             "axisXLabel": "Event Code",
@@ -248,8 +247,6 @@ angular.module('octobluApp')
         // calculate page in place
         $scope.groupToPages = function () {
             $scope.freeform_results_ngTable.pagedItems = [];
-            $log.log("groupToPages");
-            $log.log($scope.freeform_results);
             for (var i = 0; i < $scope.freeform_results.length; i++) {
                 if (i % $scope.itemsPerPage === 0) {
                     $scope.freeform_results_ngTable.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.freeform_results[i] ];
@@ -262,7 +259,6 @@ angular.module('octobluApp')
         $scope.gap = 1;
         $scope.range = function (size,start, end, gap) {
             var ret = [];
-            console.log(size,start, end);
             if (size < end) {
                 end = size;
                 start = size-gap;
@@ -270,7 +266,6 @@ angular.module('octobluApp')
             for (var i = start; i < end; i++) {
                 ret.push(i);
             }
-            console.log(ret);
             return ret;
         };
 
@@ -293,9 +288,7 @@ angular.module('octobluApp')
 
         $scope.search = function() {
             $scope.ff = {};
-            $log.log("starting search function, analyzer controller");
             $scope.results = [ { "text":"searching..." } ];
-            $log.log("searchText = " + $scope.forms.FF_searchText);
             if ($scope.forms.FF_searchText !== undefined) {
           var query = " ( " + $scope.forms.FF_searchText;
                 if ($scope.forms.FF_eventCode !== undefined && $scope.forms.FF_eventCode > 0) {
@@ -304,12 +297,7 @@ angular.module('octobluApp')
     query += " )";
                 elasticService.paramSearch({ "from":"now-90d/d", "to": "now", "size":1000, "query": query, "facet": {}, "aggs": {}}, $scope.devices, function (error, response) {
                     if (error) {
-                        $log.log(error);
                     } else {
-                        $log.log("Found stuff");
-                        $log.log("response follows");
-                        $log.log(response);
-                        $log.log(currentUser);
                         $scope.freeform_results = response.hits.hits;
                         var tmp_head = {};
                         for ( var item in $scope.freeform_results ) {
@@ -317,11 +305,10 @@ angular.module('octobluApp')
                                 tmp_head[prop] = "exist";
                             }
                         }
-                        $log.log(tmp_head);
                         var headers = [];
                         var excludeList = [ "auth", "fromUuid", "toUuid", "subdevices", "plugins", "token" ];
                         for (var name in tmp_head) {
-                            if ( _.contains(excludeList, name) ) { $log.log("excluding " + name); }
+                            if ( _.contains(excludeList, name) ) {}
                             else {
                                 headers.push({"name":name});
                             }
@@ -339,43 +326,13 @@ angular.module('octobluApp')
 
             } else {
                 $scope.results = "None Found";
-                $log.log("no search term");
             }
 
         };
-  /*
-        function searchNewValue () {
-            $log.log("starting search function, analyzer controller");
-            $scope.results = [ { "text":"searching..." } ];
-            $log.log("searchText = " + $scope.forms.FF_searchText);
-     
-            if ($scope.forms.FF_searchText !== undefined) {
-    var query = $scope.forms.FF_searchText;
-    if ($scope.forms.forms.FF_eventCode !== undefined) {
-      query += " eventCode:"+$scope.forms.FF_eventCode;
-    }
-                elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynet.uuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
-                    if (error) {
-                        $log.log(error);
-                    } else {
-                        $scope.freeform_results = response.hits.hits;
-                        $scope.results = response;
-                        $scope.totalItems = response.hits.total;
-                        $scope.maxSize = 10;
-
-                    }
-                });
-
-            } else {
-                $scope.results = "";
-            }
-        }*/
 
         //Load Top Counts Panels On init of page
         $scope.loadTop = function(usageFrom) {
-            $log.log("starting from " + usageFrom);
             $scope.step1open = true;
-            $log.log("Searching LoadTop");
             $scope.loadTopfacetObject = {
                 "toUuids": {"terms": {"script_field": "doc['toUuid'].value", "size": 5 }},
                 "fromUuids": { "terms": { "script_field": "doc['fromUuid'].value" , "size":5 }},
@@ -389,10 +346,8 @@ angular.module('octobluApp')
             };
             elasticService.paramSearch({"from":usageFrom, "to":"now", "size":0, "query":"", "facet": $scope.loadTopfacetObject, "aggs":$scope.loadTopAggObject }, $scope.devices, function (err, data) {
                 if (err) {
-                    return $log.log(err);
+                    return;
                 }
-                $log.log("Total Top Hits: " + data.hits.total);
-                $log.log(data.aggregations);
                 $scope.topResults = {
                     total: data.hits.total,
                     "rows": [ [ { "title": "Total Messages", "results": data.hits.total.formatCommas() },
@@ -443,7 +398,6 @@ angular.module('octobluApp')
         var sensorGrid = [];
 
         $scope.sensorListen = function (sensor) {
-            $log.log('sensor listen', sensor);
             sensorGrid = [];
         };
     });

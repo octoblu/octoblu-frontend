@@ -4,29 +4,8 @@
     "base": "https://api.podio.com",
     "resources": [
       {
-        "path": "/conversation/:conversation_id/participant/",
-        "displayName": "/conversation/:conversation_id/participant/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/participant/"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":conversation_id",
-            "displayName": "Conversation ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/conversation/:conversation_id/participant/"
-      },
-      {
         "path": "/conversation/:conversation_id/participant/v2/",
-        "displayName": "/conversation/:conversation_id/participant/v2/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/participant/v2/"
-        },
+        "displayName": "Add Participants To Conversation",
         "httpMethod": "POST",
         "params": [
           {
@@ -40,21 +19,8 @@
         "url": "https://api.podio.com/conversation/:conversation_id/participant/v2/"
       },
       {
-        "path": "/conversation/",
-        "displayName": "/conversation/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/"
-        },
-        "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.podio.com/conversation/"
-      },
-      {
         "path": "/conversation/:ref_type/:ref_id/",
-        "displayName": "/conversation/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{ref_type}/{ref_id}/"
-        },
+        "displayName": "Create Conversation On Object",
         "httpMethod": "Post",
         "params": [
           {
@@ -76,20 +42,14 @@
       },
       {
         "path": "/conversation/v2/",
-        "displayName": "/conversation/v2/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/v2/"
-        },
+        "displayName": "Create Conversation",
         "httpMethod": "Post",
         "params": [],
         "url": "https://api.podio.com/conversation/v2/"
       },
       {
         "path": "/conversation/:conversation_id",
-        "displayName": "/conversation/:conversation_id",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}"
-        },
+        "displayName": "Get Conversation By ID",
         "httpMethod": "GET",
         "params": [
           {
@@ -104,10 +64,7 @@
       },
       {
         "path": "/conversation/event/:event_id",
-        "displayName": "/conversation/event/:event_id",
-        "doc": {
-          "url": "https://api.podio.com/conversation/event/{event_id}"
-        },
+        "displayName": "Get Conversation Event",
         "httpMethod": "GET",
         "params": [
           {
@@ -122,10 +79,7 @@
       },
       {
         "path": "/conversation/:conversation_id/event/",
-        "displayName": "/conversation/:conversation_id/event/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/event/"
-        },
+        "displayName": "Get Conversation Events",
         "httpMethod": "GET",
         "params": [
           {
@@ -152,10 +106,7 @@
       },
       {
         "path": "/conversation/",
-        "displayName": "/conversation/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/"
-        },
+        "displayName": "Get User Conversations",
         "httpMethod": "GET",
         "params": [
           {
@@ -175,10 +126,7 @@
       },
       {
         "path": "/conversation/:ref_type/:ref_id/",
-        "displayName": "/conversation/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{ref_type}/{ref_id}/"
-        },
+        "displayName": "Get Conversations On An Object",
         "httpMethod": "get",
         "params": [
           {
@@ -200,10 +148,7 @@
       },
       {
         "path": "/conversation/direct/:user_id",
-        "displayName": "/conversation/direct/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/conversation/direct/{user_id}"
-        },
+        "displayName": "Get Existing Direct Conversation",
         "httpMethod": "GET",
         "params": [
           {
@@ -218,10 +163,7 @@
       },
       {
         "path": "/conversation/:flag/count",
-        "displayName": "/conversation/:flag/count",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{flag}/count"
-        },
+        "displayName": "Get Flagged Conversation Count",
         "httpMethod": "GET",
         "params": [
           {
@@ -236,10 +178,7 @@
       },
       {
         "path": "/conversation/:flag/",
-        "displayName": "/conversation/:flag/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{flag}/"
-        },
+        "displayName": "Get Flagged Conversations",
         "httpMethod": "get",
         "params": [
           {
@@ -266,10 +205,7 @@
       },
       {
         "path": "/conversation/:conversation_id/leave",
-        "displayName": "/conversation/:conversation_id/leave",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/leave"
-        },
+        "displayName": "Leave Conversation",
         "httpMethod": "POST",
         "params": [
           {
@@ -284,20 +220,14 @@
       },
       {
         "path": "/conversation/read",
-        "displayName": "/conversation/read",
-        "doc": {
-          "url": "https://api.podio.com/conversation/read"
-        },
+        "displayName": "Mark All Conversations As Read",
         "httpMethod": "POST",
         "params": [],
         "url": "https://api.podio.com/conversation/read"
       },
       {
         "path": "/conversation/:conversation_id/read",
-        "displayName": "/conversation/:conversation_id/read",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/read"
-        },
+        "displayName": "Mark A Conversation As Read",
         "httpMethod": "post",
         "params": [
           {
@@ -312,11 +242,8 @@
       },
       {
         "path": "/conversation/:conversation_id/read",
-        "displayName": "/conversation/:conversation_id/read",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/read"
-        },
-        "httpMethod": "delete",
+        "displayName": "Mark Conversation As Unread",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -329,29 +256,8 @@
         "url": "https://api.podio.com/conversation/:conversation_id/read"
       },
       {
-        "path": "/conversation/:conversation_id/reply",
-        "displayName": "/conversation/:conversation_id/reply",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/reply"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":conversation_id",
-            "displayName": "Conversation ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/conversation/:conversation_id/reply"
-      },
-      {
         "path": "/conversation/:conversation_id/reply/v2",
-        "displayName": "/conversation/:conversation_id/reply/v2",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/reply/v2"
-        },
+        "displayName": "Reply To Conversation",
         "httpMethod": "POST",
         "params": [
           {
@@ -366,10 +272,7 @@
       },
       {
         "path": "/conversation/search/",
-        "displayName": "/conversation/search/",
-        "doc": {
-          "url": "https://api.podio.com/conversation/search/"
-        },
+        "displayName": "Search Converations",
         "httpMethod": "GET",
         "params": [
           {
@@ -390,9 +293,6 @@
       {
         "path": "/conversation/:conversation_id/star",
         "displayName": "/conversation/:conversation_id/star",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/star"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -408,10 +308,7 @@
       {
         "path": "/conversation/:conversation_id/star",
         "displayName": "/conversation/:conversation_id/star",
-        "doc": {
-          "url": "https://api.podio.com/conversation/{conversation_id}/star"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -426,9 +323,6 @@
       {
         "path": "/task/:task_id/assign",
         "displayName": "/task/:task_id/assign",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/assign"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -450,9 +344,6 @@
       {
         "path": "/task/:task_id/complete",
         "displayName": "/task/:task_id/complete",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/complete"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -480,9 +371,6 @@
       {
         "path": "/task/label/",
         "displayName": "/task/label/",
-        "doc": {
-          "url": "https://api.podio.com/task/label/"
-        },
         "httpMethod": "POST",
         "params": [],
         "url": "https://api.podio.com/task/label/"
@@ -490,9 +378,6 @@
       {
         "path": " /task/",
         "displayName": " /task/",
-        "doc": {
-          "url": "https://api.podio.com/task/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -513,9 +398,6 @@
       {
         "path": "/task/:ref_type/:ref_id/",
         "displayName": "/task/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/task/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -550,10 +432,7 @@
       {
         "path": "/task/label/:label_id",
         "displayName": "/task/label/:label_id",
-        "doc": {
-          "url": "https://api.podio.com/task/label/{label_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -568,10 +447,7 @@
       {
         "path": "/task/:task_id",
         "displayName": "/task/:task_id",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -598,9 +474,6 @@
       {
         "path": "/task/label/",
         "displayName": "/task/label/",
-        "doc": {
-          "url": "https://api.podio.com/task/label/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/task/label/"
@@ -608,9 +481,6 @@
       {
         "path": "/task/:task_id",
         "displayName": "/task/:task_id",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -626,9 +496,6 @@
       {
         "path": "/task/:ref_type/:ref_id/count",
         "displayName": "/task/:ref_type/:ref_id/count",
-        "doc": {
-          "url": "https://api.podio.com/task/{ref_type}/{ref_id}/count"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -651,9 +518,6 @@
       {
         "path": "/task/summary",
         "displayName": "/task/summary",
-        "doc": {
-          "url": "https://api.podio.com/task/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -669,9 +533,6 @@
       {
         "path": "/task/org/:org_id/summary",
         "displayName": "/task/org/:org_id/summary",
-        "doc": {
-          "url": "https://api.podio.com/task/org/{org_id}/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -693,9 +554,6 @@
       {
         "path": "/task/personal/summary",
         "displayName": "/task/personal/summary",
-        "doc": {
-          "url": "https://api.podio.com/task/personal/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -711,9 +569,6 @@
       {
         "path": "/task/:ref_type/:ref_id/summary",
         "displayName": "/task/:ref_type/:ref_id/summary",
-        "doc": {
-          "url": "https://api.podio.com/task/{ref_type}/{ref_id}/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -742,9 +597,6 @@
       {
         "path": "/task/space/:space_id/summary",
         "displayName": "/task/space/:space_id/summary",
-        "doc": {
-          "url": "https://api.podio.com/task/space/{space_id}/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -766,9 +618,6 @@
       {
         "path": "/task/total/:time",
         "displayName": "/task/total/:time",
-        "doc": {
-          "url": "https://api.podio.com/task/total/{time}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -790,9 +639,6 @@
       {
         "path": "/task/total/",
         "displayName": "/task/total/",
-        "doc": {
-          "url": "https://api.podio.com/task/total/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -807,9 +653,6 @@
       {
         "path": "/task/",
         "displayName": "/task/",
-        "doc": {
-          "url": "https://api.podio.com/task/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -944,9 +787,6 @@
       {
         "path": "/task/:ref_type/:ref_id/",
         "displayName": "/task/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/task/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -969,9 +809,6 @@
       {
         "path": "/task/:task_id/incomplete",
         "displayName": "/task/:task_id/incomplete",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/incomplete"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -999,9 +836,6 @@
       {
         "path": "/task/:task_id/rank",
         "displayName": "/task/:task_id/rank",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/rank"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -1017,10 +851,7 @@
       {
         "path": "/task/:task_id/ref",
         "displayName": "/task/:task_id/ref",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/ref"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -1035,9 +866,6 @@
       {
         "path": "/task/label/:label_id",
         "displayName": "/task/label/:label_id",
-        "doc": {
-          "url": "https://api.podio.com/task/label/{label_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1053,9 +881,6 @@
       {
         "path": "/task/:task_id",
         "displayName": "/task/:task_id",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1083,9 +908,6 @@
       {
         "path": "/task/:task_id/description",
         "displayName": "/task/:task_id/description",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/description"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1113,9 +935,6 @@
       {
         "path": "/task/:task_id/due",
         "displayName": "/task/:task_id/due",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/due"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1143,9 +962,6 @@
       {
         "path": "/task/:task_id/label/",
         "displayName": "/task/:task_id/label/",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/label/"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1161,9 +977,6 @@
       {
         "path": "/task/:task_id/private",
         "displayName": "/task/:task_id/private",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/private"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1191,9 +1004,6 @@
       {
         "path": "/task/:task_id/ref",
         "displayName": "/task/:task_id/ref",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/ref"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -1221,9 +1031,6 @@
       {
         "path": "/task/:task_id/text",
         "displayName": "/task/:task_id/text",
-        "doc": {
-          "url": "https://api.podio.com/task/{task_id}/text"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1251,9 +1058,6 @@
       {
         "path": "/action/:action_id",
         "displayName": "/action/:action_id",
-        "doc": {
-          "url": "https://api.podio.com/action/{action_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1269,9 +1073,6 @@
       {
         "path": "/app_store/category/",
         "displayName": "/app_store/category/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/category/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1286,9 +1087,6 @@
       {
         "path": "/app_store/org/",
         "displayName": "/app_store/org/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/org/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/app_store/org/"
@@ -1296,9 +1094,6 @@
       {
         "path": "/app_store/:type/own/",
         "displayName": "/app_store/:type/own/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{type}/own/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1326,9 +1121,6 @@
       {
         "path": "/app_store/:type/recommended/:area/",
         "displayName": "/app_store/:type/recommended/:area/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{type}/recommended/{area}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1351,9 +1143,6 @@
       {
         "path": "/app_store/:share_id/v2",
         "displayName": "/app_store/:share_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{share_id}/v2"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1369,9 +1158,6 @@
       {
         "path": "/app_store/:ref_type/:ref_id/",
         "displayName": "/app_store/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1394,9 +1180,6 @@
       {
         "path": "/app_store/:type/author/:user_id/",
         "displayName": "/app_store/:type/author/:user_id/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{type}/author/{user_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1437,9 +1220,6 @@
       {
         "path": "/app_store/:type/category/:category_id/",
         "displayName": "/app_store/:type/category/:category_id/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{type}/category/{category_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1479,9 +1259,6 @@
       {
         "path": "/app_store/:type/top/",
         "displayName": "/app_store/:type/top/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{type}/top/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -1509,9 +1286,6 @@
       {
         "path": "/app_store/:share_id/install",
         "displayName": "/app_store/:share_id/install",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{share_id}/install"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1527,9 +1301,6 @@
       {
         "path": "/app_store/",
         "displayName": "/app_store/",
-        "doc": {
-          "url": "https://api.podio.com/app_store/"
-        },
         "httpMethod": "POST",
         "params": [],
         "url": "https://api.podio.com/app_store/"
@@ -1537,10 +1308,7 @@
       {
         "path": "/app_store/:share_id",
         "displayName": "/app_store/:share_id",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{share_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -1555,9 +1323,6 @@
       {
         "path": "/app_store/:share_id",
         "displayName": "/app_store/:share_id",
-        "doc": {
-          "url": "https://api.podio.com/app_store/{share_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -1573,9 +1338,6 @@
       {
         "path": "/app/:app_id/activate",
         "displayName": "/app/:app_id/activate",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/activate"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -1591,9 +1353,6 @@
       {
         "path": "/app/",
         "displayName": "/app/",
-        "doc": {
-          "url": "https://api.podio.com/app/"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/app/"
@@ -1601,9 +1360,6 @@
       {
         "path": "/app/:app_id/field/",
         "displayName": "/app/:app_id/field/",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/field/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -1619,9 +1375,6 @@
       {
         "path": "/app/:app_id/deactivate",
         "displayName": "/app/:app_id/deactivate",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/deactivate"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -1637,10 +1390,7 @@
       {
         "path": "/app/:app_id",
         "displayName": "/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -1655,10 +1405,7 @@
       {
         "path": "/app/:app_id/field/:field_id",
         "displayName": "/app/:app_id/field/:field_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/field/{field_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -1685,9 +1432,6 @@
       {
         "path": "/app/",
         "displayName": "/app/",
-        "doc": {
-          "url": "https://api.podio.com/app/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1744,9 +1488,6 @@
       {
         "path": "/app/:app_id",
         "displayName": "/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1762,9 +1503,6 @@
       {
         "path": "/app/org/:org_label/space/:space_label/:app_label",
         "displayName": "/app/org/:org_label/space/:space_label/:app_label",
-        "doc": {
-          "url": "https://api.podio.com/app/org/{org_label}/space/{space_label}/{app_label}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -1794,9 +1532,6 @@
       {
         "path": "/app/:app_id/dependencies/",
         "displayName": "/app/:app_id/dependencies/",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/dependencies/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1812,9 +1547,6 @@
       {
         "path": "/app/:app_id/field/:field_id",
         "displayName": "/app/:app_id/field/:field_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/field/{field_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1837,9 +1569,6 @@
       {
         "path": "/app/space/:space_id/:url_label",
         "displayName": "/app/space/:space_id/:url_label",
-        "doc": {
-          "url": "https://api.podio.com/app/space/{space_id}/{url_label}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1862,9 +1591,6 @@
       {
         "path": "/app/space/:space_id/",
         "displayName": "/app/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/app/space/{space_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -1886,9 +1612,6 @@
       {
         "path": "/app/features/",
         "displayName": "/app/features/",
-        "doc": {
-          "url": "https://api.podio.com/app/features/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -1909,9 +1632,6 @@
       {
         "path": "/app/icon/search",
         "displayName": "/app/icon/search",
-        "doc": {
-          "url": "https://api.podio.com/app/icon/search"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -1926,9 +1646,6 @@
       {
         "path": "/space/:space_id/dependencies/",
         "displayName": "/space/:space_id/dependencies/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/dependencies/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1944,9 +1661,6 @@
       {
         "path": "/app/top/",
         "displayName": "/app/top/",
-        "doc": {
-          "url": "https://api.podio.com/app/top/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1967,9 +1681,6 @@
       {
         "path": "/app/org/:org_id/top/",
         "displayName": "/app/org/:org_id/top/",
-        "doc": {
-          "url": "https://api.podio.com/app/org/{org_id}/top/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -1985,9 +1696,6 @@
       {
         "path": "/app/:app_id/install",
         "displayName": "/app/:app_id/install",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/install"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -2008,9 +1716,6 @@
       {
         "path": "/app/:app_id/field/:field_id",
         "displayName": "/app/:app_id/field/:field_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/field/{field_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2033,9 +1738,6 @@
       {
         "path": "/app/:app_id",
         "displayName": "/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2051,9 +1753,6 @@
       {
         "path": "/app/:app_id/description",
         "displayName": "/app/:app_id/description",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/description"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2069,9 +1768,6 @@
       {
         "path": "/app/space/:space_id/order",
         "displayName": "/app/space/:space_id/order",
-        "doc": {
-          "url": "https://api.podio.com/app/space/{space_id}/order"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -2087,9 +1783,6 @@
       {
         "path": "/app/:app_id/usage",
         "displayName": "/app/:app_id/usage",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/usage"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2105,9 +1798,6 @@
       {
         "path": "/app/:app_id/v2",
         "displayName": "/app/:app_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/v2"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2123,9 +1813,6 @@
       {
         "path": "/batch/:batch_id",
         "displayName": "/batch/:batch_id",
-        "doc": {
-          "url": "https://api.podio.com/batch/{batch_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2141,9 +1828,6 @@
       {
         "path": "/batch/",
         "displayName": "/batch/",
-        "doc": {
-          "url": "https://api.podio.com/batch/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/batch/"
@@ -2151,9 +1835,6 @@
       {
         "path": "/batch/:ref_type/:ref_id/:plugin/running/",
         "displayName": "/batch/:ref_type/:ref_id/:plugin/running/",
-        "doc": {
-          "url": "https://api.podio.com/batch/{ref_type}/{ref_id}/{plugin}/running/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2183,9 +1864,6 @@
       {
         "path": "/calendar/app/:app_id/filter",
         "displayName": "/calendar/app/:app_id/filter",
-        "doc": {
-          "url": "https://api.podio.com/calendar/app/{app_id}/filter"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -2201,9 +1879,6 @@
       {
         "path": "/calendar/app/:app_id/",
         "displayName": "/calendar/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2243,9 +1918,6 @@
       {
         "path": "/calendar/app/:app_id/ics/:user_id/:token/",
         "displayName": "/calendar/app/:app_id/ics/:user_id/:token/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/app/{app_id}/ics/{user_id}/{token}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2281,9 +1953,6 @@
       {
         "path": "/calendar/summary",
         "displayName": "/calendar/summary",
-        "doc": {
-          "url": "https://api.podio.com/calendar/summary"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2304,9 +1973,6 @@
       {
         "path": "/calendar/personal/summary",
         "displayName": "/calendar/personal/summary",
-        "doc": {
-          "url": "https://api.podio.com/calendar/personal/summary"
-        },
         "httpMethod": "Get",
         "params": [
           {
@@ -2327,9 +1993,6 @@
       {
         "path": "/calendar/space/:space_id/summary",
         "displayName": "/calendar/space/:space_id/summary",
-        "doc": {
-          "url": "https://api.podio.com/calendar/space/{space_id}/summary"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2357,9 +2020,6 @@
       {
         "path": "/calendar/export/linked_account/:linked_account_id/:ref_type/:ref_id",
         "displayName": "/calendar/export/linked_account/:linked_account_id/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/calendar/export/linked_account/{linked_account_id}/{ref_type}/{ref_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2389,9 +2049,6 @@
       {
         "path": "/calendar/export/:ref_type/:ref_id/",
         "displayName": "/calendar/export/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/export/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2414,9 +2071,6 @@
       {
         "path": "/calendar/export/:ref_type/:ref_id/",
         "displayName": "/calendar/export/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/export/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2439,9 +2093,6 @@
       {
         "path": "/calendar/",
         "displayName": "/calendar/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2474,9 +2125,6 @@
       {
         "path": "/calendar/ics/:user_id/:token/",
         "displayName": "/calendar/ics/:user_id/:token/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/ics/{user_id}/{token}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2505,9 +2153,6 @@
       {
         "path": "/calendar/export/linked_account/:linked_account_id",
         "displayName": "/calendar/export/linked_account/:linked_account_id",
-        "doc": {
-          "url": "https://api.podio.com/calendar/export/linked_account/{linked_account_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2523,9 +2168,6 @@
       {
         "path": "/calendar/export/",
         "displayName": "/calendar/export/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/export/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/calendar/export/"
@@ -2533,9 +2175,6 @@
       {
         "path": "/calendar/item/:item_id/field/:field_id/ics/",
         "displayName": "/calendar/item/:item_id/field/:field_id/ics/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/item/{item_id}/field/{field_id}/ics/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2558,9 +2197,6 @@
       {
         "path": "/calendar/linked_account/:linked_account_id/",
         "displayName": "/calendar/linked_account/:linked_account_id/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/linked_account/{linked_account_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2588,9 +2224,6 @@
       {
         "path": "/calendar/space/:space_id/",
         "displayName": "/calendar/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/space/{space_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2630,9 +2263,6 @@
       {
         "path": "/calendar/space/:space_id/ics/:user_id/:token/",
         "displayName": "/calendar/space/:space_id/ics/:user_id/:token/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/space/{space_id}/ics/{user_id}/{token}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2668,9 +2298,6 @@
       {
         "path": "/calendar/task/:task_id/ics/",
         "displayName": "/calendar/task/:task_id/ics/",
-        "doc": {
-          "url": "https://api.podio.com/calendar/task/{task_id}/ics/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -2686,9 +2313,6 @@
       {
         "path": "/calendar/event/:uid",
         "displayName": "/calendar/event/:uid",
-        "doc": {
-          "url": "https://api.podio.com/calendar/event/{uid}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -2704,9 +2328,6 @@
       {
         "path": "/contact/space/:space_id/",
         "displayName": "/contact/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/contact/space/{space_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -2722,10 +2343,7 @@
       {
         "path": "/contact/:profile_ids",
         "displayName": "/contact/:profile_ids",
-        "doc": {
-          "url": "https://api.podio.com/contact/{profile_ids}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -2740,9 +2358,6 @@
       {
         "path": "/contact/totals/v3/",
         "displayName": "/contact/totals/v3/",
-        "doc": {
-          "url": "https://api.podio.com/contact/totals/v3/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/contact/totals/v3/"
@@ -2750,9 +2365,6 @@
       {
         "path": "/contact/:profile_ids/v2",
         "displayName": "/contact/:profile_ids/v2",
-        "doc": {
-          "url": "https://api.podio.com/contact/{profile_ids}/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2768,9 +2380,6 @@
       {
         "path": "/contact/",
         "displayName": "/contact/",
-        "doc": {
-          "url": "https://api.podio.com/contact/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2833,9 +2442,6 @@
       {
         "path": "/contact/linked_account/:linked_account_id",
         "displayName": "/contact/linked_account/:linked_account_id",
-        "doc": {
-          "url": "https://api.podio.com/contact/linked_account/{linked_account_id}"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -2851,9 +2457,6 @@
       {
         "path": "/contact/linked_account/:linked_account_id",
         "displayName": "/contact/linked_account/:linked_account_id",
-        "doc": {
-          "url": "https://api.podio.com/contact/linked_account/{linked_account_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2893,9 +2496,6 @@
       {
         "path": "/contact/org/:org_id",
         "displayName": "/contact/org/:org_id",
-        "doc": {
-          "url": "https://api.podio.com/contact/org/{org_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2964,9 +2564,6 @@
       {
         "path": "/contact/skill/",
         "displayName": "/contact/skill/",
-        "doc": {
-          "url": "https://api.podio.com/contact/skill/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -2987,9 +2584,6 @@
       {
         "path": "/contact/space/:space_id/totals/space",
         "displayName": "/contact/space/:space_id/totals/space",
-        "doc": {
-          "url": "https://api.podio.com/contact/space/{space_id}/totals/space"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3005,9 +2599,6 @@
       {
         "path": "/contact/space/:space_id/",
         "displayName": "/contact/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/contact/space/{space_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3076,9 +2667,6 @@
       {
         "path": "/contact/app/:app_id/",
         "displayName": "/contact/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/contact/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3118,9 +2706,6 @@
       {
         "path": "/contact/user/:user_id",
         "displayName": "/contact/user/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/contact/user/{user_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3136,9 +2721,6 @@
       {
         "path": "/contact/user/:user_id/:key",
         "displayName": "/contact/user/:user_id/:key",
-        "doc": {
-          "url": "https://api.podio.com/contact/user/{user_id}/{key}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3160,9 +2742,6 @@
       {
         "path": "/contact/:profile_id/vcard",
         "displayName": "/contact/:profile_id/vcard",
-        "doc": {
-          "url": "https://api.podio.com/contact/{profile_id}/vcard"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3177,9 +2756,6 @@
       {
         "path": "/contact/:profile_id",
         "displayName": "/contact/:profile_id",
-        "doc": {
-          "url": "https://api.podio.com/contact/{profile_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -3194,9 +2770,6 @@
       {
         "path": "/contact/:profile_id/:key",
         "displayName": "/contact/:profile_id/:key",
-        "doc": {
-          "url": "https://api.podio.com/contact/{profile_id}/{key}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -3217,9 +2790,6 @@
       {
         "path": "/comment/:type/:id/",
         "displayName": "/comment/:type/:id/",
-        "doc": {
-          "url": "https://api.podio.com/comment/{type}/{id}/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -3258,10 +2828,7 @@
       {
         "path": "/comment/:comment_id",
         "displayName": "/comment/:comment_id",
-        "doc": {
-          "url": "https://api.podio.com/comment/{comment_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -3282,9 +2849,6 @@
       {
         "path": "/comment/:comment_id",
         "displayName": "/comment/:comment_id",
-        "doc": {
-          "url": "https://api.podio.com/comment/{comment_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3299,9 +2863,6 @@
       {
         "path": "/comment/:type/:id/",
         "displayName": "/comment/:type/:id/",
-        "doc": {
-          "url": "https://api.podio.com/comment/{type}/{id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3335,9 +2896,6 @@
       {
         "path": "/comment/:comment_id",
         "displayName": "/comment/:comment_id",
-        "doc": {
-          "url": "https://api.podio.com/comment/{comment_id}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -3352,9 +2910,6 @@
       {
         "path": "/mobile/install_app/:app_id",
         "displayName": "/mobile/install_app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/mobile/install_app/{app_id}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3370,9 +2925,6 @@
       {
         "path": "/email/contact/:name/:ref_type/:ref_id/export",
         "displayName": "/email/contact/:name/:ref_type/:ref_id/export",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}/{ref_type}/{ref_id}/export"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3402,9 +2954,6 @@
       {
         "path": "/email/contact/:name/export",
         "displayName": "/email/contact/:name/export",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}/export"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3419,9 +2968,6 @@
       {
         "path": "/email/app/:app_id",
         "displayName": "/email/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/email/app/{app_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3437,9 +2983,6 @@
       {
         "path": "/email/contact/:name/:ref_type/:ref_id",
         "displayName": "/email/contact/:name/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}/{ref_type}/{ref_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3469,9 +3012,6 @@
       {
         "path": "/email/contact/:name/:ref_type/:ref_id/vcard",
         "displayName": "/email/contact/:name/:ref_type/:ref_id/vcard",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}/{ref_type}/{ref_id}/vcard"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3500,9 +3040,6 @@
       {
         "path": "/email/contact/:name",
         "displayName": "/email/contact/:name",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3517,9 +3054,6 @@
       {
         "path": "/email/contact/:name/vcard",
         "displayName": "/email/contact/:name/vcard",
-        "doc": {
-          "url": "https://api.podio.com/email/contact/{name}/vcard"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3534,9 +3068,6 @@
       {
         "path": "/email/group/",
         "displayName": "/email/group/",
-        "doc": {
-          "url": "https://api.podio.com/email/group/"
-        },
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/email/group/"
@@ -3544,9 +3075,6 @@
       {
         "path": "/email/app/:app_id",
         "displayName": "/email/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/email/app/{app_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -3562,9 +3090,6 @@
       {
         "path": "/email/group/",
         "displayName": "/email/group/",
-        "doc": {
-          "url": "https://api.podio.com/email/group/"
-        },
         "httpMethod": "put",
         "params": [],
         "url": "https://api.podio.com/email/group/"
@@ -3572,9 +3097,6 @@
       {
         "path": "/embed/",
         "displayName": "/embed/",
-        "doc": {
-          "url": "https://api.podio.com/embed/"
-        },
         "httpMethod": "POST",
         "params": [],
         "url": "https://api.podio.com/embed/"
@@ -3582,9 +3104,6 @@
       {
         "path": "/file/:file_id/attach",
         "displayName": "/file/:file_id/attach",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}/attach"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3605,9 +3124,6 @@
       {
         "path": "/file/:file_id/copy",
         "displayName": "/file/:file_id/copy",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}/copy"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3622,10 +3138,7 @@
       {
         "path": "/file/:file_id",
         "displayName": "/file/:file_id",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -3639,9 +3152,6 @@
       {
         "path": "/file/:file_id",
         "displayName": "/file/:file_id",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3656,9 +3166,6 @@
       {
         "path": "/file/",
         "displayName": "/file/",
-        "doc": {
-          "url": "https://api.podio.com/file/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3711,9 +3218,6 @@
       {
         "path": "/file/app/:app_id/",
         "displayName": "/file/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/file/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3773,9 +3277,6 @@
       {
         "path": "/file/space/:space_id/",
         "displayName": "/file/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/file/space/{space_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3841,9 +3342,6 @@
       {
         "path": "/file/linked_account/:linked_account_id/",
         "displayName": "/file/linked_account/:linked_account_id/",
-        "doc": {
-          "url": "https://api.podio.com/file/linked_account/{linked_account_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -3893,9 +3391,6 @@
       {
         "path": "/file/:file_id/replace",
         "displayName": "/file/:file_id/replace",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}/replace"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3910,9 +3405,6 @@
       {
         "path": "/file/:file_id",
         "displayName": "/file/:file_id",
-        "doc": {
-          "url": "https://api.podio.com/file/{file_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -3927,9 +3419,6 @@
       {
         "path": "/file/",
         "displayName": "/file/",
-        "doc": {
-          "url": "https://api.podio.com/file/"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/file/"
@@ -3937,9 +3426,6 @@
       {
         "path": "/file/linked_account/:linked_account_id/",
         "displayName": "/file/linked_account/:linked_account_id/",
-        "doc": {
-          "url": "https://api.podio.com/file/linked_account/{linked_account_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3955,9 +3441,6 @@
       {
         "path": "/flow/:ref_type/:ref_id/",
         "displayName": "/flow/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/flow/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -3980,10 +3463,7 @@
       {
         "path": "/flow/:flow_id",
         "displayName": "/flow/:flow_id",
-        "doc": {
-          "url": "https://api.podio.com/flow/{flow_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -3997,9 +3477,6 @@
       {
         "path": "/flow/:flow_id",
         "displayName": "/flow/:flow_id",
-        "doc": {
-          "url": "https://api.podio.com/flow/{flow_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4014,9 +3491,6 @@
       {
         "path": "/flow/:flow_id/context/",
         "displayName": "/flow/:flow_id/context/",
-        "doc": {
-          "url": "https://api.podio.com/flow/{flow_id}/context/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4031,9 +3505,6 @@
       {
         "path": "/flow/:ref_type/:ref_id/",
         "displayName": "/flow/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/flow/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4056,9 +3527,6 @@
       {
         "path": "/flow/:ref_type/:ref_id/attributes/",
         "displayName": "/flow/:ref_type/:ref_id/attributes/",
-        "doc": {
-          "url": "https://api.podio.com/flow/{ref_type}/{ref_id}/attributes/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4081,9 +3549,6 @@
       {
         "path": "/flow/:flow_id",
         "displayName": "/flow/:flow_id",
-        "doc": {
-          "url": "https://api.podio.com/flow/{flow_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -4098,9 +3563,6 @@
       {
         "path": "/form/:form_id/activate",
         "displayName": "/form/:form_id/activate",
-        "doc": {
-          "url": "https://api.podio.com/form/{form_id}/activate"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4115,9 +3577,6 @@
       {
         "path": "/form/app/:app_id/",
         "displayName": "/form/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/form/app/{app_id}/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -4133,9 +3592,6 @@
       {
         "path": "/form/:form_id/deactivate",
         "displayName": "/form/:form_id/deactivate",
-        "doc": {
-          "url": "https://api.podio.com/form/{form_id}/deactivate"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4150,10 +3606,7 @@
       {
         "path": "/form/:form_id",
         "displayName": "/form/:form_id",
-        "doc": {
-          "url": "https://api.podio.com/form/{form_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -4167,9 +3620,6 @@
       {
         "path": "/form/:form_id",
         "displayName": "/form/:form_id",
-        "doc": {
-          "url": "https://api.podio.com/form/{form_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4184,9 +3634,6 @@
       {
         "path": "/form/app/:app_id/",
         "displayName": "/form/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/form/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4202,9 +3649,6 @@
       {
         "path": "/form/:form_id",
         "displayName": "/form/:form_id",
-        "doc": {
-          "url": "https://api.podio.com/form/{form_id}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -4219,10 +3663,7 @@
       {
         "path": "/friend/:user_ids",
         "displayName": "/friend/:user_ids",
-        "doc": {
-          "url": "https://api.podio.com/friend/{user_ids}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -4236,9 +3677,6 @@
       {
         "path": "/grant/:ref_type/:ref_id/count",
         "displayName": "/grant/:ref_type/:ref_id/count",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}/count"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4261,9 +3699,6 @@
       {
         "path": "/grant/:ref_type/:ref_id",
         "displayName": "/grant/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4286,9 +3721,6 @@
       {
         "path": "/grant/:ref_type/:ref_id/",
         "displayName": "/grant/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4311,9 +3743,6 @@
       {
         "path": "/grant/space/:space_id/user/:user_id/",
         "displayName": "/grant/space/:space_id/user/:user_id/",
-        "doc": {
-          "url": "https://api.podio.com/grant/space/{space_id}/user/{user_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4336,9 +3765,6 @@
       {
         "path": "/grant/:ref_type/:ref_id/own",
         "displayName": "/grant/:ref_type/:ref_id/own",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}/own"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4361,9 +3787,6 @@
       {
         "path": "/grant/org/:org_id/own/",
         "displayName": "/grant/org/:org_id/own/",
-        "doc": {
-          "url": "https://api.podio.com/grant/org/{org_id}/own/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4379,10 +3802,7 @@
       {
         "path": "/grant/:ref_type/:ref_id",
         "displayName": "/grant/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4404,10 +3824,7 @@
       {
         "path": "/grant/:ref_type/:ref_id/:user_id",
         "displayName": "/grant/:ref_type/:ref_id/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}/{user_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4436,9 +3853,6 @@
       {
         "path": "/grant/:ref_type/:ref_id/:user_id",
         "displayName": "/grant/:ref_type/:ref_id/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/grant/{ref_type}/{ref_id}/{user_id}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -4468,9 +3882,6 @@
       {
         "path": "/hook/:ref_type/:ref_id/",
         "displayName": "/hook/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/hook/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4493,10 +3904,7 @@
       {
         "path": "/hook/:hook_id",
         "displayName": "/hook/:hook_id",
-        "doc": {
-          "url": "https://api.podio.com/hook/{hook_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4510,9 +3918,6 @@
       {
         "path": "/hook/:ref_type/:ref_id/",
         "displayName": "/hook/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/hook/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4535,9 +3940,6 @@
       {
         "path": "/hook/:hook_id/verify/request",
         "displayName": "/hook/:hook_id/verify/request",
-        "doc": {
-          "url": "https://api.podio.com/hook/{hook_id}/verify/request"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4552,9 +3954,6 @@
       {
         "path": "/hook/:hook_id/verify/validate",
         "displayName": "/hook/:hook_id/verify/validate",
-        "doc": {
-          "url": "https://api.podio.com/hook/{hook_id}/verify/validate"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4569,9 +3968,6 @@
       {
         "path": "/importer/:file_id/info",
         "displayName": "/importer/:file_id/info",
-        "doc": {
-          "url": "https://api.podio.com/importer/{file_id}/info"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4586,9 +3982,6 @@
       {
         "path": "/importer/:file_id/preview/:row",
         "displayName": "/importer/:file_id/preview/:row",
-        "doc": {
-          "url": "https://api.podio.com/importer/{file_id}/preview/{row}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4609,9 +4002,6 @@
       {
         "path": "/importer/:file_id/item/app/:app_id",
         "displayName": "/importer/:file_id/item/app/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/importer/{file_id}/item/app/{app_id}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4633,9 +4023,6 @@
       {
         "path": "/importer/:file_id/contact/space/:space_id",
         "displayName": "/importer/:file_id/contact/space/:space_id",
-        "doc": {
-          "url": "https://api.podio.com/importer/{file_id}/contact/space/{space_id}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4657,9 +4044,6 @@
       {
         "path": "/integration/:app_id",
         "displayName": "/integration/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4675,10 +4059,7 @@
       {
         "path": "/integration/:app_id",
         "displayName": "/integration/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4693,9 +4074,6 @@
       {
         "path": "/integration/:app_id/field/",
         "displayName": "/integration/:app_id/field/",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}/field/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4711,9 +4089,6 @@
       {
         "path": "/integration/:app_id",
         "displayName": "/integration/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -4729,9 +4104,6 @@
       {
         "path": "/integration/:app_id",
         "displayName": "/integration/:app_id",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -4747,9 +4119,6 @@
       {
         "path": "/integration/:app_id/mapping",
         "displayName": "/integration/:app_id/mapping",
-        "doc": {
-          "url": "https://api.podio.com/integration/{app_id}/mapping"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -4765,9 +4134,6 @@
       {
         "path": "/item/app/:app_id/",
         "displayName": "/item/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -4795,9 +4161,6 @@
       {
         "path": "/item/app/:app_id/delete",
         "displayName": "/item/app/:app_id/delete",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/delete"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4819,9 +4182,6 @@
       {
         "path": "/item/app/:app_id/calculate",
         "displayName": "/item/app/:app_id/calculate",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/calculate"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4837,9 +4197,6 @@
       {
         "path": "/item/:item_id/clone",
         "displayName": "/item/:item_id/clone",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/clone"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4861,10 +4218,7 @@
       {
         "path": "/item/:item_id",
         "displayName": "/item/:item_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4891,10 +4245,7 @@
       {
         "path": "/item/:item_id/ref",
         "displayName": "/item/:item_id/ref",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/ref"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -4909,9 +4260,6 @@
       {
         "path": "/item/app/:app_id/export/:exporter",
         "displayName": "/item/app/:app_id/export/:exporter",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/export/{exporter}"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4933,9 +4281,6 @@
       {
         "path": "/item/app/:app_id/filter/",
         "displayName": "/item/app/:app_id/filter/",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/filter/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4951,9 +4296,6 @@
       {
         "path": "/item/app/:app_id/filter/:view_id/",
         "displayName": "/item/app/:app_id/filter/:view_id/",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/filter/{view_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -4975,9 +4317,6 @@
       {
         "path": "/item/field/:field_id/range",
         "displayName": "/item/field/:field_id/range",
-        "doc": {
-          "url": "https://api.podio.com/item/field/{field_id}/range"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -4993,9 +4332,6 @@
       {
         "path": "/item/:item_id",
         "displayName": "/item/:item_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5016,9 +4352,6 @@
       {
         "path": "/app/:app_id/item/:app_item_id",
         "displayName": "/app/:app_id/item/:app_item_id",
-        "doc": {
-          "url": "https://api.podio.com/app/{app_id}/item/{app_item_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5040,9 +4373,6 @@
       {
         "path": "/item/app/:app_id/external_id/:external_id",
         "displayName": "/item/app/:app_id/external_id/:external_id",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/external_id/{external_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5065,9 +4395,6 @@
       {
         "path": "/item/:item_id/clone",
         "displayName": "/item/:item_id/clone",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/clone"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5083,9 +4410,6 @@
       {
         "path": "/item/app/:app_id/count",
         "displayName": "/item/app/:app_id/count",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/count"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5101,9 +4425,6 @@
       {
         "path": "/item/:item_id/value/:field_id",
         "displayName": "/item/:item_id/value/:field_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value/{field_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5126,9 +4447,6 @@
       {
         "path": "/item/:item_id/value/:field_or_external_id/v2",
         "displayName": "/item/:item_id/value/:field_or_external_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value/{field_or_external_id}/v2"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5150,9 +4468,6 @@
       {
         "path": "/item/:item_id/reference/:field_id/preview",
         "displayName": "/item/:item_id/reference/:field_id/preview",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/reference/{field_id}/preview"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5175,9 +4490,6 @@
       {
         "path": "/item/:item_id/revision/:revision",
         "displayName": "/item/:item_id/revision/:revision",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/revision/{revision}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5199,9 +4511,6 @@
       {
         "path": "/item/:item_id/revision/:revision_from/:revision_to",
         "displayName": "/item/:item_id/revision/:revision_from/:revision_to",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/revision/{revision_from}/{revision_to}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5229,9 +4538,6 @@
       {
         "path": "/item/:item_id/revision/",
         "displayName": "/item/:item_id/revision/",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/revision/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5247,9 +4553,6 @@
       {
         "path": "/item/:item_id/value",
         "displayName": "/item/:item_id/value",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5265,9 +4568,6 @@
       {
         "path": "/item/:item_id/value/v2",
         "displayName": "/item/:item_id/value/v2",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5283,9 +4583,6 @@
       {
         "path": "/item/app/:app_id/xlsx/",
         "displayName": "/item/app/:app_id/xlsx/",
-        "doc": {
-          "url": "https://api.podio.com/item/app/{app_id}/xlsx/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5345,9 +4642,6 @@
       {
         "path": "/item/:item_id/meeting/url",
         "displayName": "/item/:item_id/meeting/url",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/meeting/url"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -5363,9 +4657,6 @@
       {
         "path": "/item/:item_id/reference/field/:field_id",
         "displayName": "/item/:item_id/reference/field/:field_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/reference/field/{field_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5400,9 +4691,6 @@
       {
         "path": "/item/field/:field_id/top/",
         "displayName": "/item/field/:field_id/top/",
-        "doc": {
-          "url": "https://api.podio.com/item/field/{field_id}/top/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5429,9 +4717,6 @@
       {
         "path": "/item/:item_id/rearrange",
         "displayName": "/item/:item_id/rearrange",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/rearrange"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -5447,10 +4732,7 @@
       {
         "path": "/item/:item_id/revision/:revision",
         "displayName": "/item/:item_id/revision/:revision",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/revision/{revision}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -5471,9 +4753,6 @@
       {
         "path": "/item/:item_id/revision/:revision/revert_to",
         "displayName": "/item/:item_id/revision/:revision/revert_to",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/revision/{revision}/revert_to"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -5495,9 +4774,6 @@
       {
         "path": "/item/:item_id/participation",
         "displayName": "/item/:item_id/participation",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/participation"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -5513,9 +4789,6 @@
       {
         "path": "/item/:item_id",
         "displayName": "/item/:item_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -5543,9 +4816,6 @@
       {
         "path": "/item/:item_id/value/:field_or_external_id",
         "displayName": "/item/:item_id/value/:field_or_external_id",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value/{field_or_external_id}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -5579,9 +4849,6 @@
       {
         "path": "/item/:item_id/ref",
         "displayName": "/item/:item_id/ref",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/ref"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -5597,9 +4864,6 @@
       {
         "path": "/item/:item_id/value",
         "displayName": "/item/:item_id/value",
-        "doc": {
-          "url": "https://api.podio.com/item/{item_id}/value"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -5627,9 +4891,6 @@
       {
         "path": "/linked_account/",
         "displayName": "/linked_account/",
-        "doc": {
-          "url": "https://api.podio.com/linked_account/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5648,9 +4909,6 @@
       {
         "path": "/notification/inbox/new/count",
         "displayName": "/notification/inbox/new/count",
-        "doc": {
-          "url": "https://api.podio.com/notification/inbox/new/count"
-        },
         "httpMethod": "get",
         "params": [],
         "url": "https://api.podio.com/notification/inbox/new/count"
@@ -5658,9 +4916,6 @@
       {
         "path": "/notification/:notification_id",
         "displayName": "/notification/:notification_id",
-        "doc": {
-          "url": "https://api.podio.com/notification/{notification_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5675,9 +4930,6 @@
       {
         "path": "/notification/",
         "displayName": "/notification/",
-        "doc": {
-          "url": "https://api.podio.com/notification/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5744,9 +4996,6 @@
       {
         "path": "/notification/viewed",
         "displayName": "/notification/viewed",
-        "doc": {
-          "url": "https://api.podio.com/notification/viewed"
-        },
         "httpMethod": "Post",
         "params": [],
         "url": "https://api.podio.com/notification/viewed"
@@ -5754,10 +5003,7 @@
       {
         "path": "/notification/:notification_id/viewed",
         "displayName": "/notification/:notification_id/viewed",
-        "doc": {
-          "url": "https://api.podio.com/notification/{notification_id}/viewed"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -5771,9 +5017,6 @@
       {
         "path": "/notification/:notification_id/viewed",
         "displayName": "/notification/:notification_id/viewed",
-        "doc": {
-          "url": "https://api.podio.com/notification/{notification_id}/viewed"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -5788,10 +5031,7 @@
       {
         "path": "/notification/:ref_type/:ref_id/viewed",
         "displayName": "/notification/:ref_type/:ref_id/viewed",
-        "doc": {
-          "url": "https://api.podio.com/notification/{ref_type}/{ref_id}/viewed"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -5813,9 +5053,6 @@
       {
         "path": "/notification/:ref_type/:ref_id/viewed",
         "displayName": "/notification/:ref_type/:ref_id/viewed",
-        "doc": {
-          "url": "https://api.podio.com/notification/{ref_type}/{ref_id}/viewed"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -5836,9 +5073,6 @@
       {
         "path": "/notification/:notification_id/star",
         "displayName": "/notification/:notification_id/star",
-        "doc": {
-          "url": "https://api.podio.com/notification/{notification_id}/star"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -5853,10 +5087,7 @@
       {
         "path": "/notification/:notification_id/star",
         "displayName": "/notification/:notification_id/star",
-        "doc": {
-          "url": "https://api.podio.com/notification/{notification_id}/star"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -5870,9 +5101,6 @@
       {
         "path": "/org/",
         "displayName": "/org/",
-        "doc": {
-          "url": "https://api.podio.com/org/"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/org/"
@@ -5880,9 +5108,6 @@
       {
         "path": "/org/:org_id/appstore",
         "displayName": "/org/:org_id/appstore",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/appstore"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -5898,10 +5123,7 @@
       {
         "path": "/org/:org_id/member/:user_id/role",
         "displayName": "/org/:org_id/member/:user_id/role",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/member/{user_id}/role"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -5923,10 +5145,7 @@
       {
         "path": "/org/:org_id/member/:user_id",
         "displayName": "/org/:org_id/member/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/member/{user_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -5948,9 +5167,6 @@
       {
         "path": "/org/:org_id/all_spaces/",
         "displayName": "/org/:org_id/all_spaces/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/all_spaces/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5966,9 +5182,6 @@
       {
         "path": "/org/:org_id",
         "displayName": "/org/:org_id",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -5984,9 +5197,6 @@
       {
         "path": "/org/:org_id/admin/",
         "displayName": "/org/:org_id/admin/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/admin/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6002,9 +5212,6 @@
       {
         "path": "/org/:org_id/appstore",
         "displayName": "/org/:org_id/appstore",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/appstore"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6020,9 +5227,6 @@
       {
         "path": "/org/url",
         "displayName": "/org/url",
-        "doc": {
-          "url": "https://api.podio.com/org/url"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6036,9 +5240,6 @@
       {
         "path": "/org/:org_id/report/login/",
         "displayName": "/org/:org_id/report/login/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/report/login/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6066,9 +5267,6 @@
       {
         "path": "/org/:org_id/member/:user_id",
         "displayName": "/org/:org_id/member/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/member/{user_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6091,9 +5289,6 @@
       {
         "path": "/org/:org_id/member/",
         "displayName": "/org/:org_id/member/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/member/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6144,9 +5339,6 @@
       {
         "path": "/org/",
         "displayName": "/org/",
-        "doc": {
-          "url": "https://api.podio.com/org/"
-        },
         "httpMethod": "get",
         "params": [],
         "url": "https://api.podio.com/org/"
@@ -6154,9 +5346,6 @@
       {
         "path": "/org/shared/:user_id",
         "displayName": "/org/shared/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/org/shared/{user_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6172,9 +5361,6 @@
       {
         "path": "/org/:org_id/member/:user_id/space_member/",
         "displayName": "/org/:org_id/member/:user_id/space_member/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/member/{user_id}/space_member/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6197,9 +5383,6 @@
       {
         "path": "/org/:org_id/space/",
         "displayName": "/org/:org_id/space/",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/space/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6215,9 +5398,6 @@
       {
         "path": "/org/:org_id",
         "displayName": "/org/:org_id",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -6233,9 +5413,6 @@
       {
         "path": "/org/:org_id/appstore",
         "displayName": "/org/:org_id/appstore",
-        "doc": {
-          "url": "https://api.podio.com/org/{org_id}/appstore"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -6251,9 +5428,6 @@
       {
         "path": "/question/:question_id/",
         "displayName": "/question/:question_id/",
-        "doc": {
-          "url": "https://api.podio.com/question/{question_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6268,9 +5442,6 @@
       {
         "path": "/question/:ref_type/:ref_id/",
         "displayName": "/question/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/question/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6293,9 +5464,6 @@
       {
         "path": "/question/:question_id/",
         "displayName": "/question/:question_id/",
-        "doc": {
-          "url": "https://api.podio.com/question/{question_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6310,9 +5478,6 @@
       {
         "path": "/rating/:ref_type/:ref_id",
         "displayName": "/rating/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/rating/{ref_type}/{ref_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6335,9 +5500,6 @@
       {
         "path": "/rating/:ref_type/:ref_id/like_count",
         "displayName": "/rating/:ref_type/:ref_id/like_count",
-        "doc": {
-          "url": "https://api.podio.com/rating/{ref_type}/{ref_id}/like_count"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6360,9 +5522,6 @@
       {
         "path": "/rating/:ref_type/:ref_id/:rating_type/:user_id",
         "displayName": "/rating/:ref_type/:ref_id/:rating_type/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/rating/{ref_type}/{ref_id}/{rating_type}/{user_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6398,9 +5557,6 @@
       {
         "path": "/rating/:ref_type/:ref_id/:rating_type",
         "displayName": "/rating/:ref_type/:ref_id/:rating_type",
-        "doc": {
-          "url": "https://api.podio.com/rating/{ref_type}/{ref_id}/{rating_type}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6429,9 +5585,6 @@
       {
         "path": "/rating/:ref_type/:ref_id/liked_by/",
         "displayName": "/rating/:ref_type/:ref_id/liked_by/",
-        "doc": {
-          "url": "https://api.podio.com/rating/{ref_type}/{ref_id}/liked_by/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6460,9 +5613,6 @@
       {
         "path": "/recurrence/:ref_type/:ref_id",
         "displayName": "/recurrence/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/recurrence/{ref_type}/{ref_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -6485,10 +5635,7 @@
       {
         "path": "/recurrence/:ref_type/:ref_id",
         "displayName": "/recurrence/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/recurrence/{ref_type}/{ref_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -6510,9 +5657,6 @@
       {
         "path": "/recurrence/:ref_type/:ref_id",
         "displayName": "/recurrence/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/recurrence/{ref_type}/{ref_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6535,9 +5679,6 @@
       {
         "path": "/reference/:ref_type/:ref_id/accessible_by/count",
         "displayName": "/reference/:ref_type/:ref_id/accessible_by/count",
-        "doc": {
-          "url": "https://api.podio.com/reference/{ref_type}/{ref_id}/accessible_by/count"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6560,9 +5701,6 @@
       {
         "path": "/reference/:ref_type/:ref_id",
         "displayName": "/reference/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/reference/{ref_type}/{ref_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6600,9 +5738,6 @@
       {
         "path": "/reference/:ref_type/:ref_id/accessible_by/",
         "displayName": "/reference/:ref_type/:ref_id/accessible_by/",
-        "doc": {
-          "url": "https://api.podio.com/reference/{ref_type}/{ref_id}/accessible_by/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6637,9 +5772,6 @@
       {
         "path": "/reference/resolve",
         "displayName": "/reference/resolve",
-        "doc": {
-          "url": "https://api.podio.com/reference/resolve"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6653,9 +5785,6 @@
       {
         "path": "/reference/search",
         "displayName": "/reference/search",
-        "doc": {
-          "url": "https://api.podio.com/reference/search"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/reference/search"
@@ -6663,9 +5792,6 @@
       {
         "path": "/reminder/:ref_type/:ref_id",
         "displayName": "/reminder/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/reminder/{ref_type}/{ref_id}"
-        },
         "httpMethod": "PUT",
         "params": [],
         "url": "https://api.podio.com/reminder/:ref_type/:ref_id"
@@ -6673,10 +5799,7 @@
       {
         "path": "/reminder/:ref_type/:ref_id",
         "displayName": "/reminder/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/reminder/{ref_type}/{ref_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -6703,9 +5826,6 @@
       {
         "path": "/reminder/:ref_type/:ref_id",
         "displayName": "/reminder/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/reminder/{ref_type}/{ref_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6728,9 +5848,6 @@
       {
         "path": "/reminder/:ref_type/:ref_id/snooze",
         "displayName": "/reminder/:ref_type/:ref_id/snooze",
-        "doc": {
-          "url": "https://api.podio.com/reminder/{ref_type}/{ref_id}/snooze"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6758,9 +5875,6 @@
       {
         "path": "/search/",
         "displayName": "/search/",
-        "doc": {
-          "url": "https://api.podio.com/search/"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/search/"
@@ -6768,9 +5882,6 @@
       {
         "path": "/search/v2",
         "displayName": "/search/v2",
-        "doc": {
-          "url": "https://api.podio.com/search/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6807,9 +5918,6 @@
       {
         "path": "/search/app/:app_id/",
         "displayName": "/search/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/search/app/{app_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6825,9 +5933,6 @@
       {
         "path": "/search/app/:app_id/v2",
         "displayName": "/search/app/:app_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/search/app/{app_id}/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6871,9 +5976,6 @@
       {
         "path": "/search/org/:org_id/",
         "displayName": "/search/org/:org_id/",
-        "doc": {
-          "url": "https://api.podio.com/search/org/{org_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6889,9 +5991,6 @@
       {
         "path": "/search/org/:org_id/v2",
         "displayName": "/search/org/:org_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/search/org/{org_id}/v2"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -6935,9 +6034,6 @@
       {
         "path": "/search/space/:space_id/",
         "displayName": "/search/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/search/space/{space_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -6953,9 +6049,6 @@
       {
         "path": "/search/space/:space_id/v2",
         "displayName": "/search/space/:space_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/search/space/{space_id}/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -6999,9 +6092,6 @@
       {
         "path": "/space/:space_id/member_request/:space_member_request_id/accept",
         "displayName": "/space/:space_id/member_request/:space_member_request_id/accept",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member_request/{space_member_request_id}/accept"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7023,9 +6113,6 @@
       {
         "path": "/space/:space_id/member/",
         "displayName": "/space/:space_id/member/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7041,10 +6128,7 @@
       {
         "path": "/space/:space_id/member/:user_ids",
         "displayName": "/space/:space_id/member/:user_ids",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/{user_ids}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -7065,9 +6149,6 @@
       {
         "path": "/space/:space_id/member/total",
         "displayName": "/space/:space_id/member/total",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/total"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7083,9 +6164,6 @@
       {
         "path": "/space/:space_id/member/",
         "displayName": "/space/:space_id/member/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7101,9 +6179,6 @@
       {
         "path": "/space/:space_id/member/:user_id/v2",
         "displayName": "/space/:space_id/member/:user_id/v2",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/{user_id}/v2"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7126,9 +6201,6 @@
       {
         "path": "/space/:space_id/member/:role/",
         "displayName": "/space/:space_id/member/:role/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/{role}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7150,9 +6222,6 @@
       {
         "path": "/space/:space_id/member/v2/",
         "displayName": "/space/:space_id/member/v2/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/v2/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7191,9 +6260,6 @@
       {
         "path": "/space/:space_id/member/:user_id",
         "displayName": "/space/:space_id/member/:user_id",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/{user_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7216,9 +6282,6 @@
       {
         "path": "/space/:space_id/join",
         "displayName": "/space/:space_id/join",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/join"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -7234,9 +6297,6 @@
       {
         "path": "/space/:space_id/member_request/",
         "displayName": "/space/:space_id/member_request/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member_request/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7252,9 +6312,6 @@
       {
         "path": "/space/:space_id/join",
         "displayName": "/space/:space_id/join",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/join"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7270,9 +6327,6 @@
       {
         "path": "/space/:space_id/member_request/",
         "displayName": "/space/:space_id/member_request/",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member_request/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7288,9 +6342,6 @@
       {
         "path": "/space/:space_id/member/:user_ids",
         "displayName": "/space/:space_id/member/:user_ids",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/member/{user_ids}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -7312,9 +6363,6 @@
       {
         "path": "/space/",
         "displayName": "/space/",
-        "doc": {
-          "url": "https://api.podio.com/space/"
-        },
         "httpMethod": "post",
         "params": [],
         "url": "https://api.podio.com/space/"
@@ -7322,10 +6370,7 @@
       {
         "path": "/space/:space_id",
         "displayName": "/space/:space_id",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -7340,9 +6385,6 @@
       {
         "path": "/space/:space_id/available",
         "displayName": "/space/:space_id/available",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}/available"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7358,9 +6400,6 @@
       {
         "path": "/space/:space_id",
         "displayName": "/space/:space_id",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7376,9 +6415,6 @@
       {
         "path": "/space/org/:org_id/:url_label",
         "displayName": "/space/org/:org_id/:url_label",
-        "doc": {
-          "url": "https://api.podio.com/space/org/{org_id}/{url_label}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7401,9 +6437,6 @@
       {
         "path": "/space/url",
         "displayName": "/space/url",
-        "doc": {
-          "url": "https://api.podio.com/space/url"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7427,9 +6460,6 @@
       {
         "path": "/space/top/",
         "displayName": "/space/top/",
-        "doc": {
-          "url": "https://api.podio.com/space/top/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7444,9 +6474,6 @@
       {
         "path": "/space/:space_id",
         "displayName": "/space/:space_id",
-        "doc": {
-          "url": "https://api.podio.com/space/{space_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -7462,9 +6489,6 @@
       {
         "path": "/status/space/:space_id/",
         "displayName": "/status/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/status/space/{space_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7485,10 +6509,7 @@
       {
         "path": "/status/:status_id",
         "displayName": "/status/:status_id",
-        "doc": {
-          "url": "https://api.podio.com/status/{status_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -7502,9 +6523,6 @@
       {
         "path": "/status/:status_id",
         "displayName": "/status/:status_id",
-        "doc": {
-          "url": "https://api.podio.com/status/{status_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7519,9 +6537,6 @@
       {
         "path": "/status/:status_id",
         "displayName": "/status/:status_id",
-        "doc": {
-          "url": "https://api.podio.com/status/{status_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -7536,9 +6551,6 @@
       {
         "path": "/stream/app/:app_id/filter",
         "displayName": "/stream/app/:app_id/filter",
-        "doc": {
-          "url": "https://api.podio.com/stream/app/{app_id}/filter"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -7554,9 +6566,6 @@
       {
         "path": "/stream/app/:app_id/",
         "displayName": "/stream/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/stream/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7584,9 +6593,6 @@
       {
         "path": "/stream/app/:app_id/v3",
         "displayName": "/stream/app/:app_id/v3",
-        "doc": {
-          "url": "https://api.podio.com/stream/app/{app_id}/v3"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7624,9 +6630,6 @@
       {
         "path": "/stream/",
         "displayName": "/stream/",
-        "doc": {
-          "url": "https://api.podio.com/stream/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7647,9 +6650,6 @@
       {
         "path": "/stream/v3/",
         "displayName": "/stream/v3/",
-        "doc": {
-          "url": "https://api.podio.com/stream/v3/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7680,9 +6680,6 @@
       {
         "path": "/stream/:ref_type/:ref_id/activity_group/:data_ref_type/:data_ref_id",
         "displayName": "/stream/:ref_type/:ref_id/activity_group/:data_ref_type/:data_ref_id",
-        "doc": {
-          "url": "https://api.podio.com/stream/{ref_type}/{ref_id}/activity_group/{data_ref_type}/{data_ref_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7722,9 +6719,6 @@
       {
         "path": "/stream/:ref_type/:ref_id/group/:event_id",
         "displayName": "/stream/:ref_type/:ref_id/group/:event_id",
-        "doc": {
-          "url": "https://api.podio.com/stream/{ref_type}/{ref_id}/group/{event_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7759,9 +6753,6 @@
       {
         "path": "/stream/:ref_type/:ref_id/activity_group/",
         "displayName": "/stream/:ref_type/:ref_id/activity_group/",
-        "doc": {
-          "url": "https://api.podio.com/stream/{ref_type}/{ref_id}/activity_group/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7811,9 +6802,6 @@
       {
         "path": "/stream/org/:org_id/v3/",
         "displayName": "/stream/org/:org_id/v3/",
-        "doc": {
-          "url": "https://api.podio.com/stream/org/{org_id}/v3/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7851,9 +6839,6 @@
       {
         "path": "/stream/org/:org_id/",
         "displayName": "/stream/org/:org_id/",
-        "doc": {
-          "url": "https://api.podio.com/stream/org/{org_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7881,9 +6866,6 @@
       {
         "path": "/stream/space/:space_id/",
         "displayName": "/stream/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/stream/space/{space_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7911,9 +6893,6 @@
       {
         "path": "/stream/space/:space_id/v3/",
         "displayName": "/stream/space/:space_id/v3/",
-        "doc": {
-          "url": "https://api.podio.com/stream/space/{space_id}/v3/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7939,9 +6918,6 @@
       {
         "path": "/stream/:ref_type/:ref_id",
         "displayName": "/stream/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/stream/{ref_type}/{ref_id}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -7964,9 +6940,6 @@
       {
         "path": "/stream/:ref_type/:ref_id/v3",
         "displayName": "/stream/:ref_type/:ref_id/v3",
-        "doc": {
-          "url": "https://api.podio.com/stream/{ref_type}/{ref_id}/v3"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -7999,9 +6972,6 @@
       {
         "path": "/stream/user/:user_id/",
         "displayName": "/stream/user/:user_id/",
-        "doc": {
-          "url": "https://api.podio.com/stream/user/{user_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8029,9 +6999,6 @@
       {
         "path": "/stream/user/:user_id/v3",
         "displayName": "/stream/user/:user_id/v3",
-        "doc": {
-          "url": "https://api.podio.com/stream/user/{user_id}/v3"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8069,9 +7036,6 @@
       {
         "path": "/subscription/inactive",
         "displayName": "/subscription/inactive",
-        "doc": {
-          "url": "https://api.podio.com/subscription/inactive"
-        },
         "httpMethod": "get",
         "params": [],
         "url": "https://api.podio.com/subscription/inactive"
@@ -8079,9 +7043,6 @@
       {
         "path": "/subscription/:subscription_id",
         "displayName": "/subscription/:subscription_id",
-        "doc": {
-          "url": "https://api.podio.com/subscription/{subscription_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8096,9 +7057,6 @@
       {
         "path": "/subscription/:ref_type/:ref_id",
         "displayName": "/subscription/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/subscription/{ref_type}/{ref_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8121,9 +7079,6 @@
       {
         "path": "/subscription/:ref_type/:ref_id",
         "displayName": "/subscription/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/subscription/{ref_type}/{ref_id}"
-        },
         "httpMethod": "POST",
         "params": [
           {
@@ -8146,10 +7101,7 @@
       {
         "path": "/subscription/:subscription_id",
         "displayName": "/subscription/:subscription_id",
-        "doc": {
-          "url": "https://api.podio.com/subscription/{subscription_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -8163,10 +7115,7 @@
       {
         "path": "/subscription/:ref_type/:ref_id",
         "displayName": "/subscription/:ref_type/:ref_id",
-        "doc": {
-          "url": "https://api.podio.com/subscription/{ref_type}/{ref_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -8188,9 +7137,6 @@
       {
         "path": "/tag/:ref_type/:ref_id/",
         "displayName": "/tag/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -8213,9 +7159,6 @@
       {
         "path": "/tag/app/:app_id/search/",
         "displayName": "/tag/app/:app_id/search/",
-        "doc": {
-          "url": "https://api.podio.com/tag/app/{app_id}/search/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8237,9 +7180,6 @@
       {
         "path": "/tag/org/:org_id/search/",
         "displayName": "/tag/org/:org_id/search/",
-        "doc": {
-          "url": "https://api.podio.com/tag/org/{org_id}/search/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8261,9 +7201,6 @@
       {
         "path": "/tag/space/:space_id/search/",
         "displayName": "/tag/space/:space_id/search/",
-        "doc": {
-          "url": "https://api.podio.com/tag/space/{space_id}/search/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8285,9 +7222,6 @@
       {
         "path": "/tag/app/:app_id/",
         "displayName": "/tag/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8315,9 +7249,6 @@
       {
         "path": "/tag/app/:app_id/top/",
         "displayName": "/tag/app/:app_id/top/",
-        "doc": {
-          "url": "https://api.podio.com/tag/app/{app_id}/top/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -8345,9 +7276,6 @@
       {
         "path": "/tag/org/:org_id/",
         "displayName": "/tag/org/:org_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/org/{org_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -8375,9 +7303,6 @@
       {
         "path": "/tag/space/:space_id/",
         "displayName": "/tag/space/:space_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/space/{space_id}/"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -8405,10 +7330,7 @@
       {
         "path": "/tag/:ref_type/:ref_id/",
         "displayName": "/tag/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/{ref_type}/{ref_id}/"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -8436,9 +7358,6 @@
       {
         "path": "/tag/:ref_type/:ref_id/",
         "displayName": "/tag/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/tag/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -8461,10 +7380,7 @@
       {
         "path": "/user/property/:name",
         "displayName": "/user/property/:name",
-        "doc": {
-          "url": "https://api.podio.com/user/property/{name}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -8478,9 +7394,6 @@
       {
         "path": "/user/setting/:client_type/:notification_type",
         "displayName": "/user/setting/:client_type/:notification_type",
-        "doc": {
-          "url": "https://api.podio.com/user/setting/{client_type}/{notification_type}"
-        },
         "httpMethod": "GET",
         "params": [
           {
@@ -8501,9 +7414,6 @@
       {
         "path": "/user/setting/:client_type/",
         "displayName": "/user/setting/:client_type/",
-        "doc": {
-          "url": "https://api.podio.com/user/setting/{client_type}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8518,9 +7428,6 @@
       {
         "path": "/user/profile/:key",
         "displayName": "/user/profile/:key",
-        "doc": {
-          "url": "https://api.podio.com/user/profile/{key}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8535,9 +7442,6 @@
       {
         "path": "/user",
         "displayName": "/user",
-        "doc": {
-          "url": "https://api.podio.com/user"
-        },
         "httpMethod": "get",
         "params": [],
         "url": "https://api.podio.com/user"
@@ -8545,9 +7449,6 @@
       {
         "path": "/user/property/:name",
         "displayName": "/user/property/:name",
-        "doc": {
-          "url": "https://api.podio.com/user/property/{name}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8563,9 +7464,6 @@
       {
         "path": "/user/status",
         "displayName": "/user/status",
-        "doc": {
-          "url": "https://api.podio.com/user/status"
-        },
         "httpMethod": "get",
         "params": [],
         "url": "https://api.podio.com/user/status"
@@ -8573,9 +7471,6 @@
       {
         "path": "/user/property/",
         "displayName": "/user/property/",
-        "doc": {
-          "url": "https://api.podio.com/user/property/"
-        },
         "httpMethod": "put",
         "params": [],
         "url": "https://api.podio.com/user/property/"
@@ -8583,9 +7478,6 @@
       {
         "path": "/user/property/:name",
         "displayName": "/user/property/:name",
-        "doc": {
-          "url": "https://api.podio.com/user/property/{name}"
-        },
         "httpMethod": "put",
         "params": [
           {
@@ -8600,9 +7492,6 @@
       {
         "path": "/user/setting/:client_type/:notification_type",
         "displayName": "/user/setting/:client_type/:notification_type",
-        "doc": {
-          "url": "https://api.podio.com/user/setting/{client_type}/{notification_type}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8623,9 +7512,6 @@
       {
         "path": "/user/profile/",
         "displayName": "/user/profile/",
-        "doc": {
-          "url": "https://api.podio.com/user/profile/"
-        },
         "httpMethod": "put",
         "params": [],
         "url": "https://api.podio.com/user/profile/"
@@ -8633,9 +7519,6 @@
       {
         "path": "/user/profile/:key",
         "displayName": "/user/profile/:key",
-        "doc": {
-          "url": "https://api.podio.com/user/profile/{key}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8650,9 +7533,6 @@
       {
         "path": "/view/app/:app_id/",
         "displayName": "/view/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/view/app/{app_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -8668,10 +7548,7 @@
       {
         "path": "/view/:view_id",
         "displayName": "/view/:view_id",
-        "doc": {
-          "url": "https://api.podio.com/view/{view_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -8685,9 +7562,6 @@
       {
         "path": "/view/app/:app_id/:view_id_or_name",
         "displayName": "/view/app/:app_id/:view_id_or_name",
-        "doc": {
-          "url": "https://api.podio.com/view/app/{app_id}/{view_id_or_name}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8709,9 +7583,6 @@
       {
         "path": "/view/app/:app_id/",
         "displayName": "/view/app/:app_id/",
-        "doc": {
-          "url": "https://api.podio.com/view/app/{app_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8733,9 +7604,6 @@
       {
         "path": "/view/:view_id/default",
         "displayName": "/view/:view_id/default",
-        "doc": {
-          "url": "https://api.podio.com/view/{view_id}/default"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -8750,9 +7618,6 @@
       {
         "path": "/view/app/:app_id/last",
         "displayName": "/view/app/:app_id/last",
-        "doc": {
-          "url": "https://api.podio.com/view/app/{app_id}/last"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8768,9 +7633,6 @@
       {
         "path": "/view/:view_id",
         "displayName": "/view/:view_id",
-        "doc": {
-          "url": "https://api.podio.com/view/{view_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8785,9 +7647,6 @@
       {
         "path": "/voting/app/:app_id/voting",
         "displayName": "/voting/app/:app_id/voting",
-        "doc": {
-          "url": "https://api.podio.com/voting/app/{app_id}/voting"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8803,9 +7662,6 @@
       {
         "path": "/voting/:voting_id/answer/order",
         "displayName": "/voting/:voting_id/answer/order",
-        "doc": {
-          "url": "https://api.podio.com/voting/{voting_id}/answer/order"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8820,9 +7676,6 @@
       {
         "path": "/voting/app/:app_id/voting/order",
         "displayName": "/voting/app/:app_id/voting/order",
-        "doc": {
-          "url": "https://api.podio.com/voting/app/{app_id}/voting/order"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -8838,9 +7691,6 @@
       {
         "path": "/voting/:voting_id/answers",
         "displayName": "/voting/:voting_id/answers",
-        "doc": {
-          "url": "https://api.podio.com/voting/{voting_id}/answers"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -8855,9 +7705,6 @@
       {
         "path": "/voting/app/:app_id/voting",
         "displayName": "/voting/app/:app_id/voting",
-        "doc": {
-          "url": "https://api.podio.com/voting/app/{app_id}/voting"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -8873,10 +7720,7 @@
       {
         "path": "/voting/answer/:answer_id",
         "displayName": "/voting/answer/:answer_id",
-        "doc": {
-          "url": "https://api.podio.com/voting/answer/{answer_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -8890,10 +7734,7 @@
       {
         "path": "/voting/:voting_id",
         "displayName": "/voting/:voting_id",
-        "doc": {
-          "url": "https://api.podio.com/voting/{voting_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -8907,9 +7748,6 @@
       {
         "path": "/voting/app/:app_id/voting",
         "displayName": "/voting/app/:app_id/voting",
-        "doc": {
-          "url": "https://api.podio.com/voting/app/{app_id}/voting"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8925,9 +7763,6 @@
       {
         "path": "/voting/item/:item_id/voting/:voting_id/user",
         "displayName": "/voting/item/:item_id/voting/:voting_id/user",
-        "doc": {
-          "url": "https://api.podio.com/voting/item/{item_id}/voting/{voting_id}/user"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8954,9 +7789,6 @@
       {
         "path": "/voting/item/:item_id/voting/:voting_id/result",
         "displayName": "/voting/item/:item_id/voting/:voting_id/result",
-        "doc": {
-          "url": "https://api.podio.com/voting/item/{item_id}/voting/{voting_id}/result"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -8983,9 +7815,6 @@
       {
         "path": "/voting/item/:item_id/result",
         "displayName": "/voting/item/:item_id/result",
-        "doc": {
-          "url": "https://api.podio.com/voting/item/{item_id}/result"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -9006,9 +7835,6 @@
       {
         "path": "/voting/:voting_id",
         "displayName": "/voting/:voting_id",
-        "doc": {
-          "url": "https://api.podio.com/voting/{voting_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -9028,10 +7854,7 @@
       {
         "path": "/voting/item/:item_id/voting/:voting_id/votes",
         "displayName": "/voting/item/:item_id/voting/:voting_id/votes",
-        "doc": {
-          "url": "https://api.podio.com/voting/item/{item_id}/voting/{voting_id}/votes"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
@@ -9052,9 +7875,6 @@
       {
         "path": "/voting/answer/:answer_id",
         "displayName": "/voting/answer/:answer_id",
-        "doc": {
-          "url": "https://api.podio.com/voting/answer/{answer_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -9069,9 +7889,6 @@
       {
         "path": "/voting/:voting_id",
         "displayName": "/voting/:voting_id",
-        "doc": {
-          "url": "https://api.podio.com/voting/{voting_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -9086,9 +7903,6 @@
       {
         "path": "/voting/item/:item_id/voting/:voting_id/votes",
         "displayName": "/voting/item/:item_id/voting/:voting_id/votes",
-        "doc": {
-          "url": "https://api.podio.com/voting/item/{item_id}/voting/{voting_id}/votes"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -9110,9 +7924,6 @@
       {
         "path": "/widget/:widget_id/clone",
         "displayName": "/widget/:widget_id/clone",
-        "doc": {
-          "url": "https://api.podio.com/widget/{widget_id}/clone"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -9127,9 +7938,6 @@
       {
         "path": "/widget/:ref_type/:ref_id/",
         "displayName": "/widget/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/widget/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "post",
         "params": [
           {
@@ -9152,10 +7960,7 @@
       {
         "path": "/widget/:widget_id",
         "displayName": "/widget/:widget_id",
-        "doc": {
-          "url": "https://api.podio.com/widget/{widget_id}"
-        },
-        "httpMethod": "delete",
+        "httpMethod": "DELETE",
         "params": [
           {
             "style": "",
@@ -9169,9 +7974,6 @@
       {
         "path": "/widget/:widget_id",
         "displayName": "/widget/:widget_id",
-        "doc": {
-          "url": "https://api.podio.com/widget/{widget_id}"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -9186,9 +7988,6 @@
       {
         "path": "/widget/:ref_type/:ref_id/",
         "displayName": "/widget/:ref_type/:ref_id/",
-        "doc": {
-          "url": "https://api.podio.com/widget/{ref_type}/{ref_id}/"
-        },
         "httpMethod": "get",
         "params": [
           {
@@ -9211,9 +8010,6 @@
       {
         "path": "/widget/:widget_id",
         "displayName": "/widget/:widget_id",
-        "doc": {
-          "url": "https://api.podio.com/widget/{widget_id}"
-        },
         "httpMethod": "PUT",
         "params": [
           {
@@ -9228,9 +8024,6 @@
       {
         "path": "/widget/:ref_type/:ref_id/order",
         "displayName": "/widget/:ref_type/:ref_id/order",
-        "doc": {
-          "url": "https://api.podio.com/widget/{ref_type}/{ref_id}/order"
-        },
         "httpMethod": "PUT",
         "params": [
           {

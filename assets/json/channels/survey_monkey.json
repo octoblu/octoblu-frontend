@@ -44,11 +44,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_survey_details",
+        "displayName": "Get Survey Details",
         "path": "/surveys/get_survey_details",
         "params": [
           {
             "name": "survey_id",
+            "displayName": "Survey ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -65,7 +66,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_user_details",
+        "displayName": "Get User Details",
         "path": "/user/get_user_details",
         "url": "https://api.surveymonkey.net/v2/user/get_user_details"
       },
@@ -77,11 +78,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_survey_list",
+        "displayName": "Get Survey List",
         "path": "/surveys/get_survey_list",
         "params": [
           {
             "name": "page",
+            "displayName": "Page",
             "style": "body",
             "type": "number",
             "value": "",
@@ -89,6 +91,7 @@
           },
           {
             "name": "page_size",
+            "displayName": "Page Size",
             "style": "body",
             "type": "number",
             "value": "",
@@ -96,6 +99,7 @@
           },
           {
             "name": "start_date",
+            "displayName": "Start Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -103,6 +107,7 @@
           },
           {
             "name": "end_date",
+            "displayName": "End Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -110,6 +115,7 @@
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string",
             "value": "",
@@ -117,6 +123,7 @@
           },
           {
             "name": "recipient_email",
+            "displayName": "Recipient Email",
             "style": "body",
             "type": "string",
             "value": "",
@@ -124,6 +131,7 @@
           },
           {
             "name": "order_asc",
+            "displayName": "Order ASC",
             "style": "body",
             "type": "boolean",
             "value": "",
@@ -131,6 +139,7 @@
           },
           {
             "name": "fields",
+            "displayName": "Fields",
             "style": "body",
             "type": "string",
             "value": "",
@@ -147,11 +156,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_collector_list",
+        "displayName": "Get Collector List",
         "path": "/surveys/get_collector_list",
         "params": [
           {
             "name": "survey_id",
+            "displayName": "Survey ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -159,6 +169,7 @@
           },
           {
             "name": "page",
+            "displayName": "Page",
             "style": "body",
             "type": "number",
             "value": "",
@@ -166,6 +177,7 @@
           },
           {
             "name": "page_size",
+            "displayName": "Page Size",
             "style": "body",
             "type": "number",
             "value": "",
@@ -173,6 +185,7 @@
           },
           {
             "name": "start_date",
+            "displayName": "Start Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -180,6 +193,7 @@
           },
           {
             "name": "end_date",
+            "displayName": "End Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -187,6 +201,7 @@
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "value": "",
@@ -194,6 +209,7 @@
           },
           {
             "name": "order_asc",
+            "displayName": "Order Asc",
             "style": "body",
             "type": "string",
             "value": "",
@@ -201,6 +217,7 @@
           },
           {
             "name": "fields",
+            "displayName": "Fields",
             "style": "body",
             "type": "string",
             "value": "",
@@ -217,11 +234,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "create_collector",
+        "displayName": "Create Collector",
         "path": "/collectors/create_collector",
         "params": [
           {
             "name": "survey_id",
+            "displayName": "Survey ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -229,6 +247,7 @@
           },
           {
             "name": "collector.type",
+            "displayName": "Collector Type",
             "style": "body",
             "type": "string",
             "value": "",
@@ -236,6 +255,7 @@
           },
           {
             "name": "collector.name",
+            "displayName": "Collector Name",
             "style": "body",
             "type": "string",
             "value": "",
@@ -252,11 +272,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_respondent_list",
+        "displayName": "Get Respondent List",
         "path": "/surveys/get_respondent_list",
         "params": [
           {
             "name": "survey_id",
+            "displayName": "Survey ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -264,6 +285,7 @@
           },
           {
             "name": "collector_id",
+            "displayName": "Collector ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -271,6 +293,7 @@
           },
           {
             "name": "page",
+            "displayName": "Page",
             "style": "body",
             "type": "number",
             "value": "",
@@ -278,6 +301,7 @@
           },
           {
             "name": "page_size",
+            "displayName": "Page Size",
             "style": "body",
             "type": "number",
             "value": "",
@@ -285,6 +309,7 @@
           },
           {
             "name": "start_date",
+            "displayName": "Start Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -292,6 +317,7 @@
           },
           {
             "name": "end_date",
+            "displayName": "End Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -299,6 +325,7 @@
           },
           {
             "name": "start_modified_date",
+            "displayName": "State Modified Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -306,6 +333,7 @@
           },
           {
             "name": "end_modified_date",
+            "displayName": "End Modified Date",
             "style": "body",
             "type": "string",
             "value": "",
@@ -313,6 +341,7 @@
           },
           {
             "name": "order_asc",
+            "displayName": "Order ASC",
             "style": "body",
             "type": "boolean",
             "value": "",
@@ -320,6 +349,7 @@
           },
           {
             "name": "order_by",
+            "displayName": "Order By",
             "style": "body",
             "type": "string",
             "value": "",
@@ -327,6 +357,7 @@
           },
           {
             "name": "fields",
+            "displayName": "Fields",
             "style": "body",
             "type": "string",
             "value": "",
@@ -343,11 +374,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_responses",
+        "displayName": "Get Responses",
         "path": "/surveys/get_responses",
         "params": [
           {
             "name": "respondent_ids",
+            "displayName": "Respondent IDs",
             "style": "body",
             "type": "string",
             "value": "",
@@ -355,6 +387,7 @@
           },
           {
             "name": "survey_id",
+            "displayName": "Survey ID",
             "style": "body",
             "type": "string",
             "value": "",
@@ -371,11 +404,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "get_response_counts",
+        "displayName": "Get Response Counts",
         "path": "/surveys/get_response_counts",
         "params": [
           {
             "name": "collector_id",
+            "displayName": "Collector ID",
             "style": "body",
             "type": "string",
             "value": "",

@@ -29,343 +29,356 @@
     "resources": [
       {
         "path": "/session",
-        "displayName": "/session",
+        "displayName": "Create Session",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Create-session"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [],
         "url": "https://free.gotomeeting.com/api/session"
       },
       {
         "path": "/session/:session-id",
-        "displayName": "/session/:session-id",
+        "displayName": "Get Session By ID",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-GET-Get-session-info"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [{
-          "name": ":session-id",
-          "style": "url",
-          "type": "string",
-          "required": true,
-          "default": "Session ID"
-        }],
+        "params": [
+          {
+            "name": ":session-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Session ID"
+          }
+        ],
         "url": "https://free.gotomeeting.com/api/session/:session-id"
       },
       {
         "path": "/session/:session-id/join",
-        "displayName": "/session/:session-id/join",
+        "displayName": "Join Session By ID",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Join-new-participant-to-session"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
-        "params": [{
-          "name": ":session-id",
-          "style": "url",
-          "type": "string",
-          "required": true,
-          "default": "Session ID"
-        }],
+        "params": [
+          {
+            "name": ":session-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Session ID"
+          }
+        ],
         "url": "https://free.gotomeeting.com/api/session/:session-id/join"
       },
       {
         "path": "/session/:session-id/count",
-        "displayName": "/session/:session-id/count",
+        "displayName": "Get Session Count",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-GET-Get-session-participant-count"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [{
-          "name": ":session-id",
-          "style": "url",
-          "type": "string",
-          "required": true,
-          "default": "Session ID"
-        }],
+        "params": [
+          {
+            "name": ":session-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Session ID"
+          }
+        ],
         "url": "https://free.gotomeeting.com/api/session/:session-id/count"
       },
       {
         "path": "/session/:session-id/document",
-        "displayName": "/session/:session-id/document",
+        "displayName": "Upload Document To Session",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Upload-document-to-session"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": ":session-id",
-	          "style": "url",
-	          "type": "string",
-	          "required": true,
-	          "default": "Session ID"
-	        },
-	        {
-	          "name": "body",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Body"
-	        }
+          {
+            "name": ":session-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Session ID"
+          },
+          {
+            "name": "body",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Body"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/session/:session-id/document"
       },
       {
         "path": "/session/:session-id/document",
-        "displayName": "/session/:session-id/document",
+        "displayName": "Remove All Documents In Session",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-DELETE-Remove-all-documents-in-session"
         },
         "httpMethod": "DELETE",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": ":session-id",
-	          "style": "url",
-	          "type": "string",
-	          "required": true,
-	          "default": "Session ID"
-	        }
+          {
+            "name": ":session-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Session ID"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/session/:session-id/document"
       },
       {
         "path": "/room/:room-id",
-        "displayName": "/room/:room-id",
+        "displayName": "Claim Room By ID",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-POST-Claim-rooom"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": ":room-id",
-	          "style": "url",
-	          "type": "string",
-	          "required": true,
-	          "default": "Room ID"
-	        },
-	        {
-	          "name": "authToken",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Auth Token or User ID"
-	        }
+          {
+            "name": ":room-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Room ID"
+          },
+          {
+            "name": "authToken",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Auth Token or User ID"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/room/:room-id"
       },
       {
         "path": "/room/:room-id",
-        "displayName": "/room/:room-id",
+        "displayName": "Get Room Information",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-GET-Get-room-info"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": ":room-id",
-	          "style": "url",
-	          "type": "string",
-	          "required": true,
-	          "default": "Room ID"
-	        }
+          {
+            "name": ":room-id",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "displayName": "Room ID"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/room/:room-id"
       },
       {
         "path": "/user/profile",
-        "displayName": "/user/profile",
+        "displayName": "User Information",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-GET-Get-room-info"
         },
-        "httpMethod": "POST",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
-	        {
-	          "name": "authToken",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Auth Token or User ID"
-	        },
-	        {
-	          "name": "profile",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Profile"
-	        }
+          {
+            "name": "authToken",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Auth Token or User ID"
+          },
+          {
+            "name": "profile",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Profile"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/user/profile"
       },
       {
         "path": "/user/profile/avatar",
-        "displayName": "/user/profile/avatar",
+        "displayName": "Update Avatar",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#User-Methods-POST-Update-user-avatar"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": "authToken",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Auth Token or User ID"
-	        },
-	        {
-	          "name": "avatar",
-	          "style": "body",
-	          "type": "string",
-	          "required": true,
-	          "default": "Avatar"
-	        }
+          {
+            "name": "authToken",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Auth Token or User ID"
+          },
+          {
+            "name": "avatar",
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "displayName": "Avatar"
+          }
         ],
         "url": "https://free.gotomeeting.com/api/user/profile/avatar"
       },
       {
         "path": "/feedback",
-        "displayName": "/feedback",
+        "displayName": "Create Feedback",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Feedback-Methods-POST-Create-feedback"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": "app",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "title",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "message",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "email",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "audioVideo",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "browser",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "os",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "session",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "loggingId",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "mobile",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        }
+          {
+            "name": "app",
+            "displayName": "App",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "message",
+            "displayName": "Message",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "displayName": "Email",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "audioVideo",
+            "displayName": "Audio/Video",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "browser",
+            "displayName": "Browser",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "os",
+            "displayName": "Operating System",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "session",
+            "displayName": "Session",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "loggingId",
+            "displayName": "Logging ID",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "mobile",
+            "displayName": "Mobile",
+            "style": "body",
+            "type": "string",
+            "required": false
+          }
         ],
         "url": "https://free.gotomeeting.com/api/feedback"
       },
       {
         "path": "/nps",
-        "displayName": "/nps",
+        "displayName": "Create NPS",
         "doc": {
           "url": "http://developers.g2m.me/docs/rest-api#Feedback-Methods-POST-Create-nps"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
-	        {
-	          "name": "app",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "rating",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "feedback",
-	          "style": "body",
-	          "type": "string",
-	          "required": true
-	        },
-	        {
-	          "name": "browser",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "os",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "session",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "loggingId",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "mobile",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        },
-	        {
-	          "name": "locale",
-	          "style": "body",
-	          "type": "string",
-	          "required": false
-	        }
+          {
+            "name": "app",
+            "displayName": "App",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "rating",
+            "displayName": "Rating",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "feedback",
+            "displayName": "Feedback",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "browser",
+            "displayName": "Browser",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "os",
+            "displayName": "Operating System",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "session",
+            "displayName": "Session",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "loggingId",
+            "displayName": "Logging ID",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "mobile",
+            "displayName": "Mobile",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "locale",
+            "displayName": "Locale",
+            "style": "body",
+            "type": "string",
+            "required": false
+          }
         ],
         "url": "https://free.gotomeeting.com/api/nps"
       }

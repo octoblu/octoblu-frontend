@@ -22,24 +22,11 @@ angular.module('octobluApp')
     };
 
     self.selectItem = function (item) {
-      var flowNodeType, flowNode;
-      if (_.has(item, 'uuid')) {
-        flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
-      }
-      if (_.has(item, 'id')) {
-        flowNode = _.findWhere(flowNodes, {id: item.id});
-      }
-
-      if (flowNode) {
-        FlowService.selectNode(item);
-        return $q.when(null);
-      }
-
-      if (flowNodeType) {
+      if (item.resourceType === 'flow-node-type'){
         FlowService.addNodeFromFlowNodeType(item);
-        return $q.when(null);
+        return;
       }
 
-      return $q.when(item);
+      FlowService.selectNode(item);
     };
   });

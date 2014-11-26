@@ -1,7 +1,7 @@
   <div flex layout="column">
     <div flex layout="row">
       <div flex="30" layout="column">
-        <md-toolbar md-theme="indigo">
+        <md-toolbar md-theme="octo-blue">
           <h2 class="md-toolbar-tools page-heading">
             <a href class="menu-icon" ng-click="toggleNav()">
               <i class="fa fa-bars"></i>
@@ -25,11 +25,14 @@
 
       <div layout-fill flex="70" layout="column">
         <div flex layout="column">
-
-          <i ng-click="confirmDeleteTemplate(currentTemplate.uuid)" class="fa fa-trash fa-2x" style="position: absolute; right: 20px; top: 10px"></i>
+          <a ng-click="confirmDeleteTemplate(currentTemplate.uuid)" style="position: absolute; right: 20px; top: 10px">
+            <md-tooltip>Delete Template</md-tooltip>
+            <i class="fa fa-trash fa-2x"></i>
+          </a>
           <flow-editor flow="currentTemplate.flow" readonly="true"></flow-editor>
 
           <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2 - 28px); right: 28px">
+            <md-tooltip>Copy to Clipboard</md-tooltip>
             <i class="fa fa-share-alt fa-2x"></i>
           </md-button>
         </div>

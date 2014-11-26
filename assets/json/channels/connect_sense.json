@@ -11,7 +11,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/devices",
+        "displayName": "List Devices",
         "path": "/devices",
         "url": "https://api.connectsense.com/v1/:API_TOKEN/devices",
         "params" : [
@@ -33,7 +33,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/devices/:DEVICE_SERIAL_NUMBER",
+        "displayName": "View A Specific Device",
         "path": "/devices/:DEVICE_SERIAL_NUMBER",
         "params": [
           {

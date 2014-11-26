@@ -47,7 +47,8 @@ var TemplateController = function (options) {
 
   self.getAllTemplates = function(req, res) {
     return Template.withUserUUID(req.user.resource.uuid).then(function(templates) {
-      res.send(200, templates);
+      var sortedTemplates = _.sortBy(templates, 'created').reverse()
+      res.send(200, sortedTemplates);
     }, function(error) {
       res.send(404, error);
     });
