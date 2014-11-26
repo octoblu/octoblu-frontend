@@ -1,4 +1,4 @@
-<md-card layout="column" class="flow-node-editor ng-hide" ng-show="flowNodeType">  
+<md-card layout="column" class="flow-node-editor ng-hide" ng-show="flowNode.resourceType === 'flow-node'">
   <md-toolbar>
       <div class="md-toolbar-tools">
         <h2><span>Edit Node</span></h2>
@@ -8,7 +8,7 @@
     </md-toolbar>
     <md-content>
       <form style="padding:20px;" layout="column">
-        <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
+        <div class="flow-node-form" ng-include="flowNode.formTemplatePath"></div>
         <br>
         <md-switch ng-model="flowNode.debug">Debug</md-switch>
       </form>

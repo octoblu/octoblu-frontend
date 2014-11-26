@@ -55,7 +55,7 @@
             "name": ":device_id",
             "required": true,
             "style": "url",
-            "displayName": "Device Id"
+            "displayName": "Device ID"
           },
           {
             "name": "fan_timer_active",
@@ -128,7 +128,7 @@
             "name": ":structure_id",
             "required": true,
             "style": "url",
-            "displayName": "Structure Id (home id)"
+            "displayName": "Structure ID (home id)"
           },
           {
             "name": "away",
