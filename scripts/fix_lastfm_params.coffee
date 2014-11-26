@@ -5,7 +5,7 @@ _         = require 'lodash'
 commander = require 'commander'
 prettyCamel = require 'pretty-camel'
 
-class FixRdioParams
+class FixLastFmParams
   constructor: (options={}) ->
     @channel_filename = options.channel_filename
 
@@ -45,5 +45,5 @@ commander
 
 commander.help() unless commander.filename?
 
-converter = new FixRdioParams channel_filename: commander.filename
+converter = new FixLastFmParams channel_filename: commander.filename
 converter.run()
