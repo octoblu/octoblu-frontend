@@ -84,6 +84,7 @@
             "style": "url",
             "type": "string",
             "name": ":id",
+            "displayName": "Activity ID",
             "required": true
           }
         ],
@@ -97,19 +98,21 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "",
+        "displayName": "Create Message Category",
         "path": "/projects/:project_id/messageCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Category Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/messageCategories"
@@ -122,44 +125,52 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/:id.json",
+        "displayName": "Get Message Category",
         "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message Category ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project-id"
+            "name": "project-id",
+            "displayName": "Project ID"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Name"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "count"
+            "name": "count",
+            "displayName": "Count"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "type"
+            "name": "type",
+            "displayName": "Type"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/messageCategories/:id"
@@ -172,24 +183,20 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/messageCategories.json",
-        "path": "/projects/:project_id/messageCategories.json",
+        "displayName": "Get Project Message Categories",
+        "path": "/projects/:project-id/messageCategories.json",
         "params": [
           {
-            "style": "url",
-            "type": "string",
-            "name": "project_id",
-            "required": true
+            "style": "query",
+            "type": "integer",
+            "name": "project-id",
+            "displayName": "Project ID"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project-id"
-          },
-          {
-            "style": "query",
-            "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
@@ -204,15 +211,17 @@
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "type"
+            "name": "type",
+            "displayName": "Type"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/messageCategories"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project-id/messageCategories"
       },
       {
         "httpMethod": "PUT",
@@ -222,24 +231,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/:id.json",
+        "displayName": "Update Message Category",
         "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
-            "name": "id",
+            "name": ":id",
+            "displayName": "Category ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Category Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/messageCategories/:id"
@@ -252,13 +264,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageCategories/:id.json",
+        "displayName": "Delete Message Category",
         "path": "/messageCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message Category ID",
             "required": true
           }
         ],
@@ -272,24 +285,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/fileCategories.json",
+        "displayName": "Create File Category",
         "path": "/projects/:project_id/fileCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "File Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/fileCategories"
@@ -302,44 +318,51 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/:id.json",
+        "displayName": "Update File Category",
         "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName": "File ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project-id"
+            "name": "project-id",
+            "displayName": "Project ID"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Name"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "count"
+            "name": "count",
+            "displayName": "Count"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "type"
+            "name": "type",
+            "displayName": "type"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/fileCategories/:id"
@@ -353,43 +376,44 @@
           "required": "true"
         },
         "path": "/projects/:project_id/fileCategories.json",
-        "displayName": "/projects/:project_id/fileCategories.json",
+        "displayName": "Get File Categories",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "name",
+            "displayName": "Name"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count",
+            "displayName": "displayName"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "count"
-          },
-          {
-            "style": "query",
-            "type": "integer",
-            "name": "elements_count"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "type"
+            "name": "type",
+            "displayName": "Type"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/fileCategories"
@@ -402,24 +426,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/:id.json",
+        "displayName": "Update File Category",
         "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"File Category ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "File Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/fileCategories/:id"
@@ -432,13 +459,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/fileCategories/:id.json",
+        "displayName": "Delete File Category",
         "path": "/fileCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"File ID",
             "required": true
           }
         ],
@@ -452,24 +480,26 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/notebookCategories.json",
+        "displayName": "Create Notebook Category",
         "path": "/projects/:project_id/notebookCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "displayName"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebookCategories"
@@ -482,44 +512,51 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/:id.json",
+        "displayName": "Get Notebook Category",
         "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Notebook ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project-id"
+            "name": "project-id",
+            "displayName": "Project ID"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Notebook Name"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "count"
+            "name": "count",
+            "displayName": "Count"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "type"
+            "name": "type",
+            "displayName": "Type"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id"
@@ -532,49 +569,51 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/notebookCategories.json",
+        "displayName": "Get Notebook Categories",
         "path": "/projects/:project_id/notebookCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Notebook Name"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "count"
+            "name": "count",
+            "displayName": "count"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "type"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "id"
+            "name": "type",
+            "displayName": "Type"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebookCategories"
@@ -587,24 +626,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/:id.json",
+        "displayName": "Update Notebook Category",
         "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Notebook ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Notebook Category Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/notebookCategories/:id"
@@ -617,13 +659,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/:id.json",
+        "displayName": "Delete Notebook Category",
         "path": "/notebookCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Notebook ID",
             "required": true
           }
         ],
@@ -637,27 +680,30 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/#:project_id/linkCategories.json",
-        "displayName": "/projects/#:project_id/linkCategories.json",
+        "path": "Create Link Category",
+        "displayName": "/projects/:project_id/linkCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Link Category Name"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/linkCategories"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/linkCategories"
       },
       {
         "httpMethod": "GET",
@@ -667,29 +713,33 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#:id.json",
-        "path": "/linkCategories/#:id.json",
+        "displayName": "Get Link Category",
+        "path": "/linkCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Link Category ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "project"
+            "name": "project",
+            "displayName": "Project"
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Link Category Name"
           },
           {
             "style": "query",
@@ -699,7 +749,8 @@
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
@@ -707,7 +758,7 @@
             "name": "type"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/:id"
       },
       {
         "httpMethod": "GET",
@@ -717,24 +768,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/#:project_id/linkCategories.json",
-        "path": "/projects/#:project_id/linkCategories.json",
+        "displayName": "Get Link Categories",
+        "path": "/projects/:project_id/linkCategories.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Link Category Name"
           },
           {
             "style": "query",
@@ -749,7 +803,8 @@
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
@@ -757,7 +812,7 @@
             "name": "type"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/linkCategories"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/linkCategories"
       },
       {
         "httpMethod": "PUT",
@@ -767,27 +822,30 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#:id.json",
-        "path": "/linkCategories/#:id.json",
+        "displayName": "Update Link Category",
+        "path": "/linkCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Link Category ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Link Category Name"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/:id"
       },
       {
         "httpMethod": "DELETE",
@@ -797,17 +855,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/linkCategories/#:id.json",
-        "path": "/linkCategories/#:id.json",
+        "displayName": "Delete Link Category",
+        "path": "/linkCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Link Category ID",
             "required": true
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/linkCategories/#:id"
+        "url": "http://:subdomain.teamworkpm.net/linkCategories/:id"
       },
       {
         "httpMethod": "POST",
@@ -817,18 +876,20 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectcategories.json",
+        "displayName": "Create Project Category",
         "path": "/projectcategories.json",
         "params": [
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Project Category Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projectcategories"
@@ -841,24 +902,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/:id.json",
+        "displayName": "Get Project Category",
         "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Project Category ID",
             "required": true
           },
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Project Category Name"
           },
           {
             "style": "query",
@@ -868,7 +932,8 @@
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
@@ -886,18 +951,20 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories.json",
+        "displayName": "Get Project Categories",
         "path": "/projectCategories.json",
         "params": [
           {
             "style": "query",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Project Category Name"
           },
           {
             "style": "query",
@@ -907,7 +974,8 @@
           {
             "style": "query",
             "type": "integer",
-            "name": "elements_count"
+            "name": "elements_count",
+            "displayName": "Elements Count"
           },
           {
             "style": "query",
@@ -930,24 +998,27 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/:id.json",
+        "displayName": "Update Project Category",
         "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Project Category ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "parent-id"
+            "name": "parent-id",
+            "displayName": "Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Project Category Name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projectCategories/:id"
@@ -960,13 +1031,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projectCategories/:id.json",
+        "displayName": "Delete Project Category",
         "path": "/projectCategories/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Project Category ID",
             "required": true
           }
         ],
@@ -980,19 +1052,21 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/:resource/:resource_id/comments.json",
+        "displayName": "Get Resource Comments",
         "path": "/:resource/:resource_id/comments.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "resource",
+            "name": ":resource",
+            "displayName": "Resource",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "resource_id",
+            "name": ":resource_id",
+            "displayName": "Resource ID",
             "required": true
           }
         ],
@@ -1006,13 +1080,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/:comment_id.json",
+        "displayName": "Get Comment",
         "path": "/comments/:comment_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "comment_id",
+            "name": ":comment_id",
+            "displayName": "Comment ID",
             "required": true
           }
         ],
@@ -1026,25 +1101,28 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/:resource/:resource_id/comments.json",
+        "displayName": "Create Resource Comments",
         "path": "/:resource/:resource_id/comments.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "resource",
+            "name": ":resource",
+            "displayName": "Resource",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "resource_id",
+            "name": ":resource_id",
+            "displayName": "Resource ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "body"
+            "name": "body",
+            "displayName": "Comment Body"
           },
           {
             "style": "body",
@@ -1054,12 +1132,14 @@
           {
             "style": "body",
             "type": "string",
-            "name": "isprivate"
+            "name": "isprivate",
+            "displayName": "Is Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "pendingFileAttachments"
+            "name": "pendingFileAttachments",
+            "displayName": "Pending File Attachments"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/:resource/:resource_id/comments"
@@ -1072,34 +1152,39 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/:id.json",
+        "displayName": "Update Comment",
         "path": "/comments/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Comment ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "body"
+            "name": "body",
+            "displayName": "Comment Body"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "isprivate"
+            "name": "isprivate",
+            "displayName": "Is Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "pendingFileAttachments"
+            "name": "pendingFileAttachments",
+            "displayName": "Pending File Attachments"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/comments/:id"
@@ -1112,13 +1197,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/comments/:id.json",
+        "displayName": "Delete Comment",
         "path": "/comments/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Comment ID",
             "required": true
           }
         ],
@@ -1132,58 +1218,68 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies.json",
+        "displayName": "Create Company",
         "path": "/companies.json",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Company Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address_one"
+            "name": "address_one",
+            "displayName": "Address Line 1"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address_two"
+            "name": "address_two",
+            "displayName": "Address Line 2"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Address Zip Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "Address City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "Address State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "countrycode"
+            "name": "countrycode",
+            "displayName": "Address Country Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "fax"
+            "name": "fax",
+            "displayName": "Fax"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "website"
+            "name": "website",
+            "displayName": "Website"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/companies"
@@ -1196,69 +1292,81 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/:project_id.json",
+        "displayName": "Update Company",
         "path": "/companies/:project_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "id"
+            "name": "id",
+            "displayName": "Company ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "Company Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address_one"
+            "name": "address_one",
+            "displayName": "Address Line 1"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address_two"
+            "name": "address_two",
+            "displayName": "Address Line 2"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Address Zip"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "Address City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "Address State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "countrycode"
+            "name": "countrycode",
+            "displayName": "Address Country Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "fax"
+            "name": "fax",
+            "displayName": "Fax"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "website"
+            "name": "website",
+            "displayName": "Website"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/companies/:project_id"
@@ -1271,13 +1379,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/:id.json",
+        "displayName": "Delete Company",
         "path": "/companies/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Company ID",
             "required": true
           }
         ],
@@ -1291,13 +1400,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/:company_id.json",
+        "displayName": "Get Company",
         "path": "/companies/:company_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "company_id",
+            "name": ":company_id",
+            "displayName": "Company ID",
             "required": true
           }
         ],
@@ -1311,7 +1421,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies.json",
+        "displayName": "Get Companies",
         "path": "/companies.json",
         "params": [],
         "url": "http://:subdomain.teamworkpm.net/companies"
@@ -1324,13 +1434,13 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/companies.json",
+        "displayName": "Get Project Companies",
         "path": "/projects/:project_id/companies.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -1344,13 +1454,13 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/files.json",
+        "displayName": "Get Project Files",
         "path": "/projects/:project_id/files.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -1364,13 +1474,13 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/:file_id.json",
+        "displayName": "Get File",
         "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "file_id",
+            "name": ":file_id",
             "required": true
           }
         ],
@@ -1384,74 +1494,87 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/files.json",
+        "displayName": "Add File to Project",
         "path": "/projects/:project_id/files.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "id"
+            "name": ":id",
+            "displayName": "File ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "name"
+            "name": "name",
+            "displayName": "File Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "size"
+            "name": "size",
+            "displayName": "File Size"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "version"
+            "name": "version",
+            "displayName": "Version"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "private"
+            "name": "private",
+            "displayName": "Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "uploaded-date"
+            "name": "uploaded-date",
+            "displayName": "Uploaded Date"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "uploaded-by-userid"
+            "name": "uploaded-by-userid",
+            "displayName": "Uploaded By User ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-id"
+            "name": "category-id",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-name"
+            "name": "category-name",
+            "displayName": "Category Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-parent-id"
+            "name": "category-parent-id",
+            "displayName": "Category Parent ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "download-url"
+            "name": "download-url",
+            "displayName": "Download URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "pendingFileRef"
+            "name": "pendingFileRef",
+            "displayName": "Pending File Reference"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/files"
@@ -1464,44 +1587,51 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/:file_id.json",
+        "displayName": "Add New File Version",
         "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "file_id",
+            "name": ":file_id",
+            "displayName": "File ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "pendingFileRef"
+            "name": "pendingFileRef",
+            "displayName": "Pending File Reference"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "File Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-name"
+            "name": "category-name",
+            "displayName": "Category Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-id"
+            "name": "category-id",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "private"
+            "name": "private",
+            "displayName": "Is Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "version"
+            "name": "version",
+            "displayName": "Version"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/files/:file_id"
@@ -1514,13 +1644,13 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/files/:file_id.json",
+        "displayName": "Delete File From Project",
         "path": "/files/:file_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "file_id",
+            "name": ":file_id",
             "required": true
           }
         ],
@@ -1534,7 +1664,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/pendingfiles.json",
+        "enabled": false,
+        "displayName": "Upload File",
         "path": "/pendingfiles.json",
         "params": [],
         "url": "http://:subdomain.teamworkpm.net/pendingfiles"
@@ -1547,135 +1678,160 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents.json",
+        "displayName": "Get Calendar Events",
         "path": "/calendarevents.json",
         "params": [
           {
             "name": "startdate",
+            "displayName": "Start Date",
             "style": "query",
             "type": "string",
             "required": "true"
           },
           {
             "name": "endDate",
+            "displayName": "End Date",
             "style": "query",
             "type": "string",
             "required": "true"
           },
           {
             "name": "showDeleted",
+            "displayName": "Show Deleted",
             "style": "query",
             "type": "string",
             "required": "false"
           },
           {
             "name": "updatedAfterDate",
+            "displayName": "Update After Date",
             "style": "query",
             "type": "string",
             "required": "false"
           },
           {
             "name": "where",
+            "displayName": "Where Clause",
             "style": "query",
             "type": "string"
           },
           {
             "name": "project-users-can-edit",
+            "displayName": "Can Project Users Edit?",
             "style": "query",
             "type": "string"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attending-user-ids",
+            "displayName": "Attending User IDs",
             "style": "query",
             "type": "string"
           },
           {
             "name": "notify-user-names",
+            "displayName": "Notify Usernames",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attending-user-names",
+            "displayName": "Attending Usernames",
             "style": "query",
             "type": "string"
           },
           {
             "name": "status",
+            "displayName": "Status",
             "style": "query",
             "type": "string"
           },
           {
             "name": "owner",
+            "displayName": "Owner",
             "style": "query",
             "type": "string"
           },
           {
             "name": "reminders",
+            "displayName": "Reminders",
             "style": "query",
             "type": "string"
           },
           {
             "name": "notify-user-ids",
+            "displayName": "Notify User IDs",
             "style": "query",
             "type": "string"
           },
           {
             "name": "start",
+            "displayName": "Start",
             "style": "query",
             "type": "string"
           },
           {
             "name": "repeat",
+            "displayName": "Repeat",
             "style": "query",
             "type": "string"
           },
           {
             "name": "all-day",
+            "displayName": "All Day",
             "style": "query",
             "type": "string"
           },
           {
             "name": "id",
+            "displayName": "Calendar ID",
             "style": "query",
             "type": "string"
           },
           {
             "name": "end",
+            "displayName": "End",
             "style": "query",
             "type": "string"
           },
           {
             "name": "show-as-busy",
+            "displayName": "Show As Busy",
             "style": "query",
             "type": "string"
           },
           {
             "name": "last-changed-on",
+            "displayName": "Last Changed On",
             "style": "query",
             "type": "string"
           },
           {
             "name": "privacy",
+            "displayName": "Privacy",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attendees-can-edit",
+            "displayName": "Attendees can edit",
             "style": "query",
             "type": "string"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "query",
             "type": "string"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "query",
             "type": "string"
           }
@@ -1696,106 +1852,127 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
             "name": "where",
+            "displayName": "Where",
             "style": "query",
             "type": "string"
           },
           {
             "name": "project-users-can-edit",
+            "displayName": "Project Users Can Edit",
             "style": "query",
             "type": "string"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attending-user-ids",
+            "displayName": "Attending User Ids",
             "style": "query",
             "type": "string"
           },
           {
             "name": "notify-user-names",
+            "displayNames": "Notify Usernames",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attending-user-names",
+            "displayName": "Attending Usernames",
             "style": "query",
             "type": "string"
           },
           {
             "name": "owner",
+            "displayName": "Owner",
             "style": "query",
             "type": "string"
           },
           {
             "name": "reminders",
+            "displayName": "Reminders",
             "style": "query",
             "type": "string"
           },
           {
             "name": "notify-user-ids",
+            "displayName": "Notify User IDs",
             "style": "query",
             "type": "string"
           },
           {
             "name": "start",
+            "displayName": "Start",
             "style": "query",
             "type": "string"
           },
           {
             "name": "repeat",
+            "displayName": "Repeat",
             "style": "query",
             "type": "string"
           },
           {
             "name": "all-day",
+            "displayName": "all-day",
             "style": "query",
             "type": "string"
           },
           {
             "name": "id",
+            "displayName": "ID",
             "style": "query",
             "type": "string"
           },
           {
             "name": "end",
+            "displayName": "End",
             "style": "query",
             "type": "string"
           },
           {
             "name": "show-as-busy",
+            "displayName": "Show As Busy",
             "style": "query",
             "type": "string"
           },
           {
             "name": "last-changed-on",
+            "displayName": "Last Changed On",
             "style": "query",
             "type": "string"
           },
           {
             "name": "privacy",
+            "displayName": "Privacy",
             "style": "query",
             "type": "string"
           },
           {
             "name": "attendees-can-edit",
+            "displayName": "Attendees Can Edit",
             "style": "query",
             "type": "string"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "query",
             "type": "string"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "query",
             "type": "string"
           }
@@ -1810,81 +1987,96 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents.json",
+        "displayName": "Create Calendar Event",
         "path": "/calendarevents.json",
         "params": [
           {
             "name": "start",
+            "displayName": "Start",
             "style": "body",
             "type": "string"
           },
           {
             "name": "end",
+            "displayName": "End",
             "style": "body",
             "type": "string"
           },
           {
             "name": "all-day",
+            "displayName": "All Day",
             "style": "body",
             "type": "string"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string"
           },
           {
             "name": "where",
+            "displayName": "Where",
             "style": "body",
             "type": "string"
           },
           {
             "name": "privacy",
+            "displayName": "Privacy",
             "style": "body",
             "type": "string"
           },
           {
             "name": "project-id",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string"
           },
           {
             "name": "show-as-busy",
+            "displayName": "Show As Busy",
             "style": "body",
             "type": "string"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "body",
             "type": "string"
           },
           {
             "name": "attending-user-ids",
+            "displayName": "Attending User Ids",
             "style": "body",
             "type": "string"
           },
           {
             "name": "notify-user-ids",
+            "displayName": "Notify User Ids",
             "style": "body",
             "type": "string"
           },
           {
             "name": "attendees-can-edit",
+            "displayName": "Attendees can edit",
             "style": "body",
             "type": "string"
           },
           {
             "name": "project-users-can-edit",
+            "displayName": "Project Users Can Edit",
             "style": "body",
             "type": "string"
           },
           {
             "name": "reminders",
+            "displayName": "Reminders",
             "style": "body",
             "type": "string"
           }
@@ -1899,87 +2091,103 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents/:id.json",
+        "displayName": "Update Calendar Event",
         "path": "/calendarevents/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
             "name": "start",
+            "displayName": "Start",
             "style": "body",
             "type": "string"
           },
           {
             "name": "end",
+            "displayName": "End",
             "style": "body",
             "type": "string"
           },
           {
             "name": "all-day",
+            "displayName": "All Day",
             "style": "body",
             "type": "string"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string"
           },
           {
             "name": "where",
+            "displayName": "Where",
             "style": "body",
             "type": "string"
           },
           {
             "name": "privacy",
+            "displayName": "Privacy",
             "style": "body",
             "type": "string"
           },
           {
             "name": "project-id",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string"
           },
           {
             "name": "show-as-busy",
+            "displayName": "Show As Busy",
             "style": "body",
             "type": "string"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "body",
             "type": "string"
           },
           {
             "name": "attending-user-ids",
+            "displayName": "Attending Users Ids",
             "style": "body",
             "type": "string"
           },
           {
             "name": "notify-user-ids",
+            "displayName": "Notify User Ids",
             "style": "body",
             "type": "string"
           },
           {
             "name": "attendees-can-edit",
+            "displayName": "Attendees Can Edit",
             "style": "body",
             "type": "string"
           },
           {
             "name": "project-users-can-edit",
+            "displayName": "Project Users Can Edit",
             "style": "body",
             "type": "string"
           },
           {
             "name": "reminders",
+            "displayName": "Reminders",
             "style": "body",
             "type": "string"
           }
@@ -1994,13 +2202,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendarevents/:id.json",
+        "displayName": "Delete Calendar Event",
         "path": "/calendarevents/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -2014,21 +2223,24 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/calendareventtypes.json",
+        "displayName": "Get Calendar Event Types",
         "path": "/calendareventtypes.json",
         "params": [
           {
             "name": "name",
+            "displayName": "Calendar Event Type",
             "style": "query",
             "type": "string"
           },
           {
-            "name": "id",
+            "name": ":id",
+            "displayName": "Calendar Event Type ID",
             "style": "query",
             "type": "string"
           },
           {
             "name": "color",
+            "displayName": "Color",
             "style": "query",
             "type": "string"
           }
@@ -2043,47 +2255,55 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/posts.json",
+        "displayName": "Add Post to Project",
         "path": "/projects/:project_id/posts.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string"
           },
           {
             "name": "category-id",
+            "displayName": "Category ID",
             "style": "body",
             "type": "string"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "string"
           },
           {
             "name": "private",
+            "displayName": "Private",
             "style": "body",
             "type": "string"
           },
           {
             "name": "body",
+            "displayName": "Post Body",
             "style": "body",
             "type": "string"
           },
           {
             "name": "attachments",
+            "displayName": "Attachments",
             "style": "body",
             "type": "string"
           },
           {
             "name": "pendingFileAttachments",
+            "displayName": "Pending File Attachments",
             "style": "body",
             "type": "string"
           }
@@ -2098,13 +2318,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/posts/:id.json",
+        "displayName": "Get Post",
         "path": "/posts/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Post ID",
             "required": true
           }
         ],
@@ -2118,13 +2339,13 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/projects/:project_id/posts.json",
+        "path": "Get Posts By Project",
         "displayName": "/projects/:project_id/posts.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -2138,19 +2359,19 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/cat/:category_id/posts.json",
+        "displayName": "Get Posts by Category",
         "path": "/projects/:project_id/cat/:category_id/posts.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "category_id",
+            "name": ":category_id",
             "required": true
           }
         ],
@@ -2164,49 +2385,57 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/posts/:id.json",
+        "displayName": "Update Post",
         "path": "/posts/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Post ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "title"
+            "name": "title",
+            "displayName": "Title"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-id"
+            "name": "category-id",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "private"
+            "name": "private",
+            "displayName": "Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "body"
+            "name": "body",
+            "displayName": "Post Body"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "attachments"
+            "name": "attachments",
+            "displayName": "Attachments"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "pendingFileAttachments"
+            "name": "pendingFileAttachments",
+            "displayName": "Pending File Attachment"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/posts/:id"
@@ -2219,13 +2448,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/posts/archive.json",
+        "displayName": "Get Post Archive",
         "path": "/projects/:project_id/posts/archive.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           }
         ],
@@ -2239,19 +2469,21 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/cat/:category_id/posts/archive.json",
+        "displayName": "Get Post Archive for Category",
         "path": "/projects/:project_id/cat/:category_id/posts/archive.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "category_id",
+            "name": ":category_id",
+            "displayName": "Category ID",
             "required": true
           }
         ],
@@ -2265,13 +2497,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/:id/archive.json",
+        "displayName": "Archive Message",
         "path": "/messages/:id/archive.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message ID",
             "required": true
           }
         ],
@@ -2285,13 +2518,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/:id/unarchive.json",
+        "displayName": "Unarchive Message",
         "path": "/messages/:id/unarchive.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message ID",
             "required": true
           }
         ],
@@ -2305,44 +2539,48 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/posts/:id.json",
+        "displayName": "Delete Post",
         "path": "/posts/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/posts/:id"
       },
       {
-        "httpMethod": "post",
+        "httpMethod": "POST",
         "doc": {
           "url": "hhttp://:subdomain.teamworkpm.net/messages/{message_id}/messageReplies"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/:message_id/messageReplies.json",
+        "displayName": "Create Message Reply",
         "path": "/messages/:message_id/messageReplies.json",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": "message_id",
+            "displayName": "Message ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "body"
+            "name": "body",
+            "displayName": "Reply Body"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/messages/:message_id/messageReplies"
@@ -2355,13 +2593,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageReplies/:id.json",
+        "displayName": "Get Message Reply",
         "path": "/messageReplies/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message Reply ID",
             "required": true
           }
         ],
@@ -2375,13 +2614,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messages/:id/replies.json",
+        "displayName": "Get Replies By Message",
         "path": "/messages/:id/replies.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message ID",
             "required": true
           }
         ],
@@ -2395,19 +2635,20 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageReplies/:id.json",
+        "displayName": "Update Message Reply",
         "path": "/messageReplies/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message Reply ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "messagereply"
+            "name": "body"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/messageReplies/:id"
@@ -2420,13 +2661,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/messageReplies/:id.json",
+        "displayName": "Delete Message Reply",
         "path": "/messageReplies/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Message Reply ID",
             "required": true
           }
         ],
@@ -2440,23 +2682,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones.json",
+        "displayName": "Get Milestones",
         "path": "/milestones.json",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "find"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "incomplete"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "late"
+            "name": "find",
+            "displayName": "Find [all|completed|incomplete|late|upcoming]"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/milestones"
@@ -2469,32 +2702,24 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/#:project_id/milestones.json",
-        "path": "/projects/#:project_id/milestones.json",
+        "displayName": "Get Project Milestones",
+        "path": "/projects/:project_id/milestones.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
-            "name": "find"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "incomplete"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "late"
+            "name": "find",
+            "displayName": "Find [all|completed|incomplete|late|upcoming]"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/#:project_id/milestones"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project_id/milestones"
       },
       {
         "httpMethod": "GET",
@@ -2504,27 +2729,30 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/#:milestone_id.json",
-        "path": "/milestones/#:milestone_id.json",
+        "displayName": "/milestones/:milestone_id.json",
+        "path": "/milestones/:milestone_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "milestone_id",
+            "name": ":milestone_id",
+            "displayName": "Milestone ID",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
-            "name": "getProgress"
+            "name": "getProgress",
+            "displayName": "Get Progress"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "showTaskLists"
+            "name": "showTaskLists",
+            "displayName": "Show Task List"
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/milestones/#:milestone_id"
+        "url": "http://:subdomain.teamworkpm.net/milestones/:milestone_id"
       },
       {
         "httpMethod": "PUT",
@@ -2534,13 +2762,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/:id/complete.json",
+        "displayName": "Mark Milestone Complete",
         "path": "/milestones/:id/complete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Milestone ID",
             "required": true
           }
         ],
@@ -2554,13 +2783,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/:id/uncomplete.json",
+        "displayName": "Mark Milestone Uncomplete",
         "path": "/milestones/:id/uncomplete.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Milestone ID",
             "required": true
           }
         ],
@@ -2574,99 +2804,114 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/milestones.json",
+        "displayName": "Create Project Milestone",
         "path": "/projects/:project_id/milestones.json",
         "params": [
           {
             "style": "url",
             "type": "integer",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "title"
+            "name": "title",
+            "displayName": "Title"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "date",
-            "name": "deadline"
+            "name": "deadline",
+            "displayName": "Deadline"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           },
           {
             "style": "body",
             "type": "boolean",
-            "name": "reminder"
+            "name": "reminder",
+            "displayName": "Reminder"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "responsible-party-ids"
+            "name": "responsible-party-ids",
+            "displayName": "Responsible Party Ids"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/milestones"
       },
       {
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/milestones/{milestone_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/milestones/:milestone_id.json",
+        "displayName": "UPdate Milestone",
         "path": "/milestones/:milestone_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "milestone_id",
+            "name": ":milestone_id",
+            "displayName": "Milestone Id",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "title"
+            "name": "title",
+            "displayName": "Title"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "date",
-            "name": "deadline"
+            "name": "deadline",
+            "displayName": "Deadline"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           },
           {
             "style": "body",
             "type": "boolean",
-            "name": "reminder"
+            "name": "reminder",
+            "displayName": "Reminder"
           },
           {
             "style": "body",
             "type": "boolean",
-            "name": "private"
+            "name": "private",
+            "displayName": "Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "responsible-party-ids"
+            "name": "responsible-party-ids",
+            "displayName": "Responsible Party Ids"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/milestones/:milestone_id"
@@ -2679,85 +2924,91 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/milestones/:id.json",
+        "path": "Delete Milestone",
         "displayName": "/milestones/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Milestone ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/milestones/:id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/notebooks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks.json",
+        "displayName": "List All Notebooks",
         "path": "/notebooks.json",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "includeContent",
+            "displayName": "Include Content",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/notebooks"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/notebooks"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/notebooks.json",
+        "displayName": "List Notebooks by Project",
         "path": "/projects/:project_id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
             "name": "includeContent",
+            "displayName": "Include Content",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebooks"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/notebookCategories/{id}/notebooks.json"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebookCategories/:id/notebooks.json",
+        "displayName": "List Notebook by Category",
         "path": "/notebookCategories/:id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Category ID",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
             "name": "includeContent",
+            "displayName": "Include Content",
             "required": true
           }
         ],
@@ -2771,13 +3022,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/:notebook_id.json",
+        "displayName": "Get Notebook",
         "path": "/notebooks/:notebook_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "notebook_id",
+            "name": ":notebook_id",
+            "displayName": "Notebook ID",
             "required": true
           }
         ],
@@ -2791,49 +3043,57 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/notebooks.json",
+        "displayName": "Create Notebook",
         "path": "/projects/:project_id/notebooks.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
+            "displayName": "Project ID",
             "required": true
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "name"
+            "name": "name",
+            "displayName": "Notebook Name"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "content"
+            "name": "content",
+            "displayName": "Notebook Content"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
+            "name": "notify",
+            "displayName": "Notify"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "category-id"
+            "name": "category-id",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-name"
+            "name": "category-name",
+            "displayName": "Category Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "private"
+            "name": "private",
+            "displayName": "Private"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/notebooks"
@@ -2846,78 +3106,89 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/:notebook_id.json",
+        "displayName": "Update Notebook",
         "path": "/notebooks/:notebook_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "notebook_id",
+            "name": ":notebook_id",
+            "displayName": "Notebook ID",
             "required": true
           },
           {
             "style": "body",
+            "type": "string",
+            "name": "name",
+            "displayName": "Notebook Name"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "description",
+            "displayName": "Description"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "content",
+            "displayName": "Notebook Content"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "notify",
+            "displayName": "Notify"
+          },
+          {
+            "style": "body",
             "type": "integer",
-            "name": "name"
-          },
-          {
-            "style": "body",
-            "type": "integer",
-            "name": "description"
+            "name": "category-id",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "content"
+            "name": "category-name",
+            "displayName": "Category Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "notify"
-          },
-          {
-            "style": "body",
-            "type": "integer",
-            "name": "category-id"
+            "name": "private",
+            "displayName": "Private"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "category-name"
+            "name": "new-version",
+            "displayName": "New Version"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "private"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "new-version"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "grant-access-to"
+            "name": "grant-access-to",
+            "displayName": "Grant Access To"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/notebooks/:notebook_id"
       },
       {
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/notebooks/{id}/lock"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/:id/lock.json",
+        "displayName": "Lock Notebook",
         "path": "/notebooks/:id/lock.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Notebook ID",
             "required": true
           }
         ],
@@ -2931,13 +3202,14 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/notebooks/:id/unlock.json",
+        "path": "Unlock Notebook",
         "displayName": "/notebooks/:id/unlock.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"Notebook ID",
             "required": true
           }
         ],
@@ -2951,158 +3223,185 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notebooks/:id.json",
+        "displayName": "Delete Notebook",
         "path": "/notebooks/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/notebooks/:id"
       },
       {
-        "httpMethod": "post",
+        "httpMethod": "POST",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/people"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people.json",
+        "displayName": "Add New User",
         "path": "/people.json",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "first-name"
+            "name": "first-name",
+            "displayName": "First Name"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "last-name"
+            "name": "last-name",
+            "displayName": "Last Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "email-address"
+            "name": "email-address",
+            "displayName": "Email Address"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "user-type"
+            "name": "user-type",
+            "displayName": "User Type"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "user-name"
+            "name": "user-name",
+            "displayName": "User Name"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "password"
+            "name": "password",
+            "displayName":"Password"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "company-id"
+            "name": "company-id",
+            "displayName" : "Company ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "title"
+            "name": "title",
+            "displayName": "Title"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-mobile"
+            "name": "phone-number-mobile",
+            "displayName": "Mobile Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone-number-office"
+            "name": "phone-number-office",
+            "displayName": "Office Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone-number-office-ext"
+            "name": "phone-number-office-ext",
+            "displayName": "Office Phone Extension"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-fax"
+            "name": "phone-number-fax",
+            "displayName" : "Fax Number"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-home"
+            "name": "phone-number-home",
+            "displayName": "Home Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "im-handle"
+            "name": "im-handle",
+            "displayName": "Instant Messaging Handle"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "im-service"
+            "name": "im-service",
+            "displayName": "Instant Messaging Service"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "dateFormat"
+            "name": "dateFormat",
+            "displayName" : "Date Format"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "sendWelcomeEmail"
+            "name": "sendWelcomeEmail",
+            "displayName": "Send Welcome Email"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "welcomeEmailMessage"
+            "name": "welcomeEmailMessage",
+            "displayName": "Welcome Email Message"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "receiveDailyReports"
+            "name": "receiveDailyReports",
+            "displayName": "Receive Daily Reports"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "autoGiveProjectAccess"
+            "name": "autoGiveProjectAccess",
+            "displayName": "Auto Give Project Access"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "openID"
+            "name": "openID",
+            "displayName": "Open ID"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "notes"
+            "name": "notes",
+            "displayName": "Notes"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "userLanguage"
+            "name": "userLanguage",
+            "displayName": "User Language"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "administrator"
+            "name": "administrator",
+            "displayName": "Administrator"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "canAddProjects"
+            "name": "canAddProjects",
+            "displayName": "Can Add Projects"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "timezoneId"
+            "name": "timezoneId",
+            "displayName": "Timezone ID"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/people"
@@ -3115,144 +3414,171 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:id.json",
+        "displayName": "Update User",
         "path": "/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"User ID",
             "required": true
           },
           {
             "style": "body",
             "type": "string",
-            "name": "first-name"
+            "name": "first-name",
+            "displayName": "First Name"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "last-name"
+            "name": "last-name",
+            "displayName": "Last Name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "email-address"
+            "name": "email-address",
+            "displayName": "Email Address"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "user-type"
+            "name": "user-type",
+            "displayName": "User Type"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "user-name"
+            "name": "user-name",
+            "displayName": "User Name"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "password"
+            "name": "password",
+            "displayName":"Password"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "company-id"
+            "name": "company-id",
+            "displayName" : "Company ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "title"
+            "name": "title",
+            "displayName": "Title"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-mobile"
+            "name": "phone-number-mobile",
+            "displayName": "Mobile Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone-number-office"
+            "name": "phone-number-office",
+            "displayName": "Office Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone-number-office-ext"
+            "name": "phone-number-office-ext",
+            "displayName": "Office Phone Extension"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-fax"
+            "name": "phone-number-fax",
+            "displayName" : "Fax Number"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "phone-number-home"
+            "name": "phone-number-home",
+            "displayName": "Home Phone"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "im-handle"
+            "name": "im-handle",
+            "displayName": "Instant Messaging Handle"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "im-service"
+            "name": "im-service",
+            "displayName": "Instant Messaging Service"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "dateFormat"
+            "name": "dateFormat",
+            "displayName" : "Date Format"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "sendWelcomeEmail"
+            "name": "sendWelcomeEmail",
+            "displayName": "Send Welcome Email"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "welcomeEmailMessage"
+            "name": "welcomeEmailMessage",
+            "displayName": "Welcome Email Message"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "receiveDailyReports"
+            "name": "receiveDailyReports",
+            "displayName": "Receive Daily Reports"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "autoGiveProjectAccess"
+            "name": "autoGiveProjectAccess",
+            "displayName": "Auto Give Project Access"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "openID"
+            "name": "openID",
+            "displayName": "Open ID"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "notes"
+            "name": "notes",
+            "displayName": "Notes"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "userLanguage"
+            "name": "userLanguage",
+            "displayName": "User Language"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "administrator"
+            "name": "administrator",
+            "displayName": "Adminstrator"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "canAddProjects"
+            "name": "canAddProjects",
+            "displayName": "Can Add Projects"
           },
           {
             "style": "body",
             "type": "integer",
-            "name": "timezoneId"
+            "name": "timezoneId",
+            "displayName": "Timezone ID"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/people/:id"
@@ -3265,27 +3591,28 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:id.json",
+        "displayName": "Delete User",
         "path": "/people/:id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"User ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/people/:id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/me"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me.json",
+        "displayName": "Get My Profile",
         "path": "/me.json",
         "params": [],
         "url": "http://:subdomain.teamworkpm.net/me"
@@ -3298,7 +3625,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people.json",
+        "displayName": "Get People",
         "path": "/people.json",
         "params": [],
         "url": "http://:subdomain.teamworkpm.net/people"
@@ -3311,59 +3638,59 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "projects/:project_id/people.json",
+        "displayName": "Get People By Project",
         "path": "projects/:project_id/people.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.netprojects/:project_id/people"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/people/{person_id}"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:project_id/people/:person_id.json",
+        "displayName": "Get Person from Project",
         "path": "/projects/:project_id/people/:person_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "person_id",
+            "name": ":person_id",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/people/:person_id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/companies/{company_id}/people"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/companies/:company_id/people.json",
+        "displayName": "Get People by Company",
         "path": "/companies/:company_id/people.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "company_id",
+            "name": ":company_id",
             "required": true
           }
         ],
@@ -3377,37 +3704,17 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:person_id.json",
+        "displayName": "Get Person",
         "path": "/people/:person_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "person_id",
+            "name": ":person_id",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/people/:person_id"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://:subdomain.teamworkpm.net/people/APIKeys"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/comments/:comment_id.json",
-        "path": "/comments/:comment_id.json",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "comment_id",
-            "required": true
-          }
-        ],
-        "url": "http://:subdomain.teamworkpm.net/people/APIKeys"
       },
       {
         "httpMethod": "POST",
@@ -3417,7 +3724,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status.json",
+        "displayName": "Update Status",
         "path": "/me/status.json",
         "params": [
           {
@@ -3441,39 +3748,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status/:status_id.json",
+        "displayName": "Change Status",
         "path": "/me/status/:status_id.json",
         "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "status"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "notify"
-          }
-        ],
-        "url": "http://:subdomain.teamworkpm.net/me/status/:status_id"
-      },
-      {
-        "httpMethod": "put",
-        "doc": {
-          "url": "http://:subdomain.teamworkpm.net/me/status/{status_id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/me/status/:status_id.json",
-        "path": "/me/status/:status_id.json",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "status_id",
-            "required": true
-          },
           {
             "style": "body",
             "type": "string",
@@ -3495,13 +3772,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/status/:status_id.json",
+        "displayName": "Update a Person's Status",
         "path": "/people/status/:status_id.json",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": true
           },
           {
@@ -3525,19 +3803,21 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:person_id/status/:status_id.json",
+        "displayName": "Change a Person's Status",
         "path": "/people/:person_id/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "person_id",
+            "name": ":person_id",
+            "displayName": "Person ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": true
           },
           {
@@ -3561,13 +3841,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status/:status_id.json",
+        "displayName": "Delete Status",
         "path": "/me/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": true
           }
         ],
@@ -3581,13 +3862,14 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/status/:status_id.json",
+        "displayName": "Delete Everyones Status",
         "path": "/people/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": true
           }
         ],
@@ -3601,19 +3883,21 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:person_id/status/:status_id.json",
+        "displayName": "Delete a Person's Status",
         "path": "/people/:person_id/status/:status_id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "person_id",
+            "name": ":person_id",
+            "displayName": "Person ID",
             "required": true
           },
           {
             "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": true
           }
         ],
@@ -3627,34 +3911,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/me/status.json",
+        "displayName": "Get My Status",
         "path": "/me/status.json",
         "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "first-name"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "avatar-url"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "id"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "status"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "last-name"
-          }
         ],
         "url": "http://:subdomain.teamworkpm.net/me/status"
       },
@@ -3666,39 +3925,15 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/:user_id/statuses.json",
+        "displayName": "Get Users Status",
         "path": "/people/:user_id/statuses.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "user_id",
+            "name": ":user_id",
+            "displayName": "User ID",
             "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "first-name"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "avatar-url"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "id"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "status"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "last-name"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/people/:user_id/statuses"
@@ -3711,7 +3946,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/people/status.json",
+        "displayName": "Get Everyone's Status",
         "path": "/people/status.json",
         "params": [],
         "url": "http://:subdomain.teamworkpm.net/people/status"
@@ -3724,17 +3959,25 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:id/people/:id.json",
-        "path": "/projects/:id/people/:id.json",
+        "displayName": "Add Person to Project",
+        "path": "/projects/:project-id/people/:person-id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":project-id",
+            "displayName" :"Project ID",
+            "required": true
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":person-id",
+            "displayName" :"Person ID",
             "required": true
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project-id/people/:person-id"
       },
       {
         "httpMethod": "DELETE",
@@ -3744,20 +3987,28 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:id/people/:id.json",
-        "path": "/projects/:id/people/:id.json",
+        "displayName": "Remove Person from Project",
+        "path": "/projects/:project-id/people/:person-id.json",
         "params": [
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":project-id",
+            "displayName" :"Project ID",
+            "required": true
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":person-id",
+            "displayName" :"Person ID",
             "required": true
           }
         ],
-        "url": "http://:subdomain.teamworkpm.net/projects/:id/people/:id"
+        "url": "http://:subdomain.teamworkpm.net/projects/:project-id/people/:person-id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{id}/people/{id}"
         },
@@ -3770,7 +4021,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -3790,7 +4042,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -3956,7 +4209,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4018,14 +4271,15 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects"
         },
@@ -4038,7 +4292,7 @@
         "url": "http://:subdomain.teamworkpm.net/projects"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{project_id}"
         },
@@ -4051,7 +4305,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4089,7 +4343,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -4109,7 +4363,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -4129,7 +4383,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4149,7 +4404,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4175,7 +4430,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           }
         ],
@@ -4215,7 +4470,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4362,7 +4617,7 @@
         "url": "http://:subdomain.teamworkpm.net/links/:link_id"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/time_entries"
         },
@@ -4411,7 +4666,7 @@
         "url": "http://:subdomain.teamworkpm.net/time_entries"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{project_id}/time_entries"
         },
@@ -4424,7 +4679,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4466,7 +4721,7 @@
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/time_entries"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/todo_items/{todo_item_id}/time_entries"
         },
@@ -4499,7 +4754,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4596,7 +4851,7 @@
         "url": "http://:subdomain.teamworkpm.net/todo_items/:todo_item_id/time_entries"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/time_entries/{id}"
         },
@@ -4609,7 +4864,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4629,7 +4885,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -4684,7 +4941,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4704,14 +4962,15 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:id/time/total"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/tasklists/{id}/time/total"
         },
@@ -4724,7 +4983,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4744,7 +5004,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4764,7 +5025,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4816,7 +5077,7 @@
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/todo_lists"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/todo_lists/{id}"
         },
@@ -4829,7 +5090,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -4885,7 +5147,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -4920,7 +5183,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -4975,7 +5238,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -4995,7 +5259,7 @@
           {
             "style": "url",
             "type": "string",
-            "name": "project_id",
+            "name": ":project_id",
             "required": true
           },
           {
@@ -5006,7 +5270,7 @@
           {
             "style": "body",
             "type": "string",
-            "name": "id"
+            "name": ":id"
           }
         ],
         "url": "http://:subdomain.teamworkpm.net/projects/:project_id/todo_lists/reorder"
@@ -5025,7 +5289,7 @@
         "url": "http://:subdomain.teamworkpm.net/tasklists/templates"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/tasks"
         },
@@ -5134,7 +5398,7 @@
         "url": "http://:subdomain.teamworkpm.net/tasks"
       },
       {
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "doc": {
           "url": "http://:subdomain.teamworkpm.net/projects/{id}/tasks"
         },
@@ -5147,7 +5411,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -5262,7 +5527,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -5377,7 +5643,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -5417,7 +5684,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -5437,7 +5705,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -5457,7 +5726,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -5543,7 +5813,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
@@ -5623,7 +5894,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           }
         ],
@@ -5643,7 +5915,8 @@
           {
             "style": "url",
             "type": "string",
-            "name": "id",
+            "name": ":id",
+            "displayName" :"ID",
             "required": true
           },
           {
