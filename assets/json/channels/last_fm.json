@@ -1,5 +1,29 @@
 {
   "_id": "52f9b59edfeb5678c700000b",
+  "auth_strategy": "oauth",
+  "enabled": false,
+  "name": "LastFM",
+  "oauth": {
+    "development": {
+      "consumerKey": "0c16bda099efe5a0a9db73e2fedcce84",
+      "consumerSecret": "2ba34ff3cdf831ca3f8633daf8995707",
+      "callbackURL": "http://localhost:8080/api/oauth/lastfm/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production": {
+      "consumerKey": "6881d822c4495af190c205cc04415773",
+      "consumerSecret": "2d44461e9cd953e1ec9fd8b017766271",
+      "callbackURL": "https://app.octoblu.com/api/oauth/xero/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging": {
+      "consumerKey": "9e208416199f40367c68fc5e48e841ec",
+      "consumerSecret": "213db0e4533b5873c02c0d28d0375bf3",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/xero/callback",
+      "tokenMethod": "oauth_signed"
+    }
+  },
+  "type": "channel:last-fm",
   "application": {
     "base": "http://ws.audioscrobbler.com/2.0",
     "resources": [
@@ -1264,13 +1288,5 @@
         "url": "http://ws.audioscrobbler.com/2.0/?method=user.getArtistTracks"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "enabled": false,
-  "name": "LastFM",
-  "oauth": {
-    "key": "c034d4839dfa3e855f610145d1ecb819",
-    "tokenMethod": "apikey_app_query"
-  },
-  "type": "channel:last-fm"
+  }
 }

@@ -5,7 +5,7 @@ _         = require 'lodash'
 commander = require 'commander'
 prettyCamel = require 'pretty-camel'
 
-class FixRdioParams
+class FixXeroParams
   constructor: (options={}) ->
     @channel_filename = options.channel_filename
 
@@ -19,21 +19,9 @@ class FixRdioParams
       unless resource.params
         resource.params = []
       @names = _.pluck resource.params, 'name'
-      parsedUri = url.parse(resource.url, true)
-      _.each parsedUri.query, (method, key) =>
-        resource.params = _.reject resource.params, {name: key}
-        return if _.contains(@names, method)
-        resource.params = _.reject resource.params, {name: 'Content-Type'}
-        resource.params.push {
-          "name": key,
-          "default": method,
-          "displayName": prettyCamel(method),
-          "style": "body",
-          "type": "string",
-          "hidden": true,
-          "required": true
-        }
-        console.log resource.params
+      _.each resource.params, (param) ->
+        return if param.displayName?
+        param.displayName = prettyCamel(param.name)
 
     prettyChannel = JSON.stringify channel, null, 2
     fs.writeFileSync @channel_filename, prettyChannel
@@ -45,5 +33,5 @@ commander
 
 commander.help() unless commander.filename?
 
-converter = new FixRdioParams channel_filename: commander.filename
+converter = new FixXeroParams channel_filename: commander.filename
 converter.run()

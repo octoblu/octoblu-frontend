@@ -10,24 +10,24 @@
   "type": "channel:xero",
   "isPassport": true,
   "oauth": {
-   "development" : {
-    "consumerKey" : "84WQZQV5RDQS8RWOYF5CM0RVMK7WRQ",
-    "consumerSecret" : "1NEC1BSPMFURODOY3RAWPBNSG0WGL8",
-    "callbackURL" : "http://localhost:8080/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   },
-   "production" : {
-    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
-    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
-    "callbackURL" : "https://app.octoblu.com/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   },
-   "staging" : {
-    "consumerKey" : "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
-    "consumerSecret" : "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
-    "callbackURL" : "https://staging.octoblu.com/api/oauth/xero/callback",
-    "tokenMethod" : "oauth_signed"
-   }
+    "development": {
+      "consumerKey": "84WQZQV5RDQS8RWOYF5CM0RVMK7WRQ",
+      "consumerSecret": "1NEC1BSPMFURODOY3RAWPBNSG0WGL8",
+      "callbackURL": "http://localhost:8080/api/oauth/xero/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production": {
+      "consumerKey": "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
+      "consumerSecret": "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
+      "callbackURL": "https://app.octoblu.com/api/oauth/xero/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging": {
+      "consumerKey": "PWHUWFZQEFEH5JXQNHUKBSOIPDWCMO",
+      "consumerSecret": "CS9C9IQLMICLCBMUB0NSC9KIU00X9I",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/xero/callback",
+      "tokenMethod": "oauth_signed"
+    }
   },
   "application": {
     "base": "https://api.xero.com/api.xro/2.0",
@@ -36,66 +36,66 @@
         "displayName": "Get Attachments for Document",
         "path": "/:endpoint/:guid/Attachments",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "GET",
-        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments",
+        "params": []
       },
       {
         "path": "/:endpoint/:guid/Attachments/:filename",
         "displayName": "Upload Attachments to Document",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "POST",
-        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename",
+        "params": []
       },
       {
         "path": "/:endpoint/:guid/Attachments/:filename",
         "displayName": "Update Attachment in Document",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/attachments/"
         },
         "httpMethod": "PUT",
-        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename"
+        "url": "https://api.xero.com/api.xro/2.0/:endpoint/:guid/Attachments/:filename",
+        "params": []
       },
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "AccountID"
+            "name": "AccountID",
+            "displayName": "Account ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order by Element"
           }
         ],
         "path": "/Accounts",
-        "displayName": "/Accounts",
+        "displayName": "Get Accounts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/accounts/"
@@ -106,136 +106,55 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Code"
+            "name": "Code",
+            "displayName": "Code"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Description"
+            "name": "Description",
+            "displayName": "Description"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Tax Type"
+            "name": "Tax Type",
+            "displayName": "Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "EnablePaymentsToAccount"
+            "name": "EnablePaymentsToAccount",
+            "displayName": "Enable Payments on Account"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ShowInExpenseClaims"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": ""
+            "name": "ShowInExpenseClaims",
+            "displayName": "Show in Expense Claims"
           }
         ],
         "path": "/Accounts",
-        "displayName": "/Accounts",
+        "displayName": "Update Accounts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/accounts/"
@@ -249,129 +168,116 @@
           "url": "http://developer.xero.com/documentation/api/banktransactions/"
         },
         "authentication": {
-          "required": "true"
+          "required": true
         },
-        "displayName": "/BankTransactions",
+        "displayName": "Add Bank Transactions",
         "path": "/BankTransactions",
         "params": [
           {
             "name": "Type",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": true,
+            "displayName": "Type"
           },
           {
             "name": "Contact",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": true,
+            "displayName": "Contact"
           },
           {
             "name": "Lineitems",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": true,
+            "displayName": "Lineitems"
           },
           {
             "name": "BankAccount",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": true,
+            "displayName": "Bank Account"
           },
           {
             "name": "IsReconciled",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Is Reconciled"
           },
           {
             "name": "Date",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Date"
           },
           {
             "name": "Reference",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Reference"
           },
           {
             "name": "CurrencyCode",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Currency Code"
           },
           {
             "name": "CurrencyRate",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Currency Rate"
           },
           {
             "name": "Url",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Url"
           },
           {
             "name": "Status",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Status"
           },
           {
             "name": "LineAmountTypes",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Line Amount Types"
           },
           {
             "name": "SubTotal",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Sub Total"
           },
           {
             "name": "TotalTax",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Total Tax"
           },
           {
             "name": "Total",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": "Total"
           },
           {
             "name": "",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": ""
           },
           {
             "name": "",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "displayName": ""
           }
         ],
         "url": "https://api.xero.com/api.xro/2.0/BankTransactions"
@@ -379,115 +285,104 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Lineitems"
+            "name": "Lineitems",
+            "displayName": "Lineitems"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "BankAccount"
+            "name": "BankAccount",
+            "displayName": "Bank Account"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsReconciled"
+            "name": "IsReconciled",
+            "displayName": "Is Reconciled"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyRate"
+            "name": "CurrencyRate",
+            "displayName": "Currency Rate"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Url"
+            "name": "Url",
+            "displayName": "Url"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           }
         ],
         "path": "/BankTransactions",
-        "displayName": "/BankTransactions",
+        "displayName": "Update Bank Transactions",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/banktransactions/"
@@ -498,38 +393,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/BankTransactions",
-        "displayName": "/BankTransactions",
+        "displayName": "Get Bank Transactions",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/banktransactions/"
@@ -540,38 +431,37 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "FromBankAccount"
+            "name": "FromBankAccount",
+            "displayName": "From Bank Account"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "ToBankAccount"
+            "name": "ToBankAccount",
+            "displayName": "To Bank Account"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Amount"
+            "name": "Amount",
+            "displayName": "Amount"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           }
         ],
         "path": "/BankTransfers",
-        "displayName": "/BankTransfers",
+        "displayName": "Update Bank Transfers",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/bank-transfers/"
@@ -582,38 +472,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/BankTransfers",
-        "displayName": "/BankTransfers",
+        "displayName": "Get Bank Transfers",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/bank-transfers/"
@@ -623,163 +509,144 @@
       },
       {
         "path": "/BrandingThemes",
-        "displayName": "/BrandingThemes",
+        "displayName": "Get Branding Themes",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/branding-themes/"
         },
         "httpMethod": "GET",
-        "url": "https://api.xero.com/api.xro/2.0/BrandingThemes"
+        "url": "https://api.xero.com/api.xro/2.0/BrandingThemes",
+        "params": []
       },
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactID"
+            "name": "ContactID",
+            "displayName": "Contact ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactNumber"
+            "name": "ContactNumber",
+            "displayName": "Contact Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactStatus"
+            "name": "ContactStatus",
+            "displayName": "Contact Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FirstName"
+            "name": "FirstName",
+            "displayName": "First Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LastName"
+            "name": "LastName",
+            "displayName": "Last Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "EmailAddress"
+            "name": "EmailAddress",
+            "displayName": "Email Address"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SkypeUserName"
+            "name": "SkypeUserName",
+            "displayName": "Skype User Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactPersons"
+            "name": "ContactPersons",
+            "displayName": "Contact Persons"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BankAccountDetails"
+            "name": "BankAccountDetails",
+            "displayName": "Bank Account Details"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxNumber"
+            "name": "TaxNumber",
+            "displayName": "Tax Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountsReceivableTaxType"
+            "name": "AccountsReceivableTaxType",
+            "displayName": "Accounts Receivable Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountsPayableTaxType"
+            "name": "AccountsPayableTaxType",
+            "displayName": "Accounts Payable Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Addresses"
+            "name": "Addresses",
+            "displayName": "Addresses"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Phones"
+            "name": "Phones",
+            "displayName": "Phones"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "UpdatedDateUTC"
+            "name": "UpdatedDateUTC",
+            "displayName": "Updated Date UTC"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsSupplier"
+            "name": "IsSupplier",
+            "displayName": "Is Supplier"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsCustomer"
+            "name": "IsCustomer",
+            "displayName": "Is Customer"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "DefaultCurrency"
+            "name": "DefaultCurrency",
+            "displayName": "Default Currency"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "XeroNetworkKey"
+            "name": "XeroNetworkKey",
+            "displayName": "Xero Network Key"
           }
         ],
         "path": "/Contacts",
-        "displayName": "/Contacts",
+        "displayName": "Create Contacts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/contacts/#POST"
@@ -790,150 +657,130 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactID"
+            "name": "ContactID",
+            "displayName": "Contact ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactNumber"
+            "name": "ContactNumber",
+            "displayName": "Contact Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactStatus"
+            "name": "ContactStatus",
+            "displayName": "Contact Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FirstName"
+            "name": "FirstName",
+            "displayName": "First Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LastName"
+            "name": "LastName",
+            "displayName": "Last Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "EmailAddress"
+            "name": "EmailAddress",
+            "displayName": "Email Address"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SkypeUserName"
+            "name": "SkypeUserName",
+            "displayName": "Skype User Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ContactPersons"
+            "name": "ContactPersons",
+            "displayName": "Contact Persons"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BankAccountDetails"
+            "name": "BankAccountDetails",
+            "displayName": "Bank Account Details"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxNumber"
+            "name": "TaxNumber",
+            "displayName": "Tax Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountsReceivableTaxType"
+            "name": "AccountsReceivableTaxType",
+            "displayName": "Accounts Receivable Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountsPayableTaxType"
+            "name": "AccountsPayableTaxType",
+            "displayName": "Accounts Payable Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Addresses"
+            "name": "Addresses",
+            "displayName": "Addresses"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Phones"
+            "name": "Phones",
+            "displayName": "Phones"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "UpdatedDateUTC"
+            "name": "UpdatedDateUTC",
+            "displayName": "Updated Date UTC"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsSupplier"
+            "name": "IsSupplier",
+            "displayName": "Is Supplier"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsCustomer"
+            "name": "IsCustomer",
+            "displayName": "Is Customer"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "DefaultCurrency"
+            "name": "DefaultCurrency",
+            "displayName": "Default Currency"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "XeroNetworkKey"
+            "name": "XeroNetworkKey",
+            "displayName": "Xero Network Key"
           }
         ],
         "path": "/Contacts",
-        "displayName": "/Contacts",
+        "displayName": "Update Contacts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/contacts/#PUT"
@@ -944,52 +791,46 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "page"
+            "name": "page",
+            "displayName": "Page"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "includeArchived"
+            "name": "includeArchived",
+            "displayName": "Include Archived"
           }
         ],
         "path": "/contacts",
-        "displayName": "/contacts",
+        "displayName": "Get Contacts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/contacts/#PUT"
@@ -1000,134 +841,116 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineItems"
+            "name": "LineItems",
+            "displayName": "Line Items"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total Tax"
+            "name": "Total Tax",
+            "displayName": "Total  Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "UpdatedDateUTC"
+            "name": "UpdatedDateUTC",
+            "displayName": "Updated Date UTC"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FullyPaidOnDate"
+            "name": "FullyPaidOnDate",
+            "displayName": "Fully Paid On Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteID"
+            "name": "CreditNoteID",
+            "displayName": "Credit Note ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteNumber"
+            "name": "CreditNoteNumber",
+            "displayName": "Credit Note Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SentToContact"
+            "name": "SentToContact",
+            "displayName": "Sent To Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BrandingThemeID"
+            "name": "BrandingThemeID",
+            "displayName": "Branding Theme ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "HasAttachments"
+            "name": "HasAttachments",
+            "displayName": "Has Attachments"
           }
         ],
         "path": "/CreditNotes",
-        "displayName": "/CreditNotes",
+        "displayName": "Add Credit Notes",
         "doc": {
           "url": "http://developer.xero.com/documentation/api/credit-notes/"
         },
@@ -1137,136 +960,118 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineItems"
+            "name": "LineItems",
+            "displayName": "Line Items"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total Tax"
+            "name": "Total Tax",
+            "displayName": "Total  Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "UpdatedDateUTC"
+            "name": "UpdatedDateUTC",
+            "displayName": "Updated Date UTC"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FullyPaidOnDate"
+            "name": "FullyPaidOnDate",
+            "displayName": "Fully Paid On Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteID"
+            "name": "CreditNoteID",
+            "displayName": "Credit Note ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteNumber"
+            "name": "CreditNoteNumber",
+            "displayName": "Credit Note Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SentToContact"
+            "name": "SentToContact",
+            "displayName": "Sent To Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BrandingThemeID"
+            "name": "BrandingThemeID",
+            "displayName": "Branding Theme ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "HasAttachments"
+            "name": "HasAttachments",
+            "displayName": "Has Attachments"
           }
         ],
         "path": "/CreditNotes",
-        "displayName": "/CreditNotes",
+        "displayName": "Update Credit Notes",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/credit-notes/"
@@ -1277,38 +1082,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/CreditNotes",
-        "displayName": "/CreditNotes",
+        "displayName": "Get Credit Notes",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/credit-notes/"
@@ -1319,31 +1120,28 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "ModifiedAfter"
+            "name": "ModifiedAfter",
+            "displayName": "Modified After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Currencies",
-        "displayName": "/Currencies",
+        "displayName": "Get Currencies",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/currencies/"
@@ -1354,45 +1152,40 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "EmployeeID"
+            "name": "EmployeeID",
+            "displayName": "Employee ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FirstName"
+            "name": "FirstName",
+            "displayName": "First Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LastName"
+            "name": "LastName",
+            "displayName": "Last Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "External Link"
+            "name": "External Link",
+            "displayName": "External  Link"
           }
         ],
         "path": "Employees",
-        "displayName": "Employees",
+        "displayName": "Add Employees",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/employees/"
@@ -1403,45 +1196,40 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "EmployeeID"
+            "name": "EmployeeID",
+            "displayName": "Employee ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "FirstName"
+            "name": "FirstName",
+            "displayName": "First Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LastName"
+            "name": "LastName",
+            "displayName": "Last Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "External Link"
+            "name": "External Link",
+            "displayName": "External  Link"
           }
         ],
         "path": "/Employees",
-        "displayName": "/Employees",
+        "displayName": "Update Employees",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/employees/"
@@ -1452,45 +1240,40 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "EmployeeID"
+            "name": "EmployeeID",
+            "displayName": "Employee ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Employees",
-        "displayName": "/Employees",
+        "displayName": "Get Employees",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/employees/"
@@ -1501,24 +1284,24 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "User"
+            "name": "User",
+            "displayName": "User"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Receipts"
+            "name": "Receipts",
+            "displayName": "Receipts"
           }
         ],
         "path": "/ExpenseClaims",
-        "displayName": "/ExpenseClaims",
+        "displayName": "Add Expense Claims",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/expense-claims/"
@@ -1529,24 +1312,24 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Receipts"
+            "name": "Receipts",
+            "displayName": "Receipts"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "User"
+            "name": "User",
+            "displayName": "User"
           }
         ],
         "path": "/ExpenseClaims",
-        "displayName": "/ExpenseClaims",
+        "displayName": "Update Expense Claims",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/expense-claims/"
@@ -1557,38 +1340,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
-        "displayName": "/ExpenseClaims",
+        "displayName": "Get Expense Claims",
         "path": "/ExpenseClaims",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/expense-claims/"
@@ -1599,143 +1378,127 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "LineItems"
+            "name": "LineItems",
+            "displayName": "Line Items"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "DueDate"
+            "name": "DueDate",
+            "displayName": "Due Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "InvoiceNumber"
+            "name": "InvoiceNumber",
+            "displayName": "Invoice Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BrandingThemeID"
+            "name": "BrandingThemeID",
+            "displayName": "Branding Theme ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Url"
+            "name": "Url",
+            "displayName": "Url"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyRate"
+            "name": "CurrencyRate",
+            "displayName": "Currency Rate"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SentToContact"
+            "name": "SentToContact",
+            "displayName": "Sent To Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ExpectedPaymentDate"
+            "name": "ExpectedPaymentDate",
+            "displayName": "Expected Payment Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "PlannedPaymentDate"
+            "name": "PlannedPaymentDate",
+            "displayName": "Planned Payment Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           }
         ],
         "path": "/Invoices",
-        "displayName": "/Invoices",
+        "displayName": "Add Invoices",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/invoices/"
@@ -1746,150 +1509,133 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "LineItems"
+            "name": "LineItems",
+            "displayName": "Line Items"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "DueDate"
+            "name": "DueDate",
+            "displayName": "Due Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "InvoiceNumber"
+            "name": "InvoiceNumber",
+            "displayName": "Invoice Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "BrandingThemeID"
+            "name": "BrandingThemeID",
+            "displayName": "Branding Theme ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Url"
+            "name": "Url",
+            "displayName": "Url"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyRate"
+            "name": "CurrencyRate",
+            "displayName": "Currency Rate"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SentToContact"
+            "name": "SentToContact",
+            "displayName": "Sent To Contact"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ExpectedPaymentDate"
+            "name": "ExpectedPaymentDate",
+            "displayName": "Expected Payment Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "PlannedPaymentDate"
+            "name": "PlannedPaymentDate",
+            "displayName": "Planned Payment Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "path": "/Invoices",
-        "displayName": "/Invoices",
+        "displayName": "Update Invoices",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/invoices/"
@@ -1899,46 +1645,41 @@
       },
       {
         "path": "/Invoices",
-        "displayName": "/Invoices",
+        "displayName": "Get Invoices",
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "page"
+            "name": "page",
+            "displayName": "Page"
           }
         ],
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/invoices/"
@@ -1948,46 +1689,42 @@
       },
       {
         "path": "/Items",
-        "displayName": "/Items",
+        "displayName": "Add Items",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Code"
+            "name": "Code",
+            "displayName": "Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Description"
+            "name": "Description",
+            "displayName": "Description"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "PurchaseDetails"
+            "name": "PurchaseDetails",
+            "displayName": "Purchase Details"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SalesDetails"
+            "name": "SalesDetails",
+            "displayName": "Sales Details"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/items/"
@@ -1998,38 +1735,35 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Code"
+            "name": "Code",
+            "displayName": "Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Description"
+            "name": "Description",
+            "displayName": "Description"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "PurchaseDetails"
+            "name": "PurchaseDetails",
+            "displayName": "Purchase Details"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SalesDetails"
+            "name": "SalesDetails",
+            "displayName": "Sales Details"
           }
         ],
         "path": "/Items",
-        "displayName": "/Items",
+        "displayName": "Update Items",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/items/"
@@ -2040,38 +1774,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "where"
+            "name": "where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Items",
-        "displayName": "/Items",
+        "displayName": "Get Items",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/items/"
@@ -2082,31 +1812,28 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
         "path": "/Journals",
-        "displayName": "/Journals",
+        "displayName": "Get Journals",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/journals/"
@@ -2116,67 +1843,61 @@
       },
       {
         "path": "/ManualJournals",
-        "displayName": "/ManualJournals",
+        "displayName": "Add Manual Journals",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Narration"
+            "name": "Narration",
+            "displayName": "Narration"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "JournalLines"
+            "name": "JournalLines",
+            "displayName": "Journal Lines"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Url"
+            "name": "Url",
+            "displayName": "Url"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ShowOnCashBasisReports"
+            "name": "ShowOnCashBasisReports",
+            "displayName": "Show On Cash Basis Reports"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/manual-journals/"
@@ -2187,59 +1908,54 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Narration"
+            "name": "Narration",
+            "displayName": "Narration"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "JournalLines"
+            "name": "JournalLines",
+            "displayName": "Journal Lines"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Url"
+            "name": "Url",
+            "displayName": "Url"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ShowOnCashBasisReports"
+            "name": "ShowOnCashBasisReports",
+            "displayName": "Show On Cash Basis Reports"
           }
         ],
         "path": "/ManualJournals",
-        "displayName": "/ManualJournals",
+        "displayName": "Update Manual Journals",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/manual-journals/"
@@ -2250,38 +1966,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/ManualJournals",
-        "displayName": "/ManualJournals",
+        "displayName": "Get Manual Journals",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/manual-journals/"
@@ -2292,206 +2004,178 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "APIKey"
+            "name": "APIKey",
+            "displayName": "API Key"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "LegalName"
+            "name": "LegalName",
+            "displayName": "Legal Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "PaysTax"
+            "name": "PaysTax",
+            "displayName": "Pays Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Version"
+            "name": "Version",
+            "displayName": "Version"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "BaseCurrency"
+            "name": "BaseCurrency",
+            "displayName": "Base Currency"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "CountryCode"
+            "name": "CountryCode",
+            "displayName": "Country Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "IsDemoCompany"
+            "name": "IsDemoCompany",
+            "displayName": "Is Demo Company"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "OrganisationStatus"
+            "name": "OrganisationStatus",
+            "displayName": "Organisation Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "RegistrationNumber"
+            "name": "RegistrationNumber",
+            "displayName": "Registration Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "TaxNumber"
+            "name": "TaxNumber",
+            "displayName": "Tax Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "FinancialYearEndDay"
+            "name": "FinancialYearEndDay",
+            "displayName": "Financial Year End Day"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "FinancialYearEndMonth"
+            "name": "FinancialYearEndMonth",
+            "displayName": "Financial Year End Month"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "SalesTaxBasis"
+            "name": "SalesTaxBasis",
+            "displayName": "Sales Tax Basis"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "SalesTaxPeriod"
+            "name": "SalesTaxPeriod",
+            "displayName": "Sales Tax Period"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "PeriodLockDate"
+            "name": "PeriodLockDate",
+            "displayName": "Period Lock Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "EndOfYearLockDate"
+            "name": "EndOfYearLockDate",
+            "displayName": "End Of Year Lock Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "CreatedDateUTC"
+            "name": "CreatedDateUTC",
+            "displayName": "Created Date UTC"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "OrganisationEntityType"
+            "name": "OrganisationEntityType",
+            "displayName": "Organisation Entity Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Timezone"
+            "name": "Timezone",
+            "displayName": "Timezone"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "ShortCode"
+            "name": "ShortCode",
+            "displayName": "Short Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "LineOfBusiness"
+            "name": "LineOfBusiness",
+            "displayName": "Line Of Business"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Addresses"
+            "name": "Addresses",
+            "displayName": "Addresses"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Phones"
+            "name": "Phones",
+            "displayName": "Phones"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "ExternalLinks"
+            "name": "ExternalLinks",
+            "displayName": "External Links"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "PaymentTerms"
+            "name": "PaymentTerms",
+            "displayName": "Payment Terms"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": ""
+            "name": "",
+            "displayName": ""
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "path": "/Organisation",
-        "displayName": "/Organisation",
+        "displayName": "Get Organisation",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/organisation/"
@@ -2502,87 +2186,78 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Invoice"
+            "name": "Invoice",
+            "displayName": "Invoice"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "InvoiceID"
+            "name": "InvoiceID",
+            "displayName": "Invoice ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteID"
+            "name": "CreditNoteID",
+            "displayName": "Credit Note ID"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Account"
+            "name": "Account",
+            "displayName": "Account"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountID"
+            "name": "AccountID",
+            "displayName": "Account ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Code"
+            "name": "Code",
+            "displayName": "Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyRate"
+            "name": "CurrencyRate",
+            "displayName": "Currency Rate"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Amount"
+            "name": "Amount",
+            "displayName": "Amount"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsReconciled"
+            "name": "IsReconciled",
+            "displayName": "Is Reconciled"
           }
         ],
         "path": "/Payments",
-        "displayName": "/Payments",
+        "displayName": "Update Payments",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/payments/"
@@ -2593,87 +2268,78 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "CreditNote"
+            "name": "CreditNote",
+            "displayName": "Credit Note"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "InvoiceNumber"
+            "name": "InvoiceNumber",
+            "displayName": "Invoice Number"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CreditNoteNumber"
+            "name": "CreditNoteNumber",
+            "displayName": "Credit Note Number"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Account"
+            "name": "Account",
+            "displayName": "Account"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "AccountID"
+            "name": "AccountID",
+            "displayName": "Account ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Code"
+            "name": "Code",
+            "displayName": "Code"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "CurrencyRate"
+            "name": "CurrencyRate",
+            "displayName": "Currency Rate"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Amount"
+            "name": "Amount",
+            "displayName": "Amount"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "IsReconciled"
+            "name": "IsReconciled",
+            "displayName": "Is Reconciled"
           }
         ],
         "path": "/Payments",
-        "displayName": "/Payments",
+        "displayName": "Update Payments",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/payments/"
@@ -2684,45 +2350,40 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "PaymentID"
+            "name": "PaymentID",
+            "displayName": "Payment ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Payments",
-        "displayName": "/Payments",
+        "displayName": "Get Payments",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/payments/"
@@ -2732,81 +2393,75 @@
       },
       {
         "path": "/Receipts",
-        "displayName": "/Receipts",
+        "displayName": "Add Receipts",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Lineitems"
+            "name": "Lineitems",
+            "displayName": "Lineitems"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "User"
+            "name": "User",
+            "displayName": "User"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/receipts/"
@@ -2816,74 +2471,69 @@
       },
       {
         "path": "/Receipts",
-        "displayName": "/Receipts",
+        "displayName": "Update Receipts",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Date"
+            "name": "Date",
+            "displayName": "Date"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "Lineitems"
+            "name": "Lineitems",
+            "displayName": "Lineitems"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "body",
-            "name": "User"
+            "name": "User",
+            "displayName": "User"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           }
         ],
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/receipts/"
@@ -2894,38 +2544,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Receipts",
-        "displayName": "/Receipts",
+        "displayName": "Get Receipts",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/receipts/"
@@ -2936,136 +2582,132 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Type"
+            "name": "Type",
+            "displayName": "Type"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Contact"
+            "name": "Contact",
+            "displayName": "Contact"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Schedule"
+            "name": "Schedule",
+            "displayName": "Schedule"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "LineItems"
+            "name": "LineItems",
+            "displayName": "Line Items"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "LineAmountTypes"
+            "name": "LineAmountTypes",
+            "displayName": "Line Amount Types"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Reference"
+            "name": "Reference",
+            "displayName": "Reference"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "BrandingThemeID"
+            "name": "BrandingThemeID",
+            "displayName": "Branding Theme ID"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "CurrencyCode"
+            "name": "CurrencyCode",
+            "displayName": "Currency Code"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "SubTotal"
+            "name": "SubTotal",
+            "displayName": "Sub Total"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "TotalTax"
+            "name": "TotalTax",
+            "displayName": "Total Tax"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Total"
+            "name": "Total",
+            "displayName": "Total"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "RepeatingInvoiceID"
+            "name": "RepeatingInvoiceID",
+            "displayName": "Repeating Invoice ID"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "HasAttachments"
+            "name": "HasAttachments",
+            "displayName": "Has Attachments"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Record filter"
+            "name": "Record filter",
+            "displayName": "Record filter"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "RepeatingInvoiceID"
+            "name": "RepeatingInvoiceID",
+            "displayName": "Repeating Invoice ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/RepeatingInvoices",
-        "displayName": "/RepeatingInvoices",
+        "displayName": "Get Repeating Invoices",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/repeating-invoices/"
@@ -3076,17 +2718,16 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "reportYear"
+            "name": "reportYear",
+            "displayName": "Report Year"
           }
         ],
         "path": "/TenNinetyNine",
-        "displayName": "/TenNinetyNine",
+        "displayName": "Get 1099",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3097,38 +2738,35 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "contactID"
+            "name": "contactID",
+            "displayName": "Contact ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "fromDate"
+            "name": "fromDate",
+            "displayName": "From Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "toDate"
+            "name": "toDate",
+            "displayName": "To Date"
           }
         ],
         "path": "/AgedPayablesByContact",
-        "displayName": "/AgedPayablesByContact",
+        "displayName": "Get Aged Payables By Contact",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://app.octoblu.com/connect/advanced/custom_channels/editor/53e3fab413c57e0267403a89"
@@ -3139,38 +2777,35 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "contactID"
+            "name": "contactID",
+            "displayName": "Contact ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "fromDate"
+            "name": "fromDate",
+            "displayName": "From Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "toDate"
+            "name": "toDate",
+            "displayName": "To Date"
           }
         ],
         "path": "/AgedReceivablesByContact",
-        "displayName": "/AgedReceivablesByContact",
+        "displayName": "Get Aged Receivables By Contact",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3181,38 +2816,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "trackingOptionID1"
+            "name": "trackingOptionID1",
+            "displayName": "Tracking Option ID1"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "trackingOptionID2"
+            "name": "trackingOptionID2",
+            "displayName": "Tracking Option ID2"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "standardLayout"
+            "name": "standardLayout",
+            "displayName": "Standard Layout"
           }
         ],
         "path": "/Reports/BalanceSheet",
-        "displayName": "/Reports/BalanceSheet",
+        "displayName": "Get Balance Sheet",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3223,31 +2854,29 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "bankAccountID"
+            "name": "bankAccountID",
+            "displayName": "Bank Account ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "fromDate"
+            "name": "fromDate",
+            "displayName": "From Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "toDate"
+            "name": "toDate",
+            "displayName": "To Date"
           }
         ],
         "path": "/Reports/BankStatement",
-        "displayName": "/Reports/BankStatement",
+        "displayName": "Get Bank Statement",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3258,31 +2887,28 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "periods"
+            "name": "periods",
+            "displayName": "Periods"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "timeframe"
+            "name": "timeframe",
+            "displayName": "Timeframe"
           }
         ],
         "path": "/Reports/BudgetSummary",
-        "displayName": "/Reports/BudgetSummary",
+        "displayName": "Get Budget Summary",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3293,17 +2919,16 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           }
         ],
         "path": "/Reports/ExecutiveSummary",
-        "displayName": "/Reports/ExecutiveSummary",
+        "displayName": "Get Executive Summary",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3313,58 +2938,54 @@
       },
       {
         "path": "/Reports",
-        "displayName": "/Reports",
+        "displayName": "Get Reports",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
         },
         "httpMethod": "GET",
-        "url": "https://api.xero.com/api.xro/2.0/Reports"
+        "url": "https://api.xero.com/api.xro/2.0/Reports",
+        "params": []
       },
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "fromDate"
+            "name": "fromDate",
+            "displayName": "From Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "toDate"
+            "name": "toDate",
+            "displayName": "To Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "trackingCategoryID"
+            "name": "trackingCategoryID",
+            "displayName": "Tracking Category ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "trackingOptionID"
+            "name": "trackingOptionID",
+            "displayName": "Tracking Option ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "standardLayout"
+            "name": "standardLayout",
+            "displayName": "Standard Layout"
           }
         ],
         "path": "/Reports/ProfitAndLoss",
-        "displayName": "/Reports/ProfitAndLoss",
+        "displayName": "Get Profit and Loss",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3375,24 +2996,22 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "date"
+            "name": "date",
+            "displayName": "Date"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "paymentsOnly"
+            "name": "paymentsOnly",
+            "displayName": "Payments Only"
           }
         ],
         "path": "/Reports/TrialBalance",
-        "displayName": "/Reports/TrialBalance",
+        "displayName": "Get Trial Balance",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/reports/"
@@ -3403,45 +3022,40 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxType"
+            "name": "TaxType",
+            "displayName": "Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxComponents"
+            "name": "TaxComponents",
+            "displayName": "Tax Components"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ReportTaxType"
+            "name": "ReportTaxType",
+            "displayName": "Report Tax Type"
           }
         ],
         "path": "/TaxRates",
-        "displayName": "/TaxRates",
+        "displayName": "Get Tax Rates",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/tax-rates/"
@@ -3452,52 +3066,46 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxType"
+            "name": "TaxType",
+            "displayName": "Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "TaxComponents"
+            "name": "TaxComponents",
+            "displayName": "Tax Components"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "ReportTaxType"
+            "name": "ReportTaxType",
+            "displayName": "Report Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "",
-            "name": ""
+            "name": "",
+            "displayName": ""
           }
         ],
         "path": "/TaxRates",
-        "displayName": "/TaxRates",
+        "displayName": "Get Tax Rates",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/tax-rates/"
@@ -3508,31 +3116,28 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "TaxType"
+            "name": "TaxType",
+            "displayName": "Tax Type"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Where"
+            "name": "Where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/TaxRates",
-        "displayName": "/TaxRates",
+        "displayName": "Get Tax Rates",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/tax-rates/"
@@ -3543,59 +3148,56 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "TrackingCategoryID"
+            "name": "TrackingCategoryID",
+            "displayName": "Tracking Category ID"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           },
           {
-            "required": "true",
-            "value": "",
+            "required": true,
             "type": "string",
             "style": "query",
-            "name": "Options"
+            "name": "Options",
+            "displayName": "Options"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "TrackingOptionID"
+            "name": "TrackingOptionID",
+            "displayName": "Tracking Option ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Name"
+            "name": "Name",
+            "displayName": "Name"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Status"
+            "name": "Status",
+            "displayName": "Status"
           }
         ],
         "path": "/TrackingCategories",
-        "displayName": "/TrackingCategories",
+        "displayName": "Get Tracking Categories",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/tracking-categories/"
@@ -3606,38 +3208,34 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "UserID"
+            "name": "UserID",
+            "displayName": "User ID"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "Modified After"
+            "name": "Modified After",
+            "displayName": "Modified  After"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "where"
+            "name": "where",
+            "displayName": "Where"
           },
           {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "order"
+            "name": "order",
+            "displayName": "Order"
           }
         ],
         "path": "/Users",
-        "displayName": "/Users",
+        "displayName": "Get Users",
         "authentication": {
-          "required": "true"
+          "required": true
         },
         "doc": {
           "url": "http://developer.xero.com/documentation/api/users/"

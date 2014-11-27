@@ -4,14 +4,16 @@
   "bodyFormat": "json",
   "name": "ShareFile",
   "type": "channel:sharefile",
-  "defaultParams": [{
+  "defaultParams": [
+    {
       "name": ":account",
       "style": "url",
       "type": "string",
       "value": "octoblu",
       "displayName": "Account Name",
-      "required": "true"
-    }],
+      "required": true
+    }
+  ],
   "oauth": {
     "development": {
       "clientID": "INSERT_SECERT_HERE",
@@ -36,15 +38,12 @@
     }
   },
   "application": {
-    "base": "https://octobluServerAdmin.sf-api.com/sf/v3",
+    "base": "https://octoblu.sf-api.com/sf/v3",
     "resources": [
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get Access Controls by Principle ID and Item ID",
         "path": "/AccessControls",
@@ -54,25 +53,22 @@
             "displayName": "User, Group, or Zone ID",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "itemid",
             "displayName": "File or Folder ID",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AccessControls"
+        "url": "https://octoblu.sf-api.com/sf/v3/AccessControls"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get the Access Controls Item ID",
         "path": "/Items/:id/AccessControls",
@@ -82,62 +78,49 @@
             "displayName": "File or Folder ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/AccessControls"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/AccessControls"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Items(:id)/AccessControls",
+        "displayName": "Create a new Access Control for a given Item",
         "path": "/Items(:id)/AccessControls",
         "params": [
           {
-            "name": "id",
-            "displayName": "ID",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          },
-          {
             "name": "accessControl",
-            "displayName": "Access Control",
+            "displayName": "Access Control to create",
             "style": "body",
-            "type": "string",
-            "required": "false"
+            "type": "object",
+            "required": true
           },
           {
             "name": "recursive",
-            "displayName": "Recursive",
+            "displayName": "Apply Access Control Recursively",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "File or Folder ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/AccessControls"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/AccessControls"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/AccessControls",
+        "displayName": "Delete an Access Controll by ID",
         "path": "/AccessControls",
         "params": [
           {
@@ -145,1192 +128,1010 @@
             "displayName": "Principal ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "itemid",
             "displayName": "Item ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AccessControls"
+        "url": "https://octoblu.sf-api.com/sf/v3/AccessControls"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts",
+        "displayName": "Get Current Account",
         "path": "/Accounts",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts",
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/Branding",
+        "displayName": "Get Current Account Branding",
         "path": "/Accounts/Branding",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Branding",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Branding",
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/Employees",
+        "displayName": "Get List of Current Account Employees",
         "path": "/Accounts/Employees",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Employees",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Employees",
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
-        },
-        "authentication": {
-          "required": "true"
         },
         "path": "/Accounts/Clients",
-        "displayName": "/Accounts/Clients",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/Clients",
-        "params": [
-        ]
+        "displayName": "Get List of Current Account Clients",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/Clients",
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/AddressBook",
+        "displayName": "Get Account Address Books",
         "path": "/Accounts/AddressBook",
         "params": [
           {
             "name": "type",
-            "displayName": "Type",
+            "displayName": "Type of Address Book (personal/shared/group)",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "searchTerm",
             "displayName": "Search Term",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/AddressBook"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/AddressBook"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/Accounts/MobileSecuritySettings",
+        "displayName": "Get Account Mobile Security Settings",
         "path": "/Accounts/MobileSecuritySettings",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
+        "params": []
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
-        },
-        "authentication": {
-          "required": "true"
         },
         "path": "/Accounts/SSO",
-        "displayName": "/Accounts/SSO",
+        "displayName": "Get Account Single Sign-On Configuration",
         "params": [
           {
             "name": "provider",
             "displayName": "Provider",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SSO"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SSO"
       },
       {
+        "displayName": "Get List of Accounts for User",
+        "path": "/Accounts/GetByUser",
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "body",
-            "displayName": "Username",
+            "displayName": "Username (email address)",
             "name": "username"
           },
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "body",
             "displayName": "Password",
             "name": "password"
           },
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "body",
             "displayName": "Employees Only",
             "name": "employeesonly"
           },
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "body",
             "displayName": "Require Home Folders",
             "name": "requirehomefolders"
+          },
+          {
+            "required": true,
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Single Plane",
+            "name": "singplane"
           }
         ],
-        "displayName": "/Accounts/GetByUser",
-        "path": "/Accounts/GetByUser",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/GetByUser"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/GetByUser"
       },
       {
+        "displayName": "Email List of Accounts to Email Address",
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "body",
-            "displayName": "Email",
+            "displayName": "Email Address to send List of Accounts to",
             "name": "email"
           }
         ],
         "path": "/Accounts/SendToEmail",
-        "displayName": "/Accounts/SendToEmail",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SendToEmail"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SendToEmail"
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
-        "displayName": "/Accounts/LoginAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Get the Folder Access Control List of Domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": []
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
-        "displayName": "/Accounts/LoginAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Get the Login Access Control List of domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": []
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
         "displayName": "/Accounts/LoginAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
         "path": "/Accounts/FolderAccessControlDomains",
-        "displayName": "/Accounts/FolderAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Create or Replace the Folder Access Control List of Domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
-        "displayName": "/Accounts/LoginAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Update the Login Access Control List of Domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts",
           "t": "patch"
         },
-        "httpMethod": "PUT",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "httpMethod": "PATCH",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
-        "displayName": "/Accounts/FolderAccessControlDomains",
+        "displayName": "Update the Folder Access Control List of Domains",
         "path": "/Accounts/FolderAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "t": "patch",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "httpMethod": "PUT",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "httpMethod": "PATCH",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
-        "displayName": "/Accounts/LoginAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Delete Domains from the Login Access Control List of Domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
         "path": "/Accounts/FolderAccessControlDomains",
-        "displayName": "/Accounts/FolderAccessControlDomains",
-        "authentication": {
-          "required": "true"
-        },
+        "displayName": "Delete Domains From the Folder Access Control List of Domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
+          {
+            "name": "AccessControlType",
+            "displayName": "Access Control Type ( AllowedDomains / DisallowedDomains )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "object"
+          }
         ]
       },
       {
+        "path": "/Accounts/RequireWebPop",
+        "displayName": "Check if WebPop is Required",
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "query",
             "displayName": "Subdomain",
             "name": "subdomain"
           },
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "query",
-            "displayName": "Username",
+            "displayName": "Email or User ID",
             "name": "username"
           },
           {
-            "required": "false",
+            "required": false,
             "type": "boolean",
             "style": "query",
             "displayName": "Single Plane",
             "name": "singlePlane"
           }
         ],
-        "path": "/Accounts/RequireWebPop",
-        "displayName": "/Accounts/RequireWebPop",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/RequireWebPop"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/RequireWebPop"
       },
       {
+        "path": "/Accounts/RequireSubdomain",
+        "displayName": "Check if Subdomain is Required",
+        "httpMethod": "GET",
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "query",
-            "displayName": "Username",
+            "displayName": "Email or User ID",
             "name": "username"
           },
           {
-            "required": "false",
-            "type": "string",
+            "required": false,
+            "type": "boolean",
             "style": "query",
             "displayName": "Single Plane",
             "name": "singlePlane"
           }
         ],
-        "path": "/Accounts/RequireSubdomain",
-        "displayName": "/Accounts/RequireSubdomain",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/RequireSubdomain"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/RequireSubdomain"
       },
       {
+        "path": "/Accounts/FindSubdomain",
+        "displayName": "Find Subdomain",
         "params": [
           {
-            "required": "false",
-            "type": "string",
+            "required": true,
+            "type": "object",
             "style": "body",
+            "displayName": "Find Subdomain Params",
+            "name": "findSubdomainParams"
+          },
+          {
+            "required": false,
+            "type": "boolean",
+            "style": "query",
             "displayName": "Single Plane",
             "name": "singlePlane"
           }
         ],
-        "path": "/Accounts/FindSubdomain",
-        "displayName": "/Accounts/FindSubdomain",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/FindSubdomain"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/FindSubdomain"
       },
       {
-        "path": "/Accounts/OutlookInformation",
-        "displayName": "/Accounts/OutlookInformation",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
-        },
+        "displayName": "Get SSO Info",
+        "path": "/Accounts/SSOInfo",
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/OutlookInformation",
-        "params": [
-        ]
-      },
-      {
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "query",
             "displayName": "Subdomain",
             "name": "subdomain"
           }
         ],
-        "path": "/Accounts/SSOInfo",
-        "displayName": "/Accounts/SSOInfo",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Accounts/SSOInfo"
+        "url": "https://octoblu.sf-api.com/sf/v3/Accounts/SSOInfo"
       },
       {
+        "displayName": "Get Async Operation By ID",
         "path": "/AsyncOperations(:id)",
-        "displayName": "/AsyncOperations(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Async Operation ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get list of Async Operations by Operation Batch ID",
         "path": "/AsyncOperations/GetByBatch(:id)",
-        "displayName": "/AsyncOperations/GetByBatch(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Operation Batch ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get List of Async Operations by Folder",
         "path": "/AsyncOperations/GetByFolder(:id)",
-        "displayName": "/AsyncOperations/GetByFolder(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/AsyncOperations(:id)/Cancel",
-        "displayName": "/AsyncOperations(:id)/Cancel",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
-        "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Folder ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Delete/Cancel Async Operation",
         "path": "/AsyncOperations(:id)",
-        "displayName": "/AsyncOperations(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
-        },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ]
-      },
-      {
-        "path": "/AsyncOperations/CancelBatch(:id)",
-        "displayName": "/AsyncOperations/CancelBatch(:id)",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
-        "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Async Operation ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Cancel an Async Operation Batch",
         "path": "/AsyncOperations/CancelBatch(:id)",
-        "displayName": "/AsyncOperations/CancelBatch(:id)",
-        "authentication": {
-          "required": "true"
-        },
+        "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
-        "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Batch ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Change the State of an Async Operation",
         "path": "/AsyncOperations(:id)",
-        "displayName": "/AsyncOperations(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "t": "patch",
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
-        },
         "httpMethod": "PUT",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Async Operation ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": "newAsyncOp",
+            "displayName": "Async Operation",
+            "style": "url",
+            "type": "object",
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get list of Capabilities",
         "path": "/Capabilities",
-        "displayName": "/Capabilities",
-        "authentication": {
-          "required": "true"
-        },
+        "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Capabilities"
         },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Capabilities",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Capabilities",
+        "params": []
       },
       {
+        "displayName": "Get Device by ID",
         "path": "/Devices(:id)",
-        "displayName": "/Devices(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Device ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Delete Device By ID",
         "path": "/Devices(:id)",
-        "displayName": "/Devices(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Device ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Wipe Device",
+        "path": "/Devices(:deviceID)/Wipe",
+        "httpMethod": "GET",
         "params": [
-          {
-            "required": "false",
-            "type": "string",
-            "style": "query",
-            "displayName": "User ID",
-            "name": "userid"
-          },
           {
             "name": ":deviceID",
             "displayName": "Device ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
+          },
+          {
+            "required": true,
+            "type": "string",
+            "style": "query",
+            "displayName": "User ID or Email Address",
+            "name": "userid"
           }
         ],
-        "path": "/Devices(:deviceID)/Wipe",
-        "displayName": "/Devices(:deviceID)/Wipe",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/Wipe"
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/Wipe"
       },
       {
+        "displayName": "Get Device Users for Current User",
         "path": "/Devices",
-        "displayName": "/Devices",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices",
+        "params": []
       },
       {
+        "displayName": "Signal Wipe Done",
+        "path": "/Devices(:deviceID)/WipeDone",
+        "httpMethod": "POST",
         "params": [
           {
-            "required": "false",
+            "name": ":deviceID",
+            "displayName": "Device ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "deviceWipeReport",
+            "displayName": "Device Wipe Report",
+            "style": "body",
+            "type": "object",
+            "required": true
+          },
+          {
+            "required": false,
             "type": "boolean",
             "style": "query",
             "displayName": "Single Plane",
             "name": "singlePlane"
-          },
-          {
-            "name": ":deviceID",
-            "displayName": "Device ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
           }
         ],
-        "path": "/Devices(:deviceID)/WipeDone",
-        "displayName": "/Devices(:deviceID)/WipeDone",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/WipeDone"
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/WipeDone"
       },
       {
+        "displayName": "Check Device Status",
         "path": "/Devices(:deviceID)/Status",
-        "displayName": "/Devices(:deviceID)/Status",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Devices(:deviceID)/Status",
+        "url": "https://octoblu.sf-api.com/sf/v3/Devices(:deviceID)/Status",
         "params": [
           {
             "name": ":deviceID",
             "displayName": "Device ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get List of Favorite Folders",
         "path": "/Users(:id)/FavoriteFolders",
-        "displayName": "/Users(:id)/FavoriteFolders",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get Favorite Folders",
         "path": "/Users(:userid)/FavoriteFolders(:itemid)",
-        "displayName": "/Users(:userid)/FavoriteFolders(:itemid)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
         "params": [
           {
             "name": ":userid",
             "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":itemid",
             "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get Favorite Folder",
         "path": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
-        "displayName": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "url": "https://octoblu.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
         "params": [
           {
             "name": ":userid",
             "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":itemid",
             "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
-        "displayName": "/Users(:id)/FavoriteFolders",
+        "displayName": "Get List of Favorite Folders for User",
         "path": "/Users(:id)/FavoriteFolders",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Delete Favorite Folder for User",
         "path": "/Users(:id)/FavoriteFolders(:itemid)",
-        "displayName": "/Users(:id)/FavoriteFolders(:itemid)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
-        },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":itemid",
             "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get Group List",
         "path": "/Groups",
-        "displayName": "/Groups",
-        "authentication": {
-          "required": "true"
-        },
+        "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups",
-        "params": [
-        ]
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups",
+        "params": []
       },
       {
+        "displayName": "Get Group By ID",
         "path": "/Groups(:id)",
-        "displayName": "/Groups(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Delete Group",
         "path": "/Groups(:id)",
-        "displayName": "/Groups(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Group ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
-        "path": "/Groups",
-        "params": [
-        ],
+        "path": "Create Group",
         "displayName": "/Groups",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
-        "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups"
-      },
-      {
-        "path": "/Groups(:id)",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "displayName": "/Groups(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups",
-          "t": "patch"
-        },
-        "httpMethod": "PUT",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)"
-      },
-      {
-        "path": "/Groups(:id)/Contacts",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
-          }
-        ],
-        "displayName": "/Groups(:id)/Contacts",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
-      },
-      {
-        "path": "/Groups(:id)/Contacts",
-        "displayName": "/Groups(:id)/Contacts",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
         "httpMethod": "POST",
         "params": [
           {
-            "name": "contacts",
-            "displayName": "Array of Contacts",
+            "name": "group",
+            "displayName": "Group",
             "style": "body",
+            "type": "object"
+          }
+        ],
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups"
+      },
+      {
+        "displayName": "Update Group",
+        "path": "/Groups(:id)",
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Group ID",
+            "style": "url",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
+            "name": "groups",
+            "displayName": "Group",
+            "style": "body",
+            "type": "object",
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)"
       },
       {
+        "displayName": "Get Group Contacts",
         "path": "/Groups(:id)/Contacts",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Group ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
+          }
+        ],
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
+      },
+      {
+        "displayName": "Add Contacts to Group",
+        "path": "/Groups(:id)/Contacts",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Group ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           },
           {
             "name": "contacts",
             "displayName": "Array of Contacts",
             "style": "body",
-            "type": "string",
-            "required": "false"
+            "type": "object",
+            "required": true
           }
         ],
-        "displayName": "/Groups(:id)/Contacts",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Groups(:id)/Contacts"
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
       },
       {
+        "displayName": "Remove Contacts from Group",
+        "path": "/Groups(:id)/Contacts",
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Groups ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "contacts",
+            "displayName": "Array of Contacts",
+            "style": "body",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "url": "https://octoblu.sf-api.com/sf/v3/Groups(:id)/Contacts"
+      },
+      {
+        "displayName": "Get Home Folder for Current User",
         "path": "/Items",
-        "params": [
-        ],
-        "displayName": "/Items",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Items"
       },
       {
-        "displayName": "/Items(:id)",
+        "displayName": "Get Item by ID",
         "path": "/Items(:id)",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)",
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": "includeDeleted",
+            "displayName": "Include Deleted",
+            "style": "get",
+            "type": "boolean",
+            "required": true
           }
         ]
       },
       {
+        "displayName": "Get Stream",
+        "path": "/Items(:id)/Stream",
+        "httpMethod": "GET",
         "params": [
           {
-            "required": "false",
+            "name": ":id",
+            "displayName": "Item ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "required": true,
             "type": "boolean",
             "style": "query",
             "displayName": "Include Deleted",
             "name": "includeDeleted"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": "true"
           }
         ],
-        "path": "/Items(:id)/Stream",
-        "displayName": "/Items(:id)/Stream",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Stream"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Stream"
       },
       {
+        "displayName": "Get Item by Path",
+        "path": "/Items/ByPath",
+        "httpMethod": "GET",
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "string",
             "style": "query",
             "displayName": "Path",
             "name": "path"
           }
         ],
-        "path": "/Items/ByPath",
-        "displayName": "/Items/ByPath",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/ByPath"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/ByPath"
       },
       {
-        "displayName": "/Items(:id)/Parent",
+        "displayName": "Get Parent Item",
         "path": "/Items(:id)/Parent",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Parent"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Parent"
       },
       {
+        "displayName": "Get Children",
         "path": "/Items(:id)/Children",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": "includeDeleted",
+            "displayName": "Include Deleted",
+            "style": "query",
+            "type": "boolean",
+            "required": true
           }
         ],
-        "displayName": "/Items(:id)/Children",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Children"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Children"
       },
       {
         "path": "/Items(:id)/Info",
         "displayName": "/Items(:id)/Info",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Info",
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Info",
         "params": [
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ]
       },
       {
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "query",
             "displayName": "Redirect",
@@ -1341,31 +1142,28 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
         "path": "/Items(:id)/Download",
         "displayName": "/Items(:id)/Download",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Download"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Download"
       },
       {
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "body",
             "displayName": "Overwrite",
             "name": "overwrite"
           },
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "body",
             "displayName": "Pass Through",
@@ -1376,19 +1174,16 @@
             "displayName": "Parent ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
         "path": "/Items(:parentid)/Folder",
         "displayName": "/Items(:parentid)/Folder",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Folder"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Folder"
       },
       {
         "path": "/Items(:parentid)/Note",
@@ -1398,18 +1193,15 @@
             "displayName": "Parent ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
         "displayName": "/Items(:parentid)/Note",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Note"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Note"
       },
       {
         "path": "/Items(:parentid)/Link",
@@ -1419,23 +1211,20 @@
             "displayName": "Parent ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
         "displayName": "/Items(:parentid)/Link",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:parentid)/Link"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Link"
       },
       {
         "params": [
           {
-            "required": "false",
+            "required": true,
             "type": "boolean",
             "style": "body",
             "displayName": "Overwrite",
@@ -1444,23 +1233,17 @@
         ],
         "path": "/Items/SymbolicLink",
         "displayName": "/Items/SymbolicLink",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "POST",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/SymbolicLink"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)",
         "path": "/Items(:id)",
@@ -1470,19 +1253,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items/Link(:id)",
         "path": "/Items/Link(:id)",
@@ -1492,26 +1272,23 @@
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Link(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/Link(:id)"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items/Note(:id)",
         "path": "/Items/Note(:id)",
@@ -1521,26 +1298,23 @@
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Note(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/Note(:id)"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items/SymbolicLink(:id)",
         "path": "/Items/SymbolicLink(:id)",
@@ -1550,18 +1324,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/BulkDelete",
         "path": "/Items(:id)/BulkDelete",
@@ -1571,18 +1342,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/BulkDelete"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/BulkDelete"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/Breadcrumbs",
         "path": "/Items(:id)/Breadcrumbs",
@@ -1592,25 +1360,22 @@
             "displayName": "Path",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/Copy",
         "path": "/Items(:id)/Copy",
@@ -1620,32 +1385,29 @@
             "displayName": "Target ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "overwrite",
             "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Copy"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Copy"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/Upload",
         "path": "/Items(:id)/Upload",
@@ -1655,164 +1417,161 @@
             "displayName": "Method",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "raw",
             "displayName": "Raw",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "fileName",
             "displayName": "File Name",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "fileSize",
             "displayName": "File Size",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "batchId",
             "displayName": "Batch ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "batchLast",
             "displayName": "Batch Last",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "canResume",
             "displayName": "Can Resume",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "startOver",
             "displayName": "Start Over",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "unzip",
             "displayName": "Unzip",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "tool",
             "displayName": "Tool",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "overwrite",
             "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "title",
             "displayName": "Title",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "details",
             "displayName": "Details",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "isSend",
             "displayName": "Is Send",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "sendGuid",
             "displayName": "Send GUID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "opid",
             "displayName": "OPID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "threadCount",
             "displayName": "Thread Count",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "responseFormat",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "clientCreatedDateUTC",
             "displayName": "Client Created Date (UTC format)",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "clientModifiedDateUTC",
             "displayName": "Client Modified Date (UTC format)",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Upload"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Upload"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/CheckIn",
         "path": "/Items(:id)/CheckIn",
@@ -1822,25 +1581,22 @@
             "displayName": "Message",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/CheckIn"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/CheckIn"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/CheckOut",
         "path": "/Items(:id)/CheckOut",
@@ -1850,18 +1606,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/CheckOut"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/CheckOut"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items/Search",
         "path": "/Items/Search",
@@ -1871,32 +1624,25 @@
             "displayName": "Query",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/Search"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/Search"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Items/AdvancedSearch",
         "path": "/Items/AdvancedSearch",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items/AdvancedSearch"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Items/AdvancedSearch"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/WebView",
         "path": "/Items(:id)/WebView",
@@ -1906,18 +1652,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/WebView"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/WebView"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/ProtocolLinks",
         "path": "/Items(:id)/ProtocolLinks",
@@ -1927,18 +1670,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/ProtocolLinks(protocol)",
         "path": "/Items(:id)/ProtocolLinks(protocol)",
@@ -1948,18 +1688,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Metadata",
         "path": "/Metadata",
@@ -1969,26 +1706,23 @@
             "displayName": "Name",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "itemid",
             "displayName": "Item ID",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Items(:id)/Metadata",
         "path": "/Items(:id)/Metadata",
         "params": [
@@ -1997,19 +1731,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Items(:id)/Metadata",
         "path": "/Items(:id)/Metadata",
         "params": [
@@ -2018,19 +1749,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Metadata(:metadataId)",
         "path": "/Metadata(:metadataId)",
@@ -2040,10 +1768,10 @@
             "displayName": "Meta Data ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata(:metadataId)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(:metadataId)"
       },
       {
         "httpMethod": "PUT",
@@ -2051,22 +1779,15 @@
           "t": "patch",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Metadata",
         "path": "/Metadata",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Items(:id)/Metadata(:metadataId)",
         "path": "/Items(:id)/Metadata(:metadataId)",
@@ -2076,25 +1797,22 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":metadataId",
             "displayName": "Meta Data ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Metadata(name=:name,itemid=:itemid)",
         "path": "/Metadata(name=:name,itemid=:itemid)",
@@ -2104,39 +1822,32 @@
             "displayName": "Name",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":itemid",
             "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Queues",
         "path": "/Queues",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Queues(:id)",
         "path": "/Queues(:id)",
@@ -2146,18 +1857,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Queues(:qid)/Entries(:eid)",
         "path": "/Queues(:qid)/Entries(:eid)",
@@ -2167,25 +1875,22 @@
             "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":eid",
             "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Queues(:id)/Entries",
         "path": "/Queues(:id)/Entries",
@@ -2195,18 +1900,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Entries"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Entries"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "path": "/Queues(:id)/Receive",
         "params": [
@@ -2215,19 +1917,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
         "displayName": "/Queues(:id)/Receive",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Receive"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Receive"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Queues(:id)/Complete",
         "path": "/Queues(:id)/Complete",
@@ -2237,10 +1936,10 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:id)/Complete"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Complete"
       },
       {
         "httpMethod": "PUT",
@@ -2248,9 +1947,6 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues",
           "t": "patch"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Queues(:qid)/Entries(:eid)",
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
@@ -2259,26 +1955,23 @@
             "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":eid",
             "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Queues(:qid)/Entries(:eid)",
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
@@ -2287,53 +1980,42 @@
             "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":eid",
             "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Sessions",
         "path": "/Sessions",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Sessions",
         "path": "/Sessions",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Sessions/Login",
         "path": "/Sessions/Login",
@@ -2343,39 +2025,32 @@
             "displayName": "Authentication Method",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "authcomparison",
             "displayName": "Authentication Comparison",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Sessions/Login"
+        "url": "https://octoblu.sf-api.com/sf/v3/Sessions/Login"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares",
         "path": "/Shares",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)",
         "path": "/Shares(:id)",
@@ -2385,18 +2060,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)/Recipients",
         "path": "/Shares(:id)/Recipients",
@@ -2406,18 +2078,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Recipients"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Recipients"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)/Items",
         "path": "/Shares(:id)/Items",
@@ -2427,18 +2096,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Items"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Items"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:shareid)/Items(:itemid)",
         "path": "/Shares(:shareid)/Items(:itemid)",
@@ -2448,25 +2114,22 @@
             "displayName": "Share ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":itemid",
             "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)/Download",
         "path": "/Shares(:id)/Download",
@@ -2476,50 +2139,47 @@
             "displayName": "Share ID",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "Name",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "Email",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "Company",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "redirect",
             "displayName": "Redirect",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Download"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Download"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares",
         "path": "/Shares",
@@ -2529,17 +2189,17 @@
             "displayName": "Notify",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "share",
             "displayName": "Share",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares"
       },
       {
         "httpMethod": "PUT",
@@ -2547,9 +2207,6 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares",
           "t": "patch"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Shares(:id)",
         "path": "/Shares(:id)",
         "params": [
@@ -2558,19 +2215,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Shares(:id)",
         "path": "/Shares(:id)",
         "params": [
@@ -2579,18 +2233,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)/Alias",
         "path": "/Shares(:id)/Alias",
@@ -2600,32 +2251,29 @@
             "displayName": "Email",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Alias"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Alias"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares/Send",
         "path": "/Shares/Send",
@@ -2634,30 +2282,27 @@
             "name": "Items",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": "Emails",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": "Subject",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares/Send"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares/Send"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares/Request",
         "path": "/Shares/Request",
@@ -2667,37 +2312,34 @@
             "displayName": "Folder ID",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": "FolderPath",
             "displayName": "Folder Path",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "Emails",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": "Subject",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares/Request"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares/Request"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Shares(:id)/Upload",
         "path": "/Shares(:id)/Upload",
@@ -2707,151 +2349,148 @@
             "displayName": "Method",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "raw",
             "displayName": "Raw",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "fileName",
             "displayName": "File Name",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "fileSize",
             "displayName": "File Size",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "batchId",
             "displayName": "Batch ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "batchLast",
             "displayName": "Batch Last",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "canResume",
             "displayName": "Can Resume",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "startOver",
             "displayName": "Start Over",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "unzip",
             "displayName": "Unzip",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "tool",
             "displayName": "Tool",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "overwrite",
             "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "title",
             "displayName": "Title",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "details",
             "displayName": "Details",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "isSend",
             "displayName": "Is Send",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "sendGuid",
             "displayName": "Send GUID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "opid",
             "displayName": "OPID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "threadCount",
             "displayName": "Thread Count",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "responseFormat",
             "displayName": "Response Format",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Shares(:id)/Upload"
+        "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)/Upload"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/StorageCenters(:id)",
         "path": "/StorageCenters(:id)",
@@ -2861,10 +2500,10 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "PUT",
@@ -2872,9 +2511,6 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
           "t": "patch"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/StorageCenters(:id)",
         "path": "/StorageCenters(:id)",
         "params": [
@@ -2883,19 +2519,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/StorageCenters(:id)",
         "path": "/StorageCenters(:id)",
         "params": [
@@ -2904,19 +2537,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/StorageCenters(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:id)/StorageCenters",
         "path": "/Zones(:id)/StorageCenters",
         "params": [
@@ -2925,19 +2555,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:id)/StorageCenters",
         "path": "/Zones(:id)/StorageCenters",
         "params": [
@@ -2946,19 +2573,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:zid)/StorageCenters(:scid)",
         "path": "/Zones(:zid)/StorageCenters(:scid)",
@@ -2968,25 +2592,22 @@
             "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":scid",
             "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:zid)/StorageCenter(:scid)",
         "path": "/Zones(:zid)/StorageCenter(:scid)",
@@ -2996,26 +2617,23 @@
             "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":scid",
             "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
@@ -3024,26 +2642,23 @@
             "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":scid",
             "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
@@ -3052,25 +2667,22 @@
             "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":scid",
             "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
@@ -3080,32 +2692,29 @@
             "displayName": "Metadata Name",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":zid",
             "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           },
           {
             "name": ":scid",
             "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)",
         "path": "/Users(:id)",
@@ -3115,25 +2724,22 @@
             "displayName": "Email Address",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users",
         "path": "/Users",
@@ -3143,39 +2749,36 @@
             "displayName": "Push Creator Default Settings",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "addshared",
             "displayName": "Add Shared",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "ifNecessary",
             "displayName": "If Necessary",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/AccountUser",
         "path": "/Users/AccountUser",
@@ -3185,40 +2788,37 @@
             "displayName": "Push Creator Default Settings",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "addshared",
             "displayName": "Add Shared",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": "ifNecessary",
             "displayName": "If Necessary",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AccountUser"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/AccountUser"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)",
         "path": "/Users(:id)",
@@ -3228,19 +2828,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/Roles",
         "path": "/Users(:id)/Roles",
@@ -3250,17 +2847,17 @@
             "displayName": "Parent ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Roles"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
         "httpMethod": "PUT",
@@ -3268,9 +2865,6 @@
           "t": "put",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Users(:id)/Roles",
         "path": "/Users(:id)/Roles",
         "params": [
@@ -3279,26 +2873,23 @@
             "displayName": "Parent ID",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Roles"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/AccountUser(:id)",
         "path": "/Users/AccountUser(:id)",
@@ -3308,18 +2899,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AccountUser(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/AccountUser(:id)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/HomeFolder",
         "path": "/Users(:id)/HomeFolder",
@@ -3329,18 +2917,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/HomeFolder"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/HomeFolder"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/Preferences",
         "path": "/Users(:id)/Preferences",
@@ -3350,18 +2935,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Preferences"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Preferences"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/Security",
         "path": "/Users(:id)/Security",
@@ -3371,18 +2953,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Security"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Security"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/Security",
         "path": "/Users(:id)/Security",
@@ -3392,18 +2971,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/Security"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Security"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/ResetPassword",
         "path": "/Users(:id)/ResetPassword",
@@ -3413,32 +2989,29 @@
             "displayName": "Properties",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/ResetPassword"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/ResetPassword"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)/ResendWelcome",
         "path": "/Users(:id)/ResendWelcome",
@@ -3448,18 +3021,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users(:id)",
         "path": "/Users(:id)",
@@ -3469,81 +3039,62 @@
             "displayName": "Completely",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/AllSharedFolders",
         "path": "/Users/AllSharedFolders",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/AllSharedFolders"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/AllSharedFolders"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/TopFolders",
         "path": "/Users/TopFolders",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/TopFolders"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/TopFolders"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "path": "/Users/NetworkShareConnectors",
-        "params": [
-        ],
+        "params": [],
         "displayName": "/Users/NetworkShareConnectors",
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/NetworkShareConnectors"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/NetworkShareConnectors"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/SharepointConnectors",
         "path": "/Users/SharepointConnectors",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/SharepointConnectors"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/SharepointConnectors"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Users/Confirm",
         "path": "/Users/Confirm",
@@ -3553,32 +3104,25 @@
             "displayName": "Settings",
             "style": "body",
             "type": "string",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/Confirm"
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/Confirm"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Users/Info",
         "path": "/Users/Info",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Users/Info"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Users/Info"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones",
         "path": "/Zones",
@@ -3588,25 +3132,22 @@
             "displayName": "Services",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": "includeDisabled",
             "displayName": "Include Disabled",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:id)",
         "path": "/Zones(:id)",
@@ -3616,40 +3157,33 @@
             "displayName": "Secret",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones",
         "path": "/Zones",
-        "params": [
-        ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones"
+        "params": [],
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones"
       },
       {
         "httpMethod": "PUT",
         "doc": {
           "t": "patch",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:id)",
         "path": "/Zones(:id)",
@@ -3659,18 +3193,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:id)",
         "path": "/Zones(:id)",
@@ -3680,25 +3211,22 @@
             "displayName": "Force",
             "style": "query",
             "type": "boolean",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:id)/ResetSecret",
         "path": "/Zones(:id)/ResetSecret",
@@ -3708,19 +3236,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:id)/Metadata",
         "path": "/Zones(:id)/Metadata",
         "params": [
@@ -3729,19 +3254,16 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
       },
       {
         "httpMethod": "POST",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/Zones(:id)/Metadata",
         "path": "/Zones(:id)/Metadata",
         "params": [
@@ -3750,18 +3272,15 @@
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "/Zones(:id)/Metadata",
         "path": "/Zones(:id)/Metadata",
@@ -3771,17 +3290,17 @@
             "displayName": "Name",
             "style": "query",
             "type": "string",
-            "required": "false"
+            "required": true
           },
           {
             "name": ":id",
             "displayName": "ID",
             "style": "url",
             "type": "string",
-            "required": "true"
+            "required": true
           }
         ],
-        "url": "https://octobluServerAdmin.sf-api.com/sf/v3/Zones(:id)/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
       }
     ]
   }

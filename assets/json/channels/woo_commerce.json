@@ -6,7 +6,7 @@
     "resources": [
       {
         "path": "/",
-        "displayName": "/",
+        "displayName": "Retrieve a set of store information",
         "authentication": {
           "required": "true"
         },
@@ -18,7 +18,7 @@
       },
       {
         "path": "/coupons",
-        "displayName": "/coupons",
+        "displayName": "Retrieve a list of coupons",
         "authentication": {
           "required": "true"
         },
@@ -36,7 +36,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/coupons/count",
+        "displayName": "Retrieve a count of all coupons",
         "path": "/coupons/count",
         "url": "http://:site_url/wc-api/v1/orders/coupons/count"
       },
@@ -48,8 +48,16 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/coupons/{id}",
-        "path": "/coupons/{id}",
+        "displayName": "/coupons/#{id}",
+        "path": "/coupons/#{id}",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
         "url": "http://:site_url/wc-api/v1/orders/coupons/{id}"
       },
       {
@@ -60,8 +68,16 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/coupons/code/{code}",
+        "displayName": "Retrieve a single coupon specified by it’s ID or code",
         "path": "/coupons/code/{code}",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "code",
+            "required": true
+          }
+        ],
         "url": "http://:site_url/wc-api/v1/orders/coupons/code/{code}"
       },
       {
@@ -72,7 +88,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers",
+        "displayName": "Retrieve a list of customers",
         "path": "/customers",
         "url": "http://:site_url/wc-api/v1/orders/customers"
       },
@@ -84,7 +100,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/count",
+        "displayName": "Retrieve a count of all customers",
         "path": "/customers/count",
         "url": "http://:site_url/wc-api/v1/orders/customers/count"
       },
@@ -96,8 +112,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/{id}",
-        "path": "/customers/{id}",
+        "displayName": "Retrieve a single customer specified by their ID",
+        "path": "/customers/#{id}",
         "url": "http://:site_url/wc-api/v1/orders/customers/{id}"
       },
       {
@@ -108,7 +124,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/customers/#{id}/orders",
+        "displayName": "Retrieve a list of orders for a customer specified by their ID",
         "path": "/customers/#{id}/orders",
         "url": "http://:site_url/wc-api/v1/orders/customers/#{id}/orders"
       },
@@ -120,7 +136,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orders",
+        "displayName": "Retrieve a list of orders",
         "path": "/orders",
         "url": "http://:site_url/wc-api/v1/orders/orders"
       },
@@ -132,7 +148,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orders/count",
+        "displayName": "Retrieve a count of all orders",
         "path": "/orders/count",
         "url": "http://:site_url/wc-api/v1/orders/orders/count"
       },
@@ -144,8 +160,16 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orders/{id}",
-        "path": "/orders/{id}",
+        "displayName": "/orders/#{id}",
+        "path": "/orders/#{id}",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
         "url": "http://:site_url/wc-api/v1/orders/orders/{id}"
       },
       {
@@ -156,10 +180,15 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orders/{id}",
-        "path": "/orders/{id}",
+        "displayName": "Update the status for an order specified by it’s ID",
+        "path": "/orders/#{id}?status",
         "params": [
           {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          },{
             "name": "status",
             "style": "body",
             "type": "string",
@@ -177,8 +206,16 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/orders/{id}/notes",
-        "path": "/orders/{id}/notes",
+        "displayName": "Retrieve a list of notes for an order specified by it’s ID",
+        "path": "/orders/#{id}/notes",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
         "url": "http://:site_url/wc-api/v1/orders/orders/{id}/notes"
       },
       {
@@ -189,7 +226,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/products",
+        "displayName": "Retrieve a list of products",
         "path": "/products",
         "url": "http://:site_url/wc-api/v1/orders/products"
       },
@@ -201,7 +238,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/products/count",
+        "displayName": "Retrieve a count of all products",
         "path": "/products/count",
         "url": "http://:site_url/wc-api/v1/orders/products/count"
       },
@@ -213,8 +250,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/products/{id}",
-        "path": "/products/{id}",
+        "displayName": "Retrieve a product specified by it’s ID",
+        "path": "/products/#{id}",
         "url": "http://:site_url/wc-api/v1/orders/products/{id}"
       },
       {
@@ -225,8 +262,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/products/{id}/reviews",
-        "path": "/products/{id}/reviews",
+        "displayName": "Retrieve a list of reviews for a product specified by it’s ID",
+        "path": "/products/#{id}/reviews",
         "url": "http://:site_url/wc-api/v1/orders/products/{id}/reviews"
       },
       {
@@ -237,7 +274,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/reports",
+        "displayName": "Retrieve a simple list of available reports",
         "path": "/reports",
         "url": "http://:site_url/wc-api/v1/orders/reports"
       },
@@ -249,7 +286,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/reports/sales",
+        "displayName": "Retrieve a sales report",
         "path": "/reports/sales",
         "url": "http://:site_url/wc-api/v1/orders/reports/sales"
       }

@@ -29,8 +29,30 @@
     "base": "http://vimeo.com/api/v2",
     "resources": [
       {
+        "path": "/categories",
+        "displayName": "Get a list of the top level categories",
+        "doc": {
+          "url": "https://api.vimeo.com/categories"
+        },
+        "httpMethod": "Get",
+        "curl": "curl X",
+        "params": [
+          {
+            "displayName": "The page number to show",
+            "style": "query",
+            "type": "integer",
+            "name": "page"
+          },{
+            "displayName": "Number of items to show on each page",
+            "style": "query",
+            "type": "integer",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://api.vimeo.com/categories"
+      },{
         "path": "/categories/{category}",
-        "displayName": "/categories/{category}",
+        "displayName": "Get a category",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}"
         },
@@ -48,35 +70,39 @@
       },
       {
         "path": "/categories/{category}/channels",
-        "displayName": "/categories/{category}/channels",
+        "displayName": "Get a list of Channels related to a category.",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}/channels"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [
-          {
-            "style": "url",
+          {"style": "url",
             "type": "string",
             "name": "category",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -86,7 +112,7 @@
       },
       {
         "path": "/categories/{category}/groups",
-        "displayName": "/categories/{category}/groups",
+        "displayName": "Get a list of Groups related to a category",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}/groups"
         },
@@ -98,22 +124,27 @@
             "name": "category",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -122,7 +153,7 @@
       },
       {
         "path": "/categories/{category}/users",
-        "displayName": "/categories/{category}/users",
+        "displayName": "Get a list of users related to a category",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}/users"
         },
@@ -135,22 +166,27 @@
             "name": "category",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -160,7 +196,7 @@
       },
       {
         "path": "/categories/{category}/videos",
-        "displayName": "/categories/{category}/videos",
+        "displayName": "Get a list of videos related to a category",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}/videos"
         },
@@ -172,30 +208,37 @@
             "name": "category",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -204,7 +247,7 @@
       },
       {
         "path": "/conversation/:conversation_id",
-        "displayName": "/conversation/:conversation_id",
+        "displayName": "Check if a category contains a video",
         "doc": {
           "url": "https://api.vimeo.com/categories/{category}/videos/{video_id}"
         },
@@ -227,7 +270,7 @@
       },
       {
         "path": "/channels",
-        "displayName": "/channels",
+        "displayName": "Get a list of all Channels",
         "doc": {
           "url": "https://api.vimeo.com/channels"
         },
@@ -235,26 +278,32 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -264,7 +313,7 @@
       },
       {
         "path": "/channels",
-        "displayName": "/channels",
+        "displayName": "Create a new Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels"
         },
@@ -272,16 +321,19 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The name of the new Channel",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The description of the new Channel",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The privacy level of the new Channel",
             "style": "body",
             "type": "string",
             "name": "privacy",
@@ -292,7 +344,7 @@
       },
       {
         "path": "/channels/{channel_id}",
-        "displayName": "/channels/{channel_id}",
+        "displayName": "Get a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}"
         },
@@ -310,7 +362,7 @@
       },
       {
         "path": "/channels/{channel_id}",
-        "displayName": "/channels/{channel_id}",
+        "displayName": "Edit a Channel's information",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}"
         },
@@ -323,16 +375,19 @@
             "name": "channel_id",
             "required": true
           },{
+            "displayName": "The Channel's new name",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The Channel's new description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The Channel's new privacy level",
             "style": "body",
             "type": "string",
             "name": "privacy",
@@ -343,7 +398,7 @@
       },
       {
         "path": "/channels/{channel_id}",
-        "displayName": "/channels/{channel_id}",
+        "displayName": "Delete a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}"
         },
@@ -361,7 +416,7 @@
       },
       {
         "path": "/channels/{channel_id}/users",
-        "displayName": "/channels/{channel_id}/users",
+        "displayName": "Get a list of users who follow a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}/users"
         },
@@ -374,26 +429,32 @@
             "name": "channel_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -403,7 +464,7 @@
       },
       {
         "path": "/channels/{channel_id}/videos",
-        "displayName": "/channels/{channel_id}/videos",
+        "displayName": "Get a list of videos in a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}/videos"
         },
@@ -416,30 +477,37 @@
             "name": "channel_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -449,7 +517,7 @@
       },
       {
         "path": "/channels/{channel_id}/videos/{video_id}",
-        "displayName": "/channels/{channel_id}/videos/{video_id}",
+        "displayName": "Check if this Channel contains a video",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}/videos/{video_id}"
         },
@@ -472,7 +540,7 @@
       },
       {
         "path": "/channels/{channel_id}/videos/{video_id}",
-        "displayName": "/channels/{channel_id}/videos/{video_id}",
+        "displayName": "Add a video to a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}/videos/{video_id}"
         },
@@ -493,7 +561,7 @@
       },
       {
         "path": "/channels/{channel_id}/videos/{video_id}",
-        "displayName": "/channels/{channel_id}/videos/{video_id}",
+        "displayName": "Remove a video from a Channel",
         "doc": {
           "url": "https://api.vimeo.com/channels/{channel_id}/videos/{video_id}"
         },
@@ -516,7 +584,7 @@
       },
       {
         "path": "/groups",
-        "displayName": "/groups",
+        "displayName": "Get a list of all Groups",
         "doc": {
           "url": "https://api.vimeo.com/groups"
         },
@@ -524,26 +592,32 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -553,7 +627,7 @@
       },
       {
         "path": "/groups",
-        "displayName": "/groups",
+        "displayName": "Create a new Group",
         "doc": {
           "url": "https://api.vimeo.com/groups"
         },
@@ -576,7 +650,7 @@
       },
       {
         "path": "/groups/{group_id}",
-        "displayName": "/groups/{group_id}",
+        "displayName": "Get a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}"
         },
@@ -594,7 +668,7 @@
       },
       {
         "path": "/groups/{group_id}",
-        "displayName": "/groups/{group_id}",
+        "displayName": "Delete a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}"
         },
@@ -612,7 +686,7 @@
       },
       {
         "path": "/groups/{group_id}/users",
-        "displayName": "/groups/{group_id}/users",
+        "displayName": "Get a list of users that joined a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}/users"
         },
@@ -625,26 +699,32 @@
             "name": "group_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -654,7 +734,7 @@
       },
       {
         "path": "/groups/{group_id}/videos",
-        "displayName": "/groups/{group_id}/videos",
+        "displayName": "Get a list of videos in a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}/videos"
         },
@@ -667,30 +747,37 @@
             "name": "group_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -700,7 +787,7 @@
       },
       {
         "path": "/groups/{group_id}/videos/{video_id}",
-        "displayName": "/groups/{group_id}/videos/{video_id}",
+        "displayName": "Check if a Group has a video",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}/videos/{video_id}"
         },
@@ -723,7 +810,7 @@
       },
       {
         "path": "/groups/{group_id}/videos/{video_id}",
-        "displayName": "/groups/{group_id}/videos/{video_id}",
+        "displayName": "Add a video to a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}/videos/{video_id}"
         },
@@ -746,7 +833,7 @@
       },
       {
         "path": "/groups/{group_id}/videos/{video_id}",
-        "displayName": "/groups/{group_id}/videos/{video_id}",
+        "displayName": "Remove a video from a Group",
         "doc": {
           "url": "https://api.vimeo.com/groups/{group_id}/videos/{video_id}"
         },
@@ -767,7 +854,7 @@
       },
       {
         "path": "/me",
-        "displayName": "/me",
+        "displayName": "Get a user",
         "doc": {
           "url": "https://api.vimeo.com/me"
         },
@@ -778,7 +865,7 @@
       },
       {
         "path": "/me",
-        "displayName": "/me",
+        "displayName": "Edit a single user",
         "doc": {
           "url": "https://api.vimeo.com/me"
         },
@@ -786,16 +873,19 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The user's display name",
             "style": "body",
             "type": "string",
             "name": "name"
           },
           {
+            "displayName": "The user's location",
             "style": "body",
             "type": "string",
             "name": "location"
           },
           {
+            "displayName": "The user's bio",
             "style": "body",
             "type": "string",
             "name": "bio"
@@ -805,7 +895,7 @@
       },
       {
         "path": "/me/albums",
-        "displayName": "/me/albums",
+        "displayName": "Get a list of a user's Albums",
         "doc": {
           "url": "https://api.vimeo.com/me/albums"
         },
@@ -813,22 +903,27 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -838,7 +933,7 @@
       },
       {
         "path": "/me/albums",
-        "displayName": "/me/albums",
+        "displayName": "Create an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums"
         },
@@ -846,24 +941,29 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The Album title",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The Album description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The Album's privacy level",
             "style": "body",
             "type": "string",
             "name": "privacy"
           },{
+            "displayName": "Required if privacy=password. The Album's password",
             "style": "body",
             "type": "string",
             "name": "password"
           },{
+            "displayName": "The default sort order of an Album's videos",
             "style": "body",
             "type": "string",
             "name": "sort"
@@ -873,7 +973,7 @@
       },
       {
         "path": "/me/albums/{album_id}",
-        "displayName": "/me/albums/{album_id}",
+        "displayName": "Get info on an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}"
         },
@@ -889,7 +989,7 @@
       },
       {
         "path": "/me/albums/{album_id}",
-        "displayName": "/me/albums/{album_id}",
+        "displayName": "Edit an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}"
         },
@@ -902,20 +1002,24 @@
             "name": "album_id",
             "required": true
           },{
+            "displayName": "The Album's new title",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The Album's new description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The Album's new privacy level",
             "style": "body",
             "type": "string",
             "name": "privacy"
           },{
+            "displayName": "The new default sort for the Album",
             "style": "body",
             "type": "string",
             "name": "sort"
@@ -925,7 +1029,7 @@
       },
       {
         "path": "/me/albums/{album_id}",
-        "displayName": "/me/albums/{album_id}",
+        "displayName": "Delete an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}"
         },
@@ -943,7 +1047,7 @@
       },
       {
         "path": "/me/albums/{album_id}/videos",
-        "displayName": "/me/albums/{album_id}/videos",
+        "displayName": "Get the list of videos in an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}/videos"
         },
@@ -956,30 +1060,37 @@
             "name": "album_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -989,7 +1100,7 @@
       },
       {
         "path": "/me/albums/{album_id}/videos/{video_id}",
-        "displayName": "/me/albums/{album_id}/videos/{video_id}",
+        "displayName": "Check if an Album contains a video",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}/videos/{video_id}"
         },
@@ -1012,7 +1123,7 @@
       },
       {
         "path": "/me/albums/{album_id}/videos/{video_id}",
-        "displayName": "/me/albums/{album_id}/videos/{video_id}",
+        "displayName": "Add a video to an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}/videos/{video_id}"
         },
@@ -1035,7 +1146,7 @@
       },
       {
         "path": "/me/albums/{album_id}/videos/{video_id}",
-        "displayName": "/me/albums/{album_id}/videos/{video_id}",
+        "displayName": "Remove a video from an Album",
         "doc": {
           "url": "https://api.vimeo.com/me/albums/{album_id}/videos/{video_id}"
         },
@@ -1058,7 +1169,7 @@
       },
       {
         "path": "/me/appearances",
-        "displayName": "/me/appearances",
+        "displayName": "Get all videos that a user appears in",
         "doc": {
           "url": "https://api.vimeo.com/me/appearances"
         },
@@ -1066,30 +1177,37 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1099,7 +1217,7 @@
       },
       {
         "path": "/me/channels",
-        "displayName": "/me/channels",
+        "displayName": "Get a list of the Channels a user follows",
         "doc": {
           "url": "https://api.vimeo.com/me/channels"
         },
@@ -1107,26 +1225,32 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1136,7 +1260,7 @@
       },
       {
         "path": "/me/channels/{channel_id}",
-        "displayName": "/me/channels/{channel_id}",
+        "displayName": "Check if a user follows a Channel",
         "doc": {
           "url": "https://api.vimeo.com/me/channels/{channel_id}"
         },
@@ -1154,7 +1278,7 @@
       },
       {
         "path": "/me/channels/{channel_id}",
-        "displayName": "/me/channels/{channel_id}",
+        "displayName": "Subscribe to a Channel",
         "doc": {
           "url": "https://api.vimeo.com/me/channels/{channel_id}"
         },
@@ -1170,7 +1294,7 @@
       },
       {
         "path": "/me/channels/{channel_id}",
-        "displayName": "/me/channels/{channel_id}",
+        "displayName": "Unsubscribe from a Channel",
         "doc": {
           "url": "https://api.vimeo.com/me/channels/{channel_id}"
         },
@@ -1188,7 +1312,7 @@
       },
       {
         "path": "/me/groups",
-        "displayName": "/me/groups",
+        "displayName": "Get a list of the Groups a user has joined",
         "doc": {
           "url": "https://api.vimeo.com/me/groups"
         },
@@ -1196,26 +1320,32 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1225,7 +1355,7 @@
       },
       {
         "path": "/me/groups/{group_id}",
-        "displayName": "/me/groups/{group_id}",
+        "displayName": "Check if a user has joined a Group?",
         "doc": {
           "url": "https://api.vimeo.com/me/groups/{group_id}"
         },
@@ -1243,7 +1373,7 @@
       },
       {
         "path": "/me/groups/{group_id}",
-        "displayName": "/me/groups/{group_id}",
+        "displayName": "Join a Group",
         "doc": {
           "url": "https://api.vimeo.com/me/groups/{group_id}"
         },
@@ -1261,7 +1391,7 @@
       },
       {
         "path": "/me/groups/{group_id}",
-        "displayName": "/me/groups/{group_id}",
+        "displayName": "Leave a Group",
         "doc": {
           "url": "https://api.vimeo.com/me/groups/{group_id}"
         },
@@ -1279,7 +1409,7 @@
       },
       {
         "path": "/me/feed",
-        "displayName": "/me/feed",
+        "displayName": "Get a list of the videos in your feed",
         "doc": {
           "url": "https://api.vimeo.com/me/feed"
         },
@@ -1287,16 +1417,19 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },
           {
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "body",
             "type": "integer",
             "name": "per_page"
           },
           {
+            "displayName": "This is necessary for proper pagination. Do not provide this value yourself, just use the pagination links provided in the feed response",
             "style": "query",
             "type": "string",
             "name": "offset",
@@ -1307,7 +1440,7 @@
       },
       {
         "path": "/me/followers",
-        "displayName": "/me/followers",
+        "displayName": "Get a list of the user's followers",
         "doc": {
           "url": "https://api.vimeo.com/me/followers"
         },
@@ -1315,22 +1448,27 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1340,7 +1478,7 @@
       },
       {
         "path": "/me/following",
-        "displayName": "/me/following",
+        "displayName": "Get a list of the users that a user is following",
         "doc": {
           "url": "https://api.vimeo.com/me/following"
         },
@@ -1348,26 +1486,32 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -1377,7 +1521,7 @@
       },
       {
         "path": "/me/following/{follow_user_id}",
-        "displayName": "/me/following/{follow_user_id}",
+        "displayName": "Check if a user follows another user",
         "doc": {
           "url": "https://api.vimeo.com/me/following/{follow_user_id}"
         },
@@ -1395,7 +1539,7 @@
       },
       {
         "path": "/me/following/{follow_user_id}",
-        "displayName": "/me/following/{follow_user_id}",
+        "displayName": "Follow a user",
         "doc": {
           "url": "https://api.vimeo.com/me/following/{follow_user_id}"
         },
@@ -1413,7 +1557,7 @@
       },
       {
         "path": "/me/following/{follow_user_id}",
-        "displayName": "/me/following/{follow_user_id}",
+        "displayName": "Unfollow a user",
         "doc": {
           "url": "https://api.vimeo.com/me/following/{follow_user_id}"
         },
@@ -1431,7 +1575,7 @@
       },
       {
         "path": "/me/likes",
-        "displayName": "/me/likes",
+        "displayName": "Get a list of videos that a user likes",
         "doc": {
           "url": "https://api.vimeo.com/me/likes"
         },
@@ -1439,30 +1583,37 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
@@ -1472,7 +1623,7 @@
       },
       {
         "path": "/me/likes/{video_id}",
-        "displayName": "/me/likes/{video_id}",
+        "displayName": "Check if a user likes a video",
         "doc": {
           "url": "https://api.vimeo.com/me/likes/{video_id}"
         },
@@ -1490,7 +1641,7 @@
       },
       {
         "path": "/me/likes/{video_id}",
-        "displayName": "/me/likes/{video_id}",
+        "displayName": "Like a video",
         "doc": {
           "url": "https://api.vimeo.com/me/likes/{video_id}"
         },
@@ -1508,7 +1659,7 @@
       },
       {
         "path": "/me/likes/{video_id}",
-        "displayName": "/me/likes/{video_id}",
+        "displayName": "Unlike a video",
         "doc": {
           "url": "https://api.vimeo.com/me/likes/{video_id}"
         },
@@ -1524,7 +1675,7 @@
       },
       {
         "path": "/me/pictures",
-        "displayName": "/me/pictures",
+        "displayName": "Get a list of this user's portrait images",
         "doc": {
           "url": "https://api.vimeo.com/me/pictures"
         },
@@ -1535,7 +1686,7 @@
       },
       {
         "path": "/me/pictures",
-        "displayName": "/me/pictures",
+        "displayName": "Create a new picture resource",
         "doc": {
           "url": "https://api.vimeo.com/me/pictures"
         },
@@ -1546,7 +1697,7 @@
       },
       {
         "path": "/me/pictures/{portraitset_id}",
-        "displayName": "/me/pictures/{portraitset_id}",
+        "displayName": "Check if a user has a portrait",
         "doc": {
           "url": "https://api.vimeo.com/me/pictures/{portraitset_id}"
         },
@@ -1564,7 +1715,7 @@
       },
       {
         "path": "/me/pictures/{portraitset_id}",
-        "displayName": "/me/pictures/{portraitset_id}",
+        "displayName": "Edit a portrait",
         "doc": {
           "url": "https://api.vimeo.com/me/pictures/{portraitset_id}"
         },
@@ -1578,6 +1729,7 @@
             "required": true
           },
           {
+            "displayName": "Set a picture as your active portrait",
             "style": "body",
             "type": "boolean",
             "name": "active",
@@ -1588,7 +1740,7 @@
       },
       {
         "path": "/me/portfolios",
-        "displayName": "/me/portfolios",
+        "displayName": "Get a list of Portfolios created by a user",
         "doc": {
           "url": "https://api.podio.com/app_store/{type}/author/{user_id}/"
         },
@@ -1596,22 +1748,27 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1621,7 +1778,7 @@
       },
       {
         "path": "/me/portfolios/{portfolio_id}",
-        "displayName": "/me/portfolios/{portfolio_id}",
+        "displayName": "Get a Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/me/portfolios/{portfolio_id}"
         },
@@ -1639,7 +1796,7 @@
       },
       {
         "path": "/me/portfolios/{portfolio_id}/videos",
-        "displayName": "/me/portfolios/{portfolio_id}/videos",
+        "displayName": "Get the videos in this Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/me/portfolios/{portfolio_id}/videos"
         },
@@ -1653,22 +1810,22 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
-            "style": "query",
-            "type": "string",
-            "name": "query"
-          },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1678,7 +1835,7 @@
       },
       {
         "path": "/me/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/me/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Check if a Portfolio contains a video",
         "doc": {
           "url": "https://api.vimeo.com/me/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -1701,7 +1858,7 @@
       },
       {
         "path": "/me/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/me/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Add a video to the Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/me/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -1722,7 +1879,7 @@
       },
       {
         "path": "/me/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/me/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Remove a video from the Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/me/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -1745,7 +1902,7 @@
       },
       {
         "path": "/me/presets",
-        "displayName": "/me/presets",
+        "displayName": "Get all presets created by the authenticated user",
         "doc": {
           "url": "https://api.vimeo.com/me/presets"
         },
@@ -1753,16 +1910,19 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },
           {
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "body",
             "type": "integer",
             "name": "per_page"
           },
           {
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
@@ -1772,7 +1932,7 @@
       },
       {
         "path": "/me/presets/{preset_id}",
-        "displayName": "/me/presets/{preset_id}",
+        "displayName": "Get a preset",
         "doc": {
           "url": "https://api.vimeo.com/me/presets/{preset_id}"
         },
@@ -1790,7 +1950,7 @@
       },
       {
         "path": "/me/presets/{preset_id}",
-        "displayName": "/me/presets/{preset_id}",
+        "displayName": "Edit a preset",
         "doc": {
           "url": "https://api.vimeo.com/me/presets/{preset_id}"
         },
@@ -1802,6 +1962,7 @@
             "name": "preset_id",
             "required": true
           },{
+            "displayName": "Disable the outro",
             "style": "body",
             "type": "string",
             "name": "outro",
@@ -1811,7 +1972,7 @@
       },
       {
         "path": "/me/presets/{preset_id}/videos",
-        "displayName": "/me/presets/{preset_id}/videos",
+        "displayName": "Get videos that have the provided preset",
         "doc": {
           "url": "https://api.vimeo.com/me/presets/{preset_id}/videos"
         },
@@ -1829,7 +1990,7 @@
       },
       {
         "path": "/me/videos",
-        "displayName": "/me/videos",
+        "displayName": "Get a list of videos uploaded by a user",
         "doc": {
           "url": "https://api.vimeo.com/me/videos"
         },
@@ -1837,34 +1998,42 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Default true. Choose between only videos that are playable, and only videos that are not playable.",
             "style": "query",
             "type": "string",
             "name": "filter_playable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1874,7 +2043,7 @@
       },
       {
         "path": "/me/videos",
-        "displayName": "/me/videos",
+        "displayName": "Begin the video upload process",
         "doc": {
           "url": "https://api.vimeo.com/me/videos"
         },
@@ -1882,16 +2051,19 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "Upload type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "The app redirect URL",
             "style": "body",
             "type": "string",
             "name": "redirect_url",
             "required": true
           },{
+            "displayName": "Immediately upgrade to 1080p on upload complete",
             "style": "body",
             "type": "string",
             "name": "upgrade_to_1080",
@@ -1902,7 +2074,7 @@
       },
       {
         "path": "/me/videos/{video_id}",
-        "displayName": "/me/videos/{video_id}",
+        "displayName": "Check if a user owns a clip",
         "doc": {
           "url": "https://api.vimeo.com/me/videos/{video_id}"
         },
@@ -1920,7 +2092,7 @@
       },
       {
         "path": "/me/watchlater",
-        "displayName": "/me/watchlater",
+        "displayName": "Get the authenticated user's Watch Later queue",
         "doc": {
           "url": "https://api.vimeo.com/me/watchlater"
         },
@@ -1928,30 +2100,37 @@
         "curl": "curl -X ",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -1961,7 +2140,7 @@
       },
       {
         "path": "/me/watchlater/{video_id}",
-        "displayName": "/me/watchlater/{video_id}",
+        "displayName": "Check if a video is in the authenticated user's Watch Later queue",
         "doc": {
           "url": "https://api.vimeo.com/me/watchlater/{video_id}"
         },
@@ -1979,25 +2158,7 @@
       },
       {
         "path": "/me/watchlater/{video_id}",
-        "displayName": "/me/watchlater/{video_id}",
-        "doc": {
-          "url": "https://api.vimeo.com/me/watchlater/{video_id}"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": "video_id",
-            "required": true
-          }
-        ],
-        "url": "https://api.vimeo.com/me/watchlater/{video_id}"
-      },
-      {
-        "path": "/me/watchlater/{video_id}",
-        "displayName": "/me/watchlater/{video_id}",
+        "displayName": "Add a video to the authenticated user's watch later list",
         "doc": {
           "url": "https://api.vimeo.com/me/watchlater/{video_id}"
         },
@@ -2015,7 +2176,7 @@
       },
       {
         "path": "/me/watchlater/{video_id}",
-        "displayName": "/me/watchlater/{video_id}",
+        "displayName": "Remove a video from your watch later list",
         "doc": {
           "url": "https://api.vimeo.com/me/watchlater/{video_id}"
         },
@@ -2033,7 +2194,7 @@
       },
       {
         "path": "/me/ondemand/pages",
-        "displayName": "/me/ondemand/pages",
+        "displayName": "Get a user's On Demand pages",
         "doc": {
           "url": "https://api.vimeo.com/me/ondemand/pages"
         },
@@ -2041,14 +2202,17 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
@@ -2058,7 +2222,7 @@
       },
       {
         "path": "/me/ondemand/pages",
-        "displayName": "/me/ondemand/pages",
+        "displayName": "Create an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/me/ondemand/pages"
         },
@@ -2066,71 +2230,87 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The On Demand page name",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The On Demand page description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The On Demand page type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "One or more ratings, comma separated or JSON array depending on your request format",
             "style": "body",
             "type": "string",
             "name": "content_rating",
             "required": true
           },
           {
+            "displayName": "The custom string to use in this On Demand page's Vimeo URL",
             "style": "query",
             "type": "string",
             "name": "link"
           },{
+            "displayName": "The On Demand page's custom domain",
             "style": "query",
             "type": "string",
             "name": "domain_link"
           },{
+            "displayName": "Required if buy.active is false",
             "style": "query",
             "type": "boolean",
             "name": "rent.active"
           },{
+            "displayName": "Required if rent.active is true. If this On Demand page is a `film`, this is the price to rent the film. If `series`, this is the price to rent the entire collection",
             "style": "query",
             "type": "currency",
             "name": "rent.price.USD"
           },{
+            "displayName": "Required if rent.active is true",
             "style": "query",
             "type": "string",
             "name": "rent.period"
           },{
+            "displayName": "Required if rent.active is false",
             "style": "query",
             "type": "boolean",
             "name": "buy.active"
           },{
+            "displayName": "Required if buy.active is true. If this On Demand page is a `film`, this is the price to purchase the film. If `series`, this is the price to purchase the entire collection",
             "style": "query",
             "type": "currency",
             "name": "buy.price.USD"
           },{
+            "displayName": "",
             "style": "query",
             "type": "boolean",
             "name": "episodes.rent.active"
           },{
+            "displayName": "Required if episodes.rent.active is true. Only applicable if this On Demand page is a series. This is the default price for each individual episode",
             "style": "query",
             "type": "currency",
             "name": "episodes.rent.price.USD"
           },{
+            "displayName": "Required if episodes.rent.active is true",
             "style": "query",
             "type": "string",
             "name": "episodes.rent.period"
           },{
+            "displayName": "",
             "style": "query",
             "type": "boolean",
             "name": "episodes.buy.active"
           },{
+            "displayName": "Required if episodes.buy.active is true",
             "style": "query",
             "type": "currency",
             "name": "episodes.buy.price.USD"
@@ -2140,7 +2320,7 @@
       },
       {
         "path": "/me/ondemand/library",
-        "displayName": "/me/ondemand/library",
+        "displayName": "Get a users On Demand purchases and rentals",
         "doc": {
           "url": "https://api.vimeo.com/me/ondemand/library"
         },
@@ -2148,12 +2328,14 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "Which type of On Demand videos to show. `important` will show all pages which are about to expire",
             "style": "query",
             "type": "string",
             "name": "filter",
             "required": true
           },
           {
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
@@ -2163,7 +2345,7 @@
       },
       {
         "path": "/me/ondemand/library/{ondemand_id}",
-        "displayName": "/me/ondemand/library/{ondemand_id}",
+        "displayName": "Check if an On Demand page is in your library",
         "doc": {
           "url": "https://api.vimeo.com/me/ondemand/library/{ondemand_id}"
         },
@@ -2181,7 +2363,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}",
+        "displayName": "View an existing On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}"
         },
@@ -2199,7 +2381,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}",
+        "displayName": "Edit an existing On Demand page. Currently only supports enabling preorders, or publishing the page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}"
         },
@@ -2212,15 +2394,23 @@
             "name": "ondemand_id",
             "required": true
           },{
+            "displayName": "The custom string to use in this On Demand page's Vimeo URL",
+            "style": "body",
+            "type": "boolean",
+            "name": "link"
+          },{
+            "displayName": "If set to true, you will publish the On Demand page",
             "style": "body",
             "type": "boolean",
             "name": "publish.active"
           },
           {
+            "displayName": "If set to true, you will enable preorders on the On Demand page",
             "style": "body",
             "type": "boolean",
             "name": "preorder.active"
           },{
+            "displayName": "Required if preorder.active is true. The time that the On Demand page will be published",
             "style": "body",
             "type": "boolean",
             "name": "preorder.publish_time"
@@ -2229,8 +2419,25 @@
         "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}"
       },
       {
+        "path": "/ondemand/pages/{ondemand_id}",
+        "displayName": "Delete an On Demand page. Currently only supports deleting On Demand drafts",
+        "doc": {
+          "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "ondemand_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}"
+      },{
         "path": "/ondemand/pages/{ondemand_id}/genres",
-        "displayName": "/ondemand/pages/{ondemand_id}/genres",
+        "displayName": "View an On Demand page's genres",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/genres"
         },
@@ -2248,7 +2455,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
+        "displayName": "Check whether an On Demand page has an On Demand Genre",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/genres/{genre_id}"
         },
@@ -2271,7 +2478,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
+        "displayName": "Add an On Demand genre to an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/genres/{genre_id}"
         },
@@ -2295,7 +2502,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/genres/{genre_id}",
+        "displayName": "Remove a genre from an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/genres/{genre_id}"
         },
@@ -2318,7 +2525,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/regions",
-        "displayName": "/ondemand/pages/{ondemand_id}/regions",
+        "displayName": "View an On Demand page's Regions",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/regions"
         },
@@ -2336,7 +2543,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/regions/{country}",
-        "displayName": "/ondemand/pages/{ondemand_id}/regions/{country}",
+        "displayName": "Check whether an On Demand page has a region",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/regions/{country}"
         },
@@ -2359,7 +2566,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/regions/{country}",
-        "displayName": "/ondemand/pages/{ondemand_id}/regions/{country}",
+        "displayName": "Add a region to an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/regions/{country}"
         },
@@ -2382,7 +2589,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/regions/{country}",
-        "displayName": "/ondemand/pages/{ondemand_id}/regions/{country}",
+        "displayName": "Remove a region from an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/regions/{country}"
         },
@@ -2405,7 +2612,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/pictures",
-        "displayName": "/ondemand/pages/{ondemand_id}/pictures",
+        "displayName": "Get an On Demand page's pictures",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/pictures"
         },
@@ -2423,7 +2630,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/pictures",
-        "displayName": "/ondemand/pages/{ondemand_id}/pictures",
+        "displayName": "Create a new picture resource for an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/pictures"
         },
@@ -2439,7 +2646,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/pictures/{poster_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/pictures/{poster_id}",
+        "displayName": "Modify an existing picture on an On Demand",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/pictures/{poster_id}"
         },
@@ -2463,7 +2670,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/pictures/{poster_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/pictures/{poster_id}",
+        "displayName": "Modify an existing picture on a video",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/pictures/{poster_id}"
         },
@@ -2482,6 +2689,7 @@
             "name": "poster_id",
             "required": true
           },{
+            "displayName": "Set this picture as the active picture",
             "style": "body",
             "type": "boolean",
             "name": "active",
@@ -2492,7 +2700,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/videos",
-        "displayName": "/ondemand/pages/{ondemand_id}/videos",
+        "displayName": "List all videos associated with an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/videos"
         },
@@ -2506,10 +2714,12 @@
             "required": true
           },
           {
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
@@ -2519,7 +2729,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
+        "displayName": "Check if an On Demand page contains a video",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/videos/{video_id}"
         },
@@ -2543,7 +2753,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
+        "displayName": "Add a video to an On Demand Page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/videos/{video_id}"
         },
@@ -2562,25 +2772,30 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "The type of video you are associating with the On Demand Page",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },
           {
+            "displayName": "Allow this video to be rented",
             "style": "body",
             "type": "boolean",
             "name": "rent.active"
           },{
+            "displayName": "Required if rent.active is true. The rental price of this video.",
             "style": "body",
             "type": "currency",
             "name": "rent.price.USD"
           },
           {
+            "displayName": "Allow this video to be purchased",
             "style": "body",
             "type": "boolean",
             "name": "buy.active"
           },{
+            "displayName": "Required if buy.active is true. The purchase price of this video.",
             "style": "body",
             "type": "currency",
             "name": "buy.price.USD"
@@ -2590,7 +2805,7 @@
       },
       {
         "path": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
-        "displayName": "/ondemand/pages/{ondemand_id}/videos/{video_id}",
+        "displayName": "Disconnect a Video from an On Demand Page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/pages/{ondemand_id}/videos/{video_id}"
         },
@@ -2614,7 +2829,7 @@
       },
       {
         "path": "/ondemand/genres",
-        "displayName": "/ondemand/genres",
+        "displayName": "View all On Demand Genres",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/genres"
         },
@@ -2625,7 +2840,7 @@
       },
       {
         "path": "/ondemand/genres/{genre_id}",
-        "displayName": "/ondemand/genres/{genre_id}",
+        "displayName": "View a single On Demand Genre",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/genres/{genre_id}"
         },
@@ -2643,7 +2858,7 @@
       },
       {
         "path": "/ondemand/genres/{genre_id}/pages",
-        "displayName": "/ondemand/genres/{genre_id}/pages",
+        "displayName": "View a genre's On Demand pages",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/genres/{genre_id}/pages"
         },
@@ -2657,10 +2872,12 @@
             "required": true
           },
           {
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
@@ -2670,7 +2887,7 @@
       },
       {
         "path": "/ondemand/genres/{genre_id}/pages/{ondemand_id}",
-        "displayName": "/ondemand/genres/{genre_id}/pages/{ondemand_id}",
+        "displayName": "Check whether a genre contains a single On Demand Page",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/genres/{genre_id}/pages/{ondemand_id}"
         },
@@ -2694,7 +2911,7 @@
       },
       {
         "path": "/ondemand/regions",
-        "displayName": "/ondemand/regions",
+        "displayName": "Get all On Demand Regions",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/regions"
         },
@@ -2705,7 +2922,7 @@
       },
       {
         "path": "/ondemand/regions/@country",
-        "displayName": "/ondemand/regions/@country",
+        "displayName": "Get a single On Demand Region",
         "doc": {
           "url": "https://api.vimeo.com/ondemand/regions/@country"
         },
@@ -2716,7 +2933,7 @@
       },
       {
         "path": "/tags/{word}",
-        "displayName": "/tags/{word}",
+        "displayName": "Get a Tag",
         "doc": {
           "url": "https://api.vimeo.com/tags/{word}"
         },
@@ -2734,7 +2951,7 @@
       },
       {
         "path": "/tags/{word}/videos",
-        "displayName": "/tags/{word}/videos",
+        "displayName": "Get a list of videos associated with a tag",
         "doc": {
           "url": "https://api.vimeo.com/tags/{word}/videos"
         },
@@ -2746,22 +2963,27 @@
             "name": "word",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -2770,7 +2992,7 @@
       },
       {
         "path": "/users",
-        "displayName": "/users",
+        "displayName": "Search for users",
         "doc": {
           "url": "https://api.vimeo.com/users"
         },
@@ -2778,23 +3000,28 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query",
             "required": true
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -2804,7 +3031,7 @@
       },
       {
         "path": "/users/{user_id}",
-        "displayName": "/users/{user_id}",
+        "displayName": "Get a user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}"
         },
@@ -2822,7 +3049,7 @@
       },
       {
         "path": "/users/{user_id}",
-        "displayName": "/users/{user_id}",
+        "displayName": "Edit a single user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}"
         },
@@ -2836,14 +3063,17 @@
             "required": true
           },
           {
+            "displayName": "The user's display name",
             "style": "query",
             "type": "string",
             "name": "name"
           },{
+            "displayName": "The user's location",
             "style": "query",
             "type": "string",
             "name": "location"
           },{
+            "displayName": "The user's bio",
             "style": "query",
             "type": "string",
             "name": "bio"
@@ -2853,7 +3083,7 @@
       },
       {
         "path": "/users/{user_id}/albums",
-        "displayName": "/users/{user_id}/albums",
+        "displayName": "Get a list of a user's Albums",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums"
         },
@@ -2867,22 +3097,27 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -2892,7 +3127,7 @@
       },
       {
         "path": "/users/{user_id}/albums",
-        "displayName": "/users/{user_id}/albums",
+        "displayName": "Create an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums"
         },
@@ -2905,24 +3140,29 @@
             "name": "user_id",
             "required": true
           },{
+            "displayName": "The Album title",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The Album description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The Album's privacy level",
             "style": "body",
             "type": "string",
             "name": "privacy"
           },{
+            "displayName": "Required if privacy=password. The Album's password",
             "style": "body",
             "type": "string",
             "name": "password"
           },{
+            "displayName": "The default sort order of an Album's videos",
             "style": "body",
             "type": "string",
             "name": "sort"
@@ -2932,7 +3172,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}",
+        "displayName": "Get info on an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}"
         },
@@ -2955,7 +3195,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}",
+        "displayName": "Edit an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}"
         },
@@ -2973,20 +3213,24 @@
             "name": "album_id",
             "required": true
           },{
+            "displayName": "The Album's new title",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The Album's new description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The Album's new privacy level",
             "style": "body",
             "type": "string",
             "name": "privacy"
           },{
+            "displayName": "The new default sort for the Album",
             "style": "body",
             "type": "string",
             "name": "sort"
@@ -2996,7 +3240,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}",
+        "displayName": "Delete an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}"
         },
@@ -3019,7 +3263,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}/videos",
-        "displayName": "/users/{user_id}/albums/{album_id}/videos",
+        "displayName": "Get the list of videos in an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}/videos"
         },
@@ -3036,30 +3280,37 @@
             "name": "album_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "integer",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results.",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3068,7 +3319,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
+        "displayName": "Check if an Album contains a video",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}/videos/{video_id}"
         },
@@ -3096,7 +3347,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
+        "displayName": "Add a video to an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}/videos/{video_id}"
         },
@@ -3124,7 +3375,7 @@
       },
       {
         "path": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/albums/{album_id}/videos/{video_id}",
+        "displayName": "Remove a video from an Album",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/albums/{album_id}/videos/{video_id}"
         },
@@ -3152,7 +3403,7 @@
       },
       {
         "path": "/users/{user_id}/appearances",
-        "displayName": "/users/{user_id}/appearances",
+        "displayName": "Get all videos that a user appears in",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/appearances"
         },
@@ -3166,30 +3417,37 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3199,7 +3457,7 @@
       },
       {
         "path": "/users/{user_id}/channels",
-        "displayName": "/users/{user_id}/channels",
+        "displayName": "Get a list of the Channels a user follows",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/channels"
         },
@@ -3213,26 +3471,32 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3242,7 +3506,7 @@
       },
       {
         "path": "/users/{user_id}/channels/{channel_id}",
-        "displayName": "/users/{user_id}/channels/{channel_id}",
+        "displayName": "Check if a user follows a Channel",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/channels/{channel_id}"
         },
@@ -3265,7 +3529,7 @@
       },
       {
         "path": "/users/{user_id}/channels/{channel_id}",
-        "displayName": "/users/{user_id}/channels/{channel_id}",
+        "displayName": "Subscribe to a Channel",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/channels/{channel_id}"
         },
@@ -3288,7 +3552,7 @@
       },
       {
         "path": "/users/{user_id}/channels/{channel_id}",
-        "displayName": "/users/{user_id}/channels/{channel_id}",
+        "displayName": "Unsubscribe from a Channel",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/channels/{channel_id}"
         },
@@ -3310,7 +3574,7 @@
       },
       {
         "path": "/users/{user_id}/groups",
-        "displayName": "/users/{user_id}/groups",
+        "displayName": "Get a list of the Groups a user has joined",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/groups"
         },
@@ -3324,26 +3588,32 @@
             "required": true
           },
           {
+            "displayName": "The page number to show.",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3353,7 +3623,7 @@
       },
       {
         "path": "/users/{user_id}/groups/{group_id}",
-        "displayName": "/users/{user_id}/groups/{group_id}",
+        "displayName": "Check if a user has joined a Group?",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/groups/{group_id}"
         },
@@ -3376,7 +3646,7 @@
       },
       {
         "path": "/users/{user_id}/groups/{group_id}",
-        "displayName": "/users/{user_id}/groups/{group_id}",
+        "displayName": "Join a Group",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/groups/{group_id}"
         },
@@ -3399,7 +3669,7 @@
       },
       {
         "path": "/users/{user_id}/groups/{group_id}",
-        "displayName": "/users/{user_id}/groups/{group_id}",
+        "displayName": "Leave a Group",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/groups/{group_id}"
         },
@@ -3422,7 +3692,7 @@
       },
       {
         "path": "/users/{user_id}/feed",
-        "displayName": "/users/{user_id}/feed",
+        "displayName": "Get a list of the videos in your feed",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/feed"
         },
@@ -3436,14 +3706,17 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "This is necessary for proper pagination. Do not provide this value yourself, just use the pagination links provided in the feed response",
             "style": "query",
             "type": "string",
             "name": "offset",
@@ -3454,7 +3727,7 @@
       },
       {
         "path": "/users/{user_id}/followers",
-        "displayName": "/users/{user_id}/followers",
+        "displayName": "Get a list of the user's followers",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/followers"
         },
@@ -3468,22 +3741,27 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3493,7 +3771,7 @@
       },
       {
         "path": "/users/{user_id}/following",
-        "displayName": "/users/{user_id}/following",
+        "displayName": "Get a list of the users that a user is following",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/following"
         },
@@ -3507,26 +3785,32 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -3536,7 +3820,7 @@
       },
       {
         "path": "/users/{user_id}/following/{follow_user_id}",
-        "displayName": "/users/{user_id}/following/{follow_user_id}",
+        "displayName": "Check if a user follows another user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/following/{follow_user_id}"
         },
@@ -3560,7 +3844,7 @@
       },
       {
         "path": "/users/{user_id}/following/{follow_user_id}",
-        "displayName": "/users/{user_id}/following/{follow_user_id}",
+        "displayName": "Follow a user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/following/{follow_user_id}"
         },
@@ -3584,7 +3868,7 @@
       },
       {
         "path": "/users/{user_id}/following/{follow_user_id}",
-        "displayName": "/users/{user_id}/following/{follow_user_id}",
+        "displayName": "Unfollow a user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/following/{follow_user_id}"
         },
@@ -3608,7 +3892,7 @@
       },
       {
         "path": "/users/{user_id}/likes",
-        "displayName": "/users/{user_id}/likes",
+        "displayName": "Get a list of videos that a user likes",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/likes"
         },
@@ -3622,30 +3906,37 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
@@ -3655,7 +3946,7 @@
       },
       {
         "path": "/users/{user_id}/likes/{video_id}",
-        "displayName": "/users/{user_id}/likes/{video_id}",
+        "displayName": "Check if a user likes a video",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/likes/{video_id}"
         },
@@ -3678,7 +3969,7 @@
       },
       {
         "path": "/users/{user_id}/likes/{video_id}",
-        "displayName": "/users/{user_id}/likes/{video_id}",
+        "displayName": "Like a video",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/likes/{video_id}"
         },
@@ -3701,7 +3992,7 @@
       },
       {
         "path": "/users/{user_id}/likes/{video_id}",
-        "displayName": "/users/{user_id}/likes/{video_id}",
+        "displayName": "Unlike a video",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/likes/{video_id}"
         },
@@ -3724,7 +4015,7 @@
       },
       {
         "path": "/users/{user_id}/pictures",
-        "displayName": "/users/{user_id}/pictures",
+        "displayName": "Get a list of this user's portrait images",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/pictures"
         },
@@ -3742,7 +4033,7 @@
       },
       {
         "path": "/users/{user_id}/pictures",
-        "displayName": "/users/{user_id}/pictures",
+        "displayName": "Create a new picture resource",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/pictures"
         },
@@ -3760,7 +4051,7 @@
       },
       {
         "path": "/users/{user_id}/pictures/{portraitset_id}",
-        "displayName": "/users/{user_id}/pictures/{portraitset_id}",
+        "displayName": "Check if a user has a portrait",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/pictures/{portraitset_id}"
         },
@@ -3784,7 +4075,7 @@
       },
       {
         "path": "/users/{user_id}/pictures/{portraitset_id}",
-        "displayName": "/users/{user_id}/pictures/{portraitset_id}",
+        "displayName": "Edit a portrait",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/pictures/{portraitset_id}"
         },
@@ -3804,6 +4095,7 @@
             "required": true
           },
           {
+            "displayName": "Set a picture as your active portrait",
             "style": "body",
             "type": "boolean",
             "name": "active",
@@ -3814,7 +4106,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios",
-        "displayName": "/users/{user_id}/portfolios",
+        "displayName": "Get a list of Portfolios created by a user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios"
         },
@@ -3828,22 +4120,27 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3853,7 +4150,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios/{portfolio_id}",
-        "displayName": "/users/{user_id}/portfolios/{portfolio_id}",
+        "displayName": "Get a Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios/{portfolio_id}"
         },
@@ -3874,7 +4171,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios/{portfolio_id}/videos",
-        "displayName": "/users/{user_id}/portfolios/{portfolio_id}/videos",
+        "displayName": "Get the videos in this Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios/{portfolio_id}/videos"
         },
@@ -3893,18 +4190,22 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -3914,7 +4215,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Check if a Portfolio contains a video",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -3940,7 +4241,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Add a video to the Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -3966,7 +4267,7 @@
       },
       {
         "path": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
-        "displayName": "/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}",
+        "displayName": "Remove a video from the Portfolio",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}"
         },
@@ -3994,7 +4295,7 @@
       },
       {
         "path": "/users/{user_id}/presets",
-        "displayName": "/users/{user_id}/presets",
+        "displayName": "Get all presets created by the authenticated user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/presets"
         },
@@ -4008,14 +4309,17 @@
             "required": true
           },
           {
+            "displayName": "The page number to show.",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
@@ -4025,7 +4329,7 @@
       },
       {
         "path": "/users/{user_id}/presets/{preset_id}",
-        "displayName": "/users/{user_id}/presets/{preset_id}",
+        "displayName": "Get a preset",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/presets/{preset_id}"
         },
@@ -4048,7 +4352,7 @@
       },
       {
         "path": "/users/{user_id}/presets/{preset_id}",
-        "displayName": "/users/{user_id}/presets/{preset_id}",
+        "displayName": "Edit a preset",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/presets/{preset_id}"
         },
@@ -4066,6 +4370,7 @@
             "name": "preset_id",
             "required": true
           },{
+            "displayName": "Disable the outro. Currently we only support disabling outros",
             "style": "body",
             "type": "string",
             "name": "outro",
@@ -4076,7 +4381,7 @@
       },
       {
         "path": "/users/{user_id}/presets/{preset_id}/videos",
-        "displayName": "/users/{user_id}/presets/{preset_id}/videos",
+        "displayName": "Get videos that have the provided preset",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/presets/{preset_id}/videos"
         },
@@ -4099,7 +4404,7 @@
       },
       {
         "path": "/users/{user_id}/videos",
-        "displayName": "/users/{user_id}/videos",
+        "displayName": "Get a list of videos uploaded by a user",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/videos"
         },
@@ -4113,34 +4418,42 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Default true. Choose between only videos that are playable, and only videos that are not playable.",
             "style": "query",
             "type": "string",
             "name": "filter_playable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -4150,7 +4463,7 @@
       },
       {
         "path": "/users/{user_id}/videos",
-        "displayName": "/users/{user_id}/videos",
+        "displayName": "Begin the video upload process",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/videos"
         },
@@ -4164,16 +4477,19 @@
             "required": true
           },
           {
+            "displayName": "Upload type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "The app redirect URL",
             "style": "body",
             "type": "string",
             "name": "redirect_url",
             "required": true
           },{
+            "displayName": "Immediately upgrade to 1080p on upload complete",
             "style": "body",
             "type": "string",
             "name": "upgrade_to_1080",
@@ -4184,7 +4500,7 @@
       },
       {
         "path": "/users/{user_id}/watchlater",
-        "displayName": "/users/{user_id}/watchlater",
+        "displayName": "Get the authenticated user's Watch Later queue",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/watchlater"
         },
@@ -4197,30 +4513,37 @@
             "name": "user_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
           },{
+            "displayName": "Required if filter=embeddable. Choose between only videos that are embeddable, and only videos that are not embeddable.",
             "style": "query",
             "type": "string",
             "name": "filter_embeddable"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -4230,7 +4553,7 @@
       },
       {
         "path": "/users/{user_id}/watchlater/{video_id}",
-        "displayName": "/users/{user_id}/watchlater/{video_id}",
+        "displayName": "Check if a video is in the authenticated user's Watch Later queue",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/watchlater/{video_id}"
         },
@@ -4253,7 +4576,7 @@
       },
       {
         "path": "/users/{user_id}/watchlater/{video_id}",
-        "displayName": "/users/{user_id}/watchlater/{video_id}",
+        "displayName": "Add a video to the authenticated user's watch later list",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/watchlater/{video_id}"
         },
@@ -4276,7 +4599,7 @@
       },
       {
         "path": "/users/{user_id}/watchlater/{video_id}",
-        "displayName": "/users/{user_id}/watchlater/{video_id}",
+        "displayName": "Remove a video from your watch later list",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/watchlater/{video_id}"
         },
@@ -4297,7 +4620,7 @@
       },
       {
         "path": "/users/{user_id}/tickets/{ticket}",
-        "displayName": "/users/{user_id}/tickets/{ticket}",
+        "displayName": "Get an upload ticket",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/tickets/{ticket}"
         },
@@ -4320,7 +4643,7 @@
       },
       {
         "path": "/users/{user_id}/tickets/{ticket}",
-        "displayName": "/users/{user_id}/tickets/{ticket}",
+        "displayName": "Complete a streaming upload",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/tickets/{ticket}"
         },
@@ -4339,12 +4662,14 @@
             "name": "ticket",
             "required": true
           },{
+            "displayName": "The ID of the uploaded file",
             "style": "",
             "type": "integer",
             "name": "video_file_id",
             "required": true
           },
           {
+            "displayName": "The crypto signature of the completed upload",
             "style": "",
             "type": "string",
             "name": "signature",
@@ -4355,7 +4680,7 @@
       },
       {
         "path": "/users/{user_id}/ondemand/pages",
-        "displayName": "/users/{user_id}/ondemand/pages",
+        "displayName": "Get a user's On Demand pages",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/ondemand/pages"
         },
@@ -4368,14 +4693,17 @@
             "name": "user_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
@@ -4385,7 +4713,7 @@
       },
       {
         "path": "/users/{user_id}/ondemand/pages",
-        "displayName": "/users/{user_id}/ondemand/pages",
+        "displayName": "Create an On Demand page",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/ondemand/pages"
         },
@@ -4398,71 +4726,87 @@
             "name": "user_id",
             "required": true
           },{
+            "displayName": "The On Demand page name",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The On Demand page description",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "The On Demand page type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "One or more ratings, comma separated or JSON array depending on your request format.",
             "style": "body",
             "type": "string",
             "name": "content_rating",
             "required": true
           },
           {
+            "displayName": "The custom string to use in this On Demand page's Vimeo URL.",
             "style": "body",
             "type": "string",
             "name": "link"
           },{
+            "displayName": "The On Demand page's custom domain.",
             "style": "body",
             "type": "string",
             "name": "domain_link"
           },{
+            "displayName": "Required if buy.active is false",
             "style": "body",
             "type": "boolean",
             "name": "rent.active"
           },{
+            "displayName": "Required if rent.active is true. If this On Demand page is a `film`, this is the price to rent the film. If `series`, this is the price to rent the entire collection.",
             "style": "body",
             "type": "currency",
             "name": "rent.price.USD"
           },{
+            "displayName": "Required if rent.active is true",
             "style": "body",
             "type": "string",
             "name": "rent.period"
           },{
+            "displayName": "Required if rent.active is false",
             "style": "body",
             "type": "boolean",
             "name": "buy.active"
           },{
+            "displayName": "Required if buy.active is true. If this On Demand page is a `film`, this is the price to purchase the film. If `series`, this is the price to purchase the entire collection.",
             "style": "body",
             "type": "currency",
             "name": "buy.price.USD"
           },{
+            "displayName": "",
             "style": "body",
             "type": "boolean",
             "name": "episodes.rent.active"
           },{
+            "displayName": "Required if episodes.rent.active is true. Only applicable if this On Demand page is a series. This is the default price for each individual episode.",
             "style": "body",
             "type": "currency",
             "name": "episodes.rent.price.USD"
           },{
+            "displayName": "Required if episodes.rent.active is true.",
             "style": "body",
             "type": "string",
             "name": "episodes.rent.period"
           },{
+            "displayName": "",
             "style": "body",
             "type": "boolean",
             "name": "episodes.buy.active"
           },{
+            "displayName": "Required if episodes.buy.active is true",
             "style": "body",
             "type": "currency",
             "name": "episodes.buy.price.USD"
@@ -4472,7 +4816,7 @@
       },
       {
         "path": "/users/{user_id}/ondemand/library",
-        "displayName": "/users/{user_id}/ondemand/library",
+        "displayName": "Check if an On Demand page is in your library",
         "doc": {
           "url": "https://api.vimeo.com/users/{user_id}/ondemand/library"
         },
@@ -4490,7 +4834,7 @@
       },
       {
         "path": "/videos",
-        "displayName": "/videos",
+        "displayName": "Search for videos",
         "doc": {
           "url": "https://api.vimeo.com/videos"
         },
@@ -4498,26 +4842,32 @@
         "curl": "curl -X",
         "params": [
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
           },{
+            "displayName": "Filter to apply to the results. The CC filters will show only those videos with the applicable creative commons licenses",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -4527,7 +4877,7 @@
       },
       {
         "path": "/videos/{video_id}",
-        "displayName": "/videos/{video_id}",
+        "displayName": "Get a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}"
         },
@@ -4545,7 +4895,7 @@
       },
       {
         "path": "/videos/{video_id}",
-        "displayName": "/videos/{video_id}",
+        "displayName": "Edit video metadata",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}"
         },
@@ -4558,35 +4908,42 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "The new name for the video",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The new description for the video",
             "style": "body",
             "type": "string",
             "name": "description",
             "required": true
           },{
+            "displayName": "Set the Creative Commons license",
             "style": "body",
             "type": "string",
             "name": "license",
             "required": true
           },{
+            "displayName": "The new privacy setting for the video",
             "style": "body",
             "type": "string",
             "name": "privacy.view",
             "required": true
           },{
+            "displayName": "When you set privacy.view to password, you must provide the password as an additional parameter",
             "style": "body",
             "type": "string",
             "name": "password"
           },{
+            "displayName": "The videos new embed settings. Whitelist allows you to define all valid embed domains. Check out our docs for adding and removing domains.",
             "style": "body",
             "type": "string",
             "name": "privacy.embed",
             "required": true
           },{
+            "displayName": "Enable or disable the review page",
             "style": "body",
             "type": "string",
             "name": "review_link",
@@ -4597,7 +4954,7 @@
       },
       {
         "path": "/videos/{video_id}",
-        "displayName": "/videos/{video_id}",
+        "displayName": "Delete a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}"
         },
@@ -4615,7 +4972,7 @@
       },
       {
         "path": "/videos/{video_id}/files",
-        "displayName": "/videos/{video_id}/files",
+        "displayName": "Get an upload ticket to replace this video file",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/files"
         },
@@ -4628,16 +4985,19 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "Upload type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "The app redirect URL",
             "style": "body",
             "type": "string",
             "name": "redirect_url",
             "required": true
           },{
+            "displayName": "Immediately upgrade to 1080p on upload complete",
             "style": "body",
             "type": "string",
             "name": "upgrade_to_1080",
@@ -4648,7 +5008,7 @@
       },
       {
         "path": "/videos/{video_id}/credits",
-        "displayName": "/videos/{video_id}/credits",
+        "displayName": "Get a list of users credited on a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/credits"
         },
@@ -4661,22 +5021,27 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -4686,7 +5051,7 @@
       },
       {
         "path": "/videos/{video_id}/credits",
-        "displayName": "/videos/{video_id}/credits",
+        "displayName": "Add a credit to a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/credits"
         },
@@ -4699,16 +5064,19 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "The role of the person being credited",
             "style": "body",
             "type": "string",
             "name": "role",
             "required": true
           },{
+            "displayName": "The name of the person being credited",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The email address of the person being credited",
             "style": "body",
             "type": "string",
             "name": "email",
@@ -4719,7 +5087,7 @@
       },
       {
         "path": "/videos/{video_id}/texttracks",
-        "displayName": "/videos/{video_id}/texttracks",
+        "displayName": "Get all the text tracks for a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/texttracks"
         },
@@ -4737,7 +5105,7 @@
       },
       {
         "path": "/videos/{video_id}/texttracks",
-        "displayName": "/videos/{video_id}/texttracks",
+        "displayName": "Add a text track to a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/texttracks"
         },
@@ -4750,21 +5118,25 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "Text tracks marked active will be visible to other users, and will show up in the player. Only one text track per language can be active.",
             "style": "body",
             "type": "boolean",
             "name": "active",
             "required": true
           },{
+            "displayName": "Text track type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "Text track language",
             "style": "body",
             "type": "string",
             "name": "language",
             "required": true
           },{
+            "displayName": "Text track name",
             "style": "body",
             "type": "string",
             "name": "name",
@@ -4775,7 +5147,7 @@
       },
       {
         "path": "/videos/{video_id}/texttracks/{texttrack_id}",
-        "displayName": "/videos/{video_id}/texttracks/{texttrack_id}",
+        "displayName": "Get a single text track for a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/texttracks/{texttrack_id}"
         },
@@ -4798,7 +5170,7 @@
       },
       {
         "path": "/videos/{video_id}/texttracks/{texttrack_id}",
-        "displayName": "/videos/{video_id}/texttracks/{texttrack_id}",
+        "displayName": "Edit text track metadata",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/texttracks/{texttrack_id}"
         },
@@ -4816,21 +5188,25 @@
             "name": "texttrack_id",
             "required": true
           },{
+            "displayName": "Text tracks marked active will be visible to other users, and will show up in the player. Only one text track per language can be active.",
             "style": "body",
             "type": "boolean",
             "name": "active",
             "required": true
           },{
+            "displayName": "Text track type",
             "style": "body",
             "type": "string",
             "name": "type",
             "required": true
           },{
+            "displayName": "Text track language",
             "style": "body",
             "type": "string",
             "name": "language",
             "required": true
           },{
+            "displayName": "Text track name",
             "style": "body",
             "type": "string",
             "name": "name",
@@ -4841,7 +5217,7 @@
       },
       {
         "path": "/videos/{video_id}/texttracks/{texttrack_id}",
-        "displayName": "/videos/{video_id}/texttracks/{texttrack_id}",
+        "displayName": "Delete a text track",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/texttracks/{texttrack_id}"
         },
@@ -4864,7 +5240,7 @@
       },
       {
         "path": "/videos/{video_id}/videos",
-        "displayName": "/videos/{video_id}/videos",
+        "displayName": "Get related videos",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/videos"
         },
@@ -4878,16 +5254,19 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },
           {
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },
           {
+            "displayName": "Filter to apply to the results",
             "style": "query",
             "type": "string",
             "name": "filter"
@@ -4897,7 +5276,7 @@
       },
       {
         "path": "/videos/{video_id}/categories",
-        "displayName": "/videos/{video_id}/categories",
+        "displayName": "Get a list of all categories this video is in",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/categories"
         },
@@ -4911,12 +5290,14 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page",
             "required": true
           },
           {
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page",
@@ -4927,7 +5308,7 @@
       },
       {
         "path": "/videos/{video_id}/credits/{credit_id}",
-        "displayName": "/videos/{video_id}/credits/{credit_id}",
+        "displayName": "Get a single credit",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/credits/{credit_id}"
         },
@@ -4951,7 +5332,7 @@
       },
       {
         "path": "/videos/{video_id}/credits/{credit_id}",
-        "displayName": "/videos/{video_id}/credits/{credit_id}",
+        "displayName": "Edit information about a single credit",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/credits/{credit_id}"
         },
@@ -4970,17 +5351,20 @@
             "name": "credit_id",
             "required": true
           },{
+            "displayName": "The role of the person being credited",
             "style": "body",
             "type": "string",
             "name": "role",
             "required": true
           },
           {
+            "displayName": "The name of the person being credited",
             "style": "body",
             "type": "string",
             "name": "name",
             "required": true
           },{
+            "displayName": "The email address of the person being credited",
             "style": "body",
             "type": "string",
             "name": "email",
@@ -4991,7 +5375,7 @@
       },
       {
         "path": "/videos/{video_id}/credits/{credit_id}",
-        "displayName": "/videos/{video_id}/credits/{credit_id}",
+        "displayName": "Delete a credit",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/credits/{credit_id}"
         },
@@ -5015,7 +5399,7 @@
       },
       {
         "path": "/videos/{video_id}/comments",
-        "displayName": "/videos/{video_id}/comments",
+        "displayName": "Get comments on this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments"
         },
@@ -5029,22 +5413,27 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -5054,7 +5443,7 @@
       },
       {
         "path": "/videos/{video_id}/comments",
-        "displayName": "/videos/{video_id}/comments",
+        "displayName": "Post a comment on the video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments"
         },
@@ -5068,6 +5457,7 @@
             "required": true
           },
           {
+            "displayName": "The comment's text",
             "style": "body",
             "type": "string",
             "name": "text",
@@ -5078,7 +5468,7 @@
       },
       {
         "path": "/videos/{video_id}/comments/{comment_id}",
-        "displayName": "/videos/{video_id}/comments/{comment_id}",
+        "displayName": "Check if a video has a specific comment",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments/{comment_id}"
         },
@@ -5102,7 +5492,7 @@
       },
       {
         "path": "/videos/{video_id}/comments/{comment_id}",
-        "displayName": "/videos/{video_id}/comments/{comment_id}",
+        "displayName": "Edit an existing comment on a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments/{comment_id}"
         },
@@ -5122,6 +5512,7 @@
             "required": true
           },
           {
+            "displayName": "The comment's new text",
             "style": "body",
             "type": "string",
             "name": "text",
@@ -5132,7 +5523,7 @@
       },
       {
         "path": "/videos/{video_id}/comments/{comment_id}",
-        "displayName": "/videos/{video_id}/comments/{comment_id}",
+        "displayName": "Delete a comment from a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments/{comment_id}"
         },
@@ -5156,7 +5547,7 @@
       },
       {
         "path": "/videos/{video_id}/comments/{comment_id}/replies",
-        "displayName": "/videos/{video_id}/comments/{comment_id}/replies",
+        "displayName": "Get comments on this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments/{comment_id}/replies"
         },
@@ -5175,10 +5566,12 @@
             "name": "comment_id",
             "required": true
           },{
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
@@ -5188,7 +5581,7 @@
       },
       {
         "path": "/videos/{video_id}/comments/{comment_id}/replies",
-        "displayName": "/videos/{video_id}/comments/{comment_id}/replies",
+        "displayName": "Post a reply to a comment on the video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/comments/{comment_id}/replies"
         },
@@ -5207,6 +5600,7 @@
             "name": "comment_id",
             "required": true
           },{
+            "displayName": "The comment's new text",
             "style": "body",
             "type": "string",
             "name": "text",
@@ -5217,7 +5611,7 @@
       },
       {
         "path": "/videos/{video_id}/pictures",
-        "displayName": "/videos/{video_id}/pictures",
+        "displayName": "Get a list of this video's past and present pictures",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/pictures"
         },
@@ -5235,7 +5629,7 @@
       },
       {
         "path": "/videos/{video_id}/pictures",
-        "displayName": "/videos/{video_id}/pictures",
+        "displayName": "Add a picture resource to a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/pictures"
         },
@@ -5248,11 +5642,13 @@
             "name": "video_id",
             "required": true
           },{
+            "displayName": "If set will create a picture resource from video at given time offset",
             "style": "body",
             "type": "float",
             "name": "time",
             "required": true
           },{
+            "displayName": "Make this picture the default picture if you have created a picture response from video at given time offset",
             "style": "body",
             "type": "boolean",
             "name": "active",
@@ -5263,7 +5659,7 @@
       },
       {
         "path": "/videos/{video_id}/pictures/{picture_id}",
-        "displayName": "/videos/{video_id}/pictures/{picture_id}",
+        "displayName": "Get a single picture resource for a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/pictures/{picture_id}"
         },
@@ -5287,7 +5683,7 @@
       },
       {
         "path": "/videos/{video_id}/pictures/{picture_id}",
-        "displayName": "/videos/{video_id}/pictures/{picture_id}",
+        "displayName": "Modify an existing picture on a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/pictures/{picture_id}"
         },
@@ -5307,6 +5703,7 @@
             "required": true
           },
           {
+            "displayName": "Make this picture the default picture",
             "style": "body",
             "type": "boolean",
             "name": "active",
@@ -5317,7 +5714,7 @@
       },
       {
         "path": "/videos/{video_id}/likes",
-        "displayName": "/videos/{video_id}/likes",
+        "displayName": "Get a list of the users who liked this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/likes"
         },
@@ -5331,22 +5728,27 @@
             "required": true
           },
           {
+            "displayName": "The page number to show",
             "style": "query",
             "type": "integer",
             "name": "page"
           },{
+            "displayName": "Number of items to show on each page. Max 50.",
             "style": "query",
             "type": "integer",
             "name": "per_page"
           },{
+            "displayName": "Search query",
             "style": "query",
             "type": "string",
             "name": "query"
           },{
+            "displayName": "Technique used to sort the results",
             "style": "query",
             "type": "string",
             "name": "sort"
           },{
+            "displayName": "The direction that the results are sorted",
             "style": "query",
             "type": "string",
             "name": "direction"
@@ -5356,7 +5758,7 @@
       },
       {
         "path": "/videos/{video_id}/presets/{preset_id}",
-        "displayName": "/videos/{video_id}/presets/{preset_id}",
+        "displayName": "Check if a video has a specific embed preset",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/presets/{preset_id}"
         },
@@ -5379,7 +5781,7 @@
       },
       {
         "path": "/videos/{video_id}/presets/{preset_id}",
-        "displayName": "/videos/{video_id}/presets/{preset_id}",
+        "displayName": "Apply an embed preset to a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/presets/{preset_id}"
         },
@@ -5402,7 +5804,7 @@
       },
       {
         "path": "/videos/{video_id}/presets/{preset_id}",
-        "displayName": "/videos/{video_id}/presets/{preset_id}",
+        "displayName": "Remove an embed preset from a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/presets/{preset_id}"
         },
@@ -5425,7 +5827,7 @@
       },
       {
         "path": "/videos/{video_id}/tags",
-        "displayName": "/videos/{video_id}/tags",
+        "displayName": "List all of the tags on the video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/tags"
         },
@@ -5443,7 +5845,7 @@
       },
       {
         "path": "/videos/{video_id}/tags/{word}",
-        "displayName": "/videos/{video_id}/tags/{word}",
+        "displayName": "Check if a tag has been applied to a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/tags/{word}"
         },
@@ -5466,7 +5868,7 @@
       },
       {
         "path": "/videos/{video_id}/tags/{word}",
-        "displayName": "/videos/{video_id}/tags/{word}",
+        "displayName": "Tag a video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/tags/{word}"
         },
@@ -5484,6 +5886,7 @@
             "name": "word",
             "required": true
           },{
+            "displayName": "Name of the tag to apply",
             "style": "body",
             "type": "string",
             "name": "tag",
@@ -5494,7 +5897,7 @@
       },
       {
         "path": "/videos/{video_id}/tags/{word}",
-        "displayName": "/videos/{video_id}/tags/{word}",
+        "displayName": "Remove the tag from this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/tags/{word}"
         },
@@ -5518,7 +5921,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/users",
-        "displayName": "/videos/{video_id}/privacy/users",
+        "displayName": "Get all users that are allowed to see this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/users"
         },
@@ -5536,7 +5939,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/users/{user_id}",
-        "displayName": "/videos/{video_id}/privacy/users/{user_id}",
+        "displayName": "Add a user to the allowed users list",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/users/{user_id}"
         },
@@ -5559,7 +5962,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/users/{user_id}",
-        "displayName": "/videos/{video_id}/privacy/users/{user_id}",
+        "displayName": "Remove a user from the allowed users list",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/users/{user_id}"
         },
@@ -5582,7 +5985,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/domains",
-        "displayName": "/videos/{video_id}/privacy/domains",
+        "displayName": "Retrieve the domains that are allowed to embed this video",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/domains"
         },
@@ -5600,7 +6003,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/domains/{domain}",
-        "displayName": "/videos/{video_id}/privacy/domains/{domain}",
+        "displayName": "If this video has domain privacy enabled, this call will enable this video to be embedded on the provided domain",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/domains/{domain}"
         },
@@ -5623,7 +6026,7 @@
       },
       {
         "path": "/videos/{video_id}/privacy/domains/{domain}",
-        "displayName": "/videos/{video_id}/privacy/domains/{domain}",
+        "displayName": "Remove a domain from the allowed domains list",
         "doc": {
           "url": "https://api.vimeo.com/videos/{video_id}/privacy/domains/{domain}"
         },
