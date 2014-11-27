@@ -1,5 +1,49 @@
 {
   "_id": "546258c030392d6c7118eb38",
+  "type": "channel:zendesk",
+  "auth_strategy": "oauth",
+  "name": "zendesk",
+  "oauth": {
+    "development": {
+      "clientID": "octoblu",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
+      "callbackURL": "http://localhost:8080/api/oauth/zendesk/callback",
+      "subdomain": "octoblu",
+      "passReqToCallback": true,
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "octoblu",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
+      "callbackURL": "https://app.octoblu.com/api/oauth/zendesk/callback",
+      "passReqToCallback": true,
+      "subdomain": "octoblu",
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "octoblu",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/zendesk/callback",
+      "passReqToCallback": true,
+      "subdomain": "octoblu",
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
   "defaultParams": [
     {
       "name": ":subdomain",
@@ -14,7 +58,7 @@
     "resources": [
       {
         "path": "/api/v2/tickets.json",
-        "displayName": "/api/v2/tickets.json",
+        "displayName": "Get Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets.json"
         },
@@ -24,7 +68,7 @@
       },
       {
         "path": "/api/v2/organizations/:organization_id/tickets.json",
-        "displayName": "/api/v2/organizations/:organization_id/tickets.json",
+        "displayName": "Get Tickets for an Organization",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{organization_id}/tickets.json"
         },
@@ -42,7 +86,7 @@
       },
       {
         "path": "/api/v2/users/:user_id/tickets/requested.json",
-        "displayName": "/api/v2/users/:user_id/tickets/requested.json",
+        "displayName": "Get Tickets for a User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/tickets/requested.json"
         },
@@ -60,7 +104,7 @@
       },
       {
         "path": "/api/v2/users/:user_id/tickets/ccd.json",
-        "displayName": "/api/v2/users/:user_id/tickets/ccd.json",
+        "displayName": "Get Tickets by CCD",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/tickets/ccd.json"
         },
@@ -78,7 +122,7 @@
       },
       {
         "path": "/api/v2/tickets/recent.json",
-        "displayName": "/api/v2/tickets/recent.json",
+        "displayName": "Get Recent Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/recent.json"
         },
@@ -88,7 +132,7 @@
       },
       {
         "path": "/api/v2/tickets/:id.json",
-        "displayName": "/api/v2/tickets/:id.json",
+        "displayName": "Get Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}.json"
         },
@@ -106,7 +150,7 @@
       },
       {
         "path": "/api/v2/tickets/show_many.json",
-        "displayName": "/api/v2/tickets/show_many.json",
+        "displayName": "Get Multiple Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/show_many.json"
         },
@@ -124,7 +168,7 @@
       },
       {
         "path": "/api/v2/tickets.json",
-        "displayName": "/api/v2/tickets.json",
+        "displayName": "Create Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets.json"
         },
@@ -238,7 +282,7 @@
       },
       {
         "path": "/api/v2/tickets/:id.json",
-        "displayName": "/api/v2/tickets/:id.json",
+        "displayName": "Update Ticket",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}.json"
         },
@@ -358,7 +402,7 @@
       },
       {
         "path": "/api/v2/tickets/update_many.json?ids=:ids",
-        "displayName": "/api/v2/tickets/update_many.json?ids=:ids",
+        "displayName": "Update Many Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/update_many.json?ids={ids}"
         },
@@ -376,7 +420,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/mark_as_spam.json",
-        "displayName": "/api/v2/tickets/:id/mark_as_spam.json",
+        "displayName": "Mark as Spam",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/mark_as_spam.json"
         },
@@ -394,7 +438,7 @@
       },
       {
         "path": "/api/v2/tickets/mark_many_as_spam.json?ids=:ids",
-        "displayName": "/api/v2/tickets/mark_many_as_spam.json?ids=:ids",
+        "displayName": "Mark Many as Spam",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/mark_many_as_spam.json?ids={ids}"
         },
@@ -412,7 +456,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/merge.json",
-        "displayName": "/api/v2/tickets/:id/merge.json",
+        "displayName": "Merge Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/merge.json"
         },
@@ -430,7 +474,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/related.json",
-        "displayName": "/api/v2/tickets/:id/related.json",
+        "displayName": "Get Related Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/related.json"
         },
@@ -448,7 +492,7 @@
       },
       {
         "path": "/api/v2/tickets/:id.json",
-        "displayName": "/api/v2/tickets/:id.json",
+        "displayName": "Delete Ticket",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}.json"
         },
@@ -466,7 +510,7 @@
       },
       {
         "path": "/api/v2/tickets/destroy_many.json?ids=:ids",
-        "displayName": "/api/v2/tickets/destroy_many.json?ids=:ids",
+        "displayName": "Delete Many Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/destroy_many.json?ids={ids}"
         },
@@ -484,7 +528,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/collaborators.json",
-        "displayName": "/api/v2/tickets/:id/collaborators.json",
+        "displayName": "Get Collaborators",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/collaborators.json"
         },
@@ -502,7 +546,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/incidents.json",
-        "displayName": "/api/v2/tickets/:id/incidents.json",
+        "displayName": "Get Incidents",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/incidents.json"
         },
@@ -520,7 +564,7 @@
       },
       {
         "path": "/api/v2/problems.json",
-        "displayName": "/api/v2/problems.json",
+        "displayName": "Add Problem",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/problems.json"
         },
@@ -530,7 +574,7 @@
       },
       {
         "path": "/api/v2/problems/autocomplete.json?text=:name",
-        "displayName": "/api/v2/problems/autocomplete.json?text=:name",
+        "displayName": "Autocomplete Problems",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/problems/autocomplete.json?text={name}"
         },
@@ -548,7 +592,7 @@
       },
       {
         "path": "/api/v2/channels/twitter/tickets.json",
-        "displayName": "/api/v2/channels/twitter/tickets.json",
+        "displayName": "Create Ticket",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/twitter/tickets.json"
         },
@@ -558,7 +602,7 @@
       },
       {
         "path": "/api/v2/channels/twitter/tickets/:id/statuses.json",
-        "displayName": "/api/v2/channels/twitter/tickets/:id/statuses.json",
+        "displayName": "Get Statuses",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/twitter/tickets/{id}/statuses.json"
         },
@@ -583,7 +627,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/audits.json",
-        "displayName": "/api/v2/tickets/:ticket_id/audits.json",
+        "displayName": "Get Audits",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/audits.json"
         },
@@ -601,7 +645,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/audits/:id.json",
-        "displayName": "/api/v2/tickets/:ticket_id/audits/:id.json",
+        "displayName": "Create Autdit",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/audits/{id}.json"
         },
@@ -626,7 +670,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/audits/:id/make_private.json",
-        "displayName": "/api/v2/tickets/:ticket_id/audits/:id/make_private.json",
+        "displayName": "Make Private",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/audits/{id}/make_private.json"
         },
@@ -651,7 +695,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/comments.json",
-        "displayName": "/api/v2/tickets/:ticket_id/comments.json",
+        "displayName": "Create Comment",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/:ticket_id/comments.json"
         },
@@ -669,7 +713,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/comments/:id/redact.json",
-        "displayName": "/api/v2/tickets/:ticket_id/comments/:id/redact.json",
+        "displayName": "Redact Comment",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/:ticket_id/comments/:id/redact.json"
         },
@@ -694,7 +738,7 @@
       },
       {
         "path": "/api/v2/tickets/:ticket_id/comments/:id/make_private.json",
-        "displayName": "/api/v2/tickets/:ticket_id/comments/:id/make_private.json",
+        "displayName": "Make Private",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/comments/{id}/make_private.json"
         },
@@ -719,7 +763,7 @@
       },
       {
         "path": "/api/v2/exports/tickets.json",
-        "displayName": "/api/v2/exports/tickets.json",
+        "displayName": "Export Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/exports/tickets.json"
         },
@@ -736,7 +780,7 @@
       },
       {
         "path": "/api/v2/exports/tickets/sample.json",
-        "displayName": "/api/v2/exports/tickets/sample.json",
+        "displayName": "Export Sample Ticket",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/exports/tickets/sample.json"
         },
@@ -745,8 +789,8 @@
         "url": "https://:subdomain.zendesk.com/api/v2/exports/tickets/sample.json"
       },
       {
-        "path": "api/v2/incremental/tickets.json",
-        "displayName": "api/v2/incremental/tickets.json",
+        "path": "/api/v2/incremental/tickets.json",
+        "displayName": "Get Incremental Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/incremental/tickets.json"
         },
@@ -764,7 +808,7 @@
       },
       {
         "path": "/api/v2/incremental/ticket_events.json",
-        "displayName": "/api/v2/incremental/ticket_events.json",
+        "displayName": "Get Ticket Events",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/incremental/ticket_events.json"
         },
@@ -782,7 +826,7 @@
       },
       {
         "path": "/api/v2/incremental/organizations.json",
-        "displayName": "/api/v2/incremental/organizations.json",
+        "displayName": "Get Incremental Organizations",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/incremental/organizations.json"
         },
@@ -800,7 +844,7 @@
       },
       {
         "path": "/api/v2/incremental/users.json",
-        "displayName": "/api/v2/incremental/users.json",
+        "displayName": "Get Incremental Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/incremental/users.json"
         },
@@ -818,7 +862,7 @@
       },
       {
         "path": "/api/v2/ticket_fields.json",
-        "displayName": "/api/v2/ticket_fields.json",
+        "displayName": "Get Ticket Fields",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_fields.json"
         },
@@ -828,7 +872,7 @@
       },
       {
         "path": "/api/v2/ticket_fields/:id.json",
-        "displayName": "/api/v2/ticket_fields/:id.json",
+        "displayName": "Get Ticket Field",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_fields/{id}.json"
         },
@@ -846,7 +890,7 @@
       },
       {
         "path": "/api/v2/ticket_fields.json",
-        "displayName": "/api/v2/ticket_fields.json",
+        "displayName": "Create Ticket Field",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_fields.json"
         },
@@ -856,7 +900,7 @@
       },
       {
         "path": "/api/v2/ticket_fields/:id.json",
-        "displayName": "/api/v2/ticket_fields/:id.json",
+        "displayName": "Update Ticket Field",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_fields/{id}.json"
         },
@@ -874,7 +918,7 @@
       },
       {
         "path": "/api/v2/ticket_fields/:id.json",
-        "displayName": "/api/v2/ticket_fields/:id.json",
+        "displayName": "Delete Ticket Field",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_fields/{id}.json"
         },
@@ -892,7 +936,7 @@
       },
       {
         "path": "/api/v2/ticket_forms.json",
-        "displayName": "/api/v2/ticket_forms.json",
+        "displayName": "Get Ticket Forms",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms.json"
         },
@@ -902,7 +946,7 @@
       },
       {
         "path": "/api/v2/ticket_forms.json",
-        "displayName": "/api/v2/ticket_forms.json",
+        "displayName": "Create Ticket Form",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms.json"
         },
@@ -912,7 +956,7 @@
       },
       {
         "path": "/api/v2/ticket_forms/:id.json",
-        "displayName": "/api/v2/ticket_forms/:id.json",
+        "displayName": "Get Ticket Form",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/{id}.json"
         },
@@ -930,7 +974,7 @@
       },
       {
         "path": "/api/v2/ticket_forms/:id.json",
-        "displayName": "/api/v2/ticket_forms/:id.json",
+        "displayName": "Update Ticket Form",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/{id}.json"
         },
@@ -948,7 +992,7 @@
       },
       {
         "path": "/api/v2/ticket_forms/:id.json",
-        "displayName": "/api/v2/ticket_forms/:id.json",
+        "displayName": "Delete Ticket Form",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/{id}.json"
         },
@@ -966,7 +1010,7 @@
       },
       {
         "path": "/api/v2/ticket_forms/reorder.json",
-        "displayName": "/api/v2/ticket_forms/reorder.json",
+        "displayName": "Reorder Ticket Forms",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/reorder.json"
         },
@@ -976,7 +1020,7 @@
       },
       {
         "path": "/api/v2/ticket_forms/:id/clone.json",
-        "displayName": "/api/v2/ticket_forms/:id/clone.json",
+        "displayName": "Clone Ticket Form",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/{id}/clone.json"
         },
@@ -994,7 +1038,7 @@
       },
       {
         "path": "/api/v2/imports/tickets.json",
-        "displayName": "/api/v2/imports/tickets.json",
+        "displayName": "Import Tickets",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/imports/tickets.json"
         },
@@ -1035,7 +1079,7 @@
       },
       {
         "path": "/api/v2/ticket_metrics.json",
-        "displayName": "/api/v2/ticket_metrics.json",
+        "displayName": "Get Ticket Metrics",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_metrics.json"
         },
@@ -1045,7 +1089,7 @@
       },
       {
         "path": "/api/v2/ticket_metrics/:id.json",
-        "displayName": "/api/v2/ticket_metrics/:id.json",
+        "displayName": "Get Ticket Metric",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_metrics/{id}.json"
         },
@@ -1063,7 +1107,7 @@
       },
       {
         "path": "/api/v2/tickets/:id/metrics.json",
-        "displayName": "/api/v2/tickets/:id/metrics.json",
+        "displayName": "Update Ticket Metrics",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/metrics.json"
         },
@@ -1081,7 +1125,7 @@
       },
       {
         "path": "/api/v2/requests.json",
-        "displayName": "/api/v2/requests.json",
+        "displayName": "Get Requests",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests.json"
         },
@@ -1116,7 +1160,7 @@
       },
       {
         "path": "/api/v2/requests.json?status=hold",
-        "displayName": "/api/v2/requests.json?status=hold",
+        "displayName": "Get Requests on Hold",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests.json?status=hold"
         },
@@ -1158,7 +1202,7 @@
       },
       {
         "path": "/api/v2/requests/open.json",
-        "displayName": "/api/v2/requests/open.json",
+        "displayName": "Get Open Requests",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/open.json"
         },
@@ -1193,7 +1237,7 @@
       },
       {
         "path": "/api/v2/requests/solved.json",
-        "displayName": "/api/v2/requests/solved.json",
+        "displayName": "Get Solved Requests",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/solved.json"
         },
@@ -1228,7 +1272,7 @@
       },
       {
         "path": "/api/v2/requests/ccd.json",
-        "displayName": "/api/v2/requests/ccd.json",
+        "displayName": "Get CCD Requests",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/ccd.json"
         },
@@ -1263,7 +1307,7 @@
       },
       {
         "path": "/api/v2/users/:id/requests.json",
-        "displayName": "/api/v2/users/:id/requests.json",
+        "displayName": "Get Requests by User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}/requests.json"
         },
@@ -1305,7 +1349,7 @@
       },
       {
         "path": "/api/v2/organizations/:id/requests.json",
-        "displayName": "/api/v2/organizations/:id/requests.json",
+        "displayName": "Get Requests by Organization",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}/requests.json"
         },
@@ -1346,26 +1390,8 @@
         "url": "https://:subdomain.zendesk.com/api/v2/organizations/:id/requests.json"
       },
       {
-        "path": "/api/v2/requests/search.json?query=camera",
-        "displayName": "/api/v2/requests/search.json?query=camera",
-        "doc": {
-          "url": "https://{subdomain}.zendesk.com/api/v2/requests/search.json?query=camera"
-        },
-        "httpMethod": "GET",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "query",
-            "displayName": "Query",
-            "required": "true"
-          }
-        ],
-        "url": "https://:subdomain.zendesk.com/api/v2/requests/search.json"
-      },
-      {
-        "path": "/api/v2/requests/search.json?query=camera&organization_id=1",
-        "displayName": "/api/v2/requests/search.json?query=camera&organization_id=1",
+        "path": "/api/v2/requests/search.json",
+        "displayName": "Search",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/search.json?query=camera&organization_id=1"
         },
@@ -1388,58 +1414,8 @@
         "url": "https://:subdomain.zendesk.com/api/v2/requests/search.json"
       },
       {
-        "path": "/api/v2/requests/search.json?query=camera&cc_id=true",
-        "displayName": "/api/v2/requests/search.json?query=camera&cc_id=true",
-        "doc": {
-          "url": "https://{subdomain}.zendesk.com/api/v2/requests/search.json?query=camera&cc_id=true"
-        },
-        "httpMethod": "GET",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "query",
-            "displayName": "Query",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "cc_id",
-            "displayName": "CC ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://:subdomain.zendesk.com/api/v2/requests/search.json"
-      },
-      {
-        "path": "/api/v2/requests/search.json?query=camera&status=hold",
-        "displayName": "/api/v2/requests/search.json?query=camera&status=hold",
-        "doc": {
-          "url": "https://{subdomain}.zendesk.com/api/v2/requests/search.json?query=camera&status=hold"
-        },
-        "httpMethod": "GET",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "query",
-            "displayName": "Query",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "status",
-            "displayName": "Status",
-            "required": "true"
-          }
-        ],
-        "url": "https://:subdomain.zendesk.com/api/v2/requests/search.json?query=camera&status=hold"
-      },
-      {
         "path": "/api/v2/requests/:id.json",
-        "displayName": "/api/v2/requests/:id.json",
+        "displayName": "Get a Request",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}.json"
         },
@@ -1457,7 +1433,7 @@
       },
       {
         "path": "/api/v2/requests.json",
-        "displayName": "/api/v2/requests.json",
+        "displayName": "Create a Request",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests.json"
         },
@@ -1467,7 +1443,7 @@
       },
       {
         "path": "/api/v2/requests/:id.json",
-        "displayName": "/api/v2/requests/:id.json",
+        "displayName": "Update a Request",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}.json"
         },
@@ -1485,7 +1461,7 @@
       },
       {
         "path": "/api/v2/requests/:id/comments.json",
-        "displayName": "/api/v2/requests/:id/comments.json",
+        "displayName": "Get Request Comments",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}/comments.json"
         },
@@ -1515,7 +1491,7 @@
       },
       {
         "path": "/api/v2/requests/:request_id/comments/:id.json",
-        "displayName": "/api/v2/requests/:request_id/comments/:id.json",
+        "displayName": "Get a Request Comment",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{request_id}/comments/{id}.json"
         },
@@ -1539,7 +1515,7 @@
       },
       {
         "path": "/api/v2/views.json",
-        "displayName": "/api/v2/views.json",
+        "displayName": "Get Views",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views.json"
         },
@@ -1549,7 +1525,7 @@
       },
       {
         "path": "/api/v2/views/active.json",
-        "displayName": "/api/v2/views/active.json",
+        "displayName": "Get Active Views",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/active.json"
         },
@@ -1559,7 +1535,7 @@
       },
       {
         "path": "/api/v2/views/compact.json",
-        "displayName": "/api/v2/views/compact.json",
+        "displayName": "Get Compact Views",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/compact.json"
         },
@@ -1569,7 +1545,7 @@
       },
       {
         "path": "/api/v2/views/:id.json",
-        "displayName": "/api/v2/views/:id.json",
+        "displayName": "Get View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}.json"
         },
@@ -1587,7 +1563,7 @@
       },
       {
         "path": "/api/v2/views.json",
-        "displayName": "/api/v2/views.json",
+        "displayName": "Create View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views.json"
         },
@@ -1636,7 +1612,7 @@
       },
       {
         "path": "/api/v2/views/:id.json",
-        "displayName": "/api/v2/views/:id.json",
+        "displayName": "Update View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}.json"
         },
@@ -1692,7 +1668,7 @@
       },
       {
         "path": "/api/v2/views/:id.json",
-        "displayName": "/api/v2/views/:id.json",
+        "displayName": "Delete View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}.json"
         },
@@ -1710,7 +1686,7 @@
       },
       {
         "path": "/api/v2/views/:id/execute.json",
-        "displayName": "/api/v2/views/:id/execute.json",
+        "displayName": "Execute View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}/execute.json"
         },
@@ -1728,7 +1704,7 @@
       },
       {
         "path": "/api/v2/views/:id/tickets.json",
-        "displayName": "/api/v2/views/:id/tickets.json",
+        "displayName": "Get Tickets for View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}/tickets.json"
         },
@@ -1746,7 +1722,7 @@
       },
       {
         "path": "/api/v2/views/count_many.json?ids=:view_id",
-        "displayName": "/api/v2/views/count_many.json?ids=:view_id",
+        "displayName": "Count Many Views",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/count_many.json?ids={view_id}"
         },
@@ -1764,7 +1740,7 @@
       },
       {
         "path": "/api/v2/views/:id/count.json",
-        "displayName": "/api/v2/views/:id/count.json",
+        "displayName": "Count Views",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}/count.json"
         },
@@ -1782,7 +1758,7 @@
       },
       {
         "path": "/api/v2/views/:id/export.json",
-        "displayName": "/api/v2/views/:id/export.json",
+        "displayName": "Export View",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}/export.json"
         },
@@ -1800,7 +1776,7 @@
       },
       {
         "path": "/api/v2/views/preview.json",
-        "displayName": "/api/v2/views/preview.json",
+        "displayName": "Create Preview",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/preview.json"
         },
@@ -1841,7 +1817,7 @@
       },
       {
         "path": "/api/v2/views/preview/count.json",
-        "displayName": "/api/v2/views/preview/count.json",
+        "displayName": "Get Preview Count",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/preview/count.json"
         },
@@ -1851,7 +1827,7 @@
       },
       {
         "path": "/api/v2/users.json",
-        "displayName": "/api/v2/users.json",
+        "displayName": "Get Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users.json"
         },
@@ -1861,7 +1837,7 @@
       },
       {
         "path": "/api/v2/groups/:id/users.json",
-        "displayName": "/api/v2/groups/:id/users.json",
+        "displayName": "Get Users for Group",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups/{id}/users.json"
         },
@@ -1879,7 +1855,7 @@
       },
       {
         "path": "/api/v2/organizations/:id/users.json",
-        "displayName": "/api/v2/organizations/:id/users.json",
+        "displayName": "Get Users for Organization",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}/users.json"
         },
@@ -1897,7 +1873,7 @@
       },
       {
         "path": "/api/v2/users/:id.json",
-        "displayName": "/api/v2/users/:id.json",
+        "displayName": "Get User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}.json"
         },
@@ -1915,7 +1891,7 @@
       },
       {
         "path": "/api/v2/users/show_many.json?ids=:ids",
-        "displayName": "/api/v2/users/show_many.json?ids=:ids",
+        "displayName": "Show Many Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/show_many.json?ids={ids}"
         },
@@ -1933,7 +1909,7 @@
       },
       {
         "path": "/api/v2/users/:id/related.json",
-        "displayName": "/api/v2/users/:id/related.json",
+        "displayName": "Get Related Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}/related.json"
         },
@@ -1951,7 +1927,7 @@
       },
       {
         "path": "/api/v2/users.json",
-        "displayName": "/api/v2/users.json",
+        "displayName": "Create User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users.json"
         },
@@ -1961,7 +1937,7 @@
       },
       {
         "path": "/api/v2/users/:user_id/merge.json",
-        "displayName": "/api/v2/users/:user_id/merge.json",
+        "displayName": "Merge User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/merge.json"
         },
@@ -1979,7 +1955,7 @@
       },
       {
         "path": "/api/v2/users/create_many.json",
-        "displayName": "/api/v2/users/create_many.json",
+        "displayName": "Create Many Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/create_many.json"
         },
@@ -1989,7 +1965,7 @@
       },
       {
         "path": "/api/v2/users/:id.json",
-        "displayName": "/api/v2/users/:id.json",
+        "displayName": "Update Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}.json"
         },
@@ -2007,7 +1983,7 @@
       },
       {
         "path": "/api/v2/users/:id.json",
-        "displayName": "/api/v2/users/:id.json",
+        "displayName": "Delete User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}.json"
         },
@@ -2025,7 +2001,7 @@
       },
       {
         "path": "/api/v2/users/search.json?query=:query",
-        "displayName": "/api/v2/users/search.json?query=:query",
+        "displayName": "Search Users",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/search.json?query={query}"
         },
@@ -2043,7 +2019,7 @@
       },
       {
         "path": "/api/v2/users/search.json?external_id=:external_id",
-        "displayName": "/api/v2/users/search.json?external_id=:external_id",
+        "displayName": "Search External User",
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/search.json?external_id={external_id}"
         },
@@ -6441,49 +6417,5 @@
         "url": "https://:subdomain.zendesk.com/api/v2/bookmarks/:id.json"
       }
     ]
-  },
-  "type": "channel:zendesk",
-  "auth_strategy": "oauth",
-  "name": "zendesk",
-  "oauth": {
-    "development": {
-      "clientID": "octoblu",
-      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
-      "callbackURL": "http://localhost:8080/api/oauth/zendesk/callback",
-      "subdomain": "octoblu",
-      "passReqToCallback": true,
-      "scope": [
-        "read",
-        "write"
-      ],
-      "tokenQueryParam" : "oauth_token",
-      "tokenMethod": "access_token_bearer"
-    },
-    "production": {
-      "clientID": "octoblu",
-      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
-      "callbackURL": "https://app.octoblu.com/api/oauth/zendesk/callback",
-      "passReqToCallback": true,
-      "subdomain": "octoblu",
-      "scope": [
-        "read",
-        "write"
-      ],
-      "tokenQueryParam" : "oauth_token",
-      "tokenMethod": "access_token_bearer"
-    },
-    "staging": {
-      "clientID": "octoblu",
-      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/zendesk/callback",
-      "passReqToCallback": true,
-      "subdomain": "octoblu",
-      "scope": [
-        "read",
-        "write"
-      ],
-      "tokenQueryParam" : "oauth_token",
-      "tokenMethod": "access_token_bearer"
-    }
   }
 }
