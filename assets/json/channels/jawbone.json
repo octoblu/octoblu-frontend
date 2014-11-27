@@ -5,7 +5,32 @@
     "base": "https://jawbone.com/nudge/api/v.1.1/",
     "resources": [
       {
-        "params": [],
+        "params": [
+          {
+            "name": "date",
+            "displayName": "Date",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "start_time",
+            "displayName": "Start Time",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "end_time",
+            "displayName": "End Time",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "created_after",
+            "displayName": "Created After",
+            "style": "body",
+            "type": "number"
+          }
+        ],
         "path": "/users/@me/bandevents",
         "displayName": "Get Band Events",
         "authentication": {
@@ -18,7 +43,44 @@
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/bandevents"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": "date",
+            "displayName": "Date",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "page_token",
+            "displayName": "Page Token",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start_time",
+            "displayName": "Start Time",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "end_time",
+            "displayName": "End Time",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "updated_after",
+            "displayName": "Updated After",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "path": "/users/@me/body_events",
         "displayName": "Get Body Composition Events",
         "authentication": {
@@ -41,7 +103,14 @@
         },
         "httpMethod": "GET",
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
-        "params": []
+        "params": [
+          {
+            "name": "event_xid",
+            "displayName": "Event ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -53,7 +122,62 @@
         },
         "displayName": "Create a New Body Composition Event",
         "path": "/users/@me/body_events",
-        "params": [],
+        "params": [
+          {
+            "name": "title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "weight",
+            "displayName": "Weight",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "body_fat",
+            "displayName": "Body Fat",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "lean_mass",
+            "displayName": "Lean Mass",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "bmi",
+            "displayName": "Bmi",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "note",
+            "displayName": "Note",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "Timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/body_events"
       },
       {
@@ -67,7 +191,9 @@
         "displayName": "Delete a Body Composition Event",
         "path": "/body_events/:event_xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
-        "params": []
+        "params": [
+          "event_xid:n:Event ID"
+        ]
       },
       {
         "httpMethod": "GET",
@@ -77,9 +203,46 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Get a Custom Event",
+        "displayName": "Get Custom Events",
         "path": "/users/@me/generic_events",
-        "params": [],
+        "params": [
+          {
+            "name": "date",
+            "displayName": "Date",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "page_token",
+            "displayName": "Page Token",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "start_time",
+            "displayName": "Start Time",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "end_time",
+            "displayName": "End Time",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "updated_after",
+            "displayName": "Updated After",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/generic_events"
       },
       {
@@ -92,7 +255,80 @@
         },
         "displayName": "Create a Custom Event",
         "path": "/users/@me/generic_events",
-        "params": [],
+        "params": [
+          {
+            "name": "title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "verb",
+            "displayName": "Verb",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "attributes",
+            "displayName": "Attributes",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "note",
+            "displayName": "Note",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "Timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/generic_events"
       },
       {
@@ -105,7 +341,86 @@
         },
         "displayName": "Update a Custom Event",
         "path": "/generic_events/:xid/partialUpdate",
-        "params": [],
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Event ID",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "verb",
+            "displayName": "Verb",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "attributes",
+            "displayName": "Attributes",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "note",
+            "displayName": "Note",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid/partialUpdate"
       },
       {
@@ -119,7 +434,14 @@
         "displayName": "Delete a Custom Event",
         "path": "/generic_events/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Event ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -144,7 +466,12 @@
         },
         "displayName": "Create a Goal",
         "path": "/users/@me/goals",
-        "params": [],
+        "params": [
+          "move_steps:n",
+          "sleep_total:n",
+          "body_weight:n",
+          "body_weight_intent:n"
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/goals"
       },
       {
@@ -171,7 +498,9 @@
         "displayName": "Get a Meal",
         "path": "/meals/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
-        "params": []
+        "params": [
+          "xid:s:Meal ID"
+        ]
       },
       {
         "httpMethod": "POST",
@@ -183,7 +512,74 @@
         },
         "displayName": "Create a Meal",
         "path": "/users/@me/meals",
-        "params": [],
+        "params": [
+          {
+            "name": "note",
+            "displayName": "Note",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sub_type",
+            "displayName": "Sub Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "Timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "items",
+            "displayName": "Items",
+            "style": "body",
+            "type": "object"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/meals"
       },
       {
@@ -196,7 +592,80 @@
         },
         "displayName": "Update a Meal",
         "path": "/meals/:xid/partialUpdate",
-        "params": [],
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Meal ID",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "note",
+            "displayName": "Note",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sub_type",
+            "displayName": "Sub Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "Timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "items",
+            "displayName": "Items",
+            "style": "body",
+            "type": "object"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid/partialUpdate"
       },
       {
@@ -210,7 +679,14 @@
         "displayName": "Delete a Meal",
         "path": "/meals/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Meal ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -236,7 +712,14 @@
         "displayName": "Get a Single Mood Event",
         "path": "/mood/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Mood Event ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -248,7 +731,38 @@
         },
         "displayName": "Record Mood",
         "path": "/users/@me/mood",
-        "params": [],
+        "params": [
+          {
+            "name": "title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sub_type",
+            "displayName": "Sub Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "Timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/mood"
       },
       {
@@ -262,7 +776,14 @@
         "displayName": "Delete a Mood Event",
         "path": "/mood/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Mood ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -272,7 +793,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "Get Mood List",
+        "displayName": "Get Moves List",
         "path": "/users/@me/moves",
         "params": [],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/moves"
@@ -288,7 +809,14 @@
         "displayName": "Get a Move",
         "path": "/moves/:move_xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid",
-        "params": []
+        "params": [
+          {
+            "name": "move_xid",
+            "displayName": "Move ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -301,7 +829,14 @@
         "displayName": "Get a Move's Graph",
         "path": "/moves/:move_xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/image",
-        "params": []
+        "params": [
+          {
+            "name": "move_xid",
+            "displayName": "Move ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -313,7 +848,14 @@
         },
         "path": "/moves/:move_xid/ticks",
         "displayName": "Get Move Ticks",
-        "params": [],
+        "params": [
+          {
+            "name": "move_xid",
+            "displayName": "Move ID",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/ticks"
       },
       {
@@ -366,7 +908,14 @@
         "displayName": "Get a Specific Sleep Period",
         "path": "/sleeps/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Sleep ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -379,7 +928,14 @@
         "displayName": "Get a Sleep Period Graph",
         "path": "/sleeps/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/image",
-        "params": []
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Sleep ID",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -391,7 +947,14 @@
         },
         "displayName": "Get Sleep Phases",
         "path": "/sleeps/:xid/ticks",
-        "params": [],
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Sleep ID",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/ticks"
       },
       {
@@ -404,7 +967,32 @@
         },
         "displayName": "Create a Sleep Period",
         "path": "/users/@me/sleeps",
-        "params": [],
+        "params": [
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_completed",
+            "displayName": "Time Completed",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/sleeps"
       },
       {
@@ -418,7 +1006,15 @@
         "displayName": "Delete a Sleep Period",
         "path": "/sleeps/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
-        "params": []
+        "params": [
+          [
+            {
+              "stuff": [
+                "xid:s:Sleep ID"
+              ]
+            }
+          ]
+        ]
       },
       {
         "httpMethod": "GET",
@@ -496,7 +1092,15 @@
         "displayName": "Get a Workout",
         "path": "/workouts/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid",
-        "params": []
+        "params": [
+          [
+            {
+              "stuff": [
+                "xid:s:Workout ID"
+              ]
+            }
+          ]
+        ]
       },
       {
         "httpMethod": "GET",
@@ -509,7 +1113,15 @@
         "displayName": "Get a Workout Graph",
         "path": "/workouts/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/image",
-        "params": []
+        "params": [
+          [
+            {
+              "stuff": [
+                "xid:s:Workout ID"
+              ]
+            }
+          ]
+        ]
       },
       {
         "httpMethod": "GET",
@@ -521,7 +1133,15 @@
         },
         "displayName": "Get Workout Ticks",
         "path": "/workouts/:xid/ticks",
-        "params": [],
+        "params": [
+          [
+            {
+              "stuff": [
+                "xid:s:Workout ID"
+              ]
+            }
+          ]
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/ticks"
       },
       {
@@ -534,7 +1154,86 @@
         },
         "displayName": "Create a Workout",
         "path": "/users/@me/workouts",
-        "params": [],
+        "params": [
+          {
+            "name": "sub_type",
+            "displayName": "Sub Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_completed",
+            "displayName": "Time Completed",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "calories",
+            "displayName": "Calories",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "distance",
+            "displayName": "Distance",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "intensity",
+            "displayName": "Intensity",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/workouts"
       },
       {
@@ -547,7 +1246,92 @@
         },
         "displayName": "Update a Workout",
         "path": "/workouts/:xid/partialUpdate",
-        "params": [],
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Workout ID",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sub_type",
+            "displayName": "Sub Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_created",
+            "displayName": "Time Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "time_completed",
+            "displayName": "Time Completed",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lat",
+            "displayName": "Place Latitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_lon",
+            "displayName": "Place Longitude",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_acc",
+            "displayName": "Place Accuracy",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "place_name",
+            "displayName": "Place Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "tz",
+            "displayName": "timezone",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "calories",
+            "displayName": "Calories",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "distance",
+            "displayName": "Distance",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_url",
+            "displayName": "Image Url",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "intensity",
+            "displayName": "Intensity",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/partialUpdate"
       },
       {
@@ -560,7 +1344,14 @@
         },
         "displayName": "Delete a Workout",
         "path": "/workouts/:xid",
-        "params": [],
+        "params": [
+          {
+            "name": "xid",
+            "displayName": "Workout ID",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid"
       }
     ]
