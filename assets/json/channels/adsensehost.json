@@ -2,6 +2,7 @@
 	"_id": "544583525a370c58ca66a145",
   "name" : "Adsense Host",
   "type" : "channel:google-adsense-host",
+  "enabled": false,
   "auth_strategy" : "oauth",
   "application": {
     "base": "https://www.googleapis.com/adsensehost/v4.1",
@@ -13,7 +14,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -31,7 +31,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -49,7 +48,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -73,7 +71,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -101,7 +98,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
         },
         "httpMethod": "DELETE",
-        "curl": "curl -X",
         "params": [
           {
             "style": "",
@@ -131,7 +127,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -161,7 +156,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -196,7 +190,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
@@ -220,7 +213,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -259,7 +251,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
         },
         "httpMethod": "PATCH",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
@@ -289,7 +280,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
         },
         "httpMethod": "PUT",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
@@ -313,7 +303,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/reports"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -378,7 +367,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -396,7 +384,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -418,7 +405,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/start"
         },
         "httpMethod": "get",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -452,7 +438,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify"
         },
         "httpMethod": "get",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -470,7 +455,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
         },
         "httpMethod": "delete",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "",
@@ -494,7 +478,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -518,7 +501,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
         },
         "httpMethod": "POST",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -536,7 +518,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
         },
         "httpMethod": "GET",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "query",
@@ -564,7 +545,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
         },
         "httpMethod": "PATCH",
-        "curl": "curl -X ",
         "params": [
           {
             "style": "body",
@@ -588,7 +568,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
         },
         "httpMethod": "Put",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
@@ -606,7 +585,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/reports"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
@@ -665,7 +643,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels/urlChannelId"
         },
         "httpMethod": "delete",
-        "curl": "curl -X",
         "params": [
           {
             "style": "",
@@ -689,7 +666,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
         },
         "httpMethod": "POST",
-        "curl": "curl -X",
         "params": [
           {
             "style": "body",
@@ -707,7 +683,6 @@
           "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",

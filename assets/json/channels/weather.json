@@ -17,20 +17,20 @@
           {
             "name": "city",
             "displayName": "City",
-            "type": "string",
-            "style": "query"
+            "style": "body",
+            "type": "string"
           },
           {
             "name": "state",
             "displayName": "State",
-            "type": "string",
-            "style": "query"
+            "style": "body",
+            "type": "string"
           },
           {
             "name": "country",
             "displayName": "Country",
-            "type": "string",
-            "style": "query"
+            "style": "body",
+            "type": "string"
           }
         ]
       },
