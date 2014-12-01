@@ -9,33 +9,9 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/current_user"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "Current User",
-        "path": "/api/v1/me",
+        "displayName": "Get Current User",
+        "path": "me",
         "params": [
-          {
-            "name": "email",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "roles",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "companies",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
         ],
         "url": "https://zenpayroll.com/api/v1//api/v1/me"
       },
@@ -44,144 +20,15 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/employees"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "Employees",
-        "path": "/api/v1/companies/:company_id/employees",
+        "displayName": "Get Employees",
+        "path": "companies/:company_id/employees",
         "params": [
           {
-            "name": "id",
-            "style": "query",
+            "name": ":company_id",
+            "displayName": "Company ID",
+            "style": "url",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "first_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "middle_initial",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "last_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "email",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "date_of_birth",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "jobs",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "title",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "rate",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "payment_unit",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "location_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "eligible_paid_time_off",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "terminated",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "terminations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "active",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "effective_date",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "run_termination_payroll",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "required": true
           }
         ],
         "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id/employees"
@@ -191,137 +38,15 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/companies"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "Companies",
-        "path": "/api/v1/companies/:company_id",
+        "displayName": "Get Company Information",
+        "path": "companies/:company_id",
         "params": [
           {
-            "name": "id",
-            "style": "query",
+            "name": ":company_id",
+            "displayName": "Company ID",
+            "style": "url",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "trade_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "locations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "street_1",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "street_2",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "city",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "state",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "zip",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "compensations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "hourly",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "multiple",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "fixed",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "paid_time_off",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "required": true
           }
         ],
         "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id"
@@ -331,74 +56,15 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/pay_periods/"
         },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "Pay Periods",
-        "path": "/api/v1/companies/:company_id/pay_periods",
+        "displayName": "Get Company Pay Periods",
+        "path": "companies/:company_id/pay_periods",
         "params": [
           {
-            "name": "start_date & end_date",
-            "style": "query",
+            "name": ":company_id",
+            "displayName": "Company ID",
+            "style": "url",
             "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "payroll",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "payroll_deadline",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "processed",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "eligible_employees",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "job_ids",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "required": true
           }
         ],
         "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id/pay_periods"
@@ -408,132 +74,20 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/payrolls/"
         },
-        "authentication": {
-          "required": "true"
-        },
         "params": [
           {
-            "name": "version",
-            "style": "query",
+            "name": ":company_id",
+            "displayName": "Company ID",
+            "style": "url",
             "type": "string",
-            "value": "",
-            "required": "false"
+            "required": true
           },
           {
-            "name": "pay_period",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "payroll_deadline",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "processed",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "employee_compensations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "employee_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "fixed_compensations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "amount",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "hourly_compensations",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "hours",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "job_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "compensation_multiplier",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "paid_time_off",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "hours",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
+            "stuff": [ "start_date:s", "end_date:s", "processed:b"]
           }
         ],
-        "path": "/api/v1/companies/:company_id/payrolls",
-        "displayName": "Payrolls",
+        "path": "companies/:company_id/payrolls",
+        "displayName": "Get Company Payrolls",
         "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id/payrolls"
       },
       {
@@ -541,12 +95,39 @@
         "doc": {
           "url": "http://docs.zenpayroll.com/v1/payrolls/"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Update Payroll",
-        "path": "/api/v1/companies/:company_id/payrolls/:pay_period_start_date/:pay_period_start_date",
-        "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id/payrolls/:pay_period_start_date/:pay_period_start_date"
+        "path": "companies/:company_id/payrolls/:pay_period_start_date/:pay_period_end_date",
+        "url": "https://zenpayroll.com/api/v1//api/v1/companies/:company_id/payrolls/:pay_period_start_date/:pay_period_end_date",
+        "params": [
+          {
+            "name": ":company_id",
+            "displayName": "Company ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":pay_period_start_date",
+            "displayName": "Pay Period Start Date",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":pay_period_end_date",
+            "displayName": "Pay Period End Date",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "employee_compensation",
+            "displayName": "Employee Compensation",
+            "style": "body",
+            "type": "object",
+            "required": true
+          }
+        ]
       }
     ]
   },

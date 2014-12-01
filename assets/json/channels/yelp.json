@@ -6,73 +6,63 @@
     "resources": [
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "http://www.yelp.com/developers/documentation/v2/search_api"
-        },
         "displayName": "Search",
         "path": "search",
         "params": [
           {
             "name": "term",
+            "displayName": "Term",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "string", 
             "required": "false"
           },
           {
             "name": "limit",
+            "displayName": "Limit",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "offset",
+            "displayName": "Offset",
             "style": "query",
             "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "offset",
-            "style": "query",
-            "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sort",
+            "displayName": "Sort",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "category_filter",
+            "displayName": "Category Filter",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "radius_filter",
+            "displayName": "Radius Filter",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "deals_filter",
+            "displayName": "Deals Filter",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "location",
+            "displayName": "Location",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],

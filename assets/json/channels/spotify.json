@@ -18,10 +18,6 @@
           "t": "Lookup data related to a Spotify album URI.A Spotify URI. Either album.A comma-separated list of words that defines the detail level expected in the response. Options: - Track: Returns basic information about all tracks in the album. - Trackdetail: Returns detailed information about all tracks in the album.",
           "url": "http://developer.spotify.com/en/metadata-api/lookup/album/"
         },
-        "curl": "curl -X GET  -d 'uri=spotify:album:6G9fHYDCoyEErUkHrFYfs4&extras=trackdetail' http://api.spotify.com/v1/lookup/1/?uri=spotify:album:{albumId}",
-        "authentication": {
-          "required": "false"
-        },
         "category": "Album",
         "displayName": "Retrieve Album",
         "httpMethod": "GET",
@@ -42,10 +38,6 @@
           "t": "Lookup data related to a Spotify track URI.A Spotify URI. Either track.",
           "url": "http://developer.spotify.com/en/metadata-api/lookup/track/"
         },
-        "curl": "curl -X GET  -d 'uri=spotify:track:6NmXV4o6bmp704aPGyTVVG' http://api.spotify.com/v1/lookup/1/?uri=spotify:track:{trackId}",
-        "authentication": {
-          "required": "false"
-        },
         "category": "Track",
         "displayName": "Retrieve Track",
         "httpMethod": "GET",
@@ -62,10 +54,6 @@
             "required": "true"
           }
         ],
-        "curl": "",
-        "authentication": {
-          "required": "false"
-        },
         "category": "Artist",
         "displayName": "Retrieve Artist",
         "httpMethod": "GET",
@@ -82,10 +70,6 @@
             "required": "true"
           }
         ],
-        "curl": "",
-        "authentication": {
-          "required": "false"
-        },
         "category": "Artist",
         "displayName": "Retrieve Artist",
         "httpMethod": "GET",
@@ -96,10 +80,6 @@
         "doc": {
           "t": "Search for Spotify metadata by track.",
           "url": "http://developer.spotify.com/en/metadata-api/search/track/"
-        },
-        "curl": "curl -X GET  http://api.spotify.com/v1/search/1/track?q={q}",
-        "authentication": {
-          "required": "false"
         },
         "params": [
           {
