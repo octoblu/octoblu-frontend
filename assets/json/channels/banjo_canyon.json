@@ -1,0 +1,39 @@
+{
+  "_id": "547ccdf033a26becee454ca3",
+  "__v": 0,
+  "auth_strategy": "apikey-basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://www.intel.com",
+  "enabled": true,
+  "name": "Banjo Canyon",
+  "type": "channel:banjo_canyon",
+  "application": {
+    "base": "https://www.intel.com",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://:host_url/assetTypes",
+          "t": "Get a list of asset types"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Asset Types",
+        "path": "/assetTypes",
+        "params": [
+          {
+            "name": "assetTypes",
+            "displayName" : "Account Balance",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.:host_url/v1/customers"
+      }
+    ]
+  }
+}
