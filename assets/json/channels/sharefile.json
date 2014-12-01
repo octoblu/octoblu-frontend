@@ -3152,7 +3152,7 @@
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
-        "httpMethod": "PATH",
+        "httpMethod": "PATCH",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
