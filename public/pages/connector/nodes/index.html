@@ -1,37 +1,21 @@
-<md-toolbar md-theme="octo-blue" class="md-tall">
+<md-toolbar md-theme="octo-blue">
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-    </a>
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars"></i>
+        Connect
+      </a>
+    </div>
 
-    <md-button ui-sref="material.nodewizard.addnode" hide show-phone show-tablet class="" md-theme="octo-blue">
+    <md-button ui-sref="material.nodewizard.addnode" md-theme="octo-blue">
       <md-tooltip>Add New Node</md-tooltip>
-      <i class="fa fa-2x fa-plus"></i>
+      Add New Node
     </md-button>
   </h2>
 </md-toolbar>
 
-
-<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
-  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="margin-top: -80px; background: white;">
-    <div layout-align="end" layout="row" style="height: 0; overflow: visible;">
-      <md-button ui-sref="material.nodewizard.addnode" hide-phone hide-tablet class="md-raised md-primary md-fab" md-theme="default" style="position: relative; right: -75px; top: 50px;">
-        <md-tooltip>Add New Node</md-tooltip>
-        <i class="fa fa-plus fa-2x"></i>
-      </md-button>
-    </div>
-
-    <div layout="row" style="padding: 6px 15px;">
-      <h1 flex>Connect</h1>
-
-      <form flex layout="row" layout-align="end center">
-        <md-text-float ng-model="nodeSearch" style="font-size: 2em;"></md-text-float>
-        <i class="fa fa-2x fa-search"></i>
-      </form>
-    </div>
-
-    <md-divider></md-divider>
-
+<div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
+  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white;">
     <md-content flex layout-fill>
       <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
         <div ng-if="nodes.length" ng-repeat="node in nodes | filter: {name:nodeSearch} | filter: filterFlows | orderBy: 'name'" class="bill-of-materials-icon">

@@ -1,9 +1,11 @@
-<h2 class="text-center">Add a new Node</h2>
+<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
+  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white; padding: 0 15px;">
 
-<div class="row">
-  <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-    <form class="form">
-      <div class="form-group">
+    <br>
+    <br>
+
+    <form class="form" layout="row" layout-align="center">
+      <div class="form-group" flex="66">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="nodeTypeSearch" autofocus>
           <span class="input-group-addon">
@@ -12,18 +14,16 @@
         </div>
       </div>
     </form>
-  </div>
-</div>
 
-<hr>
-
-<div class="row">
-  <div ng-repeat="nodeType in nodeTypes | filter: {name:nodeTypeSearch} | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-    <h4 class="text-center">
-      <a class="" ui-sref="material.nodewizard.add({nodeTypeId: nodeType._id})">
-        <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" title="{{nodeType.name}}" class="node-thumbnail animated-popout"></div>
-        <strong class="muted-link">{{nodeType.name}}</strong>
-      </a>
-    </h4>
+    <div class="row">
+      <div ng-repeat="nodeType in nodeTypes | filter: {name:nodeTypeSearch} | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2" style="height: 250px;">
+        <h4 class="text-center">
+          <a class="" ui-sref="material.nodewizard.add({nodeTypeId: nodeType._id})">
+            <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" title="{{nodeType.name}}" class="node-thumbnail animated-popout"></div>
+            <strong class="muted-link">{{nodeType.name}}</strong>
+          </a>
+        </h4>
+      </div>
+    </div>
   </div>
 </div>

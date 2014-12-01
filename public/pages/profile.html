@@ -10,68 +10,74 @@
 
 <br>
 
-<div class="col-xs-12">
-  <div class="row">
+<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
+  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white; padding: 0 15px;">
+    <br>
+
     <div class="col-xs-12">
-        <div class="alert alert-info">
-          <h4>
-            <strong>Your UUID is:</strong> {{currentUser.skynet.uuid}}
-          </h4>
-          <h4>
-            <strong>Your Token is:</strong> {{currentUser.skynet.token}}
-          </h4>
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-info">
+              <h4>
+                <strong>Your UUID is:</strong> {{currentUser.skynet.uuid}}
+              </h4>
+              <h4>
+                <strong>Your Token is:</strong> {{currentUser.skynet.token}}
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="alert alert-success" ng-show="passwordUpdated">
-        Your password has been updated
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="alert alert-success" ng-show="passwordUpdated">
+            Your password has been updated
+          </div>
+          <form name="passwordForm" class="form-horizontal" ng-submit="updatePassword(passwordForm)">
+            <fieldset>
+              <legend>Change Password</legend>
+
+              <div class="form-group" ng-class="{'has-error': passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty}">
+                <label for="old-password" class="col-sm-2 control-label">Old Password</label>
+                <div class="col-sm-10">
+                  <input ng-model="oldPassword" ng-change="validateOldPassword(passwordForm)" id="old-password" name="oldPassword" type="password" class="form-control" required>
+                  <p class="help-block" ng-if="passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty">
+                    <span ng-show="passwordForm.oldPassword.$error.required">Old password is required.</span>
+                    <span ng-show="passwordForm.oldPassword.$error.correct">Old password is not correct.</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
+                <label for="newPassword" class="col-sm-2 control-label">New Password</label>
+                <div class="col-sm-10">
+                  <input ng-model="newPassword" id="newPassword" name="newPassword" type="password" class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
+                </div>
+              </div>
+
+              <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
+                <label for="confirmNewPassword" class="col-sm-2 control-label">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input ng-model="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" type="password"  class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
+                  <p class="help-block" ng-if="passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty">
+                    <span ng-show="passwordForm.confirmNewPassword.$error.matches">
+                      New Password and Password Confirmation must match.
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-block btn-primary" value="Submit" ng-class="{'disabled': passwordForm.$invalid}">
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </div>
-      <form name="passwordForm" class="form-horizontal" ng-submit="updatePassword(passwordForm)">
-        <fieldset>
-          <legend>Change Password</legend>
-
-          <div class="form-group" ng-class="{'has-error': passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty}">
-            <label for="old-password" class="col-sm-2 control-label">Old Password</label>
-            <div class="col-sm-10">
-              <input ng-model="oldPassword" ng-change="validateOldPassword(passwordForm)" id="old-password" name="oldPassword" type="password" class="form-control" required>
-              <p class="help-block" ng-if="passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty">
-                <span ng-show="passwordForm.oldPassword.$error.required">Old password is required.</span>
-                <span ng-show="passwordForm.oldPassword.$error.correct">Old password is not correct.</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
-            <label for="newPassword" class="col-sm-2 control-label">New Password</label>
-            <div class="col-sm-10">
-              <input ng-model="newPassword" id="newPassword" name="newPassword" type="password" class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
-            </div>
-          </div>
-
-          <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
-            <label for="confirmNewPassword" class="col-sm-2 control-label">Confirm Password</label>
-            <div class="col-sm-10">
-              <input ng-model="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" type="password"  class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
-              <p class="help-block" ng-if="passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty">
-                <span ng-show="passwordForm.confirmNewPassword.$error.matches">
-                  New Password and Password Confirmation must match.
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <input type="submit" class="btn btn-block btn-primary" value="Submit" ng-class="{'disabled': passwordForm.$invalid}">
-            </div>
-          </div>
-        </fieldset>
-      </form>
     </div>
   </div>
 </div>
