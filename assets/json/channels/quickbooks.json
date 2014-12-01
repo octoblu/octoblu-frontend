@@ -4,29 +4,23 @@
     "base": "https://quickbooks.api.intuit.com/v3",
     "resources": [
       {
-        "path": "/query",
-        "displayName": "/company/:companyId/query",
-        "doc": {
-          "url": "GET https://quickbooks.api.intuit.com/v3/company/:companyId/query"
-        },
+        "displayName": "Search Companies",
+        "path": "/company/:companyId/query",
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "name": ":companyId",
             "style": "url",
             "type": "string",
             "displayName": "Company ID",
-            "required": true,
-            "default": ""
+            "required": true
           },
           {
             "name": "query",
             "style": "query",
             "type": "string",
             "displayName": "Query",
-            "required": true,
-            "default": ""
+            "required": true
           }
         ],
         "url": "https://quickbooks.api.intuit.com/v3/company/:companyId/query"
