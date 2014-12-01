@@ -54,11 +54,6 @@
 .flow-top-bar {
   position: fixed;
   top: 0;
-  margin-left: 10px;
-}
-
-.flow-top-bar > div {
-  margin: 15px 15px 0;
 }
 
 .flow-top-bar {
@@ -121,6 +116,37 @@
       animation-name: stopPulse;
       animation-duration: 2s;
       animation-iteration-count: infinite;
+    }
+  }
+}
+
+md-toolbar {
+  .input-group {
+      i {
+        color: @brand-primary;
+      }
+    input {
+      border-right:0;
+    }
+    .input-group-addon {
+      background-color:white;
+    }
+
+    .input-group-btn {
+      button {
+        padding: 5px 12px;
+
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color:white;
+        border: 1px solid #cccccc;
+        border-left: 0;
+
+        .fa-angle-down {
+          font-size: 30px;
+        }
+      }
+
     }
   }
 }
