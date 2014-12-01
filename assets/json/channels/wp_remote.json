@@ -7,12 +7,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/sites/"
+          "url": "https://wpremote.com/api/json/site"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site",
+        "displayName": "Get all sites",
         "path": "/site",
         "url": "https://wpremote.com/api/json/site",
         "params": []
@@ -20,12 +20,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/sites/"
+          "url": "https://wpremote.com/api/json/site"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site",
+        "displayName": "Add a new site to your account",
         "path": "/site",
         "params": [
           {
@@ -55,12 +55,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID",
+        "displayName": "Get the site object including all of its attributes",
         "path": "/site/:SITE_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID",
         "params": [
@@ -76,12 +76,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID",
+        "displayName": "Update WP Remote attributes of the site",
         "path": "/site/:SITE_ID",
         "params": [
           {
@@ -146,12 +146,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID",
+        "displayName": "Remove the site from the account",
         "path": "/site/:SITE_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID",
         "params": [
@@ -167,12 +167,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/themes/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme",
+        "displayName": "GET Site Themes",
         "path": "/site/:SITE_ID/theme",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme",
         "params": [
@@ -188,12 +188,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG",
+        "displayName": "GET Site Theme",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG",
         "params": [
@@ -216,12 +216,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/lock-update/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/lock-update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
+        "displayName": "Post Lock updates for a theme",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
         "params": [
@@ -244,12 +244,12 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/lock-update/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/lock-update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
+        "displayName": "Remove the lock on the theme version",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/lock-update",
         "params": [
@@ -272,15 +272,21 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/install/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/install"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/install",
+        "displayName": "Install a WordPress theme on a site",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/install",
         "params": [
           {
+            "name": ":THEME_SLUG",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },{
             "name": "version",
             "style": "body",
             "type": "string",
@@ -293,12 +299,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/update/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/update"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/update",
+        "displayName": "Update a WordPress theme on a site",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/update",
         "params": [
@@ -321,12 +327,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/delete/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/delete"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/delete",
+        "displayName": "Delete a WordPress theme on a site",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/delete",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/delete",
         "params": [
@@ -349,12 +355,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/theme/activate/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/activate"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/theme/:THEME_SLUG/activate",
+        "displayName": "Post or Activate a WordPress theme on a site",
         "path": "/site/:SITE_ID/theme/:THEME_SLUG/activate",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/theme/:THEME_SLUG/activate",
         "params": [
@@ -377,12 +383,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/posts/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/post"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post",
+        "displayName": "GET or Access a Site's posts",
         "path": "/site/:SITE_ID/post",
         "params": [
           {
@@ -629,12 +635,12 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/posts/"
+          "url": "https://wpremote.com/api/json/https://wpremote.com/api-docs/site/posts/"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/https://wpremote.com/api-docs/site/posts/",
+        "displayName": "Create a new post on a Site",
         "path": "/https://wpremote.com/api-docs/site/posts/",
         "params": [
           {
@@ -748,12 +754,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://wpremote.com/api-docs/site/post/"
+          "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID",
+        "displayName": "GET or Manage a Site's posts",
         "path": "/site/:SITE_ID/post/:POST_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID",
         "params": [
@@ -781,7 +787,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID",
+        "displayName": "POST or Manage a Site's posts",
         "path": "/site/:SITE_ID/post/:POST_ID",
         "params": [
           {
@@ -900,7 +906,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID",
+        "displayName": "Remove or Manage a Site's posts",
         "path": "/site/:SITE_ID/post/:POST_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID",
         "params": [
@@ -928,7 +934,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID/meta",
+        "displayName": "GET or Manage a Site's post meta",
         "path": "/site/:SITE_ID/post/:POST_ID/meta",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID/meta",
         "params": [
@@ -956,7 +962,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID/meta",
+        "displayName": "Post or Manage a Site's post meta",
         "path": "/site/:SITE_ID/post/:POST_ID/meta",
         "params": [
           {
@@ -984,7 +990,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
+        "displayName": "GET or Manage a Site's post meta",
         "path": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
         "params": [
@@ -1019,7 +1025,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
+        "displayName": "Post or Manage a Site's post meta",
         "path": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
         "params": [
           {
@@ -1040,7 +1046,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
+        "displayName": "Remove or Manage a Site's post meta",
         "path": "/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/post/:POST_ID/meta/:META_KEY",
         "params": [
@@ -1075,7 +1081,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/email-notification",
+        "displayName": "GET email notifications for the site",
         "path": "/site/:SITE_ID/email-notification",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/email-notification",
         "params": [
@@ -1096,7 +1102,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/email-notification",
+        "displayName": "POST email notifications for the site",
         "path": "/site/:SITE_ID/email-notification",
         "params": [
           {
@@ -1117,7 +1123,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user",
+        "displayName": "Get all users on a remote Site",
         "path": "/site/:SITE_ID/user",
         "params": [
           {
@@ -1180,7 +1186,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user",
+        "displayName": "Create a new user on a remote Site",
         "path": "/site/:SITE_ID/user",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user",
         "params": [
@@ -1201,7 +1207,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID",
+        "displayName": "Get a User on a remote Site",
         "path": "/site/:SITE_ID/user/:USER_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user/:USER_ID",
         "params": [
@@ -1229,7 +1235,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID",
+        "displayName": "Update a User on a remote Site",
         "path": "/site/:SITE_ID/user/:USER_ID",
         "params": [
           {
@@ -1299,7 +1305,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID",
+        "displayName": "Delete a User on a remote Site",
         "path": "/site/:SITE_ID/user/:USER_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user/:USER_ID",
         "params": [
@@ -1327,7 +1333,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID/meta",
+        "displayName": "GET a Site's user meta",
         "path": "/site/:SITE_ID/user/:USER_ID/meta",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user/:USER_ID/meta",
         "params": [
@@ -1355,7 +1361,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID/meta",
+        "displayName": "POST a Site's user meta",
         "path": "/site/:SITE_ID/user/:USER_ID/meta",
         "params": [
           {
@@ -1383,7 +1389,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
+        "displayName": "GET a Site's user meta",
         "path": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
         "params": [
@@ -1418,7 +1424,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
+        "displayName": "POST a Site's user meta",
         "path": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
         "params": [
           {
@@ -1439,7 +1445,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
+        "displayName": "Remove a Site's user meta",
         "path": "/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/user/:USER_ID/meta/:META_KEY",
         "params": [
@@ -1474,7 +1480,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin",
+        "displayName": "GET Access to WordPress plugins on a Site",
         "path": "/site/:SITE_ID/plugin",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin",
         "params": [
@@ -1495,7 +1501,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG",
+        "displayName": "GET Access to a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG",
         "params": [
@@ -1523,7 +1529,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/deactivate",
+        "displayName": "Deactivate a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/deactivate",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/deactivate",
         "params": [
@@ -1551,7 +1557,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
+        "displayName": "Lock the version of the plugin so it can't be updated",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
         "params": [
@@ -1579,7 +1585,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
+        "displayName": "Remove the lock on the plugin version",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/lock-update",
         "params": [
@@ -1607,7 +1613,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/update",
+        "displayName": "Update a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/update",
         "params": [
@@ -1635,7 +1641,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/uninstall",
+        "displayName": "Uninstall a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/uninstall",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/uninstall",
         "params": [
@@ -1663,7 +1669,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/install",
+        "displayName": "Install a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/install",
         "params": [
           {
@@ -1684,7 +1690,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/activate",
+        "displayName": "Activate a WordPress plugin on a site",
         "path": "/site/:SITE_ID/plugin/:PLUGIN_SLUG/activate",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/plugin/:PLUGIN_SLUG/activate",
         "params": [
@@ -1712,7 +1718,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/auto-theme-update",
+        "displayName": "Create automatic theme updates for a Site",
         "path": "/site/:SITE_ID/auto-theme-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/auto-theme-update",
         "params": [
@@ -1733,7 +1739,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/auto-theme-update",
+        "displayName": "Delete automatic theme updates for a Site",
         "path": "/site/:SITE_ID/auto-theme-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/auto-theme-update",
         "params": [
@@ -1754,7 +1760,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/auto-plugin-update",
+        "displayName": "Create automatic plugin updates for a Site",
         "path": "/site/:SITE_ID/auto-plugin-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/auto-plugin-update",
         "params": [
@@ -1775,7 +1781,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/auto-plugin-update",
+        "displayName": "Remove automatic plugin updates for a Site",
         "path": "/site/:SITE_ID/auto-plugin-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/auto-plugin-update",
         "params": [
@@ -1796,7 +1802,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/webhook",
+        "displayName": "Get all the registered web hooks for this site",
         "path": "/site/:SITE_ID/webhook",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/webhook",
         "params": [
@@ -1817,7 +1823,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/webhook",
+        "displayName": "Add a new webhook to the site",
         "path": "/site/:SITE_ID/webhook",
         "params": [
           {
@@ -1838,7 +1844,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/webhook",
+        "displayName": "Delete all the webhooks for a given site",
         "path": "/site/:SITE_ID/webhook",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/webhook",
         "params": [
@@ -1887,7 +1893,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment",
+        "displayName": "Get comments on a Site",
         "path": "/site/:SITE_ID/comment",
         "params": [
           {
@@ -1929,7 +1935,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment",
+        "displayName": "Create a comment on a Site",
         "path": "/site/:SITE_ID/comment",
         "params": [
           {
@@ -2020,7 +2026,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID",
+        "displayName": "GET a Site's comments",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/comment/:COMMENT_ID",
         "params": [
@@ -2048,7 +2054,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID",
+        "displayName": "Post a Site's comments",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID",
         "params": [
           {
@@ -2139,7 +2145,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID",
+        "displayName": "Delete a Site's comments",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/comment/:COMMENT_ID",
         "params": [
@@ -2167,7 +2173,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID/meta",
+        "displayName": "GET a Site's comment meta",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID/meta",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/comment/:COMMENT_ID/meta",
         "params": [
@@ -2195,7 +2201,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID/meta",
+        "displayName": "POST a Site's comment meta",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID/meta",
         "params": [
           {
@@ -2223,7 +2229,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
+        "displayName": "GET a Site's comment meta",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
         "params": [
@@ -2258,7 +2264,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
+        "displayName": "POST a Site's comment meta",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
         "params": [
           {
@@ -2279,7 +2285,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
+        "displayName": "Remove a Site's comment meta",
         "path": "/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/comment/:COMMENT_ID/meta/:META_KEY",
         "params": [
@@ -2314,7 +2320,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup",
+        "displayName": "Get the list of backups for a site",
         "path": "/site/:SITE_ID/backup",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup",
         "params": [
@@ -2336,7 +2342,7 @@
           "required": "true"
         },
         "path": "/site/:SITE_ID/backup/location",
-        "displayName": "/site/:SITE_ID/backup/location",
+        "displayName": "Get the location of where automatic backups will be sent",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location",
         "params": [
           {
@@ -2357,7 +2363,7 @@
           "required": "true"
         },
         "path": "/site/:SITE_ID/backup/location",
-        "displayName": "/site/:SITE_ID/backup/location",
+        "displayName": "Update where the automatic backups will go",
         "params": [
           {
             "name": "location",
@@ -2377,7 +2383,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/ftp",
+        "displayName": "Get the options for FTP as a backup destination",
         "path": "/site/:SITE_ID/backup/location/ftp",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/ftp",
         "params": [
@@ -2398,7 +2404,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/ftp",
+        "displayName": "Update the options for FTP as a backup destination",
         "path": "/site/:SITE_ID/backup/location/ftp",
         "params": [
           {
@@ -2447,7 +2453,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/ftp",
+        "displayName": "Remove the saved FTP details",
         "path": "/site/:SITE_ID/backup/location/ftp",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/ftp",
         "params": [
@@ -2468,7 +2474,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/sftp",
+        "displayName": "Get the options for SFTP as a backup destination",
         "path": "/site/:SITE_ID/backup/location/sftp",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/sftp",
         "params": [
@@ -2489,7 +2495,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/sftp",
+        "displayName": "Update the options for SFTP as a backup destination",
         "path": "/site/:SITE_ID/backup/location/sftp",
         "params": [
           {
@@ -2538,7 +2544,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/sftp",
+        "displayName": "Remove the saved SFTP details",
         "path": "/site/:SITE_ID/backup/location/sftp",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/sftp",
         "params": [
@@ -2559,7 +2565,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/s3",
+        "displayName": "Get the options for S3 as a backup destination",
         "path": "/site/:SITE_ID/backup/location/s3",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/s3",
         "params": [
@@ -2580,7 +2586,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/s3",
+        "displayName": "Update the options for S3 as a backup destination",
         "path": "/site/:SITE_ID/backup/location/s3",
         "params": [
           {
@@ -2615,7 +2621,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/s3",
+        "displayName": "Remove the saved S3 details",
         "path": "/site/:SITE_ID/backup/location/s3",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/s3",
         "params": [
@@ -2636,7 +2642,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/dropbox",
+        "displayName": "Get the options for Dropbox as a backup destination",
         "path": "/site/:SITE_ID/backup/location/dropbox",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/dropbox",
         "params": [
@@ -2666,7 +2672,7 @@
             "required": "true"
           }
         ],
-        "displayName": "/site/:SITE_ID/backup/location/dropbox",
+        "displayName": "Update the options for Dropbox as a backup destination",
         "path": "/site/:SITE_ID/backup/location/dropbox",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/dropbox"
       },
@@ -2678,7 +2684,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/location/dropbox",
+        "displayName": "Remove the saved access details for dropbox",
         "path": "/site/:SITE_ID/backup/location/dropbox",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/location/dropbox",
         "params": [
@@ -2699,7 +2705,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/exclude",
+        "displayName": "Get the exclude rules for the site",
         "path": "/site/:SITE_ID/backup/exclude",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/exclude",
         "params": [
@@ -2729,7 +2735,7 @@
             "required": "true"
           }
         ],
-        "displayName": "/site/:SITE_ID/backup/exclude",
+        "displayName": "Update the exclude rules for a site",
         "path": "/site/:SITE_ID/backup/exclude",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/exclude"
       },
@@ -2741,7 +2747,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/exclude",
+        "displayName": "Delete all the exclude rules for a site",
         "path": "/site/:SITE_ID/backup/exclude",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/exclude",
         "params": [
@@ -2762,7 +2768,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/:BACKUP_ID",
+        "displayName": "Get information on a single backup object",
         "path": "/site/:SITE_ID/backup/:BACKUP_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/:BACKUP_ID",
         "params": [
@@ -2790,7 +2796,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/:BACKUP_ID",
+        "displayName": "Delete a backup on the site. The backup file will be removed permanently.",
         "path": "/site/:SITE_ID/backup/:BACKUP_ID",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/:BACKUP_ID",
         "params": [
@@ -2818,7 +2824,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/:BACKUP_ID/download",
+        "displayName": "Download a given backup",
         "path": "/site/:SITE_ID/backup/:BACKUP_ID/download",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/:BACKUP_ID/download",
         "params": [
@@ -2846,7 +2852,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/auto-backup",
+        "displayName": "Enable Automatic Backups for a Site",
         "path": "/site/:SITE_ID/backup/auto-backup",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/auto-backup",
         "params": [
@@ -2867,7 +2873,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/backup/auto-backup",
+        "displayName": "Disable Automatic Backups for a Site",
         "path": "/site/:SITE_ID/backup/auto-backup",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/backup/auto-backup",
         "params": [
@@ -2883,12 +2889,52 @@
       {
         "httpMethod": "POST",
         "doc": {
+          "url": "https://wpremote.com/api-docs/site/{SITE_ID}/backup/auto-backup/schedule"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Set the automatic backup schedule",
+        "path": "/site/{SITE_ID}/backup/auto-backup/schedule",
+        "url": "https://wpremote.com/api/json/site/{SITE_ID}/backup/auto-backup/schedule",
+        "params": [
+          {
+            "name": ":SITE_ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },{
+        "httpMethod": "Get",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/{SITE_ID}/backup/auto-backup/schedule"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Get the automatic backup schedule",
+        "path": "/site/{SITE_ID}/backup/auto-backup/schedule",
+        "url": "https://wpremote.com/api/json/site/{SITE_ID}/backup/auto-backup/schedule",
+        "params": [
+          {
+            "name": ":SITE_ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
+      },{
+        "httpMethod": "POST",
+        "doc": {
           "url": "https://wpremote.com/api-docs/site/refresh-data/"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/refresh-data",
+        "displayName": "Refresh the data for a site",
         "path": "/site/:SITE_ID/refresh-data",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/refresh-data",
         "params": [
@@ -2909,7 +2955,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/history",
+        "displayName": "GET Access to WP Remote's history of the site",
         "path": "/site/:SITE_ID/history",
         "params": [
           {
@@ -2965,7 +3011,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/history/enable-remote-history",
+        "displayName": "Enable remote history (history items logged on the site it's self)",
         "path": "/site/:SITE_ID/history/enable-remote-history",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/history/enable-remote-history",
         "params": [
@@ -2986,7 +3032,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/history/enable-remote-history",
+        "displayName": "disable remote history (history items logged on the site it's self)",
         "path": "/site/:SITE_ID/history/enable-remote-history",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/history/enable-remote-history",
         "params": [
@@ -3007,7 +3053,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/core/lock-update",
+        "displayName": "Lock the WordPress version (so it can't be updated)",
         "path": "/site/:SITE_ID/core/lock-update",
         "params": [
           {
@@ -3077,7 +3123,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/core/lock-update",
+        "displayName": "Remove the lock on the WordPress version",
         "path": "/site/:SITE_ID/core/lock-update",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/core/lock-update",
         "params": [
@@ -3098,7 +3144,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/core/auto-update",
+        "displayName": "Enable automatic core updates",
         "path": "/site/:SITE_ID/core/auto-update",
         "params": [
           {
@@ -3120,7 +3166,7 @@
           "required": "true"
         },
         "path": "/site/:SITE_ID/core/auto-update",
-        "displayName": "/site/:SITE_ID/core/auto-update",
+        "displayName": "Disable automatic core updates",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/core/auto-update",
         "params": [
           {
@@ -3140,7 +3186,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/core/update",
+        "displayName": "Update WordPress core on a site",
         "path": "/site/:SITE_ID/core/update",
         "params": [
           {
@@ -3210,7 +3256,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/lock",
+        "displayName": "POST Lock WP Remote's ability to make any changes to a site",
         "path": "/site/:SITE_ID/lock",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/lock",
         "params": [
@@ -3231,7 +3277,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/lock",
+        "displayName": "Remove Lock WP Remote's ability to make any changes to a site",
         "path": "/site/:SITE_ID/lock",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/lock",
         "params": [
@@ -3253,7 +3299,7 @@
           "required": "true"
         },
         "path": "/site/:SITE_ID/note",
-        "displayName": "/site/:SITE_ID/note",
+        "displayName": "GET Any notes you'd like to make about the site",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/note",
         "params": [
           {
@@ -3273,7 +3319,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/note",
+        "displayName": "POST Any notes you'd like to make about the site",
         "path": "/site/:SITE_ID/note",
         "params": [
           {
@@ -3294,7 +3340,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/group",
+        "displayName": "Get the current Group for a Site",
         "path": "/site/:SITE_ID/group",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/group",
         "params": [
@@ -3315,10 +3361,16 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/group",
+        "displayName": "Update the current Group for a Site",
         "path": "/site/:SITE_ID/group",
         "params": [
           {
+            "name": ":SITE_ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },{
             "name": "name",
             "style": "body",
             "type": "string",
@@ -3337,7 +3389,7 @@
           "required": "true"
         },
         "path": "/site/:SITE_ID/download",
-        "displayName": "/site/:SITE_ID/download",
+        "displayName": "Get the progress and/or download URL of a previously initiated download process (see POST)",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/download",
         "params": [
           {
@@ -3357,7 +3409,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/download",
+        "displayName": "Initiate the download process. Downloading a site is an asynchronious process. Once POSTed to, use GET",
         "path": "/site/:SITE_ID/download",
         "params": [
           {
@@ -3378,7 +3430,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/download",
+        "displayName": "Delete the archive for a previous download request. It is recommended that the archive is deleted after completing a download",
         "path": "/site/:SITE_ID/download",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/download",
         "params": [
@@ -3399,7 +3451,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/premium",
+        "displayName": "Remove a site to premium. You must have a premium subscription active to upgrade a site.",
         "path": "/site/:SITE_ID/premium",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/premium",
         "params": [
@@ -3420,7 +3472,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/premium",
+        "displayName": "Upgrade a site to premium. You must have a premium subscription active to upgrade a site.",
         "path": "/site/:SITE_ID/premium",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/premium",
         "params": [
@@ -3441,7 +3493,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/api-key",
+        "displayName": "Get the API key WP Remote uses to connect to the remote site",
         "path": "/site/:SITE_ID/api-key",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/api-key",
         "params": [
@@ -3462,7 +3514,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/api-key",
+        "displayName": "Reset the API key WP Remote uses to connect to the remote site",
         "path": "/site/:SITE_ID/api-key",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/api-key",
         "params": [
@@ -3483,7 +3535,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/option/:OPTION_NAME",
+        "displayName": "Get a Site's options",
         "path": "/site/:SITE_ID/option/:OPTION_NAME",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/option/:OPTION_NAME",
         "params": [
@@ -3513,6 +3565,19 @@
         },
         "params": [
           {
+            "name": ":SITE_ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":OPTION_NAME",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },{
             "name": "option_value",
             "style": "body",
             "type": "string",
@@ -3520,7 +3585,7 @@
             "required": "true"
           }
         ],
-        "displayName": "/site/:SITE_ID/option/:OPTION_NAME",
+        "displayName": "Update a Site's options",
         "path": "/site/:SITE_ID/option/:OPTION_NAME",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/option/:OPTION_NAME"
       },
@@ -3532,7 +3597,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/:SITE_ID/option/:OPTION_NAME",
+        "displayName": "Remove a Site's options",
         "path": "/site/:SITE_ID/option/:OPTION_NAME",
         "url": "https://wpremote.com/api/json/site/:SITE_ID/option/:OPTION_NAME",
         "params": [
@@ -3560,7 +3625,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/site/history",
+        "displayName": "GET Access to WP Remote's history of all the user's Sites",
         "path": "/site/history",
         "params": [
           {
@@ -3623,7 +3688,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/webhook",
+        "displayName": "Get all the registered web hooks",
         "path": "/account/webhook",
         "url": "https://wpremote.com/api/json/account/webhook",
         "params": []
@@ -3645,7 +3710,7 @@
             "required": "true"
           }
         ],
-        "displayName": "/account/webhook",
+        "displayName": "Add a new webhook",
         "path": "/account/webhook",
         "url": "https://wpremote.com/api/json/account/webhook"
       },
@@ -3657,7 +3722,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/webhook",
+        "displayName": "Delete all the webhooks for a given site",
         "path": "/account/webhook",
         "url": "https://wpremote.com/api/json/account/webhook",
         "params": []
@@ -3670,7 +3735,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/webhook/:WEBHOOK_ID",
+        "displayName": "Delete a given webhook",
         "path": "/account/webhook/:WEBHOOK_ID",
         "url": "https://wpremote.com/api/json/account/webhook/:WEBHOOK_ID",
         "params": [
@@ -3692,7 +3757,7 @@
           "required": "true"
         },
         "path": "/account/subscription",
-        "displayName": "/account/subscription",
+        "displayName": "Update your subscription with a payment token. Currently the only supported card token is Stripe.",
         "params": [
           {
             "name": "stripe_token",
@@ -3719,7 +3784,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/subscription",
+        "displayName": "Delete your subscription, this will remove any payment details and disable any payment based features.",
         "path": "/account/subscription",
         "url": "https://wpremote.com/api/json/account/subscription",
         "params": []
@@ -3732,7 +3797,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/subscription",
+        "displayName": "Get information on your current subscription",
         "path": "/account/subscription",
         "url": "https://wpremote.com/api/json/account/subscription",
         "params": []

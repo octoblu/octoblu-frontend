@@ -1017,6 +1017,7 @@
             "style": "url",
             "type": "string",
             "name": ":EVENT_ID",
+            "displayName": "Event ID",
             "required": "true"
           }
         ],
@@ -1104,6 +1105,7 @@
             "style": "query",
             "type": "string",
             "name": "requests",
+            "displayName": "Requests",
             "required": "true"
           }
         ],
