@@ -319,7 +319,7 @@
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
-        "displayName": "/Accounts/LoginAccessControlDomains",
+        "displayName": "Create or replace the Login Access Control List of domains",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
@@ -913,8 +913,8 @@
         ]
       },
       {
-        "path": "Create Group",
-        "displayName": "/Groups",
+        "path": "/Groups",
+        "displayName": "Create Group",
         "httpMethod": "POST",
         "params": [
           {
@@ -1378,7 +1378,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/Breadcrumbs",
+        "displayName": "Get Breadcrumbs",
         "path": "/Items(:id)/Breadcrumbs",
         "params": [
           {
@@ -1403,7 +1403,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/Copy",
+        "displayName": "Copy Item",
         "path": "/Items(:id)/Copy",
         "params": [
           {
@@ -1435,7 +1435,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/Upload",
+        "displayName": "Upload File",
         "path": "/Items(:id)/Upload",
         "params": [
           {
@@ -1599,7 +1599,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/CheckIn",
+        "displayName": "Unlock File",
         "path": "/Items(:id)/CheckIn",
         "params": [
           {
@@ -1624,7 +1624,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/CheckOut",
+        "displayName": "Lock File",
         "path": "/Items(:id)/CheckOut",
         "params": [
           {
@@ -1642,7 +1642,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items/Search",
+        "displayName": "Items Search",
         "path": "/Items/Search",
         "params": [
           {
@@ -1660,7 +1660,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items/AdvancedSearch",
+        "displayName": "Item Advanced Search",
         "path": "/Items/AdvancedSearch",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Items/AdvancedSearch"
@@ -1670,7 +1670,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/WebView",
+        "displayName": "Get Web Preview Link",
         "path": "/Items(:id)/WebView",
         "params": [
           {
@@ -1688,7 +1688,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/ProtocolLinks",
+        "displayName": "Get all Item Protocol Link",
         "path": "/Items(:id)/ProtocolLinks",
         "params": [
           {
@@ -1706,8 +1706,8 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
-        "displayName": "/Items(:id)/ProtocolLinks(protocol)",
-        "path": "/Items(:id)/ProtocolLinks(protocol)",
+        "displayName": "Get an Item Protocol Link",
+        "path": "/Items(:id)/ProtocolLinks(:protocol)",
         "params": [
           {
             "name": ":id",
@@ -1715,41 +1715,48 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": ":protocol",
+            "displayName": "ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
+        "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(:protocol)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Metadata",
+        "displayName": "Get Metadata by ID",
         "path": "/Metadata",
         "params": [
           {
-            "name": "name",
+            "name": ":name",
             "displayName": "Name",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "required": true
           },
           {
-            "name": "itemid",
+            "name": ":itemid",
             "displayName": "Item ID",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "required": true
           }
         ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
       },
       {
         "httpMethod": "GET",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Items(:id)/Metadata",
+        "displayName": "Get Metadata List By Item",
         "path": "/Items(:id)/Metadata",
         "params": [
           {
@@ -1767,7 +1774,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Items(:id)/Metadata",
+        "displayName": "Create Metadata",
         "path": "/Items(:id)/Metadata",
         "params": [
           {
@@ -1776,23 +1783,44 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "Name",
+            "displayName": "Metadata Name",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Value",
+            "displayName": "Metadata Value",
+            "style": "body",
+            "type": "string",
+            "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Metadata"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "PATCH",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData",
           "t": "patch"
         },
-        "displayName": "/Metadata(:metadataId)",
+        "displayName": "Update Metadata",
         "path": "/Metadata(:metadataId)",
         "params": [
           {
             "name": ":metadataId",
-            "displayName": "Meta Data ID",
+            "displayName": "Metadata ID",
             "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Value",
+            "displayName": "Metadata Value",
+            "style": "body",
             "type": "string",
             "required": true
           }
@@ -1800,22 +1828,44 @@
         "url": "https://octoblu.sf-api.com/sf/v3/Metadata(:metadataId)"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "PATCH",
         "doc": {
           "t": "patch",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Metadata",
-        "path": "/Metadata",
-        "params": [],
-        "url": "https://octoblu.sf-api.com/sf/v3/Metadata"
+        "displayName": "Update Metadata",
+        "path": "/Metadata(name=name,itemid=itemid) ",
+        "params": [
+          {
+            "name": ":name",
+            "displayName": "Name",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":itemid",
+            "displayName": "Item ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Value",
+            "displayName": "Metadata Value",
+            "style": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://octoblu.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Items(:id)/Metadata(:metadataId)",
+        "displayName": "Delete Item Metadata",
         "path": "/Items(:id)/Metadata(:metadataId)",
         "params": [
           {
@@ -1840,7 +1890,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
         },
-        "displayName": "/Metadata(name=:name,itemid=:itemid)",
+        "displayName": "Delete Item Metadata",
         "path": "/Metadata(name=:name,itemid=:itemid)",
         "params": [
           {
@@ -1865,7 +1915,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues",
+        "displayName": "Get List of Queues",
         "path": "/Queues",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Queues"
@@ -1875,7 +1925,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues(:id)",
+        "displayName": "Get single Queue",
         "path": "/Queues(:id)",
         "params": [
           {
@@ -1893,7 +1943,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "displayName": "Get Queue Entry",
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
@@ -1918,7 +1968,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues(:id)/Entries",
+        "displayName": "Add Queue Entry",
         "path": "/Queues(:id)/Entries",
         "params": [
           {
@@ -1946,7 +1996,7 @@
             "required": true
           }
         ],
-        "displayName": "/Queues(:id)/Receive",
+        "displayName": "Receive Queue Entries",
         "url": "https://octoblu.sf-api.com/sf/v3/Queues(:id)/Receive"
       },
       {
@@ -1954,7 +2004,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues(:id)/Complete",
+        "displayName": "Complete Queue Operation",
         "path": "/Queues(:id)/Complete",
         "params": [
           {
@@ -1973,7 +2023,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues",
           "t": "patch"
         },
-        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "displayName": "Modifies a Queue Entry",
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
@@ -1998,7 +2048,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
         },
-        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "displayName": "Delete Queue Entry",
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
@@ -2023,7 +2073,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
         },
-        "displayName": "/Sessions",
+        "displayName": "Get Session",
         "path": "/Sessions",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
@@ -2033,7 +2083,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
         },
-        "displayName": "/Sessions",
+        "displayName": "Logout",
         "path": "/Sessions",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Sessions"
@@ -2043,7 +2093,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
         },
-        "displayName": "/Sessions/Login",
+        "displayName": "Login",
         "path": "/Sessions/Login",
         "params": [
           {
@@ -2068,7 +2118,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares",
+        "displayName": "Get List of Shares",
         "path": "/Shares",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Shares"
@@ -2078,7 +2128,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)",
+        "displayName": "Get Share",
         "path": "/Shares(:id)",
         "params": [
           {
@@ -2096,7 +2146,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)/Recipients",
+        "displayName": "Get Recipients of a Share",
         "path": "/Shares(:id)/Recipients",
         "params": [
           {
@@ -2114,7 +2164,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)/Items",
+        "displayName": "Get Items of a Share",
         "path": "/Shares(:id)/Items",
         "params": [
           {
@@ -2132,7 +2182,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:shareid)/Items(:itemid)",
+        "displayName": "Get Items of a Share by ShareID and ItemID",
         "path": "/Shares(:shareid)/Items(:itemid)",
         "params": [
           {
@@ -2157,7 +2207,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)/Download",
+        "displayName": "Downloads Share Items",
         "path": "/Shares(:id)/Download",
         "params": [
           {
@@ -2207,7 +2257,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares",
+        "displayName": "Create Share",
         "path": "/Shares",
         "params": [
           {
@@ -2223,6 +2273,67 @@
             "style": "body",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "ShareType",
+            "displayName": "Share Type",
+            "style": "body",
+            "type": "string",
+            "value": "Request"
+          },
+          {
+            "name": "Title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "Recipients",
+            "displayName": "Recipients",
+            "style": "body",
+            "type": "array"
+          },
+          {
+            "name": "Parent",
+            "displayName": "Parent",
+            "style": "body",
+            "type": "array"
+          },
+          {
+            "name": "ExpirationDate",
+            "displayName": "ExpirationDate",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "RequireLogin",
+            "displayName": "RequireLogin",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "RequireUserInfo",
+            "displayName": "RequireUserInfo",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "TrackUntilDate",
+            "displayName": "TrackUntilDate",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "SendFrequency",
+            "displayName": "SendFrequency",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "SendInterval",
+            "displayName": "SendInterval",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Shares"
@@ -2233,7 +2344,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares",
           "t": "patch"
         },
-        "displayName": "/Shares(:id)",
+        "displayName": "Modify Share",
         "path": "/Shares(:id)",
         "params": [
           {
@@ -2242,6 +2353,30 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "Title",
+            "displayName": "Title",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "ExpirationDate",
+            "displayName": "ExpirationDate",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "RequireLogin",
+            "displayName": "RequireLogin",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "Items",
+            "displayName": "Items",
+            "style": "body",
+            "type": "boolean"
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Shares(:id)"
@@ -2251,7 +2386,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)",
+        "displayName": "Delete Share",
         "path": "/Shares(:id)",
         "params": [
           {
@@ -2269,7 +2404,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)/Alias",
+        "displayName": "Create Share Alias",
         "path": "/Shares(:id)/Alias",
         "params": [
           {
@@ -2301,7 +2436,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares/Send",
+        "displayName": "Deliver Send a File Email",
         "path": "/Shares/Send",
         "params": [
           {
@@ -2330,7 +2465,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares/Request",
+        "displayName": "Deliver Request a File Email",
         "path": "/Shares/Request",
         "params": [
           {
@@ -2367,7 +2502,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
         },
-        "displayName": "/Shares(:id)/Upload",
+        "displayName": "Upload File to Request Share",
         "path": "/Shares(:id)/Upload",
         "params": [
           {
@@ -2518,7 +2653,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/StorageCenters(:id)",
+        "displayName": "Get Storage Center",
         "path": "/StorageCenters(:id)",
         "params": [
           {
@@ -2532,12 +2667,12 @@
         "url": "https://octoblu.sf-api.com/sf/v3/StorageCenters(:id)"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "Patch",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
           "t": "patch"
         },
-        "displayName": "/StorageCenters(:id)",
+        "displayName": "Patch Storage Center",
         "path": "/StorageCenters(:id)",
         "params": [
           {
@@ -2555,7 +2690,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/StorageCenters(:id)",
+        "displayName": "Delete Storage Center",
         "path": "/StorageCenters(:id)",
         "params": [
           {
@@ -2573,7 +2708,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:id)/StorageCenters",
+        "displayName": "Get List of StorageCenters from Zone",
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
@@ -2591,7 +2726,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:id)/StorageCenters",
+        "displayName": "Create Storage Center",
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
@@ -2600,6 +2735,27 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "ExternalAddress",
+            "displayName": "External Address",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "HostName",
+            "displayName": "HostName",
+            "style": "body",
+            "type": "string",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
@@ -2610,7 +2766,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
           "t": "patch"
         },
-        "displayName": "/Zones(:zid)/StorageCenters(:scid)",
+        "displayName": "Update Storage Center",
         "path": "/Zones(:zid)/StorageCenters(:scid)",
         "params": [
           {
@@ -2626,6 +2782,27 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "ExternalAddress",
+            "displayName": "External Address",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "HostName",
+            "displayName": "HostName",
+            "style": "body",
+            "type": "string",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
@@ -2635,7 +2812,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:zid)/StorageCenter(:scid)",
+        "displayName": "Delete StorageCenter by Zone",
         "path": "/Zones(:zid)/StorageCenter(:scid)",
         "params": [
           {
@@ -2660,7 +2837,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "displayName": "Get Storage Center by Zone",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
@@ -2685,7 +2862,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "displayName": "Create StorageCenter",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
@@ -2701,6 +2878,27 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "ExternalAddress",
+            "displayName": "External Address",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Version",
+            "displayName": "Version",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "HostName",
+            "displayName": "HostName",
+            "style": "body",
+            "type": "string",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
@@ -2710,7 +2908,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
         },
-        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "displayName": "Delete StorageCenter Metadata",
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
@@ -2742,7 +2940,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)",
+        "displayName": "Get User",
         "path": "/Users(:id)",
         "params": [
           {
@@ -2767,7 +2965,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users",
+        "displayName": "Create Customer",
         "path": "/Users",
         "params": [
           {
@@ -2806,7 +3004,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/AccountUser",
+        "displayName": "Create Employee",
         "path": "/Users/AccountUser",
         "params": [
           {
@@ -2846,7 +3044,7 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
         },
-        "displayName": "/Users(:id)",
+        "displayName": "Update User",
         "path": "/Users(:id)",
         "params": [
           {
@@ -2855,6 +3053,41 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "FirstName",
+            "displayName": "First Name",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "LastName",
+            "displayName": "Last Name",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Company",
+            "displayName": "Company",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Security.IsDisabled",
+            "displayName": "Is Disabled?",
+            "style": "object",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "DefaultZone.Id",
+            "displayName": "Default Zone ID",
+            "style": "body",
+            "type": "object",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)"
@@ -2865,14 +3098,14 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
         },
-        "displayName": "/Users(:id)/Roles",
+        "displayName": "Set Roles",
         "path": "/Users(:id)/Roles",
         "params": [
           {
-            "name": "parentid",
-            "displayName": "Parent ID",
+            "name": "Roles",
+            "displayName": "Roles",
             "style": "body",
-            "type": "string",
+            "type": "array",
             "required": true
           },
           {
@@ -2886,12 +3119,12 @@
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "PATCH",
         "doc": {
           "t": "put",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/Roles",
+        "displayName": "Update Role",
         "path": "/Users(:id)/Roles",
         "params": [
           {
@@ -2907,17 +3140,24 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "Roles",
+            "displayName": "Roles",
+            "style": "body",
+            "type": "array",
+            "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Roles"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "PATH",
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
           "t": "patch"
         },
-        "displayName": "/Users/AccountUser(:id)",
+        "displayName": "Update Employee or Promote Customer",
         "path": "/Users/AccountUser(:id)",
         "params": [
           {
@@ -2926,6 +3166,48 @@
             "style": "url",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "FirstName",
+            "displayName": "First Name",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "LastName",
+            "displayName": "Last Name",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Company",
+            "displayName": "Company",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Security.IsDisabled",
+            "displayName": "Is Disabled?",
+            "style": "object",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "DefaultZone.Id",
+            "displayName": "Default Zone ID",
+            "style": "body",
+            "type": "object",
+            "required": false
+          },
+          {
+            "name": "StorageQuotaLimitGB",
+            "displayName": "Storage Quota Limit (GB)",
+            "style": "body",
+            "type": "integer",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/AccountUser(:id)"
@@ -2935,7 +3217,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/HomeFolder",
+        "displayName": "Get HomeFolder",
         "path": "/Users(:id)/HomeFolder",
         "params": [
           {
@@ -2953,7 +3235,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/Preferences",
+        "displayName": "Get User Preferences",
         "path": "/Users(:id)/Preferences",
         "params": [
           {
@@ -2971,25 +3253,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/Security",
-        "path": "/Users(:id)/Security",
-        "params": [
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "url": "https://octoblu.sf-api.com/sf/v3/Users(:id)/Security"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
-        },
-        "displayName": "/Users(:id)/Security",
+        "displayName": "Get User Security",
         "path": "/Users(:id)/Security",
         "params": [
           {
@@ -3007,7 +3271,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/ResetPassword",
+        "displayName": "Reset Password",
         "path": "/Users(:id)/ResetPassword",
         "params": [
           {
@@ -3039,12 +3303,12 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)/ResendWelcome",
+        "displayName": "Send Welcome Email",
         "path": "/Users(:id)/ResendWelcome",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -3057,7 +3321,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users(:id)",
+        "displayName": "Delete User",
         "path": "/Users(:id)",
         "params": [
           {
@@ -3082,7 +3346,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/AllSharedFolders",
+        "displayName": "Get List of User Shared Folders (AllSharedFolders)",
         "path": "/Users/AllSharedFolders",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/AllSharedFolders"
@@ -3092,7 +3356,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/TopFolders",
+        "displayName": "Get List of User Shared Folders (TopFolders)",
         "path": "/Users/TopFolders",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/TopFolders"
@@ -3104,7 +3368,7 @@
         },
         "path": "/Users/NetworkShareConnectors",
         "params": [],
-        "displayName": "/Users/NetworkShareConnectors",
+        "displayName": "Get List of User Shared Folders (NetworkShareConnectors)",
         "url": "https://octoblu.sf-api.com/sf/v3/Users/NetworkShareConnectors"
       },
       {
@@ -3112,7 +3376,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/SharepointConnectors",
+        "displayName": "Get List of User Shared Folders (SharepointConnectors)",
         "path": "/Users/SharepointConnectors",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/SharepointConnectors"
@@ -3122,15 +3386,64 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/Confirm",
+        "displayName": "Confirm the current user logging in for the first time",
         "path": "/Users/Confirm",
         "params": [
           {
-            "name": "settings",
-            "displayName": "Settings",
+            "name": "FirstName",
+            "displayName": "First Name",
             "style": "body",
             "type": "string",
-            "required": true
+            "required": false
+          },
+          {
+            "name": "LastName",
+            "displayName": "Last Name",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Password",
+            "displayName": "Password",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "DayLightName",
+            "displayName": "DayLightName",
+            "style": "object",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "UTCOffset",
+            "displayName": "UTCOffset",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "DateFormat",
+            "displayName": "DateFormat",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "TimeFormat",
+            "displayName": "TimeFormat",
+            "style": "body",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "EmailInterval",
+            "displayName": "EmailInterval",
+            "style": "body",
+            "type": "integer",
+            "required": false
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/Confirm"
@@ -3140,7 +3453,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
         },
-        "displayName": "/Users/Info",
+        "displayName": "Get Current User Info",
         "path": "/Users/Info",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Users/Info"
@@ -3150,7 +3463,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones",
+        "displayName": "Get List of Zones",
         "path": "/Zones",
         "params": [
           {
@@ -3175,7 +3488,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)",
+        "displayName": "Get Zone by ID",
         "path": "/Zones(:id)",
         "params": [
           {
@@ -3200,18 +3513,18 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones",
+        "displayName": "Create Zone",
         "path": "/Zones",
         "params": [],
         "url": "https://octoblu.sf-api.com/sf/v3/Zones"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "PATCH",
         "doc": {
           "t": "patch",
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)",
+        "displayName": "Update Zone",
         "path": "/Zones(:id)",
         "params": [
           {
@@ -3229,7 +3542,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)",
+        "displayName": "Delete Zone",
         "path": "/Zones(:id)",
         "params": [
           {
@@ -3254,7 +3567,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)/ResetSecret",
+        "displayName": "Reset Zone Secret",
         "path": "/Zones(:id)/ResetSecret",
         "params": [
           {
@@ -3272,7 +3585,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)/Metadata",
+        "displayName": "Get Zone Metadata",
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
@@ -3290,7 +3603,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)/Metadata",
+        "displayName": "Create or update Zone Metadata",
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
@@ -3301,6 +3614,7 @@
             "required": true
           }
         ],
+        "enabled": false,
         "url": "https://octoblu.sf-api.com/sf/v3/Zones(:id)/Metadata"
       },
       {
@@ -3308,7 +3622,7 @@
         "doc": {
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
         },
-        "displayName": "/Zones(:id)/Metadata",
+        "displayName": "Delete Zone Metadata",
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
