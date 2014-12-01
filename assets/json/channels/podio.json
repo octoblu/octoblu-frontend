@@ -127,7 +127,7 @@
       {
         "path": "/conversation/:ref_type/:ref_id/",
         "displayName": "Get Conversations On An Object",
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -179,7 +179,7 @@
       {
         "path": "/conversation/:flag/",
         "displayName": "Get Flagged Conversations",
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -228,7 +228,7 @@
       {
         "path": "/conversation/:conversation_id/read",
         "displayName": "Mark A Conversation As Read",
-        "httpMethod": "post",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -292,7 +292,7 @@
       },
       {
         "path": "/conversation/:conversation_id/star",
-        "displayName": "/conversation/:conversation_id/star",
+        "displayName": "Star A Conversation",
         "httpMethod": "POST",
         "params": [
           {
@@ -307,7 +307,7 @@
       },
       {
         "path": "/conversation/:conversation_id/star",
-        "displayName": "/conversation/:conversation_id/star",
+        "displayName": "Un-star A Conversation",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -322,8 +322,8 @@
       },
       {
         "path": "/task/:task_id/assign",
-        "displayName": "/task/:task_id/assign",
-        "httpMethod": "post",
+        "displayName": "Assign Task",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -334,7 +334,7 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -343,7 +343,7 @@
       },
       {
         "path": "/task/:task_id/complete",
-        "displayName": "/task/:task_id/complete",
+        "displayName": "Mark Task As Complete",
         "httpMethod": "POST",
         "params": [
           {
@@ -355,13 +355,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -370,25 +370,25 @@
       },
       {
         "path": "/task/label/",
-        "displayName": "/task/label/",
+        "displayName": "Create New Personal Label",
         "httpMethod": "POST",
         "params": [],
         "url": "https://api.podio.com/task/label/"
       },
       {
-        "path": " /task/",
-        "displayName": " /task/",
+        "path": "/task/",
+        "displayName": "Create Task",
         "httpMethod": "POST",
         "params": [
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -397,7 +397,7 @@
       },
       {
         "path": "/task/:ref_type/:ref_id/",
-        "displayName": "/task/:ref_type/:ref_id/",
+        "displayName": "Create Task With Reference",
         "httpMethod": "POST",
         "params": [
           {
@@ -416,13 +416,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -431,7 +431,7 @@
       },
       {
         "path": "/task/label/:label_id",
-        "displayName": "/task/label/:label_id",
+        "displayName": "Delete Label",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -446,7 +446,7 @@
       },
       {
         "path": "/task/:task_id",
-        "displayName": "/task/:task_id",
+        "displayName": "Delete Task",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -458,13 +458,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -473,14 +473,14 @@
       },
       {
         "path": "/task/label/",
-        "displayName": "/task/label/",
+        "displayName": "Get Task Labels",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/task/label/"
       },
       {
         "path": "/task/:task_id",
-        "displayName": "/task/:task_id",
+        "displayName": "Get Task",
         "httpMethod": "GET",
         "params": [
           {
@@ -494,7 +494,7 @@
         "url": "https://api.podio.com/task/:task_id"
       },
       {
-        "path": "/task/:ref_type/:ref_id/count",
+        "path": "Get Task Count",
         "displayName": "/task/:ref_type/:ref_id/count",
         "httpMethod": "GET",
         "params": [
@@ -517,7 +517,7 @@
       },
       {
         "path": "/task/summary",
-        "displayName": "/task/summary",
+        "displayName": "Get Task Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -532,7 +532,7 @@
       },
       {
         "path": "/task/org/:org_id/summary",
-        "displayName": "/task/org/:org_id/summary",
+        "displayName": "Get Organization Task Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -553,7 +553,7 @@
       },
       {
         "path": "/task/personal/summary",
-        "displayName": "/task/personal/summary",
+        "displayName": "Get Personal Task Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -568,7 +568,7 @@
       },
       {
         "path": "/task/:ref_type/:ref_id/summary",
-        "displayName": "/task/:ref_type/:ref_id/summary",
+        "displayName": "Get Reference Task Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -596,7 +596,7 @@
       },
       {
         "path": "/task/space/:space_id/summary",
-        "displayName": "/task/space/:space_id/summary",
+        "displayName": "Get Space Task Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -617,7 +617,7 @@
       },
       {
         "path": "/task/total/:time",
-        "displayName": "/task/total/:time",
+        "displayName": "Get Task Totals By Time",
         "httpMethod": "GET",
         "params": [
           {
@@ -630,16 +630,16 @@
           {
             "style": "query",
             "type": "string",
-            "name": "pace_id",
-            "displayName": "Pace ID"
+            "name": "space_id",
+            "displayName": "Space ID"
           }
         ],
         "url": "https://api.podio.com/task/total/:time"
       },
       {
         "path": "/task/total/",
-        "displayName": "/task/total/",
-        "httpMethod": "get",
+        "displayName": "Get Task Totals",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -652,7 +652,7 @@
       },
       {
         "path": "/task/",
-        "displayName": "/task/",
+        "displayName": "Get Tasks",
         "httpMethod": "GET",
         "params": [
           {
@@ -765,7 +765,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           },
@@ -786,7 +786,7 @@
       },
       {
         "path": "/task/:ref_type/:ref_id/",
-        "displayName": "/task/:ref_type/:ref_id/",
+        "displayName": "Get Tasks With Reference",
         "httpMethod": "GET",
         "params": [
           {
@@ -808,8 +808,8 @@
       },
       {
         "path": "/task/:task_id/incomplete",
-        "displayName": "/task/:task_id/incomplete",
-        "httpMethod": "get",
+        "displayName": "Mark Task As Incomplete",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -820,13 +820,13 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -835,7 +835,7 @@
       },
       {
         "path": "/task/:task_id/rank",
-        "displayName": "/task/:task_id/rank",
+        "displayName": "Rank Task",
         "httpMethod": "POST",
         "params": [
           {
@@ -850,7 +850,7 @@
       },
       {
         "path": "/task/:task_id/ref",
-        "displayName": "/task/:task_id/ref",
+        "displayName": "Remove Task Reference",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -865,7 +865,7 @@
       },
       {
         "path": "/task/label/:label_id",
-        "displayName": "/task/label/:label_id",
+        "displayName": "Update Label",
         "httpMethod": "PUT",
         "params": [
           {
@@ -880,7 +880,7 @@
       },
       {
         "path": "/task/:task_id",
-        "displayName": "/task/:task_id",
+        "displayName": "Update Task",
         "httpMethod": "PUT",
         "params": [
           {
@@ -892,13 +892,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -907,7 +907,7 @@
       },
       {
         "path": "/task/:task_id/description",
-        "displayName": "/task/:task_id/description",
+        "displayName": "Update Task Description",
         "httpMethod": "PUT",
         "params": [
           {
@@ -919,13 +919,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -934,7 +934,7 @@
       },
       {
         "path": "/task/:task_id/due",
-        "displayName": "/task/:task_id/due",
+        "displayName": "Update Task Due On Date",
         "httpMethod": "PUT",
         "params": [
           {
@@ -961,7 +961,7 @@
       },
       {
         "path": "/task/:task_id/label/",
-        "displayName": "/task/:task_id/label/",
+        "displayName": "Update Task Labels",
         "httpMethod": "PUT",
         "params": [
           {
@@ -976,7 +976,7 @@
       },
       {
         "path": "/task/:task_id/private",
-        "displayName": "/task/:task_id/private",
+        "displayName": "Update Task Private",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1003,8 +1003,8 @@
       },
       {
         "path": "/task/:task_id/ref",
-        "displayName": "/task/:task_id/ref",
-        "httpMethod": "put",
+        "displayName": "Update Task Reference",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -1030,7 +1030,7 @@
       },
       {
         "path": "/task/:task_id/text",
-        "displayName": "/task/:task_id/text",
+        "displayName": "Update Task Text",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1042,13 +1042,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -1057,7 +1057,7 @@
       },
       {
         "path": "/action/:action_id",
-        "displayName": "/action/:action_id",
+        "displayName": "Get Action",
         "httpMethod": "GET",
         "params": [
           {
@@ -1072,7 +1072,7 @@
       },
       {
         "path": "/app_store/category/",
-        "displayName": "/app_store/category/",
+        "displayName": "Get App Store Categories",
         "httpMethod": "GET",
         "params": [
           {
@@ -1086,14 +1086,14 @@
       },
       {
         "path": "/app_store/org/",
-        "displayName": "/app_store/org/",
+        "displayName": "Get Organizations With Private Shares",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/app_store/org/"
       },
       {
         "path": "/app_store/:type/own/",
-        "displayName": "/app_store/:type/own/",
+        "displayName": "Get Personal Shares",
         "httpMethod": "GET",
         "params": [
           {
@@ -1120,7 +1120,7 @@
       },
       {
         "path": "/app_store/:type/recommended/:area/",
-        "displayName": "/app_store/:type/recommended/:area/",
+        "displayName": "Get Recommended Shares",
         "httpMethod": "GET",
         "params": [
           {
@@ -1142,7 +1142,7 @@
       },
       {
         "path": "/app_store/:share_id/v2",
-        "displayName": "/app_store/:share_id/v2",
+        "displayName": "Get Shared App",
         "httpMethod": "GET",
         "params": [
           {
@@ -1157,7 +1157,7 @@
       },
       {
         "path": "/app_store/:ref_type/:ref_id/",
-        "displayName": "/app_store/:ref_type/:ref_id/",
+        "displayName": "Get Share By Reference",
         "httpMethod": "GET",
         "params": [
           {
@@ -1179,7 +1179,7 @@
       },
       {
         "path": "/app_store/:type/author/:user_id/",
-        "displayName": "/app_store/:type/author/:user_id/",
+        "displayName": "Get Shares By Author",
         "httpMethod": "GET",
         "params": [
           {
@@ -1219,7 +1219,7 @@
       },
       {
         "path": "/app_store/:type/category/:category_id/",
-        "displayName": "/app_store/:type/category/:category_id/",
+        "displayName": "Get Shares By Category",
         "httpMethod": "GET",
         "params": [
           {
@@ -1258,8 +1258,8 @@
       },
       {
         "path": "/app_store/:type/top/",
-        "displayName": "/app_store/:type/top/",
-        "httpMethod": "get",
+        "displayName": "Get Top Shares",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -1285,7 +1285,7 @@
       },
       {
         "path": "/app_store/:share_id/install",
-        "displayName": "/app_store/:share_id/install",
+        "displayName": "Install Share",
         "httpMethod": "GET",
         "params": [
           {
@@ -1300,18 +1300,92 @@
       },
       {
         "path": "/app_store/",
-        "displayName": "/app_store/",
+        "displayName": "Share App",
         "httpMethod": "POST",
-        "params": [],
+        "params": [
+          {
+            "name": "scope",
+            "displayName": "Scope ( private / public )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "ref_type",
+            "displayName": "Reference Type ( app / space )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "ref_id",
+            "displayName": "Reference ID",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "abstract",
+            "displayName": "Abstract",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "displayName": "Description",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "language",
+            "displayName": "Language",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "category_ids",
+            "displayName": "Category IDs",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "file_ids",
+            "displayName": "File IDs",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "video",
+            "displayName": "Video",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "features",
+            "displayName": "Features",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "children",
+            "displayName": "Children",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://api.podio.com/app_store/"
       },
       {
         "path": "/app_store/:share_id",
-        "displayName": "/app_store/:share_id",
+        "displayName": "Unshare App",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
             "name": ":share_id",
             "displayName": "Share ID",
@@ -1322,7 +1396,7 @@
       },
       {
         "path": "/app_store/:share_id",
-        "displayName": "/app_store/:share_id",
+        "displayName": "Update Share",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1337,7 +1411,7 @@
       },
       {
         "path": "/app/:app_id/activate",
-        "displayName": "/app/:app_id/activate",
+        "displayName": "Activate App",
         "httpMethod": "POST",
         "params": [
           {
@@ -1352,14 +1426,28 @@
       },
       {
         "path": "/app/",
-        "displayName": "/app/",
-        "httpMethod": "post",
-        "params": [],
+        "displayName": "Add New App",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "space_id",
+            "displayName": "Space ID",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "config",
+            "displayName": "Config",
+            "style": "body",
+            "type": "object"
+          }
+        ],
         "url": "https://api.podio.com/app/"
       },
       {
         "path": "/app/:app_id/field/",
-        "displayName": "/app/:app_id/field/",
+        "displayName": "Add New App Field",
         "httpMethod": "POST",
         "params": [
           {
@@ -1368,13 +1456,25 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "type",
+            "displayName": "Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "config",
+            "displayName": "Configuration",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/app/:app_id/field/"
       },
       {
         "path": "/app/:app_id/deactivate",
-        "displayName": "/app/:app_id/deactivate",
+        "displayName": "Deactivate App",
         "httpMethod": "POST",
         "params": [
           {
@@ -1389,7 +1489,7 @@
       },
       {
         "path": "/app/:app_id",
-        "displayName": "/app/:app_id",
+        "displayName": "Delete App",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -1398,13 +1498,19 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "silent",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Silent"
           }
         ],
         "url": "https://api.podio.com/app/:app_id"
       },
       {
         "path": "/app/:app_id/field/:field_id",
-        "displayName": "/app/:app_id/field/:field_id",
+        "displayName": "Delete App Field",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -1422,16 +1528,17 @@
             "required": "true"
           },
           {
-            "style": "",
-            "type": "string",
-            "name": "delete_values"
+            "style": "body",
+            "type": "boolean",
+            "name": "delete_values",
+            "displayName": "Delete Values"
           }
         ],
         "url": "https://api.podio.com/app/:app_id/field/:field_id"
       },
       {
         "path": "/app/",
-        "displayName": "/app/",
+        "displayName": "Get All Apps",
         "httpMethod": "GET",
         "params": [
           {
@@ -1487,7 +1594,7 @@
       },
       {
         "path": "/app/:app_id",
-        "displayName": "/app/:app_id",
+        "displayName": "Get App Information",
         "httpMethod": "GET",
         "params": [
           {
@@ -1502,27 +1609,27 @@
       },
       {
         "path": "/app/org/:org_label/space/:space_label/:app_label",
-        "displayName": "/app/org/:org_label/space/:space_label/:app_label",
-        "httpMethod": "get",
+        "displayName": "Get App By Organization, Label, Space Label, And App Label",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "org_label",
+            "name": ":org_label",
             "displayName": "Organization Label",
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "space_label",
+            "name": ":space_label",
             "displayName": "Space Label",
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "app_label",
+            "name": ":app_label",
             "displayName": "App Label",
             "required": "true"
           }
@@ -1531,7 +1638,7 @@
       },
       {
         "path": "/app/:app_id/dependencies/",
-        "displayName": "/app/:app_id/dependencies/",
+        "displayName": "Get App Dependencies",
         "httpMethod": "GET",
         "params": [
           {
@@ -1546,7 +1653,7 @@
       },
       {
         "path": "/app/:app_id/field/:field_id",
-        "displayName": "/app/:app_id/field/:field_id",
+        "displayName": "Get App Field",
         "httpMethod": "GET",
         "params": [
           {
@@ -1568,7 +1675,7 @@
       },
       {
         "path": "/app/space/:space_id/:url_label",
-        "displayName": "/app/space/:space_id/:url_label",
+        "displayName": "Get App On Space By URL Label",
         "httpMethod": "GET",
         "params": [
           {
@@ -1579,9 +1686,9 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "url_label",
+            "name": ":url_label",
             "displayName": "URL Label",
             "required": "true"
           }
@@ -1590,8 +1697,8 @@
       },
       {
         "path": "/app/space/:space_id/",
-        "displayName": "/app/space/:space_id/",
-        "httpMethod": "get",
+        "displayName": "Get Apps By Space",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -1611,8 +1718,8 @@
       },
       {
         "path": "/app/features/",
-        "displayName": "/app/features/",
-        "httpMethod": "get",
+        "displayName": "Get App Features",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -1622,7 +1729,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "include_space",
             "displayName": "Include Space"
           }
@@ -1631,8 +1738,8 @@
       },
       {
         "path": "/app/icon/search",
-        "displayName": "/app/icon/search",
-        "httpMethod": "get",
+        "displayName": "Get Icon Suggestions",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -1645,7 +1752,7 @@
       },
       {
         "path": "/space/:space_id/dependencies/",
-        "displayName": "/space/:space_id/dependencies/",
+        "displayName": "Get Space App Dependencies",
         "httpMethod": "GET",
         "params": [
           {
@@ -1660,7 +1767,7 @@
       },
       {
         "path": "/app/top/",
-        "displayName": "/app/top/",
+        "displayName": "Get Top Apps",
         "httpMethod": "GET",
         "params": [
           {
@@ -1680,7 +1787,7 @@
       },
       {
         "path": "/app/org/:org_id/top/",
-        "displayName": "/app/org/:org_id/top/",
+        "displayName": "Get Top Apps For Organization",
         "httpMethod": "GET",
         "params": [
           {
@@ -1695,7 +1802,7 @@
       },
       {
         "path": "/app/:app_id/install",
-        "displayName": "/app/:app_id/install",
+        "displayName": "Install App",
         "httpMethod": "POST",
         "params": [
           {
@@ -1708,14 +1815,15 @@
           {
             "style": "body",
             "type": "string",
-            "name": "features"
+            "name": "features",
+            "displayName": "Features"
           }
         ],
         "url": "https://api.podio.com/app/:app_id/install"
       },
       {
         "path": "/app/:app_id/field/:field_id",
-        "displayName": "/app/:app_id/field/:field_id",
+        "displayName": "Update An App Field",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1737,7 +1845,7 @@
       },
       {
         "path": "/app/:app_id",
-        "displayName": "/app/:app_id",
+        "displayName": "Update App",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1752,7 +1860,7 @@
       },
       {
         "path": "/app/:app_id/description",
-        "displayName": "/app/:app_id/description",
+        "displayName": "Get App Description",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1767,8 +1875,8 @@
       },
       {
         "path": "/app/space/:space_id/order",
-        "displayName": "/app/space/:space_id/order",
-        "httpMethod": "put",
+        "displayName": "Get App Order",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -1782,7 +1890,7 @@
       },
       {
         "path": "/app/:app_id/usage",
-        "displayName": "/app/:app_id/usage",
+        "displayName": "Get App Usage Instructions",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1797,7 +1905,7 @@
       },
       {
         "path": "/app/:app_id/v2",
-        "displayName": "/app/:app_id/v2",
+        "displayName": "Update App",
         "httpMethod": "PUT",
         "params": [
           {
@@ -1806,13 +1914,19 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "silent",
+            "displayName": "Silent",
+            "type": "boolean",
+            "style": "body"
           }
         ],
         "url": "https://api.podio.com/app/:app_id/v2"
       },
       {
         "path": "/batch/:batch_id",
-        "displayName": "/batch/:batch_id",
+        "displayName": "Get Batch",
         "httpMethod": "GET",
         "params": [
           {
@@ -1827,15 +1941,15 @@
       },
       {
         "path": "/batch/",
-        "displayName": "/batch/",
+        "displayName": "Get All Batches",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/batch/"
       },
       {
         "path": "/batch/:ref_type/:ref_id/:plugin/running/",
-        "displayName": "/batch/:ref_type/:ref_id/:plugin/running/",
-        "httpMethod": "get",
+        "displayName": "Get Running Batches",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -1863,7 +1977,7 @@
       },
       {
         "path": "/calendar/app/:app_id/filter",
-        "displayName": "/calendar/app/:app_id/filter",
+        "displayName": "Filter Calendar App",
         "httpMethod": "POST",
         "params": [
           {
@@ -1878,8 +1992,8 @@
       },
       {
         "path": "/calendar/app/:app_id/",
-        "displayName": "/calendar/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get App Calendar",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -1917,8 +2031,8 @@
       },
       {
         "path": "/calendar/app/:app_id/ics/:user_id/:token/",
-        "displayName": "/calendar/app/:app_id/ics/:user_id/:token/",
-        "httpMethod": "get",
+        "displayName": "Get App Calendar As iCal",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -1943,7 +2057,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "tasks",
             "displayName": "Tasks"
           }
@@ -1952,7 +2066,7 @@
       },
       {
         "path": "/calendar/summary",
-        "displayName": "/calendar/summary",
+        "displayName": "Get Calendar Summary",
         "httpMethod": "GET",
         "params": [
           {
@@ -1972,7 +2086,7 @@
       },
       {
         "path": "/calendar/personal/summary",
-        "displayName": "/calendar/personal/summary",
+        "displayName": "Get Personal Calendar Summary",
         "httpMethod": "Get",
         "params": [
           {
@@ -1992,8 +2106,8 @@
       },
       {
         "path": "/calendar/space/:space_id/summary",
-        "displayName": "/calendar/space/:space_id/summary",
-        "httpMethod": "get",
+        "displayName": "Get Space Calendar Summary",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2019,8 +2133,8 @@
       },
       {
         "path": "/calendar/export/linked_account/:linked_account_id/:ref_type/:ref_id",
-        "displayName": "/calendar/export/linked_account/:linked_account_id/:ref_type/:ref_id",
-        "httpMethod": "get",
+        "displayName": "Get Current Export By Reference And Linked Account",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2048,30 +2162,8 @@
       },
       {
         "path": "/calendar/export/:ref_type/:ref_id/",
-        "displayName": "/calendar/export/:ref_type/:ref_id/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":ref_type",
-            "displayName": "Reference Type",
-            "required": "true"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":ref_id",
-            "displayName": "Reference ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/calendar/export/:ref_type/:ref_id/"
-      },
-      {
-        "path": "/calendar/export/:ref_type/:ref_id/",
-        "displayName": "/calendar/export/:ref_type/:ref_id/",
-        "httpMethod": "get",
+        "displayName": "Get Exports By Reference",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2092,8 +2184,8 @@
       },
       {
         "path": "/calendar/",
-        "displayName": "/calendar/",
-        "httpMethod": "get",
+        "displayName": "Get Global Calendar",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -2124,8 +2216,8 @@
       },
       {
         "path": "/calendar/ics/:user_id/:token/",
-        "displayName": "/calendar/ics/:user_id/:token/",
-        "httpMethod": "get",
+        "displayName": "Get Global Calendar As iCal",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2152,7 +2244,7 @@
       },
       {
         "path": "/calendar/export/linked_account/:linked_account_id",
-        "displayName": "/calendar/export/linked_account/:linked_account_id",
+        "displayName": "Get Global Export",
         "httpMethod": "GET",
         "params": [
           {
@@ -2167,15 +2259,15 @@
       },
       {
         "path": "/calendar/export/",
-        "displayName": "/calendar/export/",
+        "displayName": "Get All Global Exports",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/calendar/export/"
       },
       {
         "path": "/calendar/item/:item_id/field/:field_id/ics/",
-        "displayName": "/calendar/item/:item_id/field/:field_id/ics/",
-        "httpMethod": "get",
+        "displayName": "Get Item Field Calendar As iCal",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2196,8 +2288,8 @@
       },
       {
         "path": "/calendar/linked_account/:linked_account_id/",
-        "displayName": "/calendar/linked_account/:linked_account_id/",
-        "httpMethod": "get",
+        "displayName": "Get Linked Account Calander",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2223,7 +2315,7 @@
       },
       {
         "path": "/calendar/space/:space_id/",
-        "displayName": "/calendar/space/:space_id/",
+        "displayName": "Get Space Calendar",
         "httpMethod": "GET",
         "params": [
           {
@@ -2262,7 +2354,7 @@
       },
       {
         "path": "/calendar/space/:space_id/ics/:user_id/:token/",
-        "displayName": "/calendar/space/:space_id/ics/:user_id/:token/",
+        "displayName": "Get Space Calander As iCal",
         "httpMethod": "GET",
         "params": [
           {
@@ -2297,7 +2389,7 @@
       },
       {
         "path": "/calendar/task/:task_id/ics/",
-        "displayName": "/calendar/task/:task_id/ics/",
+        "displayName": "Get Task Calander As iCal",
         "httpMethod": "GET",
         "params": [
           {
@@ -2312,7 +2404,7 @@
       },
       {
         "path": "/calendar/event/:uid",
-        "displayName": "/calendar/event/:uid",
+        "displayName": "Update Event Calander",
         "httpMethod": "PUT",
         "params": [
           {
@@ -2327,8 +2419,8 @@
       },
       {
         "path": "/contact/space/:space_id/",
-        "displayName": "/contact/space/:space_id/",
-        "httpMethod": "post",
+        "displayName": "Create Space Contact",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -2342,7 +2434,7 @@
       },
       {
         "path": "/contact/:profile_ids",
-        "displayName": "/contact/:profile_ids",
+        "displayName": "Delete Contact(s)",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -2357,15 +2449,15 @@
       },
       {
         "path": "/contact/totals/v3/",
-        "displayName": "/contact/totals/v3/",
+        "displayName": "Get Contact Total",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/contact/totals/v3/"
       },
       {
         "path": "/contact/:profile_ids/v2",
-        "displayName": "/contact/:profile_ids/v2",
-        "httpMethod": "get",
+        "displayName": "Get Contact(s)",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2373,14 +2465,20 @@
             "name": ":profile_ids",
             "displayName": "Profile IDs",
             "required": "true"
+          },
+          {
+            "name": "space_id",
+            "displayName": "Space ID",
+            "type": "string",
+            "style": "query"
           }
         ],
         "url": "https://api.podio.com/contact/:profile_ids/v2"
       },
       {
         "path": "/contact/",
-        "displayName": "/contact/",
-        "httpMethod": "get",
+        "displayName": "Get All Contacts",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -2441,7 +2539,7 @@
       },
       {
         "path": "/contact/linked_account/:linked_account_id",
-        "displayName": "/contact/linked_account/:linked_account_id",
+        "displayName": "Get Linked Account Contact",
         "httpMethod": "POST",
         "params": [
           {
@@ -2456,8 +2554,8 @@
       },
       {
         "path": "/contact/linked_account/:linked_account_id",
-        "displayName": "/contact/linked_account/:linked_account_id",
-        "httpMethod": "get",
+        "displayName": "Get Linked Account Contacts",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2468,7 +2566,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "contactable",
             "displayName": "Contactable"
           },
@@ -2495,8 +2593,8 @@
       },
       {
         "path": "/contact/org/:org_id",
-        "displayName": "/contact/org/:org_id",
-        "httpMethod": "get",
+        "displayName": "Get Organization Contacts",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2508,7 +2606,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "{field}"
+            "name": "{field}",
+            "displayName": "Field"
           },
           {
             "style": "query",
@@ -2563,8 +2662,8 @@
       },
       {
         "path": "/contact/skill/",
-        "displayName": "/contact/skill/",
-        "httpMethod": "get",
+        "displayName": "Get Skills",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -2583,8 +2682,8 @@
       },
       {
         "path": "/contact/space/:space_id/totals/space",
-        "displayName": "/contact/space/:space_id/totals/space",
-        "httpMethod": "get",
+        "displayName": "Get Space Contact Totals",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2598,7 +2697,7 @@
       },
       {
         "path": "/contact/space/:space_id/",
-        "displayName": "/contact/space/:space_id/",
+        "displayName": "Get Space Contacts",
         "httpMethod": "GET",
         "params": [
           {
@@ -2611,7 +2710,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "{field}"
+            "name": "{field}",
+            "displayName": "Field"
           },
           {
             "style": "query",
@@ -2666,8 +2766,8 @@
       },
       {
         "path": "/contact/app/:app_id/",
-        "displayName": "/contact/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get Space Contacts On App",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2705,8 +2805,8 @@
       },
       {
         "path": "/contact/user/:user_id",
-        "displayName": "/contact/user/:user_id",
-        "httpMethod": "get",
+        "displayName": "Get User Contact",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2720,8 +2820,8 @@
       },
       {
         "path": "/contact/user/:user_id/:key",
-        "displayName": "/contact/user/:user_id/:key",
-        "httpMethod": "get",
+        "displayName": "Get User Contact Field",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -2731,9 +2831,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "key",
+            "name": ":key",
+            "displayName": "Key",
             "required": "true"
           }
         ],
@@ -2741,13 +2842,14 @@
       },
       {
         "path": "/contact/:profile_id/vcard",
-        "displayName": "/contact/:profile_id/vcard",
-        "httpMethod": "get",
+        "displayName": "Get vCard",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":profile_id",
+            "displayName": "Profile ID",
             "required": "true"
           }
         ],
@@ -2755,13 +2857,14 @@
       },
       {
         "path": "/contact/:profile_id",
-        "displayName": "/contact/:profile_id",
+        "displayName": "Update Contact",
         "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":profile_id",
+            "displayName": "Profile ID",
             "required": "true"
           }
         ],
@@ -2769,19 +2872,21 @@
       },
       {
         "path": "/contact/:profile_id/:key",
-        "displayName": "/contact/:profile_id/:key",
+        "displayName": "Update Contact Field",
         "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":profile_id",
+            "displayName": "Profile ID",
             "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "key",
+            "displayName": "Key",
             "required": "true"
           }
         ],
@@ -2789,7 +2894,7 @@
       },
       {
         "path": "/comment/:type/:id/",
-        "displayName": "/comment/:type/:id/",
+        "displayName": "Add Comment To Object",
         "httpMethod": "POST",
         "params": [
           {
@@ -2803,12 +2908,14 @@
             "style": "url",
             "type": "string",
             "name": ":id",
+            "displayName": "ID",
             "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "alert_invite"
+            "name": "alert_invite",
+            "displayName": "Alert Invite"
           },
           {
             "style": "body",
@@ -2827,18 +2934,19 @@
       },
       {
         "path": "/comment/:comment_id",
-        "displayName": "/comment/:comment_id",
+        "displayName": "Delete A Comment",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":comment_id",
+            "displayName": "Comment ID",
             "required": "true"
           },
           {
-            "style": "",
-            "type": "string",
+            "style": "body",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook",
             "required": "true"
@@ -2848,13 +2956,14 @@
       },
       {
         "path": "/comment/:comment_id",
-        "displayName": "/comment/:comment_id",
-        "httpMethod": "get",
+        "displayName": "Get A Comment",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":comment_id",
+            "displayName": "Comment ID",
             "required": "true"
           }
         ],
@@ -2862,7 +2971,7 @@
       },
       {
         "path": "/comment/:type/:id/",
-        "displayName": "/comment/:type/:id/",
+        "displayName": "Get Comments On Object",
         "httpMethod": "GET",
         "params": [
           {
@@ -2876,6 +2985,7 @@
             "style": "url",
             "type": "string",
             "name": ":id",
+            "displayName": "ID",
             "required": "true"
           },
           {
@@ -2895,13 +3005,14 @@
       },
       {
         "path": "/comment/:comment_id",
-        "displayName": "/comment/:comment_id",
-        "httpMethod": "put",
+        "displayName": "Update A Comment",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":comment_id",
+            "displayName": "Comment ID",
             "required": "true"
           }
         ],
@@ -2909,8 +3020,8 @@
       },
       {
         "path": "/mobile/install_app/:app_id",
-        "displayName": "/mobile/install_app/:app_id",
-        "httpMethod": "post",
+        "displayName": "Install App On Mobile Device",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -2924,8 +3035,8 @@
       },
       {
         "path": "/email/contact/:name/:ref_type/:ref_id/export",
-        "displayName": "/email/contact/:name/:ref_type/:ref_id/export",
-        "httpMethod": "post",
+        "displayName": "Export Email Contact For Linked Account Reference",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
@@ -2953,13 +3064,14 @@
       },
       {
         "path": "/email/contact/:name/export",
-        "displayName": "/email/contact/:name/export",
-        "httpMethod": "post",
+        "displayName": "Export Global Email Contact To Linked Account",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":name",
+            "displayName": "Name",
             "required": "true"
           }
         ],
@@ -2967,7 +3079,7 @@
       },
       {
         "path": "/email/app/:app_id",
-        "displayName": "/email/app/:app_id",
+        "displayName": "Get App Email Configuration",
         "httpMethod": "GET",
         "params": [
           {
@@ -2982,7 +3094,7 @@
       },
       {
         "path": "/email/contact/:name/:ref_type/:ref_id",
-        "displayName": "/email/contact/:name/:ref_type/:ref_id",
+        "displayName": "Get Email Contact For Reference",
         "httpMethod": "GET",
         "params": [
           {
@@ -3011,13 +3123,14 @@
       },
       {
         "path": "/email/contact/:name/:ref_type/:ref_id/vcard",
-        "displayName": "/email/contact/:name/:ref_type/:ref_id/vcard",
+        "displayName": "Get Email Contact For Reference As vCard",
         "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":name",
+            "displayName": "Name",
             "required": "true"
           },
           {
@@ -3039,13 +3152,14 @@
       },
       {
         "path": "/email/contact/:name",
-        "displayName": "/email/contact/:name",
+        "displayName": "Get Global Contact",
         "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":name",
+            "displayName": "Name",
             "required": "true"
           }
         ],
@@ -3053,13 +3167,14 @@
       },
       {
         "path": "/email/contact/:name/vcard",
-        "displayName": "/email/contact/:name/vcard",
-        "httpMethod": "get",
+        "displayName": "Get Global Email As vCard",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":name",
+            "displayName": "Name",
             "required": "true"
           }
         ],
@@ -3067,15 +3182,15 @@
       },
       {
         "path": "/email/group/",
-        "displayName": "/email/group/",
+        "displayName": "Get Groups",
         "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/email/group/"
       },
       {
         "path": "/email/app/:app_id",
-        "displayName": "/email/app/:app_id",
-        "httpMethod": "GET",
+        "displayName": "Update App Email Configuration",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -3089,27 +3204,78 @@
       },
       {
         "path": "/email/group/",
-        "displayName": "/email/group/",
-        "httpMethod": "put",
-        "params": [],
+        "displayName": "Update Group",
+        "httpMethod": "PUT",
+        "params": [
+          {
+            "name": "digest",
+            "displayName": "Digest",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "bulletin",
+            "displayName": "Bulletin",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "reference",
+            "displayName": "Reference",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "message",
+            "displayName": "Message",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "space",
+            "displayName": "Space",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "subscription",
+            "displayName": "Subscription",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://api.podio.com/email/group/"
       },
       {
         "path": "/embed/",
-        "displayName": "/embed/",
+        "displayName": "Add An Embed",
         "httpMethod": "POST",
-        "params": [],
+        "params": [
+          {
+            "name": "url",
+            "displayName": "Url",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "mode",
+            "displayName": "immediate, delayed",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://api.podio.com/embed/"
       },
       {
         "path": "/file/:file_id/attach",
-        "displayName": "/file/:file_id/attach",
-        "httpMethod": "post",
+        "displayName": "Attach A File",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           },
           {
@@ -3123,13 +3289,14 @@
       },
       {
         "path": "/file/:file_id/copy",
-        "displayName": "/file/:file_id/copy",
-        "httpMethod": "post",
+        "displayName": "Copy A File",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3137,13 +3304,14 @@
       },
       {
         "path": "/file/:file_id",
-        "displayName": "/file/:file_id",
+        "displayName": "Delete A File",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3151,13 +3319,14 @@
       },
       {
         "path": "/file/:file_id",
-        "displayName": "/file/:file_id",
-        "httpMethod": "get",
+        "displayName": "Get File Information",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3165,13 +3334,14 @@
       },
       {
         "path": "/file/",
-        "displayName": "/file/",
-        "httpMethod": "get",
+        "displayName": "Get All Files",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "attached_to"
+            "name": "attached_to",
+            "displayName": "Attached To"
           },
           {
             "style": "query",
@@ -3187,12 +3357,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "filetype"
+            "name": "filetype",
+            "displayName": "File Type"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "hosted_by"
+            "name": "hosted_by",
+            "displayName": "Hosted By"
           },
           {
             "style": "query",
@@ -3208,7 +3380,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           }
@@ -3217,8 +3389,8 @@
       },
       {
         "path": "/file/app/:app_id/",
-        "displayName": "/file/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get Files On App",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3230,12 +3402,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "attached_to"
+            "name": "attached_to",
+            "displayName": "Attached To"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "created_by"
+            "name": "created_by",
+            "displayName": "Created By"
           },
           {
             "style": "query",
@@ -3246,12 +3420,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "filetype"
+            "name": "filetype",
+            "displayName": "File Type"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "hosted_by"
+            "name": "hosted_by",
+            "displayName": "Hosted By"
           },
           {
             "style": "query",
@@ -3267,7 +3443,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           }
@@ -3276,8 +3452,8 @@
       },
       {
         "path": "/file/space/:space_id/",
-        "displayName": "/file/space/:space_id/",
-        "httpMethod": "get",
+        "displayName": "Get Files On Space",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3289,12 +3465,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "attached_to"
+            "name": "attached_to",
+            "displayName": "Attached To"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "created_by"
+            "name": "created_by",
+            "displayName": "Created By"
           },
           {
             "style": "query",
@@ -3305,12 +3483,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "filetype"
+            "name": "filetype",
+            "displayName": "File Type"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "hosted_by"
+            "name": "hosted_by",
+            "displayName": "Hosted By"
           },
           {
             "style": "query",
@@ -3332,7 +3512,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           }
@@ -3341,8 +3521,8 @@
       },
       {
         "path": "/file/linked_account/:linked_account_id/",
-        "displayName": "/file/linked_account/:linked_account_id/",
-        "httpMethod": "get",
+        "displayName": "Get Linked Account Files",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3354,12 +3534,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "external_folder_id"
+            "name": "external_folder_id",
+            "displayName": "External Folder ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "filetype"
+            "name": "filetype",
+            "displayName": "File Type"
           },
           {
             "style": "query",
@@ -3381,7 +3563,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           }
@@ -3390,13 +3572,14 @@
       },
       {
         "path": "/file/:file_id/replace",
-        "displayName": "/file/:file_id/replace",
-        "httpMethod": "post",
+        "displayName": "Replace File",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3404,13 +3587,14 @@
       },
       {
         "path": "/file/:file_id",
-        "displayName": "/file/:file_id",
+        "displayName": "Update File",
         "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3418,15 +3602,30 @@
       },
       {
         "path": "/file/",
-        "displayName": "/file/",
-        "httpMethod": "post",
-        "params": [],
+        "displayName": "Upload File",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "source",
+            "displayName": "Contents Of The File",
+            "style": "body",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "filename",
+            "displayName": "Filename",
+            "style": "body",
+            "type": "object",
+            "required": true
+          }
+        ],
         "url": "https://api.podio.com/file/"
       },
       {
         "path": "/file/linked_account/:linked_account_id/",
-        "displayName": "/file/linked_account/:linked_account_id/",
-        "httpMethod": "post",
+        "displayName": "Upload Linked Account File",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -3434,14 +3633,26 @@
             "name": ":linked_account_id",
             "displayName": "Linked Account ID",
             "required": "true"
+          },
+          {
+            "name": "external_file_id",
+            "displayName": "External File ID",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "preserve_permissions",
+            "displayName": "Preserve Permissions",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/file/linked_account/:linked_account_id/"
       },
       {
         "path": "/flow/:ref_type/:ref_id/",
-        "displayName": "/flow/:ref_type/:ref_id/",
-        "httpMethod": "post",
+        "displayName": "Add New Flow",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -3456,13 +3667,37 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "type",
+            "displayName": "Type",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "config",
+            "displayName": "Config",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "effects",
+            "displayName": "Effects",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/flow/:ref_type/:ref_id/"
       },
       {
         "path": "/flow/:flow_id",
-        "displayName": "/flow/:flow_id",
+        "displayName": "Delete Flow",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -3476,7 +3711,7 @@
       },
       {
         "path": "/flow/:flow_id",
-        "displayName": "/flow/:flow_id",
+        "displayName": "Get Flow By ID",
         "httpMethod": "GET",
         "params": [
           {
@@ -3490,7 +3725,7 @@
       },
       {
         "path": "/flow/:flow_id/context/",
-        "displayName": "/flow/:flow_id/context/",
+        "displayName": "Get Flow Context",
         "httpMethod": "GET",
         "params": [
           {
@@ -3504,7 +3739,7 @@
       },
       {
         "path": "/flow/:ref_type/:ref_id/",
-        "displayName": "/flow/:ref_type/:ref_id/",
+        "displayName": "Get Flows",
         "httpMethod": "GET",
         "params": [
           {
@@ -3526,8 +3761,8 @@
       },
       {
         "path": "/flow/:ref_type/:ref_id/attributes/",
-        "displayName": "/flow/:ref_type/:ref_id/attributes/",
-        "httpMethod": "post",
+        "displayName": "Get Possible Attributes",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -3548,7 +3783,7 @@
       },
       {
         "path": "/flow/:flow_id",
-        "displayName": "/flow/:flow_id",
+        "displayName": "Update Flow",
         "httpMethod": "PUT",
         "params": [
           {
@@ -3556,19 +3791,38 @@
             "type": "string",
             "name": ":flow_id",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "config",
+            "displayName": "Config",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "effects",
+            "displayName": "Effects",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/flow/:flow_id"
       },
       {
         "path": "/form/:form_id/activate",
-        "displayName": "/form/:form_id/activate",
-        "httpMethod": "post",
+        "displayName": "Activate Form",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "form_id",
+            "name": ":form_id",
+            "displayName": "Form ID",
             "required": "true"
           }
         ],
@@ -3576,7 +3830,7 @@
       },
       {
         "path": "/form/app/:app_id/",
-        "displayName": "/form/app/:app_id/",
+        "displayName": "Create Form",
         "httpMethod": "POST",
         "params": [
           {
@@ -3585,19 +3839,44 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "settings",
+            "displayName": "Settings",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "fields",
+            "displayName": "Fields",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "attachments",
+            "displayName": "Attachments",
+            "style": "body",
+            "type": "boolean"
           }
         ],
         "url": "https://api.podio.com/form/app/:app_id/"
       },
       {
         "path": "/form/:form_id/deactivate",
-        "displayName": "/form/:form_id/deactivate",
-        "httpMethod": "post",
+        "displayName": "Deactivate Form",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "form_id",
+            "name": ":form_id",
+            "displayName": "Form ID",
             "required": "true"
           }
         ],
@@ -3605,13 +3884,14 @@
       },
       {
         "path": "/form/:form_id",
-        "displayName": "/form/:form_id",
+        "displayName": "Delete Form",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "form_id",
+            "name": ":form_id",
+            "displayName": "Form ID",
             "required": "true"
           }
         ],
@@ -3619,13 +3899,14 @@
       },
       {
         "path": "/form/:form_id",
-        "displayName": "/form/:form_id",
-        "httpMethod": "get",
+        "displayName": "Get Form",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "form_id",
+            "name": ":form_id",
+            "displayName": "Form ID",
             "required": "true"
           }
         ],
@@ -3633,8 +3914,8 @@
       },
       {
         "path": "/form/app/:app_id/",
-        "displayName": "/form/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get All Forms",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3648,25 +3929,44 @@
       },
       {
         "path": "/form/:form_id",
-        "displayName": "/form/:form_id",
-        "httpMethod": "put",
+        "displayName": "Update Form",
+        "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "form_id",
+            "name": ":form_id",
+            "displayName": "Form ID",
             "required": "true"
+          },
+          {
+            "name": "settings",
+            "displayName": "Settings",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "domains",
+            "displayName": "Domains",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "fields",
+            "displayName": "Fields",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/form/:form_id"
       },
       {
         "path": "/friend/:user_ids",
-        "displayName": "/friend/:user_ids",
+        "displayName": "Delete Friend(s)",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
             "name": "user_ids",
             "required": "true"
@@ -3676,8 +3976,8 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id/count",
-        "displayName": "/grant/:ref_type/:ref_id/count",
-        "httpMethod": "get",
+        "displayName": "Count Grants On Object",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3698,8 +3998,8 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id",
-        "displayName": "/grant/:ref_type/:ref_id",
-        "httpMethod": "post",
+        "displayName": "Create Grant",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -3714,13 +4014,37 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "people",
+            "displayName": "People",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "action",
+            "displayName": "Action",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "displayName": "Message",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "access_level",
+            "displayName": "Access Level",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "url": "https://api.podio.com/grant/:ref_type/:ref_id"
       },
       {
         "path": "/grant/:ref_type/:ref_id/",
-        "displayName": "/grant/:ref_type/:ref_id/",
+        "displayName": "Get Grants On Object",
         "httpMethod": "GET",
         "params": [
           {
@@ -3742,7 +4066,7 @@
       },
       {
         "path": "/grant/space/:space_id/user/:user_id/",
-        "displayName": "/grant/space/:space_id/user/:user_id/",
+        "displayName": "Get Grants To User On Space",
         "httpMethod": "GET",
         "params": [
           {
@@ -3764,8 +4088,8 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id/own",
-        "displayName": "/grant/:ref_type/:ref_id/own",
-        "httpMethod": "get",
+        "displayName": "Get Personal Grant Information",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -3786,7 +4110,7 @@
       },
       {
         "path": "/grant/org/:org_id/own/",
-        "displayName": "/grant/org/:org_id/own/",
+        "displayName": "Get Personal Organization Grants",
         "httpMethod": "GET",
         "params": [
           {
@@ -3801,7 +4125,7 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id",
-        "displayName": "/grant/:ref_type/:ref_id",
+        "displayName": "Remove All Grants",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -3823,7 +4147,7 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id/:user_id",
-        "displayName": "/grant/:ref_type/:ref_id/:user_id",
+        "displayName": "Remove Grant",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -3852,8 +4176,8 @@
       },
       {
         "path": "/grant/:ref_type/:ref_id/:user_id",
-        "displayName": "/grant/:ref_type/:ref_id/:user_id",
-        "httpMethod": "put",
+        "displayName": "Update Grant",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -3875,14 +4199,20 @@
             "name": ":user_id",
             "displayName": "User ID",
             "required": "true"
+          },
+          {
+            "name": "access_level",
+            "displayName": "Access Level",
+            "style": "body",
+            "type": "number"
           }
         ],
         "url": "https://api.podio.com/grant/:ref_type/:ref_id/:user_id"
       },
       {
         "path": "/hook/:ref_type/:ref_id/",
-        "displayName": "/hook/:ref_type/:ref_id/",
-        "httpMethod": "post",
+        "displayName": "Create Hook",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -3897,19 +4227,32 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "url",
+            "displayName": "Url",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "type",
+            "displayName": "Type",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "url": "https://api.podio.com/hook/:ref_type/:ref_id/"
       },
       {
         "path": "/hook/:hook_id",
-        "displayName": "/hook/:hook_id",
+        "displayName": "Delete Hook",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":hook_id",
+            "displayName": "Hook ID",
             "required": "true"
           }
         ],
@@ -3917,7 +4260,7 @@
       },
       {
         "path": "/hook/:ref_type/:ref_id/",
-        "displayName": "/hook/:ref_type/:ref_id/",
+        "displayName": "Get All Hooks",
         "httpMethod": "GET",
         "params": [
           {
@@ -3939,13 +4282,14 @@
       },
       {
         "path": "/hook/:hook_id/verify/request",
-        "displayName": "/hook/:hook_id/verify/request",
-        "httpMethod": "post",
+        "displayName": "Request Hook Verification",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":hook_id",
+            "displayName": "Hook ID",
             "required": "true"
           }
         ],
@@ -3953,13 +4297,14 @@
       },
       {
         "path": "/hook/:hook_id/verify/validate",
-        "displayName": "/hook/:hook_id/verify/validate",
-        "httpMethod": "post",
+        "displayName": "Validate Hook Verification",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":hook_id",
+            "displayName": "Hook ID",
             "required": "true"
           }
         ],
@@ -3967,13 +4312,14 @@
       },
       {
         "path": "/importer/:file_id/info",
-        "displayName": "/importer/:file_id/info",
-        "httpMethod": "get",
+        "displayName": "Get Import Information",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           }
         ],
@@ -3981,19 +4327,21 @@
       },
       {
         "path": "/importer/:file_id/preview/:row",
-        "displayName": "/importer/:file_id/preview/:row",
-        "httpMethod": "post",
+        "displayName": "Get Import Preview",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "row",
+            "name": ":row",
+            "displayName": "Row",
             "required": "true"
           }
         ],
@@ -4001,13 +4349,14 @@
       },
       {
         "path": "/importer/:file_id/item/app/:app_id",
-        "displayName": "/importer/:file_id/item/app/:app_id",
-        "httpMethod": "post",
+        "displayName": "Import App Items",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           },
           {
@@ -4022,13 +4371,14 @@
       },
       {
         "path": "/importer/:file_id/contact/space/:space_id",
-        "displayName": "/importer/:file_id/contact/space/:space_id",
-        "httpMethod": "post",
+        "displayName": "Import Space Contacts",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":file_id",
+            "displayName": "File ID",
             "required": "true"
           },
           {
@@ -4043,8 +4393,8 @@
       },
       {
         "path": "/integration/:app_id",
-        "displayName": "/integration/:app_id",
-        "httpMethod": "post",
+        "displayName": "Create Integration",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4058,7 +4408,7 @@
       },
       {
         "path": "/integration/:app_id",
-        "displayName": "/integration/:app_id",
+        "displayName": "Delete Integration",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -4073,8 +4423,8 @@
       },
       {
         "path": "/integration/:app_id/field/",
-        "displayName": "/integration/:app_id/field/",
-        "httpMethod": "get",
+        "displayName": "Get Available Fields",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4088,7 +4438,7 @@
       },
       {
         "path": "/integration/:app_id",
-        "displayName": "/integration/:app_id",
+        "displayName": "Get Integration",
         "httpMethod": "GET",
         "params": [
           {
@@ -4103,7 +4453,7 @@
       },
       {
         "path": "/integration/:app_id",
-        "displayName": "/integration/:app_id",
+        "displayName": "Update Integration",
         "httpMethod": "PUT",
         "params": [
           {
@@ -4112,14 +4462,26 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "silent",
+            "displayName": "Silent",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "config",
+            "displayName": "Config",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/integration/:app_id"
       },
       {
         "path": "/integration/:app_id/mapping",
-        "displayName": "/integration/:app_id/mapping",
-        "httpMethod": "put",
+        "displayName": "Update Integration Mapping",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -4133,7 +4495,7 @@
       },
       {
         "path": "/item/app/:app_id/",
-        "displayName": "/item/app/:app_id/",
+        "displayName": "Add New Item",
         "httpMethod": "POST",
         "params": [
           {
@@ -4145,13 +4507,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -4160,8 +4522,8 @@
       },
       {
         "path": "/item/app/:app_id/delete",
-        "displayName": "/item/app/:app_id/delete",
-        "httpMethod": "post",
+        "displayName": "Bulk Delete Item",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4172,17 +4534,23 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },
+          {
+            "name": "item_ids",
+            "displayName": "Item IDs",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/item/app/:app_id/delete"
       },
       {
         "path": "/item/app/:app_id/calculate",
-        "displayName": "/item/app/:app_id/calculate",
-        "httpMethod": "post",
+        "displayName": "Calculate",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4190,14 +4558,44 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "aggregation",
+            "displayName": "Aggregation ( sum / average / count / minimum / maximum )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "formula",
+            "displayName": "Formula",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "grouping",
+            "displayName": "Grouping",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "filters",
+            "displayName": "Filters",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/item/app/:app_id/calculate"
       },
       {
         "path": "/item/:item_id/clone",
-        "displayName": "/item/:item_id/clone",
-        "httpMethod": "post",
+        "displayName": "Clone Item",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4217,7 +4615,7 @@
       },
       {
         "path": "/item/:item_id",
-        "displayName": "/item/:item_id",
+        "displayName": "Delete Item",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -4244,7 +4642,7 @@
       },
       {
         "path": "/item/:item_id/ref",
-        "displayName": "/item/:item_id/ref",
+        "displayName": "Delete Item Reference",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -4259,8 +4657,8 @@
       },
       {
         "path": "/item/app/:app_id/export/:exporter",
-        "displayName": "/item/app/:app_id/export/:exporter",
-        "httpMethod": "post",
+        "displayName": "Export Items",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4273,6 +4671,7 @@
             "style": "body",
             "type": "string",
             "name": "exporter",
+            "displayName": "Exporter ( xls / xlsx )",
             "required": "true"
           }
         ],
@@ -4280,8 +4679,8 @@
       },
       {
         "path": "/item/app/:app_id/filter/",
-        "displayName": "/item/app/:app_id/filter/",
-        "httpMethod": "post",
+        "displayName": "Filter Items",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4289,14 +4688,50 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "sort_by",
+            "displayName": "Sort By",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "sort_desc",
+            "displayName": "Sort Desc",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "fitlers",
+            "displayName": "Fitlers",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "remember",
+            "displayName": "Remember",
+            "style": "body",
+            "type": "boolean"
           }
         ],
         "url": "https://api.podio.com/item/app/:app_id/filter/"
       },
       {
         "path": "/item/app/:app_id/filter/:view_id/",
-        "displayName": "/item/app/:app_id/filter/:view_id/",
-        "httpMethod": "post",
+        "displayName": "Filter Items By View",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -4309,6 +4744,7 @@
             "style": "url",
             "type": "string",
             "name": ":view_id",
+            "displayName": "View ID",
             "required": "true"
           }
         ],
@@ -4316,8 +4752,8 @@
       },
       {
         "path": "/item/field/:field_id/range",
-        "displayName": "/item/field/:field_id/range",
-        "httpMethod": "get",
+        "displayName": "Find Referencable Items",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4331,8 +4767,8 @@
       },
       {
         "path": "/item/:item_id",
-        "displayName": "/item/:item_id",
-        "httpMethod": "get",
+        "displayName": "Get Item",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4343,16 +4779,17 @@
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "mark_as_viewed"
+            "type": "boolean",
+            "name": "mark_as_viewed",
+            "displayName": "Mark As Viewed"
           }
         ],
         "url": "https://api.podio.com/item/:item_id"
       },
       {
         "path": "/app/:app_id/item/:app_item_id",
-        "displayName": "/app/:app_id/item/:app_item_id",
-        "httpMethod": "get",
+        "displayName": "Get Item By App Item ID",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4362,9 +4799,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "app_item_id",
+            "name": ":app_item_id",
+            "displayName": "App Item ID",
             "required": "true"
           }
         ],
@@ -4372,8 +4810,8 @@
       },
       {
         "path": "/item/app/:app_id/external_id/:external_id",
-        "displayName": "/item/app/:app_id/external_id/:external_id",
-        "httpMethod": "get",
+        "displayName": "Get Item By External ID",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4383,10 +4821,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
             "displayName": "External ID",
-            "name": "external_id",
+            "name": ":external_id",
             "required": "true"
           }
         ],
@@ -4394,8 +4832,8 @@
       },
       {
         "path": "/item/:item_id/clone",
-        "displayName": "/item/:item_id/clone",
-        "httpMethod": "get",
+        "displayName": "Get Item Clone",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4409,8 +4847,8 @@
       },
       {
         "path": "/item/app/:app_id/count",
-        "displayName": "/item/app/:app_id/count",
-        "httpMethod": "get",
+        "displayName": "Get Item Count",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4424,7 +4862,7 @@
       },
       {
         "path": "/item/:item_id/value/:field_id",
-        "displayName": "/item/:item_id/value/:field_id",
+        "displayName": "Get Item Field Values",
         "httpMethod": "GET",
         "params": [
           {
@@ -4446,7 +4884,7 @@
       },
       {
         "path": "/item/:item_id/value/:field_or_external_id/v2",
-        "displayName": "/item/:item_id/value/:field_or_external_id/v2",
+        "displayName": "Get Item Field Or External Values",
         "httpMethod": "GET",
         "params": [
           {
@@ -4457,9 +4895,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "field_or_external_id",
+            "name": ":field_or_external_id",
+            "displayName": "Field Or External ID",
             "required": "true"
           }
         ],
@@ -4467,7 +4906,7 @@
       },
       {
         "path": "/item/:item_id/reference/:field_id/preview",
-        "displayName": "/item/:item_id/reference/:field_id/preview",
+        "displayName": "Get Item Preview For Field Reference",
         "httpMethod": "GET",
         "params": [
           {
@@ -4489,7 +4928,7 @@
       },
       {
         "path": "/item/:item_id/revision/:revision",
-        "displayName": "/item/:item_id/revision/:revision",
+        "displayName": "Get Item Revision",
         "httpMethod": "GET",
         "params": [
           {
@@ -4503,6 +4942,7 @@
             "style": "query",
             "type": "string",
             "name": "revision",
+            "displayName": "Revision",
             "required": "true"
           }
         ],
@@ -4510,8 +4950,8 @@
       },
       {
         "path": "/item/:item_id/revision/:revision_from/:revision_to",
-        "displayName": "/item/:item_id/revision/:revision_from/:revision_to",
-        "httpMethod": "get",
+        "displayName": "Get Item Revision Difference",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4521,15 +4961,17 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "revision_from",
+            "name": ":revision_from",
+            "displayName": "Revision From",
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "revision_to",
+            "name": ":revision_to",
+            "displayName": "Revision To",
             "required": "true"
           }
         ],
@@ -4537,7 +4979,7 @@
       },
       {
         "path": "/item/:item_id/revision/",
-        "displayName": "/item/:item_id/revision/",
+        "displayName": "Get Item Revisions",
         "httpMethod": "GET",
         "params": [
           {
@@ -4551,24 +4993,9 @@
         "url": "https://api.podio.com/item/:item_id/revision/"
       },
       {
-        "path": "/item/:item_id/value",
-        "displayName": "/item/:item_id/value",
-        "httpMethod": "GET",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":item_id",
-            "displayName": "Item ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/item/:item_id/value"
-      },
-      {
         "path": "/item/:item_id/value/v2",
-        "displayName": "/item/:item_id/value/v2",
-        "httpMethod": "get",
+        "displayName": "Get Item Values",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4582,8 +5009,8 @@
       },
       {
         "path": "/item/app/:app_id/xlsx/",
-        "displayName": "/item/app/:app_id/xlsx/",
-        "httpMethod": "get",
+        "displayName": "Get Items As Xlsx",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4594,13 +5021,15 @@
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "{key}"
+            "type": "object",
+            "name": "{key}",
+            "displayName": "Key"
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "deleted_columns"
+            "type": "boolean",
+            "name": "deleted_columns",
+            "displayName": "Deleted Columns"
           },
           {
             "style": "query",
@@ -4616,8 +5045,9 @@
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "remember"
+            "type": "boolean",
+            "name": "remember",
+            "displayName": "Remember"
           },
           {
             "style": "query",
@@ -4627,21 +5057,22 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           },
           {
             "style": "url",
             "type": "string",
-            "name": ":view_id"
+            "name": "view_id",
+            "displayName": "View ID"
           }
         ],
         "url": "https://api.podio.com/item/app/:app_id/xlsx/"
       },
       {
         "path": "/item/:item_id/meeting/url",
-        "displayName": "/item/:item_id/meeting/url",
+        "displayName": "Get Meeting URL",
         "httpMethod": "GET",
         "params": [
           {
@@ -4656,8 +5087,8 @@
       },
       {
         "path": "/item/:item_id/reference/field/:field_id",
-        "displayName": "/item/:item_id/reference/field/:field_id",
-        "httpMethod": "get",
+        "displayName": "Get References To Item By Field",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4690,8 +5121,8 @@
       },
       {
         "path": "/item/field/:field_id/top/",
-        "displayName": "/item/field/:field_id/top/",
-        "httpMethod": "get",
+        "displayName": "Get Top Values For Field",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4709,14 +5140,15 @@
           {
             "style": "query",
             "type": "string",
-            "name": "not_item_id"
+            "name": "not_item_id",
+            "displayName": "Not Item IDs"
           }
         ],
         "url": "https://api.podio.com/item/field/:field_id/top/"
       },
       {
         "path": "/item/:item_id/rearrange",
-        "displayName": "/item/:item_id/rearrange",
+        "displayName": "Rearrange Items",
         "httpMethod": "POST",
         "params": [
           {
@@ -4731,7 +5163,7 @@
       },
       {
         "path": "/item/:item_id/revision/:revision",
-        "displayName": "/item/:item_id/revision/:revision",
+        "displayName": "Revert Item Revision",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -4742,9 +5174,10 @@
             "required": "true"
           },
           {
-            "style": "",
+            "style": "url",
             "type": "string",
             "name": "revision",
+            "displayName": "Revision",
             "required": "true"
           }
         ],
@@ -4752,7 +5185,7 @@
       },
       {
         "path": "/item/:item_id/revision/:revision/revert_to",
-        "displayName": "/item/:item_id/revision/:revision/revert_to",
+        "displayName": "Revert To Revision",
         "httpMethod": "POST",
         "params": [
           {
@@ -4763,9 +5196,10 @@
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "revision",
+            "name": ":revision",
+            "displayName": "Revision",
             "required": "true"
           }
         ],
@@ -4773,8 +5207,8 @@
       },
       {
         "path": "/item/:item_id/participation",
-        "displayName": "/item/:item_id/participation",
-        "httpMethod": "put",
+        "displayName": "Set Participation",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -4788,8 +5222,8 @@
       },
       {
         "path": "/item/:item_id",
-        "displayName": "/item/:item_id",
-        "httpMethod": "put",
+        "displayName": "Update Item",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -4800,13 +5234,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -4815,8 +5249,8 @@
       },
       {
         "path": "/item/:item_id/value/:field_or_external_id",
-        "displayName": "/item/:item_id/value/:field_or_external_id",
-        "httpMethod": "put",
+        "displayName": "Update Item Field Values",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -4826,20 +5260,20 @@
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "field_or_external_id",
+            "name": ":field_or_external_id",
             "required": "true"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -4848,7 +5282,7 @@
       },
       {
         "path": "/item/:item_id/ref",
-        "displayName": "/item/:item_id/ref",
+        "displayName": "Update Item Reference",
         "httpMethod": "PUT",
         "params": [
           {
@@ -4857,13 +5291,25 @@
             "name": ":item_id",
             "displayName": "Item ID",
             "required": "true"
+          },
+          {
+            "name": "type",
+            "displayName": "Type",
+            "style": "body",
+            "type": "integer"
+          },
+          {
+            "name": "id",
+            "displayName": "Id",
+            "style": "body",
+            "type": "integer"
           }
         ],
         "url": "https://api.podio.com/item/:item_id/ref"
       },
       {
         "path": "/item/:item_id/value",
-        "displayName": "/item/:item_id/value",
+        "displayName": "Update Item Values",
         "httpMethod": "PUT",
         "params": [
           {
@@ -4875,13 +5321,13 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
           }
@@ -4890,38 +5336,41 @@
       },
       {
         "path": "/linked_account/",
-        "displayName": "/linked_account/",
-        "httpMethod": "get",
+        "displayName": "Get Linked Accounts",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "capability"
+            "name": "capability",
+            "displayName": "Capability"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "provider"
+            "name": "provider",
+            "displayName": "Provider"
           }
         ],
         "url": "https://api.podio.com/linked_account/"
       },
       {
         "path": "/notification/inbox/new/count",
-        "displayName": "/notification/inbox/new/count",
-        "httpMethod": "get",
+        "displayName": "Get Inbox New Count",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/notification/inbox/new/count"
       },
       {
         "path": "/notification/:notification_id",
-        "displayName": "/notification/:notification_id",
-        "httpMethod": "get",
+        "displayName": "Get Notification By ID",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "notification_id",
+            "name": ":notification_id",
+            "displayName": "Notification ID",
             "required": "true"
           }
         ],
@@ -4929,28 +5378,32 @@
       },
       {
         "path": "/notification/",
-        "displayName": "/notification/",
-        "httpMethod": "get",
+        "displayName": "Get Notifications",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "context_type"
+            "name": "context_type",
+            "displayName": "Context Type"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "created_from"
+            "name": "created_from",
+            "displayName": "Created From"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "created_to"
+            "name": "created_to",
+            "displayName": "Created To"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "direction"
+            "name": "direction",
+            "displayName": "Direction"
           },
           {
             "style": "query",
@@ -4967,7 +5420,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "starred"
+            "name": "starred",
+            "displayName": "Starred"
           },
           {
             "style": "query",
@@ -4976,39 +5430,43 @@
             "displayName": "Type"
           },
           {
-            "style": "url",
+            "style": "query",
             "type": "string",
-            "name": ":user_id"
+            "name": "user_id",
+            "displayName": "User ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "viewed"
+            "name": "viewed",
+            "displayName": "Viewed"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "viewed_from"
+            "name": "viewed_from",
+            "displayName": "Viewed From"
           }
         ],
         "url": "https://api.podio.com/notification/"
       },
       {
         "path": "/notification/viewed",
-        "displayName": "/notification/viewed",
+        "displayName": "Mark All Notifications As Viewed",
         "httpMethod": "Post",
         "params": [],
         "url": "https://api.podio.com/notification/viewed"
       },
       {
         "path": "/notification/:notification_id/viewed",
-        "displayName": "/notification/:notification_id/viewed",
+        "displayName": "Mark Notification As Unviewed",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "notification_id",
+            "name": ":notification_id",
+            "displayName": "Notification ID",
             "required": "true"
           }
         ],
@@ -5016,13 +5474,14 @@
       },
       {
         "path": "/notification/:notification_id/viewed",
-        "displayName": "/notification/:notification_id/viewed",
-        "httpMethod": "post",
+        "displayName": "MArk Notification As Viewed",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "notification_id",
+            "name": ":notification_id",
+            "displayName": "Notification ID",
             "required": "true"
           }
         ],
@@ -5030,7 +5489,7 @@
       },
       {
         "path": "/notification/:ref_type/:ref_id/viewed",
-        "displayName": "/notification/:ref_type/:ref_id/viewed",
+        "displayName": "Mark Notifications As Unviewed By Reference",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -5052,8 +5511,8 @@
       },
       {
         "path": "/notification/:ref_type/:ref_id/viewed",
-        "displayName": "/notification/:ref_type/:ref_id/viewed",
-        "httpMethod": "post",
+        "displayName": "MArk Notifications As Viewed By Reference",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -5065,20 +5524,23 @@
           {
             "style": "url",
             "type": "string",
-            "name": ":ref_id"
+            "name": ":ref_id",
+            "displayName": "Reference ID",
+            "required": "true"
           }
         ],
         "url": "https://api.podio.com/notification/:ref_type/:ref_id/viewed"
       },
       {
         "path": "/notification/:notification_id/star",
-        "displayName": "/notification/:notification_id/star",
-        "httpMethod": "post",
+        "displayName": "Star Notification",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "notification_id",
+            "name": ":notification_id",
+            "displayName": "Notification ID",
             "required": "true"
           }
         ],
@@ -5086,13 +5548,14 @@
       },
       {
         "path": "/notification/:notification_id/star",
-        "displayName": "/notification/:notification_id/star",
+        "displayName": "Un-star Notification",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "notification_id",
+            "name": ":notification_id",
+            "displayName": "Notification ID",
             "required": "true"
           }
         ],
@@ -5100,15 +5563,28 @@
       },
       {
         "path": "/org/",
-        "displayName": "/org/",
-        "httpMethod": "post",
-        "params": [],
+        "displayName": "Add New Organization",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "logo",
+            "displayName": "Logo",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://api.podio.com/org/"
       },
       {
         "path": "/org/:org_id/appstore",
-        "displayName": "/org/:org_id/appstore",
-        "httpMethod": "post",
+        "displayName": "Create Organization App Store Profile",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -5116,13 +5592,19 @@
             "name": ":org_id",
             "displayName": "Organization ID",
             "required": "true"
+          },
+          {
+            "name": "{field}",
+            "displayName": "Field}",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/org/:org_id/appstore"
       },
       {
         "path": "/org/:org_id/member/:user_id/role",
-        "displayName": "/org/:org_id/member/:user_id/role",
+        "displayName": "Delete Organization Member Role",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -5144,7 +5626,7 @@
       },
       {
         "path": "/org/:org_id/member/:user_id",
-        "displayName": "/org/:org_id/member/:user_id",
+        "displayName": "End Organization Membership",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -5166,8 +5648,8 @@
       },
       {
         "path": "/org/:org_id/all_spaces/",
-        "displayName": "/org/:org_id/all_spaces/",
-        "httpMethod": "get",
+        "displayName": "Get All Spaces On Organization",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5181,8 +5663,8 @@
       },
       {
         "path": "/org/:org_id",
-        "displayName": "/org/:org_id",
-        "httpMethod": "get",
+        "displayName": "Get Organization",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5196,8 +5678,8 @@
       },
       {
         "path": "/org/:org_id/admin/",
-        "displayName": "/org/:org_id/admin/",
-        "httpMethod": "get",
+        "displayName": "Get Organization Admins",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5211,8 +5693,8 @@
       },
       {
         "path": "/org/:org_id/appstore",
-        "displayName": "/org/:org_id/appstore",
-        "httpMethod": "get",
+        "displayName": "Get Organization App Store Profile",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5225,22 +5707,24 @@
         "url": "https://api.podio.com/org/:org_id/appstore"
       },
       {
-        "path": "/org/url",
-        "displayName": "/org/url",
-        "httpMethod": "get",
+        "path": "/org/:url",
+        "displayName": "Get Organization By URL",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "url"
+            "name": ":url",
+            "displayName": "URL",
+            "required": "true"
           }
         ],
         "url": "https://api.podio.com/org/url"
       },
       {
         "path": "/org/:org_id/report/login/",
-        "displayName": "/org/:org_id/report/login/",
-        "httpMethod": "get",
+        "displayName": "Get Organization Login Report",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5266,8 +5750,8 @@
       },
       {
         "path": "/org/:org_id/member/:user_id",
-        "displayName": "/org/:org_id/member/:user_id",
-        "httpMethod": "get",
+        "displayName": "Get Organization Member",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5288,8 +5772,8 @@
       },
       {
         "path": "/org/:org_id/member/",
-        "displayName": "/org/:org_id/member/",
-        "httpMethod": "get",
+        "displayName": "Get Organization Members",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5307,7 +5791,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "member_type"
+            "name": "member_type",
+            "displayName": "Member Type"
           },
           {
             "style": "query",
@@ -5329,7 +5814,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "sort_desc",
             "displayName": "Sort Descending"
           }
@@ -5338,14 +5823,14 @@
       },
       {
         "path": "/org/",
-        "displayName": "/org/",
-        "httpMethod": "get",
+        "displayName": "Get Organizations",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/org/"
       },
       {
         "path": "/org/shared/:user_id",
-        "displayName": "/org/shared/:user_id",
+        "displayName": "Get Shared Organizations",
         "httpMethod": "GET",
         "params": [
           {
@@ -5360,7 +5845,7 @@
       },
       {
         "path": "/org/:org_id/member/:user_id/space_member/",
-        "displayName": "/org/:org_id/member/:user_id/space_member/",
+        "displayName": "Get Space Memberships For Organization Member",
         "httpMethod": "GET",
         "params": [
           {
@@ -5382,7 +5867,7 @@
       },
       {
         "path": "/org/:org_id/space/",
-        "displayName": "/org/:org_id/space/",
+        "displayName": "Get Spaces On Organization",
         "httpMethod": "GET",
         "params": [
           {
@@ -5397,7 +5882,7 @@
       },
       {
         "path": "/org/:org_id",
-        "displayName": "/org/:org_id",
+        "displayName": "Update Organization",
         "httpMethod": "PUT",
         "params": [
           {
@@ -5406,13 +5891,31 @@
             "name": ":org_id",
             "displayName": "Organization ID",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "url_label",
+            "displayName": "Url Label",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "logo",
+            "displayName": "Logo",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/org/:org_id"
       },
       {
         "path": "/org/:org_id/appstore",
-        "displayName": "/org/:org_id/appstore",
+        "displayName": "Update Organization App Store Profile",
         "httpMethod": "PUT",
         "params": [
           {
@@ -5421,28 +5924,41 @@
             "name": ":org_id",
             "displayName": "Organization ID",
             "required": "true"
+          },
+          {
+            "name": "{field}",
+            "displayName": "Field",
+            "type": "object",
+            "style": "body"
           }
         ],
         "url": "https://api.podio.com/org/:org_id/appstore"
       },
       {
         "path": "/question/:question_id/",
-        "displayName": "/question/:question_id/",
-        "httpMethod": "post",
+        "displayName": "Answer Question",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "question_id",
+            "name": ":question_id",
+            "displayName": "Question ID",
             "required": "true"
+          },
+          {
+            "name": "question_option_id",
+            "displayName": "Question Option ID",
+            "type": "string",
+            "style": "body"
           }
         ],
         "url": "https://api.podio.com/question/:question_id/"
       },
       {
         "path": "/question/:ref_type/:ref_id/",
-        "displayName": "/question/:ref_type/:ref_id/",
-        "httpMethod": "post",
+        "displayName": "Create Question",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -5457,19 +5973,32 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "text",
+            "displayName": "Text",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "options",
+            "displayName": "Options",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/question/:ref_type/:ref_id/"
       },
       {
         "path": "/question/:question_id/",
-        "displayName": "/question/:question_id/",
+        "displayName": "Get Answers",
         "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "question_id",
+            "name": ":question_id",
+            "displayName": "Question ID",
             "required": "true"
           }
         ],
@@ -5477,7 +6006,7 @@
       },
       {
         "path": "/rating/:ref_type/:ref_id",
-        "displayName": "/rating/:ref_type/:ref_id",
+        "displayName": "Get All Ratings",
         "httpMethod": "GET",
         "params": [
           {
@@ -5499,8 +6028,8 @@
       },
       {
         "path": "/rating/:ref_type/:ref_id/like_count",
-        "displayName": "/rating/:ref_type/:ref_id/like_count",
-        "httpMethod": "get",
+        "displayName": "Get Like Count",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5521,7 +6050,7 @@
       },
       {
         "path": "/rating/:ref_type/:ref_id/:rating_type/:user_id",
-        "displayName": "/rating/:ref_type/:ref_id/:rating_type/:user_id",
+        "displayName": "Get Rating",
         "httpMethod": "GET",
         "params": [
           {
@@ -5556,8 +6085,8 @@
       },
       {
         "path": "/rating/:ref_type/:ref_id/:rating_type",
-        "displayName": "/rating/:ref_type/:ref_id/:rating_type",
-        "httpMethod": "get",
+        "displayName": "Get Ratings",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5574,9 +6103,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "rating_type",
+            "name": ":rating_type",
+            "displayName": "Rating Type",
             "required": "true"
           }
         ],
@@ -5584,8 +6114,8 @@
       },
       {
         "path": "/rating/:ref_type/:ref_id/liked_by/",
-        "displayName": "/rating/:ref_type/:ref_id/liked_by/",
-        "httpMethod": "get",
+        "displayName": "Get Who Liked An Object",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5612,7 +6142,7 @@
       },
       {
         "path": "/recurrence/:ref_type/:ref_id",
-        "displayName": "/recurrence/:ref_type/:ref_id",
+        "displayName": "Create/Update Recurrence",
         "httpMethod": "PUT",
         "params": [
           {
@@ -5628,13 +6158,25 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name ( weekly / monthly / yearly )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "config",
+            "displayName": "Config",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/recurrence/:ref_type/:ref_id"
       },
       {
         "path": "/recurrence/:ref_type/:ref_id",
-        "displayName": "/recurrence/:ref_type/:ref_id",
+        "displayName": "Delete Recurrence",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -5656,8 +6198,8 @@
       },
       {
         "path": "/recurrence/:ref_type/:ref_id",
-        "displayName": "/recurrence/:ref_type/:ref_id",
-        "httpMethod": "get",
+        "displayName": "Get Recurrence",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5678,8 +6220,8 @@
       },
       {
         "path": "/reference/:ref_type/:ref_id/accessible_by/count",
-        "displayName": "/reference/:ref_type/:ref_id/accessible_by/count",
-        "httpMethod": "get",
+        "displayName": "Count User Profiles With Access To Object",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5700,8 +6242,8 @@
       },
       {
         "path": "/reference/:ref_type/:ref_id",
-        "displayName": "/reference/:ref_type/:ref_id",
-        "httpMethod": "get",
+        "displayName": "Get Reference",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5719,26 +6261,29 @@
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "accessor_count"
+            "type": "boolean",
+            "name": "accessor_count",
+            "displayName": "Accessor Count"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "context_id"
+            "name": "context_id",
+            "displayName": "Context ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "context_type"
+            "name": "context_type",
+            "displayName": "Context Type ( app )"
           }
         ],
         "url": "https://api.podio.com/reference/:ref_type/:ref_id"
       },
       {
         "path": "/reference/:ref_type/:ref_id/accessible_by/",
-        "displayName": "/reference/:ref_type/:ref_id/accessible_by/",
-        "httpMethod": "get",
+        "displayName": "Get User Profiles With Access To Object",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5771,34 +6316,83 @@
       },
       {
         "path": "/reference/resolve",
-        "displayName": "/reference/resolve",
-        "httpMethod": "get",
+        "displayName": "Resolve URL",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           }
         ],
         "url": "https://api.podio.com/reference/resolve"
       },
       {
         "path": "/reference/search",
-        "displayName": "/reference/search",
-        "httpMethod": "post",
-        "params": [],
+        "displayName": "Search References",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "target",
+            "displayName": "Target",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "text",
+            "displayName": "Text",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "string"
+          }
+        ],
         "url": "https://api.podio.com/reference/search"
       },
       {
         "path": "/reminder/:ref_type/:ref_id",
-        "displayName": "/reminder/:ref_type/:ref_id",
+        "displayName": "Create/Update Reminder",
         "httpMethod": "PUT",
-        "params": [],
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":ref_type",
+            "displayName": "Reference Type",
+            "required": "true"
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":ref_id",
+            "displayName": "Reference ID",
+            "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "ref_type",
+            "displayName": "Reference Type To Set Reminder On",
+            "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "ref_id",
+            "displayName": "Reference ID To Set Reminder On",
+            "required": "true"
+          }
+        ],
         "url": "https://api.podio.com/reminder/:ref_type/:ref_id"
       },
       {
         "path": "/reminder/:ref_type/:ref_id",
-        "displayName": "/reminder/:ref_type/:ref_id",
+        "displayName": "Delete Reminder",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -5816,16 +6410,17 @@
             "required": "true"
           },
           {
-            "style": "",
+            "style": "body",
             "type": "string",
-            "name": "reminder_id"
+            "name": "reminder_id",
+            "displayName": "Reminder ID"
           }
         ],
         "url": "https://api.podio.com/reminder/:ref_type/:ref_id"
       },
       {
         "path": "/reminder/:ref_type/:ref_id",
-        "displayName": "/reminder/:ref_type/:ref_id",
+        "displayName": "Get Reminder",
         "httpMethod": "GET",
         "params": [
           {
@@ -5847,8 +6442,8 @@
       },
       {
         "path": "/reminder/:ref_type/:ref_id/snooze",
-        "displayName": "/reminder/:ref_type/:ref_id/snooze",
-        "httpMethod": "post",
+        "displayName": "Snooze Reminder",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -5867,27 +6462,22 @@
           {
             "style": "body",
             "type": "string",
-            "name": "reminder_id"
+            "name": "reminder_id",
+            "displayName": "Reminder ID"
           }
         ],
         "url": "https://api.podio.com/reminder/:ref_type/:ref_id/snooze"
       },
       {
-        "path": "/search/",
-        "displayName": "/search/",
-        "httpMethod": "post",
-        "params": [],
-        "url": "https://api.podio.com/search/"
-      },
-      {
         "path": "/search/v2",
-        "displayName": "/search/v2",
-        "httpMethod": "get",
+        "displayName": "Search Globally",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "counts"
+            "name": "counts",
+            "displayName": "Counts"
           },
           {
             "style": "query",
@@ -5908,32 +6498,18 @@
             "displayName": "Query"
           },
           {
-            "style": "url",
+            "style": "body",
             "type": "string",
-            "name": ":ref_type"
+            "name": "ref_type",
+            "displayName": "Reference Type"
           }
         ],
         "url": "https://api.podio.com/search/v2"
       },
       {
-        "path": "/search/app/:app_id/",
-        "displayName": "/search/app/:app_id/",
-        "httpMethod": "post",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":app_id",
-            "displayName": "App ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/search/app/:app_id/"
-      },
-      {
         "path": "/search/app/:app_id/v2",
-        "displayName": "/search/app/:app_id/v2",
-        "httpMethod": "get",
+        "displayName": "Search In Application",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -5945,7 +6521,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "counts"
+            "name": "counts",
+            "displayName": "Counts"
           },
           {
             "style": "query",
@@ -5966,31 +6543,17 @@
             "displayName": "Query"
           },
           {
-            "style": "url",
+            "style": "body",
             "type": "string",
-            "name": ":ref_type"
+            "name": "ref_type",
+            "displayName": "Reference Type"
           }
         ],
         "url": "https://api.podio.com/search/app/:app_id/v2"
       },
       {
-        "path": "/search/org/:org_id/",
-        "displayName": "/search/org/:org_id/",
-        "httpMethod": "post",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":org_id",
-            "displayName": "Organization ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/search/org/:org_id/"
-      },
-      {
         "path": "/search/org/:org_id/v2",
-        "displayName": "/search/org/:org_id/v2",
+        "displayName": "Search In Organization",
         "httpMethod": "GET",
         "params": [
           {
@@ -6003,7 +6566,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "counts"
+            "name": "counts",
+            "displayName": "Counts"
           },
           {
             "style": "query",
@@ -6024,32 +6588,18 @@
             "displayName": "Query"
           },
           {
-            "style": "url",
+            "style": "body",
             "type": "string",
-            "name": ":ref_type"
+            "name": "ref_type",
+            "displayName": "Reference Type"
           }
         ],
         "url": "https://api.podio.com/search/org/:org_id/v2"
       },
       {
-        "path": "/search/space/:space_id/",
-        "displayName": "/search/space/:space_id/",
-        "httpMethod": "post",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":space_id",
-            "displayName": "Space ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/search/space/:space_id/"
-      },
-      {
         "path": "/search/space/:space_id/v2",
-        "displayName": "/search/space/:space_id/v2",
-        "httpMethod": "get",
+        "displayName": "Search In Space",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6060,8 +6610,9 @@
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "counts"
+            "type": "boolean",
+            "name": "counts",
+            "displayName": "Counts"
           },
           {
             "style": "query",
@@ -6082,17 +6633,18 @@
             "displayName": "Query"
           },
           {
-            "style": "url",
+            "style": "body",
             "type": "string",
-            "name": ":ref_type"
+            "name": "ref_type",
+            "displayName": "Reference Type"
           }
         ],
         "url": "https://api.podio.com/search/space/:space_id/v2"
       },
       {
         "path": "/space/:space_id/member_request/:space_member_request_id/accept",
-        "displayName": "/space/:space_id/member_request/:space_member_request_id/accept",
-        "httpMethod": "post",
+        "displayName": "Accept Space Membership Request",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -6102,9 +6654,10 @@
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "space_member_request_id",
+            "name": ":space_member_request_id",
+            "displayName": "Space Member Request ID",
             "required": "true"
           }
         ],
@@ -6112,8 +6665,8 @@
       },
       {
         "path": "/space/:space_id/member/",
-        "displayName": "/space/:space_id/member/",
-        "httpMethod": "post",
+        "displayName": "Add Member To Space",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -6121,13 +6674,49 @@
             "name": ":space_id",
             "displayName": "Space ID",
             "required": "true"
+          },
+          {
+            "name": "role",
+            "displayName": "Role",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "displayName": "Message",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "users",
+            "displayName": "Users",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "profiles",
+            "displayName": "Profiles",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "mails",
+            "displayName": "Mails",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "external_contacts",
+            "displayName": "External Contacts",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/space/:space_id/member/"
       },
       {
         "path": "/space/:space_id/member/:user_ids",
-        "displayName": "/space/:space_id/member/:user_ids",
+        "displayName": "End Space Memberships",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -6138,9 +6727,10 @@
             "required": "true"
           },
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "user_ids",
+            "name": ":user_ids",
+            "displayName": "User IDs",
             "required": "true"
           }
         ],
@@ -6148,8 +6738,8 @@
       },
       {
         "path": "/space/:space_id/member/total",
-        "displayName": "/space/:space_id/member/total",
-        "httpMethod": "get",
+        "displayName": "Get Count Of Internal And External Members On Space",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6163,8 +6753,8 @@
       },
       {
         "path": "/space/:space_id/member/",
-        "displayName": "/space/:space_id/member/",
-        "httpMethod": "get",
+        "displayName": "Get Members Of Space",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6178,8 +6768,8 @@
       },
       {
         "path": "/space/:space_id/member/:user_id/v2",
-        "displayName": "/space/:space_id/member/:user_id/v2",
-        "httpMethod": "get",
+        "displayName": "Get Space Member",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "get",
@@ -6200,7 +6790,7 @@
       },
       {
         "path": "/space/:space_id/member/:role/",
-        "displayName": "/space/:space_id/member/:role/",
+        "displayName": "Get Space Members By Role",
         "httpMethod": "GET",
         "params": [
           {
@@ -6214,6 +6804,7 @@
             "style": "query",
             "type": "string",
             "name": "role",
+            "displayName": "Role",
             "required": "true"
           }
         ],
@@ -6221,7 +6812,7 @@
       },
       {
         "path": "/space/:space_id/member/v2/",
-        "displayName": "/space/:space_id/member/v2/",
+        "displayName": "Get Space Members",
         "httpMethod": "GET",
         "params": [
           {
@@ -6240,7 +6831,8 @@
           {
             "style": "query",
             "type": "string",
-            "name": "member_type"
+            "name": "member_type",
+            "displayName": "Member Type"
           },
           {
             "style": "query",
@@ -6259,8 +6851,8 @@
       },
       {
         "path": "/space/:space_id/member/:user_id",
-        "displayName": "/space/:space_id/member/:user_id",
-        "httpMethod": "get",
+        "displayName": "Get Space Membership",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6281,7 +6873,7 @@
       },
       {
         "path": "/space/:space_id/join",
-        "displayName": "/space/:space_id/join",
+        "displayName": "Join Space",
         "httpMethod": "POST",
         "params": [
           {
@@ -6296,38 +6888,8 @@
       },
       {
         "path": "/space/:space_id/member_request/",
-        "displayName": "/space/:space_id/member_request/",
-        "httpMethod": "post",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":space_id",
-            "displayName": "Space ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/space/:space_id/member_request/"
-      },
-      {
-        "path": "/space/:space_id/join",
-        "displayName": "/space/:space_id/join",
-        "httpMethod": "post",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":space_id",
-            "displayName": "Space ID",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/space/:space_id/join"
-      },
-      {
-        "path": "/space/:space_id/member_request/",
-        "displayName": "/space/:space_id/member_request/",
-        "httpMethod": "post",
+        "displayName": "Request Space Membership",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -6341,7 +6903,7 @@
       },
       {
         "path": "/space/:space_id/member/:user_ids",
-        "displayName": "/space/:space_id/member/:user_ids",
+        "displayName": "Update Space Memberships",
         "httpMethod": "PUT",
         "params": [
           {
@@ -6352,9 +6914,10 @@
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "user_ids",
+            "name": ":user_ids",
+            "displayName": "User IDs",
             "required": "true"
           }
         ],
@@ -6362,14 +6925,51 @@
       },
       {
         "path": "/space/",
-        "displayName": "/space/",
-        "httpMethod": "post",
-        "params": [],
+        "displayName": "Create Space",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "org_id",
+            "displayName": "Organization Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "privacy",
+            "displayName": "Privacy ( open / closed )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "auto_join",
+            "displayName": "Auto Join",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "post_on_new_app",
+            "displayName": "Post On New App",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "post_on_new_member",
+            "displayName": "Post On New Member",
+            "style": "body",
+            "type": "boolean"
+          }
+        ],
         "url": "https://api.podio.com/space/"
       },
       {
         "path": "/space/:space_id",
-        "displayName": "/space/:space_id",
+        "displayName": "Delete Space",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -6384,8 +6984,8 @@
       },
       {
         "path": "/space/:space_id/available",
-        "displayName": "/space/:space_id/available",
-        "httpMethod": "get",
+        "displayName": "Get Available Spaces",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6399,8 +6999,8 @@
       },
       {
         "path": "/space/:space_id",
-        "displayName": "/space/:space_id",
-        "httpMethod": "get",
+        "displayName": "Get Space Information",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6414,8 +7014,8 @@
       },
       {
         "path": "/space/org/:org_id/:url_label",
-        "displayName": "/space/org/:org_id/:url_label",
-        "httpMethod": "get",
+        "displayName": "Get Space By Organization And URL Label",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6425,9 +7025,9 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "url_label",
+            "name": ":url_label",
             "displayName": "URL Label",
             "required": "true"
           }
@@ -6436,30 +7036,33 @@
       },
       {
         "path": "/space/url",
-        "displayName": "/space/url",
-        "httpMethod": "get",
+        "displayName": "Get Space By URL",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "org_slug"
+            "name": "org_slug",
+            "displayName": "Organization Slug"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "space_slug"
+            "name": "space_slug",
+            "displayName": "Space Slug"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           }
         ],
         "url": "https://api.podio.com/space/url"
       },
       {
         "path": "/space/top/",
-        "displayName": "/space/top/",
+        "displayName": "Get Top Spaces",
         "httpMethod": "GET",
         "params": [
           {
@@ -6473,7 +7076,7 @@
       },
       {
         "path": "/space/:space_id",
-        "displayName": "/space/:space_id",
+        "displayName": "Update Space",
         "httpMethod": "PUT",
         "params": [
           {
@@ -6482,14 +7085,50 @@
             "name": ":space_id",
             "displayName": "Space ID",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "privacy",
+            "displayName": "Privacy ( open / closed )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "auto_join",
+            "displayName": "Auto Join",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "url_label",
+            "displayName": "Url Label",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "post_on_new_app",
+            "displayName": "Post On New App",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "post_on_new_member",
+            "displayName": "Post On New Member",
+            "style": "body",
+            "type": "boolean"
           }
         ],
         "url": "https://api.podio.com/space/:space_id"
       },
       {
         "path": "/status/space/:space_id/",
-        "displayName": "/status/space/:space_id/",
-        "httpMethod": "post",
+        "displayName": "Add New Status Message",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -6500,21 +7139,47 @@
           },
           {
             "style": "body",
-            "type": "string",
-            "name": "alert_invite"
+            "type": "boolean",
+            "name": "alert_invite",
+            "displayName": "Alert Invite"
+          },
+          {
+            "name": "value",
+            "displayName": "Value",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "file_ids",
+            "displayName": "File Ids",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "embed_id",
+            "displayName": "Embed Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "question",
+            "displayName": "Question",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/status/space/:space_id/"
       },
       {
         "path": "/status/:status_id",
-        "displayName": "/status/:status_id",
+        "displayName": "Delete A Status Message",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
+            "displayName": "Status ID",
             "required": "true"
           }
         ],
@@ -6522,13 +7187,13 @@
       },
       {
         "path": "/status/:status_id",
-        "displayName": "/status/:status_id",
+        "displayName": "Get Status Message",
         "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":status_id",
             "required": "true"
           }
         ],
@@ -6536,7 +7201,7 @@
       },
       {
         "path": "/status/:status_id",
-        "displayName": "/status/:status_id",
+        "displayName": "Update A Status",
         "httpMethod": "PUT",
         "params": [
           {
@@ -6550,8 +7215,8 @@
       },
       {
         "path": "/stream/app/:app_id/filter",
-        "displayName": "/stream/app/:app_id/filter",
-        "httpMethod": "post",
+        "displayName": "Filter App Stream",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -6559,41 +7224,38 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "view_id",
+            "displayName": "View Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "displayName": "Filters",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/stream/app/:app_id/filter"
       },
       {
-        "path": "/stream/app/:app_id/",
-        "displayName": "/stream/app/:app_id/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":app_id",
-            "displayName": "App ID",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Limit",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Offset",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.podio.com/stream/app/:app_id/"
-      },
-      {
         "path": "/stream/app/:app_id/v3",
-        "displayName": "/stream/app/:app_id/v3",
-        "httpMethod": "get",
+        "displayName": "Get Application Stream",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6605,12 +7267,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           },
           {
             "style": "query",
@@ -6628,39 +7292,21 @@
         "url": "https://api.podio.com/stream/app/:app_id/v3"
       },
       {
-        "path": "/stream/",
-        "displayName": "/stream/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Limit",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Offset",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.podio.com/stream/"
-      },
-      {
         "path": "/stream/v3/",
-        "displayName": "/stream/v3/",
+        "displayName": "Get Global Stream",
         "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           },
           {
             "style": "query",
@@ -6679,8 +7325,8 @@
       },
       {
         "path": "/stream/:ref_type/:ref_id/activity_group/:data_ref_type/:data_ref_id",
-        "displayName": "/stream/:ref_type/:ref_id/activity_group/:data_ref_type/:data_ref_id",
-        "httpMethod": "get",
+        "displayName": "Get Object Event Group By Data Reference",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6697,29 +7343,32 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "data_ref_type",
+            "name": ":data_ref_type",
+            "displayName": "Data Reference Type",
+            "required": "true"
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":data_ref_id",
+            "displayName": "Data Reference ID",
             "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "data_ref_id",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "event_types"
+            "name": "event_types",
+            "displayName": "Event Types"
           }
         ],
         "url": "https://api.podio.com/stream/:ref_type/:ref_id/activity_group/:data_ref_type/:data_ref_id"
       },
       {
         "path": "/stream/:ref_type/:ref_id/group/:event_id",
-        "displayName": "/stream/:ref_type/:ref_id/group/:event_id",
-        "httpMethod": "get",
+        "displayName": "Get Object Event Group By Event ID",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6745,15 +7394,16 @@
           {
             "style": "query",
             "type": "string",
-            "name": "event_types"
+            "name": "event_types",
+            "displayName": "Event Types"
           }
         ],
         "url": "https://api.podio.com/stream/:ref_type/:ref_id/group/:event_id"
       },
       {
         "path": "/stream/:ref_type/:ref_id/activity_group/",
-        "displayName": "/stream/:ref_type/:ref_id/activity_group/",
-        "httpMethod": "get",
+        "displayName": "Get Object Event Groups",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6772,12 +7422,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "event_types"
+            "name": "event_types",
+            "displayName": "Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "from_groupd_id"
+            "name": "from_groupd_id",
+            "displayName": "From Group ID"
           },
           {
             "style": "query",
@@ -6794,15 +7446,16 @@
           {
             "style": "query",
             "type": "string",
-            "name": "to_group_id"
+            "name": "to_group_id",
+            "displayName": "To Group ID"
           }
         ],
         "url": "https://api.podio.com/stream/:ref_type/:ref_id/activity_group/"
       },
       {
         "path": "/stream/org/:org_id/v3/",
-        "displayName": "/stream/org/:org_id/v3/",
-        "httpMethod": "get",
+        "displayName": "Get Organization Stream",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6814,12 +7467,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           },
           {
             "style": "query",
@@ -6837,63 +7492,9 @@
         "url": "https://api.podio.com/stream/org/:org_id/v3/"
       },
       {
-        "path": "/stream/org/:org_id/",
-        "displayName": "/stream/org/:org_id/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":org_id",
-            "displayName": "Organization ID",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Limit",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Offset",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.podio.com/stream/org/:org_id/"
-      },
-      {
-        "path": "/stream/space/:space_id/",
-        "displayName": "/stream/space/:space_id/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":space_id",
-            "displayName": "Space ID",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Limit",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Offset",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.podio.com/stream/space/:space_id/"
-      },
-      {
         "path": "/stream/space/:space_id/v3/",
-        "displayName": "/stream/space/:space_id/v3/",
-        "httpMethod": "get",
+        "displayName": "Get Space Stream",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -6905,19 +7506,21 @@
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           }
         ],
         "url": "https://api.podio.com/stream/space/:space_id/v3/"
       },
       {
-        "path": "/stream/:ref_type/:ref_id",
-        "displayName": "/stream/:ref_type/:ref_id",
+        "path": "/stream/:ref_type/:ref_id/v3",
+        "displayName": "Get Stream Object",
         "httpMethod": "GET",
         "params": [
           {
@@ -6933,73 +7536,26 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/stream/:ref_type/:ref_id"
-      },
-      {
-        "path": "/stream/:ref_type/:ref_id/v3",
-        "displayName": "/stream/:ref_type/:ref_id/v3",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":ref_type",
-            "displayName": "Reference Type",
-            "required": "true"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":ref_id",
-            "displayName": "Reference ID",
-            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           }
         ],
         "url": "https://api.podio.com/stream/:ref_type/:ref_id/v3"
       },
       {
-        "path": "/stream/user/:user_id/",
-        "displayName": "/stream/user/:user_id/",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":user_id",
-            "displayName": "User ID",
-            "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Limit",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Offset",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.podio.com/stream/user/:user_id/"
-      },
-      {
         "path": "/stream/user/:user_id/v3",
-        "displayName": "/stream/user/:user_id/v3",
-        "httpMethod": "get",
+        "displayName": "Get User Stream",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7011,12 +7567,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "groups_event_types"
+            "name": "groups_event_types",
+            "displayName": "Groups Event Types"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "groups_limit"
+            "name": "groups_limit",
+            "displayName": "Group Limit"
           },
           {
             "style": "query",
@@ -7035,20 +7593,21 @@
       },
       {
         "path": "/subscription/inactive",
-        "displayName": "/subscription/inactive",
-        "httpMethod": "get",
+        "displayName": "Get Inactive Subscriptions",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/subscription/inactive"
       },
       {
         "path": "/subscription/:subscription_id",
-        "displayName": "/subscription/:subscription_id",
-        "httpMethod": "get",
+        "displayName": "Get Subscription By ID",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "subscription_id",
+            "name": ":subscription_id",
+            "displayName": "Subscription ID",
             "required": "true"
           }
         ],
@@ -7056,8 +7615,8 @@
       },
       {
         "path": "/subscription/:ref_type/:ref_id",
-        "displayName": "/subscription/:ref_type/:ref_id",
-        "httpMethod": "get",
+        "displayName": "Get Subscription By Reference",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7078,7 +7637,7 @@
       },
       {
         "path": "/subscription/:ref_type/:ref_id",
-        "displayName": "/subscription/:ref_type/:ref_id",
+        "displayName": "Subscribe To Object",
         "httpMethod": "POST",
         "params": [
           {
@@ -7100,13 +7659,14 @@
       },
       {
         "path": "/subscription/:subscription_id",
-        "displayName": "/subscription/:subscription_id",
+        "displayName": "Unsubscribe By ID",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "subscription_id",
+            "name": ":subscription_id",
+            "displayName": "Subscription ID",
             "required": "true"
           }
         ],
@@ -7114,7 +7674,7 @@
       },
       {
         "path": "/subscription/:ref_type/:ref_id",
-        "displayName": "/subscription/:ref_type/:ref_id",
+        "displayName": "Unsubscribe By Reference",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -7136,8 +7696,8 @@
       },
       {
         "path": "/tag/:ref_type/:ref_id/",
-        "displayName": "/tag/:ref_type/:ref_id/",
-        "httpMethod": "post",
+        "displayName": "Crete Tags",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -7152,14 +7712,20 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "name": "text",
+            "displayName": "Text",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/tag/:ref_type/:ref_id/"
       },
       {
         "path": "/tag/app/:app_id/search/",
-        "displayName": "/tag/app/:app_id/search/",
-        "httpMethod": "get",
+        "displayName": "Get Objects On App With Tag",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7179,8 +7745,8 @@
       },
       {
         "path": "/tag/org/:org_id/search/",
-        "displayName": "/tag/org/:org_id/search/",
-        "httpMethod": "get",
+        "displayName": "Get Objects On Organization With Tag",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7200,8 +7766,8 @@
       },
       {
         "path": "/tag/space/:space_id/search/",
-        "displayName": "/tag/space/:space_id/search/",
-        "httpMethod": "get",
+        "displayName": "Get Objects On Space With Tag",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7221,8 +7787,8 @@
       },
       {
         "path": "/tag/app/:app_id/",
-        "displayName": "/tag/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get Tags On App",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7248,7 +7814,7 @@
       },
       {
         "path": "/tag/app/:app_id/top/",
-        "displayName": "/tag/app/:app_id/top/",
+        "displayName": "Get Top Tags On App",
         "httpMethod": "GET",
         "params": [
           {
@@ -7275,7 +7841,7 @@
       },
       {
         "path": "/tag/org/:org_id/",
-        "displayName": "/tag/org/:org_id/",
+        "displayName": "Get Tags On Organization",
         "httpMethod": "GET",
         "params": [
           {
@@ -7302,7 +7868,7 @@
       },
       {
         "path": "/tag/space/:space_id/",
-        "displayName": "/tag/space/:space_id/",
+        "displayName": "Get Tags On Space",
         "httpMethod": "GET",
         "params": [
           {
@@ -7329,7 +7895,7 @@
       },
       {
         "path": "/tag/:ref_type/:ref_id/",
-        "displayName": "/tag/:ref_type/:ref_id/",
+        "displayName": "Remove Tags",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -7347,7 +7913,7 @@
             "required": "true"
           },
           {
-            "style": "",
+            "style": "body",
             "type": "string",
             "name": "text",
             "displayName": "Text"
@@ -7357,8 +7923,8 @@
       },
       {
         "path": "/tag/:ref_type/:ref_id/",
-        "displayName": "/tag/:ref_type/:ref_id/",
-        "httpMethod": "put",
+        "displayName": "Update Tags",
+        "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
@@ -7373,19 +7939,26 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "text",
+            "displayName": "Text"
           }
         ],
         "url": "https://api.podio.com/tag/:ref_type/:ref_id/"
       },
       {
         "path": "/user/property/:name",
-        "displayName": "/user/property/:name",
+        "displayName": "Delete User Property",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":name",
+            "displayName": "Name",
             "required": "true"
           }
         ],
@@ -7393,19 +7966,21 @@
       },
       {
         "path": "/user/setting/:client_type/:notification_type",
-        "displayName": "/user/setting/:client_type/:notification_type",
+        "displayName": "Get Notification Setting",
         "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "client_type",
+            "name": ":client_type",
+            "displayName": "Client Type",
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "notification_type",
+            "name": ":notification_type",
+            "displayName": "Notification Type",
             "required": "true"
           }
         ],
@@ -7413,13 +7988,14 @@
       },
       {
         "path": "/user/setting/:client_type/",
-        "displayName": "/user/setting/:client_type/",
-        "httpMethod": "get",
+        "displayName": "Get Notification Settings",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "client_type",
+            "name": ":client_type",
+            "displayName": "Client Type",
             "required": "true"
           }
         ],
@@ -7427,13 +8003,14 @@
       },
       {
         "path": "/user/profile/:key",
-        "displayName": "/user/profile/:key",
-        "httpMethod": "get",
+        "displayName": "Get Profile Field",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
-            "type": "string",
+            "type": "object",
             "name": "key",
+            "displayName": "Key",
             "required": "true"
           }
         ],
@@ -7441,48 +8018,20 @@
       },
       {
         "path": "/user",
-        "displayName": "/user",
-        "httpMethod": "get",
+        "displayName": "Get User",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.podio.com/user"
       },
       {
         "path": "/user/property/:name",
-        "displayName": "/user/property/:name",
-        "httpMethod": "get",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "displayName": "Name",
-            "name": "name",
-            "required": "true"
-          }
-        ],
-        "url": "https://api.podio.com/user/property/:name"
-      },
-      {
-        "path": "/user/status",
-        "displayName": "/user/status",
-        "httpMethod": "get",
-        "params": [],
-        "url": "https://api.podio.com/user/status"
-      },
-      {
-        "path": "/user/property/",
-        "displayName": "/user/property/",
-        "httpMethod": "put",
-        "params": [],
-        "url": "https://api.podio.com/user/property/"
-      },
-      {
-        "path": "/user/property/:name",
-        "displayName": "/user/property/:name",
-        "httpMethod": "put",
+        "displayName": "Get User Property",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
             "type": "string",
+            "displayName": "Name",
             "name": ":name",
             "required": "true"
           }
@@ -7490,20 +8039,58 @@
         "url": "https://api.podio.com/user/property/:name"
       },
       {
-        "path": "/user/setting/:client_type/:notification_type",
-        "displayName": "/user/setting/:client_type/:notification_type",
+        "path": "/user/status",
+        "displayName": "Get User Status",
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.podio.com/user/status"
+      },
+      {
+        "path": "/user/property/",
+        "displayName": "Set User Properties",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "name": "property_name",
+            "displayName": "Property Name",
+            "type": "object",
+            "style": "body"
+          }
+        ],
+        "url": "https://api.podio.com/user/property/"
+      },
+      {
+        "path": "/user/property/:name",
+        "displayName": "Set User Property",
+        "httpMethod": "PUT",
+        "params": [
+          {
+            "style": "url",
             "type": "string",
-            "name": "client_type",
+            "name": ":name",
+            "displayName": "Name",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.podio.com/user/property/:name"
+      },
+      {
+        "path": "/user/setting/:client_type/:notification_type",
+        "displayName": "Update Notification Setting",
+        "httpMethod": "PUT",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":client_type",
+            "displayName": "Client Type",
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "notification_type",
+            "name": ":notification_type",
+            "displayName": "Notification Type",
             "required": "true"
           }
         ],
@@ -7511,20 +8098,28 @@
       },
       {
         "path": "/user/profile/",
-        "displayName": "/user/profile/",
-        "httpMethod": "put",
-        "params": [],
+        "displayName": "Update Profile",
+        "httpMethod": "PUT",
+        "params": [
+          {
+            "name": "{field}",
+            "displayName": "Field To Update",
+            "type": "object",
+            "style": "body"
+          }
+        ],
         "url": "https://api.podio.com/user/profile/"
       },
       {
         "path": "/user/profile/:key",
-        "displayName": "/user/profile/:key",
+        "displayName": "Update Profile Field",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "key",
+            "name": ":key",
+            "displayName": "Key",
             "required": "true"
           }
         ],
@@ -7532,8 +8127,8 @@
       },
       {
         "path": "/view/app/:app_id/",
-        "displayName": "/view/app/:app_id/",
-        "httpMethod": "post",
+        "displayName": "Create View",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -7541,19 +8136,62 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "name": "name",
+            "displayName": "Name",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "private",
+            "displayName": "Private ( open / private )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort_by",
+            "displayName": "Sort By",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "sort_desc",
+            "displayName": "Sort Desc",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "filters",
+            "displayName": "Filters",
+            "style": "body",
+            "type": "object"
+          },
+          {
+            "name": "layout",
+            "displayName": "Layout",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "displayName": "Fields",
+            "style": "body",
+            "type": "object"
           }
         ],
         "url": "https://api.podio.com/view/app/:app_id/"
       },
       {
         "path": "/view/:view_id",
-        "displayName": "/view/:view_id",
+        "displayName": "Delete View",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":view_id",
+            "displayName": "View ID",
             "required": "true"
           }
         ],
@@ -7561,8 +8199,8 @@
       },
       {
         "path": "/view/app/:app_id/:view_id_or_name",
-        "displayName": "/view/app/:app_id/:view_id_or_name",
-        "httpMethod": "get",
+        "displayName": "Get View",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7572,9 +8210,10 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "view_id_or_name",
+            "name": ":view_id_or_name",
+            "displayName": "View ID Or Name",
             "required": "true"
           }
         ],
@@ -7582,8 +8221,8 @@
       },
       {
         "path": "/view/app/:app_id/",
-        "displayName": "/view/app/:app_id/",
-        "httpMethod": "get",
+        "displayName": "Get Views",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7594,8 +8233,9 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "include_standard_views",
+            "displayName": "Include Standard Views",
             "required": "true"
           }
         ],
@@ -7603,13 +8243,14 @@
       },
       {
         "path": "/view/:view_id/default",
-        "displayName": "/view/:view_id/default",
-        "httpMethod": "post",
+        "displayName": "Make Default",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":view_id",
+            "displayName": "View ID",
             "required": "true"
           }
         ],
@@ -7617,7 +8258,7 @@
       },
       {
         "path": "/view/app/:app_id/last",
-        "displayName": "/view/app/:app_id/last",
+        "displayName": "Update Last View",
         "httpMethod": "PUT",
         "params": [
           {
@@ -7632,13 +8273,14 @@
       },
       {
         "path": "/view/:view_id",
-        "displayName": "/view/:view_id",
+        "displayName": "Update View",
         "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":view_id",
+            "displayName": "View ID",
             "required": "true"
           }
         ],
@@ -7646,7 +8288,7 @@
       },
       {
         "path": "/voting/app/:app_id/voting",
-        "displayName": "/voting/app/:app_id/voting",
+        "displayName": "Batch Update Votings",
         "httpMethod": "PUT",
         "params": [
           {
@@ -7661,13 +8303,14 @@
       },
       {
         "path": "/voting/:voting_id/answer/order",
-        "displayName": "/voting/:voting_id/answer/order",
+        "displayName": "Change Order Of Answers In Voting",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           }
         ],
@@ -7675,7 +8318,7 @@
       },
       {
         "path": "/voting/app/:app_id/voting/order",
-        "displayName": "/voting/app/:app_id/voting/order",
+        "displayName": "Change Order Of Voting In Application",
         "httpMethod": "PUT",
         "params": [
           {
@@ -7690,13 +8333,14 @@
       },
       {
         "path": "/voting/:voting_id/answers",
-        "displayName": "/voting/:voting_id/answers",
-        "httpMethod": "post",
+        "displayName": "Create Answer In Voting",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           }
         ],
@@ -7704,8 +8348,8 @@
       },
       {
         "path": "/voting/app/:app_id/voting",
-        "displayName": "/voting/app/:app_id/voting",
-        "httpMethod": "post",
+        "displayName": "Crete Voting In Application",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -7719,13 +8363,14 @@
       },
       {
         "path": "/voting/answer/:answer_id",
-        "displayName": "/voting/answer/:answer_id",
+        "displayName": "Delete Answer In Voting",
         "httpMethod": "DELETE",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":answer_id",
+            "displayName": "Answer ID",
             "required": "true"
           }
         ],
@@ -7733,13 +8378,14 @@
       },
       {
         "path": "/voting/:voting_id",
-        "displayName": "/voting/:voting_id",
+        "displayName": "Delete Voting Object",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           }
         ],
@@ -7747,8 +8393,8 @@
       },
       {
         "path": "/voting/app/:app_id/voting",
-        "displayName": "/voting/app/:app_id/voting",
-        "httpMethod": "get",
+        "displayName": "Get App Votings",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7762,8 +8408,8 @@
       },
       {
         "path": "/voting/item/:item_id/voting/:voting_id/user",
-        "displayName": "/voting/item/:item_id/voting/:voting_id/user",
-        "httpMethod": "get",
+        "displayName": "Get List Of Users With Votes",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7773,23 +8419,25 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "value"
+            "name": "value",
+            "displayName": "Value"
           }
         ],
         "url": "https://api.podio.com/voting/item/:item_id/voting/:voting_id/user"
       },
       {
         "path": "/voting/item/:item_id/voting/:voting_id/result",
-        "displayName": "/voting/item/:item_id/voting/:voting_id/result",
-        "httpMethod": "get",
+        "displayName": "Get Voting Results On An Items",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7799,23 +8447,25 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "max_voters"
+            "name": "max_voters",
+            "displayName": "Max Voters"
           }
         ],
         "url": "https://api.podio.com/voting/item/:item_id/voting/:voting_id/result"
       },
       {
         "path": "/voting/item/:item_id/result",
-        "displayName": "/voting/item/:item_id/result",
-        "httpMethod": "get",
+        "displayName": "Get All App Voting Results On Item",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -7827,33 +8477,30 @@
           {
             "style": "query",
             "type": "string",
-            "name": "max_voters"
+            "name": "max_voters",
+            "displayName": "Max Voters"
           }
         ],
         "url": "https://api.podio.com/voting/item/:item_id/result"
       },
       {
         "path": "/voting/:voting_id",
-        "displayName": "/voting/:voting_id",
-        "httpMethod": "get",
+        "displayName": "Get Voting",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "voting_id"
           }
         ],
         "url": "https://api.podio.com/voting/:voting_id"
       },
       {
         "path": "/voting/item/:item_id/voting/:voting_id/votes",
-        "displayName": "/voting/item/:item_id/voting/:voting_id/votes",
+        "displayName": "Unset User Vote On An Item In Voting",
         "httpMethod": "DELETE",
         "params": [
           {
@@ -7864,9 +8511,10 @@
             "required": "true"
           },
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           }
         ],
@@ -7874,36 +8522,50 @@
       },
       {
         "path": "/voting/answer/:answer_id",
-        "displayName": "/voting/answer/:answer_id",
+        "displayName": "Update Answer In Voting",
         "httpMethod": "PUT",
         "params": [
           {
             "style": "url",
             "type": "string",
             "name": ":answer_id",
+            "displayName": "Answer ID",
             "required": "true"
+          },
+          {
+            "name": "text",
+            "displayName": "Text",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/voting/answer/:answer_id"
       },
       {
         "path": "/voting/:voting_id",
-        "displayName": "/voting/:voting_id",
+        "displayName": "Update Voting Object",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
+          },
+          {
+            "name": "question",
+            "displayName": "Question",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/voting/:voting_id"
       },
       {
         "path": "/voting/item/:item_id/voting/:voting_id/votes",
-        "displayName": "/voting/item/:item_id/voting/:voting_id/votes",
-        "httpMethod": "post",
+        "displayName": "Vote On An Item",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -7913,9 +8575,10 @@
             "required": "true"
           },
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "voting_id",
+            "name": ":voting_id",
+            "displayName": "Voting ID",
             "required": "true"
           }
         ],
@@ -7923,13 +8586,14 @@
       },
       {
         "path": "/widget/:widget_id/clone",
-        "displayName": "/widget/:widget_id/clone",
-        "httpMethod": "post",
+        "displayName": "Clone Widget",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "widget_id",
+            "name": ":widget_id",
+            "displayName": "Widget ID",
             "required": "true"
           }
         ],
@@ -7937,8 +8601,8 @@
       },
       {
         "path": "/widget/:ref_type/:ref_id/",
-        "displayName": "/widget/:ref_type/:ref_id/",
-        "httpMethod": "post",
+        "displayName": "Create Widget",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",
@@ -7959,13 +8623,14 @@
       },
       {
         "path": "/widget/:widget_id",
-        "displayName": "/widget/:widget_id",
+        "displayName": "Delete Widget",
         "httpMethod": "DELETE",
         "params": [
           {
-            "style": "",
+            "style": "url",
             "type": "string",
-            "name": "widget_id",
+            "name": ":widget_id",
+            "displayName": "Widget ID",
             "required": "true"
           }
         ],
@@ -7973,13 +8638,14 @@
       },
       {
         "path": "/widget/:widget_id",
-        "displayName": "/widget/:widget_id",
-        "httpMethod": "get",
+        "displayName": "Get Widget",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "widget_id",
+            "name": ":widget_id",
+            "displayName": "Widget ID",
             "required": "true"
           }
         ],
@@ -7987,8 +8653,8 @@
       },
       {
         "path": "/widget/:ref_type/:ref_id/",
-        "displayName": "/widget/:ref_type/:ref_id/",
-        "httpMethod": "get",
+        "displayName": "Get Widget",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -8009,13 +8675,14 @@
       },
       {
         "path": "/widget/:widget_id",
-        "displayName": "/widget/:widget_id",
+        "displayName": "Update Widget",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "widget_id",
+            "name": ":widget_id",
+            "displayName": "Widget ID",
             "required": "true"
           }
         ],
@@ -8023,7 +8690,7 @@
       },
       {
         "path": "/widget/:ref_type/:ref_id/order",
-        "displayName": "/widget/:ref_type/:ref_id/order",
+        "displayName": "Update Widget Order",
         "httpMethod": "PUT",
         "params": [
           {

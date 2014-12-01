@@ -9,7 +9,6 @@
           "t": "Get comments on the answers identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/answer-comments-by-ids"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers/{ids}/comments",
         "authentication": {
           "required": "false"
         },
@@ -24,7 +23,6 @@
           "t": "Get all answers on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers",
         "authentication": {
           "required": "false"
         },
@@ -39,7 +37,6 @@
           "t": "Get answers identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/answers-by-ids"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -54,7 +51,6 @@
           "t": "Get all non-tagged-based badges in alphabetical order.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/badges-by-name"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/name",
         "authentication": {
           "required": "false"
         },
@@ -69,7 +65,6 @@
           "t": "Get all tagged-based badges in alphabetical order.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/tag-badges"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/tags",
         "authentication": {
           "required": "false"
         },
@@ -84,7 +79,6 @@
           "t": "Get all badges on the site, in alphabetical order.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/badges"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges",
         "authentication": {
           "required": "false"
         },
@@ -99,7 +93,6 @@
           "t": "Get all users who have been awarded the badges identified by ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/badge-recipients"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -114,7 +107,6 @@
           "t": "Get all comments on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/comments"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/comments",
         "authentication": {
           "required": "false"
         },
@@ -129,7 +121,6 @@
           "t": "Get comments identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/comments-by-ids"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/comments/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -144,7 +135,6 @@
           "t": "Get comments on the posts (question or answer) identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/comments-on-posts"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/posts/{ids}/comments",
         "authentication": {
           "required": "false"
         },
@@ -159,7 +149,6 @@
           "t": "Simulate an API error for testing purposes.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/errors"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/errors/{id}",
         "authentication": {
           "required": "false"
         },
@@ -174,7 +163,6 @@
           "t": "Get all the privileges available on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/privileges"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/privileges",
         "authentication": {
           "required": "false"
         },
@@ -189,7 +177,6 @@
           "t": "Get all questions the site considers unanswered.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/unanswered-questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/unanswered",
         "authentication": {
           "required": "false"
         },
@@ -204,7 +191,6 @@
           "t": "Get all questions on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions",
         "authentication": {
           "required": "false"
         },
@@ -219,7 +205,6 @@
           "t": "Get the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/questions-by-ids"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -234,7 +219,6 @@
           "t": "Get the answers to the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/question-answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/answers",
         "authentication": {
           "required": "false"
         },
@@ -249,7 +233,6 @@
           "t": "Get the comments on the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/question-comments"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/comments",
         "authentication": {
           "required": "false"
         },
@@ -264,7 +247,6 @@
           "t": "Get the questions that link to the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/linked-questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/linked",
         "authentication": {
           "required": "false"
         },
@@ -279,7 +261,6 @@
           "t": "Get the questions that are related to the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/related-questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/related",
         "authentication": {
           "required": "false"
         },
@@ -294,7 +275,6 @@
           "t": "Get the timelines of the questions identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/question-timelines"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/timeline",
         "authentication": {
           "required": "false"
         },
@@ -309,7 +289,6 @@
           "t": "Get all questions on the site with no answers.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/questions-with-no-answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/no-answers",
         "authentication": {
           "required": "false"
         },
@@ -324,7 +303,6 @@
           "t": "Get all revisions for posts identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/revisions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/revisions/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -339,7 +317,6 @@
           "t": "Get a specific revision identified by a post id and a revision guid.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/specific-revision"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/revisions/{ids}/{revisionguid}",
         "authentication": {
           "required": "false"
         },
@@ -354,7 +331,6 @@
           "t": "Search the site for questions meeting certain criteria.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/search"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/search?tagged={tags}",
         "authentication": {
           "required": "false"
         },
@@ -369,7 +345,6 @@
           "t": "Search the site based on similarity to a title.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/similar"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/similar",
         "authentication": {
           "required": "false"
         },
@@ -384,7 +359,6 @@
           "t": "Get a set of statistics for the entire site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/stats"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/stats",
         "authentication": {
           "required": "false"
         },
@@ -399,7 +373,6 @@
           "t": "Get all the tag synonyms on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/tag-synonyms"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/synonyms",
         "authentication": {
           "required": "false"
         },
@@ -414,7 +387,6 @@
           "t": "Get the synonyms for a specific set of tags.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/synonyms-for-tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tags}/synonyms",
         "authentication": {
           "required": "false"
         },
@@ -429,7 +401,6 @@
           "t": "Get the wiki entries for a set of tags.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/wikis-for-tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tags}/wikis",
         "authentication": {
           "required": "false"
         },
@@ -444,7 +415,6 @@
           "t": "Get the top answer posters in a specific tag, either in the last month or for all time. Returns the top 30 answerers.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/top-answerers-in-tag"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tag}/top-answerers/{period}",
         "authentication": {
           "required": "false"
         },
@@ -459,7 +429,6 @@
           "t": "Get the top question askers in a specific tag, either in the last month or for all time. Returns the top 30 question askers.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/top-askers-in-tag"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tag}/top-askers/{period}",
         "authentication": {
           "required": "false"
         },
@@ -474,7 +443,6 @@
           "t": "Get the tags on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags",
         "authentication": {
           "required": "false"
         },
@@ -489,7 +457,6 @@
           "t": "Get the comments posted by a set of users in reply to another user.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-comments-to-user"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/comments",
         "authentication": {
           "required": "false"
         },
@@ -504,7 +471,6 @@
           "t": "Get the questions favorited by users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-favorites"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/favorites",
         "authentication": {
           "required": "false"
         },
@@ -519,7 +485,6 @@
           "t": "Get the comments that mention one of the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-mentioned"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/mentioned",
         "authentication": {
           "required": "false"
         },
@@ -534,7 +499,6 @@
           "t": "Get the questions asked by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions",
         "authentication": {
           "required": "false"
         },
@@ -549,7 +513,6 @@
           "t": "Get the questions asked by a set of users, which have no answers.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-no-answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/no-answers",
         "authentication": {
           "required": "false"
         },
@@ -564,7 +527,6 @@
           "t": "Get the questions asked by a set of users, which have at least one answer but no accepted answer.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-unaccepted"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/unaccepted",
         "authentication": {
           "required": "false"
         },
@@ -579,7 +541,6 @@
           "t": "Get the questions asked by a set of users, which are not considered to be adequately answered.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-unanswered"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/unanswered",
         "authentication": {
           "required": "false"
         },
@@ -594,7 +555,6 @@
           "t": "Get a subset of the reputation changes experienced by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-reputation-changes"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/reputation",
         "authentication": {
           "required": "false"
         },
@@ -609,7 +569,6 @@
           "t": "Get the tags that the users (identified by a set of ids) have been active in.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/tags",
         "authentication": {
           "required": "false"
         },
@@ -624,7 +583,6 @@
           "t": "Get the top answers a user has posted on questions with a set of tags.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-tagged-answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-answers",
         "authentication": {
           "required": "false"
         },
@@ -639,7 +597,6 @@
           "t": "Get the top questions a user has posted on questions with a set of tags.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-tagged-questions"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-questions",
         "authentication": {
           "required": "false"
         },
@@ -654,7 +611,6 @@
           "t": "Get a subset of the actions of that have been taken by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-timelines"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/timeline",
         "authentication": {
           "required": "false"
         },
@@ -669,7 +625,6 @@
           "t": "Get the top 30 tags (by score) a single user has posted answers in.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-answer-tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/top-answer-tags",
         "authentication": {
           "required": "false"
         },
@@ -684,7 +639,6 @@
           "t": "Get the users who have moderation powers on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/moderators"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/moderators",
         "authentication": {
           "required": "false"
         },
@@ -699,7 +653,6 @@
           "t": "Get the top 30 tags (by score) a single user has asked questions in.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-question-tags"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/top-question-tags",
         "authentication": {
           "required": "false"
         },
@@ -714,7 +667,6 @@
           "t": "Get all users on the site.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/users"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users",
         "authentication": {
           "required": "false"
         },
@@ -729,7 +681,6 @@
           "t": "Get the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/users-by-ids"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}",
         "authentication": {
           "required": "false"
         },
@@ -744,7 +695,6 @@
           "t": "Get the answers posted by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-answers"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/answers",
         "authentication": {
           "required": "false"
         },
@@ -759,7 +709,6 @@
           "t": "Get the badges earned by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-badges"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/badges",
         "authentication": {
           "required": "false"
         },
@@ -774,7 +723,6 @@
           "t": "Get the comments posted by the users identified by a set of ids.",
           "url": "http://api.stackoverflow.com/1.1/usage/methods/user-comments"
         },
-        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/comments",
         "authentication": {
           "required": "false"
         },

@@ -30,8 +30,8 @@ class ParseDSL
           [name,flags,displayName,enums,defaultValue] = para.split ':'
           style = 'body'
           type = 'string'
-          if /i/.test flags
-            type = 'integer'
+          if /i/.test flags or /n/.test flags
+            type = 'number'
           if /b/.test flags
             type = 'boolean'
           if /o/.test flags
