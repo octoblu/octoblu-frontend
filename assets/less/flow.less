@@ -68,30 +68,40 @@
   }
 }
 
+md-sidenav.md-sidenav-left {
+  width: 250px;
+
+  .navbar-logo {
+    width: auto;
+
+    img {
+      width: auto;
+    }
+  }
+}
+
 .flow-controls {
   min-width: 275px;
 
-  .md-button.md-default-theme {
-    background-color: white;
-    border: solid 1px #ccc;
+  .md-button.md-octo-blue-theme {
+    color: white;
+    border: 0;
     width: 35px;
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
 
     &:not([disabled]):hover {
-      background-color: #eee;
+      color: #eee;
     }
 
-    &.btn-danger {
-      background-color: #880000;
+    &.btn-stopped {
+      background-color: #AA2200;
 
       &:not([disabled]):hover,
       &:not([disabled]):focus {
-        background-color: #AA0000;
+        background-color: #CC2200;
       }
     }
 
-    &.btn-info {
+    &.btn-playing {
       background-color: #008800;
 
       &:not([disabled]):hover,
