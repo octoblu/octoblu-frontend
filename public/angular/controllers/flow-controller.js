@@ -21,7 +21,7 @@ angular.module('octobluApp')
 
   var deleteCookie = function() {
     delete $cookies.currentFlowId;
-  }
+  };
 
   var setDeviceStatus = function(status) {
     $scope.deviceOnline = status;
@@ -53,6 +53,10 @@ angular.module('octobluApp')
     checkDeviceStatus(skynetConnection, $stateParams.flowId);
 
     skynetConnection.on('message', function (message) {
+      if(message.fromUuid !== $stateParams.flowId) {
+        return;
+      }
+
       if (message.topic === 'device-status') {
         setDeviceStatus(message.payload.online);
       }
