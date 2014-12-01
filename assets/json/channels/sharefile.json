@@ -1111,17 +1111,14 @@
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Children"
       },
       {
+        "displayName": "Get Folder Access Info",
         "path": "/Items(:id)/Info",
-        "displayName": "/Items(:id)/Info",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
         "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Info",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Folder ID",
             "style": "url",
             "type": "string",
             "required": true
@@ -1129,32 +1126,39 @@
         ]
       },
       {
+        "displayName": "Download Item Content",
+        "path": "/Items(:id)/Download",
+        "httpMethod": "GET",
         "params": [
+          {
+            "name": ":id",
+            "displayName": "Item ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
           {
             "required": true,
             "type": "boolean",
             "style": "query",
             "displayName": "Redirect",
             "name": "redirect"
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": true
           }
         ],
-        "path": "/Items(:id)/Download",
-        "displayName": "/Items(:id)/Download",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "GET",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)/Download"
       },
       {
+        "displayName": "Create Folder",
+        "path": "/Items(:parentid)/Folder",
+        "httpMethod": "POST",
         "params": [
+          {
+            "name": ":parentid",
+            "displayName": "Parent Item ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
           {
             "required": true,
             "type": "boolean",
@@ -1168,61 +1172,59 @@
             "style": "body",
             "displayName": "Pass Through",
             "name": "passthrough"
-          },
-          {
-            "name": ":parentid",
-            "displayName": "Parent ID",
-            "style": "url",
-            "type": "string",
-            "required": true
           }
         ],
-        "path": "/Items(:parentid)/Folder",
-        "displayName": "/Items(:parentid)/Folder",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "POST",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Folder"
       },
       {
+        "displayName": "Create Note",
         "path": "/Items(:parentid)/Note",
+        "httpMethod": "POST",
         "params": [
           {
             "name": ":parentid",
-            "displayName": "Parent ID",
+            "displayName": "Parent Item ID",
             "style": "url",
             "type": "string",
             "required": true
           }
         ],
-        "displayName": "/Items(:parentid)/Note",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "POST",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Note"
       },
       {
+        "displayName": "Create Link",
         "path": "/Items(:parentid)/Link",
+        "httpMethod": "POST",
         "params": [
           {
             "name": ":parentid",
-            "displayName": "Parent ID",
+            "displayName": "Parent Item ID",
             "style": "url",
             "type": "string",
             "required": true
           }
         ],
-        "displayName": "/Items(:parentid)/Link",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "POST",
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:parentid)/Link"
       },
       {
+        "displayName": "Create Symbolic Link",
+        "path": "/Items(:accountid)/SymbolicLink",
+        "httpMethod": "POST",
         "params": [
+          {
+            "required": true,
+            "type": "string",
+            "style": "url",
+            "displayName": "Account ID",
+            "name": ":accountid"
+          },
+          {
+            "required": true,
+            "type": "object",
+            "style": "body",
+            "displayName": "Symlink",
+            "name": "symlink"
+          },
           {
             "required": true,
             "type": "boolean",
@@ -1231,117 +1233,141 @@
             "name": "overwrite"
           }
         ],
-        "path": "/Items/SymbolicLink",
-        "displayName": "/Items/SymbolicLink",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "httpMethod": "POST",
         "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink"
       },
       {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
-          "t": "patch"
-        },
-        "displayName": "/Items(:id)",
+        "displayName": "Update Item",
         "path": "/Items(:id)",
+        "httpMethod": "PATCH",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
+            "required": true
+          },
+          {
+            "name": "item",
+            "displayName": "Item",
+            "style": "body",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "forceSync",
+            "displayName": "Force Sync",
+            "style": "body",
+            "type": "object",
             "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Items(:id)"
       },
       {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
-          "t": "patch"
-        },
-        "displayName": "/Items/Link(:id)",
+        "displayName": "Update Link",
         "path": "/Items/Link(:id)",
+        "httpMethod": "PATCH",
         "params": [
+          {
+            "name": ":id",
+            "displayName": "Link ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "link",
+            "displayName": "Link",
+            "style": "body",
+            "type": "object",
+            "required": true
+          },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "required": true
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
             "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Items/Link(:id)"
       },
       {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
-          "t": "patch"
-        },
-        "displayName": "/Items/Note(:id)",
+        "displayName": "Update Note",
         "path": "/Items/Note(:id)",
+        "httpMethod": "PATCH",
         "params": [
+          {
+            "name": ":id",
+            "displayName": "Note ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
           {
             "name": "notify",
             "displayName": "Notify",
             "style": "body",
             "type": "boolean",
             "required": true
-          },
-          {
-            "name": ":id",
-            "displayName": "ID",
-            "style": "url",
-            "type": "string",
-            "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Items/Note(:id)"
       },
       {
-        "httpMethod": "PUT",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
-          "t": "patch"
-        },
-        "displayName": "/Items/SymbolicLink(:id)",
+        "displayName": "Update Symbolic Link",
         "path": "/Items/SymbolicLink(:id)",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Symbolic Link ID",
             "style": "url",
             "type": "string",
+            "required": true
+          },
+          {
+            "name": "symlink",
+            "displayName": "Symbolic Link",
+            "style": "body",
+            "type": "object",
             "required": true
           }
         ],
         "url": "https://octoblu.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
-        },
-        "displayName": "/Items(:id)/BulkDelete",
+        "displayName": "Delete Multiple Items",
         "path": "/Items(:id)/BulkDelete",
+        "httpMethod": "POST",
         "params": [
           {
             "name": ":id",
-            "displayName": "ID",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "displayName": "List of Items to Delete",
+            "style": "body",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "forceSync",
+            "displayName": "Force the operation to complete synchronously",
+            "style": "boolean",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "deletePermanently",
+            "displayName": "Bypass the Recycle Bin on delete",
+            "style": "boolean",
+            "type": "object",
             "required": true
           }
         ],
