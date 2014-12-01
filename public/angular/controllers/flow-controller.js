@@ -49,7 +49,6 @@ angular.module('octobluApp')
     });
   };
 
-
   FlowNodeTypeService.getFlowNodeTypes()
     .then(function (flowNodeTypes) {
       $scope.flowNodeTypes = flowNodeTypes;
@@ -84,6 +83,10 @@ angular.module('octobluApp')
       checkDeviceStatus(skynetConnection, $stateParams.flowId);
 
       skynetConnection.on('message', function (message) {
+        if(message.fromUuid !== $stateParams.flowId) {
+          return;
+        }
+
         if (message.topic === 'device-status') {
           setDeviceStatus(message.payload.online);
         }
@@ -98,7 +101,7 @@ angular.module('octobluApp')
     }
 
   	return value;
-  };
+  }
 
   function pushDebugLines(message){
     var debug = {}, newMessage, msg;
@@ -110,7 +113,7 @@ angular.module('octobluApp')
     if ($scope.debugLines.length > 100) {
       $scope.debugLines.pop();
     }
-  };
+  }
 
   $scope.$on('flow-node-debug', function (event, options) {
     $log.debug(options);
@@ -188,7 +191,7 @@ angular.module('octobluApp')
     }
     $scope.deploying = true;
     _.each($scope.activeFlow.nodes, function(node) {
-      delete node['errorMessage'];
+      delete node.errorMessage;
     });
     FlowService.start();
   };
@@ -290,7 +293,7 @@ angular.module('octobluApp')
     TemplateService.createTemplate({name: flow.name, flowId: flow.flowId}).then(function(template) {
       $state.go('material.template', {templateId: template.uuid});
     });
-  }
+  };
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
     if(! newFlow){
