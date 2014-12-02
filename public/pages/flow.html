@@ -20,14 +20,14 @@
         <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
         <span class="input-group-btn flow-dropdown dropdown-toggle" id="flowMenuDropdown" data-toggle="dropdown"  ng-click="flowMenuIsOpen = !flowMenuIsOpen" style="border-left: 0px;">
           <button class="btn btn-white">
-            <i class="fa fa-lg fa-angle-down"></i>
+            <i class="fa fa-lg fa-angle-down input-addon"></i>
           </button>
         </span>
         <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
           <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
           <li role="presentation"  class="divider"></li>
           <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
-            <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'text-muted' : !flow.online, 'text-success' : flow.online}"></i> {{flow.name}}</a>
+            <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
           </li>
         </ul>
       </div>

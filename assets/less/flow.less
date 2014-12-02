@@ -132,9 +132,14 @@ md-sidenav.md-sidenav-left {
 
 md-toolbar {
   .input-group {
-      i {
+      i.input-addon {
         color: @brand-primary;
       }
+
+      i.online {
+        .text-emphasis-variant(@state-success-text);
+      }
+
     input {
       border-right:0;
     }
