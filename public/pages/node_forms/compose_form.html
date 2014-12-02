@@ -4,13 +4,16 @@
 <md-list>
   <md-item ng-repeat="key in flowNode.composeKeys track by $index">
     <md-item-content>
-      <div class="md-tile-content" layout="row" layout-align="space-between">
-        <md-text-float required label="Key {{$index + 1}}" ng-model="flowNode.composeKeys[$index]"> </md-text-float>        
-        <md-button class="md-fab" ng-click="flowNode.composeKeys.splice($index, 1)">
+      <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+        <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
+        <md-text-float required label="Value" ng-model="flowNode.composeValues[$index]"> </md-text-float>
+        <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
+        <md-text-float required label="Key" ng-model="flowNode.composeKeys[$index]"> </md-text-float>
+        <md-button class="md-fab" ng-click="flowNode.composeKeys.splice($index, 1);flowNode.composeValues.splice($index, 1)">
             <i class="fa fa-minus"></i>
         </md-button>
       </div>
     </md-item-content>
   </md-item>
 </md-list>
-    <md-button ng-click="flowNode.composeKeys.push('')" class="md-primary">Add Key</md-button>
+<md-button ng-click="flowNode.composeKeys.push('')" class="md-primary">Add Key</md-button>
