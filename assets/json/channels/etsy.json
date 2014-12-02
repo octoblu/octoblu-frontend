@@ -9,1795 +9,2587 @@
           "t": "Get a list of all methods available.",
           "url": "http://developer.etsy.com/docs/resource_apimethod#getmethodtable"
         },
-        "category": "ApiMethod",
         "displayName": "Get API Method List",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/"
+        "url": "https://openapi.etsy.com/v2/",
+        "params": []
       },
       {
-        "path": "/users/{user_id}/avatar",
+        "path": "/users/:user_id/avatar",
         "params": [
           {
             "name": "src",
+            "displayName": "SRC",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "image",
-            "type": "image",
-            "style": "query",
-            "required": "true"
+            "displayName": "Image link",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Upload a new user avatar image",
-          "url": "http://developer.etsy.com/docs/resource_avatar#uploadavatar"
-        },
-        "category": "Avatar",
-        "displayName": "Avatar_POST",
+        "displayName": "Upload Avatar Photo",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/avatar"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/avatar"
       },
       {
-        "path": "/users/{user_id}/avatar/src",
+        "path": "/users/:user_id/avatar/src",
         "doc": {
           "t": "Get avatar image source",
           "url": "http://developer.etsy.com/docs/resource_array#getavatarimgsrc"
         },
-        "category": "Avatar",
-        "displayName": "Avatar_GET",
+        "displayName": "Get Avatar Image Source",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/avatar/src"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/avatar/src",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/charges",
-        "doc": {
-          "t": "Retrieves a set of BillCharge objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_billcharge#findallusercharges"
-        },
-        "category": "BillCharge",
-        "displayName": "BillCharge_GET",
+        "path": "/users/:user_id/charges",
+        "displayName": "Find All User Bill Charges",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/charges"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/charges",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "sort_order",
+            "displayName": "Sort Order ( up / down )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "min_created",
+            "displayName": "Min Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "max_created",
+            "displayName": "Max Created",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/payments",
-        "doc": {
-          "t": "Retrieves a set of BillPayment objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_billpayment#findalluserpayments"
-        },
-        "category": "BillPayment",
-        "displayName": "BillPayment_GET",
+        "path": "/users/:user_id/payments",
+        "displayName": "Get User Bill Payments",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/payments"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/payments",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "sort_order",
+            "displayName": "Sort Order ( up / down )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "min_created",
+            "displayName": "Min Created",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "max_created",
+            "displayName": "Max Created",
+            "style": "body",
+            "type": "string"
+          }
+        ]
       },
       {
         "path": "/taxonomy/categories",
-        "doc": {
-          "t": "Retrieves all top-level Categories.",
-          "url": "http://developer.etsy.com/docs/resource_category#findalltopcategory"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "displayName": "Get All Top-Level Categories",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/taxonomy/categories"
+        "url": "https://openapi.etsy.com/v2/taxonomy/categories",
+        "params": []
       },
       {
-        "path": "/categories/{tag}/{subtag}/{subsubtag}",
-        "doc": {
-          "t": "Retrieves a third-level Category by tag, subtag and subsubtag.",
-          "url": "http://developer.etsy.com/docs/resource_category#getsubsubcategory"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "path": "/categories/:tag/:subtag/:subsubtag",
+        "displayName": "Get Third-Level Category By Tag, Subtag, and Subsubtag",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/categories/{tag}/{subtag}/{subsubtag}"
+        "url": "https://openapi.etsy.com/v2/categories/:tag/:subtag/:subsubtag",
+        "params": [
+          {
+            "name": ":tag",
+            "displayName": "Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":subtag",
+            "displayName": "Sub Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":subsubtag",
+            "displayName": "Sub Sub Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/categories/{tag}/{subtag}",
-        "doc": {
-          "t": "Retrieves a second-level Category by tag and subtag.",
-          "url": "http://developer.etsy.com/docs/resource_category#getsubcategory"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "path": "/categories/:tag/:subtag",
+        "displayName": "Get Second-Level Category By Tag And Subtag",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/categories/{tag}/{subtag}"
+        "url": "https://openapi.etsy.com/v2/categories/:tag/:subtag",
+        "params": [
+          {
+            "name": ":tag",
+            "displayName": "Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":subtag",
+            "displayName": "Sub Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/taxonomy/categories/{tag}",
-        "doc": {
-          "t": "Retrieves children of a top-level Category by tag.",
-          "url": "http://developer.etsy.com/docs/resource_category#findalltopcategorychildren"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "path": "/taxonomy/categories/:tag",
+        "displayName": "Get Top-Level Category Children By Tag",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/taxonomy/categories/{tag}"
+        "url": "https://openapi.etsy.com/v2/taxonomy/categories/:tag",
+        "params": [
+          {
+            "name": ":tag",
+            "displayName": "Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/categories/{tag}",
-        "doc": {
-          "t": "Retrieves a top-level Category by tag.",
-          "url": "http://developer.etsy.com/docs/resource_category#getcategory"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "path": "/categories/:tag",
+        "displayName": "Get Top-Level Category By Tag",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/categories/{tag}"
+        "url": "https://openapi.etsy.com/v2/categories/:tag",
+        "params": [
+          {
+            "name": ":tag",
+            "displayName": "Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/taxonomy/categories/{tag}/{subtag}",
-        "doc": {
-          "t": "Retrieves children of a second-level Category by tag and subtag.",
-          "url": "http://developer.etsy.com/docs/resource_category#findallsubcategorychildren"
-        },
-        "category": "Category",
-        "displayName": "Category_GET",
+        "path": "/taxonomy/categories/:tag/:subtag",
+        "displayName": "Get Second-Level Category Children By Tag And Subtag",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/taxonomy/categories/{tag}/{subtag}"
+        "url": "https://openapi.etsy.com/v2/taxonomy/categories/:tag/:subtag",
+        "params": [
+          {
+            "name": ":tag",
+            "displayName": "Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":subtag",
+            "displayName": "Sub Tag",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/countries/{country_id}",
-        "doc": {
-          "t": "Retrieves a Country by id.",
-          "url": "http://developer.etsy.com/docs/resource_country#getcountry"
-        },
-        "category": "Country",
-        "displayName": "Country_GET",
+        "path": "/countries/:country_id",
+        "displayName": "Get Country By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/countries/{country_id}"
+        "url": "https://openapi.etsy.com/v2/countries/:country_id",
+        "params": [
+          {
+            "name": ":country_id",
+            "displayName": "Country ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/countries",
-        "doc": {
-          "t": "Finds all Country.",
-          "url": "http://developer.etsy.com/docs/resource_country#findallcountry"
-        },
-        "category": "Country",
-        "displayName": "Country_GET",
+        "displayName": "Get All Countries",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/countries"
+        "url": "https://openapi.etsy.com/v2/countries",
+        "params": []
       },
       {
-        "path": "/users/{user_id}/favorites/listings/{listing_id}",
-        "doc": {
-          "t": "Delete a favorite listing for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoritelisting#deleteuserfavoritelistings"
-        },
-        "category": "FavoriteListing",
-        "displayName": "FavoriteListing_DELETE",
+        "path": "/users/:user_id/favorites/listings/:listing_id",
+        "displayName": "Delete Favorite Listing",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/listings/{listing_id}"
-      },
-      {
-        "path": "/users/{user_id}/favorites/listings",
-        "doc": {
-          "t": "Finds all favorite listings for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoritelisting#findalluserfavoritelistings"
-        },
-        "category": "FavoriteListing",
-        "displayName": "FavoriteListing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/listings"
-      },
-      {
-        "path": "/users/{user_id}/favorites/listings/{listing_id}",
-        "doc": {
-          "t": "Finds a favorite listing for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoritelisting#finduserfavoritelistings"
-        },
-        "category": "FavoriteListing",
-        "displayName": "FavoriteListing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/listings/{listing_id}"
-      },
-      {
-        "path": "/listings/{listing_id}/favored-by",
-        "doc": {
-          "t": "Retrieves a set of FavoriteListing objects associated to a Listing.",
-          "url": "http://developer.etsy.com/docs/resource_favoritelisting#findalllistingfavoredby"
-        },
-        "category": "FavoriteListing",
-        "displayName": "FavoriteListing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/favored-by"
-      },
-      {
-        "path": "/users/{user_id}/favorites/listings/{listing_id}",
-        "doc": {
-          "t": "Creates a new favorite listing for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoritelisting#createuserfavoritelistings"
-        },
-        "category": "FavoriteListing",
-        "displayName": "FavoriteListing_POST",
-        "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/listings/{listing_id}"
-      },
-      {
-        "path": "/users/{user_id}/favorites/users/{target_user_id}",
-        "doc": {
-          "t": "Finds a favorite user for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoriteuser#finduserfavoriteusers"
-        },
-        "category": "FavoriteUser",
-        "displayName": "FavoriteUser_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/users/{target_user_id}"
-      },
-      {
-        "path": "/users/{user_id}/favorites/users/{target_user_id}",
-        "doc": {
-          "t": "Delete a favorite listing for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoriteuser#deleteuserfavoriteusers"
-        },
-        "category": "FavoriteUser",
-        "displayName": "FavoriteUser_DELETE",
-        "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/users/{target_user_id}"
-      },
-      {
-        "path": "/users/{user_id}/favored-by",
-        "doc": {
-          "t": "Retrieves a set of FavoriteUser objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_favoriteuser#findalluserfavoredby"
-        },
-        "category": "FavoriteUser",
-        "displayName": "FavoriteUser_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favored-by"
-      },
-      {
-        "path": "/users/{user_id}/favorites/users",
-        "doc": {
-          "t": "Finds all favorite users for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoriteuser#findalluserfavoriteusers"
-        },
-        "category": "FavoriteUser",
-        "displayName": "FavoriteUser_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/users"
-      },
-      {
-        "path": "/users/{user_id}/favorites/users/{target_user_id}",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/listings/:listing_id",
         "params": [
           {
-            "name": "user_id",
-            "type": "user_id_or_name",
-            "style": "query",
-            "default": "__SELF__",
-            "required": "true"
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           },
           {
-            "name": "target_user_id",
-            "type": "user_id_or_name",
-            "style": "query",
-            "required": "true"
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
-        ],
-        "doc": {
-          "t": "Creates a new favorite listing for a user",
-          "url": "http://developer.etsy.com/docs/resource_favoriteuser#createuserfavoriteusers"
-        },
-        "category": "FavoriteUser",
-        "displayName": "FavoriteUser_POST",
+        ]
+      },
+      {
+        "path": "/users/:user_id/favorites/listings",
+        "displayName": "Get All Favorite Listings",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/listings",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "body",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/favorites/listings/:listing_id",
+        "displayName": "Find A Favorite Listing",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/listings/:listing_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/listings/:listing_id/favored-by",
+        "displayName": "Get Favorite Listing Set",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/favored-by",
+        "params": [
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/favorites/listings/:listing_id",
+        "displayName": "Create New Favorite Listing",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/favorites/users/{target_user_id}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/listings/:listing_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/homepages/listings/",
-        "doc": {
-          "t": "Finds all FeaturedListings regardless of Listing state",
-          "url": "http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlisting"
-        },
-        "category": "FeaturedListing",
-        "displayName": "FeaturedListing_GET",
+        "path": "/users/:user_id/favorites/users/:target_user_id",
+        "displayName": "Find Favorite User",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/listings/"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/users/:target_user_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":target_user_id",
+            "displayName": "Target User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/homepages/pickers/{featured_listing_picker_id}/featured",
-        "doc": {
-          "t": "Retrieves a set of FeaturedListing objects associated to a FeaturedListingPicker.",
-          "url": "http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlistingpickerfeatured"
-        },
-        "category": "FeaturedListing",
-        "displayName": "FeaturedListing_GET",
+        "path": "/users/:user_id/favorites/users/:target_user_id",
+        "displayName": "Delete Favorite Listing For User",
+        "httpMethod": "DELETE",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/users/:target_user_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":target_user_id",
+            "displayName": "Target User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/favored-by",
+        "displayName": "Get Favorite User Objects",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/pickers/{featured_listing_picker_id}/featured"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favored-by",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
       },
       {
-        "path": "/homepages/listings/active",
-        "doc": {
-          "t": "Finds all FeaturedListings that point to active Listings",
-          "url": "http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlistingactive"
-        },
-        "category": "FeaturedListing",
-        "displayName": "FeaturedListing_GET",
+        "path": "/users/:user_id/favorites/users",
+        "displayName": "Get All User Favorites",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/listings/active"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/users",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/homepages/listings/{featured_listing_id}",
-        "doc": {
-          "t": "Retrieves a FeaturedListing by id.",
-          "url": "http://developer.etsy.com/docs/resource_featuredlisting#getfeaturedlisting"
-        },
-        "category": "FeaturedListing",
-        "displayName": "FeaturedListing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/listings/{featured_listing_id}"
-      },
-      {
-        "path": "/homepages/listings/{featured_listing_id}/picker",
-        "doc": {
-          "t": "Retrieves a set of FeaturedListingPicker objects associated to a FeaturedListing.",
-          "url": "http://developer.etsy.com/docs/resource_featuredlistingpicker#getfeaturedlistingassociatedpicker"
-        },
-        "category": "FeaturedListingPicker",
-        "displayName": "FeaturedListingPicker_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/listings/{featured_listing_id}/picker"
-      },
-      {
-        "path": "/homepages/pickers/{featured_listing_picker_id}",
-        "doc": {
-          "t": "Retrieves a FeaturedListingPicker by id.",
-          "url": "http://developer.etsy.com/docs/resource_featuredlistingpicker#getfeaturedlistingpicker"
-        },
-        "category": "FeaturedListingPicker",
-        "displayName": "FeaturedListingPicker_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/pickers/{featured_listing_picker_id}"
-      },
-      {
-        "path": "/homepages/pickers/",
-        "doc": {
-          "t": "Finds all FeaturedListingPicker in scope active.",
-          "url": "http://developer.etsy.com/docs/resource_featuredlistingpicker#findallfeaturedlistingpickeractive"
-        },
-        "category": "FeaturedListingPicker",
-        "displayName": "FeaturedListingPicker_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/pickers/"
-      },
-      {
-        "path": "/featured/users",
-        "doc": {
-          "t": "Finds all FeaturedUser.",
-          "url": "http://developer.etsy.com/docs/resource_featureduser#findallfeaturedusers"
-        },
-        "category": "FeaturedUser",
-        "displayName": "FeaturedUser_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/featured/users"
-      },
-      {
-        "path": "/featured/users/{featured_user_id}",
-        "doc": {
-          "t": "Retrieves a FeaturedUser by id.",
-          "url": "http://developer.etsy.com/docs/resource_featureduser#getfeatureduser"
-        },
-        "category": "FeaturedUser",
-        "displayName": "FeaturedUser_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/featured/users/{featured_user_id}"
-      },
-      {
-        "path": "/users/{user_id}/feedback/as-subject",
-        "doc": {
-          "t": "Retrieves a set of Feedback objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackassubject"
-        },
-        "category": "Feedback",
-        "displayName": "Feedback_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/feedback/as-subject"
-      },
-      {
-        "path": "/users/{user_id}/feedback/as-author",
-        "doc": {
-          "t": "Retrieves a set of Feedback objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasauthor"
-        },
-        "category": "Feedback",
-        "displayName": "Feedback_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/feedback/as-author"
-      },
-      {
-        "path": "/users/{user_id}/feedback/as-buyer",
-        "doc": {
-          "t": "Retrieves a set of Feedback objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasbuyer"
-        },
-        "category": "Feedback",
-        "displayName": "Feedback_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/feedback/as-buyer"
-      },
-      {
-        "path": "/users/{user_id}/feedback/as-seller",
-        "doc": {
-          "t": "Retrieves a set of Feedback objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasseller"
-        },
-        "category": "Feedback",
-        "displayName": "Feedback_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/feedback/as-seller"
-      },
-      {
-        "path": "/server/epoch",
-        "doc": {
-          "t": "Get server time, in epoch seconds notation.",
-          "url": "http://developer.etsy.com/docs/resource_int#getserverepoch"
-        },
-        "category": "Int",
-        "displayName": "Int_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/server/epoch"
-      },
-      {
-        "path": "/homepages/pickers/{featured_listing_picker_id}/listings",
-        "doc": {
-          "t": "Retrieves a set of Listing objects associated to a FeaturedListingPicker.",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallfeaturedlistingpickerlistings"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/pickers/{featured_listing_picker_id}/listings"
-      },
-      {
-        "path": "/homepages/pickers/{featured_listing_picker_id}/listings/active",
-        "doc": {
-          "t": "Retrieves a set of Listing objects associated to a FeaturedListingPicker in scope active.",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallfeaturedlistingpickerlistingsactive"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/pickers/{featured_listing_picker_id}/listings/active"
-      },
-      {
-        "path": "/homepages/listings/{featured_listing_id}/listing",
-        "doc": {
-          "t": "Retrieves a set of Listing objects associated to a FeaturedListing.",
-          "url": "http://developer.etsy.com/docs/resource_listing#getfeaturedlistinglisting"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/homepages/listings/{featured_listing_id}/listing"
-      },
-      {
-        "path": "/users/{user_id}/recommended_listings",
-        "doc": {
-          "t": "Get recommended listings for an authenticated member. The number of listings returned may not match the specified limit if there is no activity from recommended shops.",
-          "url": "http://developer.etsy.com/docs/resource_listing#getrecommendedlistings"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/recommended_listings"
-      },
-      {
-        "path": "/users/{user_id}/recommended_listings/rejects/{listing_ids}",
-        "doc": {
-          "t": "Registers rejections of recommended listings. Affects future recommended listings.",
-          "url": "http://developer.etsy.com/docs/resource_listing#registerrecommendedlistingrejects"
-        },
-        "category": "Listing",
-        "displayName": "Listing_POST",
+        "displayName": "Create Favorite Listing",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/recommended_listings/rejects/{listing_ids}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/favorites/users/:target_user_id",
+        "path": "/users/:user_id/favorites/users/:target_user_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":target_user_id",
+            "displayName": "Target User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/recommended_listings/views/{listing_ids}",
-        "doc": {
-          "t": "Register viewings of recommended listings. Affects future recommended listings.",
-          "url": "http://developer.etsy.com/docs/resource_listing#registerrecommendedlistingviews"
-        },
-        "category": "Listing",
-        "displayName": "Listing_POST",
-        "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/recommended_listings/views/{listing_ids}"
+        "path": "/users/:user_id/feedback/as-subject",
+        "displayName": "Get Feedback As Subject",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/feedback/as-subject",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/feedback/as-author",
+        "displayName": "Get Feedback As Author",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/feedback/as-author",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/feedback/as-buyer",
+        "displayName": "Get Feedback As Buyer",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/feedback/as-buyer",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "path": "/users/:user_id/feedback/as-seller",
+        "displayName": "Get Feedback As Seller",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/feedback/as-seller",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          }
+        ]
       },
       {
         "path": "/listings",
         "params": [
           {
             "name": "quantity",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Quantity",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "title",
+            "displayName": "Title",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "description",
+            "displayName": "Description",
             "type": "text",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "price",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Price",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "materials",
+            "displayName": "Materials",
             "type": "array",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "tags",
+            "displayName": "Tags",
             "type": "array",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "shipping_template_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Shipping Template ID",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "shop_section_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Shop Section ID",
+            "type": "number",
+            "style": "body"
+          },
+          {
+            "name": "image_ids",
+            "displayName": "Image Ids",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "is_customizable",
+            "displayName": "Is Customizable",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "non_taxable",
+            "displayName": "Non Taxable",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "image",
+            "displayName": "Image",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "displayName": "State ( active / draft )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "processing_min",
+            "displayName": "Processing Min",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "processing_max",
+            "displayName": "Processing Max",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "displayName": "Category Id",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "who_made",
+            "displayName": "Who Made ( i_did / collective / someone_else )",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "is_supply",
+            "displayName": "Is Supply",
+            "style": "body",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "when_made",
+            "displayName": "When Made",
+            "style": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "recipient",
+            "displayName": "Recipient",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "occasion",
+            "displayName": "Occasion",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "style",
+            "displayName": "Style",
+            "style": "body",
+            "type": "string"
           }
         ],
-        "doc": {
-          "t": "Creates a new Listing",
-          "url": "http://developer.etsy.com/docs/resource_listing#createlisting"
-        },
-        "category": "Listing",
-        "displayName": "Listing_POST",
+        "displayName": "Create A New Listing",
         "httpMethod": "POST",
         "url": "https://openapi.etsy.com/v2/listings"
       },
       {
-        "path": "/shops/{shop_id}/listings/inactive/{listing_id}",
-        "doc": {
-          "t": "Retrieves a Listing associated to a Shop that is inactive",
-          "url": "http://developer.etsy.com/docs/resource_listing#getshoplistinginactive"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/inactive/:listing_id",
+        "displayName": "Get Inactive Listing",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/inactive/{listing_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/inactive/:listing_id",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/listings/expired",
-        "doc": {
-          "t": "Retrieves Listings associated to a Shop that are expired",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallshoplistingsexpired"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/expired",
+        "displayName": "Get All Expired Listings",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/expired"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/expired",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/listings/inactive",
-        "doc": {
-          "t": "Retrieves Listings associated to a Shop that are inactive",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallshoplistingsinactive"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/inactive",
+        "displayName": "Get Inactive Listings",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/inactive"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/inactive",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/listings/{listing_id}",
-        "doc": {
-          "t": "Deletes a Listing",
-          "url": "http://developer.etsy.com/docs/resource_listing#deletelisting"
-        },
-        "category": "Listing",
-        "displayName": "Listing_DELETE",
+        "path": "/listings/:listing_id",
+        "displayName": "Delete A Listing",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}"
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id",
+        "params": [
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/listings/featured",
-        "doc": {
-          "t": "Retrieves Listings associated to a Shop that are featured",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallshoplistingsfeatured"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/featured",
+        "displayName": "Get Featured Shop Listings",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/featured"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/featured",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/listings/{listing_id}",
+        "displayName": "Update A Listing",
+        "httpMethod": "PUT",
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id",
+        "path": "/listings/:listing_id",
         "params": [
           {
             "name": "quantity",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Quantity",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "type": "text",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "price",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Price",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "materials",
+            "displayName": "Materials",
             "type": "array",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "renew",
+            "displayName": "Renew",
             "type": "boolean",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "tags",
+            "displayName": "Tags",
             "type": "array",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "shipping_template_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Shipping Template ID",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "shop_section_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Shop Section ID",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "state",
-            "type": "enum",
+            "type": "string",
             "style": "query",
-            "default": "active",
-            "required": "true"
+            "displayName": "State ( active / inactive / draft )"
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "wholesale_price",
+            "displayName": "Wholesale Price",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "image_ids",
+            "displayName": "Image Ids",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "is_customizable",
+            "displayName": "Is Customizable",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "non_taxable",
+            "displayName": "Non Taxable",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "category_id",
+            "displayName": "Category Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "who_made",
+            "displayName": "Who Made ( i_did / collective / someone_else )",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "is_supply",
+            "displayName": "Is Supply",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "when_made",
+            "displayName": "When Made",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "recipient",
+            "displayName": "Recipient",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "occasion",
+            "displayName": "Occasion",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "style",
+            "displayName": "Style",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "processing_max",
+            "displayName": "Processing Max",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "processing_min",
+            "displayName": "Processing Min",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "featured_rank",
+            "displayName": "Featured Rank",
+            "style": "body",
+            "type": "string"
           }
-        ],
-        "doc": {
-          "t": "Updates a Listing",
-          "url": "http://developer.etsy.com/docs/resource_listing#updatelisting"
-        },
-        "category": "Listing",
-        "displayName": "Listing_PUT",
-        "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}"
+        ]
       },
       {
-        "path": "/listings/{listing_id}",
-        "doc": {
-          "t": "Retrieves a Listing by id.",
-          "url": "http://developer.etsy.com/docs/resource_listing#getlisting"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/listings/:listing_id",
+        "displayName": "Get Listing By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}"
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id",
+        "params": [
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/listings/active",
-        "doc": {
-          "t": "Finds all active Listing",
-          "url": "http://developer.etsy.com/docs/resource_listing#findalllistingactive"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "displayName": "Find All Active Listings",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/active"
+        "url": "https://openapi.etsy.com/v2/listings/active",
+        "params": [
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "keywords",
+            "displayName": "Keywords",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort_on",
+            "displayName": "Sort On ( created / price / score )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort_order",
+            "displayName": "Sort Order ( up / down )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "min_price",
+            "displayName": "Min Price",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "max_price",
+            "displayName": "Max Price",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "color",
+            "displayName": "Hex Color Code",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "color_accuracy",
+            "displayName": "Color Accuracy ( Degree Of Tolerance For Color Matching )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "displayName": "Tags",
+            "type": "array",
+            "style": "query"
+          },
+          {
+            "name": "category",
+            "displayName": "Category",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "displayName": "Location",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "lat",
+            "displayName": "Latitude",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "long",
+            "displayName": "Longitude",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "displayName": "Region",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "geo_level",
+            "displayName": "Geographical Level ( city /  state / country )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "accepts_gift_cards",
+            "displayName": "Accepts Gift Cards",
+            "style": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "translate_keywords",
+            "displayName": "Translate Keywords",
+            "style": "query",
+            "type": "boolean"
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/listings/active",
-        "doc": {
-          "t": "Finds all active Listings associated with a Shop",
-          "url": "http://developer.etsy.com/docs/resource_listing#findallshoplistingsactive"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/active",
+        "displayName": "Find All Active Listings In A Shop",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/active"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/active",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "displayName": "Tags",
+            "type": "array",
+            "style": "query"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "keywords",
+            "displayName": "Keywords",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort_on",
+            "displayName": "Sort On ( created / price / score )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort_order",
+            "displayName": "Sort Order ( up / down )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "min_price",
+            "displayName": "Min Price",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "max_price",
+            "displayName": "Max Price",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "color",
+            "displayName": "Color ( Hex Color Code )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "color_accuracy",
+            "displayName": "Degree Of Tolerance For Color Matching",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "displayName": "Category",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "translate_keywords",
+            "displayName": "Translate Keywords",
+            "style": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "include_private",
+            "displayName": "Include Private",
+            "style": "query",
+            "type": "boolean"
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/listings/expired/{listing_id}",
-        "doc": {
-          "t": "Retrieves a Listing associated to a Shop that is inactive",
-          "url": "http://developer.etsy.com/docs/resource_listing#getshoplistingexpired"
-        },
-        "category": "Listing",
-        "displayName": "Listing_GET",
+        "path": "/shops/:shop_id/listings/expired/:listing_id",
+        "displayName": "Get Inactive Shop Listing",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/listings/expired/{listing_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/listings/expired/:listing_id",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/listings/{listing_id}/images/{listing_image_id}",
-        "doc": {
-          "t": "Retrieves a ListingImage by id.",
-          "url": "http://developer.etsy.com/docs/resource_listingimage#getlistingimage"
-        },
-        "category": "ListingImage",
-        "displayName": "ListingImage_GET",
+        "path": "/listings/:listing_id/images/:listing_image_id",
+        "displayName": "Get Listing Image By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/images/{listing_image_id}"
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/images/:listing_image_id",
+        "params": [
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":listing_image_id",
+            "displayName": "Listing Image ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/listings/{listing_id}/images",
+        "path": "/listings/:listing_id/images",
         "params": [
           {
             "name": "image",
+            "displayName": "Image",
             "type": "image",
             "style": "query",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "image",
+            "displayName": "Image",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "rank",
+            "displayName": "Rank",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "overwrite",
+            "displayName": "Overwrite",
+            "style": "body",
+            "type": "boolean"
           }
         ],
-        "doc": {
-          "t": "Upload a new listing image",
-          "url": "http://developer.etsy.com/docs/resource_listingimage#uploadlistingimage"
-        },
-        "category": "ListingImage",
-        "displayName": "ListingImage_POST",
+        "displayName": "Upload/Update Listing Image",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/images"
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/images"
       },
       {
-        "path": "/listings/{listing_id}/images/{listing_image_id}",
-        "doc": {
-          "t": "Deletes a listing image",
-          "url": "http://developer.etsy.com/docs/resource_listingimage#deletelistingimage"
-        },
-        "category": "ListingImage",
-        "displayName": "ListingImage_DELETE",
+        "path": "/listings/:listing_id/images/:listing_image_id",
+        "displayName": "Delete Listing Image",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/images/{listing_image_id}"
-      },
-      {
-        "path": "/listings/{listing_id}/images",
-        "doc": {
-          "t": "Retrieves a set of ListingImage objects associated to a Listing.",
-          "url": "http://developer.etsy.com/docs/resource_listingimage#findalllistingimages"
-        },
-        "category": "ListingImage",
-        "displayName": "ListingImage_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/images"
-      },
-      {
-        "path": "/listings/{listing_id}/payments",
-        "doc": {
-          "t": "Retrieves a set of ListingPayment objects associated to a Listing.",
-          "url": "http://developer.etsy.com/docs/resource_listingpayment#getlistingpaymentinfo"
-        },
-        "category": "ListingPayment",
-        "displayName": "ListingPayment_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/payments"
-      },
-      {
-        "path": "/payments/{listing_payment_id}",
-        "doc": {
-          "t": "Retrieves a ListingPayment by id.",
-          "url": "http://developer.etsy.com/docs/resource_listingpayment#getlistingpayment"
-        },
-        "category": "ListingPayment",
-        "displayName": "ListingPayment_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/payments/{listing_payment_id}"
-      },
-      {
-        "path": "/orders/{order_id}",
-        "doc": {
-          "t": "Retrieves a Order by id.",
-          "url": "http://developer.etsy.com/docs/resource_order#getorder"
-        },
-        "category": "Order",
-        "displayName": "Order_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/orders/{order_id}"
-      },
-      {
-        "path": "/users/{user_id}/orders",
-        "doc": {
-          "t": "Retrieves a set of Order objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_order#findalluserorders"
-        },
-        "category": "Order",
-        "displayName": "Order_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/orders"
-      },
-      {
-        "path": "/payments/templates",
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/images/:listing_image_id",
         "params": [
           {
-            "name": "allow_check",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_mo",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_other",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_paypal",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "paypal_email",
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "required": true
           },
           {
-            "name": "name",
+            "name": ":listing_image_id",
+            "displayName": "Listing Image ID",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "first_line",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "second_line",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "city",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "state",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "zip",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "required": true
           }
-        ],
-        "doc": {
-          "t": "Creates a new PaymentTemplate",
-          "url": "http://developer.etsy.com/docs/resource_paymenttemplate#createpaymenttemplate"
-        },
-        "category": "PaymentTemplate",
-        "displayName": "PaymentTemplate_POST",
-        "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/payments/templates"
+        ]
       },
       {
-        "path": "/users/{user_id}/payments/templates",
-        "doc": {
-          "t": "Retrieves a set of PaymentTemplate objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_paymenttemplate#findalluserpaymenttemplates"
-        },
-        "category": "PaymentTemplate",
-        "displayName": "PaymentTemplate_GET",
+        "path": "/listings/:listing_id/images",
+        "displayName": "Get All Listing Images",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/payments/templates"
-      },
-      {
-        "path": "/payments/templates/{payment_template_id}",
-        "doc": {
-          "t": "Retrieves a PaymentTemplate by id.",
-          "url": "http://developer.etsy.com/docs/resource_paymenttemplate#getpaymenttemplate"
-        },
-        "category": "PaymentTemplate",
-        "displayName": "PaymentTemplate_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/payments/templates/{payment_template_id}"
-      },
-      {
-        "path": "/payments/templates/{payment_template_id}",
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/images",
         "params": [
           {
-            "name": "allow_check",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_mo",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_other",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "allow_paypal",
-            "type": "boolean",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "paypal_email",
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "name",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "first_line",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "second_line",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "city",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "state",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "zip",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "required": true
           }
-        ],
-        "doc": {
-          "t": "Updates a PaymentTemplate",
-          "url": "http://developer.etsy.com/docs/resource_paymenttemplate#updatepaymenttemplate"
-        },
-        "category": "PaymentTemplate",
-        "displayName": "PaymentTemplate_PUT",
-        "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/payments/templates/{payment_template_id}"
+        ]
       },
       {
-        "path": "/receipts/{receipt_id}",
-        "doc": {
-          "t": "Retrieves a Receipt by id.",
-          "url": "http://developer.etsy.com/docs/resource_receipt#getreceipt"
-        },
-        "category": "Receipt",
-        "displayName": "Receipt_GET",
+        "path": "/users/:user_id/payments/templates",
+        "displayName": "Get User Payment Templates",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/receipts/{receipt_id}"
-      },
-      {
-        "path": "/receipts/{receipt_id}",
+        "url": "https://openapi.etsy.com/v2/users/:user_id/payments/templates",
         "params": [
           {
-            "name": "receipt_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
-          },
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/receipts/:receipt_id",
+        "displayName": "Get Receipt By ID",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/receipts/:receipt_id",
+        "params": [
+          {
+            "name": ":receipt_id",
+            "displayName": "Receipt ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/receipts/:receipt_id",
+        "params": [
           {
             "name": "was_paid",
+            "displayName": "Was Paid",
             "type": "boolean",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "was_shipped",
+            "displayName": "Was Shipped",
             "type": "boolean",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "message_from_seller",
+            "displayName": "Message From Seller",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "message_from_buyer",
+            "displayName": "Message From Buyer",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
+          },
+          {
+            "name": ":receipt_id",
+            "displayName": "Receipt ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Updates a Receipt",
-          "url": "http://developer.etsy.com/docs/resource_receipt#updatereceipt"
-        },
-        "category": "Receipt",
-        "displayName": "Receipt_PUT",
+        "displayName": "Update A Receipt",
         "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/receipts/{receipt_id}"
+        "url": "https://openapi.etsy.com/v2/receipts/:receipt_id"
       },
       {
-        "path": "/users/{user_id}/receipts",
-        "doc": {
-          "t": "Retrieves a set of Receipt objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_receipt#findalluserbuyerreceipts"
-        },
-        "category": "Receipt",
-        "displayName": "Receipt_GET",
+        "path": "/users/:user_id/receipts",
+        "displayName": "Get User Receipts",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/receipts"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/receipts",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/receipts",
-        "doc": {
-          "t": "Retrieves a set of Receipt objects associated to a Shop.",
-          "url": "http://developer.etsy.com/docs/resource_receipt#findallshopreceipts"
-        },
-        "category": "Receipt",
-        "displayName": "Receipt_GET",
+        "path": "/shops/:shop_id/receipts",
+        "displayName": "Get Shop Receipts",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/receipts"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/receipts",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "min_created",
+            "displayName": "Min Created",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "max_created",
+            "displayName": "Max Created",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "min_last_modified",
+            "displayName": "Min Last Modified",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "max_last_modified",
+            "displayName": "Max Last Modified",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "was_paid",
+            "displayName": "Was Paid",
+            "style": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "was_shipped",
+            "displayName": "Was Shipped",
+            "style": "query",
+            "type": "boolean"
+          }
+        ]
       },
       {
-        "path": "/orders/{order_id}/receipts",
-        "doc": {
-          "t": "Retrieves a set of Receipt objects associated to a Order.",
-          "url": "http://developer.etsy.com/docs/resource_receipt#findallorderreceipts"
-        },
-        "category": "Receipt",
-        "displayName": "Receipt_GET",
+        "path": "/regions/:region_id",
+        "displayName": "Get Region By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/orders/{order_id}/receipts"
-      },
-      {
-        "path": "/regions/{region_id}",
-        "doc": {
-          "t": "Retrieves a Region by id.",
-          "url": "http://developer.etsy.com/docs/resource_region#getregion"
-        },
-        "category": "Region",
-        "displayName": "Region_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/regions/{region_id}"
+        "url": "https://openapi.etsy.com/v2/regions/:region_id",
+        "params": [
+          {
+            "name": ":region_id",
+            "displayName": "Region ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/regions",
-        "doc": {
-          "t": "Finds all Region.",
-          "url": "http://developer.etsy.com/docs/resource_region#findallregion"
-        },
-        "category": "Region",
-        "displayName": "Region_GET",
+        "displayName": "Get All Regions",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/regions"
+        "url": "https://openapi.etsy.com/v2/regions",
+        "params": []
       },
       {
-        "path": "/shipping/info/{shipping_info_id}",
-        "doc": {
-          "t": "Retrieves a ShippingInfo by id.",
-          "url": "http://developer.etsy.com/docs/resource_shippinginfo#getshippinginfo"
-        },
-        "category": "ShippingInfo",
-        "displayName": "ShippingInfo_GET",
+        "path": "/shipping/info/:shipping_info_id",
+        "displayName": "Get Shipping Information By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shipping/info/{shipping_info_id}"
-      },
-      {
-        "path": "/listings/{listing_id}/shipping/info",
-        "doc": {
-          "t": "Retrieves a set of ShippingInfo objects associated to a Listing.",
-          "url": "http://developer.etsy.com/docs/resource_shippinginfo#findalllistingshippinginfo"
-        },
-        "category": "ShippingInfo",
-        "displayName": "ShippingInfo_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/shipping/info"
-      },
-      {
-        "path": "/shipping/info/{shipping_info_id}",
+        "url": "https://openapi.etsy.com/v2/shipping/info/:shipping_info_id",
         "params": [
           {
-            "name": "origin_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
-          },
+            "name": ":shipping_info_id",
+            "displayName": "Shipping Info ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/listings/:listing_id/shipping/info",
+        "displayName": "Get Listing Shipping Information",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/shipping/info",
+        "params": [
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/shipping/info/:shipping_info_id",
+        "displayName": "Update Shipping Information",
+        "httpMethod": "PUT",
+        "url": "https://openapi.etsy.com/v2/shipping/info/:shipping_info_id",
+        "params": [
           {
             "name": "destination_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Country ID",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "primary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Primary Cost",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "secondary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Secondary Cost",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "listing_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Listing ID",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "region_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
-          }
-        ],
-        "doc": {
-          "t": "Updates a ShippingInfo with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_shippinginfo#updateshippinginfo"
-        },
-        "category": "ShippingInfo",
-        "displayName": "ShippingInfo_PUT",
-        "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/shipping/info/{shipping_info_id}"
-      },
-      {
-        "path": "/listings/{listing_id}/shipping/info",
-        "params": [
-          {
-            "name": "origin_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Region ID",
+            "type": "number",
+            "style": "body"
           },
           {
+            "name": ":shipping_info_id",
+            "displayName": "Shipping Info ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "/listings/:listing_id/shipping/info",
+        "params": [
+          {
             "name": "destination_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Country ID",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "primary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Primary Cost",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "secondary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Secondary Cost",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "region_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Region ID",
+            "type": "number",
+            "style": "body"
+          },
+          {
+            "name": ":listing_id",
+            "displayName": "Listing ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Creates a new ShippingInfo.",
-          "url": "http://developer.etsy.com/docs/resource_shippinginfo#createshippinginfo"
-        },
-        "category": "ShippingInfo",
-        "displayName": "ShippingInfo_POST",
+        "displayName": "Create New Shipping Information",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/listings/{listing_id}/shipping/info"
+        "url": "https://openapi.etsy.com/v2/listings/:listing_id/shipping/info"
       },
       {
-        "path": "/shipping/info/{shipping_info_id}",
-        "doc": {
-          "t": "Deletes the ShippingInfo with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_shippinginfo#deleteshippinginfo"
-        },
-        "category": "ShippingInfo",
-        "displayName": "ShippingInfo_DELETE",
+        "path": "/shipping/info/:shipping_info_id",
+        "displayName": "Delete Shipping Information",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/shipping/info/{shipping_info_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/info/:shipping_info_id",
+        "params": [
+          {
+            "name": ":shipping_info_id",
+            "displayName": "Shipping Info ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/shipping/templates",
-        "doc": {
-          "t": "Retrieves a set of ShippingTemplate objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplate#findallusershippingtemplates"
-        },
-        "category": "ShippingTemplate",
-        "displayName": "ShippingTemplate_GET",
+        "path": "/users/:user_id/shipping/templates",
+        "displayName": "Gets User Shipping Templates",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/shipping/templates"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/shipping/templates",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shipping/templates/{shipping_template_id}",
-        "doc": {
-          "t": "Deletes the ShippingTemplate with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplate#deleteshippingtemplate"
-        },
-        "category": "ShippingTemplate",
-        "displayName": "ShippingTemplate_DELETE",
+        "path": "/shipping/templates/:shipping_template_id",
+        "displayName": "Delete Shipping Template By ID",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/{shipping_template_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/:shipping_template_id",
+        "params": [
+          {
+            "name": ":shipping_template_id",
+            "displayName": "Shipping Template ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shipping/templates/{shipping_template_id}",
-        "doc": {
-          "t": "Retrieves a ShippingTemplate by id.",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplate#getshippingtemplate"
-        },
-        "category": "ShippingTemplate",
-        "displayName": "ShippingTemplate_GET",
+        "path": "/shipping/templates/:shipping_template_id",
+        "displayName": "Get Shipping Template By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/{shipping_template_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/:shipping_template_id",
+        "params": [
+          {
+            "name": ":shipping_template_id",
+            "displayName": "Shipping Template ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/shipping/templates",
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body",
+            "required": true
           },
           {
             "name": "origin_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Origin Country ID",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "destination_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Country ID",
+            "type": "number",
+            "style": "body"
           },
           {
             "name": "primary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Primary Cost",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "secondary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Secondary Cost",
+            "type": "number",
+            "style": "body",
+            "required": true
           },
           {
             "name": "destination_region_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Region ID",
+            "type": "number",
+            "style": "body"
+          },
+          {
+            "name": "min_processing_days",
+            "displayName": "Min Processing Days",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "max_processing_days",
+            "displayName": "Max Processing Days",
+            "style": "body",
+            "type": "number"
           }
         ],
-        "doc": {
-          "t": "Creates a new ShippingTemplate",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplate#createshippingtemplate"
-        },
-        "category": "ShippingTemplate",
-        "displayName": "ShippingTemplate_POST",
+        "displayName": "Create New Shipping Template",
         "httpMethod": "POST",
         "url": "https://openapi.etsy.com/v2/shipping/templates"
       },
       {
-        "path": "/shipping/templates/{shipping_template_id}",
+        "path": "/shipping/templates/:shipping_template_id",
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "origin_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Origin Country ID",
+            "type": "number",
+            "style": "query"
+          },
+          {
+            "name": ":shipping_template_id",
+            "displayName": "Shipping Template ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "min_processing_days",
+            "displayName": "Min Processing Days",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "max_processing_days",
+            "displayName": "Max Processing Days",
+            "style": "body",
+            "type": "number"
           }
         ],
-        "doc": {
-          "t": "Updates a ShippingTemplate",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplate#updateshippingtemplate"
-        },
-        "category": "ShippingTemplate",
-        "displayName": "ShippingTemplate_PUT",
+        "displayName": "Update Shipping Template",
         "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/{shipping_template_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/:shipping_template_id"
       },
       {
-        "path": "/shipping/templates/{shipping_template_id}/entries",
-        "doc": {
-          "t": "Retrieves a set of ShippingTemplateEntry objects associated to a ShippingTemplate.",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplateentry#findallshippingtemplateentries"
-        },
-        "category": "ShippingTemplateEntry",
-        "displayName": "ShippingTemplateEntry_GET",
+        "path": "/shipping/templates/:shipping_template_id/entries",
+        "displayName": "Get Shipping Template Entries",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/{shipping_template_id}/entries"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/:shipping_template_id/entries",
+        "params": [
+          {
+            "name": ":shipping_template_id",
+            "displayName": "Shipping Template ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "body",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "body",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/shipping/templates/entries/{shipping_template_entry_id}",
+        "path": "/shipping/templates/entries/:shipping_template_entry_id",
         "params": [
           {
             "name": "destination_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Country ID",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "primary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Primary Cost",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "secondary_cost",
-            "type": "float",
-            "style": "query",
-            "required": "true"
+            "displayName": "Secondary Cost",
+            "type": "number",
+            "style": "query"
+          },
+          {
+            "name": ":shipping_template_entry_id",
+            "displayName": "Shipping Template Entry ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Updates a ShippingTemplateEntry",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplateentry#updateshippingtemplateentry"
-        },
-        "category": "ShippingTemplateEntry",
-        "displayName": "ShippingTemplateEntry_PUT",
+        "displayName": "Update Shipping Template Entry",
         "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/{shipping_template_entry_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/:shipping_template_entry_id"
       },
       {
-        "path": "/shipping/templates/entries/{shipping_template_entry_id}",
-        "doc": {
-          "t": "Deletes a ShippingTemplateEntry",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplateentry#deleteshippingtemplateentry"
-        },
-        "category": "ShippingTemplateEntry",
-        "displayName": "ShippingTemplateEntry_DELETE",
+        "path": "/shipping/templates/entries/:shipping_template_entry_id",
+        "displayName": "Delete Shipping Template Entry ID",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/{shipping_template_entry_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/:shipping_template_entry_id",
+        "params": [
+          {
+            "name": ":shipping_template_entry_id",
+            "displayName": "Shipping Template Entry ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/shipping/templates/entries",
         "params": [
           {
             "name": "shipping_template_id",
-            "type": "int",
+            "displayName": "Shipping Template ID",
+            "type": "number",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "destination_country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Country ID",
+            "type": "number",
+            "style": "query"
           },
           {
             "name": "primary_cost",
-            "type": "float",
+            "displayName": "Primary Cost",
+            "type": "number",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "secondary_cost",
-            "type": "float",
+            "displayName": "Secondary Cost",
+            "type": "number",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "destination_region_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "Desination Region ID",
+            "type": "number",
+            "style": "query"
           }
         ],
-        "doc": {
-          "t": "Creates a new ShippingTemplateEntry",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplateentry#createshippingtemplateentry"
-        },
-        "category": "ShippingTemplateEntry",
-        "displayName": "ShippingTemplateEntry_POST",
+        "displayName": "Create Shipping Template Entry",
         "httpMethod": "POST",
         "url": "https://openapi.etsy.com/v2/shipping/templates/entries"
       },
       {
-        "path": "/shipping/templates/entries/{shipping_template_entry_id}",
-        "doc": {
-          "t": "Retrieves a ShippingTemplateEntry by id.",
-          "url": "http://developer.etsy.com/docs/resource_shippingtemplateentry#getshippingtemplateentry"
-        },
-        "category": "ShippingTemplateEntry",
-        "displayName": "ShippingTemplateEntry_GET",
+        "path": "/shipping/templates/entries/:shipping_template_entry_id",
+        "displayName": "Get Shipping Template Entry By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/{shipping_template_entry_id}"
+        "url": "https://openapi.etsy.com/v2/shipping/templates/entries/:shipping_template_entry_id",
+        "params": [
+          {
+            "name": ":shipping_template_entry_id",
+            "displayName": "Shipping Template Entry ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/shops",
-        "doc": {
-          "t": "Retrieves a set of Shop objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_shop#findallusershops"
-        },
-        "category": "Shop",
-        "displayName": "Shop_GET",
+        "path": "/users/:user_id/shops",
+        "displayName": "Get User Shops",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/shops"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/shops",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/shops",
-        "doc": {
-          "t": "Finds all Shops. If there is a keywords parameter, finds shops with shop_name starting with keywords.",
-          "url": "http://developer.etsy.com/docs/resource_shop#findallshops"
-        },
-        "category": "Shop",
-        "displayName": "Shop_GET",
+        "displayName": "Find All Shops",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops"
+        "url": "https://openapi.etsy.com/v2/shops",
+        "params": [
+          {
+            "name": "shop_name",
+            "displayName": "Shop Name",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "lat",
+            "displayName": "Latitude",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "lon",
+            "displayName": "Longitude",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "distance_max",
+            "displayName": "Distance Max",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}",
-        "doc": {
-          "t": "Retrieves a Shop by id.",
-          "url": "http://developer.etsy.com/docs/resource_shop#getshop"
-        },
-        "category": "Shop",
-        "displayName": "Shop_GET",
+        "path": "/shops/:shop_id",
+        "displayName": "Get Shop By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}",
+        "path": "/shops/:shop_id",
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "announcement",
+            "displayName": "Announcement",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "is_refusing_alchemy",
+            "displayName": "Is Refusing Alchemy",
             "type": "boolean",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "alchemy_message",
+            "displayName": "Alchemy Message",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "sale_message",
+            "displayName": "Sale Message",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "policy_welcome",
+            "displayName": "Policy Welcome",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "policy_payment",
+            "displayName": "Policy Payment",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "policy_shipping",
+            "displayName": "Policy Shipping",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "policy_refunds",
+            "displayName": "Policy Refunds",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
           },
           {
             "name": "policy_additional",
+            "displayName": "Policy Additional",
             "type": "string",
-            "style": "query",
-            "required": "true"
+            "style": "body"
+          },
+          {
+            "name": "policy_seller_info",
+            "displayName": "Policy Seller Information",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": "digital_sale_message",
+            "displayName": "Digital Sale Message",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Updates a Shop",
-          "url": "http://developer.etsy.com/docs/resource_shop#updateshop"
-        },
-        "category": "Shop",
-        "displayName": "Shop_PUT",
+        "displayName": "Update Shop",
         "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id"
       },
       {
-        "path": "/shops/{shop_id}/appearance/banner/{shop_banner_id}",
-        "doc": {
-          "t": "Deletes a shop banner image",
-          "url": "http://developer.etsy.com/docs/resource_shopbanner#deleteshopbanner"
-        },
-        "category": "ShopBanner",
-        "displayName": "ShopBanner_DELETE",
+        "path": "/shops/:shop_id/appearance/banner",
+        "displayName": "Delete Shop Banner",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/appearance/banner/{shop_banner_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/appearance/banner",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/appearance/banner",
+        "path": "/shops/:shop_id/appearance/banner",
         "params": [
           {
             "name": "image",
-            "type": "image",
+            "displayName": "Image",
+            "type": "string",
             "style": "query",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Upload a new shop banner image",
-          "url": "http://developer.etsy.com/docs/resource_shopbanner#uploadshopbanner"
-        },
-        "category": "ShopBanner",
-        "displayName": "ShopBanner_POST",
+        "displayName": "Upload New Shop Banner Image",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/appearance/banner"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/appearance/banner"
       },
       {
-        "path": "/sections/{shop_section_id}",
+        "path": "shops/:shop_id/sections/:shop_section_id",
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "type": "text",
             "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "rank",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "user_id",
-            "type": "int",
+            "displayName": "User ID",
+            "type": "number",
             "style": "query",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": ":shop_section_id",
+            "displayName": "Shop Section ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Updates a ShopSection with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_shopsection#updateshopsection"
-        },
-        "category": "ShopSection",
-        "displayName": "ShopSection_PUT",
+        "displayName": "Update Shop Section",
         "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/sections/{shop_section_id}"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/sections/:shop_section_id"
       },
       {
-        "path": "/sections/{shop_section_id}",
-        "doc": {
-          "t": "Deletes the ShopSection with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_shopsection#deleteshopsection"
-        },
-        "category": "ShopSection",
-        "displayName": "ShopSection_DELETE",
+        "path": "shops/:shop_id/sections/:shop_section_id",
+        "displayName": "Delete Shop Section",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/sections/{shop_section_id}"
-      },
-      {
-        "path": "/sections/{shop_section_id}",
-        "doc": {
-          "t": "Retrieves a ShopSection by id.",
-          "url": "http://developer.etsy.com/docs/resource_shopsection#getshopsection"
-        },
-        "category": "ShopSection",
-        "displayName": "ShopSection_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/sections/{shop_section_id}"
-      },
-      {
-        "path": "/sections",
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/sections/:shop_section_id",
         "params": [
           {
+            "name": ":shop_section_id",
+            "displayName": "Shop Section ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "shops/:shop_id/sections/:shop_section_id",
+        "displayName": "Get Shop Section By ID",
+        "httpMethod": "GET",
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/sections/:shop_section_id",
+        "params": [
+          {
+            "name": ":shop_section_id",
+            "displayName": "Shop Section ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "type": "number",
+            "style": "url",
+            "required": true
+          }
+        ]
+      },
+      {
+        "path": "shops/:shop_id/sections",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
             "name": "title",
+            "displayName": "Title",
             "type": "text",
-            "style": "query",
-            "required": "true"
+            "style": "query"
           },
           {
             "name": "user_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
+            "displayName": "User ID",
+            "type": "number",
+            "style": "query"
           }
         ],
-        "doc": {
-          "t": "Creates a new ShopSection.",
-          "url": "http://developer.etsy.com/docs/resource_shopsection#createshopsection"
-        },
-        "category": "ShopSection",
-        "displayName": "ShopSection_POST",
+        "displayName": "Create New Shop Section",
         "httpMethod": "POST",
         "url": "https://openapi.etsy.com/v2/sections"
       },
       {
-        "path": "/shops/{shop_id}/sections",
-        "doc": {
-          "t": "Retrieves a set of ShopSection objects associated to a Shop.",
-          "url": "http://developer.etsy.com/docs/resource_shopsection#findallshopsections"
-        },
-        "category": "ShopSection",
-        "displayName": "ShopSection_GET",
+        "path": "/shops/:shop_id/sections",
+        "displayName": "Get All Shop Sections",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/sections"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/sections",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/server/ping",
-        "doc": {
-          "t": "Check that the server is alive.",
-          "url": "http://developer.etsy.com/docs/resource_string#ping"
-        },
-        "category": "String",
-        "displayName": "String_GET",
+        "path": "/receipts/:receipt_id/transactions",
+        "displayName": "Get Receipt Transactions",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/server/ping"
+        "url": "https://openapi.etsy.com/v2/receipts/:receipt_id/transactions",
+        "params": [
+          {
+            "name": ":receipt_id",
+            "displayName": "Receipt ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/taxonomy/tags",
-        "doc": {
-          "t": "Retrieves all related tags for the given tag set.",
-          "url": "http://developer.etsy.com/docs/resource_tag#findpopulartags"
-        },
-        "category": "Tag",
-        "displayName": "Tag_GET",
+        "path": "/shops/:shop_id/transactions",
+        "displayName": "Get Shop Transactions",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/taxonomy/tags"
+        "url": "https://openapi.etsy.com/v2/shops/:shop_id/transactions",
+        "params": [
+          {
+            "name": ":shop_id",
+            "displayName": "Shop ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/taxonomy/tags/{tags}",
-        "doc": {
-          "t": "Retrieves all related tags for the given tag set.",
-          "url": "http://developer.etsy.com/docs/resource_tag#findallrelatedtags"
-        },
-        "category": "Tag",
-        "displayName": "Tag_GET",
+        "path": "/users/:user_id/transactions",
+        "displayName": "Get User Transactions",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/taxonomy/tags/{tags}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/transactions",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/receipts/{receipt_id}/transactions",
-        "doc": {
-          "t": "Retrieves a set of Transaction objects associated to a Receipt.",
-          "url": "http://developer.etsy.com/docs/resource_transaction#findallreceipttransactions"
-        },
-        "category": "Transaction",
-        "displayName": "Transaction_GET",
+        "path": "/transactions/:transaction_id",
+        "displayName": "Get Transaction By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/receipts/{receipt_id}/transactions"
+        "url": "https://openapi.etsy.com/v2/transactions/:transaction_id",
+        "params": [
+          {
+            "name": ":transaction_id",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/shops/{shop_id}/transactions",
-        "doc": {
-          "t": "Retrieves a set of Transaction objects associated to a Shop.",
-          "url": "http://developer.etsy.com/docs/resource_transaction#findallshoptransactions"
-        },
-        "category": "Transaction",
-        "displayName": "Transaction_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/shops/{shop_id}/transactions"
-      },
-      {
-        "path": "/users/{user_id}/transactions",
-        "doc": {
-          "t": "Retrieves a set of Transaction objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_transaction#findalluserbuyertransactions"
-        },
-        "category": "Transaction",
-        "displayName": "Transaction_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/transactions"
-      },
-      {
-        "path": "/transactions/{transaction_id}",
-        "doc": {
-          "t": "Retrieves a Transaction by id.",
-          "url": "http://developer.etsy.com/docs/resource_transaction#gettransaction"
-        },
-        "category": "Transaction",
-        "displayName": "Transaction_GET",
-        "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/transactions/{transaction_id}"
-      },
-      {
-        "path": "/users/{user_id}/treasuries",
+        "path": "/users/:user_id/treasuries",
         "doc": {
           "t": "Get a user's Treasuries",
           "url": "http://developer.etsy.com/docs/resource_treasury#findallusertreasuries"
         },
-        "category": "Treasury",
-        "displayName": "Treasury_GET",
+        "displayName": "Get User's Treasuries",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/treasuries"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/treasuries",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "sort_on",
+            "displayName": "Sort On ( hotness /  created )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort_order",
+            "displayName": "Sort Order ( up / down )",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "include_private",
+            "displayName": "Include Private",
+            "style": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "displayName": "Limit",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "displayName": "Offset",
+            "style": "query",
+            "type": "number"
+          },
+          {
+            "name": "page",
+            "displayName": "Page",
+            "style": "query",
+            "type": "number"
+          }
+        ]
       },
       {
-        "path": "/treasuries/{treasury_id}",
-        "doc": {
-          "t": "Get a Treasury",
-          "url": "http://developer.etsy.com/docs/resource_treasury#gettreasury"
-        },
-        "category": "Treasury",
-        "displayName": "Treasury_GET",
+        "path": "/treasuries/:treasury_id",
+        "displayName": "Get A Treasury",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/treasuries/{treasury_id}"
+        "url": "https://openapi.etsy.com/v2/treasuries/:treasury_id",
+        "params": [
+          {
+            "name": ":treasury_id",
+            "displayName": "Treasury ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
         "path": "/treasuries",
@@ -1805,164 +2597,146 @@
           "t": "Search Treasuries or else List all Treasuries",
           "url": "http://developer.etsy.com/docs/resource_treasury#findalltreasuries"
         },
-        "category": "Treasury",
-        "displayName": "Treasury_GET",
+        "displayName": "List All Treasuries",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/treasuries"
+        "url": "https://openapi.etsy.com/v2/treasuries",
+        "params": []
       },
       {
-        "path": "/users/{user_id}",
-        "doc": {
-          "t": "Retrieves a User by id.",
-          "url": "http://developer.etsy.com/docs/resource_user#getuser"
-        },
-        "category": "User",
-        "displayName": "User_GET",
+        "path": "/users/:user_id",
+        "displayName": "Get User Information By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/addresses/{user_address_id}",
-        "doc": {
-          "t": "Deletes the UserAddress with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_useraddress#deleteuseraddress"
-        },
-        "category": "UserAddress",
-        "displayName": "UserAddress_DELETE",
+        "path": "/users/:user_id/addresses/:user_address_id",
+        "displayName": "Delete User Address",
         "httpMethod": "DELETE",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/addresses/{user_address_id}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/addresses/:user_address_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":user_address_id",
+            "displayName": "User Address ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/addresses/{user_address_id}",
+        "path": "/users/:user_id/addresses",
         "params": [
           {
             "name": "name",
-            "type": "text",
+            "displayName": "Name",
+            "type": "string",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "first_line",
-            "type": "text",
+            "displayName": "First Line",
+            "type": "string",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "second_line",
-            "type": "text",
-            "style": "query",
-            "required": "true"
+            "displayName": "Second Line",
+            "type": "string",
+            "style": "query"
           },
           {
             "name": "city",
-            "type": "text",
+            "displayName": "City",
+            "type": "string",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "state",
-            "type": "text",
-            "style": "query",
-            "required": "true"
+            "displayName": "State",
+            "type": "string",
+            "style": "query"
           },
           {
             "name": "zip",
-            "type": "text",
+            "displayName": "Zip Code",
+            "type": "string",
             "style": "query",
-            "required": "true"
+            "required": true
           },
           {
             "name": "country_id",
-            "type": "int",
+            "displayName": "Country ID",
+            "type": "number",
             "style": "query",
-            "required": "true"
+            "required": true
+          },
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
           }
         ],
-        "doc": {
-          "t": "Updates a UserAddress with the given id.",
-          "url": "http://developer.etsy.com/docs/resource_useraddress#updateuseraddress"
-        },
-        "category": "UserAddress",
-        "displayName": "UserAddress_PUT",
-        "httpMethod": "PUT",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/addresses/{user_address_id}"
-      },
-      {
-        "path": "/users/{user_id}/addresses",
-        "params": [
-          {
-            "name": "name",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "first_line",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "second_line",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "city",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "state",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "zip",
-            "type": "text",
-            "style": "query",
-            "required": "true"
-          },
-          {
-            "name": "country_id",
-            "type": "int",
-            "style": "query",
-            "required": "true"
-          }
-        ],
-        "doc": {
-          "t": "Creates a new UserAddress.",
-          "url": "http://developer.etsy.com/docs/resource_useraddress#createuseraddress"
-        },
-        "category": "UserAddress",
-        "displayName": "UserAddress_POST",
+        "displayName": "Create New User Address",
         "httpMethod": "POST",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/addresses"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/addresses"
       },
       {
-        "path": "/users/{user_id}/addresses/{user_address_id}",
-        "doc": {
-          "t": "Retrieves a UserAddress by id.",
-          "url": "http://developer.etsy.com/docs/resource_useraddress#getuseraddress"
-        },
-        "category": "UserAddress",
-        "displayName": "UserAddress_GET",
+        "path": "/users/:user_id/addresses/:user_address_id",
+        "displayName": "Get User Address By ID",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/addresses/{user_address_id}"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/addresses/:user_address_id",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":user_address_id",
+            "displayName": "User Address ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/users/{user_id}/addresses",
-        "doc": {
-          "t": "Retrieves a set of UserAddress objects associated to a User.",
-          "url": "http://developer.etsy.com/docs/resource_useraddress#findalluseraddresses"
-        },
-        "category": "UserAddress",
-        "displayName": "UserAddress_GET",
+        "path": "/users/:user_id/addresses",
+        "displayName": "Get All User Addresses",
         "httpMethod": "GET",
-        "url": "https://openapi.etsy.com/v2/users/{user_id}/addresses"
+        "url": "https://openapi.etsy.com/v2/users/:user_id/addresses",
+        "params": [
+          {
+            "name": ":user_id",
+            "displayName": "User ID",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ]
       }
     ]
   },

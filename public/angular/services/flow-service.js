@@ -55,6 +55,9 @@ angular.module('octobluApp')
     return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
       _.each(flows, function(flow){
         _.each(flow.nodes, function(node){
+          if(node.type === 'operation:device'){
+            return;
+          }
           node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
           node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
 
