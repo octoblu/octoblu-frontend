@@ -2,6 +2,10 @@ html, body, .full-height {
   height: 100%;
 }
 
+.selected-item {
+  background-color: rgba(158, 158, 158, 0.2);
+}
+
 .materialize {
   overflow: hidden;
   .page-heading {
@@ -72,3 +76,25 @@ html, body, .full-height {
     }
   }
 }
+
+.template-item {
+  img {
+    margin:15px;
+  }
+  
+  h3 {
+    margin-top: 24px;
+  }
+
+  cursor:pointer;
+    md-item-content {
+        transition: 0.2s box-shadow;
+        box-shadow: none;
+    }
+  &.selected {
+    md-item-content {
+      .selected-item;
+    }
+  }
+}
+

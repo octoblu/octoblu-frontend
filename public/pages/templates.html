@@ -1,31 +1,36 @@
-<div class="templates" layout-fill layout="column" >
+<div class="templates" layout-fill layout="column" flex>
   
   <md-toolbar>
-  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-  <div flex layout="row">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-      Templates
-    </a>
-  </div>
-  <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)">
-  <md-tooltip>Delete Template</md-tooltip>
-  Delete Template
-  </md-button>
-  </h2>
-  </md-toolbar>
-  <div layout="row" layout="column" layout-fill flex>
-    
-    <md-content flex layout="column" style="padding: 3px; background-color: #ddd" flex="30" layout="column" class="templates-list">
-    <div class="grid-item" ng-repeat="template in templates" layout="column" ng-class="{selected: (template === currentTemplate)}">
-      <div flex layout="row" style="padding: 0 10px;" ng-click="setCurrentTemplate(template)">
-        <section flex style="padding: 10px;">
-          <h3 style="padding: 0; margin: 5px 0;">{{template.name}}</h3>
-          <h4 style="padding: 0; margin: 5px 0;">{{template.created | date: 'short'}}</h4>
-        </section>
-      </div>
+    <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars"></i>
+        Templates
+      </a>
     </div>
+    <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)">
+      <md-tooltip>Delete Template</md-tooltip>
+      Delete Template
+    </md-button>
+    </h2>
+  </md-toolbar>
+  <div layout="row" layout="column" flex>
+    <md-content flex layout="column" flex="30" layout="column" class="templates-list md-whiteframe-z2">
+      <md-list>
+        <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates" ng-click="setCurrentTemplate(template)">
+          <md-item-content>    
+          <md-button flex layout="row" layout-align="start">      
+              <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="40">            
+              <div flex layout layout-align="space-between">
+                <h3>{{template.name}}</h3>
+                <h4>{{template.created | date: 'short'}}</h4>            
+            </div>     
+          </md-button>      
+          </md-item-content>
+          </md-item>
+          </md-list>
     </md-content>
+
     <div flex="70" class="template-preview" layout="column">
       <flow-editor flow="currentTemplate.flow" readonly="true" flex></flow-editor>
       <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2 - 28px); right: 28px">
