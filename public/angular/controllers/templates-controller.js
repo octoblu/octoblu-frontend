@@ -9,7 +9,6 @@ angular.module('octobluApp')
         template.url = UrlService.withNewPath('/design/import/' + template.uuid);
         return template;
       });
-
       var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId })  || _.first($scope.templates);
       $scope.setCurrentTemplate(currentTemplate);
 
