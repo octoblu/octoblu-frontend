@@ -8,73 +8,110 @@
   </h2>
 </md-toolbar>
 
-<br>
+<md-content>
+  <div flex layout-fill layout="row" layout-align="center">
+    <div flex="66" flex-tablet="95" flex-phone="95" class="md-whiteframe-z2">
+      <div flex layout="column">
+        <div class="page-banner">
+          <img src="http://octoblu.com/wp-content/uploads/2014/10/home_slide_1b.jpg" class="img-responsive">
+        </div>
 
-<div class="container col-md-12">
-  <div class="row-flex row-flex-wrap">
-    <div class="col-md-6">
-      <div class="well">
-        <h2>
-          <a href ui-sref="material.nodes" class="text-normal-color">
-            <i class="fa fa-plug fa-2x"></i>&nbsp;
-            CONNECT
-          </a>
-        </h2>
-        <h3>Connect people, things, applications, and clouds</h3>
-        <ul>
-          <li>Direct Connect - WIRED</li>
-          <li>Direct Connect - WIRELESS</li>
-          <li>APIs</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="well">
-        <h2>
-          <a href ui-sref="material.design" class="text-normal-color">
-            <i class="fa fa-edit fa-2x"></i>&nbsp;
-            DESIGN
-          </a>
-        </h2>
-        <h3>Design flows are a simple ‘drag and drop’ with automatic deployment to production</h3>
-        <ul>
-            <li>Creat powerful orchestrations</li>
-            <li>Share flows with others</li>
-        </ul>
+        <div layout="row" layout-phone="column">
+          <div flex layout="column" class="values-column">
+            <h2><strong><a href ui-sref="material.nodes">Connect</a></strong> <span class="text-muted">Quickly</span></h2>
+            <p>Easily connect devices, people and systems to a powerful coordination and communications platform.</p>
+            <a href ui-sref="material.nodes">
+              <img src="assets/images/home/connect.png" class="img-responsive">
+            </a>
+          </div>
+          <div flex layout="column" class="values-column">
+            <h2><strong><a href ui-sref="material.design">Design</a></strong> <span class="text-muted">Intuitively</span></h2>
+            <p>Intuitively design simple to complex process through a simple drag and drop user interface.</p>
+            <a href ui-sref="material.design">
+              <img src="assets/images/home/design.png" class="img-responsive">
+            </a>
+          </div>
+          <div flex layout="column" class="values-column">
+            <h2><strong><a href ui-sref="material.process">Process</a></strong> <span class="text-muted">in Realtime</span></h2>
+            <p>Powerfully control events, processes, and delivery of information through realtime communications.</p>
+            <a href ui-sref="material.process">
+              <img src="assets/images/home/process.png" class="img-responsive">
+            </a>
+          </div>
+          <div flex layout="column" class="values-column">
+            <h2><strong><a href ui-sref="material.analyze">Analyze</a></strong> <span class="text-muted">Accurately</span></h2>
+            <p>Quickly analyze all aspects of activities and trends through advanced search and reporting tools.</p>
+            <a href ui-sref="material.analyze">
+              <img src="assets/images/home/analyze.png" class="img-responsive">
+            </a>
+          </div>
+        </div>
+
+        <div layout="column">
+          <div layout="row" layout-phone="column">
+            <div flex layout="column" class="app-quadrant">
+              <h2>Gateblu</h2>
+              <h3>
+                <a href="//gateblu.octoblu.com">
+                  <img src="https://ds78apnml6was.cloudfront.net/device/gateblu.svg" style="height: 66px; margin">
+                </a>
+              </h3>
+              <div layout="row" layout-align="center">
+                <p flex="80">Our Gateblu Gateway allows you to connect smart devices with IP addresses and not-so-smart devices without IP addresses to Meshblu via our software-based hub which supports Mac, Linux, &amp; Windows</p>
+              </div>
+            </div>
+            <div flex layout="column" class="app-quadrant">
+              <h2>Mobiblu</h2>
+              <h3>
+                <a href="https://itunes.apple.com/us/app/mobiblu/id915566405?mt=8"><i class="fa fa-4x fa-apple text-muted"></i></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://play.google.com/store/apps/details?id=com.octoblu.mobiblu.production"><i class="fa fa-4x fa-android text-success"></i></a>
+              </h3>
+              <div layout="row" layout-align="center">
+                <p flex="80">Mobiblu is a cross-platform based mobile hub application enabling a powerful tool that controls most of the functions of Octoblu from your mobile device. Mobiblu allows the connection of plugins, any device or sensor to the app on the mobile device and then allows the triggering of a flow with the click of a button. Mobiblu also allows for the connection and control of Bluetooth Low Energy (BLE) devices to the mobile hub.</p>
+              </div>
+            </div>
+          </div>
+          <div layout="row" layout-phone="column">
+            <div flex layout="column" class="app-quadrant">
+              <h2>Meshblu</h2>
+              <h3>
+                <a href="//meshblu.octoblu.com">
+                  <img src="https://ds78apnml6was.cloudfront.net/device/cloud.svg" style="height: 66px; margin">
+                </a>
+              </h3>
+              <div layout="row" layout-align="center">
+                <p flex="80">Meshblu is a cloud-based MQTT & CoAP-powered network that scales to meet any needs whether the nodes are smart devices, sensors, cloud resources, drones, Arduinos, Raspberry Pis, etc</p>
+              </div>
+            </div>
+            <div flex layout="column" class="app-quadrant">
+              <h2>Blu</h2>
+              <h3>
+                <a href="//itunes.apple.com/us/app/blu/id938900017?mt=8"><i class="fa fa-4x fa-apple text-muted"></i></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="//play.google.com/store/apps/details?id=com.octoblu.blu"><i class="fa fa-4x fa-android text-success"></i></a>
+              </h3>
+              <div layout="row" layout-align="center">
+                <p flex="80">Behold the power of the Internet of things. Blu provides a dead simple way for Octoblu users to trigger a flows created in the Octoblu designer. With a simple click of a button, you can do just about anything.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div layout="row" layout-align="center">
+          <div flex="66" layout="column">
+            <hr>
+            <br>
+            <h3 class="text-center">
+              <a href="//developer.octoblu.com">Developer</a>
+              -
+              <a href="//gateblu.octoblu.com">Gateblu</a>
+              -
+              <a href="//hackster.io/octoblu">Tutorials</a>
+            </h3>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row-flex row-flex-wrap">
-    <div class="col-md-6">
-      <div class="well">
-        <h2>
-          <a href ui-sref="material.process" class="text-normal-color">
-            <i class="fa fa-tasks fa-2x"></i>&nbsp;
-            PROCESS
-          </a>
-        </h2>
-        <h3>Securely process custom flows across multiple protocols and environments with advanced rights management model.</h3>
-        <ul>
-            <li>24/7 event monitoring and messaging</li>
-            <li>Millisecond response time</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="well">
-        <a href ui-sref="material.analyze" class="text-normal-color">
-          <h2>
-            <i class="fa fa-bar-chart-o fa-2x"></i>&nbsp;
-            ANALYZE
-          </h2>
-        </a>
-        <h3>Built-in analysis tools for rich and deep analytics:</h3>
-        <ul>
-          <li>ElasticSearch</li>
-          <li>Splunk</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div><!--/container-->
-
+</md-content>
