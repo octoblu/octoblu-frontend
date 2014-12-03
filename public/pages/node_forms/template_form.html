@@ -1,9 +1,7 @@
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
+<md-text-float label="Key" ng-model="flowNode.key"> </md-text-float>
+<br>
 <div class="form-group">
-    <label for="name">Name</label>
-    <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
-
-<div class="form-group">
-    <label for="template">Template</label>
-    <div id="template" ui-ace="{mode: 'handlebars', theme: 'chrome'}" class="code-editor" ng-model="flowNode.template"></div>
+  <label for="template">Template</label>
+  <div id="template" ui-ace="{mode: 'handlebars', theme: 'chrome'}" class="code-editor" ng-model="flowNode.template"></div>
 </div>
