@@ -10,12 +10,12 @@
     </div>
     <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)">
       <md-tooltip>Delete Template</md-tooltip>
-      Delete Template
+      <i class="fa fa-trash fa-lg"></i>
     </md-button>
     </h2>
   </md-toolbar>
-  <div layout="row" layout="column" flex>
-    <md-content flex layout="column" flex="30" layout="column" class="templates-list md-whiteframe-z2">
+  <div layout="row" layout="column md-whiteframe-z2" flex layout-align="center" >
+    <md-content layout="column" flex="30" class="templates-list md-whiteframe-z1">
       <md-list>
         <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates" ng-click="setCurrentTemplate(template)">
           <md-item-content>    
@@ -31,14 +31,14 @@
           </md-list>
     </md-content>
 
-    <div flex="70" class="template-preview" layout="column">
+    <div flex="65" class="template-preview md-whiteframe-z2" layout="column">
       <flow-editor flow="currentTemplate.flow" readonly="true" flex></flow-editor>
-      <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(100%/2 - 28px); right: 28px">
+      <md-button class="md-fab md-primary" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" style="position:absolute; top: calc(50%); right: 28px">
       <md-tooltip>Copy to Clipboard</md-tooltip>
       <i class="fa fa-share-alt fa-2x"></i>
       </md-button>
 
-      <div flex layout-padding>
+      <div flex layout-padding style="margin-left:25px;font-size:1.5em;">
         <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
         <md-content flex layout="row" layout-wrap="wrap" layout-align="space-around" ng-class="{importing: importing}">
         <div layout="column" ng-repeat="material in billOfMaterials">
