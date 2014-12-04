@@ -2,6 +2,7 @@
   {
     "name": "debounce",
     "class": "debounce",
+    "helpText": "Debounce will delay the message until after the specified interval has elapsed since the last time it received a message",
     "type": "operation:debounce",
     "category": "operation",
     "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
@@ -15,6 +16,7 @@
   {
     "name": "delay",
     "class": "delay",
+    "helpText": "Delay sending the message until after the specified interval has elapsed since the message was received",
     "type": "operation:delay",
     "category": "operation",
     "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
@@ -29,6 +31,7 @@
   {
     "name": "demultiplex",
     "class": "demultiplex",
+    "helpText": "Break an array of values into discreet messages",
     "type": "operation:demultiplex",
     "category": "operation",
     "uuid": "99b84aa0-338b-11e4-8c21-0800200c9a66",
@@ -41,6 +44,7 @@
   {
     "name": "function",
     "class": "function",
+    "helpText": "Sends a custom message using javascript",
     "category": "operation",
     "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:function",
@@ -55,6 +59,7 @@
   {
     "name": "equal",
     "class": "equal",
+    "helpText": "Filter out messages that do not pass an equality test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
     "type": "operation:equal",
@@ -68,6 +73,7 @@
   {
     "name": "Greater Than",
     "class": "greater-than",
+    "helpText": "Filter out messages that do not pass a greater than test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "7c801bad-4e1d-4ad0-aabd-d1ace2fcc001",
     "type": "operation:greater-than",
@@ -81,6 +87,7 @@
   {
     "name": "Greater Than or Equal",
     "class": "greater-than-equal",
+    "helpText": "Filter out messages that do not pass a greater than or equal test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "c36c413c-c4df-4c5b-9861-fcd08bc81503",
     "type": "operation:greater-than-equal",
@@ -94,6 +101,7 @@
   {
     "name": "Less Than",
     "class": "less-than",
+    "helpText": "Filter out messages that do not pass a less than test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "c7852f9b-96e2-4f9e-b5b5-d349e32bbf9a",
     "type": "operation:less-than",
@@ -107,6 +115,7 @@
   {
     "name": "Less Than or Equal",
     "class": "less-than-equal",
+    "helpText": "Filter out messages that do not pass a less or equal than test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "e3d81634-2536-427f-b87f-5305916e28db",
     "type": "operation:less-than-equal",
@@ -120,6 +129,7 @@
   {
     "name": "pluck",
     "class": "pluck",
+    "helpText": "Extract a portion of the message. Use {{msg.foo}} to reference incoming fields",
     "category": "operation",
     "uuid": "86aef89e-6dfd-435f-863e-6deac12fc6ec",
     "type": "operation:pluck",
@@ -133,6 +143,7 @@
   {
     "name": "trigger",
     "class": "trigger",
+    "helpText": "Send a static message. Can also be triggered from other flows",
     "category": "operation",
     "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:trigger",
@@ -147,6 +158,7 @@
   {
     "name": "webhook",
     "class": "webhook",
+    "helpText": "Create an HTTP endpoint for receiving push notifications from other services",
     "category": "operation",
     "uuid": "d5886aa5-4052-41be-8eed-9d1df32befb1",
     "type": "operation:webhook",
@@ -159,6 +171,7 @@
   {
     "name": "interval",
     "class": "interval",
+    "helpText": "Emit a message at the specified interval",
     "category": "operation",
     "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:interval",
@@ -174,6 +187,7 @@
   {
     "name": "schedule",
     "class": "schedule",
+    "helpText": "Emits messages at the specified time using Cron syntax",
     "category": "operation",
     "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:schedule",
@@ -189,6 +203,7 @@
   {
     "name": "throttle",
     "class": "throttle",
+    "helpText": "Slow down the incoming messages so that one is emitted at each occurrence of the specified interval",
     "type": "operation:throttle",
     "category": "operation",
     "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
@@ -202,6 +217,7 @@
   {
     "name": "Meshblu device",
     "class": "device",
+    "helpText": "Generic Meshblu device for specifying custom UUIDs",
     "category": "operation",
     "uuid": "be0d21d3-f6b0-4f21-ae3b-484d69f6063a",
     "type": "operation:device",
@@ -215,6 +231,7 @@
   {
     "name": "Microblu device",
     "class": "microblu",
+    "helpText": "Generic Microblu device for specifying custom UUIDs",
     "category": "operation",
     "uuid": "fb99604a-3ed3-4292-872b-a5b1ec1c16ab",
     "type": "operation:microblu",
@@ -228,6 +245,7 @@
   {
     "name": "RSS request",
     "class": "rss",
+    "helpText": "Perform a request to retrieve an RSS Feed. Response is auto translated to the Octoblu message format",
     "category": "operation",
     "uuid": "2aac8e4a-7695-4269-ba98-3678581f7a59",
     "type": "operation:rss",
@@ -242,6 +260,7 @@
   {
     "name": "http get",
     "class": "http-request",
+    "helpText": "Perform an HTTP Get request",
     "category": "operation",
     "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:http-request",
@@ -256,6 +275,7 @@
   {
     "name": "http delete",
     "class": "http-request-delete",
+    "helpText": "Perform an HTTP Delete request",
     "category": "operation",
     "uuid": "da37cc30-5326-11e4-ad12-c7f5132c4ef6",
     "type": "operation:http-delete-request",
@@ -270,6 +290,7 @@
   {
     "name": "http post",
     "class": "http-post-request",
+    "helpText": "Perform an HTTP Post request",
     "category": "operation",
     "uuid": "95675c2c-5305-11e4-9e35-164230d1df67",
     "type": "operation:http-post-request",
@@ -285,6 +306,7 @@
   {
     "name": "http put",
     "class": "http-put-request",
+    "helpText": "Perform an HTTP Put request",
     "category": "operation",
     "uuid": "adb9dfe0-5326-11e4-ad12-c7f5132c4ef6",
     "type": "operation:http-put-request",
@@ -300,6 +322,7 @@
   {
     "name": "sentiment",
     "class": "sentiment",
+    "helpText": "Performs sentiment analysis on the words in the key, sends msg.score",
     "category": "operation",
     "uuid": "37f0b3f2-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:sentiment",
@@ -312,6 +335,7 @@
   {
     "name": "debug",
     "class": "debug",
+    "helpText": "Display the contents of the messages it receives in the debug panel",
     "category": "operation",
     "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:debug",
@@ -329,6 +353,7 @@
   {
     "name": "template",
     "class": "template",
+    "helpText": "Sends a custom message using handlebars (e.g. {{msg.text}})",
     "category": "operation",
     "uuid": "8f2e02ff-08da-446d-ab50-e5115f511cba",
     "type": "operation:template",
@@ -341,6 +366,7 @@
   {
     "name": "comment",
     "class": "comment",
+    "helpText": "Displays a comment in the flow",
     "category": "operation",
     "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:comment",
@@ -353,6 +379,7 @@
   {
     "name": "Set Key",
     "class": "set-key",
+    "helpText": "Store a value for later retrieval",
     "category": "operation",
     "uuid": "5a6bb5a5-b2ef-4a9e-b15f-f0f646ee90d6",
     "type": "operation:set-key",
@@ -365,6 +392,7 @@
   {
     "name": "Get Key",
     "class": "get-key",
+    "helpText": "Get a value stored by Set Key",
     "category": "operation",
     "uuid": "6daa638e-ced8-4de9-be9b-dcd026be6348",
     "type": "operation:get-key",
@@ -377,6 +405,7 @@
   {
     "name": "Range",
     "class": "range",
+    "helpText": "Filter out messages that do not fall within the specified range. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
     "uuid": "54cedc7a-24fd-425c-8f10-898bdc90bc39",
     "type": "operation:range",
@@ -389,6 +418,7 @@
   {
     "name": "Compose",
     "class": "compose",
+    "helpText": "Wait for all values to be received before sending the message",
     "category": "operation",
     "uuid": "46b72292-e288-4bc4-855c-019fb241c1ad",
     "type": "operation:compose",
@@ -402,6 +432,7 @@
   {
     "name": "Broadcast",
     "class": "broadcast",
+    "helpText": "Broadcast message to any meshblu device or Octoblu flow",
     "category": "operation",
     "uuid": "2be62b90-6519-11e4-867f-276797c27ed6",
     "type": "operation:broadcast",
