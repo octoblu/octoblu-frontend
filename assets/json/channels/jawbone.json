@@ -33,9 +33,6 @@
         ],
         "path": "/users/@me/bandevents",
         "displayName": "Get Band Events",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/bandevents"
         },
@@ -83,9 +80,6 @@
         ],
         "path": "/users/@me/body_events",
         "displayName": "Get Body Composition Events",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/body"
         },
@@ -95,9 +89,6 @@
       {
         "path": "/body_events/:event_xid",
         "displayName": "Get a Body Composition Event",
-        "authentication": {
-          "required": "true"
-        },
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/body"
         },
@@ -105,9 +96,10 @@
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
         "params": [
           {
-            "name": "event_xid",
+            "name": ":event_xid",
             "displayName": "Event ID",
-            "style": "body",
+            "style": "url",
+            "required": true,
             "type": "string"
           }
         ]
@@ -116,9 +108,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/body"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a New Body Composition Event",
         "path": "/users/@me/body_events",
@@ -185,9 +174,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/body"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Body Composition Event",
         "path": "/body_events/:event_xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
@@ -199,9 +185,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/custom"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get Custom Events",
         "path": "/users/@me/generic_events",
@@ -249,9 +232,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/custom"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a Custom Event",
         "path": "/users/@me/generic_events",
@@ -335,9 +315,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/custom"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Update a Custom Event",
         "path": "/generic_events/:xid/partialUpdate",
@@ -428,9 +405,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/custom"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Custom Event",
         "path": "/generic_events/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid",
@@ -448,9 +422,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/goals"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "/users/@me/goals",
         "path": "/users/@me/goals",
         "params": [],
@@ -460,9 +431,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/goals"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a Goal",
         "path": "/users/@me/goals",
@@ -479,9 +447,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/meals"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Meal List",
         "path": "/users/@me/meals",
         "params": [],
@@ -491,9 +456,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/meals"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get a Meal",
         "path": "/meals/:xid",
@@ -506,9 +468,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/meals"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a Meal",
         "path": "/users/@me/meals",
@@ -586,9 +545,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/meals"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Update a Meal",
         "path": "/meals/:xid/partialUpdate",
@@ -673,9 +629,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/meals"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Meal",
         "path": "/meals/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
@@ -693,9 +646,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/mood"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Mood",
         "path": "/users/@me/mood",
         "params": [],
@@ -705,9 +655,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/mood"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get a Single Mood Event",
         "path": "/mood/:xid",
@@ -725,9 +672,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/mood"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Record Mood",
         "path": "/users/@me/mood",
@@ -770,9 +714,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/mood"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Mood Event",
         "path": "/mood/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
@@ -790,9 +731,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/moves"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Moves List",
         "path": "/users/@me/moves",
         "params": [],
@@ -802,9 +740,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/moves"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get a Move",
         "path": "/moves/:move_xid",
@@ -823,9 +758,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/moves"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get a Move's Graph",
         "path": "/moves/:move_xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/image",
@@ -842,9 +774,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/moves"
-        },
-        "authentication": {
-          "required": "true"
         },
         "path": "/moves/:move_xid/ticks",
         "displayName": "Get Move Ticks",
@@ -863,9 +792,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/refreshtoken"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Refresh Token",
         "path": "/users/@me/refreshToken",
         "params": [],
@@ -875,9 +801,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/settings"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get Settings",
         "path": "/users/@me/settings",
@@ -889,9 +812,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get the User's Sleep List",
         "path": "/users/@me/sleeps",
         "params": [],
@@ -901,9 +821,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get a Specific Sleep Period",
         "path": "/sleeps/:xid",
@@ -922,9 +839,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get a Sleep Period Graph",
         "path": "/sleeps/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/image",
@@ -942,9 +856,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Sleep Phases",
         "path": "/sleeps/:xid/ticks",
         "params": [
@@ -961,9 +872,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a Sleep Period",
         "path": "/users/@me/sleeps",
@@ -1000,9 +908,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/sleeps"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Sleep Period",
         "path": "/sleeps/:xid",
         "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
@@ -1021,9 +926,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/timezone"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Time Zone Information",
         "path": "/users/@me/timezone",
         "params": [],
@@ -1033,9 +935,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/trends"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get the User's Trends",
         "path": "/users/@me/trends",
@@ -1047,9 +946,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/user"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Basic Information About the User",
         "path": "/users/@me",
         "params": [],
@@ -1059,9 +955,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/user"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get List of Friends",
         "path": "/users/@me/friends",
@@ -1073,9 +966,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get List of Workouts",
         "path": "/users/@me/workouts",
         "params": [],
@@ -1085,9 +975,6 @@
         "httpMethod": "GET",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Get a Workout",
         "path": "/workouts/:xid",
@@ -1107,9 +994,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get a Workout Graph",
         "path": "/workouts/:xid/image",
         "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/image",
@@ -1128,9 +1012,6 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Get Workout Ticks",
         "path": "/workouts/:xid/ticks",
         "params": [
@@ -1148,9 +1029,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Create a Workout",
         "path": "/users/@me/workouts",
@@ -1240,9 +1118,6 @@
         "httpMethod": "POST",
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
-        },
-        "authentication": {
-          "required": "true"
         },
         "displayName": "Update a Workout",
         "path": "/workouts/:xid/partialUpdate",
@@ -1339,16 +1214,13 @@
         "doc": {
           "url": "https://jawbone.com/up/developer/endpoints/workouts"
         },
-        "authentication": {
-          "required": "true"
-        },
         "displayName": "Delete a Workout",
         "path": "/workouts/:xid",
         "params": [
           {
-            "name": "xid",
+            "name": ":xid",
             "displayName": "Workout ID",
-            "style": "body",
+            "style": "url",
             "type": "string"
           }
         ],
