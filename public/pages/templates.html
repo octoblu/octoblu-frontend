@@ -11,25 +11,26 @@
     </h2>
   </md-toolbar>
   <div layout="row" layout="column md-whiteframe-z2" flex layout-align="center" >
-    <md-content layout="column" flex="30" class="templates-list md-whiteframe-z1">
-        <div layout="row" layout-align="space-around center">
-          <md-text-float class="text-float-search" flex="90" label="Filter Templates" ng-model="templateSearch"></md-text-float>
-          <i class="fa fa-search fa-lg"></i>
-        </div>
-      <md-list>
-        <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
-          <md-item-content layout="row" layout-align="space-around">
-          <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)">
-              <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="40">            
-              <div flex layout layout-align="space-between">
-                <h3>{{template.name}}</h3>
-                <h4>{{template.created | date: 'short'}}</h4>
-            </div>     
-          </md-button>
-          </md-item-content>
-          </md-item>
-          </md-list>
-    </md-content>
+  <div layout="column" flex="30" class="templates-list md-whiteframe-z1">
+      <div layout="row" layout-align="space-around center" style="margin:20px 0 40px 0;">
+        <md-text-float class="text-float-search" flex="90" label="Filter Templates" ng-model="templateSearch"></md-text-float>
+        <i class="fa fa-search fa-lg"></i>
+      </div>
+    <md-list style="overflow-y:scroll;">
+      <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
+        <md-item-content layout="row" layout-align="space-around">
+        <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)">
+            <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="40">            
+            <div flex layout layout-align="space-between">
+              <h3>{{template.name}}</h3>
+              <h4>{{template.created | date: 'short'}}</h4>
+          </div>     
+        </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </div>
+
 
     <div flex="65" class="template-preview md-whiteframe-z2" layout="column">
       <flow-editor flow="currentTemplate.flow" readonly="true" flex></flow-editor>
