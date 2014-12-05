@@ -71,7 +71,7 @@
     </div>
   </md-toolbar>
 
-  <div class="workspace-container" flex layout-fill layout="column" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+  <div style="z-index: 0;" class="workspace-container" flex layout-fill layout="column" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
     <flow-editor flow="activeFlow"></flow-editor>
   </div>
 
