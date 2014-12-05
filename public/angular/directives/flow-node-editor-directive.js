@@ -1,7 +1,5 @@
 angular.module('octobluApp')
 .directive('flowNodeEditor', function ($window) {
-
-
   return {
     restrict: 'E',
     controller: 'FlowNodeEditorController',

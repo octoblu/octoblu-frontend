@@ -10,6 +10,7 @@ angular.module('octobluApp')
 
     FlowNodeTypeService.getFlowNodeType($scope.flowNode.type).then(function(flowNodeType){
       $scope.flowNodeType = flowNodeType;
+      $scope.formTemplatePath = $scope.flowNodeType.formTemplatePath; //causes fadeOut to be smoother
     });
 
     FlowNodeTypeService.getOtherMatchingFlowNodeTypes($scope.flowNode.type).then(function(otherMatchingFlowNodeTypes){
