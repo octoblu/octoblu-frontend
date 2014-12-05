@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowNodeEditorController', function ($scope, FlowNodeTypeService) {
+.controller('FlowNodeEditorController', function ($scope, FlowNodeTypeService, marked) {
   'use strict';
 
   var setFlowNodeType = function() {
@@ -19,6 +19,10 @@ angular.module('octobluApp')
 
   $scope.close = function(){
     $scope.flowNode = null;
+  };
+
+  $scope.toggleHelp = function(){
+    $scope.showHelp = !$scope.showHelp;
   };
 
   setFlowNodeType();
