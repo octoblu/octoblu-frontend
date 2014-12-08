@@ -16,7 +16,7 @@ describe('FlowNodeEditorController', function () {
     expect(sut).to.exist;
   });
 
-  describe('when a flowNode is set', function () {
+  xdescribe('when a flowNode is set', function () {
     beforeEach(function () {
       scope.flowNode = { type: 'planet'};
       scope.$digest();
