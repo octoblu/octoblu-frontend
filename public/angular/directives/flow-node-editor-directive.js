@@ -12,7 +12,7 @@ angular.module('octobluApp')
     link: function(scope, element) {
       var setScrollableHeight = function() {
         var size = $window.innerHeight - 100;
-        $('.flow-node-editor').css('max-height', size);
+        $('.flow-node-editor').css('height', size);
       }
 
       var w = angular.element($window);

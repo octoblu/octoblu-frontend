@@ -11,7 +11,7 @@
       <form style="padding:20px;" layout="column">
         <p class="help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
         </p>
-        <div class="flow-node-form" ng-include="formTemplatePath"></div>
+        <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
         <br>
         <md-switch ng-model="flowNode.debug">Debug</md-switch>
       </form>

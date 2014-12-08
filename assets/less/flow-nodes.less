@@ -89,7 +89,7 @@
 
 .flow-node-editor {
   position: absolute;
-  max-height: 450px;
+  // max-height: 450px;
   top: 70px;
   width: 500px;
   left: 25px;
@@ -97,10 +97,13 @@
   padding: 0;
   margin: 0;
 
-  &.ng-hide-remove {
+  -webkit-transition: all linear 5s;
+  transition: all linear 5s;
+
+  &.ng-hide-remove.ng-hide-remove-active {
    .show-animation;
   }
-  &.ng-hide-add {
+  &.ng-hide-add.ng-hide-add-active {
    .hide-animation;
   }
 

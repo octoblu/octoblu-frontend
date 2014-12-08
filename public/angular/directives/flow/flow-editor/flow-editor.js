@@ -58,8 +58,6 @@ angular.module('octobluApp')
 
         flowRenderer.on('nodeSelected', function (flowNode) {
           $scope.flow.selectedLink = null;
-          $scope.flow.selectedFlowNode = null;
-          $scope.$apply() // forces the currently selected node to be set to null (removes the flow node editor)
           $scope.flow.selectedFlowNode = flowNode;
 
           if(flowNode && flowNode.needsSetup){
