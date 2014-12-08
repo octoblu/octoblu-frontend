@@ -52,9 +52,9 @@
     "angular-material": "master",
     "zeroclipboard": "~2.1.6",
     "ng-clip": "~0.2.4",
-    "angular-bootstrap": "~0.12.0",
     "angular-marked": "~0.0.12",
-    "marked": "~0.3.2"
+    "marked": "~0.3.2",
+    "angular-bootstrap": "~0.12.0"
   },
   "devDependencies": {
     "chai": "~1.9.1",
