@@ -15,22 +15,26 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
   .service('skynetConfig', function ($location) {
-    var config = {
-      host: 'wss://meshblu.octoblu.com',
-      port: '443'
+    var host = $location.host();
+
+    if (host === 'app.octoblu.com') {
+      return {
+        host: 'wss://meshblu.octoblu.com',
+        port: '443'
+      };
+    }
+
+    if (host === 'staging.octoblu.com') {
+      return {
+        host: 'wss://meshblu-staging.octoblu.com',
+        port: '443'
+      };
+    }
+
+    return {
+      host: 'ws://' + host,
+      port: '3000'
     };
-
-    if ($location.host() === 'staging.octoblu.com') {
-      config.host = 'wss://meshblu-staging.octoblu.com';
-      config.port = '443';
-    }
-
-    if ($location.host() === 'localhost') {
-      config.host = 'ws://localhost';
-      config.port = '3000';
-    }
-
-    return config;
   })
   .constant('reservedProperties', ['$$hashKey', '_id'])
   // enabled CORS by removing ajax header
