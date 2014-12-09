@@ -3,7 +3,7 @@ var BoxStrategy = require('passport-box').Strategy;
 var User        = require('../app/models/user');
 var Channel     = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:box').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:box');
 
 CONFIG.passReqToCallback = true;
 

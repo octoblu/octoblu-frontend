@@ -3,7 +3,7 @@ var UserVoiceStrategy = require('passport-uservoice').Strategy;
 var User              = require('../app/models/user');
 var Channel           = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:uservoice').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:uservoice');
 
 CONFIG.passReqToCallback = true;
 

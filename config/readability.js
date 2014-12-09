@@ -3,7 +3,7 @@ var ReadabilityStrategy = require('passport-readability').Strategy;
 var User         = require('../app/models/user');
 var Channel      = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:readability').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:readability');
 
 CONFIG.passReqToCallback = true;
 

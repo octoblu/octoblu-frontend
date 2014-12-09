@@ -1,5 +1,5 @@
 'use strict';
-var config  = require('../../config/database')(),
+var config  = require('../../config/database'),
   when      = require('when'),
   nodefn    = require('when/node/function'),
   _         = require('lodash'),

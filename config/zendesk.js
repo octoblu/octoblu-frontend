@@ -3,7 +3,7 @@ var ZendeskStrategy = require('passport-zendesk').Strategy;
 var User = require('../app/models/user');
 var Channel = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:zendesk').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:zendesk');
 CONFIG.passReqToCallback = true;
 
 var zendeskStrategy = new ZendeskStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done) {

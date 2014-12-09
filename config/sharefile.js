@@ -3,7 +3,7 @@ var ShareFileStrategy = require('passport-sharefile').Strategy;
 var User              = require('../app/models/user');
 var Channel           = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:sharefile').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:sharefile');
 
 CONFIG.passReqToCallback = true;
 

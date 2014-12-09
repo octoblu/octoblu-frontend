@@ -3,7 +3,7 @@ var DropboxStrategy = require('passport-dropbox-oauth2').Strategy;
 var User            = require('../app/models/user');
 var Channel         = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:dropbox').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:dropbox');
 
 CONFIG.passReqToCallback = true;
 

@@ -3,7 +3,7 @@ var QuickBooksStrategy = require('passport-intuit-oauth').Strategy;
 var User               = require('../app/models/user');
 var Channel            = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:quickbooks').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:quickbooks');
 
 CONFIG.passReqToCallback = true;
 

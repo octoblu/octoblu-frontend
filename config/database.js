@@ -40,6 +40,4 @@ var config = {
     }
 };
 
-module.exports = function (environment) {
-    return config[environment || process.env.NODE_ENV];
-};
+module.exports = config[process.env.NODE_ENV] || config['development'];

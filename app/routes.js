@@ -1,7 +1,7 @@
 module.exports = function(app, passport) {
     // setting env to app.settings.env
     var env = app.settings.env;
-    var config = require('../config/auth')(env);
+    var config = require('../config/auth');
     var skynet = require('skynet');
     var security = require('./controllers/middleware/security');
 
@@ -225,7 +225,7 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/box',          boxController.authorize);
             app.get('/api/oauth/box/callback', boxController.callback, boxController.redirectToDesigner);
-            
+
             app.get('/api/oauth/doubleclicksearch',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/doubleclicksearch/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
@@ -288,7 +288,7 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/foursquare',          fourSquareController.authorize);
             app.get('/api/oauth/foursquare/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
-            
+
             app.get('/api/oauth/swarm',          fourSquareController.authorize);
             app.get('/api/oauth/swarm/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
 

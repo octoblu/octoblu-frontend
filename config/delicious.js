@@ -3,7 +3,7 @@ var DeliciousStrategy = require('passport-yahoo-oauth').Strategy;
 var User              = require('../app/models/user');
 var Channel           = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:delicious').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:delicious');
 
 CONFIG.passReqToCallback = true;
 

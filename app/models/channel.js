@@ -48,6 +48,11 @@ var Channel = {
     return _.findWhere(channels, {type: type});
   },
 
+  syncFindOauthConfigByType: function(type) {
+    var channel = Channel.syncFindByType(type);
+    return channel.oauth[process.env.NODE_ENV] || channel.oauth.development;
+  },
+
   syncMatchByType: function(prefix){
     var re = new RegExp('^' + prefix);
     return _.where(channels, function(channel){

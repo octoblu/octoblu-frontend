@@ -5,7 +5,7 @@ var Channel        = require('../app/models/channel');
 var _              = require('lodash');
 var when           = require('when');
 
-var CONFIG = Channel.syncFindByType('channel:google-plus').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:google-plus');
 
 CONFIG.passReqToCallback = true;
 var ensureUser = function(req, user, profile, callback){

@@ -3,7 +3,7 @@ var NestStrategy = require('passport-nest').Strategy;
 var User         = require('../app/models/user');
 var Channel      = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:nest').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:nest');
 
 CONFIG.passReqToCallback = true;
 

@@ -21,10 +21,10 @@ var certificate    = fs.readFileSync('config/server.crt', 'utf8');
 var credentials    = {key: privateKey, cert: certificate};
 var app            = express();
 var env            = app.settings.env;
-var configAuth     = require('./config/auth.js')(env);
+var configAuth     = require('./config/auth.js');
 var port           = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
-var databaseConfig = require('./config/database')();
+var databaseConfig = require('./config/database');
 
 
 if (process.env.AIRBRAKE_KEY) {

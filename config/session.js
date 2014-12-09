@@ -1,5 +1,5 @@
-var databaseConfig = require('./database')();
-var configAuth     = require('./auth.js')();
+var databaseConfig = require('./database');
+var configAuth     = require('./auth.js');
 var path           = require('path');
 var expressSession = require('express-session');
 

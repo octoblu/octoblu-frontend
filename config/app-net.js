@@ -3,7 +3,7 @@ var AppNetStrategy = require('passport-appdotnet').Strategy;
 var User     = require('../app/models/user');
 var Channel = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:app.net').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:app.net');
 
 CONFIG.tokenURL = 'https://account.app.net/oauth/access_token';
 CONFIG.authorizationURL = 'https://account.app.net/oauth/authenticate';

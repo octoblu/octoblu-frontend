@@ -5,7 +5,7 @@ var when       = require('when');
 var uuid       = require('node-uuid');
 var bcrypt     = require('bcrypt');
 var crypto     = require('crypto');
-var configAuth = require('../../config/auth')(process.env.NODE_ENV);
+var configAuth = require('../../config/auth');
 var request    = require('request');
 var Channel    = require('./channel');
 

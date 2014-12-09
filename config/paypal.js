@@ -4,7 +4,7 @@ var User           = require('../app/models/user');
 var Channel        = require('../app/models/channel');
 var url            = require('url');
 
-var CONFIG = Channel.syncFindByType('channel:paypal').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:paypal');
 
 var uri = url.parse(CONFIG.callbackURL);
 var realm = uri.protocol + '//' + uri.host + '/';

@@ -4,7 +4,7 @@ var User       = require('../app/models/user');
 var Channel    = require('../app/models/channel');
 var when       = require('when');
 
-var CONFIG = Channel.syncFindByType('channel:foursquare').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:foursquare');
 
 CONFIG.passReqToCallback = true;
 

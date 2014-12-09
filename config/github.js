@@ -4,7 +4,7 @@ var User           = require('../app/models/user');
 var Channel        = require('../app/models/channel');
 var _              = require('lodash');
 
-var CONFIG = Channel.syncFindByType('channel:github').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:github');
 
 CONFIG.passReqToCallback = true;
 

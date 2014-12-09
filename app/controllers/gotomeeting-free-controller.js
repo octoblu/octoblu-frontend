@@ -3,7 +3,7 @@ var Channel = require('../models/channel');
 var User = require('../models/user');
 
 var channelId = '54468c4914d3e4c4645c6e27';
-var CONFIG = Channel.syncFindById(channelId).oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:gotomeeting-free');
 
 var concatAuth = encodeURIComponent(CONFIG.clientID) + ':' + encodeURIComponent(CONFIG.clientSecret);
 var authStr = new Buffer(concatAuth).toString('base64');

@@ -3,7 +3,7 @@ var CitrixStrategy = require('passport-citrix').Strategy;
 var User           = require('../app/models/user');
 var Channel        = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:gotomeeting').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:gotomeeting');
 
 CONFIG.passReqToCallback = true;
 

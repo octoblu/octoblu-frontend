@@ -3,7 +3,7 @@ var SmartsheetStrategy = require('passport-smartsheet').Strategy;
 var User               = require('../app/models/user');
 var Channel            = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:smartsheet').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:smartsheet');
 
 CONFIG.passReqToCallback = true;
 

@@ -3,7 +3,7 @@ var WordPressStrategy = require('passport-wordpress').Strategy;
 var User              = require('../app/models/user');
 var Channel           = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:wordpress').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:wordpress');
 
 CONFIG.passReqToCallback = true;
 

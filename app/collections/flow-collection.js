@@ -1,4 +1,4 @@
-var config = require('../../config/auth')(),
+var config = require('../../config/auth'),
   _ = require('lodash');
 
 var FlowCollection = function (Flow) {

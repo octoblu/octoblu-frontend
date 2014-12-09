@@ -16,7 +16,7 @@ var FlowDeploy = function(options){
   options         = options || {};
 
   userUUID        = options.userUUID;
-  config          = options.config  || require('../../config/auth')(process.env.NODE_ENV);
+  config          = options.config  || require('../../config/auth');
   request         = options.request || require('request');
   meshblu         = options.meshblu;
 

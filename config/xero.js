@@ -3,7 +3,7 @@ var XeroStrategy = require('passport-xero').Strategy;
 var User     = require('../app/models/user');
 var Channel = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindByType('channel:xero').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindOauthConfigByType('channel:xero');
 
 CONFIG.passReqToCallback = true;
 
