@@ -44,6 +44,12 @@
       </div>
 
       <div flex layout="row" layout-align="center">
+
+        <md-button ng-click="center()">
+          <md-tooltip>Center</md-tooltip>
+          <i class="fa fa-crosshairs"></i>
+        </md-button>
+
         <md-button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
           <md-tooltip>Zoom Out</md-tooltip>
           <i class="fa fa-minus"></i>

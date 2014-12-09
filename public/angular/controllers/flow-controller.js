@@ -68,11 +68,14 @@ angular.module('octobluApp')
   refreshFlows().then(function(){
     deleteCookie();
     var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
+    
     if(!activeFlow){
       $state.go('material.design');
       return;
     }
+
     $scope.setActiveFlow(activeFlow);
+
     skynetService.getSkynetConnection().then(function (skynetConnection) {
       skynetConnection.on('ready', function(){
         subscribeToFlow(skynetConnection, $stateParams.flowId);
@@ -266,6 +269,14 @@ angular.module('octobluApp')
       $scope.activeFlow.zoomScale -= 0.25;
     }
   };
+
+  $scope.center = function () {
+    $scope.activeFlow.zoomScale = 1;
+    $scope.activeFlow.zoomX = 0;
+    $scope.activeFlow.zoomY = 0;
+    
+  };
+
 
   $scope.immediateSave = function (e) {
     if (e) {
