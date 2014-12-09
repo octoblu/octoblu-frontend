@@ -2,28 +2,30 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function($scope, channelService) {
   'use strict';
 
-  channelService.getById($scope.node.channelid).then(function(channel){
-    var resources = _.filter(channel.application.resources, function(resource){
-      if(resource.enabled === false){
-        return false;
-      }
-      return true;
-    });
+  var selectResources = function() {
+    channelService.getById($scope.node.channelid).then(function(channel){
+      var resources = _.filter(channel.application.resources, function(resource){
+        if(resource.enabled === false){
+          return false;
+        }
+        return true;
+      });
 
-    resources.sort(function(a, b){
-      var aKey = a.displayName ? a.displayName : a.path; 
-      var bKey = b.displayName ? b.displayName : b.path; 
-      if(aKey < bKey){
-        return -1;
-      }
-      if(aKey > bKey){
-        return 1;
-      }
-      return 0;
-    });
+      resources.sort(function(a, b){
+        var aKey = a.displayName ? a.displayName : a.path; 
+        var bKey = b.displayName ? b.displayName : b.path; 
+        if(aKey < bKey){
+          return -1;
+        }
+        if(aKey > bKey){
+          return 1;
+        }
+        return 0;
+      });
 
-    $scope.resources = resources;
-  });
+      $scope.resources = resources;
+    });
+  };
 
   $scope.getEndpointLabel = function(resource) {
     return (resource.displayName || resource.path);
@@ -55,6 +57,7 @@ angular.module('octobluApp')
     $scope.headerParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'header');
   };
 
+  $scope.$watch('node', selectResources);
   $scope.$watch('resources',   selectEndpoint);
   $scope.$watch('selectedEndpoint', updateNodeWithSelectedEndpoint);
 });
