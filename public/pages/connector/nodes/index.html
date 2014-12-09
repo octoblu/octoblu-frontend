@@ -19,7 +19,7 @@
   <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white;">
     <md-content flex layout-fill>
       <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
-        <div ng-if="nodes.length" ng-repeat="node in nodes | filter: {name:nodeSearch} | filter: filterFlows | orderBy: 'name'" class="bill-of-materials-icon">
+        <div ng-if="nodes.length" ng-repeat="node in nodes | filter: filterFlows | orderBy: 'name'" class="bill-of-materials-icon">
           <h4 class="text-center">
             <a href ng-href="{{nextStepUrl(node)}}" class="">
               <div title="{{node.name}}" class="node-thumbnail animated-popout" ng-style="{ 'background-image': 'url(' + node.logo + ')' }" title="{{node.name}}" ng-class="{faded: !node.online}"></div>
