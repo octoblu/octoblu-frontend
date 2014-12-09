@@ -1217,5 +1217,18 @@
     },
     "connector": "meshblu-meshlium",
     "type" : "device:meshlium"
+  },
+  {
+    "_id" : "ced95b60-7fef-11e4-ad43-5b5922958876",
+    "category" : "device",
+    "description" : "Banjo Canyon",
+    "enabled" : true,
+    "name" : "Banjo Canyon",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "banjocanyon"
+    },
+    "connector": "meshblu-banjocanyon",
+    "type" : "device:banjocanyon"
   }
 ]
