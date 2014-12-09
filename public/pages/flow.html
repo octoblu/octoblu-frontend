@@ -3,8 +3,6 @@
     <img src="/assets/images/octoblu.png" height="50px"/>
   </div>
 
-  <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
-
   <md-toolbar md-theme="octo-blue" class="flow-top-bar" layout="row" layout-phone="column" layout-tablet="column">
     <div flex layout="row" class="md-toolbar-tools">
       <a href class="menu-icon" ng-click="toggleNav()">
@@ -77,4 +75,5 @@
 
   <flow-browser flex flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
   <flow-node-editor flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
+  <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
 </div>
