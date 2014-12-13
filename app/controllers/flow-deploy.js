@@ -29,7 +29,7 @@ var FlowDeploy = function (options) {
     userUUID = req.user.skynet.uuid;
     Flow.getFlow(req.params.id)
       .then(function (flow) {
-        Flow.updateByFlowIdAndUser(req.params.id, req.user.resource.uuid, {activated: activated});
+        Flow.updateByFlowIdAndUser(flow.flowId, userUUID, {activated: activated});
         cmd(userUUID, flow, meshblu);
       });
   };
