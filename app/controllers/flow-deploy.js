@@ -9,26 +9,27 @@ var FlowDeploy = function (options) {
   Flow = require('../models/flow');
 
   self.startInstance = function (req, res) {
-    self.runOnInstance(req, FlowDeploy.start);
+    self.runOnInstance(req, FlowDeploy.start, true);
     res.send(201);
   };
 
   self.stopInstance = function (req, res) {
-    self.runOnInstance(req, FlowDeploy.stop);
+    self.runOnInstance(req, FlowDeploy.stop, false);
     res.send(200);
   };
 
   self.restartInstance = function (req, res) {
-    self.runOnInstance(req, FlowDeploy.restart);
+    self.runOnInstance(req, FlowDeploy.restart, true);
     res.send(200);
   };
 
-  self.runOnInstance = function (req, cmd) {
+  self.runOnInstance = function (req, cmd, activated) {
     var userUUID, userToken;
 
     userUUID = req.user.skynet.uuid;
     Flow.getFlow(req.params.id)
       .then(function (flow) {
+        Flow.updateByFlowIdAndUser(req.params.id, req.user.resource.uuid, {activated: activated});
         cmd(userUUID, flow, meshblu);
       });
   };
