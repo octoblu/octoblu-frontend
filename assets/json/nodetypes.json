@@ -676,7 +676,7 @@
     "_id" : "53c9b83bf400e177dca325cc",
     "category" : "channel",
     "description" : "",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "Facebook",
     "skynet" : {
       "type" : "channel",
