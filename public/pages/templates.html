@@ -17,7 +17,7 @@
         <i class="fa fa-search fa-lg"></i>
       </div>
       <md-list style="overflow-y:scroll;">
-        <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
+        <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: filterTemplateName(templateSearch)">
           <md-item-content layout="row" layout-align="space-around">
           <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)">
               <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="40">            
@@ -44,7 +44,7 @@
       </md-button>
       <div flex layout-fill layout="column" style="margin-left:25px;">
         <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
-        <bill-of-materials materials="billOfMaterials"></bill-of-materials>
+        <bill-of-materials flow="currentTemplate.flow"></bill-of-materials>
       </div>
     </div>
   </div>
