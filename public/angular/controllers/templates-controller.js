@@ -50,7 +50,7 @@ angular.module('octobluApp')
 
   var immediateUpdateTemplate = function(newTemplate, oldTemplate){
     if (!newTemplate || !oldTemplate) {
-      return;s
+      return;
     }
 
     TemplateService.update(newTemplate.uuid, newTemplate);
