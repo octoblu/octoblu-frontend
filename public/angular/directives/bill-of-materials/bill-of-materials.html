@@ -1,0 +1,9 @@
+<md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around" ng-class="{importing: importing}">
+  <div layout="column" ng-repeat="material in materials">
+    <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }">
+    </div>
+    <div class="md-tile-content">
+      <h3 class="text-center">{{material.name}}</h3>
+    </div>
+  </div>
+</md-content>

@@ -35,19 +35,6 @@ html, body, .full-height {
       animation: 1s bounceOutRight ease;
     }
   }
-
-  .bill-of-materials {
-    transform: translateY(-350px);
-    -webkit-transform: translateY(-350px);
-    min-height:350px;
-
-    &.importing {
-        -webkit-animation: 1s bounceOutDown ease;
-        -ms-animation: 1s bounceOutDown ease;
-        animation: 1s bounceOutDown ease;
-    }
-
-  }
 }
 
 .page-header {
@@ -73,6 +60,21 @@ html, body, .full-height {
     h3 {
       font-size: 2em;
     }
+  }
+}
+
+.flow-importing {
+  .bill-of-materials {
+    transform: translateY(-350px);
+    -webkit-transform: translateY(-350px);
+    min-height:350px;
+
+    &.importing {
+        -webkit-animation: 1s bounceOutDown ease;
+        -ms-animation: 1s bounceOutDown ease;
+        animation: 1s bounceOutDown ease;
+    }
+
   }
 }
 
