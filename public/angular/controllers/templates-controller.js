@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, BillOfMaterialsService, UrlService) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, UrlService) {
 
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {
@@ -11,13 +11,6 @@ angular.module('octobluApp')
       });
       var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId })  || _.first($scope.templates);
       $scope.setCurrentTemplate(currentTemplate);
-
-
-      BillOfMaterialsService.generate(currentTemplate.flow)
-      .then(function(billOfMaterials){
-          $scope.billOfMaterials = billOfMaterials;
-        });
-
     });
   };
 

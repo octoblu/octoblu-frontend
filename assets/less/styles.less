@@ -55,18 +55,20 @@ html, body, .full-height {
 }
 
 .bill-of-materials {
-  min-width: 80%;
   .md-tile-content {
-    h3 {
-      font-size: 2em;
+    h3&.template-item{
+      font-size: 1.0em;
+    }
+    h4.template-item{
+      font-size: 0.8em
     }
   }
 }
 
 .flow-importing {
   .bill-of-materials {
-    transform: translateY(-350px);
-    -webkit-transform: translateY(-350px);
+    transform: translateY(-400px);
+    -webkit-transform: translateY(-400px);
     min-height:350px;
 
     &.importing {
@@ -91,6 +93,7 @@ html, body, .full-height {
   
   h3 {
     margin-top: 24px;
+
   }
   h4 {
     margin-right: 15px;
