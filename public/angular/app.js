@@ -8,7 +8,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     }
   })
   .config(['markedProvider', function(marked) {
-    console.log(marked);
     marked.setOptions({gfm: true, breaks: true});
   }])
   .config(['ngClipProvider', function(ngClipProvider) {
