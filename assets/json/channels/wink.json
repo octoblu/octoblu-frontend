@@ -1,0 +1,899 @@
+{
+  "_id" : "54959b239be38fdaabb5497a",
+  "type" : "channel:wink",
+  "auth_strategy": "oauth",
+  "name": "Wink",
+  "oauth": {
+    "development": {
+      "clientID": "quirky_wink_android_app",
+      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "callbackURL": "http://localhost:8080/api/oauth/wink/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "quirky_wink_android_app",
+      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/wink/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "quirky_wink_android_app",
+      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "callbackURL": "https://app.octoblu.com/api/oauth/wink/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
+  "application" : {
+    "base" : "https://winkapi.quirky.com",
+    "resources" : [
+      {
+        "displayName" : "Sign in as user, or refresh user's expired access token",
+        "httpMethod" : "POST",
+        "params" : [],
+        "path" : "/oauth2/token",
+        "url" : "http://docs.wink.apiary.io/#post-%2Foauth2%2Ftoken"
+      },
+      {
+        "displayName" : "Create user",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "User_id of the user to perform action on.",
+            "name" : "{user_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/users/{user_id}/update_password",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fusers%2F%7Buser_id%7D%2Fupdate_password"
+      },
+      {
+        "displayName" : "Update current user's profile",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "User_id of the user to perform action on.",
+            "name" : "{user_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/users/{user_id}/update_password",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fusers%2F%7Buser_id%7D%2Fupdate_password"
+      },
+      {
+        "displayName" : "List current user's linked services",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/users/me/linked_services",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fusers%2Fme%2Flinked_services"
+      },
+      {
+        "displayName" : "Create new linked service",
+        "httpMethod" : "POST",
+        "params" : [],
+        "path" : "/users/me/linked_services",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fusers%2Fme%2Flinked_services"
+      },
+      {
+        "displayName" : "Retrieve a device",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Device_id of the device you want to retrieve.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D"
+      },
+      {
+        "displayName" : "Update a device",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Device_id of the device you want to retrieve.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D"
+      },
+      {
+        "displayName" : "Refresh a device",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Device_id of the device you want to retrieve.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}/refresh",
+        "url" : "http://docs.wink.apiary.io/#post-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D%2Frefresh"
+      },
+      {
+        "displayName" : "Retrieve all devices",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/users/me/wink_devices",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fusers%2Fme%2Fwink_devices"
+      },
+      {
+        "displayName" : "Retrieve all devices",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/users/me/{device_type}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fusers%2Fme%2F%7Bdevice_type%7D"
+      },
+      {
+        "displayName" : "List shared device users",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}/users",
+        "url" : "http://docs.wink.apiary.io/#get-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D%2Fusers"
+      },
+      {
+        "displayName" : "Share a device",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}/users",
+        "url" : "http://docs.wink.apiary.io/#post-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D%2Fusers"
+      },
+      {
+        "displayName" : "Unshare a device",
+        "httpMethod" : "DELETE",
+        "params" : [
+          {
+            "displayName" : "Device_type of the device_type you want.",
+            "name" : "{device_type}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{device_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Email of the user account to unshare from.",
+            "name" : "{email}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/{device_type}/{device_id}/users/{email}",
+        "url" : "http://docs.wink.apiary.io/#delete-%2F%7Bdevice_type%7D%2F%7Bdevice_id%7D%2Fusers%2F%7Bemail%7D"
+      },
+      {
+        "displayName" : "List available channels",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/channels",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fchannels"
+      },
+      {
+        "displayName" : "Retrieve a group",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Group_id of the outlet to perform action on.",
+            "name" : "{group_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/groups/{group_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fgroups%2F%7Bgroup_id%7D"
+      },
+      {
+        "displayName" : "Update group settings",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Group_id of the outlet to perform action on.",
+            "name" : "{group_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/groups/{group_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fgroups%2F%7Bgroup_id%7D"
+      },
+      {
+        "displayName" : "Delete a group",
+        "httpMethod" : "DELETE",
+        "params" : [
+          {
+            "displayName" : "Group_id of the outlet to perform action on.",
+            "name" : "{group_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/groups/{group_id}",
+        "url" : "http://docs.wink.apiary.io/#delete-%2Fgroups%2F%7Bgroup_id%7D"
+      },
+      {
+        "displayName" : "Create a group",
+        "httpMethod" : "POST",
+        "params" : [],
+        "path" : "/groups",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fgroups"
+      },
+      {
+        "displayName" : "Activate state of group",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Group_id of the outlet to perform action on.",
+            "name" : "{group_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/groups/{group_id}/activate",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fgroups%2F%7Bgroup_id%7D%2Factivate"
+      },
+      {
+        "displayName" : "List available icons",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/icons",
+        "url" : "http://docs.wink.apiary.io/#get-%2Ficons"
+      },
+      {
+        "displayName" : "Retrieve a robot",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Robot_id of the robot to perform action on.",
+            "name" : "{robot_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/robots/{robot_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Frobots%2F%7Brobot_id%7D"
+      },
+      {
+        "displayName" : "Update a robot",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Robot_id of the robot to perform action on.",
+            "name" : "{robot_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/robots/{robot_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Frobots%2F%7Brobot_id%7D"
+      },
+      {
+        "displayName" : "Delete a robot",
+        "httpMethod" : "DELETE",
+        "params" : [
+          {
+            "displayName" : "Robot_id of the robot to perform action on.",
+            "name" : "{robot_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/robots/{robot_id}",
+        "url" : "http://docs.wink.apiary.io/#delete-%2Frobots%2F%7Brobot_id%7D"
+      },
+      {
+        "displayName" : "create a new robot",
+        "httpMethod" : "POST",
+        "params" : [],
+        "path" : "/users/me/robots",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fusers%2Fme%2Frobots"
+      },
+      {
+        "displayName" : "get all robots belonging to user",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/users/me/robots",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fusers%2Fme%2Frobots"
+      },
+      {
+        "displayName" : "Retrieve a scene",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Scene_id of the scene to perform action on.",
+            "name" : "{scene_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/scenes/{scene_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fscenes%2F%7Bscene_id%7D"
+      },
+      {
+        "displayName" : "Update scene settings",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Scene_id of the scene to perform action on.",
+            "name" : "{scene_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/scenes/{scene_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fscenes%2F%7Bscene_id%7D"
+      },
+      {
+        "displayName" : "Delete a scene",
+        "httpMethod" : "DELETE",
+        "params" : [
+          {
+            "displayName" : "Scene_id of the scene to perform action on.",
+            "name" : "{scene_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/scenes/{scene_id}",
+        "url" : "http://docs.wink.apiary.io/#delete-%2Fscenes%2F%7Bscene_id%7D"
+      },
+      {
+        "displayName" : "New Scene",
+        "httpMethod" : "POST",
+        "params" : [],
+        "path" : "/users/me/scenes",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fusers%2Fme%2Fscenes"
+      },
+      {
+        "displayName" : "Retrieve all scenes",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/users/me/scenes",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fusers%2Fme%2Fscenes"
+      },
+      {
+        "displayName" : "activate",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Scene_id of the scene to perform action on.",
+            "name" : "{scene_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/scenes/{scene_id}/activate",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fscenes%2F%7Bscene_id%7D%2Factivate"
+      },
+      {
+        "displayName" : "Retrieve an air_conditioner",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Air_conditioner_id of the air conditioner to perform action on.",
+            "name" : "{air_conditioner_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/air_conditioners/{air_conditioner_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fair_conditioners%2F%7Bair_conditioner_id%7D"
+      },
+      {
+        "displayName" : "Update air_conditioner settings",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Air_conditioner_id of the air conditioner to perform action on.",
+            "name" : "{air_conditioner_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/air_conditioners/{air_conditioner_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fair_conditioners%2F%7Bair_conditioner_id%7D"
+      },
+      {
+        "displayName" : "List readings of an air conditioner",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{air_conditioner_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Since of when you want query to start.",
+            "name" : "{since}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Until of when you want query to end.",
+            "name" : "{until}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Keys of which readings you want to see, Comma separated.",
+            "name" : "{keys}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Filter_type of aggregation types for readings.",
+            "name" : "{filter_type}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Timezone of timezone if filter_type is used to make sure aggregation spans expected values",
+            "name" : "{timezone}",
+            "required" : "false",
+            "type" : "string"
+          }
+        ],
+        "path" : "/air_conditioners/{air_conditioner_id}/readings/?since={since}&until={until}&keys={keys}&filter_type={filter_type}&timezone={timezone}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fair_conditioners%2F%7Bair_conditioner_id%7D%2Freadings%2F%3Fsince%3D%7Bsince%7D%26until%3D%7Buntil%7D%26keys%3D%7Bkeys%7D%26filter_type%3D%7Bfilter_type%7D%26timezone%3D%7Btimezone%7D"
+      },
+      {
+        "displayName" : "List projections of an air conditioner",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{air_conditioner_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Since of when you want query to start.",
+            "name" : "{since}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Until of when you want query to end.",
+            "name" : "{until}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Keys of which projections you want to see, Comma separated.",
+            "name" : "{keys}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Filter_type of aggregation types for readings.",
+            "name" : "{filter_type}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Timezone of timezone if filter_type is used to make sure aggregation spans expected values",
+            "name" : "{timezone}",
+            "required" : "false",
+            "type" : "string"
+          }
+        ],
+        "path" : "/air_conditioners/{air_conditioner_id}/projections/?since={since}&until={until}&keys={keys}&filter_type={filter_type}&timezone={timezone}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fair_conditioners%2F%7Bair_conditioner_id%7D%2Fprojections%2F%3Fsince%3D%7Bsince%7D%26until%3D%7Buntil%7D%26keys%3D%7Bkeys%7D%26filter_type%3D%7Bfilter_type%7D%26timezone%3D%7Btimezone%7D"
+      },
+      {
+        "displayName" : "List stats of an air conditioner",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Air_conditioner_id of the air_conditioner to perform action on.",
+            "name" : "{air_conditioner_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Since of when you want query to start.",
+            "name" : "{since}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Until of when you want query to end.",
+            "name" : "{until}",
+            "required" : "false",
+            "type" : "integer"
+          }
+        ],
+        "path" : "/air_conditioners/{air_conditioner_id}/stats/?since={since}&until={until}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fair_conditioners%2F%7Bair_conditioner_id%7D%2Fstats%2F%3Fsince%3D%7Bsince%7D%26until%3D%7Buntil%7D"
+      },
+      {
+        "displayName" : "Retrieve a clock",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Cloud_clock_id of the cloud clock to perform action on.",
+            "name" : "{cloud_clock_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/cloud_clocks/{cloud_clock_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fcloud_clocks%2F%7Bcloud_clock_id%7D"
+      },
+      {
+        "displayName" : "Update a clock",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Cloud_clock_id of the cloud clock to perform action on.",
+            "name" : "{cloud_clock_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/cloud_clocks/{cloud_clock_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fcloud_clocks%2F%7Bcloud_clock_id%7D"
+      },
+      {
+        "displayName" : "View all dial templates",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/dial_template",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fdial_template"
+      },
+      {
+        "displayName" : "updating a dial",
+        "httpMethod" : "PUT",
+        "params" : [],
+        "path" : "/dials/{dial_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fdials%2F%7Bdial_id%7D"
+      },
+      {
+        "displayName" : "Update an alarm",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Alarm_id of the alarm to perform action on.",
+            "name" : "{alarm_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/alarms/{alarm_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Falarms%2F%7Balarm_id%7D"
+      },
+      {
+        "displayName" : "Delete an alarm",
+        "httpMethod" : "DELETE",
+        "params" : [
+          {
+            "displayName" : "Alarm_id of the alarm to perform action on.",
+            "name" : "{alarm_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/alarms/{alarm_id}",
+        "url" : "http://docs.wink.apiary.io/#delete-%2Falarms%2F%7Balarm_id%7D"
+      },
+      {
+        "displayName" : "List alarms of clock",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Cloud_clock_id of the cloud clock to perform action on.",
+            "name" : "{cloud_clock_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/cloud_clocks/{cloud_clock_id}/alarms",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fcloud_clocks%2F%7Bcloud_clock_id%7D%2Falarms"
+      },
+      {
+        "displayName" : "create new alarm",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Cloud_clock_id of the cloud clock to perform action on.",
+            "name" : "{cloud_clock_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/cloud_clocks/{cloud_clock_id}/alarms",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fcloud_clocks%2F%7Bcloud_clock_id%7D%2Falarms"
+      },
+      {
+        "displayName" : "Retrieve an eggminder",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/eggtrays/{eggtray_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Feggtrays%2F%7Beggtray_id%7D"
+      },
+      {
+        "displayName" : "Update an eggminder",
+        "httpMethod" : "PUT",
+        "params" : [],
+        "path" : "/eggtrays/{eggtray_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Feggtrays%2F%7Beggtray_id%7D"
+      },
+      {
+        "displayName" : "Retrieve a piggy_bank",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Piggy_bank_id of the piggy bank to perform action on.",
+            "name" : "{piggy_bank_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/piggy_banks/{piggy_bank_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpiggy_banks%2F%7Bpiggy_bank_id%7D"
+      },
+      {
+        "displayName" : "Update a piggy_bank",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Piggy_bank_id of the piggy bank to perform action on.",
+            "name" : "{piggy_bank_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/piggy_banks/{piggy_bank_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fpiggy_banks%2F%7Bpiggy_bank_id%7D"
+      },
+      {
+        "displayName" : "List deposits of a piggy bank",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Piggy_bank_id of the piggy bank to perform action on.",
+            "name" : "{piggy_bank_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Timestamp of when you want query to start.",
+            "name" : "{timestamp}",
+            "required" : "false",
+            "type" : "integer"
+          }
+        ],
+        "path" : "/piggy_banks/{piggy_bank_id}/deposits/?since={timestamp}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpiggy_banks%2F%7Bpiggy_bank_id%7D%2Fdeposits%2F%3Fsince%3D%7Btimestamp%7D"
+      },
+      {
+        "displayName" : "Create a deposit or withdrawal",
+        "httpMethod" : "POST",
+        "params" : [
+          {
+            "displayName" : "Piggy_bank_id of the piggy bank to perform action on.",
+            "name" : "{piggy_bank_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Timestamp of when you want query to start.",
+            "name" : "{timestamp}",
+            "required" : "false",
+            "type" : "integer"
+          }
+        ],
+        "path" : "/piggy_banks/{piggy_bank_id}/deposits/?since={timestamp}",
+        "url" : "http://docs.wink.apiary.io/#post-%2Fpiggy_banks%2F%7Bpiggy_bank_id%7D%2Fdeposits%2F%3Fsince%3D%7Btimestamp%7D"
+      },
+      {
+        "displayName" : "Retrieve a powerstrip",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Powerstrip_id of the powerstrip to perform action on.",
+            "name" : "{powerstrip_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/powerstrips/{powerstrip_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpowerstrips%2F%7Bpowerstrip_id%7D"
+      },
+      {
+        "displayName" : "Update powerstrip settings",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Powerstrip_id of the powerstrip to perform action on.",
+            "name" : "{powerstrip_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/powerstrips/{powerstrip_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fpowerstrips%2F%7Bpowerstrip_id%7D"
+      },
+      {
+        "displayName" : "Retrieve an outlet",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/outlets/{outlet_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Foutlets%2F%7Boutlet_id%7D"
+      },
+      {
+        "displayName" : "Update outlet settings",
+        "httpMethod" : "PUT",
+        "params" : [],
+        "path" : "/outlets/{outlet_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Foutlets%2F%7Boutlet_id%7D"
+      },
+      {
+        "displayName" : "Retrieve an propane_tank",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Propane_tank_id of the air conditioner to perform action on.",
+            "name" : "{propane_tank_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/propane_tanks/{propane_tank_id}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpropane_tanks%2F%7Bpropane_tank_id%7D"
+      },
+      {
+        "displayName" : "Update propane_tank settings",
+        "httpMethod" : "PUT",
+        "params" : [
+          {
+            "displayName" : "Propane_tank_id of the air conditioner to perform action on.",
+            "name" : "{propane_tank_id}",
+            "required" : "true",
+            "type" : "string"
+          }
+        ],
+        "path" : "/propane_tanks/{propane_tank_id}",
+        "url" : "http://docs.wink.apiary.io/#put-%2Fpropane_tanks%2F%7Bpropane_tank_id%7D"
+      },
+      {
+        "displayName" : "List readings of a propane tank",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Propane_tank_id of the propane_tank to perform action on.",
+            "name" : "{propane_tank_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Since of when you want query to start.",
+            "name" : "{since}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Until of when you want query to end.",
+            "name" : "{until}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Carryover,daily filter type to get reading immediately prior to indicated time returned and to filter results by cumulative daily value",
+            "name" : "{filter_type}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Keys of which readings you want to see, Comma separated.",
+            "name" : "{keys}",
+            "required" : "false",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Timezone of timezone if filter_type is used to make sure aggregation spans expected values",
+            "name" : "{timezone}",
+            "required" : "false",
+            "type" : "string"
+          }
+        ],
+        "path" : "/propane_tanks/{propane_tank_id}/readings/?since={since}&until={until}&filter_type={carryover,daily}&keys={keys}&timezone={timezone}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpropane_tanks%2F%7Bpropane_tank_id%7D%2Freadings%2F%3Fsince%3D%7Bsince%7D%26until%3D%7Buntil%7D%26filter_type%3D%7Bcarryover%2Cdaily%7D%26keys%3D%7Bkeys%7D%26timezone%3D%7Btimezone%7D"
+      },
+      {
+        "displayName" : "List stats of an propane",
+        "httpMethod" : "GET",
+        "params" : [
+          {
+            "displayName" : "Propane_tank_id of the propane_tank to perform action on.",
+            "name" : "{propane_tank_id}",
+            "required" : "true",
+            "type" : "string"
+          },
+          {
+            "displayName" : "Since of when you want query to start.",
+            "name" : "{since}",
+            "required" : "false",
+            "type" : "integer"
+          },
+          {
+            "displayName" : "Until of when you want query to end.",
+            "name" : "{until}",
+            "required" : "false",
+            "type" : "integer"
+          }
+        ],
+        "path" : "/propane_tanks/{propane_tank_id}/stats/?since={since}&until={until}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fpropane_tanks%2F%7Bpropane_tank_id%7D%2Fstats%2F%3Fsince%3D%7Bsince%7D%26until%3D%7Buntil%7D"
+      },
+      {
+        "displayName" : "Retrieve a sensor pod",
+        "httpMethod" : "GET",
+        "params" : [],
+        "path" : "/sensor_pods/{sensor_pods}",
+        "url" : "http://docs.wink.apiary.io/#get-%2Fsensor_pods%2F%7Bsensor_pods%7D"
+      }
+    ]
+  }
+}
