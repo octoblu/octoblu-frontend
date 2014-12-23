@@ -38,11 +38,10 @@ angular.module('octobluApp')
 
         return service = {
             acceptTerms: function(){
-                return $http.put('/api/auth/accept_terms', {accept_terms: true}, function(){
-                    if(response.status !== 204) {
+                return $http.put('/api/auth/accept_terms', {accept_terms: true}).then(function(response){
+                    if(response && response.status !== 204) {
                         throw response.data;
                     }
-                }).then(function(){
                     return service.getCurrentUser(true);
                 });
             },
@@ -92,7 +91,7 @@ angular.module('octobluApp')
                     if(response.status !== 204) {
                         throw response.data;
                     }
-                })
+                });
             },
 
             getCurrentUser: function (force) {
