@@ -68,14 +68,34 @@ html, body, .full-height {
 }
 
 .bill-of-materials {
-  min-width: 80%;
   .md-tile-content {
-    h3 {
-      font-size: 2em;
+    h3&.template-item{
+      font-size: 1.0em;
+    }
+    h4.template-item{
+      font-size: 0.8em
     }
   }
 }
 
+<<<<<<< HEAD
+=======
+.flow-importing {
+  .bill-of-materials {
+    transform: translateY(-400px);
+    -webkit-transform: translateY(-400px);
+    min-height:350px;
+
+    &.importing {
+        -webkit-animation: 1s bounceOutDown ease;
+        -ms-animation: 1s bounceOutDown ease;
+        animation: 1s bounceOutDown ease;
+    }
+
+  }
+}
+
+>>>>>>> FETCH_HEAD
 .template-preview md-input-group {
   font-size: 1.1em;
   input {
@@ -89,6 +109,7 @@ html, body, .full-height {
   
   h3 {
     margin-top: 24px;
+
   }
   h4 {
     margin-right: 15px;
