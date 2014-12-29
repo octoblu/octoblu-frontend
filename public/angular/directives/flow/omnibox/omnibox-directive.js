@@ -13,11 +13,11 @@ angular.module('octobluApp')
       link: function (scope, element) {
         var setScrollableHeight = function() {
           var size = $window.innerHeight - 125;
-          $('.floating-omnibox .dropdown-menu').css('max-height', size);
-        }
+          element.find('.dropdown-menu').css('max-height', size);
+        };
 
         var w = angular.element($window);
-        setScrollableHeight()
+        setScrollableHeight();
 
         w.bind('resize', function(){
           setScrollableHeight();
@@ -25,17 +25,12 @@ angular.module('octobluApp')
 
         element.find('input.omnibox').on('keydown', function(){
           _.defer(setScrollableHeight);
-        })
+        });
 
         scope.$watch('omniSearch', function(newItem){
           if(!_.isObject(newItem)) { return; }
           scope.selectItem(newItem);
           scope.omniSearch = null;
-        });
-
-        element.find('input.omnibox').on('blur', function(){
-          scope.omniSearch = null;
-          scope.$apply();
         });
       }
     };
