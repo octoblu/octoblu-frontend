@@ -1,254 +1,252 @@
 <md-toolbar md-theme="octo-blue">
-<h2 class="md-toolbar-tools page-heading">
-  <a href class="menu-icon" ng-click="toggleNav()">
-    <i class="fa fa-bars"></i>
-  </a>
+  <h2 class="md-toolbar-tools page-heading">
+    <a href class="menu-icon" ng-click="toggleNav()">
+      <i class="fa fa-bars"></i>
+    </a>
 
-  <span>Analyze</span>
-</h2>
+    <span>Analyze</span>
+  </h2>
 </md-toolbar>
 
-<style type="text/css">
-  .dashboard-panel {
-    text-align: center;
-  }
+<br>
 
-  .dashboard-panel h1 {
-    text-decoration: inherit;
-    color: inherit;
-    margin-bottom: 20px;
-  }
+<style type="text/css">
+    .dashboard-panel {
+        text-align: center;
+    }
+
+    .dashboard-panel h1 {
+        text-decoration: inherit;
+        color: inherit;
+        margin-bottom: 20px;
+    }
 </style>
 
+<div class="col-xs-12">
 
-<div flex layout-fill layout="row" layout-align="center">
-  <div flex="66" flex-tablet="95" flex-phone="95" class="md-whiteframe-z2">
-    <md-content>
-    <div flex layout="column">
-      <br>
-
-      <div class="col-xs-12">
-
-        <tabset>
-          <tab heading="Overview">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="form-group col-md-12">
-                  <div class="col-md-4">
-                    <div class="input-group">
-                      <span class="input-group-addon"><span class="fa fa-refresh"></span></span>
-                      <select class="form-control" ng-model="forms.QH_starting" ng-change="loadTop(forms.QH_starting)">
-                        <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" ng-repeat="trRow in topResults.rows">
-                <div class="col-lg-3 col-sm-4 col-xs-6  dashboard-panel" ng-repeat="panel in trRow">
-                  <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
-                  <div class="panel panel-default"><div class="panel-body"><div ng-switch="!!panel.results ? panel.results : 0">
+<tabset>
+<tab heading="Overview">
+	<div class="container-fluid">
+        <div class="row">
+            <div class="form-group col-md-12">
+			<div class="col-md-4">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-refresh"></span></span>
+				<select class="form-control" ng-model="forms.QH_starting" ng-change="loadTop(forms.QH_starting)">
+                                    <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+                        	</select>
+			</div>
+			</div>
+            </div>
+        </div>
+        <div class="row" ng-repeat="trRow in topResults.rows">
+            <div class="col-lg-3 col-sm-4 col-xs-6  dashboard-panel" ng-repeat="panel in trRow">
+                <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
+                <div class="panel panel-default"><div class="panel-body"><div ng-switch="!!panel.results ? panel.results : 0">
                     <h1><div ng-switch-when="0"><i class="fa fa-times"></i></div><div ng-switch-default>{{panel.results}}</div></h1>
-                  </div></div></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 dashboard-panel" ng-repeat="panel in topResults.pie_panels">
-                  <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
-                  <div class="panel panel-default"><div class="panel-body">
-                    <div ng-switch="!!panel.results.length ? 1 : 0">
-                      <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                      <div ng-switch-default>
-                        <div nvd3-pie-chart donut="true"  data="panel.results" id="panel.id" height="300"></div>
-                      </div>
-                    </div>
-                  </div></div>
-                </div>
-              </div></div>
-            </tab>
-            <tab heading="Explore">
-              <div class="container-fluid">
-                <div ng-switch="!!ExploreIsCollapsed ? 1 : 0" ng-click="ExploreIsCollapsed = !ExploreIsCollapsed">
-                  <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> Explore Options</div>
-                  <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> Explore Options</div>
-                </div>
-                <div collapse="ExploreIsCollapsed" style="height:400px">
-                  <form novalidate>
-                    <div class="col-md-4 dashboard-panel" style="height:400px">
-                      <div class="panel-heading" style="height:60px">
+                </div></div></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 dashboard-panel" ng-repeat="panel in topResults.pie_panels">
+                <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
+                <div class="panel panel-default"><div class="panel-body">
+                            <div ng-switch="!!panel.results.length ? 1 : 0">
+                                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                <div ng-switch-default>
+                                    <div nvd3-pie-chart donut="true"  data="panel.results" id="panel.id" height="300"></div>
+				</div>
+                            </div>
+                </div></div>
+            </div>
+        </div></div>
+</tab>
+<tab heading="Explore">
+    <div class="container-fluid">
+	  <div ng-switch="!!ExploreIsCollapsed ? 1 : 0" ng-click="ExploreIsCollapsed = !ExploreIsCollapsed">
+                                <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> Explore Options</div>
+                                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> Explore Options</div>
+          </div>
+	  <div collapse="ExploreIsCollapsed" style="height:400px">
+            <form novalidate>
+                <div class="col-md-4 dashboard-panel" style="height:400px">
+                    <div class="panel-heading" style="height:60px">
                         <h3 class="panel-title">Device Selection</h3>
                         <span><kbd>ctrl+click</kbd> for multiple</span>
-                      </div>
-                      <div class="panel" style="height:340px;">
+                    </div>
+                    <div class="panel" style="height:340px;">
                         <a href="">
-                          <div class="panel-body" style="height:310px;">
-                            <select class="form-control" size=10 style="height:100%" multiple ng-model="forms.EX_graphDevices">
-                              <option value="all" selected="selected">All Devices</option>
-                              <option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">
-                                {{cb_device.name}}
-                              </option>
-                            </select>
-                          </div>
+                            <div class="panel-body" style="height:310px;">
+                                <select class="form-control" size=10 style="height:100%" multiple
+                                        ng-model="forms.EX_graphDevices">
+                                    <option value="all" selected="selected">All Devices</option>
+                                    <option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">
+                                        {{cb_device.name}}
+                                    </option>
+                                </select>
+                            </div>
                         </a>
-                      </div>
                     </div>
-                    <div class="col-md-8 dashboard-panel" style="height:400px">
-                      <div class="row">
+                </div>
+                <div class="col-md-8 dashboard-panel" style="height:400px">
+                    <div class="row">
                         <div class="col-md-4 dashboard-panel">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Options</h3>
-                          </div>
-                          <div class="panel">
-                            <div class="form-group">
-                              <label for="eventCode"> Event Code: </label> <select multiple size=5 class="form-control"ng-model="forms.EX_eventCode">
-                              <option value="all">All Event Codes</option>
-                              <option ng-repeat="event in events" value="{{event.code}}">
-                                {{event.name}} ({{event.code}})
-                              </option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="starting"> Starting: </label><select class="form-control" ng-model="forms.EX_starting">
-                            <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
-                          </select>
-                          <label for="ending"> Ending: </label> <select class="form-control" ng-model="forms.EX_ending">
-                          <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
-                          >{{df.text}}</option>
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Options</h3>
+                            </div>
+                            <div class="panel">
+                                <div class="form-group">
+                                    <label for="eventCode"> Event Code: </label> <select multiple size=5
+                                                                                         class="form-control"
+                                                                                         ng-model="forms.EX_eventCode">
+                                    <option value="all">All Event Codes</option>
+                                    <option ng-repeat="event in events" value="{{event.code}}">
+                                        {{event.name}} ({{event.code}})
+                                    </option>
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="starting"> Starting: </label><select
+                                        class="form-control" ng-model="forms.EX_starting">
+                                    <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
+                                            >{{df.text}}</option>
+                                </select>
+                                    <label for="ending"> Ending: </label> <select class="form-control"
+                                                                                  ng-model="forms.EX_ending">
+                                    <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
+                                            >{{df.text}}</option>
+                                </select>
+				<label for="timebuckets">Aggregate by: </label><select class="form-control" ng-model="forms.EX_aggby">
+					<option selected value="hour">Hour</option>
+					<option ng-repeat="aggby in EStimeModifiers" value="{{aggby.value}}">{{aggby.text}}</option>
+				</select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 dashboard-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Summary Results</h3>
+                            </div>
+                            <div class="panel">
+                                <table class="table table-hover">
+                                    <tr ng-repeat="row in leg.stats"><td>{{row.title}}:</td><td>{{row.value}}</td></tr>
+                                </table>
+                                <div class="form-group col-md-2 text-center">
+				<span class="input-group-btn">
+                                          <button class="btn btn-default" type="button" ng-click="loadExploreGraph()">
+                                              <span class="fa fa-search"> Find</span>
+                                          </button>
+                                </span>
+				 <div ng-switch="!!leg.isLoading ? 0 : 1">
+   					 <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+				 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		</div>
+            </form>
+	  </div> <!--end Collapse Section -->
+        <!-- end Choices Div Row -->
+  <div ng-switch="!!leg.panels ? 1 : 0">
+    <div ng-switch-when="0"></div>
+    <div ng-switch-default>
+	<div class="row" style='height:400px;'>
+		<div ng-repeat="myPanel in leg.panels">
+			<div ng-switch="!!myPanel.isCollapsed ? 1: 0" ng-click="myPanel.isCollapsed = !myPanel.isCollapsed">
+				<div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> {{myPanel.title}}</div>
+                                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> {{myPanel.title}}</div>
+			</div>
+			<div class="row" style='height:400px' collapse="myPanel.isCollapsed">
+				<div class="col-lg-12 dashboard-panel">
+        			        <div class="panel panel-default">
+			                    <div class="panel-body">
+			                        <div ng-switch="!!myPanel.graph ? myPanel.graph : myPanel.graph">
+			                            <div ng-switch-when="nvd3-line-with-focus-chart">
+							<div nvd3-line-with-focus-chart data="myPanel.data" height="400" show-legend="{{myPanel.showLegend}}" axis-x-label="{{myPanel.axisXLabel}}" axis-x-type="{{myPanel.axisXType}}" axis-x-format="{{myPanel.axisXFormat}}"></div>
+						    </div>
+						    <div ng-switch-when="nvd3-multibar-chart">
+							<div nvd3-multibar-chart data="myPanel.data" height="400" show-legend="{{myPanel.showLegend}}" axis-x-label="{{myPanel.axisXLabel}}"></div>
+						    </div>
+			                            <div ng-switch-default>
+			                                <div height="400"><h3 class="warning">Chart Type: {{myPanel.graph}} Not Defined in Switch</h3></div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+		            	</div>
+			</div>
+		</div>
+	</div>
+	<!--- END OF GRAPH ROW -->
+    </div><!-- End Default Ng-Switch -->
+   </div><!-- End Ng-Switch -->
+</div>
+</tab>
+	<tab heading="Search">
+	<div class="container-fluid">
+        <div class="row panel">
+            <div class="input-group">
+                <form class="form-inline col-md-16">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="forms.FF_searchText" placeholder="Search" autofocus/>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="forms.FF_eventCode">
+                            <option value="">All Event Codes</option>
+                            <option ng-repeat="event in events" value="{{event.code}}">{{event.name}} ({{event.code}})</option>
                         </select>
-                        <label for="timebuckets">Aggregate by: </label><select class="form-control" ng-model="forms.EX_aggby">
-                        <option selected value="hour">Hour</option>
-                        <option ng-repeat="aggby in EStimeModifiers" value="{{aggby.value}}">{{aggby.text}}</option>
-                      </select>
+
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-8 dashboard-panel">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Summary Results</h3>
-                  </div>
-                  <div class="panel">
-                    <table class="table table-hover">
-                      <tr ng-repeat="row in leg.stats"><td>{{row.title}}:</td><td>{{row.value}}</td></tr>
-                    </table>
-                    <div class="form-group col-md-2 text-center">
+                    <div class="col-md-2">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" ng-click="loadExploreGraph()">
-                          <span class="fa fa-search"> Find</span>
-                        </button>
+                          <button class="btn btn-default" type="button" ng-click="search()">
+                              <span class="fa fa-search"> Find</span>
+                          </button>
                       </span>
-                      <div ng-switch="!!leg.isLoading ? 0 : 1">
-                       <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </form>
-       </div> <!--end Collapse Section -->
-       <!-- end Choices Div Row -->
-       <div ng-switch="!!leg.panels ? 1 : 0">
-        <div ng-switch-when="0"></div>
-        <div ng-switch-default>
-          <div class="row" style='height:400px;'>
-            <div ng-repeat="myPanel in leg.panels">
-              <div ng-switch="!!myPanel.isCollapsed ? 1: 0" ng-click="myPanel.isCollapsed = !myPanel.isCollapsed">
-                <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> {{myPanel.title}}</div>
-                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> {{myPanel.title}}</div>
-              </div>
-              <div class="row" style='height:400px' collapse="myPanel.isCollapsed">
-                <div class="col-lg-12 dashboard-panel">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <div ng-switch="!!myPanel.graph ? myPanel.graph : myPanel.graph">
-                        <div ng-switch-when="nvd3-line-with-focus-chart">
-                          <div nvd3-line-with-focus-chart data="myPanel.data" height="400" show-legend="{{myPanel.showLegend}}" axis-x-label="{{myPanel.axisXLabel}}" axis-x-type="{{myPanel.axisXType}}" axis-x-format="{{myPanel.axisXFormat}}"></div>
-                        </div>
-                        <div ng-switch-when="nvd3-multibar-chart">
-                          <div nvd3-multibar-chart data="myPanel.data" height="400" show-legend="{{myPanel.showLegend}}" axis-x-label="{{myPanel.axisXLabel}}"></div>
-                        </div>
-                        <div ng-switch-default>
-                          <div height="400"><h3 class="warning">Chart Type: {{myPanel.graph}} Not Defined in Switch</h3></div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                </form>
             </div>
-          </div>
-          <!--- END OF GRAPH ROW -->
-        </div><!-- End Default Ng-Switch -->
-      </div><!-- End Ng-Switch -->
-    </div>
-  </tab>
-  <tab heading="Search">
-    <div class="container-fluid">
-      <div class="row panel">
-        <div class="input-group">
-          <form class="form-inline col-md-16">
-            <div class="col-md-6">
-              <input type="text" class="form-control" ng-model="forms.FF_searchText" placeholder="Search" autofocus/>
-            </div>
-            <div class="col-md-4">
-              <select class="form-control" ng-model="forms.FF_eventCode">
-                <option value="">All Event Codes</option>
-                <option ng-repeat="event in events" value="{{event.code}}">{{event.name}} ({{event.code}})</option>
-              </select>
-
-            </div>
-            <div class="col-md-2">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="search()">
-                  <span class="fa fa-search"> Find</span>
-                </button>
-              </span>
-            </div>
-          </form>
         </div>
-      </div>
 
-      <div class="panel panel-primary" ng-show="results">
-        <div ng-switch="results.hits.total > 999 ? 'true' : 'false'">
-          <div ng-switch-when="true"><div class="alert alert-success" role="alert">Total Hits are more than 1000. Only showing first 1000 results.</div></div>
-          <div ng-switch-default></div>
-        </div>
+    <div class="panel panel-primary" ng-show="results">
+	<div ng-switch="results.hits.total > 999 ? 'true' : 'false'">
+		<div ng-switch-when="true"><div class="alert alert-success" role="alert">Total Hits are more than 1000. Only showing first 1000 results.</div></div>
+		<div ng-switch-default></div>
+	</div>
         <!-- Default panel contents -->
         <div class="panel-heading">Results
-          <p class="panel-title pull-right"> hits: {{ results.hits.total }}</p>
+            <p class="panel-title pull-right"> hits: {{ results.hits.total }}</p>
         </div>
         <div class="panel-body">
-          <div ng-switch="!!results.hits.total ? 1 : 0">
-            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-            <div ng-switch-default>
-              <table class="table table-striped table-condensed table-hover">
+	    <div ng-switch="!!results.hits.total ? 1 : 0">
+                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+		<div ng-switch-default>
+            <table class="table table-striped table-condensed table-hover">
                 <thead><tr><th ng-repeat="header in freeform_results_ngTable.headers" class="{{header.name}}" custom-sort order="header.name" sort="sort">
-                  <a ng-click="sort_by(order)" style="color: #555;"><i ng-class="selectedCls(order)">{{header.name}}</i></a></th></tr></thead>
-                  <tfoot>
-                    <td colspan="{{freeform_results_ngTable.headers.length}}">
-                      <div class="col-lg-24">
-                        <ul class="pagination">
-                          <li ng-class="{disabled: currentPage == 0}" ng-click="prevPage()"><a href="/analyze#" >Previous</a></li>
-                          <li ><span class="label label-info">{{currentPage + 1}}</span></li>
-                          <li  ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}" ng-click="nextPage()"><a href="/analyze#" >Next</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tfoot>
-                  <tbody>
-                    <tr ng-repeat="item in freeform_results_ngTable.pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
-                      <!--<td ng-repeat="val in item" ng-bind-html-unsafe="item._source[freeform_results_ngTable.headers[$index].name]"></td>-->
-                      <td ng-repeat="header in freeform_results_ngTable.headers">{{ item._source[header.name] | freeFormDisplayText  }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div></div><!-- end ng switch -->
-            </div>
-          </div></div>
-        </tab>
-      </tabset>
-    </div>
-  </div>
-</md-content>
-</div>
+                    <a ng-click="sort_by(order)" style="color: #555;"><i ng-class="selectedCls(order)">{{header.name}}</i></a></th></tr></thead>
+                <tfoot>
+                <td colspan="{{freeform_results_ngTable.headers.length}}">
+                    <div class="col-lg-24">
+			<ul class="pagination">
+  				<li ng-class="{disabled: currentPage == 0}" ng-click="prevPage()"><a href="/analyze#" >Previous</a></li>
+				<li ><span class="label label-info">{{currentPage + 1}}</span></li>
+  				<li  ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}" ng-click="nextPage()"><a href="/analyze#" >Next</a></li>
+			</ul>
+                    </div>
+                </td>
+                </tfoot>
+                <tbody>
+                <tr ng-repeat="item in freeform_results_ngTable.pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+                    <!--<td ng-repeat="val in item" ng-bind-html-unsafe="item._source[freeform_results_ngTable.headers[$index].name]"></td>-->
+                    <td ng-repeat="header in freeform_results_ngTable.headers">{{ item._source[header.name] | freeFormDisplayText  }}</td>
+                </tr>
+                </tbody>
+            </table>
+	</div></div><!-- end ng switch -->
+        </div>
+    </div></div>
+ </tab>
+</tabset>
+
 </div>
