@@ -1243,5 +1243,18 @@
     },
     "channelid" : "54959b239be38fdaabb5497a",
     "type" : "channel:wink"
+  },
+    {
+    "_id" : "54a1e61b43b8428f65cb7c01",
+    "category" : "channel",
+    "description" : "Withings",
+    "enabled" : false,
+    "name" : "Withings",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "withings"
+    },
+    "channelid" : "54a1e58f43b8428f65cb7c00",
+    "type" : "channel:withings"
   }
 ]

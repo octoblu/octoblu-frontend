@@ -78,6 +78,7 @@
     "passport-twitter": "~1.0.2",
     "passport-uservoice": "~1.0.2",
     "passport-vimeo": "~0.1.2",
+    "passport-withings": "^0.1.0",
     "passport-wordpress": "0.0.3",
     "passport-xero": "~1.0.0",
     "passport-yahoo-oauth": "~0.1.2",

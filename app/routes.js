@@ -135,6 +135,9 @@ module.exports = function(app, passport) {
     var PodioController = require('./controllers/podio-controller');
     var podioController = new PodioController();
 
+    var WithingsController = require('./controllers/withings-controller');
+    var withingsController = new WithingsController();
+
     var WordPressController = require('./controllers/wordpress-controller');
     var wordPressController = new WordPressController();
 

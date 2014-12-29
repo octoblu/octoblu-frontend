@@ -79,6 +79,7 @@ passport.use(require('./config/survey-monkey'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/uservoice'));
 passport.use(require('./config/vimeo'));
+passport.use(require('./config/withings'));
 passport.use(require('./config/wordpress'));
 passport.use(require('./config/xero'));
 passport.use(require('./config/zendesk'));
