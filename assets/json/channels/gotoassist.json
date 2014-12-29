@@ -1,0 +1,552 @@
+{
+  "_id": "876543828583459990776",
+  "auth_strategy": "oauth",
+  "documentation": "https://developer.citrixonline.com/api/gotoassist-rs-rest-api",
+  "enabled": true,
+  "name": "Go To Assist",
+  "type": "channel:GoToAssist",
+  "oauth" : {
+    "development": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    },
+    "production": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    },
+    "staging": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    }
+  },
+  "application": {
+    "base": "https://api.citrixonline.com/G2A/rest/v1",
+    "resources": [
+     {
+        "path": "/systemLinks",
+        "displayName": "Create Partner-System Links",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",  
+        "params": [{
+          "displayName": "System Name",
+          "style": "body",
+          "type": "string",
+          "name": "systemName"
+        },{
+          "displayName": "System Domain",
+          "style": "body",
+          "type": "string",
+          "name": "systemDomain"
+        },{
+          "displayName": "Email Address Of The User These Links Are For",
+          "style": "body",
+          "type": "string",
+          "name": "userEmail"
+        },{
+          "displayName": "User Token",
+          "style": "body",
+          "type": "string",
+          "name": "userToken"
+        },{
+          "displayName": "Callback URL Into The Partner System",
+          "style": "body",
+          "type": "string",
+          "name": "callbackURL"
+        },{
+          "displayName": "Supported Call Backs",
+          "style": "body",
+          "type": "hash",
+          "name": "supportedCallbacks"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks"
+      },
+      {
+        "path": "/systemLinks?systemName={systemName}&systemDomain={systemDomain}",
+        "displayName": "Delete Partner-System Link",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks?systemName={systemName}&systemDomain={systemDomain}"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+            "name": "systemName",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },{
+            "name": "systemDomain",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },{
+          "displayName": "System Name",
+          "style": "",
+          "type": "string",
+          "name": "systemName"
+        },{
+          "displayName": "System Domain",
+          "style": "",
+          "type": "string",
+          "name": "systemDomain"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks?systemName={systemName}&systemDomain={systemDomain}"
+      },
+      {
+        "path": "/systemLinks",
+        "displayName": "Get Partner-System Link Info",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "System Domain",
+          "style": "query",
+          "type": "string",
+          "name": "systemDomain"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/systemLinks"
+      },
+      {
+        "path": "/archive/recordings/urls[&{attribute}={value}]",
+        "displayName": "Download Recordings",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/urls[&{attribute}={value}]"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [{
+            "name": "attribute",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },{
+            "displayName": "List Of RecordingIds For Recordings To Be Downloaded",
+            "name": "recordingIds",
+            "style": "query",
+            "type": "array",
+            "required": true
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/urls[&{attribute}={value}]"
+      },
+      {
+        "path": "/archive/recordings[&{attribute}={value}]",
+        "displayName": "Get Available Recordings",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings[&{attribute}={value}]"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "attribute",
+          "required": true
+          },{
+            "displayName": "Account Key",
+            "name": "accountKey",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "User Key Of The Technician",
+            "name": "userKey",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Company Id",
+            "name": "companyId",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Session Type",
+            "name": "sessionType",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Oldest Sessions That Should Be Retrieved",
+            "name": "fromTime",
+            "style": "query",
+            "type": "string"
+          },{
+            "displayName": "Most Recent Sessions",
+            "name": "toTime",
+            "style": "query",
+            "type": "string"
+          },{
+            "displayName": "Recordings Within A Time Period",
+            "name": "timePeriod",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Archived Recordings",
+            "name": "archived",
+            "style": "query",
+            "type": "number"
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings[&{attribute}={value}]"
+      },
+      {
+        "path": "/archive/recordings/sessions[&{attribute}={value}]",
+        "displayName": "Get Available Sessions",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/sessions[&{attribute}={value}]"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "attribute",
+          "required": true
+          },{
+            "displayName": "Account Key",
+            "name": "accountKey",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "User Key Of The Technician",
+            "name": "userKey",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Company Id",
+            "name": "companyId",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Session Type",
+            "name": "sessionType",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Oldest Sessions That Should Be Retrieved",
+            "name": "fromTime",
+            "style": "query",
+            "type": "string"
+          },{
+            "displayName": "Most Recent Sessions",
+            "name": "toTime",
+            "style": "query",
+            "type": "string"
+          },{
+            "displayName": "Recordings Within A Time Period",
+            "name": "timePeriod",
+            "style": "query",
+            "type": "number"
+          },{
+            "displayName": "Archived Recordings",
+            "name": "archived",
+            "style": "query",
+            "type": "number"
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/sessions[&{attribute}={value}]"
+      },
+      {
+        "path": "/archive/recordings/archived",
+        "displayName": "Mark Recordings as Archived",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/archived"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "List Of RecordingIs For Recordings To Be Archived",
+          "style": "array",
+          "type": "String",
+          "name": "recordingIds"
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/archived"
+      },
+      {
+        "path": "/archive/recordings/transcode",
+        "displayName": "Transcode Recordings",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/transcode"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "List Of RecordingIs For Recordings To Be Archived",
+          "style": "array",
+          "type": "String",
+          "name": "recordingIds"
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/archive/recordings/transcode"
+      },
+      {
+        "path": "/companies",
+        "displayName": "Get Companies",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/companies"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Offset",
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "displayName": "Max Number Of Records",
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        },{
+          "displayName": "Name Of The Field To Sort By",
+          "style": "query",
+          "type": "string",
+          "name": "sortField"
+        },{
+          "displayName": "Sort Order Can Be Specified Explicitly",
+          "style": "query",
+          "type": "string",
+          "name": "sortOrder"
+        },{
+          "displayName": "A Search Query To Filter Returned Records",
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/companies"
+      },
+      {
+        "path": "/companies/{companyId}/machines",
+        "displayName": "Get Machines",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/companies/{companyId}/machines"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "companyId",
+          "required": true
+          },{
+          "displayName": "Offset",
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "displayName": "Max Number Of Records",
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        },{
+          "displayName": "Name Of The Field To Sort By",
+          "style": "query",
+          "type": "string",
+          "name": "sortField"
+        },{
+          "displayName": "Sort Order Can Be Specified Explicitly",
+          "style": "query",
+          "type": "string",
+          "name": "sortOrder"
+        },{
+          "displayName": "A Search Query To Filter Returned Records",
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/companies/{companyId}/machines"
+      },
+      {
+        "path": "/sessions/{sessionId}",
+        "displayName": "Get Screen Sharing Session Info",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "sessionId",
+          "required": true
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}"
+      },
+      {
+        "path": "/sessions",
+        "displayName": "Get Sessions",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Type Of Session For Which Info Has To Be Fetched",
+          "style": "query",
+          "type": "string",
+          "name": "sessionType"
+        },{
+          "displayName": "Time From Which Sessions Are To Be Fetched",
+          "style": "query",
+          "type": "string",
+          "name": "fromTime"
+        },{
+          "displayName": "Time Till Which Sessions Are To Be Fetched",
+          "style": "query",
+          "type": "string",
+          "name": "toTime"
+        },{
+          "displayName": "Max Number Of Records To Be Fetched",
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        },{
+          "displayName": "Offset",
+          "style": "query",
+          "type": "number",
+          "name": "offset"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+      },
+      {
+        "path": "/sessions/{sessionId}",
+        "displayName": "Get WebChat Session Info",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "sessionId",
+          "required": true
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}"
+      },
+      {
+        "path": "/sessions/{sessionId}/events",
+        "displayName": "Get WebChat Transcript Info",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}/events"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "url",
+          "type": "String",
+          "name": "sessionId",
+          "required": true
+          }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions/{sessionId}/events"
+      },
+      {
+        "path": "/session",
+        "displayName": "Start Attended Session in Browser",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/session"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/session"
+      },
+      {
+        "path": "/sessions",
+        "displayName": "Start Screen Sharing Session",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Session Status Callback Url",
+          "style": "body",
+          "type": "string",
+          "name": "sessionStatusCallbackUrl"
+        },{
+          "displayName": "Type Of Session To Create",
+          "style": "body",
+          "type": "string",
+          "name": "sessionType"
+        },{
+          "displayName": "ID Of The Object In The Partner System",
+          "style": "body",
+          "type": "string",
+          "name": "partnerObject"
+        },{
+          "displayName": "URL That May Be Used In GoToAssist User Interface",
+          "style": "body",
+          "type": "string",
+          "name": "partnerObjectUrl"
+        },{
+          "displayName": "Customer Name",
+          "style": "body",
+          "type": "string",
+          "name": "customerName"
+        },{
+          "displayName": "Email Of The Customer",
+          "style": "body",
+          "type": "string",
+          "name": "customerEmail"
+        },{
+          "displayName": "MachineUuid Only Necessary For Unattended Support Sessions",
+          "style": "body",
+          "type": "string",
+          "name": "machineUuid"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+      },
+      {
+        "path": "/sessions",
+        "displayName": "Start WebChat Session",
+        "doc": {
+          "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Type Of Session To Create",
+          "style": "body",
+          "type": "string",
+          "name": "sessionType"
+        },{
+          "displayName": "Sub-domain For The Portal This Chat Session Should Use",
+          "style": "body",
+          "type": "string",
+          "name": "portalName"
+        },{
+          "displayName": "Customer Email",
+          "style": "body",
+          "type": "string",
+          "name": "customerEmail"
+        },{
+          "displayName": "ID Of The Object In The Partner System",
+          "style": "body",
+          "type": "string",
+          "name": "partnerObject"
+        },{
+          "displayName": "Partner Object Url",
+          "style": "body",
+          "type": "string",
+          "name": "partnerObjectUrl"
+        },{
+          "displayName": "Customer First Name",
+          "style": "body",
+          "type": "string",
+          "name": "customerFirstName"
+        },{
+          "displayName": "Customer Last Name",
+          "style": "body",
+          "type": "string",
+          "name": "customerLastName"
+        },{
+          "displayName": "Session Status Callback Url",
+          "style": "body",
+          "type": "string",
+          "name": "sessionStatusCallbackUrl"
+        }],
+        "url": "https://api.citrixonline.com/G2A/rest/v1/sessions"
+      }]
+  }
+}

@@ -313,7 +313,7 @@
             "type": "string"
           },
           {
-            "displayName": "Dials digits once call connects.",
+            "displayName": "Dials digits once call connects. Can be used to forward callers to different extensions or numbers",
             "name": "PlayDtmf",
             "style": "body",
             "type": "string"

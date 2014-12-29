@@ -128,17 +128,5 @@ angular.module('octobluApp')
       return flowNodeType && (flowNodeType.category !== 'device' && flowNodeType.category !== 'channel');
     };
 
-    $scope.filterDebugLines = function(debug){
-      if(!debug) {
-        return false;
-      }
-
-      if(! $scope.flow.selectedFlowNode){
-        return true;
-      }
-
-      return $scope.flow.selectedFlowNode.id === debug.message.node;
-    };
-
     $scope.clearActiveTab();
   });
