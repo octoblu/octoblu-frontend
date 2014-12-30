@@ -39,12 +39,12 @@
           "type": "string",
           "name": "page"
         },{
-          "displayName": "Number Of Documents To Return Per Page",
+          "displayName": "Number Of Docs",
           "style": "query",
           "type": "string",
           "name": "per_page"
         },{
-          "displayName": "Return Documents With The Given Tags & Name/Value Tags",
+          "displayName": "Return Docs With Given Tags & Name/Value Tags",
           "style": "query",
           "type": "string",
           "name": "tags"
@@ -54,27 +54,27 @@
           "type": "string",
           "name": "search"
         },{
-          "displayName": "Filter Documents By Their State",
+          "displayName": "Filter Docs By Their State",
           "style": "query",
           "type": "string",
           "name": "state"
         },{
-          "displayName": "Specify A Sort Mode For The Documents",
+          "displayName": "Specify A Sort Mode For Docs",
           "style": "query",
           "type": "string",
           "name": "sort"
         },{
-          "displayName": "Filter Documents By Date Range",
+          "displayName": "Filter Docs By Date Range",
           "style": "query",
           "type": "string",
           "name": "range"
         },{
-          "displayName": "Return Documents That Include Recipient Email",
+          "displayName": "Return Docs That Include Recipient Email",
           "style": "query",
           "type": "string",
           "name": "recipient_email"
         },{
-          "displayName": "Returns Documents Sent By Current Account",
+          "displayName": "Returns Docs Sent By Current Account",
           "style": "query",
           "type": "string",
           "name": "account"
@@ -82,38 +82,38 @@
         "url": "https://rightsignature.com/api/documents.json"
       },
       {
-        "path": "/documents/<Document GUID>.json",
+        "path": "/documents/:DocumentGUID.json",
         "displayName": "Get Document Details",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUID>.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUID.json"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [{
-            "displayName": "Details about a specific document",
-            "name": "Document GUID",
+            "displayName": "Details about specific doc",
+            "name": ":DocumentGUID",
             "style": "url",
             "type": "string",
             "required": true
           }],
-        "url": "https://rightsignature.com/api/documents/<Document GUID>.json"
+        "url": "https://rightsignature.com/api/documents/:DocumentGUID.json"
       },
       {
-        "path": "/documents/<Document GUIDs (comma separated)>/batch_details.json",
+        "path": "/documents/:DocumentGUIDs/batch_details.json",
         "displayName": "Batch Document Details",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUIDs (comma separated)>/batch_details.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUIDs/batch_details.json"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [{
-            "displayName": "Allows For A Comma Separated Batch Of Document GUID's",
-            "name": "Document GUIDs (comma separated)",
+            "displayName": "Allows A Comma Separated Batch Of Doc GUID's",
+            "name": ":DocumentGUIDs",
             "style": "url",
             "type": "string",
             "required": true
           }],
-        "url": "https://rightsignature.com/api/documents/<Document GUIDs (comma separated)>/batch_details.json"
+        "url": "https://rightsignature.com/api/documents/:DocumentGUIDs/batch_details.json"
       },
       {
         "path": "/documents/<Document GUID>/send_reminders.json",
