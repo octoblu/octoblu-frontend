@@ -5,12 +5,12 @@ var User     = require('../models/user');
 var when     = require('when');
 
 var DemoFlowController = function (options) {
-  var self, meshblu, Flow;
+  var self, meshblu, Template;
   self = this;
 
   options = options || {};
 
-  Flow    = options.Flow || require('../models/flow');
+  Template    = options.Template || require('../models/template-model');
   meshblu = options.meshblu;
 
   self.create = function (req, res) {
@@ -21,7 +21,7 @@ var DemoFlowController = function (options) {
       User.addApiAuthorization(user, 'channel:sms-send', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token }),
       User.addApiAuthorization(user, 'channel:email', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token})
     ]).then(function(){
-      Flow.createByUserUUID(user.resource.uuid, demoFlow, meshblu).then(function(flow){
+      Template.importFlow(user.resource.uuid, demoFlow, meshblu).then(function(flow){
         res.send(201, flow);
       }).catch(function(error) {
         res.send(422, error);

@@ -44,6 +44,16 @@ function TemplateModel() {
       });
     },
 
+    importFlow : function(userUUID, flow, meshblu) {
+      var self = this;
+      var newFlow = self.cleanFlow(flow);
+      _.each(newFlow.nodes, function(node){
+        self.cleanId(node, newFlow.links);
+      });
+
+      return Flow.createByUserUUID(userUUID, newFlow, meshblu);
+    },
+
     cleanFlow : function(flow) {
       var self = this;
       var newFlow = _.cloneDeep(flow);
