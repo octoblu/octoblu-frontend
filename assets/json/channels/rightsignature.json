@@ -3,7 +3,7 @@
   "auth_strategy": "oauth",
   "documentation": "https://rightsignature.com/apidocs/api_calls?api_method=intro",
   "enabled": true,
-  "name": "Right Signature",
+  "name": "RightSignature",
   "type": "channel:RightSignature",
   "oauth" : {
     "development": {
@@ -90,7 +90,7 @@
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [{
-            "displayName": "Details about specific doc",
+            "displayName": "Details About Specific Doc",
             "name": ":DocumentGUID",
             "style": "url",
             "type": "string",
@@ -107,7 +107,7 @@
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [{
-            "displayName": "Allows A Comma Separated Batch Of Doc GUID's",
+            "displayName": "Allows Comma Separated Batch Of Doc GUID's",
             "name": ":DocumentGUIDs",
             "style": "url",
             "type": "string",
@@ -116,15 +116,16 @@
         "url": "https://rightsignature.com/api/documents/:DocumentGUIDs/batch_details.json"
       },
       {
-        "path": "/documents/<Document GUID>/send_reminders.json",
-        "displayName": "Sends A Reminder Email To Pending Signers",
+        "path": "/documents/:DocumentGUID/send_reminders.json",
+        "displayName": "Sends Reminder Email To Pending Signers",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUID>/send_reminders.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUID/send_reminders.json"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [{
-            "name": "Document GUID",
+            "displayName": "Document's GUID",
+            "name": ":DocumentGUID",
             "style": "url",
             "type": "string",
             "required": true
@@ -132,52 +133,55 @@
         "url": "https://rightsignature.com/api/documents/<Document GUID>/send_reminders.json"
       },
       {
-        "path": "/documents/<Document GUID>/trash.json",
+        "path": "/documents/:DocumentGUID/trash.json",
         "displayName": "Trash Document",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUID>/trash.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUID/trash.json"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [{
+          "displayName": "Document's GUID",
           "style": "url",
           "type": "String",
-          "name": "Document GUID",
+          "name": ":DocumentGUID",
           "required": true
           }],
-        "url": "https://rightsignature.com/api/documents/<Document GUID>/trash.json"
+        "url": "https://rightsignature.com/api/documents/:DocumentGUID/trash.json"
       },
       {
-        "path": "/documents/<Document GUID>/extend_expiration.json",
-        "displayName": "Extends Expiration Date Of A Document By 7 Days",
+        "path": "/documents/:DocumentGUID/extend_expiration.json",
+        "displayName": "Extends Expiration Date Of Doc By 7 Days",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUID>/extend_expiration.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUID/extend_expiration.json"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [{
+          "displayName": "Document's GUID",
           "style": "url",
           "type": "String",
-          "name": "Document GUID",
+          "name": ":DocumentGUID",
           "required": true
           }],
-        "url": "https://rightsignature.com/api/documents/<Document GUID>/extend_expiration.json"
+        "url": "https://rightsignature.com/api/documents/:DocumentGUID/extend_expiration.json"
       },
       {
-        "path": "/documents/<Document GUID>/update_tags.json",
-        "displayName": "Update Tags (All Old Tags Are Removed)",
+        "path": "/documents/:DocumentGUID/update_tags.json",
+        "displayName": "Update Tags (Old Tags Are Removed)",
         "doc": {
-          "url": "https://rightsignature.com/api/documents/<Document GUID>/update_tags.json"
+          "url": "https://rightsignature.com/api/documents/:DocumentGUID/update_tags.json"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [{
+          "displayName": "Document's GUID",
           "style": "url",
           "type": "String",
-          "name": "Document GUID",
+          "name": ":DocumentGUID",
           "required": true
           }],
-        "url": "https://rightsignature.com/api/documents/<Document GUID>/update_tags.json"
+        "url": "https://rightsignature.com/api/documents/:DocumentGUID/update_tags.json"
       },
       {
         "path": "/documents.json",
@@ -188,13 +192,13 @@
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [{
-          "displayName": "A Node Containing Type & Value Nodes Along With An Optional Filename Node",
+          "displayName": "Node Containing Type/Value Nodes Along With Filename Node",
           "style": "body",
           "type": "string",
           "name": "document_data",
           "required": true
         },{
-          "displayName": "A node Containing Nodes For Each Recipient Involved",
+          "displayName": "For Each Recipient Involved",
           "style": "body",
           "type": "string",
           "name": "recipients",
@@ -206,13 +210,13 @@
           "name": "subject",
           "required": true
         },{
-          "displayName": "Specify Whether To Send Or Redirect",
+          "displayName": "Specify To Send Or Redirect",
           "style": "body",
           "type": "string",
           "name": "action",
           "required": true
         },{
-          "displayName": "Specifies expires",
+          "displayName": "Specifies Expires In",
           "style": "body",
           "type": "string",
           "name": "expires_in"
@@ -263,7 +267,7 @@
           "type": "string",
           "name": "tags"
         },{
-          "displayName": "Assists In Narrowing Results",
+          "displayName": "Narrowing Results",
           "style": "query",
           "type": "string",
           "name": "search"
@@ -271,33 +275,35 @@
         "url": "https://rightsignature.com/api/templates.json"
       },
       {
-        "path": "/templates/<Template GUID>.json",
+        "path": "/templates/:TemplateGUID.json",
         "displayName": "Template Details",
         "doc": {
-          "url": "https://rightsignature.com/api/templates/<Template GUID>.json"
+          "url": "https://rightsignature.com/api/templates/:TemplateGUID.json"
         },
         "httpMethod": "Get",
         "curl": "curl -X ",
         "params": [{
+          "displayName": "Template GUID",
           "style": "url",
           "type": "String",
-          "name": "Template GUID",
+          "name": ":TemplateGUID",
           "required": true
           }],
-        "url": "https://rightsignature.com/api/templates/<Template GUID>.json"
+        "url": "https://rightsignature.com/api/templates/:TemplateGUID.json"
       },
       {
-        "path": "/templates/<Template GUID>/prepackage.json",
+        "path": "/templates/:TemplateGUID/prepackage.json",
         "displayName": "Prepackage Template",
         "doc": {
-          "url": "https://rightsignature.com/api/templates/<Template GUID>/prepackage.json"
+          "url": "https://rightsignature.com/api/templates/:TemplateGUID/prepackage.json"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [{
+          "displayName": "Prepackage Template",
           "style": "url",
           "type": "String",
-          "name": "Template GUID",
+          "name": ":TemplateGUID",
           "required": true
           },{
           "displayName": "Callback Location",
@@ -305,7 +311,7 @@
           "type": "string",
           "name": "callback_location"
         }],
-        "url": "https://rightsignature.com/api/templates/<Template GUID>/prepackage.json"
+        "url": "https://rightsignature.com/api/templates/:TemplateGUID/prepackage.json"
       },
       {
         "path": "/templates.json",
@@ -316,25 +322,25 @@
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [{
-          "displayName": "guid",
+          "displayName": "GUID",
           "style": "body",
           "type": "string",
           "name": "guid",
           "required": true
         },{
-          "displayName": "action",
+          "displayName": "Action",
           "style": "body",
           "type": "string",
           "name": "action",
           "required": true
         },{
-          "displayName": "subject",
+          "displayName": "Subject",
           "style": "body",
           "type": "string",
           "name": "subject",
           "required": true
         },{
-          "displayName": "roles",
+          "displayName": "Roles",
           "style": "body",
           "type": "string",
           "name": "roles",
@@ -386,7 +392,7 @@
           "type": "string",
           "name": "redirect_location"
         },{
-          "displayName": "tags",
+          "displayName": "Tags",
           "style": "body",
           "type": "string",
           "name": "tags"
@@ -426,7 +432,7 @@
       },
       {
         "path": "/forms/Application-e579dc/generate_link.json",
-        "displayName": "Returns A Custom Link For To Sign The Form Specified",
+        "displayName": "Gets A Custom Link For To Sign The Form Specified",
         "doc": {
           "url": "https://rightsignature.com/api/forms/Application-e579dc/generate_link.json"
         },
@@ -465,7 +471,7 @@
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [{
-          "displayName": "Node That Contains A Name Node & An Email Node",
+          "displayName": "Node Contains Name & An Email Node",
           "style": "body",
           "type": "string",
           "name": "user",
@@ -487,7 +493,7 @@
           "type": "string",
           "name": "since"
         },{
-          "displayName": "Only Report On Signed Documents",
+          "displayName": "Reports On Signed Documents",
           "style": "query",
           "type": "string",
           "name": "signed"
