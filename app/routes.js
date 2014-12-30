@@ -319,6 +319,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
 
+            app.get('/api/oauth/withings',          withingsController.authorize);
+            app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
+
             app.get('/api/oauth/uservoice',          userVoiceController.authorize);
             app.get('/api/oauth/uservoice/callback', userVoiceController.callback, userVoiceController.redirectToDesigner);
 

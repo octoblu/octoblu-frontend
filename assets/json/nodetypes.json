@@ -1248,7 +1248,7 @@
     "_id" : "54a1e61b43b8428f65cb7c01",
     "category" : "channel",
     "description" : "Withings",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "Withings",
     "skynet" : {
       "type" : "channel",

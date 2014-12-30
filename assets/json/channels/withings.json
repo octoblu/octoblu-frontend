@@ -2,7 +2,7 @@
   "_id": "54a1e58f43b8428f65cb7c00",
   "__v": 0,
   "documentation": "http://oauth.withings.com/api/doc",
-  "enabled": false,
+  "enabled": true,
   "name": "Withings",
   "type": "channel:withings",
   "application": {
