@@ -295,20 +295,20 @@
   "auth_strategy": "oauth",
   "oauth": {
     "development": {
-      "clientID": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
-      "clientSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
+      "consumerKey": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
+      "consumerSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
       "callbackURL": "http://localhost:8080/api/oauth/withings/callback",
       "tokenMethod": "access_token_query"
     },
     "staging": {
-      "clientID": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
-      "clientSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
+      "consumerKey": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
+      "consumerSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
       "callbackURL": "https://app.octoblu.com/api/oauth/withings/callback",
       "tokenMethod": "access_token_query"
     },
     "production": {
-      "clientID": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
-      "clientSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
+      "consumerKey": "b3474fb5b1c3d8eb75cd3417895446de3623032225f66b17d0077d468ef30",
+      "consumerSecret": "bc42239b3e7efdb131ef380bf9179273fc8ed12956c6d4c084d8ed857c",
       "callbackURL": "https://app.octoblu.com/api/oauth/withings/callback",
       "tokenMethod": "access_token_query"
     }
