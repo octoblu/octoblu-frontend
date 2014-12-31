@@ -265,7 +265,9 @@
     "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:http-request",
     "defaults": {
-      "method": "GET"
+      "method": "GET",
+      "headerKeys": ["Content-Type"],
+      "headerValues": ["text/html"]
     },
     "input": 1,
     "output": 1,
@@ -280,7 +282,9 @@
     "uuid": "da37cc30-5326-11e4-ad12-c7f5132c4ef6",
     "type": "operation:http-delete-request",
     "defaults": {
-      "method": "DELETE"
+      "method": "DELETE",
+      "headerKeys": ["Content-Type"],
+      "headerValues": ["text/html"]
     },
     "input": 1,
     "output": 1,
@@ -296,7 +300,8 @@
     "type": "operation:http-post-request",
     "defaults": {
       "method": "POST",
-      "contentType": "application/x-www-form-urlencoded"
+      "headerKeys": ["Content-Type"],
+      "headerValues": ["application/x-www-form-urlencoded"]
     },
     "input": 1,
     "output": 1,
@@ -312,7 +317,8 @@
     "type": "operation:http-put-request",
     "defaults": {
       "method": "PUT",
-      "contentType": "application/x-www-form-urlencoded"
+      "headerKeys": ["Content-Type"],
+      "headerValues": ["application/x-www-form-urlencoded"]
     },
     "input": 1,
     "output": 1,
