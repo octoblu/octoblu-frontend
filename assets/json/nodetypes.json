@@ -1269,5 +1269,18 @@
     },
     "channelid" : "54a44e1f620f5ebb13dbc4f1",
     "type" : "channel:rightSignature"
+  },
+  {
+    "_id" : "28be4cebbbbc8bbaf576d6f3",
+    "category" : "device",
+    "description" : "Polar Heart Rate Monitor",
+    "enabled" : true,
+    "name" : "Polar Heart Rate Monitor",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "polar"
+    },
+    "type" : "device:polar",
+    "connector" : "meshblu-polar"
   }
 ]
