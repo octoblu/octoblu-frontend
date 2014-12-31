@@ -132,6 +132,9 @@ module.exports = function(app, passport) {
     var RedBoothController = require('./controllers/redbooth-controller');
     var redBoothController = new RedBoothController();
 
+    var RightSignatureController = require('./controllers/rightsignature-controller');
+    var rightsignatureController = new RightSignatureController();
+
     var PodioController = require('./controllers/podio-controller');
     var podioController = new PodioController();
 
@@ -315,6 +318,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/podio',          podioController.authorize);
             app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
+            
+            app.get('/api/oauth/rightsignature',          rightsignatureController.authorize);
+            app.get('/api/oauth/rightsignature/callback', rightsignatureController.callback, rightsignatureController.redirectToDesigner);
 
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);

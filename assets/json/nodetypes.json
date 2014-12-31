@@ -1244,7 +1244,7 @@
     "channelid" : "54959b239be38fdaabb5497a",
     "type" : "channel:wink"
   },
-    {
+  {
     "_id" : "54a1e61b43b8428f65cb7c01",
     "category" : "channel",
     "description" : "Withings",
@@ -1256,5 +1256,18 @@
     },
     "channelid" : "54a1e58f43b8428f65cb7c00",
     "type" : "channel:withings"
+  },
+  {
+    "_id" : "54a449d8620f5ebb13dbc4f0",
+    "category" : "channel",
+    "description" : "Right Signature",
+    "enabled" : true,
+    "name" : "Right Signature",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "rightSignature"
+    },
+    "channelid" : "54a44e1f620f5ebb13dbc4f1",
+    "type" : "channel:rightSignature"
   }
 ]

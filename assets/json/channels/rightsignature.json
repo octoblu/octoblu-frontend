@@ -1,84 +1,96 @@
 {
-  "_id": "5849394859345583923852",
+  "_id": "54a44e1f620f5ebb13dbc4f1",
   "auth_strategy": "oauth",
   "documentation": "https://rightsignature.com/apidocs/api_calls?api_method=intro",
   "enabled": true,
-  "name": "RightSignature",
-  "type": "channel:RightSignature",
-  "oauth" : {
+  "name": "rightSignature",
+  "type": "channel:rightSignature",
+  "oauth": {
     "development": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "consumerKey": "cWFEaAWOYpJXOK30WGDHw1vL3FWrZUpI4zOhilSN",
+      "consumerSecret": "zLKTiSP8vLZVsPV8cu8ZOCOm426kvrekqxcIkLOl",
+      "callbackURL": "http://localhost:8080/api/oauth/rightsignature/callback",
+      "tokenMethod": "access_token_query"
     },
     "production": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "consumerKey": "cWFEaAWOYpJXOK30WGDHw1vL3FWrZUpI4zOhilSN",
+      "consumerSecret": "zLKTiSP8vLZVsPV8cu8ZOCOm426kvrekqxcIkLOl",
+      "callbackURL": "https://app.octoblu.com/api/oauth/rightsignature/callback",
+      "tokenMethod": "access_token_query"
     },
     "staging": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "consumerKey": "cWFEaAWOYpJXOK30WGDHw1vL3FWrZUpI4zOhilSN",
+      "consumerSecret": "zLKTiSP8vLZVsPV8cu8ZOCOm426kvrekqxcIkLOl",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/rightsignature/callback",
+      "tokenMethod": "access_token_query"
     }
   },
   "application": {
     "base": "https://rightsignature.com/api",
     "resources": [
-     {
+      {
         "path": "/documents.json",
         "displayName": "List Documents",
         "doc": {
           "url": "https://rightsignature.com/api/documents.json"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",  
-        "params": [{
-          "displayName": "Page Number",
-          "style": "query",
-          "type": "string",
-          "name": "page"
-        },{
-          "displayName": "Number Of Docs",
-          "style": "query",
-          "type": "string",
-          "name": "per_page"
-        },{
-          "displayName": "Return Docs With Given Tags & Name/Value Tags",
-          "style": "query",
-          "type": "string",
-          "name": "tags"
-        },{
-          "displayName": "Narrowing Results",
-          "style": "query",
-          "type": "string",
-          "name": "search"
-        },{
-          "displayName": "Filter Docs By Their State",
-          "style": "query",
-          "type": "string",
-          "name": "state"
-        },{
-          "displayName": "Specify A Sort Mode For Docs",
-          "style": "query",
-          "type": "string",
-          "name": "sort"
-        },{
-          "displayName": "Filter Docs By Date Range",
-          "style": "query",
-          "type": "string",
-          "name": "range"
-        },{
-          "displayName": "Return Docs That Include Recipient Email",
-          "style": "query",
-          "type": "string",
-          "name": "recipient_email"
-        },{
-          "displayName": "Returns Docs Sent By Current Account",
-          "style": "query",
-          "type": "string",
-          "name": "account"
-        }],
+        "params": [
+          {
+            "displayName": "Page Number",
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },
+          {
+            "displayName": "Number Of Docs",
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },
+          {
+            "displayName": "Return Docs With Given Tags & Name/Value Tags",
+            "style": "query",
+            "type": "string",
+            "name": "tags"
+          },
+          {
+            "displayName": "Narrowing Results",
+            "style": "query",
+            "type": "string",
+            "name": "search"
+          },
+          {
+            "displayName": "Filter Docs By Their State",
+            "style": "query",
+            "type": "string",
+            "name": "state"
+          },
+          {
+            "displayName": "Specify A Sort Mode For Docs",
+            "style": "query",
+            "type": "string",
+            "name": "sort"
+          },
+          {
+            "displayName": "Filter Docs By Date Range",
+            "style": "query",
+            "type": "string",
+            "name": "range"
+          },
+          {
+            "displayName": "Return Docs That Include Recipient Email",
+            "style": "query",
+            "type": "string",
+            "name": "recipient_email"
+          },
+          {
+            "displayName": "Returns Docs Sent By Current Account",
+            "style": "query",
+            "type": "string",
+            "name": "account"
+          }
+        ],
         "url": "https://rightsignature.com/api/documents.json"
       },
       {
@@ -88,14 +100,15 @@
           "url": "https://rightsignature.com/api/documents/:DocumentGUID.json"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-            "displayName": "Details About Specific Doc",
+        "params": [
+          {
+            "displayName": "Document's GUID",
             "name": ":DocumentGUID",
             "style": "url",
             "type": "string",
             "required": true
-          }],
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/:DocumentGUID.json"
       },
       {
@@ -105,14 +118,15 @@
           "url": "https://rightsignature.com/api/documents/:DocumentGUIDs/batch_details.json"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
+        "params": [
+          {
             "displayName": "Allows Comma Separated Batch Of Doc GUID's",
             "name": ":DocumentGUIDs",
             "style": "url",
             "type": "string",
             "required": true
-          }],
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/:DocumentGUIDs/batch_details.json"
       },
       {
@@ -121,15 +135,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/documents/:DocumentGUID/send_reminders.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
+        "httpMethod": "POST",
+        "params": [
+          {
             "displayName": "Document's GUID",
             "name": ":DocumentGUID",
             "style": "url",
             "type": "string",
             "required": true
-          }],
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/<Document GUID>/send_reminders.json"
       },
       {
@@ -138,15 +153,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/documents/:DocumentGUID/trash.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Document's GUID",
-          "style": "url",
-          "type": "String",
-          "name": ":DocumentGUID",
-          "required": true
-          }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Document's GUID",
+            "style": "url",
+            "type": "String",
+            "name": ":DocumentGUID",
+            "required": true
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/:DocumentGUID/trash.json"
       },
       {
@@ -155,15 +171,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/documents/:DocumentGUID/extend_expiration.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Document's GUID",
-          "style": "url",
-          "type": "String",
-          "name": ":DocumentGUID",
-          "required": true
-          }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Document's GUID",
+            "style": "url",
+            "type": "String",
+            "name": ":DocumentGUID",
+            "required": true
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/:DocumentGUID/extend_expiration.json"
       },
       {
@@ -172,15 +189,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/documents/:DocumentGUID/update_tags.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Document's GUID",
-          "style": "url",
-          "type": "String",
-          "name": ":DocumentGUID",
-          "required": true
-          }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Document's GUID",
+            "style": "url",
+            "type": "String",
+            "name": ":DocumentGUID",
+            "required": true
+          }
+        ],
         "url": "https://rightsignature.com/api/documents/:DocumentGUID/update_tags.json"
       },
       {
@@ -189,58 +207,67 @@
         "doc": {
           "url": "https://rightsignature.com/api/documents.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Node Containing Type/Value Nodes Along With Filename Node",
-          "style": "body",
-          "type": "string",
-          "name": "document_data",
-          "required": true
-        },{
-          "displayName": "For Each Recipient Involved",
-          "style": "body",
-          "type": "string",
-          "name": "recipients",
-          "required": true
-        },{
-          "displayName": "Subject",
-          "style": "body",
-          "type": "string",
-          "name": "subject",
-          "required": true
-        },{
-          "displayName": "Specify To Send Or Redirect",
-          "style": "body",
-          "type": "string",
-          "name": "action",
-          "required": true
-        },{
-          "displayName": "Specifies Expires In",
-          "style": "body",
-          "type": "string",
-          "name": "expires_in"
-        },{
-          "displayName": "Specifies The Description",
-          "style": "body",
-          "type": "string",
-          "name": "description"
-        },{
-          "displayName": "Specifies Tags",
-          "style": "body",
-          "type": "string",
-          "name": "tags"
-        },{
-          "displayName": "Callback Location",
-          "style": "body",
-          "type": "string",
-          "name": "callback_location"
-        },{
-          "displayName": "Use Of Text Tags",
-          "style": "body",
-          "type": "string",
-          "name": "use_text_tags"
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Node Containing Type/Value Nodes Along With Filename Node",
+            "style": "body",
+            "type": "string",
+            "name": "document_data",
+            "required": true
+          },
+          {
+            "displayName": "For Each Recipient Involved",
+            "style": "body",
+            "type": "string",
+            "name": "recipients",
+            "required": true
+          },
+          {
+            "displayName": "Subject",
+            "style": "body",
+            "type": "string",
+            "name": "subject",
+            "required": true
+          },
+          {
+            "displayName": "Specify To Send Or Redirect",
+            "style": "body",
+            "type": "string",
+            "name": "action",
+            "required": true
+          },
+          {
+            "displayName": "Specifies Expires In",
+            "style": "body",
+            "type": "string",
+            "name": "expires_in"
+          },
+          {
+            "displayName": "Specifies The Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          },
+          {
+            "displayName": "Specifies Tags",
+            "style": "body",
+            "type": "string",
+            "name": "tags"
+          },
+          {
+            "displayName": "Callback Location",
+            "style": "body",
+            "type": "string",
+            "name": "callback_location"
+          },
+          {
+            "displayName": "Use Of Text Tags",
+            "style": "body",
+            "type": "string",
+            "name": "use_text_tags"
+          }
+        ],
         "url": "https://rightsignature.com/api/documents.json"
       },
       {
@@ -250,28 +277,32 @@
           "url": "https://rightsignature.com/api/templates.json"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Page Number",
-          "style": "query",
-          "type": "string",
-          "name": "page"
-        },{
-          "displayName": "Number Of Templates",
-          "style": "query",
-          "type": "string",
-          "name": "per_page"
-        },{
-          "displayName": "Templates With Given Tags & Name/Value Tags",
-          "style": "query",
-          "type": "string",
-          "name": "tags"
-        },{
-          "displayName": "Narrowing Results",
-          "style": "query",
-          "type": "string",
-          "name": "search"
-        }],
+        "params": [
+          {
+            "displayName": "Page Number",
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },
+          {
+            "displayName": "Number Of Templates",
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },
+          {
+            "displayName": "Templates With Given Tags & Name/Value Tags",
+            "style": "query",
+            "type": "string",
+            "name": "tags"
+          },
+          {
+            "displayName": "Narrowing Results",
+            "style": "query",
+            "type": "string",
+            "name": "search"
+          }
+        ],
         "url": "https://rightsignature.com/api/templates.json"
       },
       {
@@ -280,15 +311,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/templates/:TemplateGUID.json"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Template GUID",
-          "style": "url",
-          "type": "String",
-          "name": ":TemplateGUID",
-          "required": true
-          }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Template GUID",
+            "style": "url",
+            "type": "String",
+            "name": ":TemplateGUID",
+            "required": true
+          }
+        ],
         "url": "https://rightsignature.com/api/templates/:TemplateGUID.json"
       },
       {
@@ -297,20 +329,22 @@
         "doc": {
           "url": "https://rightsignature.com/api/templates/:TemplateGUID/prepackage.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Prepackage Template",
-          "style": "url",
-          "type": "String",
-          "name": ":TemplateGUID",
-          "required": true
-          },{
-          "displayName": "Callback Location",
-          "style": "body",
-          "type": "string",
-          "name": "callback_location"
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Prepackage Template",
+            "style": "url",
+            "type": "String",
+            "name": ":TemplateGUID",
+            "required": true
+          },
+          {
+            "displayName": "Callback Location",
+            "style": "body",
+            "type": "string",
+            "name": "callback_location"
+          }
+        ],
         "url": "https://rightsignature.com/api/templates/:TemplateGUID/prepackage.json"
       },
       {
@@ -319,58 +353,67 @@
         "doc": {
           "url": "https://rightsignature.com/api/templates.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "GUID",
-          "style": "body",
-          "type": "string",
-          "name": "guid",
-          "required": true
-        },{
-          "displayName": "Action",
-          "style": "body",
-          "type": "string",
-          "name": "action",
-          "required": true
-        },{
-          "displayName": "Subject",
-          "style": "body",
-          "type": "string",
-          "name": "subject",
-          "required": true
-        },{
-          "displayName": "Roles",
-          "style": "body",
-          "type": "string",
-          "name": "roles",
-          "required": true
-        },{
-          "displayName": "Merge Fields",
-          "style": "body",
-          "type": "string",
-          "name": "merge_fields"
-        },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "string",
-          "name": "description"
-        },{
-          "displayName": "Expires In",
-          "style": "body",
-          "type": "string",
-          "name": "expires_in"
-        },{
-          "displayName": "Tags",
-          "style": "body",
-          "type": "string",
-          "name": "tags"
-        },{
-          "displayName": "Callback Location",
-          "style": "body",
-          "type": "string",
-          "name": "callback_location"
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "GUID",
+            "style": "body",
+            "type": "string",
+            "name": "guid",
+            "required": true
+          },
+          {
+            "displayName": "Action",
+            "style": "body",
+            "type": "string",
+            "name": "action",
+            "required": true
+          },
+          {
+            "displayName": "Subject",
+            "style": "body",
+            "type": "string",
+            "name": "subject",
+            "required": true
+          },
+          {
+            "displayName": "Roles",
+            "style": "body",
+            "type": "string",
+            "name": "roles",
+            "required": true
+          },
+          {
+            "displayName": "Merge Fields",
+            "style": "body",
+            "type": "string",
+            "name": "merge_fields"
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          },
+          {
+            "displayName": "Expires In",
+            "style": "body",
+            "type": "string",
+            "name": "expires_in"
+          },
+          {
+            "displayName": "Tags",
+            "style": "body",
+            "type": "string",
+            "name": "tags"
+          },
+          {
+            "displayName": "Callback Location",
+            "style": "body",
+            "type": "string",
+            "name": "callback_location"
+          }
+        ],
         "url": "https://rightsignature.com/api/templates.json"
       },
       {
@@ -379,34 +422,39 @@
         "doc": {
           "url": "https://rightsignature.com/api/templates/generate_build_token.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Callback Location",
-          "style": "body",
-          "type": "string",
-          "name": "callback_location"
-        },{
-          "displayName": "Redirect Location",
-          "style": "body",
-          "type": "string",
-          "name": "redirect_location"
-        },{
-          "displayName": "Tags",
-          "style": "body",
-          "type": "string",
-          "name": "tags"
-        },{
-          "displayName": "Acceptable Role Names",
-          "style": "body",
-          "type": "string",
-          "name": "acceptable_role_names"
-        },{
-          "displayName": "Acceptable Merge Field Names",
-          "style": "body",
-          "type": "string",
-          "name": "acceptable_merge_field_names"
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Callback Location",
+            "style": "body",
+            "type": "string",
+            "name": "callback_location"
+          },
+          {
+            "displayName": "Redirect Location",
+            "style": "body",
+            "type": "string",
+            "name": "redirect_location"
+          },
+          {
+            "displayName": "Tags",
+            "style": "body",
+            "type": "string",
+            "name": "tags"
+          },
+          {
+            "displayName": "Acceptable Role Names",
+            "style": "body",
+            "type": "string",
+            "name": "acceptable_role_names"
+          },
+          {
+            "displayName": "Acceptable Merge Field Names",
+            "style": "body",
+            "type": "string",
+            "name": "acceptable_merge_field_names"
+          }
+        ],
         "url": "https://rightsignature.com/api/templates/generate_build_token.json"
       },
       {
@@ -415,19 +463,21 @@
         "doc": {
           "url": "https://rightsignature.com/api/forms.json"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Page Number",
-          "style": "query",
-          "type": "string",
-          "name": "page"
-        },{
-          "displayName": "Number Of Forms To Return Per Page",
-          "style": "query",
-          "type": "string",
-          "name": "per_page"
-        }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Page Number",
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },
+          {
+            "displayName": "Number Of Forms To Return Per Page",
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }
+        ],
         "url": "https://rightsignature.com/api/forms.json"
       },
       {
@@ -436,19 +486,21 @@
         "doc": {
           "url": "https://rightsignature.com/api/forms/Application-e579dc/generate_link.json"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Expires In",
-          "style": "query",
-          "type": "string",
-          "name": "expires_in"
-        },{
-          "displayName": "Link Method",
-          "style": "query",
-          "type": "string",
-          "name": "link_method"
-        }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Expires In",
+            "style": "query",
+            "type": "string",
+            "name": "expires_in"
+          },
+          {
+            "displayName": "Link Method",
+            "style": "query",
+            "type": "string",
+            "name": "link_method"
+          }
+        ],
         "url": "https://rightsignature.com/api/forms/Application-e579dc/generate_link.json"
       },
       {
@@ -457,8 +509,7 @@
         "doc": {
           "url": "https://rightsignature.com/api/users/user_details.json"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://rightsignature.com/api/users/user_details.json"
       },
@@ -468,15 +519,16 @@
         "doc": {
           "url": "https://rightsignature.com/api/users.json"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Node Contains Name & An Email Node",
-          "style": "body",
-          "type": "string",
-          "name": "user",
-          "required": true
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Node Contains Name & An Email Node",
+            "style": "body",
+            "type": "string",
+            "name": "user",
+            "required": true
+          }
+        ],
         "url": "https://rightsignature.com/api/users.json"
       },
       {
@@ -485,20 +537,23 @@
         "doc": {
           "url": "https://rightsignature.com/api/account/usage_report.json"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Bound Usage Data To A Time Period",
-          "style": "query",
-          "type": "string",
-          "name": "since"
-        },{
-          "displayName": "Reports On Signed Documents",
-          "style": "query",
-          "type": "string",
-          "name": "signed"
-        }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Bound Usage Data To A Time Period",
+            "style": "query",
+            "type": "string",
+            "name": "since"
+          },
+          {
+            "displayName": "Reports On Signed Documents",
+            "style": "query",
+            "type": "string",
+            "name": "signed"
+          }
+        ],
         "url": "https://rightsignature.com/api/account/usage_report.json"
-      }]
+      }
+    ]
   }
 }
