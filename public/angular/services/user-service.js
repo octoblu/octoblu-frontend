@@ -122,6 +122,16 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
 };
 
+this.saveApiKey = function(channelid, apikey, callback){
+  $http.post('/api/auth/apikey/channel/' + channelid, {apikey: apikey})
+  .success(function(data){
+    callback(data);
+  })
+  .error(function(error){
+    console.error('Error: ', error);
+  });
+};
+
 this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
 
   $http.put('/api/user/' + uuid+ '/channel/' + channelid,
@@ -133,7 +143,6 @@ this.saveConnection = function (uuid, channelid, key, token, custom_tokens, call
     console.log('Error: ' + data);
     callback({});
   });
-
 };
 
 this.removeConnection = function (channelid) {

@@ -81,6 +81,7 @@ var FlowDeploy = function(options){
         node.oauth = _.defaults(node.oauth, channelOauth);
         node.oauth.key = node.oauth.key || node.oauth.clientID || node.oauth.consumerKey;
         node.oauth.secret = node.oauth.secret || node.oauth.clientSecret || node.oauth.consumerSecret;
+        node.authHeaderKey = channelApiMatch.auth_header_key;
         // Get User API Match
         userApiMatch = User.findApiByChannel(userApis, channelApiMatch);
       }
@@ -89,6 +90,7 @@ var FlowDeploy = function(options){
           userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
           userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
         }
+        node.apikey = userApiMatch.apikey;
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
         node.defaultParams = userApiMatch.defaultParams;

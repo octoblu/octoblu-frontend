@@ -27,6 +27,9 @@ module.exports = function(app, passport) {
     var ChannelBasicAuthController = require('./controllers/channel-basic-auth-controller');
     var channelBasicAuthController = new ChannelBasicAuthController();
 
+    var ChannelApiKeyController = require('./controllers/channel-api-key-controller');
+    var channelApiKeyController = new ChannelApiKeyController();
+
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
@@ -199,6 +202,7 @@ module.exports = function(app, passport) {
             app.post('/api/auth/aws/channel/:id', channelAWSAuthController.create);
             app.post('/api/auth/clouddotcom/channel/:id', channelCloudDotComController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
+            app.post('/api/auth/apikey/channel/:id', channelApiKeyController.create);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.storeTesterId, signupController.authorize, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
@@ -318,7 +322,7 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/podio',          podioController.authorize);
             app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
-            
+
             app.get('/api/oauth/rightsignature',          rightsignatureController.authorize);
             app.get('/api/oauth/rightsignature/callback', rightsignatureController.callback, rightsignatureController.redirectToDesigner);
 
