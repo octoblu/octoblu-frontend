@@ -31,9 +31,6 @@ module.exports = function(app, passport) {
     var channelApiKeyController = new ChannelApiKeyController();
 
 
-    var ChannelSimpleAuthQueryController = require('./controllers/channel-simpleauthquery-controller');
-    var channelSimpleAuthQueryController = new ChannelSimpleAuthQueryController();
-
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
@@ -207,7 +204,6 @@ module.exports = function(app, passport) {
             app.post('/api/auth/clouddotcom/channel/:id', channelCloudDotComController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
             app.post('/api/auth/apikey/channel/:id', channelApiKeyController.create);
-             app.post('/api/auth/simpleauthquery/channel/:id', channelSimpleAuthQueryController.create);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.storeTesterId, signupController.authorize, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
