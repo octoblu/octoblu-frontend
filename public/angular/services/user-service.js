@@ -132,6 +132,20 @@ this.saveApiKey = function(channelid, apikey, callback){
   });
 };
 
+this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey, callback){
+  $http.post('/api/auth/simpleauthquery/channel/' + channelid, {
+      userId : userId, 
+      domain : domain, 
+      password : password, 
+      appKey : appKey})
+  .success(function(data){
+    callback(data);
+  })
+  .error(function(error){
+    console.error('Error: ', error);
+  });
+};
+
 this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
 
   $http.put('/api/user/' + uuid+ '/channel/' + channelid,

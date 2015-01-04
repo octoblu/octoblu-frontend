@@ -1308,5 +1308,17 @@
     },
     "type" : "device:sensoria",
     "connector" : "meshblu-sensoria"
+  }, 
+  {
+    "_id" : "54a8c55d66644b2c0c6c3da3",
+    "category" : "channel",
+    "description" : "AT&T Digital Life",
+    "enabled" : true,
+    "name" : "Digital Life",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "digitallife"
+    },
+    "type" : "channel:digitallife"
   }
 ]
