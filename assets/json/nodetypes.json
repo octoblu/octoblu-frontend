@@ -1295,5 +1295,31 @@
     },
     "type" : "device:polar",
     "connector" : "meshblu-polar"
+  },
+    {
+    "_id" : "54a8ad23ebb760c8981c01f2",
+    "category" : "device",
+    "description" : "Sensoria Sock",
+    "enabled" : true,
+    "name" : "Sensoria Sock",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "sensoria"
+    },
+    "type" : "device:sensoria",
+    "connector" : "meshblu-sensoria"
+  },
+  {
+    "_id" : "54a91a102ef277e103b65404",
+    "category" : "device",
+    "description" : "Wunder Bar",
+    "enabled" : true,
+    "name" : "Wunder Bar",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "wunderbar"
+    },
+    "type" : "device:wunderbar",
+    "connector" : "meshblu-relayr"
   }
 ]
