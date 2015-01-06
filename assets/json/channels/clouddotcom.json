@@ -426,21 +426,9 @@
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "array",
+            "default": [],
             "style": "body",
             "required": true,
-            "schema": {
-              "title":"Array of Channels",
-              "type": "array",
-              "format": "table",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "channel": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
           }
         ]
       },
@@ -476,19 +464,7 @@
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "array",
-            "schema": {
-              "title":"Array of Channels",
-              "type": "array",
-              "format": "table",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "channel": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
+            "default": [],
             "style": "body",
             "required": "true"
           }
@@ -511,19 +487,7 @@
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "array",
-            "schema": {
-              "title":"Array of Channels",
-              "type": "array",
-              "format": "table",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "channel": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
+            "default": [],
             "style": "body",
             "required": "true"
           }
@@ -567,19 +531,7 @@
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "array",
-            "schema": {
-              "title":"Array of Channels",
-              "type": "array",
-              "format": "table",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "channel": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
+            "default": [],
             "style": "body",
             "required": "true"
           },
@@ -587,19 +539,7 @@
             "name": "devices",
             "displayName": "Array of Devices",
             "type": "array",
-            "schema": {
-              "title":"Array of Devices",
-              "type": "array",
-              "format": "table",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "device": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
+            "default": [],
             "style": "body",
             "required": "false"
           },

@@ -15,6 +15,17 @@ angular.module('octobluApp')
       }, defaultSchema);
     }
 
+    function getArraySchema(name) {
+      return {
+        title: name,
+        type: "array",
+        format: "table",
+        items: {
+          type: "string"
+        }
+      }
+    }
+
     instantiateParams = function() {
       if (!$scope.paramDefinitions) {
         return;
@@ -28,6 +39,9 @@ angular.module('octobluApp')
         
         if(paramDefinition.type === 'object') {
             paramDefinition.schema = getSchema(paramDefinition.name);
+        }
+        if(paramDefinition.type === 'array') {
+          paramDefinition.schema = getArraySchema(paramDefinition.displayName);
         }
       });
     };
