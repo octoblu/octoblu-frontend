@@ -291,6 +291,19 @@
     "type" : "channel:spotify"
   },
   {
+    "_id" : "c4df42fe-172e-46ff-b741-018d1f86d67c",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "M2X",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "m2x"
+    },
+    "channelid" : "4edecadae8994a5db49de8a1",
+    "type" : "channel:m2x"
+  },
+  {
     "_id" : "53c9b836f400e177dca325bd",
     "category" : "channel",
     "description" : "Get YAHOO! Finance stock price",
@@ -1282,5 +1295,31 @@
     },
     "type" : "device:polar",
     "connector" : "meshblu-polar"
+  },
+    {
+    "_id" : "54a8ad23ebb760c8981c01f2",
+    "category" : "device",
+    "description" : "Sensoria Sock",
+    "enabled" : true,
+    "name" : "Sensoria Sock",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "sensoria"
+    },
+    "type" : "device:sensoria",
+    "connector" : "meshblu-sensoria"
+  },
+  {
+    "_id" : "54a91a102ef277e103b65404",
+    "category" : "device",
+    "description" : "Wunder Bar",
+    "enabled" : true,
+    "name" : "Wunder Bar",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "wunderbar"
+    },
+    "type" : "device:wunderbar",
+    "connector" : "meshblu-relayr"
   }
 ]

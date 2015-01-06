@@ -221,6 +221,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelDocuSignController',
         templateUrl: '/pages/node-wizard/add-channel/docusign.html'
       })
+      .state('material.nodewizard.addchannel.apikey', {
+        url: '/apikey',
+        controller: 'addChannelApiKeyController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey.html'
+      })
       .state('material.nodewizard.addchannel.apikey-basic', {
         url: '/apikey-basic',
         controller: 'addChannelApiKeyBasicController',
