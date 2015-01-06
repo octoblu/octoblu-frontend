@@ -1,339 +1,197 @@
 {
   "_id": "53fb878b710850ee08e28487",
-  "__v": 0,
-  "application": {
-    "base": "https://api.uber.com",
-    "resources": [
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://api.uber.com/v1/products"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "PRODUCT TYPES",
-        "path": "/v1/products",
-        "params": [
-          {
-            "name": "latitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "longitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "product_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "description",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "display_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "capacity",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "image",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.uber.com/v1/products"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://api.uber.com/v1/estimates/price"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "PRICE ESTIMATES",
-        "path": "/v1/estimates/price",
-        "params": [
-          {
-            "name": "start_latitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "start_longitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "end_latitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "end_longitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "product_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "currency_code",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "display_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "estimate",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "low_estimate",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "high_estimate",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "surge_multiplier",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.uber.com/v1/estimates/price"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://api.uber.com/v1/estimates/time"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "TIME ESTIMATES",
-        "path": "/v1/estimates/time",
-        "params": [
-          {
-            "name": "start_latitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "start_longitude",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "customer_uuid",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "product_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "product_id",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "display_name",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "estimate",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.uber.com/v1/estimates/time"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://api.uber.com/v1/history"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "USER ACTIVITY",
-        "path": "/v1/history",
-        "params": [
-          {
-            "name": "offset",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "limit",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "offset",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "limit",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "count",
-            "style": "query",
-            "type": "number",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "history",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.uber.com/v1/history"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://api.uber.com/v1/me"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "USER PROFILE",
-        "path": "/v1/me",
-        "params": [
-          {
-            "name": "first_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "last_name",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "email",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "picture",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "promo_code",
-            "style": "query",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.uber.com/v1/me"
-      }
-    ]
-  },
   "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "description": "",
   "documentation": "https://developer.uber.com/v1/endpoints",
   "enabled": true,
   "name": "UBER",
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:uber"
+  "type": "channel:uber",
+  "oauth" : {
+    "development": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    },
+    "production": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    },
+    "staging": {
+      "clientID"     : "",
+      "clientSecret" : "",
+      "callbackURL"  : ""
+    }
+  },
+  "application": {
+    "base": "https://api.uber.com",
+    "resources": [
+     {
+        "path": "/v1/products",
+        "displayName": "Get Product Types",
+        "doc": {
+          "url": "https://api.uber.com/v1/products"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",  
+        "params": [{
+          "displayName": "Latitude Component",
+          "style": "query",
+          "type": "float",
+          "name": "latitude"
+        },{
+          "displayName": "Longitude Component",
+          "style": "query",
+          "type": "float",
+          "name": "longitude"
+        }],
+        "url": "https://api.uber.com/v1/products"
+      },
+      {
+        "path": "/v1/estimates/price",
+        "displayName": "Get Estimated Price Estimates",
+        "doc": {
+          "url": "https://api.uber.com/v1/estimates/price"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Latitude Of Start Location",
+          "style": "query",
+          "type": "float",
+          "name": "start_latitude"
+        },{
+          "displayName": "Longitude Of Start Location",
+          "style": "query",
+          "type": "float",
+          "name": "start_longitude"
+        },{
+          "displayName": "Latitude Of End Location",
+          "style": "query",
+          "type": "float",
+          "name": "end_latitude"
+        },{
+          "displayName": "Longitude Of End Location",
+          "style": "query",
+          "type": "float",
+          "name": "end_longitude"
+        }],
+        "url": "https://api.uber.com/v1/estimates/price"
+      },
+      {
+        "path": "/v1/estimates/time",
+        "displayName": "Get Time Estimates",
+        "doc": {
+          "url": "https://api.uber.com/v1/estimates/time"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Latitude Component",
+          "style": "query",
+          "type": "float",
+          "name": "start_latitude"
+        },{
+          "displayName": "Longitude Component",
+          "style": "query",
+          "type": "float",
+          "name": "start_longitude"
+        },{
+          "displayName": "Unique Customer ID",
+          "style": "query",
+          "type": "string",
+          "name": "customer_uuid"
+        },{
+          "displayName": "ID For Product Of A Given Latitude & Longitude",
+          "style": "query",
+          "type": "string",
+          "name": "product_id"
+        }],
+        "url": "https://api.uber.com/v1/estimates/time"
+      },
+      {
+        "path": "/v1/promotions",
+        "displayName": "Get Info About Promotions",
+        "doc": {
+          "url": "https://api.uber.com/v1/promotions"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Latitude Of Start Location",
+          "style": "query",
+          "type": "float",
+          "name": "start_latitude"
+        },{
+          "displayName": "Longitude Of Start Location",
+          "style": "query",
+          "type": "float",
+          "name": "start_longitude"
+        },{
+          "displayName": "Latitude Of End Location",
+          "style": "query",
+          "type": "float",
+          "name": "end_latitude"
+        },{
+          "displayName": "Longitude Of End Location",
+          "style": "query",
+          "type": "float",
+          "name": "end_longitude"
+        }],
+        "url": "https://api.uber.com/v1/promotions"
+      },
+      {
+        "path": "/v1.1/history",
+        "displayName": "Get Limited User Activity (V1.1)",
+        "doc": {
+          "url": "https://api.uber.com/v1.1/history"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Offset List Of Returned Results",
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "displayName": "Number Of Items To Retrieve",
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        }],
+        "url": "https://api.uber.com/v1.1/history"
+      },
+      {
+        "path": "/v1/history",
+        "displayName": "Get Data User Activity History (V1)",
+        "doc": {
+          "url": "https://api.uber.com/v1/history"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+          "displayName": "Offset List Of Returned Results",
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "displayName": "Number Of Items To Retrieve",
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        }],
+        "url": "https://api.uber.com/v1/history"
+      },
+      {
+        "path": "/v1/me",
+        "displayName": "Get The Uber User Profile",
+        "doc": {
+          "url": "https://api.uber.com/v1/me"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://api.uber.com/v1/me"
+      }]
+  }
 }
