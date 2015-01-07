@@ -388,13 +388,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "channels",
-            "displayName": "Channels",
-            "type": "string",
-            "style": "query",
-            "required": "true"
-          },
-          {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
@@ -428,6 +421,14 @@
             "type": "float",
             "style": "query",
             "required": "false"
+          },
+          {
+            "name": "channels",
+            "displayName": "Array of Channels",
+            "type": "array",
+            "default": [],
+            "style": "body",
+            "required": true
           }
         ]
       },
@@ -462,7 +463,8 @@
           {
             "name": "channels",
             "displayName": "Array of Channels",
-            "type": "strng",
+            "type": "array",
+            "default": [],
             "style": "body",
             "required": "true"
           }
@@ -484,7 +486,8 @@
           {
             "name": "channels",
             "displayName": "Array of Channels",
-            "type": "strng",
+            "type": "array",
+            "default": [],
             "style": "body",
             "required": "true"
           }
@@ -497,25 +500,11 @@
         "httpMethod": "POST",
         "params": [
           {
-            "name": "channels",
-            "displayName": "Array of Channels",
-            "type": "string",
-            "style": "body",
-            "required": "true"
-          },
-          {
             "name": "name",
             "displayName": "Name of Notification",
-            "type": "strng",
-            "style": "body",
-            "required": "true"
-          },
-          {
-            "name": "devices",
-            "displayName": "Array of Devices",
             "type": "string",
             "style": "body",
-            "required": "false"
+            "required": "true"
           },
           {
             "name": "sender",
@@ -523,14 +512,6 @@
             "type": "string",
             "style": "body",
             "required": "false"
-          },
-          {
-            "name": "payload",
-            "displayName": "Payload",
-            "type": "object",
-            "style": "body",
-            "required": "false",
-            "default": {}
           },
           {
             "name": "apns_payload",
@@ -545,6 +526,30 @@
             "type": "string",
             "style": "body",
             "required": "false"
+          },
+          {
+            "name": "channels",
+            "displayName": "Array of Channels",
+            "type": "array",
+            "default": [],
+            "style": "body",
+            "required": "true"
+          },
+          {
+            "name": "devices",
+            "displayName": "Array of Devices",
+            "type": "array",
+            "default": [],
+            "style": "body",
+            "required": "false"
+          },
+          {
+            "name": "payload",
+            "displayName": "Payload",
+            "type": "object",
+            "style": "body",
+            "required": "false",
+            "default": {}
           }
         ]
       }

@@ -19,7 +19,10 @@ angular.module('octobluApp')
 
         function initializeEditor() {
           originalDevice = scope.model;
-          scope.editingDevice = _.omit(angular.copy(originalDevice), readOnlyKeys);
+          scope.editingDevice = angular.copy(originalDevice)
+          if (_.isPlainObject(scope.editingDevice)) {
+            scope.editingDevice = _.omit(scope.editingDevice, readOnlyKeys);
+          }
           schema = _.extend({ title: 'Options'}, scope.schema);
 
           if (editor) {
