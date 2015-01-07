@@ -12,56 +12,49 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "PRODUCT TYPES",
+        "displayName": "Product Information",
         "path": "/v1/products",
         "params": [
           {
             "name": "latitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "longitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "product_id",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "description",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "display_name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "capacity",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "image",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -75,84 +68,73 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "PRICE ESTIMATES",
+        "displayName": "Get Estimated Price Range",
         "path": "/v1/estimates/price",
         "params": [
           {
             "name": "start_latitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "start_longitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "end_latitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "end_longitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "product_id",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "currency_code",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "display_name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "estimate",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "low_estimate",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "high_estimate",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "surge_multiplier",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           }
         ],
@@ -173,49 +155,42 @@
             "name": "start_latitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "start_longitude",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "customer_uuid",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "product_id",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "product_id",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "display_name",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "estimate",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           }
         ],
@@ -236,42 +211,36 @@
             "name": "offset",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "limit",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "true"
           },
           {
             "name": "offset",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "limit",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "count",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "history",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -285,42 +254,37 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "USER PROFILE",
+        "displayName": "Get User Information",
         "path": "/v1/me",
         "params": [
           {
             "name": "first_name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "last_name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "email",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "picture",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "promo_code",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -331,9 +295,29 @@
   "auth_strategy": "oauth",
   "custom_tokens": [],
   "description": "",
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/uber/callback",
+      "tokenMethod": "access_token_bearer"
+    },    
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/uber/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/uber/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+    },
   "documentation": "https://developer.uber.com/v1/endpoints",
   "enabled": true,
-  "name": "UBER",
+  "name": "Uber",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:uber"
 }

@@ -1,27 +1,10 @@
 {
-  "_id": "37473929274749229",
-  "auth_strategy": "oauth",
+  "_id": "54a466c3620f5ebb13dbc4f2",
+  "auth_strategy": "basic",
   "documentation": "http://docs.timdorr.apiary.io",
   "enabled": true,
   "name": "TeslaModelS",
   "type": "channel:TeslaModelS",
-  "oauth" : {
-    "development": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
-    },
-    "production": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
-    },
-    "staging": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
-    }
-  },
   "application": {
     "base": "https://portal.vn.teslamotors.com",
     "resources": [
@@ -32,7 +15,7 @@
           "url": "https://portal.vn.teslamotors.com/login"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",  
+      
         "params": [],
         "url": "https://portal.vn.teslamotors.com/login"
       },
@@ -43,7 +26,6 @@
           "url": "https://portal.vn.teslamotors.com/login"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
         "params": [],
         "url": "https://portal.vn.teslamotors.com/login"
       },
@@ -54,7 +36,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [],
         "url": "https://portal.vn.teslamotors.com/vehicles"
       },
@@ -65,7 +46,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/mobile_enabled"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
             "displayName": "ID Number Of The Car",
             "name": ":id",
@@ -82,7 +62,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_state"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -99,7 +78,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/climate_state"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [
           {
           "displayName": "ID Number",
@@ -117,7 +95,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/drive_state"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -134,7 +111,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/gui_settings"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -151,7 +127,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/vehicle_state"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -168,7 +143,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_port_door_open"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -185,7 +159,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_standard"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -202,7 +175,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_max_range"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -219,7 +191,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/set_charge_limit"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -242,7 +213,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_start"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -259,7 +229,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/charge_stop"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -276,7 +245,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/flash_lights"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -293,7 +261,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/honk_horn"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -310,7 +277,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/door_unlock"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -326,7 +292,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/door_lock"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -342,7 +307,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/set_temps"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -370,7 +334,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/auto_conditioning_start"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -386,7 +349,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/auto_conditioning_stop"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",
@@ -402,7 +364,6 @@
           "url": "https://portal.vn.teslamotors.com/vehicles/:id/command/sun_roof_control"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [{
           "displayName": "ID Number",
           "style": "url",

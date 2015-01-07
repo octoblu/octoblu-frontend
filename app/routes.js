@@ -30,7 +30,6 @@ module.exports = function(app, passport) {
     var ChannelApiKeyController = require('./controllers/channel-api-key-controller');
     var channelApiKeyController = new ChannelApiKeyController();
 
-
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
@@ -147,6 +146,9 @@ module.exports = function(app, passport) {
 
     var WordPressController = require('./controllers/wordpress-controller');
     var wordPressController = new WordPressController();
+
+    var UberController = require('./controllers/uber-controller');
+    var uberController = new UberController();
 
     var UserVoiceController = require('./controllers/uservoice-controller');
     var userVoiceController = new UserVoiceController();
@@ -329,6 +331,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
+
+            app.get('/api/oauth/uber',          uberController.authorize);
+            app.get('/api/oauth/uber/callback', uberController.callback, uberController.redirectToDesigner);
 
             app.get('/api/oauth/withings',          withingsController.authorize);
             app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
