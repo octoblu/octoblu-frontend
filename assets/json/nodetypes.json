@@ -1284,19 +1284,6 @@
     "type" : "channel:rightSignature"
   },
   {
-    "_id" : "54a4692d620f5ebb13dbc4f3",
-    "category" : "channel",
-    "description" : "Tesla Model S",
-    "enabled" : true,
-    "name" : "Tesla Model S",
-    "skynet" : {
-      "type" : "channel",
-      "subtype" : "TeslaModelS"
-    },
-    "channelid" : "54a466c3620f5ebb13dbc4f2",
-    "type" : "chanel:TeslaModelS"
-  },
-  {
     "_id" : "28be4cebbbbc8bbaf576d6f3",
     "category" : "device",
     "description" : "Polar Heart Rate Monitor",
@@ -1309,7 +1296,7 @@
     "type" : "device:polar",
     "connector" : "meshblu-polar"
   },
-    {
+  {
     "_id" : "54a8ad23ebb760c8981c01f2",
     "category" : "device",
     "description" : "Sensoria Sock",
@@ -1347,5 +1334,18 @@
     },
     "channelid" : "53fb878b710850ee08e28487",
     "type" : "chanel:uber"
+  },
+  {
+    "_id" : "54a6e044721c0cf9b00f98fe",
+    "category" : "channel",
+    "description" : "Tesla Model S",
+    "enabled" : false,
+    "name" : "TeslaModelS",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "TeslaModelS"
+    },
+    "channelid" : "54aef7242fb43e73e214bb39",
+    "type" : "channel:TeslaModelS"
   }
 ]
