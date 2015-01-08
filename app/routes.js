@@ -126,6 +126,10 @@ module.exports = function(app, passport) {
     var EchoSignController = require('./controllers/echosign-controller');
     var echoSignController = new EchoSignController();
 
+    var TeslaController = require('./controllers/tesla-controller');
+    var teslaController = new TeslaController();
+
+
     var XeroController = require('./controllers/xero-controller');
     var xeroController = new XeroController();
 
@@ -318,7 +322,7 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/podio',          podioController.authorize);
             app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
-            
+
             app.get('/api/oauth/rightsignature',          rightsignatureController.authorize);
             app.get('/api/oauth/rightsignature/callback', rightsignatureController.callback, rightsignatureController.redirectToDesigner);
 
@@ -337,6 +341,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
+            app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);

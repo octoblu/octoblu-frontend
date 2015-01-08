@@ -15,7 +15,8 @@ angular.module('octobluApp')
     'header'                 : 'material.nodewizard.addchannel.header',
     'existing'               : 'material.nodewizard.addchannel.existing',
     'docusign'               : 'material.nodewizard.addchannel.docusign',
-    'apikey-dummypass-basic' : 'material.nodewizard.addchannel.apikey-dummypass-basic'
+    'apikey-dummypass-basic' : 'material.nodewizard.addchannel.apikey-dummypass-basic',
+    'tesla'                  : 'material.nodewizard.addchannel.tesla'
   };
 
   $scope.channelDefaultParams = {};
