@@ -77,6 +77,19 @@
     "type" : "device:myo"
   },
   {
+    "_id" : "c6ac481aa135c447f3ecc4cf",
+    "category" : "device",
+    "description" : "MyQ",
+    "enabled" : true,
+    "name" : "MyQ",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "myq"
+    },
+    "type" : "device:myq",
+    "connector" : "meshblu-myq"
+  },
+  {
     "_id" : "53c9b82ff400e177dca325a4",
     "category" : "device",
     "description" : "Belkin Wemo home automation",
