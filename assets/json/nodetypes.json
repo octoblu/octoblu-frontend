@@ -1347,5 +1347,18 @@
     },
     "channelid" : "54aef7242fb43e73e214bb39",
     "type" : "channel:TeslaModelS"
+  },
+  {
+    "_id" : "a83f4dba8d7e2c20549aba48",
+    "category" : "device",
+    "description" : "Shell",
+    "enabled" : true,
+    "name" : "Shell",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "shell"
+    },
+    "connector": "meshblu-shell",
+    "type" : "device:shell"
   }
 ]
