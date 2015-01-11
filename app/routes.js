@@ -2,7 +2,7 @@ module.exports = function(app, passport) {
     // setting env to app.settings.env
     var env = app.settings.env;
     var config = require('../config/auth');
-    var skynet = require('skynet');
+    var meshblu = require('meshblu');
     var security = require('./controllers/middleware/security');
 
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
     console.log('Connecting to SkyNet...');
 
     // Generic UUID / Token for SkyNet API calls
-    var conn = skynet.createConnection({
+    var conn = meshblu.createConnection({
         'uuid'     : '9b47c2f1-9d9b-11e3-a443-ab1cdce04787',
         'token'    : 'pxdq6kdnf74iy66rhuvdw9h5d2f0f6r',
         'server'   : config.skynet.host,

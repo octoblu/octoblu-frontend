@@ -6,7 +6,7 @@ angular.module('octobluApp')
         AuthService.getCurrentUser().then(function (currentUser) {
 
             user = currentUser;
-            var conn = skynet.createConnection({
+            var conn = meshblu.createConnection({
                 server: skynetConfig.host,
                 port: skynetConfig.port,
                 uuid: user.skynet.uuid,
