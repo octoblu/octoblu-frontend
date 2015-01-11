@@ -78,6 +78,7 @@ passport.use(require('./config/smartsheet'));
 passport.use(require('./config/spotify'));
 passport.use(require('./config/survey-monkey'));
 passport.use(require('./config/twitter'));
+passport.use(require('./config/uber'));
 passport.use(require('./config/uservoice'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/withings'));

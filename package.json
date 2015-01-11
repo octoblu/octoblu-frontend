@@ -77,6 +77,7 @@
     "passport-surveymonkey": "^1.1.1",
     "passport-tumblr": "~0.1.2",
     "passport-twitter": "~1.0.2",
+    "passport-uber": "0.0.1",
     "passport-uservoice": "~1.0.2",
     "passport-vimeo": "~0.1.2",
     "passport-withings": "^0.1.0",

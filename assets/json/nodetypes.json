@@ -1309,7 +1309,7 @@
     "type" : "device:polar",
     "connector" : "meshblu-polar"
   },
-    {
+  {
     "_id" : "54a8ad23ebb760c8981c01f2",
     "category" : "device",
     "description" : "Sensoria Sock",
@@ -1334,6 +1334,32 @@
     },
     "type" : "device:wunderbar",
     "connector" : "meshblu-relayr"
+  },
+  {
+    "_id" : "54ad7b9552be5d4347422fef",
+    "category" : "channel",
+    "description" : "Uber",
+    "enabled" : true,
+    "name" : "Uber",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Uber"
+    },
+    "channelid" : "53fb878b710850ee08e28487",
+    "type" : "chanel:uber"
+  },
+  {
+    "_id" : "54a6e044721c0cf9b00f98fe",
+    "category" : "channel",
+    "description" : "Tesla Model S",
+    "enabled" : false,
+    "name" : "TeslaModelS",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "TeslaModelS"
+    },
+    "channelid" : "54aef7242fb43e73e214bb39",
+    "type" : "channel:TeslaModelS"
   },
   {
     "_id" : "a83f4dba8d7e2c20549aba48",
