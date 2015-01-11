@@ -1373,5 +1373,18 @@
     },
     "connector": "meshblu-shell",
     "type" : "device:shell"
+  },
+  {
+    "_id" : "4251418bac23bc96fe6577b1",
+    "category" : "device",
+    "description" : "Node Copter",
+    "enabled" : true,
+    "name" : "Node Copter",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "node-copter"
+    },
+    "connector": "meshblu-drone-army",
+    "type" : "device:node-copter"
   }
 ]
