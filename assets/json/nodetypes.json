@@ -21,7 +21,7 @@
     "skynet" : {
       "type" : "device",
       "subtype" : "arduino"
-    },
+    }, 
     "type" : "device:arduino"
   },
   {
@@ -566,7 +566,7 @@
   {
     "_id" : "53d2de0160c378a87a0f908c",
     "category" : "channel",
-    "description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
+    "description" : "Give your entire team access to our powerful online survey platform.",
     "enabled" : true,
     "name" : "Survey Monkey",
     "skynet" : {
@@ -582,6 +582,10 @@
     "description" : "",
     "enabled" : true,
     "name" : "GoToMeeting",
+    "skynet": {
+      "type": "channel",
+      "subtype": "GoToMeeting"
+    },
     "channelid" : "a053d110f5cc498686f496e5",
     "type" : "channel:gotomeeting"
   },
@@ -727,7 +731,7 @@
   {
     "_id" : "53c9b83df400e177dca325d1",
     "category" : "channel",
-    "description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
+    "description" : "One account. Many applications.",
     "enabled" : true,
     "name" : "App.net",
     "skynet" : {
@@ -1347,5 +1351,44 @@
     },
     "channelid" : "53fb878b710850ee08e28487",
     "type" : "chanel:uber"
+  },
+  {
+    "_id" : "54b403a0fe92b02556f6f819",
+    "category" : "channel",
+    "description" : "GoToAssist",
+    "enabled" : true,
+    "name" : "GoToAssist",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "GoToAssist"
+    },
+    "channelid" : "54adb7158ff7bef9e70ca7f5",
+    "type" : "chanel:gotoassist"
+  },
+  {
+    "_id" : "54b403d0fe92b02556f6f81a",
+    "category" : "channel",
+    "description" : "GoToTraining",
+    "enabled" : true,
+    "name" : "GoToTraining",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "GoToTraining"
+    },
+    "channelid" : "54adb7088ff7bef9e70ca7f4",
+    "type" : "chanel:gototraining"
+  },
+  {
+    "_id" : "54b403f9fe92b02556f6f81b",
+    "category" : "channel",
+    "description" : "GoToWebinar",
+    "enabled" : true,
+    "name" : "GoToWebinar",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "GoToWebinar"
+    },
+    "channelid" : "54adb7158ff7bef9e70ca7f6",
+    "type" : "chanel:gotowebinar"
   }
 ]

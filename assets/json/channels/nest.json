@@ -7,6 +7,7 @@
   "isPassport" : true,
   "bodyFormat": "json",
   "followAllRedirects": true,
+  "type": "channel:nest",
   "oauth": {
     "development" : {
       "clientID": "INSERT_SECERT_HERE",
@@ -31,85 +32,72 @@
     }
   },
   "application": {
+    "base": "https://developer-api.nest.com",
     "resources": [
       {
         "httpMethod": "GET",
-        "fullURL": "https://developer-api.nest.com/devices.json",
         "path": "/devices.json",
         "displayName": "Get All Devices",
-        "doc": {
-          "t": "Retrieves information about your Nest devices."
-        },
         "url": "https://developer-api.nest.com/devices.json"
       },
       {
         "httpMethod": "PATCH",
-        "fullURL": "https://developer-api.nest.com/devices/thermostats/:device_id",
         "path": "/devices/thermostats/:device_id",
         "displayName": "Update a thermostat",
-        "doc": {
-          "t": "Update information on your Nest devices."
-        },
         "params": [
           {
             "name": ":device_id",
             "required": true,
             "style": "url",
+            "type": "string",
             "displayName": "Device ID"
           },
           {
             "name": "fan_timer_active",
-            "required": false,
             "style": "body",
             "type": "boolean",
             "displayName": "Fan Timer Active"
           },
           {
             "name": "target_temperature_f",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature in Fahrenheit"
           },
           {
             "name": "target_temperature_c",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature in Celsius"
           },
           {
             "name": "target_temperature_high_f",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature High in Fahrenheit"
           },
           {
             "name": "target_temperature_high_c",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature High in Celsius"
           },
           {
             "name": "target_temperature_low_f",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature Low in Fahrenheit"
           },
           {
             "name": "target_temperature_low_c",
-            "required": false,
             "style": "body",
             "type": "number",
             "displayName": "Target Temperature Low in Celsius"
           },
           {
             "name": "hvac_mode",
-            "required": false,
             "style": "body",
+            "type": "string",
             "displayName": "HVAC Mode (heat/cool/heat-cool)"
           }
         ],
@@ -117,7 +105,6 @@
       },
       {
         "httpMethod": "PATCH",
-        "fullURL": "https://developer-api.nest.com/structures/:structure_id",
         "path": "/structures/:structure_id",
         "displayName": "Update a structure (home)",
         "doc": {
@@ -128,20 +115,18 @@
             "name": ":structure_id",
             "required": true,
             "style": "url",
+            "type": "string",
             "displayName": "Structure ID (home id)"
           },
           {
             "name": "away",
-            "required": false,
             "style": "body",
+            "type": "string",
             "displayName": "Away Status (home/away)"
           }
         ],
         "url": "https://developer-api.nest.com/structures/:structure_id"
       }
-    ],
-    "base": "https://developer-api.nest.com"
-  },
-  "requestTokenURL": "",
-  "type": "channel:nest"
+    ]
+  }
 }

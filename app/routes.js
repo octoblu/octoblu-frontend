@@ -72,8 +72,17 @@ module.exports = function(app, passport) {
     var GoogleController = require('./controllers/google-controller');
     var googleController = new GoogleController();
 
+    var GoToAssistController = require('./controllers/gotoassist-controller');
+    var goToAssistController = new GoToAssistController();
+
     var GoToMeetingController = require('./controllers/gotomeeting-controller');
     var goToMeetingController = new GoToMeetingController();
+
+    var GoToTrainingController = require('./controllers/gototraining-controller');
+    var goToTrainingController = new GoToTrainingController();
+
+    var GoToWebinarController = require('./controllers/gotowebinar-controller');
+    var goToWebinarController = new GoToWebinarController();
 
     var PaypalController = require('./controllers/paypal-controller');
     var paypalController = new PaypalController();
@@ -257,8 +266,17 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
+            app.get('/api/oauth/goToAssist',          goToAssistController.authorize);
+            app.get('/api/oauth/goToAssist/callback', goToAssistController.callback, goToAssistController.redirectToDesigner);
+
             app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
             app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
+
+            app.get('/api/oauth/goToTraining',          goToTrainingController.authorize);
+            app.get('/api/oauth/goToTraining/callback', goToTrainingController.callback, goToTrainingController.redirectToDesigner);
+
+            app.get('/api/oauth/goToWebinar',          goToWebinarController.authorize);
+            app.get('/api/oauth/goToWebinar/callback', goToWebinarController.callback, goToWebinarController.redirectToDesigner);
 
             app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
