@@ -1,0 +1,27 @@
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
+<div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+  <md-text-float label="Value" ng-model="flowNode.value" required> </md-text-float>
+  <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
+  <md-text-float label="Key" ng-model="flowNode.key" required> </md-text-float>
+</div>
+<div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+  <label class="form-label" for="operation">Operation</label>
+</div>
+<div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+  <select id="operation" class="form-control" ng-model="flowNode.operation">
+    <option value="abs" description="Returns the absolute value of x">abs</option>
+    <option value="acos" description="Returns the arccosine of x, in radians">acos</option>
+    <option value="asin" description="Returns the arcsine of x, in radians">asin</option>
+    <option value="atan" description="Returns the arctangent of x as a numeric value between -PI/2 and PI/2 radians">atan</option>
+    <option value="ceil" description="Returns x, rounded upwards to the nearest integer">ceil</option>
+    <option value="cos" description=" Returns the cosine of x (x is in radians)">cos</option>
+    <option value="exp" description=" Returns the value of Ex">exp</option>
+    <option value="floor" description=" Returns x, rounded downwards to the nearest integer">floor</option>
+    <option value="log" description=" Returns the natural logarithm (base E) of x">log</option>
+    <option value="pow" description=")  Returns the value of x to the power of y">pow</option>
+    <option value="round" description=" Rounds x to the nearest integer">round</option>
+    <option value="sin" description=" Returns the sine of x (x is in radians)">sin</option>
+    <option value="sqrt" description="Returns the square root of x">sqrt</option>
+    <option value="tan" description="">tan</option>
+  </select>
+</div>
