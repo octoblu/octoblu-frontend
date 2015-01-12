@@ -7,6 +7,10 @@ angular.module('octobluApp')
   $scope.errorMsg = '';
 
   var comparePasswords = function(){
+    if(!$scope.password){
+      $scope.errorMsg = 'Password required'
+      return false;
+    }
     if($scope.password !== $scope.password_confirmation){
       $scope.errorMsg = 'Passwords Don\'t Match';
       return false;
@@ -40,6 +44,6 @@ angular.module('octobluApp')
 
 
   $scope.getSignupUrl = function (baseUrl) {
-    return baseUrl + '?' + $.param({invitationCode: signupParams.code, testerId: signupParams.testerId});
+    return baseUrl + '?' + $.param({invitationCode: signupParams.code, testerId: signupParams.testerId, sqrtofsaturn: signupParams.sqrtofsaturn});
   };
 });
