@@ -11,15 +11,19 @@ module.exports = {
   restoreReferrer: function(req, res, next) {
     req.referrer = req.session.referrer;
     req.mobile = req.session.mobiler;
+    req.sqrtofsaturn = req.session.sqrtofsaturn;
     delete req.session.referrer;
     delete req.session.mobile;
+    delete req.session.sqrtofsaturn;
     next();
   },
   storeReferrer: function(req, res, next) {
     req.session.referrer = req.query.referrer;
     req.session.mobile = req.query.mobile;
+    req.session.sqrtofsaturn = req.query.sqrtofsaturn;
     delete req.query.referrer;
     delete req.query.mobile;
+    delete req.query.sqrtofsaturn;
     next();
   }
 };

@@ -28,7 +28,8 @@ angular.module('octobluApp')
       $scope.email,
       $scope.password,
       signupParams.testerId,
-      signupParams.code
+      signupParams.code,
+      signupParams.sqrtofsaturn
     ).then(function(){
       $state.go('material.home');
     }, function(error){

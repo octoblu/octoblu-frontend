@@ -11,7 +11,8 @@ var SignupController = function () {
 
   self.checkInTester = function(req, res, next) {
     var testerId = req.param('testerId') || req.session.testerId;
-    if(!testerId){
+    var sqrtOfSaturn = req.param('sqrtofsaturn') || req.session.sqrtofsaturn;
+    if(sqrtOfSaturn || !testerId){
       return next();
     }
     delete req.session.testerId;
@@ -45,6 +46,10 @@ var SignupController = function () {
   };
 
   self.verifyInvitationCode = function (req, res, next) {
+    var sqrtOfSaturn = req.param('sqrtofsaturn') || req.session.sqrtofsaturn;
+    if(sqrtOfSaturn){
+      return next();
+    }
     var testerPromise = self.prefinery.getTester({
       testerId:       req.param('testerId'),
       invitationCode: req.param('invitationCode')

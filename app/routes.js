@@ -132,7 +132,6 @@ module.exports = function(app, passport) {
     var TeslaController = require('./controllers/tesla-controller');
     var teslaController = new TeslaController();
 
-
     var XeroController = require('./controllers/xero-controller');
     var xeroController = new XeroController();
 

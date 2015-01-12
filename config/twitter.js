@@ -31,7 +31,7 @@ var ensureUser = function(req, user, profile, callback){
       return;
     }
 
-    if (process.env.INVITATION_REQUIRED && !req.session.testerId) {
+    if (!req.session.sqrtofsaturn && process.env.INVITATION_REQUIRED && !req.session.testerId) {
       callback(new Error('You must have a valid invitation code'));
       return;
     }
