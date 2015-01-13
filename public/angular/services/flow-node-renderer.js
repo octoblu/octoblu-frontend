@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, LinkRenderer, IconCodes) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes) {
 
     function getNodeHeight(node) {
       var inputPorts = node.input || 0;
@@ -120,6 +120,16 @@ angular.module('octobluApp')
         text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(line);
       });
     };
+
+    function renderIsOnline(node, nodeElement) {
+      deviceService.getDeviceByUUID(node.uuid)
+        .then(function(device){
+          if(!device){
+            return;
+          }
+          nodeElement.classed('faded', !device.online);
+        });
+    }
 
     return {
       render: function (renderScope, node, flow) {
@@ -245,6 +255,8 @@ angular.module('octobluApp')
           .attr('width', FlowNodeDimensions.width)
           .attr('height', nodeHeight)
           .attr("xlink:href",logoUrl(node));
+
+        renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
           nodeElement
