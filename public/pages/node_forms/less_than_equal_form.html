@@ -1,16 +1,9 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
 
-<p>( Reference incoming messages using <span ng-non-bindable>{{payload.values}}</span> )</p>
-
-<div class="form-group">
-  <label for="left">Left Value</label>
-  <input  id="left" class="form-control" type="text" ng-model="flowNode.left" required>
-</div>
-
-<div class="form-group">
-  <label for="right">Right Value</label>
-  <input  id="right" class="form-control" ng-model="flowNode.right" required>
+<div layout="row">
+  <md-text-float flex-sm="33" label="Left" ng-model="flowNode.left"> </md-text-float>
+  <h4 flex-sm="33" class="md-default-theme">
+    <i style="font-size: 2.5em; padding: 10px;">&le;</i>
+  </h4>
+  <md-text-float flex-sm="33" label="Right" ng-model="flowNode.right"> </md-text-float>
 </div>
