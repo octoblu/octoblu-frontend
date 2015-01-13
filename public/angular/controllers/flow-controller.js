@@ -1,7 +1,9 @@
 angular.module('octobluApp')
 .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
   var originalNode;
-
+  var undoBuffer = [];
+  var redoBuffer = [];
+  var undid = false;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -68,7 +70,7 @@ angular.module('octobluApp')
   refreshFlows().then(function(){
     deleteCookie();
     var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
-    
+
     if(!activeFlow){
       $state.go('material.design');
       return;
@@ -188,6 +190,33 @@ angular.module('octobluApp')
     $scope.activeFlow.selectedLink = null;
   };
 
+  $scope.undoEdit = function() {
+
+    if(!undoBuffer.length) {
+     return;
+    }
+
+    redoBuffer.push($scope.activeFlow);
+    var oldFlow =  undoBuffer.pop();
+    undid = true;
+    $scope.activeFlow = oldFlow;
+    FlowService.setActiveFlow(oldFlow);
+  }
+
+  $scope.redoEdit = function(e) {
+    e.preventDefault();
+
+    if(!redoBuffer.length) {
+      return;
+    }
+
+    undoBuffer.push($scope.activeFlow);
+    var oldFlow = redoBuffer.pop();
+    undid = true;
+    $scope.activeFlow = oldFlow;
+    FlowService.setActiveFlow(oldFlow);
+  }
+
   $scope.immediateStart = function (e) {
     if (e) {
       e.preventDefault();
@@ -274,7 +303,7 @@ angular.module('octobluApp')
     $scope.activeFlow.zoomScale = 1;
     $scope.activeFlow.zoomX = 0;
     $scope.activeFlow.zoomY = 0;
-    
+
   };
 
 
@@ -312,6 +341,26 @@ angular.module('octobluApp')
     }
     newFlow.hash = FlowService.hashFlow(newFlow);
     $scope.$apply();
+  };
+
+  var immediateCalculateFlowHash = function(newFlow, oldFlow) {
+    if(! newFlow){
+      return;
+    }
+    newFlow.hash = FlowService.hashFlow(newFlow);
+    addToUndoBuffer(oldFlow);
+    $scope.$apply();
+  };
+
+  var addToUndoBuffer = function(oldFlow) {
+
+    if(undid){
+      undid = false;
+      return;
+    }
+
+    redoBuffer = [];
+    undoBuffer.push(oldFlow);
   };
 
   var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 500);
