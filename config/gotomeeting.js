@@ -1,13 +1,14 @@
 'use strict';
-var CitrixStrategy = require('passport-citrix').Strategy;
-var User           = require('../app/models/user');
-var Channel        = require('../app/models/channel');
+var GoToMeetingStrategy = require('passport-citrix').Strategy;
+var User            = require('../app/models/user');
+var Channel         = require('../app/models/channel');
 
 var CONFIG = Channel.syncFindOauthConfigByType('channel:gotomeeting');
 
 CONFIG.passReqToCallback = true;
+CONFIG.name = 'gotomeeting';
 
-var citrixStrategy = new CitrixStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
+var goToMeetingStrategy = new GoToMeetingStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
 
   User.addApiAuthorization(req.user, 'channel:gotomeeting', {authtype: 'oauth', token: accessToken}).then(function () {
     done(null, req.user);
@@ -16,4 +17,4 @@ var citrixStrategy = new CitrixStrategy(CONFIG, function(req, accessToken, refre
   });
 });
 
-module.exports = citrixStrategy;
+module.exports = goToMeetingStrategy;

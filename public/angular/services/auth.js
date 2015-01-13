@@ -6,7 +6,6 @@ angular.module('octobluApp')
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
-
             if (user.local) {
                 user.avatarUrl = '//avatars.io/email/' + user.local.email.toString();
             } else if (user.twitter) {
@@ -55,12 +54,13 @@ angular.module('octobluApp')
                 });
             },
 
-            signup: function (email, password, testerId, invitationCode) {
+            signup: function (email, password, testerId, invitationCode, sqrtofsaturn) {
                 return $http.post('/api/auth/signup', {
                     email: email,
                     password: password,
                     testerId : testerId,
-                    invitationCode : invitationCode
+                    invitationCode : invitationCode,
+                    sqrtofsaturn : sqrtofsaturn
                 }).then(function(result){
                     return loginHandler(result);
                 });

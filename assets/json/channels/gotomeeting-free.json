@@ -1,7 +1,7 @@
 {
   "_id": "54468c4914d3e4c4645c6e27",
   "auth_strategy": "oauth",
-  "bodyFormat": "json",
+  "enabled": "false",
   "name": "GoToMeeting Free",
   "type": "channel:gotomeeting-free",
   "oauth": {

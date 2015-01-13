@@ -1,544 +1,643 @@
 {
-  "_id": "495828394920450294",
+  "_id": "54adb7088ff7bef9e70ca7f4",
   "auth_strategy": "oauth",
   "documentation": "https://developer.citrixonline.com/api/gototraining-rest-api",
-  "enabled": true,
+  "enabled": "true",
   "name": "GoToTraining",
-  "type": "channel:GoToTraining",
-  "oauth" : {
+  "type": "channel:gototraining",
+  "oauth": {
     "development": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/gototraining/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "oauth_token"
     },
     "production": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/gototraining/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "oauth_token"
     },
     "staging": {
-      "clientID"     : "",
-      "clientSecret" : "",
-      "callbackURL"  : ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/gototraining/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "oauth_token"
     }
   },
   "application": {
     "base": "https://api.citrixonline.com/G2T/rest/reports/organizers",
     "resources": [
-     {
-        "path": "/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}",
+      {
+        "path": "/:organizerKey/trainings/:trainingKey/registrants/:registrantKey",
         "displayName": "Cancel Registration",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}"
         },
         "httpMethod": "Delete",
-        "curl": "curl -X",  
-        "params": [{
-          "style": "URL",
-          "type": "string",
-          "name": "organizerKey",
-          "required": true
-        },{
-          "style": "URL",
-          "type": "string",
-          "name": "trainingKey",
-          "required": true
-        },{
-          "style": "URL",
-          "type": "string",
-          "name": "registrantKey",
-          "required": true
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":registrantKey",
+            "displayName": "Registrant Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/registrants/:registrantKey"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}",
+        "path": "/:organizerKey/trainings/:trainingKey/registrants/:registrantKey",
         "displayName": "Get Registrant",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "style": "URL",
-          "type": "string",
-          "name": "organizerKey",
-          "required": true
-        },{
-          "style": "URL",
-          "type": "string",
-          "name": "trainingKey",
-          "required": true
-        },{
-          "style": "URL",
-          "type": "string",
-          "name": "registrantKey",
-          "required": true
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants/{registrantKey}"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":registrantKey",
+            "displayName": "Registrant Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/registrants/:registrantKey"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/registrants",
+        "path": "/:organizerKey/trainings/:trainingKey/registrants",
         "displayName": "Get Training Registrants",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "style": "URL",
-          "type": "string",
-          "name": "organizerKey",
-          "required": true
-        },{
-          "style": "URL",
-          "type": "string",
-          "name": "trainingKey",
-          "required": true
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/registrants"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/registrants",
+        "path": "/:organizerKey/trainings/:trainingKey/registrants",
         "displayName": "Register for Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-            "name": "organizerKey",
-            "style": "url",
-            "type": "string",
-            "required": true
-          },{
-            "name": "trainingKey",
-            "style": "url",
-            "type": "string",
-            "required": true
-          },{
+        "params": [
+          {
             "displayName": "Email of registrant",
             "name": "email",
             "style": "query",
             "type": "string",
             "required": true
-          },{
+          },
+          {
             "displayName": "First name of user",
             "name": "givenName",
             "style": "query",
             "type": "string",
             "required": true
-          },{
+          },
+          {
             "displayName": "Last name of user",
             "name": "surname",
             "style": "query",
             "type": "string",
             "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrants"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/registrants"
       },
       {
-        "path": "/{organizerKey}/trainings",
+        "path": "/:organizerKey/trainings",
         "displayName": "Create Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
+        "params": [
+          {
             "displayName": "Name of the training",
             "name": "name",
             "style": "body",
             "type": "Text",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "Description of the training",
             "name": "description",
             "style": "body",
             "type": "Text",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "Time zone of the training",
             "name": "timeZone",
             "style": "body",
             "type": "Text",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "Start and End time for the training",
             "name": "times",
             "style": "body",
             "type": "Hash",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "Start time for the training, part of the Times hash",
             "name": "startDate",
             "style": "body",
             "type": "string",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "End time for the training, part of the Times hash",
             "name": "endDate",
             "style": "body",
             "type": "string",
-          "required": true
-          },{
+            "required": true
+          },
+          {
             "displayName": "Registration Settings",
             "name": "registrationSettings",
             "style": "body",
             "type": "Hash"
-          },{
+          },
+          {
             "displayName": "Disable Web Registration",
             "name": "disableWebRegistration",
             "style": "body",
             "type": "string"
-          },{
+          },
+          {
             "displayName": "User ID For Co-Organizers For This Training",
             "name": "organizers",
             "style": "body",
             "type": "Array"
-          },{
+          },
+          {
             "displayName": "Disable Confirmation Email",
             "name": "disableConfirmationEmail",
             "style": "body",
             "type": "string"
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}",
+        "path": "/:organizerKey/trainings/:trainingKey",
         "displayName": "Delete Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
         },
         "httpMethod": "Delete",
-        "curl": "curl -X",
         "params": [
           {
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/manageUrl",
+        "path": "/:organizerKey/trainings/:trainingKey/manageUrl",
         "displayName": "Get Manage Training URL",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/manageUrl"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/manageUrl"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/manageUrl"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}",
+        "path": "/:organizerKey/trainings/:trainingKey",
         "displayName": "Get Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey"
       },
       {
-        "path": "/{organizerKey}/trainings",
+        "path": "/:organizerKey/trainings",
         "displayName": "Get Trainings",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings"
         },
         "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/nameDescription",
+        "path": "/:organizerKey/trainings/:trainingKey/nameDescription",
         "displayName": "Update Training Name and Description",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/nameDescription"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          },{
-          "displayName": "Name of the training",
-          "style": "body",
-          "type": "Text",
-          "name": "Name"
-        },{
-          "displayName": "Description of the training",
-          "style": "body",
-          "type": "Text",
-          "name": "Description"
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/nameDescription"
+        "params": [
+          {
+            "displayName": "Name of the training",
+            "style": "body",
+            "type": "Text",
+            "name": "Name"
+          },
+          {
+            "displayName": "Description of the training",
+            "style": "body",
+            "type": "Text",
+            "name": "Description"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/nameDescription"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/organizers",
+        "path": "/:organizerKey/trainings/:trainingKey/organizers",
         "displayName": "Update Training Organizers",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/organizers"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          },{
-          "displayName": "Array of user keys",
-          "style": "body",
-          "type": "Array",
-          "name": "organizers"
-        },{
-          "displayName": "Notify by email change of organizers",
-          "style": "body",
-          "type": "Boolean",
-          "name": "notifyOrganizers"
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/organizers"
+        "params": [
+          {
+            "displayName": "Array of user keys",
+            "style": "body",
+            "type": "Array",
+            "name": "organizers"
+          },
+          {
+            "displayName": "Notify by email change of organizers",
+            "style": "body",
+            "type": "Boolean",
+            "name": "notifyOrganizers"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/organizers"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/registrationSettings",
+        "path": "/:organizerKey/trainings/:trainingKey/registrationSettings",
         "displayName": "Update Training Registration Settings",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrationSettings"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          },{
-          "displayName": "Array Of User Keys",
-          "style": "body",
-          "type": "Array",
-          "name": "DisableWebRegistration"
-        },{
-          "displayName": "Notify By Email Change Of Organizers",
-          "style": "body",
-          "type": "Boolean",
-          "name": "disableConfirmationEmail"
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/registrationSettings"
+        "params": [
+          {
+            "displayName": "Array Of User Keys",
+            "style": "body",
+            "type": "Array",
+            "name": "DisableWebRegistration"
+          },
+          {
+            "displayName": "Notify By Email Change Of Organizers",
+            "style": "body",
+            "type": "Boolean",
+            "name": "disableConfirmationEmail"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/registrationSettings"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/times",
+        "path": "/:organizerKey/trainings/:trainingKey/times",
         "displayName": "Update Training Times",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/times"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          },{
-          "displayName": "TimeZone Of Training",
-          "style": "body",
-          "type": "Text",
-          "name": "TimeZone"
-        },{
-          "displayName": "Start & End Times",
-          "style": "body",
-          "type": "Hash",
-          "name": "Times"
-        },{
-          "displayName": "Start Time (Part of Times Hash)",
-          "style": "body",
-          "type": "DateTime",
-          "name": "Start"
-        },{
-          "displayName": "End Time (Part of Times Hash)",
-          "style": "body",
-          "type": "DateTime",
-          "name": "End"
-        },{
-          "displayName": "Notify Registrants Via Email",
-          "style": "body",
-          "type": "Boolean",
-          "name": "NotifyRegistrants"
-        },{
-          "displayName": "Notify Trainers Via Email",
-          "style": "body",
-          "type": "Boolean",
-          "name": "NotifyTrainers"
-        }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/times"
+        "params": [
+          {
+            "displayName": "TimeZone Of Training",
+            "style": "body",
+            "type": "Text",
+            "name": "TimeZone"
+          },
+          {
+            "displayName": "Start & End Times",
+            "style": "body",
+            "type": "Hash",
+            "name": "Times"
+          },
+          {
+            "displayName": "Start Time (Part of Times Hash)",
+            "style": "body",
+            "type": "DateTime",
+            "name": "Start"
+          },
+          {
+            "displayName": "End Time (Part of Times Hash)",
+            "style": "body",
+            "type": "DateTime",
+            "name": "End"
+          },
+          {
+            "displayName": "Notify Registrants Via Email",
+            "style": "body",
+            "type": "Boolean",
+            "name": "NotifyRegistrants"
+          },
+          {
+            "displayName": "Notify Trainers Via Email",
+            "style": "body",
+            "type": "Boolean",
+            "name": "NotifyTrainers"
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/times"
       },
       {
-        "path": "/{organizerKey}/sessions/{sessionKey}/attendees",
+        "path": "/:organizerKey/sessions/:sessionKey/attendees",
         "displayName": "Get Attendance Details",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/sessions/{sessionKey}/attendees"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "sessionKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/sessions/{sessionKey}/attendees"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":sessionKey",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/sessions/:sessionKey/attendees"
       },
       {
-        "path": "/{organizerKey}/sessions",
+        "path": "/:organizerKey/sessions",
         "displayName": "Get Sessions by Date Range",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/sessions"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "displayName": "Start Time For Meeting",
-          "style": "body",
-          "type": "DateTime",
-          "name": "startDate",
-          "required": true
-          },{
-          "displayName": "End Time For Meeting",
-          "style": "body",
-          "type": "DateTime",
-          "name": "endDate",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/sessions"
+        "params": [
+          {
+            "displayName": "Start Time For Meeting",
+            "style": "body",
+            "type": "DateTime",
+            "name": "startDate",
+            "required": true
+          },
+          {
+            "displayName": "End Time For Meeting",
+            "style": "body",
+            "type": "DateTime",
+            "name": "endDate",
+            "required": true
+          },
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/sessions"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}",
+        "path": "/:organizerKey/trainings/:trainingKey",
         "displayName": "Get Sessions By Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}"
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey"
       },
       {
-        "path": "/{accountKey}/organizers",
+        "path": "/:accountKey/organizers",
         "displayName": "Get Organizers",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{accountKey}/organizers"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "accountKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{accountKey}/organizers"
+        "params": [
+          {
+            "name": ":accountKey",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:accountKey/organizers"
       },
       {
-        "path": "/{organizerKey}/trainings/{trainingKey}/organizers",
+        "path": "/:organizerKey/trainings/:trainingKey/organizers",
         "displayName": "Get Organizers by Training",
         "doc": {
           "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/organizers"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "url",
-          "type": "String",
-          "name": "organizerKey",
-          "required": true
-          },{
-          "style": "url",
-          "type": "String",
-          "name": "trainingKey",
-          "required": true
-          }],
-        "url": "https://api.citrixonline.com/G2T/rest/organizers/{organizerKey}/trainings/{trainingKey}/organizers"
-      }]
+        "params": [
+          {
+            "name": ":organizerKey",
+            "displayName": "Organizer Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": ":trainingKey",
+            "displayName": "Training Key",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://api.citrixonline.com/G2T/rest/organizers/:organizerKey/trainings/:trainingKey/organizers"
+      }
+    ]
   }
 }

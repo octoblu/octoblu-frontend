@@ -1,7 +1,7 @@
 {
   "_id": "a053d110f5cc498686f496e5",
   "auth_strategy": "oauth",
-  "bodyFormat": "json",
+  "enabled": "true",
   "name": "GoToMeeting",
   "type": "channel:gotomeeting",
   "oauth": {
@@ -10,21 +10,21 @@
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "http://localhost:8080/api/oauth/gotomeeting/callback",
       "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     },
     "production": {
       "clientID": "***REMOVED***",
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://app.octoblu.com/api/oauth/gotomeeting/callback",
       "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     },
     "staging": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "***REMOVED***",
       "callbackURL": "https://staging.octoblu.com/api/oauth/gotomeeting/callback",
       "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     }
   },
   "application": {
@@ -452,13 +452,15 @@
           "url": "https://api.citrixonline.com/G2M/rest/organizers?email={organizer_email}"
         },
         "httpMethod": "GET",
-        "params": [{
+        "params": [
+          {
             "name": "email",
             "displayName": "Organizer Email",
             "style": "query",
             "type": "string",
             "required": "true"
-          }],
+          }
+        ],
         "url": "https://api.citrixonline.com/G2M/rest/organizers"
       },
       {

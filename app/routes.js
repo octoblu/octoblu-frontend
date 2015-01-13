@@ -2,7 +2,7 @@ module.exports = function(app, passport) {
     // setting env to app.settings.env
     var env = app.settings.env;
     var config = require('../config/auth');
-    var skynet = require('skynet');
+    var meshblu = require('meshblu');
     var security = require('./controllers/middleware/security');
 
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
     console.log('Connecting to SkyNet...');
 
     // Generic UUID / Token for SkyNet API calls
-    var conn = skynet.createConnection({
+    var conn = meshblu.createConnection({
         'uuid'     : '9b47c2f1-9d9b-11e3-a443-ab1cdce04787',
         'token'    : 'pxdq6kdnf74iy66rhuvdw9h5d2f0f6r',
         'server'   : config.skynet.host,
@@ -29,7 +29,6 @@ module.exports = function(app, passport) {
 
     var ChannelApiKeyController = require('./controllers/channel-api-key-controller');
     var channelApiKeyController = new ChannelApiKeyController();
-
 
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
@@ -73,8 +72,17 @@ module.exports = function(app, passport) {
     var GoogleController = require('./controllers/google-controller');
     var googleController = new GoogleController();
 
+    var GoToAssistController = require('./controllers/gotoassist-controller');
+    var goToAssistController = new GoToAssistController();
+
     var GoToMeetingController = require('./controllers/gotomeeting-controller');
     var goToMeetingController = new GoToMeetingController();
+
+    var GoToTrainingController = require('./controllers/gototraining-controller');
+    var goToTrainingController = new GoToTrainingController();
+
+    var GoToWebinarController = require('./controllers/gotowebinar-controller');
+    var goToWebinarController = new GoToWebinarController();
 
     var PaypalController = require('./controllers/paypal-controller');
     var paypalController = new PaypalController();
@@ -130,6 +138,9 @@ module.exports = function(app, passport) {
     var EchoSignController = require('./controllers/echosign-controller');
     var echoSignController = new EchoSignController();
 
+    var TeslaController = require('./controllers/tesla-controller');
+    var teslaController = new TeslaController();
+
     var XeroController = require('./controllers/xero-controller');
     var xeroController = new XeroController();
 
@@ -147,6 +158,9 @@ module.exports = function(app, passport) {
 
     var WordPressController = require('./controllers/wordpress-controller');
     var wordPressController = new WordPressController();
+
+    var UberController = require('./controllers/uber-controller');
+    var uberController = new UberController();
 
     var UserVoiceController = require('./controllers/uservoice-controller');
     var userVoiceController = new UserVoiceController();
@@ -255,8 +269,17 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
+            app.get('/api/oauth/goToAssist',          goToAssistController.authorize);
+            app.get('/api/oauth/goToAssist/callback', goToAssistController.callback, goToAssistController.redirectToDesigner);
+
             app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
             app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
+
+            app.get('/api/oauth/goToTraining',          goToTrainingController.authorize);
+            app.get('/api/oauth/goToTraining/callback', goToTrainingController.callback, goToTrainingController.redirectToDesigner);
+
+            app.get('/api/oauth/goToWebinar',          goToWebinarController.authorize);
+            app.get('/api/oauth/goToWebinar/callback', goToWebinarController.callback, goToWebinarController.redirectToDesigner);
 
             app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
@@ -330,6 +353,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
 
+            app.get('/api/oauth/uber',          uberController.authorize);
+            app.get('/api/oauth/uber/callback', uberController.callback, uberController.redirectToDesigner);
+
             app.get('/api/oauth/withings',          withingsController.authorize);
             app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
 
@@ -342,6 +368,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
+            app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);
