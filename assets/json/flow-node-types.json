@@ -1,6 +1,6 @@
 [
   {
-    "name": "debounce",
+    "name": "Debounce",
     "class": "debounce",
     "helpText": "Debounce will delay the message until after the specified interval has elapsed since the last time it received a message",
     "type": "operation:debounce",
@@ -14,7 +14,7 @@
     "formTemplatePath": "/pages/node_forms/debounce_form.html"
   },
   {
-    "name": "delay",
+    "name": "Delay",
     "class": "delay",
     "helpText": "Delay sending the message until after the specified interval has elapsed since the message was received",
     "type": "operation:delay",
@@ -29,7 +29,7 @@
     "formTemplatePath": "/pages/node_forms/delay_form.html"
   },
   {
-    "name": "demultiplex",
+    "name": "Demultiplex",
     "class": "demultiplex",
     "helpText": "Break an array of values into discreet messages",
     "type": "operation:demultiplex",
@@ -42,7 +42,7 @@
     "formTemplatePath": "/pages/node_forms/demultiplexer_form.html"
   },
   {
-    "name": "function",
+    "name": "Function",
     "class": "function",
     "helpText": "Sends a custom message using javascript",
     "category": "operation",
@@ -57,7 +57,7 @@
     "formTemplatePath": "/pages/node_forms/function_form.html"
   },
   {
-    "name": "equal",
+    "name": "Equal",
     "class": "equal",
     "helpText": "Filter out messages that do not pass an equality test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
     "category": "operation",
@@ -127,7 +127,7 @@
     "formTemplatePath": "/pages/node_forms/less_than_equal_form.html"
   },
   {
-    "name": "pluck",
+    "name": "Pluck",
     "class": "pluck",
     "helpText": "Extract a portion of the message. Use {{msg.foo}} to reference incoming fields",
     "category": "operation",
@@ -141,7 +141,7 @@
     "formTemplatePath": "/pages/node_forms/pluck_form.html"
   },
   {
-    "name": "trigger",
+    "name": "Trigger",
     "class": "trigger",
     "helpText": "Send a static message. Can also be triggered from other flows",
     "category": "operation",
@@ -156,7 +156,7 @@
     "formTemplatePath": "/pages/node_forms/button_form.html"
   },
   {
-    "name": "webhook",
+    "name": "Webhook",
     "class": "webhook",
     "helpText": "Create an HTTP endpoint for receiving push notifications from other services",
     "category": "operation",
@@ -169,7 +169,7 @@
     "formTemplatePath": "/pages/node_forms/webhook_form.html"
   },
   {
-    "name": "interval",
+    "name": "Interval",
     "class": "interval",
     "helpText": "Emit a message at the specified interval",
     "category": "operation",
@@ -185,7 +185,7 @@
     "formTemplatePath": "/pages/node_forms/interval_form.html"
   },
   {
-    "name": "schedule",
+    "name": "Schedule",
     "class": "schedule",
     "helpText": "Emits messages at the specified time using Cron syntax",
     "category": "operation",
@@ -201,7 +201,7 @@
     "formTemplatePath": "/pages/node_forms/schedule_form.html"
   },
   {
-    "name": "throttle",
+    "name": "Throttle",
     "class": "throttle",
     "helpText": "Slow down the incoming messages so that one is emitted at each occurrence of the specified interval",
     "type": "operation:throttle",
@@ -258,7 +258,7 @@
     "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
-    "name": "http get",
+    "name": "http GET",
     "class": "http-request",
     "helpText": "Perform an HTTP Get request",
     "category": "operation",
@@ -275,7 +275,7 @@
     "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
-    "name": "http delete",
+    "name": "http DELETE",
     "class": "http-request-delete",
     "helpText": "Perform an HTTP Delete request",
     "category": "operation",
@@ -292,7 +292,7 @@
     "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
-    "name": "http post",
+    "name": "http POST",
     "class": "http-post-request",
     "helpText": "Perform an HTTP Post request",
     "category": "operation",
@@ -309,7 +309,7 @@
     "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
   },
   {
-    "name": "http put",
+    "name": "http PUT",
     "class": "http-put-request",
     "helpText": "Perform an HTTP Put request",
     "category": "operation",
@@ -326,7 +326,7 @@
     "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
   },
   {
-    "name": "sentiment",
+    "name": "Sentiment",
     "class": "sentiment",
     "helpText": "Performs sentiment analysis on the words in the key, sends msg.score",
     "category": "operation",
@@ -339,7 +339,7 @@
     "formTemplatePath": "/pages/node_forms/sentiment_form.html"
   },
   {
-    "name": "debug",
+    "name": "Debug",
     "class": "debug",
     "helpText": "Display the contents of the messages it receives in the debug panel",
     "category": "operation",
@@ -357,7 +357,7 @@
     "formTemplatePath": "/pages/node_forms/debug_form.html"
   },
   {
-    "name": "template",
+    "name": "Template",
     "class": "template",
     "helpText": "Sends a custom message using handlebars (e.g. {{msg.text}})",
     "category": "operation",
@@ -370,7 +370,7 @@
     "formTemplatePath": "/pages/node_forms/template_form.html"
   },
   {
-    "name": "comment",
+    "name": "Comment",
     "class": "comment",
     "helpText": "Displays a comment in the flow",
     "category": "operation",
