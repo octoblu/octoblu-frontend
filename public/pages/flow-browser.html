@@ -20,13 +20,13 @@
 
       <div class="btn-group">
         <button class="btn btn-default btn-sm" title="Toggle Drawer" ng-click="toggleDrawer()">
-          <i class="fa fa-lg" ng-class="{'fa-angle-double-down' : maximized, 'fa-angle-double-up' : !maximized}"></i>
+          <i class="fa fa-lg" ng-class="{'fa-angle-double-down' : activeFlow.browserMaximized, 'fa-angle-double-up' : !activeFlow.browserMaximized}"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <div class="drawer" ng-class="{maximized: maximized}">
+  <div class="drawer" ng-class="{maximized: activeFlow.browserMaximized}">
       <div class="full-height" ng-include="activeTab.template"></div>
   </div>
 </div>

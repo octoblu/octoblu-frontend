@@ -81,7 +81,8 @@
     <flow-editor flow="activeFlow"></flow-editor>
   </div>
 
-  <flow-browser flex flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
+  <div class="zoom-controls" ng-class="{'browser-maximized' : activeFlow.browserMaximized}"></div>
+  <flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
   <flow-node-editor flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
   <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
 </div>

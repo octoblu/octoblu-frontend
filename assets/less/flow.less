@@ -833,3 +833,17 @@ md-toolbar {
   }
 }
 
+.zoom-controls {
+  display:none;
+  height: 100px;
+  width: 20px;
+  background-color:red;
+  position: fixed;
+  right: 5px;
+  bottom: 0;
+  transition: bottom 0.2s;
+  margin-bottom:50px;
+  &.browser-maximized {
+    bottom: 40vh;
+  }
+}

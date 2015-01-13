@@ -8,7 +8,6 @@ angular.module('octobluApp')
     scope: {
       flowNodeTypes : '=',
       nodeTypes : '=',
-      flow: '=',
       debugLines: '=',
       activeFlow: '='
     },
