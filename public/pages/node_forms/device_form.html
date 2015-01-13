@@ -9,8 +9,5 @@
 <br>
 <h2>Available Devices</h2>
 
-<md-radio-group ng-model="flowNode.uuid">
-  <md-radio-button value="{{flowNodeType.uuid}}" ng-repeat="flowNodeType in otherMatchingFlowNodeTypes">
-    {{flowNodeType.name}}
-  </md-radio-button>
-</md-radio-group>
+<device-picker model="flowNode" devices="otherMatchingFlowNodeTypes">
+</device-picker>
