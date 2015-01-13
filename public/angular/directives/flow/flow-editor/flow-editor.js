@@ -56,6 +56,17 @@ angular.module('octobluApp')
           });
         });
 
+        skynetService.getSkynetConnection().then(function (skynetConnection) {
+          skynetConnection.on('message', function (message) {
+            if (message.topic !== 'device-status') {
+              return;
+            }
+            if($scope.flow){
+              flowRenderer.render($scope.flow);
+            }
+          });
+        });
+
         flowRenderer.on('nodeSelected', function (flowNode) {
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
