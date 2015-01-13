@@ -79,10 +79,6 @@ angular.module('octobluApp')
     $scope.setActiveFlow(activeFlow);
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
-      skynetConnection.on('ready', function(){
-        subscribeToFlow(skynetConnection, $stateParams.flowId);
-        checkDeviceStatus(skynetConnection, $stateParams.flowId);
-      });
 
       subscribeToFlow(skynetConnection, $stateParams.flowId);
       checkDeviceStatus(skynetConnection, $stateParams.flowId);
@@ -190,7 +186,10 @@ angular.module('octobluApp')
     $scope.activeFlow.selectedLink = null;
   };
 
-  $scope.undoEdit = function() {
+  $scope.undoEdit = function(e) {
+    if(e) {
+      e.preventDefault();
+    }
 
     if(!undoBuffer.length) {
      return;
@@ -204,7 +203,9 @@ angular.module('octobluApp')
   }
 
   $scope.redoEdit = function(e) {
-    e.preventDefault();
+    if(e) {
+      e.preventDefault();
+    }
 
     if(!redoBuffer.length) {
       return;
