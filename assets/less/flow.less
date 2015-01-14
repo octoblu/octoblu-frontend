@@ -834,16 +834,19 @@ md-toolbar {
 }
 
 .zoom-controls {
-  display:none;
-  height: 100px;
-  width: 20px;
-  background-color:red;
+  background-color:white;
   position: fixed;
-  right: 5px;
+  right: 10px;
   bottom: 0;
   transition: bottom 0.2s;
   margin-bottom:50px;
   &.browser-maximized {
     bottom: 40vh;
+  }
+  i {
+    font-size: 1.1em;
+  }
+  button:focus{
+    outline:none;
   }
 }

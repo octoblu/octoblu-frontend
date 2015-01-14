@@ -198,8 +198,9 @@ angular.module('octobluApp')
     redoBuffer.push($scope.activeFlow);
     var oldFlow =  undoBuffer.pop();
     undid = true;
-    $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
+
+    $scope.activeFlow = oldFlow;
   }
 
   $scope.redoEdit = function(e) {
@@ -216,6 +217,14 @@ angular.module('octobluApp')
     undid = true;
     $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
+  }
+
+  $scope.undoable = function() {
+    return undoBuffer.length > 0;
+  }
+
+  $scope.redoable = function() {
+    return redoBuffer.length > 0;
   }
 
   $scope.immediateStart = function (e) {
