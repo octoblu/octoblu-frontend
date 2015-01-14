@@ -1429,5 +1429,17 @@
     },
     "connector": "meshblu-drone-army",
     "type": "device:node-copter"
+  },
+  {
+    "_id": "813b4dadbee582e6075b1847",
+    "category": "device",
+    "description": "BeaconBlu",
+    "enabled": true,
+    "name": "BeaconBlu",
+    "skynet": {
+      "type": "device",
+      "subtype": "beacon-blu"
+    },
+    "type": "device:beacon-blu"
   }
 ]
