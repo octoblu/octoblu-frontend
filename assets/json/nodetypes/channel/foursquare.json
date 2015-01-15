@@ -1,0 +1,13 @@
+{
+  "_id": "54656659dece70d991c638c7",
+  "category": "channel",
+  "description": "Foursquare",
+  "enabled": true,
+  "name": "Foursquare",
+  "skynet": {
+    "type": "channel",
+    "subtype": "foursquare"
+  },
+  "channelid": "54656640dece70d991c638c6",
+  "type": "channel:foursquare"
+}

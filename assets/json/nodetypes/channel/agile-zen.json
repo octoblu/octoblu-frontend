@@ -1,0 +1,13 @@
+{
+  "_id": "900c3f60-f066-44ae-8bc4-0fe943bfcd8a",
+  "category": "channel",
+  "description": "Agile Zen",
+  "enabled": true,
+  "name": "Agile Zen",
+  "skynet": {
+    "type": "channel",
+    "subtype": "agile-zen"
+  },
+  "channelid": "53eb9f4cdfc4201817c77acf",
+  "type": "channel:agile-zen"
+}

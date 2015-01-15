@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b82ef400e177dca325a2",
+  "category": "microblu",
+  "description": "Arduino microcontroller",
+  "enabled": true,
+  "name": "Arduino",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "arduino"
+  },
+  "type": "device:arduino"
+}

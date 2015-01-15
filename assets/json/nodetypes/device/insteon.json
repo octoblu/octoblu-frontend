@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b82ff400e177dca325a6",
+  "category": "device",
+  "description": "Insteon home automation",
+  "enabled": true,
+  "name": "Insteon",
+  "skynet": {
+    "type": "device",
+    "subtype": "insteon"
+  },
+  "type": "device:insteon",
+  "connector": "meshblu-insteon"
+}

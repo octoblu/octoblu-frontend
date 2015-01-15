@@ -1,0 +1,13 @@
+{
+  "_id": "3b41a1e3-f8dd-4af0-b560-5513edf34047",
+  "category": "channel",
+  "description": "ShareFile",
+  "enabled": true,
+  "name": "ShareFile",
+  "skynet": {
+    "type": "channel",
+    "subtype": "sharefile"
+  },
+  "channelid": "5430bf6b66ffb0f988307ef9",
+  "type": "channel:sharefile"
+}

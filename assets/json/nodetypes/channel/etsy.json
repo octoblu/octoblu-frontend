@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b838f400e177dca325c6",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Etsy",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Etsy"
+  },
+  "channelid": "52f9b6a7ebbb407a94000021",
+  "type": "channel:etsy"
+}

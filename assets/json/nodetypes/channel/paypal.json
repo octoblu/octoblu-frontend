@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b838f400e177dca325c4",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Paypal",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Paypal"
+  },
+  "channelid": "537d58762699fc4331e85167",
+  "type": "channel:paypal"
+}

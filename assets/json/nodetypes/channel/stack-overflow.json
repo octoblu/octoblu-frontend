@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b835f400e177dca325ba",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "StackOverflow",
+  "skynet": {
+    "type": "channel",
+    "subtype": "StackOverflow"
+  },
+  "channelid": "52f9b35c9f713b92e5000001",
+  "type": "channel:stack-overflow"
+}

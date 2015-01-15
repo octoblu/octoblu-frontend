@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b835f400e177dca325bb",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "NewYorkTimes",
+  "skynet": {
+    "type": "channel",
+    "subtype": "NewYorkTimes"
+  },
+  "channelid": "52f9b454e641dbb25d00000c",
+  "type": "channel:new-york-times"
+}

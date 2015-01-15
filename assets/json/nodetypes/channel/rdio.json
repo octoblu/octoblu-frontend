@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b837f400e177dca325c0",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Rdio",
+  "skynet": {
+    "subtype": "Rdio",
+    "type": "channel"
+  },
+  "channelid": "53d15c363e304fe01a0851ee",
+  "type": "channel:rdio"
+}

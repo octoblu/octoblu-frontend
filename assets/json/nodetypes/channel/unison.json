@@ -1,0 +1,13 @@
+{
+  "_id": "53ea57ee2522c76ff9298af9",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Unison",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Unison"
+  },
+  "channelid": "53e10a8813c57e0267403a82",
+  "type": "channel:unison"
+}

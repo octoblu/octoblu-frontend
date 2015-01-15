@@ -1,0 +1,13 @@
+{
+  "_id": "device-osc",
+  "category": "device",
+  "description": "OSC Udp transfer",
+  "enabled": true,
+  "name": "OSC",
+  "skynet": {
+    "type": "device",
+    "subtype": "osc"
+  },
+  "connector": "meshblu-osc",
+  "type": "device:osc"
+}

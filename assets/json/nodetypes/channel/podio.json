@@ -1,0 +1,13 @@
+{
+  "_id": "0cf52d18-98b0-460e-8def-6d26864ce5b0",
+  "category": "channel",
+  "description": "Podio",
+  "enabled": true,
+  "name": "Podio",
+  "skynet": {
+    "type": "channel",
+    "subtype": "podio"
+  },
+  "channelid": "54458c5b5a370c58ca66a147",
+  "type": "channel:podio"
+}

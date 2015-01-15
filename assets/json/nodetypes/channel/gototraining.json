@@ -1,0 +1,13 @@
+{
+  "_id": "54b403d0fe92b02556f6f81a",
+  "category": "channel",
+  "description": "GoToTraining",
+  "enabled": true,
+  "name": "GoToTraining",
+  "skynet": {
+    "type": "channel",
+    "subtype": "GoToTraining"
+  },
+  "channelid": "54adb7088ff7bef9e70ca7f4",
+  "type": "channel:gototraining"
+}

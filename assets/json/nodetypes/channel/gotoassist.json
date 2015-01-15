@@ -1,0 +1,13 @@
+{
+  "_id": "54b403a0fe92b02556f6f819",
+  "category": "channel",
+  "description": "GoToAssist",
+  "enabled": true,
+  "name": "GoToAssist",
+  "skynet": {
+    "type": "channel",
+    "subtype": "GoToAssist"
+  },
+  "channelid": "54adb7158ff7bef9e70ca7f5",
+  "type": "channel:gotoassist"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "fe7eba68-0e91-4c5e-b163-241158be76be",
+  "category": "channel",
+  "description": "RedBooth",
+  "enabled": true,
+  "name": "RedBooth",
+  "skynet": {
+    "type": "channel",
+    "subtype": "redbooth"
+  },
+  "channelid": "53f2431f710850ee08e28474",
+  "type": "channel:redbooth"
+}

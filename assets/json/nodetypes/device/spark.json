@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b830f400e177dca325ab",
+  "category": "device",
+  "description": "Spark device",
+  "enabled": true,
+  "name": "Spark",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "spark"
+  },
+  "type": "device:spark"
+}

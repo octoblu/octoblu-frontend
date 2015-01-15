@@ -1,0 +1,13 @@
+{
+  "_id": "54959935136677144d6f6d8b",
+  "category": "channel",
+  "description": "Wink",
+  "enabled": true,
+  "name": "Wink",
+  "skynet": {
+    "type": "channel",
+    "subtype": "wink"
+  },
+  "channelid": "54959b239be38fdaabb5497a",
+  "type": "channel:wink"
+}

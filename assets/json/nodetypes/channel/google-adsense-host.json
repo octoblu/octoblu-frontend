@@ -1,0 +1,13 @@
+{
+  "_id": "b7b1b539-6f5b-4f0d-bb5f-533ada0d1196",
+  "category": "channel",
+  "description": "Adsense Host",
+  "enabled": false,
+  "name": "Adsense Host",
+  "skynet": {
+    "type": "channel",
+    "subtype": "google-adsense-host"
+  },
+  "channelid": "544583525a370c58ca66a145",
+  "type": "channel:google-adsense-host"
+}

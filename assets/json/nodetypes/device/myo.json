@@ -1,0 +1,13 @@
+{
+  "_id": "543ee87c979057a612382e18",
+  "category": "device",
+  "description": "Thalmic Labs MYO",
+  "enabled": true,
+  "name": "MYO",
+  "skynet": {
+    "type": "device",
+    "subtype": "myo"
+  },
+  "connector": "meshblu-myo",
+  "type": "device:myo"
+}

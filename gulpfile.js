@@ -49,14 +49,24 @@ gulp.task('channels:concat', function(){
     .pipe(gulp.dest('./assets/json/'));
 });
 
-gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat'], function() {
+gulp.task('nodetypes:concat', function(){
+  return gulp.src('./assets/json/nodetypes/**/*.json')
+    .pipe(jsoncombine('nodetypes.json', function(data){
+      return new Buffer(JSON.stringify(_.values(data)));
+    }))
+    .pipe(gulp.dest('./assets/json/'));
 });
+
+gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat', 'nodetypes:concat'], function() {});
+
+gulp.task('production', ['channels:concat', 'nodetypes:concat']);
 
 gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
+  gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
 
   nodemon({
     script : 'server.js',

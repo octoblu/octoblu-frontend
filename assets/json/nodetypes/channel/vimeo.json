@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b837f400e177dca325c2",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Vimeo",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Vimeo"
+  },
+  "channelid": "52f97d3c0db568444400040e",
+  "type": "channel:vimeo"
+}

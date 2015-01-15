@@ -1,0 +1,13 @@
+{
+  "_id": "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
+  "category": "channel",
+  "description": "Stripe",
+  "enabled": true,
+  "name": "Stripe",
+  "skynet": {
+    "type": "channel",
+    "subtype": "stripe"
+  },
+  "channelid": "5474c6df02e6ab8febbef00e",
+  "type": "channel:stripe"
+}

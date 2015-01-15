@@ -1,0 +1,13 @@
+{
+  "_id": "af842668-5197-4181-8052-2ec30cf135f8",
+  "category": "channel",
+  "description": "Salesforce / Force.com",
+  "enabled": true,
+  "name": "SalesForce",
+  "skynet": {
+    "type": "channel",
+    "subtype": "salesforce"
+  },
+  "channelid": "542ed0142df9c20401f53dcc",
+  "type": "channel:salesforce"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83cf400e177dca325cd",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Smartsheet",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Smartsheet"
+  },
+  "channelid": "533987f06d8a28a6ca8ff923",
+  "type": "channel:smartsheet"
+}
