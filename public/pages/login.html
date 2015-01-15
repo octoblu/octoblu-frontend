@@ -19,10 +19,11 @@
 
               <div class='col-sm-4 col-sm-offset-4'>
                 <h1 class='text-center title'>Sign in</h1>
+                <p class="text-danger" ng-show="errorMsg">{{ errorMsg }}</p>
                 <form class='validate-form' target="_self" ng-submit="login()">
                   <div class='form-group'>
                     <div class='controls with-icon-over-input'>
-                      <input value="" ng-model="email" placeholder="E-mail" class="form-control" data-rule-required="true" name="email" type="text" />
+                      <input value="" ng-model="email" placeholder="Email" class="form-control" data-rule-required="true" name="email" type="email" />
                       <i class='icon-user text-muted'></i>
                     </div>
                   </div>

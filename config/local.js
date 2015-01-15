@@ -18,21 +18,15 @@ var ensureUser = function(req, email, password, callback){
 
       if (!User.validPassword(user, password)) {
         callback(new Error('Invalid Password'));
+        return;
       }
 
       callback(null, user);
       return;
     }
 
-    if (process.env.INVITATION_REQUIRED && !req.session.testerId) {
-      callback(new Error('You must have a valid invitation code'));
-      return;
-    }
-
-    User.createLocalUser(userParams).then(function(user){
-      callback(null, user);
-    });
-
+    callback();
+    // callback(new Error('The username or password is incorrect'));
   }).catch(function(error){
     callback(error);
   });

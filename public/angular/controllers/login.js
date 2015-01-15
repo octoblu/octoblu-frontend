@@ -14,6 +14,7 @@ angular.module('octobluApp')
                 }
             }, function () {
                 //error message goes here.
+                $scope.errorMsg = "Invalid email or password. ¯\\_(ツ)_/¯";
             });
         };
 
