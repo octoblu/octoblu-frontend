@@ -1,5 +1,4 @@
 <div class="templates" layout-fill layout="column" flex>
-
     <md-toolbar>
         <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
             <div flex layout="row">
@@ -9,13 +8,13 @@
                 </a>
             </div>
 
-            <md-button md-theme="octo-blue" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" >
+            <md-button md-theme="octo-blue" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length">
                 <md-tooltip>Copy to Clipboard</md-tooltip>
                 <i class="fa fa-share-alt"></i>
                 Copy Link
             </md-button>
 
-            <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" >
+            <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length">
                 <md-tooltip>Delete Template</md-tooltip>
                 <i class="fa fa-trash"></i>
                 Delete
@@ -25,15 +24,15 @@
     <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
         <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white;">
 
-            <div style="min-height: 60%" class="template-preview" layout="column" layout-sm="row">
+            <div style="min-height: 60%" class="template-preview" layout="column" layout-sm="row" ng-if="templates.length">
                 <div layout="row" layout-align="space-around center" style="margin: auto; min-height: 60px">
                     <form class="form" layout="row" layout-align="center">
                         <div class="form-group" flex="66" style="margin-bottom: 0">
                             <div class="input-group">
                                 <input type="text" class="form-control" ng-model="templateSearch" autofocus>
-                  <span class="input-group-addon">
-                    <i class="fa fa-search"></i>
-                  </span>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
                             </div>
                         </div>
                     </form>
@@ -50,6 +49,10 @@
             <md-divider></md-divider>
 
             <md-content flex layout="column" layout-wrap="wrap" class="templates-list">
+                <div ng-if="!templates.length" class="text-center">
+                    <img ng-src="{{randomRobot()}}" flex="33">
+                    <h1 class="text-center">You have no shared templates.</h1>
+                </div>
                 <md-list flex>
                     <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
                         <md-item-content layout="row" layout-align="space-around">
