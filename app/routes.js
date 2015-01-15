@@ -162,6 +162,9 @@ module.exports = function(app, passport) {
     var UberController = require('./controllers/uber-controller');
     var uberController = new UberController();
 
+    var WinkController = require('./controllers/wink-controller');
+    var winkController = new WinkController();
+
     var UserVoiceController = require('./controllers/uservoice-controller');
     var userVoiceController = new UserVoiceController();
 
@@ -356,6 +359,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/uber',          uberController.authorize);
             app.get('/api/oauth/uber/callback', uberController.callback, uberController.redirectToDesigner);
 
+
             app.get('/api/oauth/withings',          withingsController.authorize);
             app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
 
@@ -369,6 +373,7 @@ module.exports = function(app, passport) {
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
             app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
+            app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);

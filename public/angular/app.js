@@ -221,6 +221,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelTeslaController',
         templateUrl: '/pages/node-wizard/add-channel/tesla.html'
       })
+      .state('material.nodewizard.addchannel.wink', {
+        url: '/wink',
+        controller: 'addChannelWinkController',
+        templateUrl: '/pages/node-wizard/add-channel/wink.html'
+      })
       .state('material.nodewizard.addchannel.docusign', {
         url: '/docusign',
         controller: 'addChannelDocuSignController',
