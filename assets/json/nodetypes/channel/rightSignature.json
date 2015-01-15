@@ -1,0 +1,13 @@
+{
+  "_id": "54a449d8620f5ebb13dbc4f0",
+  "category": "channel",
+  "description": "Right Signature",
+  "enabled": true,
+  "name": "Right Signature",
+  "skynet": {
+    "type": "channel",
+    "subtype": "rightSignature"
+  },
+  "channelid": "54a44e1f620f5ebb13dbc4f1",
+  "type": "channel:rightSignature"
+}

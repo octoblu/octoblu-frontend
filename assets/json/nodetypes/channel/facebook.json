@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83bf400e177dca325cc",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Facebook",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Facebook"
+  },
+  "channelid": "53359922443595b588409210",
+  "type": "channel:facebook"
+}

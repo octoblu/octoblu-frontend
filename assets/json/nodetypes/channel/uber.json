@@ -1,0 +1,13 @@
+{
+  "_id": "54ad7b9552be5d4347422fef",
+  "category": "channel",
+  "description": "Uber",
+  "enabled": true,
+  "name": "Uber",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Uber"
+  },
+  "channelid": "53fb878b710850ee08e28487",
+  "type": "channel:uber"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "613691c2-efaa-445f-bf30-1e62f8e46c86",
+  "category": "channel",
+  "description": "Splunk",
+  "enabled": true,
+  "name": "Splunk",
+  "skynet": {
+    "type": "channel",
+    "subtype": "splunk"
+  },
+  "channelid": "53e8ea018e3257fb7d6fdae0",
+  "type": "channel:splunk"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b837f400e177dca325bf",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Evernote",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Evernote"
+  },
+  "channelid": "533b504c57090ef0e5cc350f",
+  "type": "channel:evernote"
+}

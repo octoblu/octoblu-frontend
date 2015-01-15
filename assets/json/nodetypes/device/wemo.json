@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b82ff400e177dca325a4",
+  "category": "device",
+  "description": "Belkin Wemo home automation",
+  "enabled": true,
+  "name": "Belkin Wemo",
+  "skynet": {
+    "type": "device",
+    "subtype": "wemo"
+  },
+  "connector": "meshblu-wemo",
+  "type": "device:wemo"
+}

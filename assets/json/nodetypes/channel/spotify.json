@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b833f400e177dca325b4",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Spotify",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Spotify"
+  },
+  "channelid": "52f9b382e641dbb25d000001",
+  "type": "channel:spotify"
+}

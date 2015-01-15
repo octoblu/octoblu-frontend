@@ -1,0 +1,13 @@
+{
+  "_id": "5445510577c022a84ec48c5b",
+  "category": "device",
+  "description": "Lifx",
+  "enabled": true,
+  "name": "Lifx",
+  "skynet": {
+    "type": "device",
+    "subtype": "lifx"
+  },
+  "type": "device:lifx",
+  "connector": "meshblu-lifx"
+}

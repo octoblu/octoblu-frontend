@@ -1,0 +1,13 @@
+{
+  "_id": "device-fadecandy",
+  "category": "device",
+  "description": "FadeCandy device",
+  "enabled": true,
+  "name": "FadeCandy",
+  "skynet": {
+    "type": "device",
+    "subtype": "fadecandy"
+  },
+  "connector": "meshblu-fadecandy",
+  "type": "device:fadecandy"
+}

@@ -1,0 +1,12 @@
+{
+  "_id": "53c9b831f400e177dca325af",
+  "category": "device",
+  "description": "Android Device",
+  "enabled": true,
+  "name": "Android",
+  "skynet": {
+    "type": "octobluMobile",
+    "subtype": "android"
+  },
+  "type": "device:android"
+}

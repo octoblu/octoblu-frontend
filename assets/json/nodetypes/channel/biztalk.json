@@ -1,0 +1,13 @@
+{
+  "_id": "ede66cc9-3226-4256-afb4-a6bd949c985d",
+  "category": "channel",
+  "description": "Biztalk",
+  "enabled": true,
+  "name": "Biztalk",
+  "skynet": {
+    "type": "channel",
+    "subtype": "biztalk"
+  },
+  "channelid": "545126c44df05bc3ae93165a",
+  "type": "channel:biztalk"
+}

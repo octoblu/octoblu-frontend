@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b834f400e177dca325b7",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Tumblr",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Tumblr"
+  },
+  "channelid": "52f97e4366f76866b600051d",
+  "type": "channel:tumblr"
+}

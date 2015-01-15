@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b837f400e177dca325c1",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Readability",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Readability"
+  },
+  "channelid": "52f9b3b66970a8d041000001",
+  "type": "channel:readability"
+}

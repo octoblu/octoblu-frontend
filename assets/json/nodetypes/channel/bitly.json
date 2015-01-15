@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83df400e177dca325d0",
+  "category": "channel",
+  "description": null,
+  "enabled": true,
+  "name": "Bitly",
+  "skynet": {
+    "subtype": "Bitly",
+    "type": "channel"
+  },
+  "channelid": "52f9b79febbb40641600000b",
+  "type": "channel:bitly"
+}

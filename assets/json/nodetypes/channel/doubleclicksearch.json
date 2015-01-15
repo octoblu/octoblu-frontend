@@ -1,0 +1,13 @@
+{
+  "_id": "22ede53a-7e5d-42d5-84ac-fd5debe042f9",
+  "category": "channel",
+  "description": "Double Click Search",
+  "enabled": true,
+  "name": "Double Click Search",
+  "skynet": {
+    "type": "channel",
+    "subtype": "doubleclicksearch"
+  },
+  "channelid": "d838fh8ej3829dj38298d9",
+  "type": "channel:doubleclicksearch"
+}

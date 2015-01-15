@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b836f400e177dca325bd",
+  "category": "channel",
+  "description": "Get YAHOO! Finance stock price",
+  "enabled": true,
+  "name": "StockPrice",
+  "skynet": {
+    "type": "channel",
+    "subtype": "StockPrice"
+  },
+  "channelid": "53275d4841da719147d9e36a",
+  "type": "channel:stock-price"
+}

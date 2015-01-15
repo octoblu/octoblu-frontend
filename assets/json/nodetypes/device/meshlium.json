@@ -1,0 +1,13 @@
+{
+  "_id": "c4f1af69-a889-424c-b371-d9b949506f23",
+  "category": "device",
+  "description": "Meshlium Xtreme Hub",
+  "enabled": true,
+  "name": "Meshlium Xtreme",
+  "skynet": {
+    "type": "device",
+    "subtype": "meshlium"
+  },
+  "connector": "meshblu-meshlium",
+  "type": "device:meshlium"
+}

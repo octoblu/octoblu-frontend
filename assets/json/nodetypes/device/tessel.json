@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b830f400e177dca325ad",
+  "category": "device",
+  "description": "Tessel device",
+  "enabled": true,
+  "name": "Tessel",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "tessel"
+  },
+  "type": "device:tessel"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83af400e177dca325ca",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Box",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Box"
+  },
+  "channelid": "5333294ab64eb201df08a5b3",
+  "type": "channel:box"
+}

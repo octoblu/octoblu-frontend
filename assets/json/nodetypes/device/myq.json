@@ -1,0 +1,13 @@
+{
+  "_id": "c6ac481aa135c447f3ecc4cf",
+  "category": "device",
+  "description": "MyQ",
+  "enabled": true,
+  "name": "MyQ",
+  "skynet": {
+    "type": "device",
+    "subtype": "myq"
+  },
+  "type": "device:myq",
+  "connector": "meshblu-myq"
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "54616a3e2a3a76512a29221c",
+  "category": "device",
+  "description": "Neurosky Mindwave",
+  "enabled": true,
+  "name": "Mindwave",
+  "skynet": {
+    "type": "device",
+    "subtype": "mindwave"
+  },
+  "type": "device:mindwave",
+  "connector": "meshblu-mindwave"
+}

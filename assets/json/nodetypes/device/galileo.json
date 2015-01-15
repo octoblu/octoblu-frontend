@@ -1,0 +1,12 @@
+{
+  "_id": "53c9b830f400e177dca325a9",
+  "category": "device",
+  "description": "Intel Galileo",
+  "enabled": true,
+  "name": "Intel Galileo",
+  "skynet": {
+    "type": "device",
+    "subtype": "galileo"
+  },
+  "type": "device:galileo"
+}

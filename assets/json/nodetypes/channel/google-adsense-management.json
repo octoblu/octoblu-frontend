@@ -1,0 +1,13 @@
+{
+  "_id": "66e026d2-06de-465d-bf91-95093899ea06",
+  "category": "channel",
+  "description": "Adsense Management",
+  "enabled": false,
+  "name": "Adsense Management",
+  "skynet": {
+    "type": "channel",
+    "subtype": "google-adsense-management"
+  },
+  "channelid": "544583a75a370c58ca66a146",
+  "type": "channel:google-adsense-management"
+}

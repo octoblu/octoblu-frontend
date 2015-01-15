@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83af400e177dca325c9",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Dropbox",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Dropbox"
+  },
+  "channelid": "532a60c06d3281aa4aeacab3",
+  "type": "channel:dropbox"
+}

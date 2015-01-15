@@ -1,0 +1,13 @@
+{
+  "_id": "da1a065b-6a6d-4f02-9511-1204fd8b0d80",
+  "category": "channel",
+  "description": "QuickBooks",
+  "enabled": false,
+  "name": "QuickBooks",
+  "skynet": {
+    "type": "channel",
+    "subtype": "quickbooks"
+  },
+  "channelid": "54332209575a54b586a6b4c0",
+  "type": "channel:quickbooks"
+}

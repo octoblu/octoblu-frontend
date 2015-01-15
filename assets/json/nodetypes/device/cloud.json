@@ -1,0 +1,12 @@
+{
+  "_id": "53c9b82ef400e177dca325a1",
+  "category": "device",
+  "description": "SkyNet cloud",
+  "enabled": true,
+  "name": "Meshblu",
+  "skynet": {
+    "type": "skynet",
+    "subtype": "cloud"
+  },
+  "type": "device:cloud"
+}
