@@ -15,7 +15,15 @@ angular.module('octobluApp')
 
   var subscribeToFlow = function(skynetConnection, flowId){
     skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
+    deadManSwitch(skynetConnection, flowId);
   };
+
+  var deadManSwitch = function(skynetConnection, flowId) {
+    skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
+    _.delay(function() {
+      deadManSwitch(skynetConnection, flowId);
+    }, 60 * 1000)
+  }
 
   var unsubscribeFromFlow = function(flowId) {
     skynetService.getSkynetConnection().then(function (skynetConnection) {
