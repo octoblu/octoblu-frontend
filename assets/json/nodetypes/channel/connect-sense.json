@@ -1,0 +1,13 @@
+{
+  "_id": "cb876fdf-544d-4025-9245-bcc7f88748b2",
+  "category": "channel",
+  "description": "Connect Sense",
+  "enabled": true,
+  "name": "Connect Sense",
+  "skynet": {
+    "type": "channel",
+    "subtype": "connect-sense"
+  },
+  "channelid": "54122934675080635d89c3cc",
+  "type": "channel:connect-sense"
+}

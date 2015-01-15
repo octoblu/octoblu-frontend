@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b830f400e177dca325ac",
+  "category": "device",
+  "description": "Pinoccio device",
+  "enabled": true,
+  "name": "Pinoccio",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "pinoccio"
+  },
+  "type": "device:pinoccio"
+}

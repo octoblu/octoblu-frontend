@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b838f400e177dca325c5",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Nest",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Nest"
+  },
+  "channelid": "53c403b467605b33c1d4b09b",
+  "type": "channel:nest"
+}

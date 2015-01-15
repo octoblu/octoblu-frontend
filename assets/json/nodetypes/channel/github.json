@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b839f400e177dca325c8",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Github",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Github"
+  },
+  "channelid": "532a258a50411e5802cb8053",
+  "type": "channel:github"
+}

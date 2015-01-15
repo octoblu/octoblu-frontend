@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b830f400e177dca325aa",
+  "category": "device",
+  "description": "Beagle Bone",
+  "enabled": true,
+  "payloadOnly": true,
+  "name": "BeagleBone",
+  "skynet": {
+    "type": "device",
+    "subtype": "beaglebone"
+  },
+  "type": "device:beaglebone"
+}

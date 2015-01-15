@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83cf400e177dca325cf",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "LastFM",
+  "skynet": {
+    "type": "channel",
+    "subtype": "LastFM"
+  },
+  "channelid": "52f9b59edfeb5678c700000b",
+  "type": "channel:last-fm"
+}

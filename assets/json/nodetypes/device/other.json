@@ -1,0 +1,12 @@
+{
+  "_id": "53c9b832f400e177dca325b3",
+  "category": "device",
+  "description": "Other Generic Device",
+  "enabled": true,
+  "name": "Generic Device",
+  "skynet": {
+    "type": "device",
+    "subtype": "other"
+  },
+  "type": "device:other"
+}

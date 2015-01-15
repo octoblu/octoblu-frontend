@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b836f400e177dca325be",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Weather",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Weather"
+  },
+  "channelid": "5337a38d76a65b9693bc2a9f",
+  "type": "channel:weather"
+}

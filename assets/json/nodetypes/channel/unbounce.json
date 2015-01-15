@@ -1,0 +1,13 @@
+{
+  "_id": "5a6f459bab5244ccf05e2dc7",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Unbounce",
+  "skynet": {
+    "subtype": "unbounce",
+    "type": "channel"
+  },
+  "channelid": "cd874aad9b81382944ba9c93",
+  "type": "channel:unbounce"
+}

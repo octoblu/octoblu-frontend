@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b835f400e177dca325b9",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Tropo",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Tropo"
+  },
+  "channelid": "52f97e98a9909344830004f7",
+  "type": "channel:tropo"
+}

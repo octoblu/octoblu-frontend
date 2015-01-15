@@ -1,0 +1,13 @@
+{
+  "_id": "54a91a102ef277e103b65404",
+  "category": "device",
+  "description": "Wunder Bar",
+  "enabled": true,
+  "name": "Wunder Bar",
+  "skynet": {
+    "type": "device",
+    "subtype": "wunderbar"
+  },
+  "type": "device:wunderbar",
+  "connector": "meshblu-relayr"
+}

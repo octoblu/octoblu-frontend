@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b83df400e177dca325d2",
+  "category": "channel",
+  "description": "Parse skynet data logged to ElasticSearch",
+  "enabled": false,
+  "name": "ElasticLogs",
+  "skynet": {
+    "type": "channel",
+    "subtype": "ElasticLogs"
+  },
+  "channelid": "53a26faf0ced4e00501e05b0",
+  "type": "channel:elastic-logs"
+}

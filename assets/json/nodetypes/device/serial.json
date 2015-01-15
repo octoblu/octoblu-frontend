@@ -1,0 +1,13 @@
+{
+  "_id": "device-serial",
+  "category": "device",
+  "description": "Serial access",
+  "enabled": true,
+  "name": "serial",
+  "skynet": {
+    "type": "device",
+    "subtype": "serial"
+  },
+  "connector": "meshblu-serial",
+  "type": "device:serial"
+}

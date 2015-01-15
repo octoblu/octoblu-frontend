@@ -26,8 +26,8 @@ angular.module('octobluApp')
             }
             var element = d3.select('#node-' + message.payload.node + ' > image');
             element.transition()
-              .attr('width', FlowNodeDimensions.width * 1.1)
-              .attr('height', FlowNodeDimensions.minHeight * 1.1)
+              .attr('width', FlowNodeDimensions.width * 1.2)
+              .attr('height', FlowNodeDimensions.minHeight * 1.2)
               .duration(250);
 
             element.transition()

@@ -1,0 +1,13 @@
+{
+  "_id": "546e4ddcb0f01467ee1d670a",
+  "category": "microblu",
+  "description": "CC3200 Launchpad",
+  "enabled": true,
+  "name": "CC3200 Launchpad",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "cc3200"
+  },
+  "type": "device:cc3200"
+}

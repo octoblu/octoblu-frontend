@@ -1,0 +1,9 @@
+{
+  "_id": "bac4a355-a89f-4a10-b279-1da92b4fdffc",
+  "category": "channel",
+  "description": "GoToMeeting Free",
+  "enabled": true,
+  "name": "GoToMeeting Free",
+  "channelid": "54468c4914d3e4c4645c6e27",
+  "type": "channel:gotomeeting-free"
+}

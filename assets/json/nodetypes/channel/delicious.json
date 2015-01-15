@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b837f400e177dca325c3",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Delicious",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Delicious"
+  },
+  "channelid": "52f9b75bdfeb56fca700000d",
+  "type": "channel:delicious"
+}

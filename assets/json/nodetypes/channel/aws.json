@@ -1,0 +1,13 @@
+{
+  "_id": "37804587-81df-49e6-ab23-38e7d5fba76c",
+  "category": "channel",
+  "description": "Amazon Web Services",
+  "enabled": true,
+  "name": "AWS",
+  "skynet": {
+    "type": "channel",
+    "subtype": "aws"
+  },
+  "channelid": "542ee969b3a9540d7c59d5c2",
+  "type": "channel:aws"
+}

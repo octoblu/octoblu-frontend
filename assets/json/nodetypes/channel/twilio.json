@@ -1,0 +1,13 @@
+{
+  "_id": "53c9b834f400e177dca325b8",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Twilio",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Twilio"
+  },
+  "channelid": "53e268e18e3257fb7d6fdad4",
+  "type": "channel:twilio"
+}

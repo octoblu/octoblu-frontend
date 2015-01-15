@@ -1,0 +1,13 @@
+{
+  "_id": "546a874814a08dc76cb0e197",
+  "category": "channel",
+  "description": "Swarm",
+  "enabled": true,
+  "name": "Swarm",
+  "skynet": {
+    "type": "channel",
+    "subtype": "swarm"
+  },
+  "channelid": "546a874614a08dc76cb0e196",
+  "type": "channel:swarm"
+}
