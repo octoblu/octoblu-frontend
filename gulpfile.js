@@ -59,6 +59,8 @@ gulp.task('nodetypes:concat', function(){
 
 gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat', 'nodetypes:concat'], function() {});
 
+gulp.task('production', ['channels:concat', 'nodetypes:concat']);
+
 gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
