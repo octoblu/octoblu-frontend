@@ -1350,7 +1350,7 @@
       "subtype": "Uber"
     },
     "channelid": "53fb878b710850ee08e28487",
-    "type": "chanel:uber"
+    "type": "channel:uber"
   },
   {
     "_id": "54b403a0fe92b02556f6f819",
@@ -1363,7 +1363,7 @@
       "subtype": "GoToAssist"
     },
     "channelid": "54adb7158ff7bef9e70ca7f5",
-    "type": "chanel:gotoassist"
+    "type": "channel:gotoassist"
   },
   {
     "_id": "54b403d0fe92b02556f6f81a",
@@ -1376,7 +1376,7 @@
       "subtype": "GoToTraining"
     },
     "channelid": "54adb7088ff7bef9e70ca7f4",
-    "type": "chanel:gototraining"
+    "type": "channel:gototraining"
   },
   {
     "_id": "54b403f9fe92b02556f6f81b",
@@ -1389,7 +1389,7 @@
       "subtype": "GoToWebinar"
     },
     "channelid": "54adb7158ff7bef9e70ca7f6",
-    "type": "chanel:gotowebinar"
+    "type": "channel:gotowebinar"
   },
   {
     "_id": "54a6e044721c0cf9b00f98fe",
@@ -1429,5 +1429,17 @@
     },
     "connector": "meshblu-drone-army",
     "type": "device:node-copter"
+  },
+  {
+    "_id": "813b4dadbee582e6075b1847",
+    "category": "device",
+    "description": "BeaconBlu",
+    "enabled": true,
+    "name": "BeaconBlu",
+    "skynet": {
+      "type": "device",
+      "subtype": "beacon-blu"
+    },
+    "type": "device:beacon-blu"
   }
 ]
