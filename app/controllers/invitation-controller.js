@@ -1,5 +1,5 @@
-var _ = require('lodash'),
-  request = require('request');
+var _        = require('lodash');
+var  request = require('request');
 
 var InvitationController = function (options) {
   var self;
@@ -24,9 +24,10 @@ var InvitationController = function (options) {
     }, function (error, response, body) {
       if (error) {
         res.send(500, error);
-      } else {
-        res.send(response.statusCode);
+        return;
       }
+
+      res.send(response.statusCode);
     });
   };
 };
