@@ -189,6 +189,12 @@ module.exports = function(app, passport) {
         console.log('SkyNet authentication: failed');
     });
 
+    conn.on('error', function(error){
+        console.error(error.msg);
+        console.error(error.stack);
+    });
+
+
     // Attach additional routes
     conn.on('ready', function(data){
         console.log('SkyNet authentication: success');
@@ -200,6 +206,7 @@ module.exports = function(app, passport) {
             app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms);
             app.post('/api/webhooks/:id', security.bypassAuth, webhookController.trigger);
             app.get('/api/invitation/:id/accept', security.bypassAuth, security.bypassTerms);
+            app.all('/api/reset', security.bypassAuth, security.bypassTerms);
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 

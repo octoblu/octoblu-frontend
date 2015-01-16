@@ -11,7 +11,7 @@ var NodeTypeController = function(options){
   self.index = function(req, res){
     nodeTypeCollection.fetch(req.user._id).then(function(nodeTypes){
       res.send(200, addResourceType(nodeTypes));
-    }, function(error){
+    }).catch(function(error){
       res.send(500, error);
     });
   };

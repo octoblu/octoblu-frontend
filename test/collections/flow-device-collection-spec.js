@@ -1,10 +1,12 @@
 var when = require('when');
+var octobluDB = require('../../app/lib/database');
 var FlowDeviceCollection = require('../../app/collections/flow-device-collection');
 
 describe('FlowDeviceCollection', function () {
   var sut, result, getUser, getDevicesByOwner, users;
 
   beforeEach(function () {
+    octobluDB.createConnection();
     users = {
       'u1': {
         'skynet.uuid': 'u1',

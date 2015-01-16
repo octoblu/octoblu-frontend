@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var when              = require('when');
+var octobluDB = require('../../app/lib/database');
 var ChannelCollection = require('../../app/collections/channel-collection');
 
 describe('ChannelCollection', function () {
@@ -7,6 +8,7 @@ describe('ChannelCollection', function () {
 
   beforeEach(function(){
     var getUserDefer, fetchChannelByIdDefer, fetchChannelsByIdsDefer;
+    octobluDB.createConnection();
 
     sut     = new ChannelCollection();
 

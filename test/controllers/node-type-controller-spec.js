@@ -61,17 +61,6 @@ describe('NodeTypeController', function () {
         expect(item).to.have.property('resourceType');
       });
     });
-
-    describe('when NodeTypeCollection.fetch errors', function () {
-      beforeEach(function (done) {
-        nodeTypeCollection.fetch.reject({error: 'uh oh'});
-        nodeTypeCollection.fetch.promise.finally(done);
-      });
-
-      it('should call response.send with a 500', function () {
-        expect(response.send).to.have.been.calledWith(500, {error: 'uh oh'});
-      });
-    });
   });
 });
 

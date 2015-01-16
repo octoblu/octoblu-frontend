@@ -1,17 +1,18 @@
 var _ = require('lodash');
 var when = require('when');
+var octobluDB = require('../../app/lib/database');
 var FlowDeployController = require('../../app/controllers/flow-deploy');
 
 describe('flowDeployController', function () {
+  beforeEach(function(){
+    octobluDB.createConnection();
+  });
 
   describe('startInstance', function () {
     var sut, res, db, Flow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
 
-    before(function () {
-      Flow = require('../../app/models/flow');
-    });
-
     beforeEach(function () {
+      Flow = require('../../app/models/flow');
       FakeFlowDeploy = {
         start: sinon.spy()
       };

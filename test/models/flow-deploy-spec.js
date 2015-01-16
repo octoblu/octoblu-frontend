@@ -1,11 +1,12 @@
 var FlowDeploy = require('../../app/models/flow-deploy');
 var _ = require('lodash');
-var mongojs = require('mongojs');
+var octobluDB = require('../../app/lib/database');
 
 describe('FlowDeploy', function () {
   var FakeRequest;
 
   beforeEach(function () {
+    octobluDB.createConnection();
     FakeRequest = {
       post: sinon.spy()
     };

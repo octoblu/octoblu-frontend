@@ -1,17 +1,19 @@
 var when = require('when');
+var octobluDB = require('../../app/lib/database');
 var FlowCollection = require('../../app/collections/flow-collection');
 
 describe('FlowCollection', function () {
   var sut, result, getUser, getFlowsByOwner, users, Flow;
 
   beforeEach(function () {
+    octobluDB.createConnection();
     Flow = new FakeFlow();
-    sut = new FlowCollection(Flow); 
+    sut = new FlowCollection(Flow);
   });
 
   describe('fetch', function () {
     describe('when getFlows returns an empty array', function () {
-      beforeEach(function () {        
+      beforeEach(function () {
       });
 
       it('should call getFlows', function () {

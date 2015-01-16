@@ -4,6 +4,7 @@ if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
   require('newrelic');
 }
 
+require('coffee-script/register');
 var express        = require('express');
 var path           = require('path');
 var errorhandler   = require('errorhandler');

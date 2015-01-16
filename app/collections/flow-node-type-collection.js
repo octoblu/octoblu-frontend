@@ -14,7 +14,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
       name: node.name,
       class: node.name,
       type: node.type,
-      logo: node.nodeType.logo,
+      logo: (node.nodeType && node.nodeType.logo),
       category: node.category,
       uuid: node.uuid,
       defaults: node,

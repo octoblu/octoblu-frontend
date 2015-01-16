@@ -1,13 +1,16 @@
 var request    = require('request');
 var when = require('when');
 var SignupController = require('../../app/controllers/signup-controller');
+var octobluDB = require('../../app/lib/database');
 
 describe('SignupController', function () {
   var sut, res;
 
   beforeEach(function () {
-     sut = new SignupController();
-     sut.prefinery = new Prefinery();
+    octobluDB.createConnection();
+
+    sut = new SignupController();
+    sut.prefinery = new Prefinery();
   });
 
   it('exists', function(){
@@ -34,19 +37,6 @@ describe('SignupController', function () {
       });
     });
 
-    describe('prefinery tester', function(){
-      describe('when the tester does not exist', function () {
-        beforeEach(function(done){
-          sut.verifyInvitationCode(req, res);
-          sut.prefinery.getTester.reject('user not found');
-          sut.prefinery.getTester.promise.finally(done);
-        });
-
-        it('should return a 422', function(){
-          expect(res.send).to.have.been.calledWith(422);
-        });
-      });
-    });
   });
 
 });

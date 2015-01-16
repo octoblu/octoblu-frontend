@@ -33,21 +33,6 @@ describe('FlowNodeTypeCollection', function () {
     it('should call nodeCollection.fetch', function(){
       expect(fakeNodeCollection.fetch).to.have.been.called;
     });
-
-    describe('when fakeNodeCollection.fetch and fromFile resolve', function () {
-      it('should merge the results', function (done) {
-        var flowNodeType1, flowNodeType2;
-        flowNodeType1 = {name : 'flowNodeType1'};
-        flowNodeType2 = {name : 'flowNodeType2'};
-
-        fakeFS.readFile.resolve(null, JSON.stringify([flowNodeType1]));
-        fakeNodeCollection.fetch.resolve([flowNodeType2]);
-
-        promise.then(function(flowNodeTypes){
-          expect(flowNodeTypes).to.contain.members(flowNodeType1, flowNodeType2);
-        }).finally(done);
-      });
-    });
   });
 
   describe('fromFile', function () {
@@ -99,7 +84,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this', function(){
       var flowNodeType = {
         "name": "lockitino",
-        "class": "lockitino",      
+        "class": "lockitino",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -124,7 +109,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this and like that', function(){
       var flowNodeType = {
         "name": "mockitama",
-        "class": "mockitama",        
+        "class": "mockitama",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -149,7 +134,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should merge some stuff into this', function(){
       var flowNodeType = {
         "name": "margarita",
-        "class": "margarita",        
+        "class": "margarita",
         "category": "channel",
         "uuid": "lksdflksdfj",
         "defaults": {
