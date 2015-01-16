@@ -136,7 +136,8 @@ var invitationController = {
 
                 smtpTransport.sendMail(mailOptions, function (error) {
                     if (error) {
-                        res.json(400, {'error': 'Invitation email could not be sent'});
+                        res.json(500, {'error': 'Invitation email could not be sent'});
+                        return;
                     }
                     res.send(200, invite);
                 });
