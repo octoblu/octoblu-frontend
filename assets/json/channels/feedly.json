@@ -1,0 +1,1019 @@
+{
+  "_id" : "82390239520910r0ce2",
+  "type" : "channel:feedly",
+  "auth_strategy": "oauth",
+  "documentation": "http://developer.feedly.com/",
+  "name": "Feedly",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application" : {
+    "base" : "http://cloud.feedly.com",
+    "resources" : [
+      {
+        "path": "/v3/categories",
+        "displayName": "Get List Of All Categories",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/categories"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",  
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/categories"
+      },
+      {
+        "path": "/v3/categories/:categoryId",
+        "displayName": "Change The Label Of Existing Category",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/categories/:categoryId"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Category Id",
+          "style": "URL",
+          "type": "string",
+          "name": ":categoryId",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/categories/:categoryId"
+      },
+      {
+        "path": "/v3/categories/:categoryId",
+        "displayName": "Delete A Category",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/categories/:categoryId"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Category Id",
+          "style": "URL",
+          "type": "string",
+          "name": ":categoryId",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/categories/:categoryId"
+      },
+      {
+        "path": "/v3/dropbox/auth",
+        "displayName": "Link A Dropbox Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/dropbox/auth"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Redirect URL",
+          "style": "query",
+          "type": "string",
+          "name": "redirectUri",
+          "required": true
+        },{
+          "displayName": "State",
+          "style": "query",
+          "type": "string",
+          "name": "state"
+        }],
+        "url": "http://cloud.feedly.com/v3/dropbox/auth"
+      },
+      {
+        "path": "/v3/dropbox/auth",
+        "displayName": "Unlink Dropbox Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/dropbox/auth"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/dropbox/auth"
+      },
+      {
+        "path": "/v3/dropbox/save",
+        "displayName": "Add An Article In Dropbox",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/dropbox/save"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/dropbox/save"
+      },
+      {
+        "path": "/v3/entries/:entryId",
+        "displayName": "Get The Content Of An Entry",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/entries/:entryId"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Entry Id",
+          "style": "url",
+          "type": "String",
+          "name": ":entryId",
+          "required": true
+          }],
+        "url": "http://cloud.feedly.com/v3/entries/:entryId"
+      },
+      {
+        "path": "/v3/entries/.mget",
+        "displayName": "Get Content For A Dynamic List Of Entries",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/entries/.mget"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/entries/.mget"
+      },
+      {
+        "path": "/v3/entries/",
+        "displayName": "Create & Tag An Entry",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/entries/"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/entries/"
+      },
+      {
+        "path": "/v3/evernote/auth",
+        "displayName": "Link Evernote Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/evernote/auth"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Redirect URL",
+          "style": "query",
+          "type": "String",
+          "name": "redirectUri",
+          "required": true
+          },{
+          "displayName": "State",
+          "style": "query",
+          "type": "String",
+          "name": "state",
+          "required": true
+          }],
+        "url": "http://cloud.feedly.com/v3/evernote/auth"
+      },
+      {
+        "path": "/v3/evernote/notebooks",
+        "displayName": "Get List Of Evernote Notebooks",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/evernote/notebooks"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Include Business",
+          "style": "query",
+          "type": "boolean",
+          "name": "includeBusiness"
+          },{
+          "displayName": "Include Tags",
+          "style": "query",
+          "type": "boolean",
+          "name": "includeTags"
+          }],
+        "url": "http://cloud.feedly.com/v3/evernote/notebooks"
+      },
+      {
+        "path": "/v3/evernote/note",
+        "displayName": "Save An Article As A Note",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/evernote/note"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Redirect URL",
+          "style": "query",
+          "type": "String",
+          "name": "redirectUri",
+          "required": true
+          },{
+          "displayName": "State",
+          "style": "query",
+          "type": "String",
+          "name": "state"
+          }],
+        "url": "http://cloud.feedly.com/v3/evernote/note"
+      },
+      {
+        "path": "/v3/facebook/suggestions",
+        "displayName": "Get Suggested Feeds",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/facebook/suggestions"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/facebook/suggestions"
+      },
+      {
+        "path": "/v3/feeds/:feedId",
+        "displayName": "Get Metadata About A Specific Feed",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/feeds/:feedId"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Feed Id",
+          "style": "url",
+          "type": "String",
+          "name": ":feedId",
+          "required": true
+          }],
+        "url": "http://cloud.feedly.com/v3/feeds/:feedId"
+      },
+      {
+        "path": "/v3/feeds/.mget",
+        "displayName": "Get Metadata For A List Of Feeds",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/feeds/.mget"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/feeds/.mget"
+      },
+      {
+        "path": "/v3/markers/counts",
+        "displayName": "Get List Of Unread Counts",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/markers/counts"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Auto-Refresh",
+          "style": "query",
+          "type": "boolean",
+          "name": "autorefresh"
+          },{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "string",
+          "name": "newerThan"
+          },{
+          "displayName": "Stream Id",
+          "style": "query",
+          "type": "string",
+          "name": "streamId"
+          }],
+        "url": "http://cloud.feedly.com/v3/markers/counts"
+      },
+      {
+        "path": "/v3/markers",
+        "displayName": "Mark Articles As Read",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/markers"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/markers"
+      },
+      {
+        "path": "/v3/markers/reads",
+        "displayName": "Get Latest Read Operations",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/markers/reads"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "String",
+          "name": "newerThan"
+          }],
+        "url": "http://cloud.feedly.com/v3/markers/reads"
+      },{
+        "path": "/v3/markers/tags",
+        "displayName": "Get Latest Tagged Entry IDs",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/markers/tags"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",  
+        "params": [{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "String",
+          "name": "newerThan"
+          }],
+        "url": "http://cloud.feedly.com/v3/markers/tags"
+      },
+      {
+        "path": "/v3/microsoft/liveAuth",
+        "displayName": "Link Microsoft Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/microsoft/liveAuth"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Redirect URL",
+          "style": "query",
+          "type": "string",
+          "name": "redirectUri",
+          "required": true
+        },{
+          "displayName": "State",
+          "style": "query",
+          "type": "string",
+          "name": "state"
+        }],
+        "url": "http://cloud.feedly.com/v3/microsoft/liveAuth"
+      },
+      {
+        "path": "/v3/microsoft/liveAuth",
+        "displayName": "Unlink Windows Live Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/microsoft/liveAuth"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/microsoft/liveAuth"
+      },
+      {
+        "path": "/v3/microsoft/oneNoteSections",
+        "displayName": "Retrieve List Of OneNote Notebook Sections",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/microsoft/oneNoteSections"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/microsoft/oneNoteSections"
+      },
+      {
+        "path": "/v3/microsoft/oneNoteAdd",
+        "displayName": "Add An Article In OneNote",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/microsoft/oneNoteAdd"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/microsoft/oneNoteAdd"
+      },
+      {
+        "path": "/v3/mixes/:streamId/contents",
+        "displayName": "Get A Mix Of Most Engaging Content Available In A Stream",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/mixes/:streamId/contents"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Stream ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":streamId",
+          "required": true
+        },{
+          "displayName": "Count",
+          "style": "query",
+          "type": "integer",
+          "name": "count"
+        },{
+          "displayName": "Unread Only",
+          "style": "query",
+          "type": "boolean",
+          "name": "unreadOnly"
+        },{
+          "displayName": "Hours",
+          "style": "query",
+          "type": "integer",
+          "name": "hours"
+        },{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "string",
+          "name": "newerThan"
+        },{
+          "displayName": "Backfill",
+          "style": "query",
+          "type": "boolean",
+          "name": "backfill"
+        },{
+          "displayName": "Locale",
+          "style": "query",
+          "type": "string",
+          "name": "locale"
+        }],
+        "url": "http://cloud.feedly.com/v3/mixes/:streamId/contents"
+      },
+      {
+        "path": "/v3/opml",
+        "displayName": "Export User’s Subscriptions As An OPML File",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/opml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":tag_id",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/opml"
+      },
+      {
+        "path": "/v3/opml",
+        "displayName": "Import An OPML",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/opml"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/opml"
+      },
+      {
+        "path": "/v3/preferences",
+        "displayName": "Get Preferences Of The User",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/preferences"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/preferences"
+      },
+      {
+        "path": "/v3/preferences",
+        "displayName": "Update Preferences Of The User",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/preferences"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/preferences"
+      },
+      {
+        "path": "/v3/profile",
+        "displayName": "Get Profile Of The User",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/profile"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/profile"
+      },
+      {
+        "path": "/v3/profile",
+        "displayName": "Update Profile Of The User",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/profile"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Email",
+          "style": "body",
+          "type": "string",
+          "name": "email"
+        },{
+          "displayName": "Given Name",
+          "style": "body",
+          "type": "string",
+          "name": "givenName"
+        },{
+          "displayName": "Family Name",
+          "style": "body",
+          "type": "string",
+          "name": "familyName"
+        },{
+          "displayName": "Picture",
+          "style": "body",
+          "type": "string",
+          "name": "picture"
+        },{
+          "displayName": "Gender",
+          "style": "body",
+          "type": "boolean",
+          "name": "gender"
+        },{
+          "displayName": "Locale",
+          "style": "body",
+          "type": "string",
+          "name": "locale"
+        },{
+          "displayName": "Twitter Handle",
+          "style": "body",
+          "type": "string",
+          "name": "twitter"
+        },{
+          "displayName": "Facebook ID",
+          "style": "body",
+          "type": "string",
+          "name": "facebook"
+        }],
+        "url": "http://cloud.feedly.com/v3/profile"
+      },
+      {
+        "path": "/v3/search/feeds",
+        "displayName": "Find Feeds",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/search/feeds"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Search Query",
+          "style": "URL",
+          "type": "string",
+          "name": "query",
+          "required": true
+        },{
+          "displayName": "Number Of Results",
+          "style": "URL",
+          "type": "number",
+          "name": "count"
+        },{
+          "displayName": "Locale",
+          "style": "URL",
+          "type": "string",
+          "name": "locale"
+        }],
+        "url": "http://cloud.feedly.com/v3/search/feeds"
+      },
+      {
+        "path": "/v3/search/:streamId/contents",
+        "displayName": "Search Content Of A Stream",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/search/:streamId/contents"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Stream ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":streamId",
+          "required": true
+        },{
+          "displayName": "Search Term",
+          "style": "query",
+          "type": "string",
+          "name": "searchTerm"
+        },{
+          "displayName": "Query",
+          "style": "query",
+          "type": "string",
+          "name": "query",
+          "required": true
+        },{
+          "displayName": "Number Of Entries To Return",
+          "style": "query",
+          "type": "integer",
+          "name": "count"
+        },{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "string",
+          "name": "newerThan"
+        },{
+          "displayName": "Page Through Content",
+          "style": "query",
+          "type": "string",
+          "name": "continuation"
+        },{
+          "displayName": "Fields",
+          "style": "query",
+          "type": "string",
+          "name": "fields"
+        },{
+          "displayName": "Embedded",
+          "style": "query",
+          "type": "string",
+          "name": "embedded"
+        },{
+          "displayName": "Filter By Locale",
+          "style": "query",
+          "type": "string",
+          "name": "locale"
+        }],
+        "url": "http://cloud.feedly.com/v3/search/:streamId/contents"
+      },
+      {
+        "path": "/v3/shorten/entries/:entryId",
+        "displayName": "Get Running Time Entry",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/shorten/entries/:entryId"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Entry ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":entryId",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/shorten/entries/:entryId"
+      },
+      {
+        "path": "/v3/streams/:streamId/ids",
+        "displayName": "Get List Of Entry IDs For A Specific Stream",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/streams/:streamId/ids"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Stream ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":streamId",
+          "required": true
+        },{
+          "displayName": "Count",
+          "style": "query",
+          "type": "integer",
+          "name": "count"
+        },{
+          "displayName": "Ranked",
+          "style": "query",
+          "type": "string",
+          "name": "ranked"
+        },{
+          "displayName": "Unread Only",
+          "style": "query",
+          "type": "boolean",
+          "name": "unreadOnly"
+        },{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "string",
+          "name": "newerThan"
+        },{
+          "displayName": "Continuation",
+          "style": "query",
+          "type": "string",
+          "name": "continuation"
+        }],
+        "url": "http://cloud.feedly.com/v3/streams/:streamId/ids"
+      },
+      {
+        "path": "/v3/streams/:streamId/contents",
+        "displayName": "Get Content Of A Stream",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/streams/:streamId/contents"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Stream ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":streamId",
+          "required": true
+        },{
+          "displayName": "Count",
+          "style": "query",
+          "type": "integer",
+          "name": "count"
+        },{
+          "displayName": "Ranked",
+          "style": "query",
+          "type": "string",
+          "name": "ranked"
+        },{
+          "displayName": "Unread Only",
+          "style": "query",
+          "type": "boolean",
+          "name": "unreadOnly"
+        },{
+          "displayName": "Newer Than",
+          "style": "query",
+          "type": "string",
+          "name": "newerThan"
+        },{
+          "displayName": "Continuation",
+          "style": "query",
+          "type": "string",
+          "name": "continuation"
+        }],
+        "url": "http://cloud.feedly.com/v3/streams/:streamId/contents"
+      },
+      {
+        "path": "/v3/subscriptions",
+        "displayName": "Get User’s Subscriptions",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/subscriptions"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/subscriptions"
+      },{
+        "path": "/v3/subscriptions",
+        "displayName": "Subscribe To A Feed",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/subscriptions"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",  
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/subscriptions"
+      },
+      {
+        "path": "/v3/subscriptions/:feedId",
+        "displayName": "Unsubscribe From A Feed",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/subscriptions/:feedId"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Feed ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":feedId",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/subscriptions/:feedId"
+      },
+      {
+        "path": "/v3/tags",
+        "displayName": "Get List Of Tags Created By The User",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/tags"
+      },
+      {
+        "path": "/v3/tags/:tagId1",
+        "displayName": "Tag an existing entry",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID1",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId1",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+      },
+      {
+        "path": "/v3/tags/:tagId2",
+        "displayName": "Tag Multiple Entries",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId2"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID2",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId2",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId2"
+      },
+      {
+        "path": "/v3/tags/:tagId",
+        "displayName": "Change A Tag Label",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId"
+      },
+      {
+        "path": "/v3/tags/:tagId1",
+        "displayName": "Untag Multiple Entries",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID1",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId1",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+      },
+      {
+        "path": "/v3/tags/:tagId2/:entryId1",
+        "displayName": "Untag Multiple Entries",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId2/:entryId1"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Tag ID2",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId2",
+          "required": true
+        },{
+          "displayName": "Entry ID1",
+          "style": "URL",
+          "type": "string",
+          "name": ":entryId1",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId2/:entryId1"
+      },
+      {
+        "path": "/v3/tags/:entryId2",
+        "displayName": "Untag Multiple Entries",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:entryId2"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X",
+        "params": [{
+          "displayName": "Entry ID2",
+          "style": "URL",
+          "type": "string",
+          "name": ":entryId2",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:entryId2"
+      },
+      {
+        "path": "/v3/tags/:tagId1",
+        "displayName": "Delete Tags",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Tag ID1",
+          "style": "URL",
+          "type": "string",
+          "name": ":tagId1",
+          "required": true
+        }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId1"
+      },
+      {
+        "path": "/v3/tags/:tagId2",
+        "displayName": "Delete Tags",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/tags/:tagId2"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Tag ID2",
+          "style": "url",
+          "type": "String",
+          "name": ":tagId2",
+          "required": true
+          }],
+        "url": "http://cloud.feedly.com/v3/tags/:tagId2"
+      },
+      {
+        "path": "/v3/topics",
+        "displayName": "Get List Of Topics User Has Added To Their Feedly",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/topics"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/topics"
+      },
+      {
+        "path": "/v3/topics",
+        "displayName": "Add Topic To User Feedly Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/topics"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/topics"
+      },
+      {
+        "path": "/v3/topics/:topicId",
+        "displayName": "Remove Topic From A Feedly Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/topics/:topicId"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Topic ID",
+          "style": "url",
+          "type": "String",
+          "name": ":topicId",
+          "required": true
+          }],
+        "url": "http://cloud.feedly.com/v3/topics/:topicId"
+      },
+      {
+        "path": "/v3/twitter/auth",
+        "displayName": "Link Twitter Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/twitter/auth"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+          "displayName": "Redirect URL",
+          "style": "query",
+          "type": "String",
+          "name": "redirectUri",
+          "required": true
+          },{
+          "displayName": "State",
+          "style": "query",
+          "type": "String",
+          "name": "state"
+          }],
+        "url": "http://cloud.feedly.com/v3/twitter/auth"
+      },
+      {
+        "path": "/v3/twitter/auth",
+        "displayName": "Unlink Twitter Account",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/twitter/auth"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/twitter/auth"
+      },
+      {
+        "path": "/v3/twitter/suggestions",
+        "displayName": "Get Suggested Feeds",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/twitter/suggestions"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/twitter/suggestions"
+      },
+      {
+        "path": "/v3/twitter/feeds/.mget",
+        "displayName": "Post Suggested Feeds",
+        "doc": {
+          "url": "http://cloud.feedly.com/v3/twitter/feeds/.mget"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://cloud.feedly.com/v3/twitter/feeds/.mget"
+      }
+    ]
+  }
+}
