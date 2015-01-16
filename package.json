@@ -33,6 +33,7 @@
     "lodash-node": "~2.4.1",
     "main-bower-files": "^2.0.0",
     "marked": "*",
+    "meshblu": "^1.9.0",
     "moment": "2.5.1",
     "mongojs": "^0.15.1",
     "morgan": "~1.2.0",
@@ -93,7 +94,6 @@
     "safe_datejs": "~0.0.1",
     "should": "^3.3.1",
     "simple-oauth2": "~0.2.0",
-    "meshblu": "^1.9.0",
     "underscore": "~1.6.0",
     "when": "^3.0.1"
   },
