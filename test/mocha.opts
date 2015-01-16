@@ -1,0 +1,6 @@
+--compilers coffee:coffee-script
+--require coffee-script/register
+--require test/test_helper.js
+--reporter dot
+--recursive
+test/models test/collections test/controllers

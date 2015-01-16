@@ -8,9 +8,17 @@ var nodemailer    = require('nodemailer'),
 module.exports = function ( app, passport, config ) {
 
   app.post('/api/reset', security.bypassAuth, security.bypassTerms, function(req, res, next) {
+    PasswordResetter.resetByEmail(req.body.email).then(function(){
+      res.send(res.send(201));
+    }).catch(function(error){
+      res.send(500,error);
+    });
+    return;
+
     var user;
     User.findByEmail(req.body.email)
       .then(function(dbUser){
+        console.log("completed: findByEmail");
         user = dbUser;
 
         if (!user) {
@@ -20,12 +28,14 @@ module.exports = function ( app, passport, config ) {
         return User.generateToken();
       })
       .then(function(token){
+        console.log("completed: generateToken");
         user.resetPasswordToken   = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-        return user.saveWithPromise();
+        return User.saveWithPromise();
       })
       .then(function(){
+        console.log("completed: saveWithPromise");
         var smtpTransport, mailOptions;
 
         smtpTransport = nodemailer.createTransport("SMTP", {
@@ -46,15 +56,17 @@ module.exports = function ( app, passport, config ) {
         };
 
         smtpTransport.sendMail(mailOptions, function(error) {
+           console.error("sendMail");
            if (error) { throw {code: 500, errors: {all: [error]}} }
            res.send(201);
         });
 
       }).catch(function(options){
+        console.error("catch", options);
         if(options.code) {
           return res.send(options.code, {errors: options.errors});
         }
-        return res.send(500, {errors: options.errors, arguments: arguments});
+        return res.send(500, {errors: options.errors, arguments: arguments, otherError: options});
       });
   });
 

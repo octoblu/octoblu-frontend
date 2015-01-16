@@ -1,10 +1,12 @@
 var when = require('when');
+var octobluDB = require('../../app/lib/database');
 var DeviceCollection = require('../../app/collections/device-collection');
 
 describe('DeviceCollection', function () {
   var sut, result, getUser, getDevicesByOwner, users;
 
   beforeEach(function () {
+    octobluDB.createConnection();
     users = {
       'u1': {
         'skynet.uuid': 'u1',

@@ -1,4 +1,5 @@
-var mongojs = require('mongojs');
+var octobluDB = require('../../app/lib/database');
+
 describe('User', function () {
   var User, sut;
 
@@ -10,7 +11,8 @@ describe('User', function () {
 
   var moment = require('moment');
 
-  before(function () {
+  beforeEach(function () {
+    octobluDB.createConnection();
     User = require('../../app/models/user');
   });
 

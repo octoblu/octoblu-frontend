@@ -1,14 +1,13 @@
 var _ = require('lodash');
+var octobluDB = require('../../app/lib/database');
 
 describe('Flow', function () {
   var Flow, Meshblu;
 
-  before(function(){
+  beforeEach(function (done) {
+    octobluDB.createConnection();
     Flow   = require('../../app/models/flow');
     Meshblu = new FakeMeshblu();
-  });
-
-  beforeEach(function (done) {
     Flow.remove(done);
   });
 
@@ -112,7 +111,7 @@ describe('Flow', function () {
         it('should reject the promise', function (done) {
           updatePromise.then(function(){
             done('Promise was not rejected');
-          }).catch(function(error){
+          }, function(error){
             done();
           });
         });
