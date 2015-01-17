@@ -27,7 +27,7 @@
                     <h4><a href ng-click="gotoLogin()">Login</a></h4>
                   </div>
 
-                  <form action="" ng-submit="resetPassword()" class="form-horizontal" role="form" ng-hide="passwordHasBeenReset">
+                  <form ng-submit="resetPassword()" class="form-horizontal" role="form" ng-hide="passwordHasBeenReset">
                     <div class="form-group" ng-class="{'has-error': errorMessage}">
                       <label for="password" class="col-sm-4 control-label">Password</label>
                       <div class="col-sm-8">
