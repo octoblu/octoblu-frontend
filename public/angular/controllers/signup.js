@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('SignupController', function($scope, $state, $location,  AuthService) {
+.controller('SignupController', function($scope, $state, $location, AuthService) {
 
   var signupParams = $location.search();
   $scope.errorMsg = '';

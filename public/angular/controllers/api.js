@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('apiController', function ($scope, $stateParams, $modal, $state, channelService, userService) {
+.controller('apiController', function ($scope, $stateParams, $modal, $state, channelService, userService, NotifyService) {
 
   channelService.getById($stateParams.id).then(function(channel){
     $scope.channel = channel;
@@ -30,6 +30,7 @@ angular.module('octobluApp')
         channelService.getActiveChannels(true);
         channelService.getAvailableChannels(true);
         _.defer($state.go, 'material.nodes');
+        NotifyService.notify('Channel deleted');
       });
     });
   };

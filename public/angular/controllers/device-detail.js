@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, device, PermissionsService, deviceService, NodeService, NodeTypeService) {
+.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, device, PermissionsService, deviceService, NodeService, NodeTypeService, NotifyService) {
   'use strict';
   $scope.device = device;
 
@@ -47,16 +47,20 @@ angular.module('octobluApp')
       deviceService.unregisterDevice(device)
       .then(function () {
         $state.go('material.nodes');
+        NotifyService.notify('Device deleted');
       }, function (error) {
-        console.error(error);
+        NotifyService.notify('Error deleting device');
       });
     });
   };
 
   $scope.saveDevice = function (device) {
     deviceService.updateDevice(device)
-    .then(null, function (error) {
-      console.error(error);
-    });
+      .then(function(){
+        NotifyService.notify('Device updated');
+      },
+       function (error) {
+        NotifyService.notify('Error updating device');
+      });
   };
 });

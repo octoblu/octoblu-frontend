@@ -39,3 +39,4 @@ class FakeToast
 class FakeToastPreset
   constructor: ->
     @position = sinon.spy()
+    @_options = {}
