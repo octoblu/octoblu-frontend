@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableNodeTypes,
-                                                 skynetService, deviceService, PluginService) {
+    .controller('MessagingController', function($scope, currentUser, myDevices, myGateways, availableNodeTypes,
+        skynetService, deviceService, PluginService) {
 
         $scope.model = {
             devices: _.sortBy(_.cloneDeep(myDevices), 'name'),
@@ -20,7 +20,7 @@ angular.module('octobluApp')
         });
 
 
-        $scope.$watch('model.sendUuid', function (newValue, oldValue) {
+        $scope.$watch('model.sendUuid', function(newValue, oldValue) {
             if (newValue || $scope.model.device) {
                 $scope.model.schema = {};
             } else {
@@ -28,7 +28,7 @@ angular.module('octobluApp')
             }
         });
 
-        $scope.$watch('model.device', function (newDevice, oldDevice) {
+        $scope.$watch('model.device', function(newDevice, oldDevice) {
             $scope.model.subdevice = null;
             if (newDevice || $scope.model.sendUuid) {
                 if (newDevice.type !== 'gateway') {
@@ -38,7 +38,7 @@ angular.module('octobluApp')
                         uuid: newDevice.uuid,
                         token: newDevice.token,
                         method: "configurationDetails"
-                    }).then(function (response) {
+                    }).then(function(response) {
                         if (response && response.result) {
                             $scope.model.device.subdevices = response.result.subdevices || [];
                             $scope.model.device.plugins = response.result.plugins || [];
@@ -50,17 +50,21 @@ angular.module('octobluApp')
             }
         });
 
-        $scope.$watch('model.subdevice', function (newSubdevice, oldSubdevice) {
+        $scope.$watch('model.subdevice', function(newSubdevice, oldSubdevice) {
             if (newSubdevice) {
-                var plugin = _.findWhere($scope.model.device.plugins, {name: newSubdevice.type});
+                var plugin = _.findWhere($scope.model.device.plugins, {
+                    name: newSubdevice.type
+                });
                 if (!plugin) {
                     PluginService.installPlugin($scope.model.device, newSubdevice.type)
-                        .then(function (result) {
+                        .then(function(result) {
                             return PluginService.getInstalledPlugins($scope.model.device);
                         })
-                        .then(function (result) {
+                        .then(function(result) {
                             $scope.model.device.plugins = result;
-                            $scope.model.plugin = _.findWhere($scope.model.device.plugins, {name: newSubdevice.type});
+                            $scope.model.plugin = _.findWhere($scope.model.device.plugins, {
+                                name: newSubdevice.type
+                            });
                             $scope.model.schema = $scope.model.plugin.messageSchema;
                         })
 
@@ -71,15 +75,15 @@ angular.module('octobluApp')
             }
         });
 
-        $scope.sendMessage = function () {
+        $scope.sendMessage = function() {
             /*
              if schema exists - get the value from the editor, validate the input and send the message if valid
              otherwise notify the user that there was an error.
 
              if no schema exists, they are doing this manually and we check if the UUID field is populated and that
              there is a message to send.
-             */
-            
+           */
+
             $scope.model.messageResult = "";
             $scope.messageResponseTime = "";
             $scope.startTimer = new Date().getTime();
@@ -99,8 +103,8 @@ angular.module('octobluApp')
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     subdevice: $scope.model.subdevice.uuid || $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
-                }).then(function (response) {
-                    if(!response.error){
+                }).then(function(response) {
+                    if (!response.error) {
                         $scope.responseTimer = new Date().getTime();
                         var difference = $scope.responseTimer - $scope.startTimer;
                         $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
@@ -114,8 +118,8 @@ angular.module('octobluApp')
                     fromUuid: currentUser.skynet.uuid,
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     payload: $scope.model.schemaEditor.getValue()
-                }).then(function (response) {
-                    if(!response.error){
+                }).then(function(response) {
+                    if (!response.error) {
                         $scope.responseTimer = new Date().getTime();
                         var difference = $scope.responseTimer - $scope.startTimer;
                         $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
