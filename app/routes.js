@@ -230,7 +230,7 @@ module.exports = function(app, passport) {
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
             app.post('/api/auth/apikey/channel/:id', channelApiKeyController.create);
 
-            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.storeTesterId, signupController.checkForExistingUser, signupController.checkInTester, signupController.createUser);
+            app.post('/api/auth/signup', signupController.checkForExistingUser, signupController.createUser);
             app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
