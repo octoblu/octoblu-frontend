@@ -66,7 +66,6 @@ var Prefinery = function(){
       });
     });
   };
-
-}
+};
 
 module.exports =  Prefinery;

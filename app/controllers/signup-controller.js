@@ -20,13 +20,16 @@ var SignupController = function () {
     var checkInPromise = self.prefinery.checkInTester(testerId);
 
     checkInPromise.then(function(){
-      req.user.testerId = testerId;
-      User.update({_id: req.user._id}, req.user).then(function() {
-        next();
-      }).catch(function(error){
-        console.error(error);
-        next();
-      });
+      console.log('checkInTester returned');
+      next();
+      // req.user.testerId = testerId;
+      // User.update({_id: req.user._id}, req.user).then(function() {
+      //   console.log('User.update returned');
+      //   next();
+      // }).catch(function(error){
+      //   console.error(error);
+      //   next();
+      // });
     });
 
     checkInPromise.catch(function(error){
@@ -38,11 +41,11 @@ var SignupController = function () {
     User.findByEmail(req.param('email')).then(function(user) {
       if (user) {
         res.send(401);
-        return
+        return;
       }
       next();
-    })
-  }
+    });
+  };
 
   this.createUser = function(req, res){
     User.createLocalUser({
@@ -52,7 +55,7 @@ var SignupController = function () {
       res.send(201);
     }).catch(function(error){
       res.send(500, 'Invalid User');
-    })
+    });
   };
 
   this.storeTesterId = function(req, res, next){
