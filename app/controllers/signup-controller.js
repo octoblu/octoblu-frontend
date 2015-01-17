@@ -34,10 +34,25 @@ var SignupController = function () {
     });
   };
 
-  self.authorize = passport.authenticate('local');
+  this.checkForExistingUser = function(req, res, next) {
+    User.findByEmail(req.param('email')).then(function(user) {
+      if (user) {
+        res.send(401);
+        return
+      }
+      next();
+    })
+  }
 
-  this.returnUser = function(req, res){
-    res.send(201, req.user);
+  this.createUser = function(req, res){
+    User.createLocalUser({
+      email: req.param('email'),
+      password: req.param('password')
+    }).then(function(){
+      res.send(201);
+    }).catch(function(error){
+      res.send(500, 'Invalid User');
+    })
   };
 
   this.storeTesterId = function(req, res, next){
