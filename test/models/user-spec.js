@@ -16,6 +16,21 @@ describe('User', function () {
     User = require('../../app/models/user');
   });
 
+  describe('resetPasswordToken', function(){
+    beforeEach(function(){
+      return User.createUser({email:'foo@bar.com', password: 'abc123'}).then(function(user){
+        return User.setResetPasswordToken(user);
+      });
+    });
+
+    it('should set the resetPasswordToken', function(){
+      return User.findByEmail('foo@bar.com').then(function(user){
+        console.log(user);
+        expect(user.resetPasswordToken).to.exist;
+      });
+    });
+  });
+
   describe('overwriteOrAddApiByChannelType', function () {
     beforeEach(function () {
       sut = {};

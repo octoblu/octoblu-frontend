@@ -77,7 +77,7 @@ function UserModel() {
 
       userQuery = {
         resetPasswordToken: resetToken,
-        resetPasswordExpires: { $gt: (new Date()) }
+        resetPasswordExpires: { $gt: (new Date().getTime()) }
       };
 
       return self.findOne(userQuery);
@@ -173,6 +173,15 @@ function UserModel() {
       user.api = _.reject(user.api, {channelid: channelid});
       user.api = _.reject(user.api, {channelid: this.ObjectId(channelid)});
       return this.update({_id: user._id}, user);
+    },
+
+    setResetPasswordToken: function(user){
+      var self = this;
+      user.resetPasswordToken = self.generateToken();
+      user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+      return self.update({_id: user._id}, user).then(function(){
+        return user;
+      });
     },
 
     updatePassword : function (user, oldPassword, newPassword) {

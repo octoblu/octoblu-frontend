@@ -207,6 +207,7 @@ module.exports = function(app, passport) {
             app.post('/api/webhooks/:id', security.bypassAuth, webhookController.trigger);
             app.get('/api/invitation/:id/accept', security.bypassAuth, security.bypassTerms);
             app.all('/api/reset', security.bypassAuth, security.bypassTerms);
+            app.all('/api/reset/:token', security.bypassAuth, security.bypassTerms);
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 

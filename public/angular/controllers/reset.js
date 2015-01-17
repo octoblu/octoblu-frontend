@@ -17,6 +17,7 @@ angular.module('octobluApp')
           $scope.errorMessage = error.error || 'Could not reset your password.';
         });
       }
+
       $scope.gotoLogin = function(){
         $state.go('login');
       }
