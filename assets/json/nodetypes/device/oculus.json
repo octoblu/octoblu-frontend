@@ -1,0 +1,13 @@
+{
+  "_id": "54bd99f3e9412e988f2f20e9",
+  "category": "device",
+  "description": "Oculus Rift Tracking Data",
+  "enabled": true,
+  "name": "Oculus Rift",
+  "skynet": {
+    "type": "device",
+    "subtype": "oculus"
+  },
+  "connector": "meshblu-oculus",
+  "type": "device:oculus"
+}
