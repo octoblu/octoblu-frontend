@@ -6,7 +6,7 @@ var _             = require('lodash');
 var ensureUser = function(req, email, password, callback){
   var query, userParams;
 
-  query = {'local.email': email};
+  query = {'local.email': new RegExp('^' + email + '$', 'i')};
 
   userParams = {
     email: email,

@@ -18,7 +18,3 @@ describe 'PasswordResetter', ->
       beforeEach ->
         User.createLocalUser({email: 'foo@bar.com', password: 'abc123'})
 
-      xit 'should set the resetPasswordToken', ->
-        User.findByEmail('foo@bar.com').then (user) ->
-          expect(user.resetPasswordToken).to.exist
-

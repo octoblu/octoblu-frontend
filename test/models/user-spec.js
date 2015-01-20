@@ -16,7 +16,7 @@ describe('User', function () {
     User = require('../../app/models/user');
   });
 
-  describe('resetPasswordToken', function(){
+  xdescribe('resetPasswordToken', function(){
     beforeEach(function(){
       return User.createUser({email:'foo@bar.com', password: 'abc123'}).then(function(user){
         return User.setResetPasswordToken(user);
