@@ -110,11 +110,6 @@ angular.module('octobluApp')
           if (!newFlow) {
             return;
           }
-            if (oldFlow && (newFlow.flowId !== oldFlow.flowId)) {
-              skynetService.getSkynetConnection().then(function (skynetConnection) {
-                skynetConnection.unsubscribe({uuid: oldFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
-              });
-            }
 
             flowRenderer.render(newFlow);
         }, true);
