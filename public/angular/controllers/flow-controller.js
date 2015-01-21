@@ -14,7 +14,11 @@ angular.module('octobluApp')
   });
 
   var subscribeToFlow = function(skynetConnection, flowId){
-    skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
+    skynetConnection.subscribe({uuid: flowId, topic: 'pulse'}, function(error) {
+      if (error) {
+        console.error(error);
+      }
+    }
     deadManSwitch(skynetConnection, flowId);
   };
 
