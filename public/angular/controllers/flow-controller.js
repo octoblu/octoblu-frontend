@@ -25,12 +25,6 @@ angular.module('octobluApp')
     }, 60 * 1000)
   }
 
-  var unsubscribeFromFlow = function(flowId) {
-    skynetService.getSkynetConnection().then(function (skynetConnection) {
-      skynetConnection.unsubscribe({uuid: flowId});
-    });
-  };
-
   var setCookie = function(flowId) {
     $cookies.currentFlowId = flowId;
   };
