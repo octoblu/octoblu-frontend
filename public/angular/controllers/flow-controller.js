@@ -18,7 +18,7 @@ angular.module('octobluApp')
       if (error) {
         console.error(error);
       }
-    }
+    });
     deadManSwitch(skynetConnection, flowId);
   };
 
