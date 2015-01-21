@@ -14,7 +14,7 @@ angular.module('octobluApp')
       },
       link: function (scope, element, attrs) {
         var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketId', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
-            'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+            'localhost', 'secure', 'eventCode', 'discoverWhitelist', 'configureWhitelist', 'sendWhitelist', 'receiveWhitelist'],
           originalDevice, schema, editor;
 
         function initializeEditor() {
