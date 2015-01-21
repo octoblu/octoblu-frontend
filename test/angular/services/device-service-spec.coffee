@@ -9,18 +9,16 @@ describe "DeviceService", ->
        $provide.value 'skynetService', @fakeSkynetService
        return
 
-    inject (skynetService, $q, $httpBackend) =>
-      skynetService.q = $q
+    inject (skynetService, $q, $httpBackend, $rootScope) =>
       @q = $q
+      @rootScope = $rootScope
       $httpBackend.whenGET("/api/auth").respond 200
       $httpBackend.whenGET("/pages/material.html").respond 200
       $httpBackend.whenGET("/pages/home.html").respond 200
-      sinon.stub(@fakeSkynetService, 'getSkynetConnection').returns(@q.when(@fakeSkynetConnection))
+      sinon.stub(@fakeSkynetService, 'getSkynetConnection').returns @q.when @fakeSkynetConnection
 
-    inject (deviceService, $rootScope) =>
-      @rootScope = $rootScope
+    inject (deviceService) =>
       @sut = deviceService
-
 
   it "should exist", ->
     expect(@sut).to.exist
@@ -35,14 +33,14 @@ describe "DeviceService", ->
         result = @sut.resetToken()
         expect(result.then).to.exist;
 
-      describe "when it is resolved", ->
+      describe "when it is resolved with the token token5", ->
         beforeEach ->
-          sinon.stub(@fakeSkynetConnection, 'resetToken').returns(@q.when(5))
+          sinon.stub(@fakeSkynetConnection, 'resetToken').yields null, 'token5'
           _.defer @rootScope.$digest
-          @sut.resetToken(3)
+          @sut.resetToken 'uuid3' 
 
-        it "should call resetToken on the skynetConnection", ->
-          expect(@fakeSkynetConnection.resetToken).to.have.been.called
+        it "should call resetToken on the skynetConnection with the value uuid3", ->
+          expect(@fakeSkynetConnection.resetToken).to.have.been.calledWith 'uuid3'
 
   class FakePermissionsService
 
@@ -51,12 +49,9 @@ describe "DeviceService", ->
 
   class FakeSkynetConnection
     constructor: ->
-      @subscribe = sinon.spy @subscribe
-      @message = sinon.spy @message
-
     on: =>
     mydevices: =>
     message: =>
     subscribe: =>
-    resetToken: =>
+    resetToken: (uuid, callback) =>
 

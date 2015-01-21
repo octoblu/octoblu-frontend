@@ -258,9 +258,16 @@ angular.module('octobluApp')
             },
 
             resetToken: function(uuid) {
-                return skynetPromise.then(function (skynetConnection) {
-                    return skynetConnection.resetToken(uuid);
+                var defer = $q.defer();
+                skynetPromise.then(function (skynetConnection) {
+                    return skynetConnection.resetToken(uuid, function(error, token){
+                        if(error) {
+                            return defer.reject(error);
+                        }
+                        defer.resolve(token);
+                    });
                 });
+                return defer.promise;
             }
         };
 

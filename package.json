@@ -35,7 +35,7 @@
     "mailgun": "^0.5.0",
     "main-bower-files": "^2.0.0",
     "marked": "*",
-    "meshblu": "^1.9.0",
+    "meshblu": "^1.11.0",
     "moment": "2.5.1",
     "mongojs": "^0.15.1",
     "morgan": "~1.2.0",
