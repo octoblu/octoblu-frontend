@@ -9,9 +9,7 @@ angular.module('octobluApp')
         function addDevice(device) {
             myDevices.push(device);
             skynetPromise.then(function (skynetConnection) {
-                skynetConnection.unsubscribe({uuid: device.uuid}, function() {
-                    skynetConnection.subscribe({uuid: device.uuid});
-                });
+                skynetConnection.subscribe({uuid: device.uuid});
             });
         }
 
