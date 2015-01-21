@@ -255,6 +255,12 @@ angular.module('octobluApp')
                     data.logo = 'https://ds78apnml6was.cloudfront.net/device/other.svg';
                 }
                 return data;
+            },
+
+            resetToken: function(uuid) {
+                return skynetPromise.then(function (skynetConnection) {
+                    return skynetConnection.resetToken(uuid);
+                });
             }
         };
 

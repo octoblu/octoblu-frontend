@@ -2,7 +2,7 @@ describe 'FlowController', ->
   beforeEach ->
     module 'octobluApp'
 
-    inject ($controller, $rootScope, $q) ->
+    inject ($controller, $rootScope, $q) =>
       q = $q
       @scope = $rootScope.$new()
       @scope.flow = {}
@@ -25,11 +25,11 @@ describe 'FlowController', ->
       })
 
   beforeEach ->
-    inject ($httpBackend) ->
+    inject ($httpBackend) =>
       $httpBackend.whenGET("/api/auth").respond 200
       $httpBackend.whenGET("/api/node_types").respond 200
-      $httpBackend.whenGET("pages/octoblu.html").respond 200
-      $httpBackend.whenGET("pages/home.html").respond 200
+      $httpBackend.whenGET("/pages/octoblu.html").respond 200
+      $httpBackend.whenGET("/pages/home.html").respond 200
 
   it "should exist", ->
     expect(@sut).to.exist
@@ -157,7 +157,9 @@ describe 'FlowController', ->
         ]
 
         @stateParams.flowId = "dogs"
-        @fakeFlowService.getAllFlows.deferred.resolve flows
+        flowDefer = @fakeFlowService.getAllFlows.deferred
+        flowDefer.resolve flows
+
         @scope.$digest()
 
       it "should set the activeFlow to the second flow on the scope", ->
@@ -175,63 +177,66 @@ describe 'FlowController', ->
         it 'should message the flow with a topic of subscribe:pulse', ->
           expect(@skynetConnection.message).to.have.been.calledWith {devices: ['dogs'], topic: 'subscribe:pulse'}
 
-class FakeWindow
-  constructor: ->
-    @confirm = sinon.spy @confirm
-    @styles = {}
-    @ownerDocument = {
-      defaultView:
-        getComputedStyle: =>
-    }
+  class FakeWindow
+    constructor: ->
+      @confirm = sinon.spy @confirm
+      @styles = {}
+      @ownerDocument = {
+        defaultView:
+          getComputedStyle: =>
+      }
 
-  confirm: =>
-    @confirm.returns
+    confirm: =>
+      @confirm.returns
 
-  # emulate jQuery
-  height: =>
-    0
+    # emulate jQuery
+    height: =>
+      0
 
-  resize: =>
-  style: =>
+    resize: =>
+    style: =>
 
-class FakeFlowService
-  constructor: ($q) ->
-    @q = $q
-    @deleteFlow  = sinon.spy @deleteFlow
-    @getAllFlows = sinon.spy @getAllFlows
+  class FakeFlowService
+    constructor: ($q) ->
+      @q = $q
+      @deleteFlow  = sinon.spy @deleteFlow
+      @getAllFlows = sinon.spy @getAllFlows
 
-  deleteFlow: =>
-    @deleteFlow.deferred = @q.defer()
-    @deleteFlow.deferred.promise
+    deleteFlow: =>
+      @deleteFlow.deferred = @q.defer()
+      @deleteFlow.deferred.promise
 
-  getAllFlows: =>
-    @getAllFlows.deferred = @q.defer()
-    @getAllFlows.deferred.promise
+    getAllFlows: =>
+      @getAllFlows.deferred = @q.defer()
+      @getAllFlows.deferred.promise
 
-  setActiveFlow: =>
+    setActiveFlow: =>
 
-class FakeFlowNodeTypeService
-  constructor: ($q) ->
-    @q = $q
+    hashFlow: (flow) =>
+      return 1
 
-  getFlowNodeTypes: =>
-    @getFlowNodeTypes.deferred = @q.defer()
-    @getFlowNodeTypes.deferred.promise
+  class FakeFlowNodeTypeService
+    constructor: ($q) ->
+      @q = $q
 
-class FakeSkynetService
-  constructor: ($q) ->
-    @q = $q
+    getFlowNodeTypes: =>
+      @getFlowNodeTypes.deferred = @q.defer()
+      @getFlowNodeTypes.deferred.promise
 
-  getSkynetConnection: =>
-    @getSkynetConnection.deferred = @q.defer()
-    @getSkynetConnection.deferred.promise
+  class FakeSkynetService
+    constructor: ($q) ->
+      @q = $q
 
-class FakeSkynetConnection
-  constructor: ->
-    @subscribe = sinon.spy @subscribe
-    @message = sinon.spy @message
+    getSkynetConnection: =>
+      @getSkynetConnection.deferred = @q.defer()
+      @getSkynetConnection.deferred.promise
 
-  on: =>
-  mydevices: =>
-  message: =>
-  subscribe: =>
+  class FakeSkynetConnection
+    constructor: ->
+      @subscribe = sinon.spy @subscribe
+      @message = sinon.spy @message
+
+    on: =>
+    mydevices: =>
+    message: =>
+    subscribe: =>

@@ -38,8 +38,8 @@ module.exports = function(config) {
     coffeePreprocessor: {
       // options passed to the coffee compiler
       options: {
-        bare: true,
-        sourceMap: false
+        bare: false,
+        sourceMap: true
       },
       // transforming the filenames
       transformPath: function(path) {

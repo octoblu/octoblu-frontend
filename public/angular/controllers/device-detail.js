@@ -1,8 +1,7 @@
 angular.module('octobluApp')
-.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, device, PermissionsService, deviceService, NodeService, NodeTypeService, NotifyService) {
+.controller('DeviceDetailController', function ($modal, $log, $scope, $state, device, PermissionsService, deviceService, NotifyService) {
   'use strict';
   $scope.device = device;
-
   PermissionsService
   .allSourcePermissions($scope.device.uuid)
   .then(function (permissions) {
@@ -62,5 +61,18 @@ angular.module('octobluApp')
        function (error) {
         NotifyService.notify('Error updating device');
       });
+  };
+
+  $scope.resetToken = function(){
+    $scope.confirmModal($modal, $scope, $log, 'Reset token for ' + device.name, 'Resetting your token with deauthorize this device. Are you sure?', function(){
+
+        deviceService.resetToken(device.uuid)
+          .then(function (token) {
+              NotifyService.alert({title:'Token Reset', content: token});
+            },
+            function (error) {
+              NotifyService.notify('Error resetting token');
+        });
+    });
   };
 });

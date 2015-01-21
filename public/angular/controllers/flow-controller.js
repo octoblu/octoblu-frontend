@@ -354,20 +354,12 @@ angular.module('octobluApp')
   };
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
-    if(! newFlow){
-      return;
-    }
-    newFlow.hash = FlowService.hashFlow(newFlow);
-    $scope.$apply();
-  };
-
-  var immediateCalculateFlowHash = function(newFlow, oldFlow) {
-    if(! newFlow){
+    if(!newFlow){
       return;
     }
     newFlow.hash = FlowService.hashFlow(newFlow);
     addToUndoBuffer(oldFlow);
-    $scope.$apply();
+    // $scope.$apply();
   };
 
   var addToUndoBuffer = function(oldFlow) {
