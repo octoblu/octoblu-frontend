@@ -10,7 +10,7 @@ angular.module('octobluApp')
             },
             controller: function ($scope) {
                 var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
-                        'localhost','secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+                        'localhost','secure', 'eventCode', 'configureWhitelist', 'discoverWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice;
 
                 $scope.$watch('deviceToEdit', function (newDevice, oldDevice) {

@@ -164,18 +164,18 @@ function ResourcePermissionModel() {
                         })
                         .then(function (permissions) {
                             deviceProperties = {
-                                viewWhitelist: permissions.viewWhitelist,
-                                updateWhitelist: permissions.updateWhitelist,
+                                discoverWhitelist: permissions.discoverWhitelist,
+                                configureWhitelist: permissions.configureWhitelist,
                                 sendWhitelist: permissions.sendWhitelist,
                                 receiveWhitelist: permissions.receiveWhitelist
                             };
 
-                            if(_.isEmpty(deviceProperties.viewWhitelist) ) {
-                                deviceProperties.viewWhitelist = null;
+                            if(_.isEmpty(deviceProperties.discoverWhitelist) ) {
+                                deviceProperties.discoverWhitelist = null;
                             }
 
-                            if(_.isEmpty(deviceProperties.updateWhitelist) ) {
-                                deviceProperties.updateWhitelist = null;
+                            if(_.isEmpty(deviceProperties.configureWhitelist) ) {
+                                deviceProperties.configureWhitelist = null;
                             }
 
                             if(_.isEmpty(deviceProperties.sendWhitelist ) ) {
@@ -207,10 +207,10 @@ function ResourcePermissionModel() {
     formatSkynetPermissions : function (permissions) {
         var self = this;
 
-        var viewWhitelist = _.filter(permissions, function (permission) {
+        var discoverWhitelist = _.filter(permissions, function (permission) {
             return permission.permissions.discover;
         });
-        var updateWhitelist = _.filter(permissions, function (permission) {
+        var configureWhitelist = _.filter(permissions, function (permission) {
             return permission.permissions.configure;
         });
         var sendWhitelist = _.filter(permissions, function (permission) {
@@ -221,8 +221,8 @@ function ResourcePermissionModel() {
         });
 
         return {
-            viewWhitelist: _.pluck(_.pluck(viewWhitelist, 'source'), 'uuid'),
-            updateWhitelist: _.pluck(_.pluck(updateWhitelist, 'source'), 'uuid'),
+            discoverWhitelist: _.pluck(_.pluck(discoverWhitelist, 'source'), 'uuid'),
+            configureWhitelist: _.pluck(_.pluck(configureWhitelist, 'source'), 'uuid'),
             sendWhitelist: _.pluck(_.pluck(sendWhitelist, 'source'), 'uuid'),
             receiveWhitelist: _.pluck(_.pluck(receiveWhitelist, 'source'), 'uuid')
         };
