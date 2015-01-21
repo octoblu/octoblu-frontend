@@ -1,21 +1,32 @@
 <md-toolbar md-theme="octo-blue">
-  <h2 class="md-toolbar-tools page-heading">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-    </a>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars"></i>
+        Device
+      </a>
+    </div>
 
-    <span>Device</span>
+    <md-button ng-click="resetToken(device)" md-theme="octo-blue">
+      <md-tooltip>Reset Token</md-tooltip>
+      <i class="fa fa-key"></i>
+      Reset Token
+    </md-button>
+
+    <md-button ng-click="deleteDevice(device)" md-theme="octo-blue">
+      <md-tooltip>Delete Device</md-tooltip>
+      <i class="fa fa-trash"></i>
+      Delete
+    </md-button>
   </h2>
 </md-toolbar>
-
-<br>
 
 <md-content>
   <div flex class="container">
     <div class="row device-detail">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-12">
             <h2>
               <i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i>
               {{device.name}}
@@ -23,14 +34,6 @@
             <h4 class="text-muted">
               {{device.uuid}}
             </h4>
-          </div>
-
-          <div class="col-xs-6">
-            <h2 class="text-right">
-              <a class="btn btn-danger btn-lg" title="Delete" ng-click="deleteDevice(device)">
-                <i class="fa fa-trash-o fa-lg"></i>
-              </a>
-            </h2>
           </div>
         </div>
 
