@@ -152,7 +152,7 @@ var FlowDeploy = function(options){
       });
 
       var options = {
-        json:    { uuid: flow.flowId, token:flow.token,  flow: self.convertFlow(flow) },
+        json:    { uuid: flow.flowId, token: flow.token, flow: self.convertFlow(flow) },
         headers: { skynet_auth_uuid: flow.flowId, skynet_auth_token: flow.token }
       };
 
