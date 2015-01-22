@@ -43,7 +43,7 @@ describe 'DeviceDetailController', ->
 
       it "should call the confirm modal with text indicating the token will be reset and it's dependencies", =>
         @scope.resetToken()
-        expect(@scope.confirmModal).to.have.been.calledWith(@fakeModal, @scope, @fakeLog, "Reset token for widget", "Resetting your token with deauthorize this device. Are you sure?")
+        expect(@scope.confirmModal).to.have.been.calledWith(@fakeModal, @scope, @fakeLog, "Reset token for widget", "Resetting your token will invalidate the existing token. Are you sure?")
 
       describe "when the user confirms resetting the token", =>
 
