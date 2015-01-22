@@ -64,7 +64,7 @@ angular.module('octobluApp')
   };
 
   $scope.resetToken = function(){
-    $scope.confirmModal($modal, $scope, $log, 'Reset token for ' + device.name, 'Resetting your token with deauthorize this device. Are you sure?', function(){
+    $scope.confirmModal($modal, $scope, $log, 'Reset token for ' + device.name, 'Resetting your token will invalidate the existing token. Are you sure?', function(){
 
         deviceService.resetToken(device.uuid)
           .then(function (token) {
