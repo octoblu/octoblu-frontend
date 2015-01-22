@@ -35,7 +35,7 @@ describe "DeviceService", ->
 
       describe "when it is resolved with the token token5", ->
         beforeEach ->
-          sinon.stub(@fakeSkynetConnection, 'resetToken').yields null, 'token5'
+          sinon.stub(@fakeSkynetConnection, 'resetToken').yields 'token5'
           _.defer @rootScope.$digest
           @sut.resetToken 'uuid3' 
 
