@@ -1,0 +1,653 @@
+{
+  "_id": "6837492AD048502JGD736582",
+  "type": "channel:googleplaces",
+  "auth_strategy": "googleplaces",
+  "documentation": "https://developers.google.com/places/documentation/search",
+  "name": "GooglePlaces",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://maps.googleapis.com/maps/api/place",
+    "resources": [
+      {
+        "path": "/nearbysearch/output",
+        "displayName": "Nearby Search Requests",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/output"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Application's API key",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Latitude & Longitude",
+            "style": "URL",
+            "type": "string",
+            "name": ":location",
+            "required": true
+          },{
+            "displayName": "Defines The Distance",
+            "style": "URL",
+            "type": "string",
+            "name": ":radius",
+            "required": true
+          },{
+            "displayName": "Keyword",
+            "style": "query",
+            "type": "string",
+            "name": "keyword"
+          },{
+            "displayName": "Language Code",
+            "style": "query",
+            "type": "string",
+            "name": "language"
+          },{
+            "displayName": "Minprice",
+            "style": "query",
+            "type": "string",
+            "name": "minprice"
+          },{
+            "displayName": "Maxprice",
+            "style": "query",
+            "type": "string",
+            "name": "maxprice"
+          },{
+            "displayName": "Names Of Places",
+            "style": "query",
+            "type": "string",
+            "name": "name"
+          },{
+            "displayName": "Places Open For Busines",
+            "style": "query",
+            "type": "string",
+            "name": "opennow"
+          },{
+            "displayName": "Specifies The Order",
+            "style": "query",
+            "type": "string",
+            "name": "rankby"
+          },{
+            "displayName": "Types",
+            "style": "query",
+            "type": "string",
+            "name": "types"
+          },{
+            "displayName": "Page Token",
+            "style": "query",
+            "type": "string",
+            "name": "pagetoken"
+          },{
+            "displayName": "Zagat Selected Businesses",
+            "style": "query",
+            "type": "string",
+            "name": "zagatselected"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/output"
+      },
+      {
+        "path": "/textsearch/output",
+        "displayName": "Updates User's Profiles",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/textsearch/output"
+        },
+        "httpMethod": "Put",
+        "params": [
+          {
+            "displayName": "Query",
+            "style": "URL",
+            "type": "string",
+            "name": ":query",
+            "required": true
+          },{
+            "displayName": "Application's API Key",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Latitude & Longitude",
+            "style": "query",
+            "type": "string",
+            "name": "location"
+          },{
+            "displayName": "Defines The Distance",
+            "style": "query",
+            "type": "string",
+            "name": "radius"
+          },{
+            "displayName": "Language Code,",
+            "style": "query",
+            "type": "string",
+            "name": "language"
+          },{
+            "displayName": "Minprice",
+            "style": "query",
+            "type": "string",
+            "name": "minprice"
+          },{
+            "displayName": "Maxprice",
+            "style": "query",
+            "type": "string",
+            "name": "maxprice"
+          },{
+            "displayName": "Open For Business",
+            "style": "query",
+            "type": "string",
+            "name": "opennow"
+          },{
+            "displayName": "Specified Types",
+            "style": "query",
+            "type": "string",
+            "name": "types"
+          },{
+            "displayName": "Zagat Selected Businesses",
+            "style": "query",
+            "type": "string",
+            "name": "zagatselected"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/textsearch/output"
+      },
+      {
+        "path": "/radarsearch/output",
+        "displayName": "Radar Search Requests",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/radarsearch/output"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Application's API Key",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Latitude & Longitude",
+            "style": "URL",
+            "type": "string",
+            "name": ":location",
+            "required": true
+          },{
+            "displayName": "Defines The Distance",
+            "style": "URL",
+            "type": "string",
+            "name": ":radius",
+            "required": true
+          },{
+            "displayName": "Keyword",
+            "style": "query",
+            "type": "string",
+            "name": "keyword"
+          },{
+            "displayName": "Minprice",
+            "style": "query",
+            "type": "string",
+            "name": "minprice"
+          },{
+            "displayName": "Maxprice",
+            "style": "query",
+            "type": "string",
+            "name": "maxprice"
+          },{
+            "displayName": "Names Of Places",
+            "style": "query",
+            "type": "string",
+            "name": "name"
+          },{
+            "displayName": "Open For Business",
+            "style": "query",
+            "type": "string",
+            "name": "opennow"
+          },{
+            "displayName": "Specified Types",
+            "style": "query",
+            "type": "string",
+            "name": "types"
+          },{
+            "displayName": "Zagat Selected Businesses",
+            "style": "query",
+            "type": "string",
+            "name": "zagatselected"
+          }],
+        "url": "https://maps.googleapis.com/maps/api/place/radarsearch/output"
+      },
+      {
+        "path": "/place/details/output",
+        "displayName": "Place Details",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/details/output"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Application's API Key",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Identifies A Place",
+            "style": "URL",
+            "type": "string",
+            "name": ":placeid",
+            "required": true
+          },{
+            "displayName": "Place Details",
+            "style": "URL",
+            "type": "string",
+            "name": "extensions"
+          },{
+            "displayName": "Language Code",
+            "style": "query",
+            "type": "string",
+            "name": "language"
+          }],
+        "url": "https://maps.googleapis.com/maps/api/place/details/output"
+      },
+      {
+        "path": "/add/json",
+        "displayName": "Adding Places",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/add/json"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "Accuracy Of The Location",
+            "style": "body",
+            "type": "String",
+            "name": "accuracy"
+          },
+          {
+            "displayName": "Address Of The Place",
+            "style": "body",
+            "type": "String",
+            "name": "address"
+          },
+          {
+            "displayName": "Language In Which The Place's Name",
+            "style": "body",
+            "type": "String",
+            "name": "language"
+          },
+          {
+            "displayName": "Latitude & Longitude",
+            "style": "body",
+            "type": "String",
+            "name": "location",
+            "required": true
+          },
+          {
+            "displayName": "Full Text Name",
+            "style": "body",
+            "type": "String",
+            "name": "name",
+            "required": true
+          },
+          {
+            "displayName": "Phone Number Of The Place",
+            "style": "body",
+            "type": "String",
+            "name": "phone_number",
+            "required": true
+          },
+          {
+            "displayName": "Category Types",
+            "style": "body",
+            "type": "String",
+            "name": "types",
+            "required": true
+          },
+          {
+            "displayName": "URL Of Website The Place",
+            "style": "body",
+            "type": "String",
+            "name": "website",
+            "required": true
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/add/json"
+      },
+      {
+        "path": "/delete/json",
+        "displayName": "Deleting Places",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/delete/json"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Place",
+            "style": "",
+            "type": "String",
+            "name": "placeid",
+            "required": true
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/delete/json"
+      },
+      {
+        "path": "/event/add/format",
+        "displayName": "Event Add Requests",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/event/add/format"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Place Where Event Is Happening",
+            "style": "body",
+            "type": "String",
+            "name": "reference",
+            "required": true
+          },
+          {
+            "displayName": "Textual Description Of The Event",
+            "style": "body",
+            "type": "String",
+            "name": "summary",
+            "required": true
+          },
+          {
+            "displayName": "Language",
+            "style": "body",
+            "type": "String",
+            "name": "language"
+          },
+          {
+            "displayName": "URL Pointing To Details",
+            "style": "body",
+            "type": "String",
+            "name": "url"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/event/add/format"
+      },
+      {
+        "path": "/event/delete/format",
+        "displayName": "Event Deletions",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/event/delete/format"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "Unique Event ID For This Event",
+            "style": "body",
+            "type": "String",
+            "name": "event_id",
+            "required": true
+          },
+          {
+            "displayName": "Reference Value",
+            "style": "body",
+            "type": "String",
+            "name": "reference",
+            "required": true
+          }],
+        "url": "https://maps.googleapis.com/maps/api/place/event/delete/format"
+      },
+      {
+        "path": "/event/details/format",
+        "displayName": "Event Details",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/event/details/format"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Reference Value Of The Place",
+            "style": "url",
+            "type": "String",
+            "name": ":reference",
+            "required": true
+          },{
+            "displayName": "Event ID",
+            "style": "url",
+            "type": "String",
+            "name": ":event_id",
+            "required": true
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/event/details/format"
+      },
+      {
+        "path": "/bump/json",
+        "displayName": "Place Bumps",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/bump/json"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Place To The Event",
+            "style": "body",
+            "type": "String",
+            "name": "reference",
+            "required": true
+          },
+          {
+            "displayName": "Event ID",
+            "style": "body",
+            "type": "String",
+            "name": "event_id"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/bump/json"
+      },
+      {
+        "path": "/photo",
+        "displayName": "Place Photo",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/photo"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "Identifier That Uniquely Identifies A Photo",
+            "style": "url",
+            "type": "String",
+            "name": ":photoreference",
+            "required": true
+          },{
+            "displayName": "Max Height",
+            "style": "url",
+            "type": "String",
+            "name": ":maxheight",
+            "required": true
+          },{
+            "displayName": "Max Width",
+            "style": "url",
+            "type": "String",
+            "name": ":maxwidth",
+            "required": true
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/photo"
+      },
+      {
+        "path": "/autocomplete/output",
+        "displayName": "Place Autocomplete",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/autocomplete/output"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Input",
+            "style": "url",
+            "type": "String",
+            "name": ":input",
+            "required": true
+          },
+          {
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },
+          {
+            "displayName": "Offset",
+            "style": "query",
+            "type": "String",
+            "name": "offset"
+          },{
+            "displayName": "Latitude & Longitude",
+            "style": "query",
+            "type": "String",
+            "name": "location"
+          },{
+            "displayName": "Radius",
+            "style": "query",
+            "type": "String",
+            "name": "radius"
+          },{
+            "displayName": "Language",
+            "style": "query",
+            "type": "String",
+            "name": "language"
+          },{
+            "displayName": "Types Of Place",
+            "style": "query",
+            "type": "String",
+            "name": "types"
+          },{
+            "displayName": "Components To Filter By Country",
+            "style": "query",
+            "type": "String",
+            "name": "components"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/autocomplete/output"
+      },
+      {
+        "path": "/queryautocomplete/output",
+        "displayName": "List Available Channels",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/queryautocomplete/output"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://winkapi.quirky.com/channels"
+      },
+      {
+        "path": "/queryautocomplete/output",
+        "displayName": "Query Autocomplete",
+        "doc": {
+          "url": "https://maps.googleapis.com/maps/api/place/queryautocomplete/output"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Input",
+            "style": "url",
+            "type": "String",
+            "name": ":input",
+            "required": true
+          },{
+            "displayName": "Application's API Key",
+            "style": "url",
+            "type": "String",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Offset",
+            "style": "query",
+            "type": "String",
+            "name": "offset"
+          },{
+            "displayName": "Latitude & Longitude",
+            "style": "query",
+            "type": "String",
+            "name": "location"
+          },{
+            "displayName": "Radius",
+            "style": "query",
+            "type": "String",
+            "name": "radius"
+          },{
+            "displayName": "Language In Which To Return Results",
+            "style": "query",
+            "type": "String",
+            "name": "language"
+          }
+        ],
+        "url": "https://maps.googleapis.com/maps/api/place/queryautocomplete/output"
+      }
+    ]
+  }
+}

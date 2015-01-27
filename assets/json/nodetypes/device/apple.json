@@ -2,7 +2,7 @@
   "_id": "53c9b831f400e177dca325ae",
   "category": "device",
   "description": "Apple iOS Device",
-  "enabled": true,
+  "enabled": false,
   "name": "Apple",
   "skynet": {
     "type": "octobluMobile",

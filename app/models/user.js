@@ -8,6 +8,7 @@ var crypto     = require('crypto');
 var configAuth = require('../../config/auth');
 var request    = require('request');
 var Channel    = require('./channel');
+var debug      = require('debug')('octoblu:user');
 
 function UserModel() {
   var collection = octobluDB.getCollection('users');
@@ -203,24 +204,60 @@ function UserModel() {
       return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
     },
 
-    registerWithMeshblu : function(email) {
-      var self = this;
-      var uri = 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices';
-      var params = {
-        json: {
-          type: 'user',
-          email: email
+    skynetRestRequest: function(uri_fragment, json, method, auth_uuid, auth_token) {
+      var self, uri, params;
+      self = this;
+      uri = 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + uri_fragment;
+
+      params = {
+        uri: uri,
+        json: json,
+        method: method,
+        headers: {
+          'meshblu_auth_uuid': auth_uuid,
+          'meshblu_auth_token': auth_token
         }
       };
-
+      debug('rest request', uri, json);
       return when.promise(function(resolve, reject) {
-        request.post(uri, params, function(error, response, body) {
+        request(params, function(error, response, body) {
           if (error) {
+            debug('request error:', error);
             reject(error);
             return;
           }
+          debug('request response', body);
           resolve(body);
         });
+      })
+    },
+
+    registerWithMeshblu : function(email) {
+      var self, uri_fragment, json;
+      self = this;
+      uri_fragment = '/devices';
+      json = {
+        type: 'user',
+        email: email
+      };
+
+      return self.skynetRestRequest(uri_fragment, json, 'POST').then(function(data) {
+        return self.setDefaultWhitelists(data)
+      });
+    },
+
+    setDefaultWhitelists: function(data) {
+      var self, uri_fragment, json, uuid;
+      self = this;
+      uuid = data.uuid;
+      uri_fragment = '/devices/' + uuid;
+      json = {
+        configureWhitelist : [uuid],
+        discoverWhitelist : [uuid]
+      };
+
+      return self.skynetRestRequest(uri_fragment, json, 'PUT', uuid, data.token).then(function(){
+        return data;
       });
     }
   };
