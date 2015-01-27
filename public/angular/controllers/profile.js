@@ -29,4 +29,8 @@ angular.module('octobluApp')
     passwordForm.confirmNewPassword.$setValidity('matches', $scope.newPassword === $scope.confirmNewPassword);
   };
 
+  $scope.resetToken = function(){
+    $scope.confirmModal()
+  };
+
 });

@@ -35,14 +35,16 @@ angular.module('octobluApp')
 
       _.each($scope.paramDefinitions, function(paramDefinition) {
         var existingValue = $scope.ngModel[paramDefinition.name];
-        $scope.params[paramDefinition.name] = existingValue || paramDefinition.default || '';
-        
+        var paramDefault = '';
         if(paramDefinition.type === 'object') {
             paramDefinition.schema = getSchema(paramDefinition.name);
+            paramDefault = {};
         }
         if(paramDefinition.type === 'array') {
           paramDefinition.schema = getArraySchema(paramDefinition.displayName);
+          paramDefault = [];
         }
+        $scope.params[paramDefinition.name] = existingValue || paramDefinition.default || paramDefault;
       });
     };
 
