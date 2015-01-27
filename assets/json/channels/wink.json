@@ -1,6 +1,7 @@
 {
   "_id": "54959b239be38fdaabb5497a",
   "type": "channel:wink",
+  "bodyFormat": "json[body]",
   "auth_strategy": "wink",
   "documentation": "http://docs.wink.apiary.io",
   "name": "Wink",
@@ -27,17 +28,24 @@
     "resources": [
       {
         "path": "/users/:user_id/update_password",
-        "displayName": "Create user",
+        "displayName": "Create User",
         "doc": {
           "url": "https://winkapi.quirky.com/users/:user_id/update_password"
         },
-        "httpMethod": "Get",
+        "httpMethod": "Post",
         "params": [
           {
-            "displayName": "UserID Of User To Perform Action",
-            "style": "URL",
+            "displayName": "User ID",
+            "style": "url",
             "type": "string",
             "name": ":user_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -45,17 +53,24 @@
       },
       {
         "path": "/users/:user_id/update_password",
-        "displayName": "Updates User's Profiles",
+        "displayName": "Update Current User's Profile",
         "doc": {
           "url": "https://winkapi.quirky.com/users/:user_id/update_password"
         },
         "httpMethod": "Put",
         "params": [
           {
-            "displayName": "UserID Of User To Perform Action",
-            "style": "URL",
+            "displayName": "User ID",
+            "style": "url",
             "type": "string",
             "name": ":user_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -78,12 +93,20 @@
           "url": "https://winkapi.quirky.com/users/me/linked_services"
         },
         "httpMethod": "Post",
-        "params": [],
+        "params": [
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
+          }
+        ],
         "url": "https://winkapi.quirky.com/users/me/linked_services"
       },
       {
         "path": "/:device_type/:device_id",
-        "displayName": "Get A Device",
+        "displayName": "Get a Device",
         "doc": {
           "url": "https://winkapi.quirky.com/:device_type/:device_id"
         },
@@ -108,7 +131,7 @@
       },
       {
         "path": "/:device_type/:device_id",
-        "displayName": "Update a device",
+        "displayName": "Update a Device",
         "doc": {
           "url": "https://winkapi.quirky.com/:device_type/:device_id"
         },
@@ -127,13 +150,20 @@
             "type": "String",
             "name": ":device_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/:device_type/:device_id"
       },
       {
         "path": "/:device_type/:device_id/refresh",
-        "displayName": "Refresh A Device",
+        "displayName": "Refresh a Device",
         "doc": {
           "url": "https://winkapi.quirky.com/:device_type/:device_id/refresh"
         },
@@ -158,7 +188,7 @@
       },
       {
         "path": "/users/me/wink_devices",
-        "displayName": "Retrieve All Devices Of User",
+        "displayName": "Retrieve All Devices of User",
         "doc": {
           "url": "https://winkapi.quirky.com/users/me/wink_devices"
         },
@@ -168,12 +198,11 @@
       },
       {
         "path": "/users/me/:device_type",
-        "displayName": "Retrieve All Devices Of Type For User",
+        "displayName": "Retrieve All Devices of Type for User",
         "doc": {
           "url": "https://winkapi.quirky.com/users/me/:device_type"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Device Type",
@@ -192,7 +221,6 @@
           "url": "https://winkapi.quirky.com/:device_type/:device_id/users"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Device Type",
@@ -213,12 +241,43 @@
       },
       {
         "path": "/:device_type/:device_id/users",
+        "displayName": "Share a Device",
+        "doc": {
+          "url": "https://winkapi.quirky.com/:device_type/:device_id/users"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Device Type",
+            "style": "url",
+            "type": "String",
+            "name": ":device_type",
+            "required": true
+          },
+          {
+            "displayName": "Device ID",
+            "style": "url",
+            "type": "String",
+            "name": ":device_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
+          }
+        ],
+        "url": "https://winkapi.quirky.com/:device_type/:device_id/users"
+      },
+      {
+        "path": "/:device_type/:device_id/users",
         "displayName": "Update Training Registration Settings",
         "doc": {
           "url": "https://winkapi.quirky.com/:device_type/:device_id/users"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Device Type",
@@ -239,12 +298,11 @@
       },
       {
         "path": "/:device_type/:device_id/users/:email",
-        "displayName": "Unshare A Device",
+        "displayName": "Unshare a Device",
         "doc": {
           "url": "https://winkapi.quirky.com/:device_type/:device_id/users/:email"
         },
         "httpMethod": "Delete",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Device Type",
@@ -261,7 +319,7 @@
             "required": true
           },
           {
-            "displayName": "Email Of The User Account",
+            "displayName": "Email of The User Account",
             "style": "url",
             "type": "String",
             "name": ":email",
@@ -277,18 +335,16 @@
           "url": "https://winkapi.quirky.com/channels"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [],
         "url": "https://winkapi.quirky.com/channels"
       },
       {
         "path": "/groups/:group_id",
-        "displayName": "Retrieve A Group",
+        "displayName": "Retrieve a Group",
         "doc": {
           "url": "https://winkapi.quirky.com/groups/:group_id"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Group ID",
@@ -307,7 +363,6 @@
           "url": "https://winkapi.quirky.com/groups/:group_id"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Group ID",
@@ -315,18 +370,24 @@
             "type": "String",
             "name": ":group_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/groups/:group_id"
       },
       {
         "path": "/groups/:group_id",
-        "displayName": "Delete A Group",
+        "displayName": "Delete a Group",
         "doc": {
           "url": "https://winkapi.quirky.com/groups/:group_id"
         },
         "httpMethod": "Delete",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Group ID",
@@ -340,18 +401,25 @@
       },
       {
         "path": "/groups",
-        "displayName": "Create A Group",
+        "displayName": "Create a Group",
         "doc": {
           "url": "https://winkapi.quirky.com/groups"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [],
+        "params": [
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
+          }
+        ],
         "url": "https://winkapi.quirky.com/groups"
       },
       {
         "path": "/groups/:group_id/activate",
-        "displayName": "Activate State Of Group",
+        "displayName": "Activate State of Group",
         "doc": {
           "url": "https://winkapi.quirky.com/groups/:group_id/activate"
         },
@@ -362,6 +430,13 @@
             "style": "url",
             "type": "String",
             "name": ":group_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -379,7 +454,7 @@
       },
       {
         "path": "/robots/:robot_id",
-        "displayName": "Retrieve A Robot",
+        "displayName": "Retrieve a Robot",
         "doc": {
           "url": "https://winkapi.quirky.com/robots/:robot_id"
         },
@@ -387,7 +462,7 @@
         "params": [
           {
             "displayName": "Robot ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":robot_id",
             "required": true
@@ -397,7 +472,7 @@
       },
       {
         "path": "/robots/:robot_id",
-        "displayName": "Update A Robot",
+        "displayName": "Update a Robot",
         "doc": {
           "url": "https://winkapi.quirky.com/robots/:robot_id"
         },
@@ -405,9 +480,16 @@
         "params": [
           {
             "displayName": "Robot ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":robot_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -415,7 +497,7 @@
       },
       {
         "path": "/robots/:robot_id",
-        "displayName": "Delete A Robot",
+        "displayName": "Delete a Robot",
         "doc": {
           "url": "https://winkapi.quirky.com/robots/:robot_id"
         },
@@ -423,7 +505,7 @@
         "params": [
           {
             "displayName": "Robot ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":robot_id",
             "required": true
@@ -433,17 +515,25 @@
       },
       {
         "path": "/users/me/robots",
-        "displayName": "Create A New Robot",
+        "displayName": "Create a New Robot",
         "doc": {
           "url": "https://winkapi.quirky.com/users/me/robots"
         },
         "httpMethod": "Post",
-        "params": [],
+        "params": [
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
+          }
+        ],
         "url": "https://winkapi.quirky.com/users/me/robots"
       },
       {
         "path": "/users/me/robots",
-        "displayName": "Get All Robots Belonging To User",
+        "displayName": "Get All Robots Belonging to User",
         "doc": {
           "url": "https://winkapi.quirky.com/users/me/robots"
         },
@@ -453,7 +543,7 @@
       },
       {
         "path": "/scenes/:scene_id",
-        "displayName": "Retrieve A Scene",
+        "displayName": "Retrieve a Scene",
         "doc": {
           "url": "https://winkapi.quirky.com/scenes/:scene_id"
         },
@@ -461,7 +551,7 @@
         "params": [
           {
             "displayName": "Scene ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":scene_id",
             "required": true
@@ -479,26 +569,33 @@
         "params": [
           {
             "displayName": "Scene ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":scene_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
+
         ],
         "url": "https://winkapi.quirky.com/scenes/:scene_id"
       },
       {
         "path": "/scenes/:scene_id",
-        "displayName": "Delete A Scene",
+        "displayName": "Delete a Scene",
         "doc": {
           "url": "https://winkapi.quirky.com/scenes/:scene_id"
         },
         "httpMethod": "Delete",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Scene ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":scene_id",
             "required": true
@@ -513,8 +610,15 @@
           "url": "https://winkapi.quirky.com/users/me/scenes"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [],
+        "params": [
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
+          }
+        ],
         "url": "https://winkapi.quirky.com/users/me/scenes"
       },
       {
@@ -524,22 +628,20 @@
           "url": "https://winkapi.quirky.com/users/me/scenes"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [],
         "url": "https://winkapi.quirky.com/users/me/scenes"
       },
       {
         "path": "/scenes/:scene_id/activate",
-        "displayName": "Activate A Scene",
+        "displayName": "Activate a Scene",
         "doc": {
           "url": "https://winkapi.quirky.com/scenes/:scene_id/activate"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Scene ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":scene_id",
             "required": true
@@ -549,16 +651,15 @@
       },
       {
         "path": "/air_conditioners/:air_conditioner_id",
-        "displayName": "Retrieve An Air Conditioner",
+        "displayName": "Retrieve an Air Conditioner",
         "doc": {
           "url": "https://winkapi.quirky.com/air_conditioners/:air_conditioner_id"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Air Conditioner ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":air_conditioner_id",
             "required": true
@@ -573,13 +674,19 @@
           "url": "https://winkapi.quirky.com/air_conditioners/:air_conditioner_id"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Air Conditioner ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":air_conditioner_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -587,16 +694,15 @@
       },
       {
         "path": "/air_conditioners/:air_conditioner_id/readings/",
-        "displayName": "List Readings Of An Air Conditioner",
+        "displayName": "List Readings of an Air Conditioner",
         "doc": {
           "url": "https://winkapi.quirky.com/air_conditioners/:air_conditioner_id/readings/"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Air Conditioner ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":air_conditioner_id",
             "required": true
@@ -636,16 +742,15 @@
       },
       {
         "path": "/air_conditioners/:air_conditioner_id/projections",
-        "displayName": "List Projections Of An Air Conditioner",
+        "displayName": "List Projections of an Air Conditioner",
         "doc": {
           "url": "https://winkapi.quirky.com/air_conditioners/:air_conditioner_id/projections"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Air Conditioner ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":air_conditioner_id",
             "required": true
@@ -685,16 +790,15 @@
       },
       {
         "path": "/air_conditioners/:air_conditioner_id/stats",
-        "displayName": "List Stats Of An Air Conditioner",
+        "displayName": "List Stats of an Air Conditioner",
         "doc": {
           "url": "https://winkapi.quirky.com/air_conditioners/:air_conditioner_id/stats"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Air Conditioner ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":air_conditioner_id",
             "required": true
@@ -716,7 +820,7 @@
       },
       {
         "path": "/cloud_clocks/:cloud_clock_id",
-        "displayName": "Retrieve A Clock",
+        "displayName": "Retrieve a Clock",
         "doc": {
           "url": "https://winkapi.quirky.com/cloud_clocks/:cloud_clock_id"
         },
@@ -724,7 +828,7 @@
         "params": [
           {
             "displayName": "Cloud Clock ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":cloud_clock_id",
             "required": true
@@ -734,7 +838,7 @@
       },
       {
         "path": "/cloud_clocks/:cloud_clock_id",
-        "displayName": "Update A Clock",
+        "displayName": "Update a Clock",
         "doc": {
           "url": "https://winkapi.quirky.com/cloud_clocks/:cloud_clock_id"
         },
@@ -742,9 +846,16 @@
         "params": [
           {
             "displayName": "Cloud Clock ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":cloud_clock_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -762,7 +873,7 @@
       },
       {
         "path": "/dials/:dial_id",
-        "displayName": "Updating A Dial",
+        "displayName": "Updating a Dial",
         "doc": {
           "url": "https://winkapi.quirky.com/dials/:dial_id"
         },
@@ -770,9 +881,16 @@
         "params": [
           {
             "displayName": "Dial ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":dial_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -780,7 +898,7 @@
       },
       {
         "path": "/alarms/:alarm_id",
-        "displayName": "Update An Alarm",
+        "displayName": "Update an Alarm",
         "doc": {
           "url": "https://winkapi.quirky.com/alarms/:alarm_id"
         },
@@ -788,9 +906,16 @@
         "params": [
           {
             "displayName": "Alarm ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":alarm_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -798,7 +923,7 @@
       },
       {
         "path": "/alarms/:alarm_id",
-        "displayName": "Delete An Alarm",
+        "displayName": "Delete an Alarm",
         "doc": {
           "url": "https://winkapi.quirky.com/alarms/:alarm_id"
         },
@@ -806,7 +931,7 @@
         "params": [
           {
             "displayName": "Alarm ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":alarm_id",
             "required": true
@@ -816,7 +941,7 @@
       },
       {
         "path": "/cloud_clocks/:cloud_clock_id/alarms",
-        "displayName": "List Alarms Of Clock",
+        "displayName": "List Alarms of Clock",
         "doc": {
           "url": "https://winkapi.quirky.com/cloud_clocks/:cloud_clock_id/alarms"
         },
@@ -824,7 +949,7 @@
         "params": [
           {
             "displayName": "Cloud Clock ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":cloud_clock_id",
             "required": true
@@ -842,9 +967,16 @@
         "params": [
           {
             "displayName": "Cloud Clock ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":cloud_clock_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -852,7 +984,7 @@
       },
       {
         "path": "/eggtrays/:eggtray_id",
-        "displayName": "Retrieve An Eggminder",
+        "displayName": "Retrieve an Eggminder",
         "doc": {
           "url": "https://winkapi.quirky.com/eggtrays/:eggtray_id"
         },
@@ -860,7 +992,7 @@
         "params": [
           {
             "displayName": "Eggtray ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":eggtray_id",
             "required": true
@@ -870,18 +1002,24 @@
       },
       {
         "path": "/eggtrays/:eggtray_id",
-        "displayName": "Update An Eggminder",
+        "displayName": "Update an Eggminder",
         "doc": {
           "url": "https://winkapi.quirky.com/eggtrays/:eggtray_id"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "Put",
         "params": [
           {
             "displayName": "Eggtray ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":eggtray_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
@@ -889,12 +1027,11 @@
       },
       {
         "path": "/piggy_banks/:piggy_bank_id",
-        "displayName": "Retrieve A Piggy Bank",
+        "displayName": "Retrieve a Piggy Bank",
         "doc": {
           "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Piggy Bank ID",
@@ -908,12 +1045,11 @@
       },
       {
         "path": "/piggy_banks/:piggy_bank_id",
-        "displayName": "Update A Piggy Bank",
+        "displayName": "Update a Piggy Bank",
         "doc": {
           "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Piggy Bank ID",
@@ -921,18 +1057,24 @@
             "type": "String",
             "name": ":piggy_bank_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id"
       },
       {
         "path": "/piggy_banks/:piggy_bank_id/deposits",
-        "displayName": "List Deposits Of A Piggy Bank",
+        "displayName": "List Deposits of a Piggy Bank",
         "doc": {
           "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id/deposits"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Piggy Bank ID",
@@ -952,12 +1094,11 @@
       },
       {
         "path": "/piggy_banks/:piggy_bank_id/deposits",
-        "displayName": "Create A Deposit Or Withdrawal",
+        "displayName": "Create a Deposit or Withdrawal",
         "doc": {
           "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id/deposits"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Piggy Bank ID",
@@ -967,22 +1108,22 @@
             "required": true
           },
           {
-            "displayName": "Timestamp",
             "style": "body",
-            "type": "integer",
-            "name": "timestamp"
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/piggy_banks/:piggy_bank_id/deposits"
       },
       {
         "path": "/powerstrips/:powerstrip_id",
-        "displayName": "Retrieve A Powerstrip",
+        "displayName": "Retrieve a Powerstrip",
         "doc": {
           "url": "https://winkapi.quirky.com/powerstrips/:powerstrip_id"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Powerstrip ID",
@@ -1001,7 +1142,6 @@
           "url": "https://winkapi.quirky.com/powerstrips/:powerstrip_id"
         },
         "httpMethod": "Put",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Powerstrip ID",
@@ -1009,18 +1149,24 @@
             "type": "String",
             "name": ":powerstrip_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/powerstrips/:powerstrip_id"
       },
       {
         "path": "/outlets/:outlet_id",
-        "displayName": "Retrieve An Outlet",
+        "displayName": "Retrieve an Outlet",
         "doc": {
           "url": "https://winkapi.quirky.com/outlets/:outlet_id"
         },
         "httpMethod": "Get",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Outlet ID",
@@ -1039,7 +1185,6 @@
           "url": "https://winkapi.quirky.com/outlets/:outlet_id"
         },
         "httpMethod": "Post",
-        "curl": "curl -X ",
         "params": [
           {
             "displayName": "Outlet ID",
@@ -1047,13 +1192,20 @@
             "type": "String",
             "name": ":outlet_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/outlets/:outlet_id"
       },
       {
         "path": "/propane_tanks/:propane_tank_id",
-        "displayName": "Retrieve An Propane Tank",
+        "displayName": "Retrieve an Propane Tank",
         "doc": {
           "url": "https://winkapi.quirky.com/propane_tanks/:propane_tank_id"
         },
@@ -1083,13 +1235,20 @@
             "type": "String",
             "name": ":propane_tank_id",
             "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/propane_tanks/:propane_tank_id"
       },
       {
         "path": "/propane_tanks/:propane_tank_id/readings",
-        "displayName": "Retrieve A Robot",
+        "displayName": "List Readings of a Propane Tank",
         "doc": {
           "url": "https://winkapi.quirky.com/propane_tanks/:propane_tank_id/readings"
         },
@@ -1097,7 +1256,7 @@
         "params": [
           {
             "displayName": "Propane Tank ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":propane_tank_id",
             "required": true
@@ -1137,7 +1296,7 @@
       },
       {
         "path": "/propane_tanks/:propane_tank_id/stats",
-        "displayName": "Update A Robot",
+        "displayName": "Update a Propane Tank",
         "doc": {
           "url": "https://winkapi.quirky.com/:propane_tank_id/stats"
         },
@@ -1145,7 +1304,7 @@
         "params": [
           {
             "displayName": "Propane Tank ID",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":propane_tank_id",
             "required": true
@@ -1161,13 +1320,20 @@
             "style": "query",
             "type": "integer",
             "name": "until"
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
+            "required": true
           }
         ],
         "url": "https://winkapi.quirky.com/:propane_tank_id/stats"
       },
       {
         "path": "/sensor_pods/:sensor_pods",
-        "displayName": "Retrieve A Sensor Pod",
+        "displayName": "Retrieve a Sensor Pod",
         "doc": {
           "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pods"
         },
@@ -1175,7 +1341,7 @@
         "params": [
           {
             "displayName": "Sensor Pods",
-            "style": "URL",
+            "style": "url",
             "type": "string",
             "name": ":sensor_pods",
             "required": true
@@ -1184,22 +1350,29 @@
         "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pods"
       },
       {
-        "path": "/sensor_pods/:sensor_pods",
-        "displayName": "Update A Piggy Bank",
+        "path": "/sensor_pods/:sensor_pod_id",
+        "displayName": "Update a Sensor Pod",
         "doc": {
-          "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pods"
+          "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pod_id"
         },
         "httpMethod": "Put",
         "params": [
           {
-            "displayName": "Sensor Pods",
-            "style": "URL",
+            "displayName": "Sensor Pod ID",
+            "style": "url",
             "type": "string",
-            "name": ":sensor_pods",
+            "name": ":sensor_pod_id",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "object",
+            "name": "body",
+            "displayName": "body",
             "required": true
           }
         ],
-        "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pods"
+        "url": "https://winkapi.quirky.com/sensor_pods/:sensor_pod_id"
       }
     ]
   }
