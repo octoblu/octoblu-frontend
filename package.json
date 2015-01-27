@@ -49,7 +49,7 @@
     "passport-appdotnet": "^0.1.1",
     "passport-bitly": "^0.1.1",
     "passport-box": "~0.1.0",
-    "passport-citrix": "^1.0.0",
+    "passport-citrix": "^1.0.1",
     "passport-dropbox-oauth2": "~0.1.6",
     "passport-facebook": "^1.0.3",
     "passport-fitbit": "^0.1.2",
