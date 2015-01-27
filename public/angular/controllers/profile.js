@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService) {
 
   AuthService.getCurrentUser().then(function(user){
     $scope.currentUser = user;
@@ -30,7 +30,16 @@ angular.module('octobluApp')
   };
 
   $scope.resetToken = function(){
-    $scope.confirmModal()
+    NotifyService.confirm({
+          title: 'Reset your token',
+          content: 'Resetting your token will cause mobile apps, and possibly others authenticated as you, to stop working. Are you sure you want to do this?'
+        }).then(function(){
+          return AuthService.resetToken();
+        }).then(function(token){
+            NotifyService.alert({title: 'Token Reset', content: token });
+        }).catch(function(){
+            NotifyService.alert({title: 'Error Resetting Token', content: 'There was an error resetting your token. Please try again.'});
+        })
   };
 
 });
