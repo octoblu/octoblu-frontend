@@ -84,7 +84,7 @@ function UserModel() {
       return self.findOne(userQuery);
     },
 
-    findBySkynetUUIDAndToken : function (skynetuuid, skynettoken) {
+    findBySkynetUUIDAndToken : function (skynetuuidskynetuuid, skynettoken) {
       var self = this;
       return self.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken});
     },
@@ -204,6 +204,19 @@ function UserModel() {
       return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
     },
 
+    resetToken: function(uuid){
+      var self = this;
+      return self.findBySkynetUUID(uuid).then(function(user){
+        return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', null, 'POST', user.skynet.uuid, user.skynet.token);
+      }).then(function(token){       
+        return self.updateWithPromise({'skynet.uuid': uuid}, {$set: {'skynet.token': token}}).then(function(){
+          return token;
+        });               
+      }).catch(function(error){
+        return when.reject('Token was reset, but not saved. You are in trouble.');
+      });
+    },
+
     skynetRestRequest: function(uri_fragment, json, method, auth_uuid, auth_token) {
       var self, uri, params;
       self = this;
@@ -261,8 +274,11 @@ function UserModel() {
       });
     }
   };
+  
+  var User = _.extend({}, collection, methods);
+  User.updateWithPromise = when.lift(User.update);
 
-  return _.extend({}, collection, methods);
+  return User; 
 }
 
 module.exports = new UserModel();
