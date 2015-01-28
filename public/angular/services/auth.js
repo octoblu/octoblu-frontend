@@ -22,8 +22,6 @@ angular.module('octobluApp')
                throw result.data;
             }
             _.extend(currentUser, result.data);
-            $cookies.skynetuuid  = currentUser.skynet.uuid;
-            $cookies.skynettoken = currentUser.skynet.token;
             getProfileUrl(currentUser);
             return currentUser;
         }
@@ -94,11 +92,18 @@ angular.module('octobluApp')
                 });
             },
 
+            resetToken: function(){
+                return $http.post('/api/reset-token', {}).then(function(response){
+                    if(response.status !== 201){
+                        return $q.reject('Could not reset token');
+                    }
+                    return response.data;
+                });
+            },
+
             getCurrentUser: function (force) {
                 if (currentUser.id && !force) {
-                    var defer = $q.defer();
-                    defer.resolve(currentUser);
-                    return defer.promise;
+                    return $q.when(currentUser);
                 } else {
                     return $http.get('/api/auth').then(loginHandler, function (err) {
                         logoutHandler(err);
