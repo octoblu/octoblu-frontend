@@ -84,7 +84,7 @@ function UserModel() {
       return self.findOne(userQuery);
     },
 
-    findBySkynetUUIDAndToken : function (skynetuuidskynetuuid, skynettoken) {
+    findBySkynetUUIDAndToken : function (skynetuuid, skynettoken) {
       var self = this;
       return self.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken});
     },
@@ -207,7 +207,7 @@ function UserModel() {
     resetToken: function(uuid){
       var self = this;
       return self.findBySkynetUUID(uuid).then(function(user){
-        return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', null, 'POST', user.skynet.uuid, user.skynet.token);
+        return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', true, 'POST', user.skynet.uuid, user.skynet.token);
       }).then(function(token){       
         return self.updateWithPromise({'skynet.uuid': uuid}, {$set: {'skynet.token': token}}).then(function(){
           return token;
@@ -231,14 +231,18 @@ function UserModel() {
           'meshblu_auth_token': auth_token
         }
       };
-      debug('rest request', uri, json);
       return when.promise(function(resolve, reject) {
         request(params, function(error, response, body) {
           if (error) {
             debug('request error:', error);
             reject(error);
             return;
+          }         
+          if (response.statusCode >= 400) {
+            reject('error ' + response.statusCode);
+            return;
           }
+
           debug('request response', body);
           resolve(body);
         });

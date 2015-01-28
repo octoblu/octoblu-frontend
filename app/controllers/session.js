@@ -17,8 +17,7 @@ module.exports = function ( app, passport, config ) {
     });
   });
 
-  app.put('/api/reset/:token', function(req, res, next){
-    console.error(req.params.token);
+  app.put('/api/reset/:token', function(req, res, next){    
     User.findByResetToken(req.params.token).then(function(user){
       if(!user){
         return res.send(402, {error: 'Password reset token is invalid or has expired.', arguments: arguments});
@@ -33,6 +32,15 @@ module.exports = function ( app, passport, config ) {
       });
     }).catch(function(error){
       return res.send(402, {error: error});
+    });
+  });
+
+  app.post('/api/reset-token', security.isAuthenticated, function(req, res, next){
+    console.log(req.user.skynet);
+    User.resetToken(req.user.skynet.uuid).then(function(token){
+      res.send(token);
+    }).catch(function(err){
+      res.send(500, err);
     });
   });
 };
