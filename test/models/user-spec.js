@@ -10,6 +10,7 @@ describe('User', function () {
   var googlePlusChannelId  = '543bf27e652c4207680866f8';
 
   var moment = require('moment');
+  var when = require('when');
 
   beforeEach(function () {
     octobluDB.createConnection();
@@ -25,7 +26,6 @@ describe('User', function () {
 
     it('should set the resetPasswordToken', function(){
       return User.findByEmail('foo@bar.com').then(function(user){
-        console.log(user);
         expect(user.resetPasswordToken).to.exist;
       });
     });
@@ -172,6 +172,130 @@ describe('User', function () {
         });
       });
     });
+  });
+
+  describe('resetToken', function(){
+    beforeEach(function(){
+      sut = User;
+      sut.updateWithPromise = sinon.stub().returns(when(true));
+    });
+
+    it('should exist', function(){
+      expect(sut.resetToken).to.exist;
+    });
+
+    describe('when it is called', function(){      
+      beforeEach(function(){        
+        sut.skynetRestRequest = sinon.stub();
+      });
+      
+      describe('when it is called with a uuid', function(){
+        beforeEach(function(){
+          sut.findBySkynetUUID = sinon.stub().withArgs(1).returns(when({
+            skynet: {
+              uuid: 1,
+              token: 2
+            }
+          }));
+
+        });
+
+        it('should call findBySkynetUUID with the user\'s uuid', function(){
+          return sut.resetToken(1).then(function(){        
+            expect(sut.findBySkynetUUID).to.be.calledWith(1);
+          });
+        });        
+        
+        it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
+          return sut.resetToken(1).then(function(){            
+            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/1/token', null, 'POST', 1, 2);            
+          });        
+        });
+
+      });
+
+      describe('when the rest request returns with a new token', function(){
+        
+        beforeEach(function(){
+          sut.skynetRestRequest = sinon.stub().returns(when('newtoken'));
+        });
+
+        it('should update the user with the new token', function(){
+          return sut.resetToken(1).then(function(token){
+            expect(sut.updateWithPromise).to.have.been.calledWith(
+              {'skynet.uuid' : 1}, {$set : {'skynet.token' : 'newtoken'}});
+          });
+        });
+
+        describe('when the database returns with an error', function(){
+          beforeEach(function(){
+            sut.updateWithPromise.returns(when.reject(true));
+          });
+          
+          it('should reject the promise with "Token was reset, but not saved. You are in trouble"', function(){
+            return sut.resetToken(1).then(function(token){
+              expect(true).to.be.false;
+            }, function(message){              
+              expect(message).to.equal("Token was reset, but not saved. You are in trouble.");
+            });
+          });
+
+        });
+
+        describe('when the database returns successfully', function(){
+          beforeEach(function(){
+            sut.updateWithPromise.returns(when.resolve(true));
+          });
+          
+          it('should return a promise containing the token"', function(){
+            return sut.resetToken(1).then(function(token){
+              expect(token).to.equal('newtoken');            
+            });
+          });
+        });
+      });
+
+      describe('when the rest request returns with a different token', function(){
+        
+        beforeEach(function(){
+          sut.skynetRestRequest = sinon.stub().returns(when('differentToken'));
+        });
+
+        it('should update the user with the different token', function(){
+          return sut.resetToken(1).then(function(token){
+            expect(sut.updateWithPromise).to.have.been.calledWith(
+              {'skynet.uuid' : 1}, {$set : {'skynet.token' : 'differentToken'}});
+          });
+        });
+      });
+
+
+      describe('when it is called with a different uuid', function(){
+        beforeEach(function(){
+          sut.findBySkynetUUID = sinon.stub().withArgs(3).returns(when({
+            skynet: {
+              uuid: 3,
+              token: 5
+            }
+          }));
+
+        });        
+
+        it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
+          return sut.resetToken(1).then(function(){        
+            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/3/token', null, 'POST', 3, 5);
+          });
+        });
+
+        it('should call findBySkynetUUID with the different uuid', function(){
+          return sut.resetToken(3).then(function(){        
+            expect(sut.findBySkynetUUID).to.be.calledWith(3);
+          });
+        });
+
+      });
+    });
+
   });
 });
 

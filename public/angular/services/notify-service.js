@@ -14,6 +14,12 @@ angular.module('octobluApp')
       msg.ok = msg.ok || 'ok';
       var dialog = $mdDialog.alert(msg);
       $mdDialog.show(dialog);
+    },
+    confirm: function(msg){
+      msg = msg || {};
+      msg.ok = 'ok';
+      msg.cancel = 'cancel';
+      $mdDialog.confirm(msg);
     }
   };
 });
