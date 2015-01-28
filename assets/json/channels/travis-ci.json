@@ -1,0 +1,935 @@
+{
+  "_id": "92385jhds8234r82349ur390979023",
+  "type": "channel:travis-ci",
+  "auth_strategy": "travis-ci",
+  "documentation": "http://docs.travis-ci.com/api/#entities",
+  "name": "Travis-CI",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "api.travis-ci.org",
+    "resources": [
+      {
+        "path": "/accounts",
+        "displayName": "Get Accounts",
+        "doc": {
+          "url": "api.travis-ci.org/accounts"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "All Accounts",
+            "style": "query",
+            "type": "boolean",
+            "name": "all"
+          }
+        ],
+        "url": "api.travis-ci.org/accounts"
+      },
+      {
+        "path": "/jobs/annotations",
+        "displayName": "Get Annotations",
+        "doc": {
+          "url": "api.travis-ci.org/jobs/annotations"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/jobs/annotations"
+      },
+      {
+        "path": "/jobs/annotations",
+        "displayName": "Create Annotation",
+        "doc": {
+          "url": "api.travis-ci.org/jobs/annotations"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          },{
+            "displayName": "Username",
+            "style": "body",
+            "type": "string",
+            "name": "username"
+          },{
+            "displayName": "Secret Key",
+            "style": "body",
+            "type": "string",
+            "name": "key"
+          },{
+            "displayName": "Textual Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          },{
+            "displayName": "URL With More Info",
+            "style": "body",
+            "type": "string",
+            "name": "url"
+          },{
+            "displayName": "Annotation Status",
+            "style": "query",
+            "type": "string",
+            "name": "status"
+          }],
+        "url": "api.travis-ci.org/jobs/annotations"
+      },
+      {
+        "path": "/repos/branches",
+        "displayName": "Get Branches",
+        "doc": {
+          "url": "api.travis-ci.org/repos/branches"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Repository Slug",
+            "style": "Url",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/repos/branches"
+      },
+      {
+        "path": "/repos/branches",
+        "displayName": "Show Branch",
+        "doc": {
+          "url": "api.travis-ci.org/repos/branches"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },
+          {
+            "displayName": "Repository Slug",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },
+          {
+            "displayName": "Branch",
+            "style": "URL",
+            "type": "String",
+            "name": ":branch",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/repos/branches"
+      },
+      {
+        "path": "/broadcasts",
+        "displayName": "Get Broadcasts",
+        "doc": {
+          "url": "api.travis-ci.org/broadcasts"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "api.travis-ci.org/broadcasts"
+      },
+      {
+        "path": "/builds",
+        "displayName": "Post Builds",
+        "doc": {
+          "url": "api.travis-ci.org/builds"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Build Ids",
+            "style": "body",
+            "type": "String",
+            "name": "ids"
+          },
+          {
+            "displayName": "Repository Id",
+            "style": "body",
+            "type": "String",
+            "name": "repository_id"
+          },
+          {
+            "displayName": "Repository Slug",
+            "style": "body",
+            "type": "String",
+            "name": "slug"
+          },
+          {
+            "displayName": "Build Number",
+            "style": "body",
+            "type": "String",
+            "name": "number"
+          },
+          {
+            "displayName": "After A Given Build Number",
+            "style": "body",
+            "type": "String",
+            "name": "after_number"
+          },
+          {
+            "displayName": "Given Event Type",
+            "style": "body",
+            "type": "String",
+            "name": "event_type"
+          }
+        ],
+        "url": "api.travis-ci.org/builds"
+      },
+      {
+        "path": "/repos/builds",
+        "displayName": "Get Builds",
+        "doc": {
+          "url": "api.travis-ci.org/repos/builds"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },
+          {
+            "displayName": "Repository Slug",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },
+          {
+            "displayName": "Filter By Build Number",
+            "style": "query",
+            "type": "String",
+            "name": "number"
+          },{
+            "displayName": "After Number",
+            "style": "query",
+            "type": "String",
+            "name": "after_number"
+          },{
+            "displayName": "Event Type",
+            "style": "query",
+            "type": "String",
+            "name": "event_type"
+          }],
+        "url": "api.travis-ci.org/repos/builds"
+      },
+      {
+        "path": "/repos/builds",
+        "displayName": "Get Build",
+        "doc": {
+          "url": "api.travis-ci.org/repos/builds"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Repository Slug",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },{
+            "displayName": "Build ID",
+            "style": "URL",
+            "type": "String",
+            "name": ":build.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/repos/builds"
+      },
+      {
+        "path": "/builds/cancel",
+        "displayName": "Cancel Build",
+        "doc": {
+          "url": "api.travis-ci.org/builds/cancel"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Build Id",
+            "style": "URL",
+            "type": "String",
+            "name": ":build.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/builds/cancel"
+      },
+      {
+        "path": "/builds/restart",
+        "displayName": "Restart Build",
+        "doc": {
+          "url": "api.travis-ci.org/builds/restart"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Build Id",
+            "style": "URL",
+            "type": "String",
+            "name": ":build.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/builds/restart"
+      },
+      {
+        "path": "/repos/caches",
+        "displayName": "Get Caches",
+        "doc": {
+          "url": "api.travis-ci.org/repos/caches"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Repository Slug",
+            "style": "url",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },
+          {
+            "displayName": "Branch",
+            "style": "query",
+            "type": "String",
+            "name": "branch"
+          },{
+            "displayName": "Match",
+            "style": "query",
+            "type": "String",
+            "name": "match"
+          }
+        ],
+        "url": "api.travis-ci.org/repos/caches"
+      },
+      {
+        "path": "/repos/caches",
+        "displayName": "Delete Caches",
+        "doc": {
+          "url": "api.travis-ci.org/repos/caches"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Repository Slug",
+            "style": "url",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },
+          {
+            "displayName": "Branch",
+            "type": "String",
+            "name": "branch"
+          },{
+            "displayName": "Match",
+            "type": "String",
+            "name": "match"
+          }],
+        "url": "api.travis-ci.org/repos/caches"
+      },
+      {
+        "path": "/hooks",
+        "displayName": "Get Hooks",
+        "doc": {
+          "url": "api.travis-ci.org/hooks"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "api.travis-ci.org/hooks"
+      },{
+        "path": "/hooks",
+        "displayName": "Enable/Disable Hook",
+        "doc": {
+          "url": "api.travis-ci.org/hooks"
+        },
+        "httpMethod": "Put",
+        "params": [
+          {
+            "displayName": "Hook/Repository Id",
+            "style": "body",
+            "type": "string",
+            "name": "hook[id]"
+          },
+          {
+            "displayName": "To Turn Hook On/Off",
+            "style": "body",
+            "type": "boolean",
+            "name": "hook[active]"
+          }
+        ],
+        "url": "api.travis-ci.org/hooks"
+      },
+      {
+        "path": "/jobs",
+        "displayName": "Get Job",
+        "doc": {
+          "url": "api.travis-ci.org/jobs"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          },
+          {
+            "displayName": "Job Ids",
+            "style": "query",
+            "type": "string",
+            "name": "ids"
+          },{
+            "displayName": "Job State",
+            "style": "query",
+            "type": "string",
+            "name": "state"
+          },{
+            "displayName": "Job Queue",
+            "style": "query",
+            "type": "string",
+            "name": "queue"
+          }
+        ],
+        "url": "api.travis-ci.org/jobs"
+      },
+      {
+        "path": "/jobs/cancel",
+        "displayName": "Cancel Job",
+        "doc": {
+          "url": "api.travis-ci.org/jobs/cancel"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/jobs/cancel"
+      },
+      {
+        "path": "/jobs/restart",
+        "displayName": "Restart Job",
+        "doc": {
+          "url": "api.travis-ci.org/jobs/restart"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/jobs/restart"
+      },
+      {
+        "path": "/logs",
+        "displayName": "Get A Log",
+        "doc": {
+          "url": "api.travis-ci.org/logs"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Job Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":job.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/logs"
+      },
+      {
+        "path": "/users/permissions",
+        "displayName": "Get Permissions",
+        "doc": {
+          "url": "api.travis-ci.org/users/permissions"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "api.travis-ci.org/users/permissions"
+      },
+      {
+        "path": "/repos/key",
+        "displayName": "Get Public Key",
+        "doc": {
+          "url": "api.travis-ci.org/repos/key"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },
+          {
+            "displayName": "Repository Slug",
+            "style": "url",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/repos/key"
+      },
+      {
+        "path": "/repos/key",
+        "displayName": "Create Public Key",
+        "doc": {
+          "url": "api.travis-ci.org/repos/key"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },
+          {
+            "displayName": "Repository Slug",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/repos/key"
+      },
+      {
+        "path": "/repos",
+        "displayName": "Get Repository",
+        "doc": {
+          "url": "api.travis-ci.org/repos"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Repository Slug",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.slug",
+            "required": true
+          },{
+            "displayName": "Ids",
+            "style": "query",
+            "type": "String",
+            "name": "ids"
+          },{
+            "displayName": "Member",
+            "style": "query",
+            "type": "String",
+            "name": "member"
+          },{
+            "displayName": "Owner Name",
+            "style": "query",
+            "type": "String",
+            "name": "owner_name"
+          },{
+            "displayName": "Slug",
+            "style": "query",
+            "type": "String",
+            "name": "slug"
+          },{
+            "displayName": "Search Term",
+            "style": "query",
+            "type": "String",
+            "name": "search"
+          },{
+            "displayName": "Active",
+            "style": "query",
+            "type": "boolean",
+            "name": "active"
+          }
+        ],
+        "url": "api.travis-ci.org/repos"
+      },
+      {
+        "path": "/requests",
+        "displayName": "Get Requests",
+        "doc": {
+          "url": "api.travis-ci.org/requests"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository ID",
+            "style": "Url",
+            "type": "String",
+            "name": ":repository_id",
+            "required": true
+          },{
+            "displayName": "Slug",
+            "style": "query",
+            "type": "String",
+            "name": "slug"
+          },{
+            "displayName": "Limit Of Requests",
+            "style": "query",
+            "type": "Integer",
+            "name": "limit"
+          },{
+            "displayName": "Older Than",
+            "style": "query",
+            "type": "String",
+            "name": "older_than"
+          }
+        ],
+        "url": "api.travis-ci.org/requests"
+      },
+      {
+        "path": "/repos/settings",
+        "displayName": "Get Settings",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository ID",
+            "style": "URL",
+            "type": "String",
+            "name": ":repository.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/repos/settings"
+      },
+      {
+        "path": "/repos/settings",
+        "displayName": "Update Settings",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings"
+        },
+        "httpMethod": "Patch",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },
+          {
+            "displayName": "Settings",
+            "style": "body",
+            "type": "String",
+            "name": "settings"
+          }
+        ],
+        "url": "api.travis-ci.org/repos/settings"
+      },
+      {
+        "path": "/repos/settings/env_vars",
+        "displayName": "Get Variables",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings/env_vars"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Env_Var ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":env_var.id",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/repos/settings/env_vars"
+      },
+      {
+        "path": "/repos/settings/env_vars",
+        "displayName": "Post Variable",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings/env_vars"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Env_Var",
+            "style": "body",
+            "type": "string",
+            "name": "env_var"
+          },{
+            "displayName": "Env_Var Name",
+            "style": "body",
+            "type": "string",
+            "name": "env_var.name"
+          },{
+            "displayName": "Value Of New Env_Var",
+            "style": "body",
+            "type": "string",
+            "name": "env_var.value"
+          },{
+            "displayName": "Env_Var Public",
+            "style": "body",
+            "type": "boolean",
+            "name": "env_var.public"
+          }],
+        "url": "api.travis-ci.org/repos/settings/env_vars"
+      },{
+        "path": "/repos/settings/env_vars",
+        "displayName": "Update Variable",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings/env_vars"
+        },
+        "httpMethod": "Patch",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          },{
+            "displayName": "Env_Var",
+            "style": "body",
+            "type": "string",
+            "name": "env_var"
+          },{
+            "displayName": "Env_Var Name",
+            "style": "body",
+            "type": "string",
+            "name": "env_var.name"
+          },{
+            "displayName": "Value Of New Env_Var",
+            "style": "body",
+            "type": "string",
+            "name": "env_var.value"
+          },{
+            "displayName": "Env_Var Public",
+            "style": "body",
+            "type": "boolean",
+            "name": "env_var.public"
+          }
+        ],
+        "url": "api.travis-ci.org/repos/settings/env_vars"
+      },
+      {
+        "path": "/repos/settings/env_vars",
+        "displayName": "Delete Variable",
+        "doc": {
+          "url": "api.travis-ci.org/repos/settings/env_vars"
+        },
+        "httpMethod": "Delete",
+        "params": [
+          {
+            "displayName": "Repository Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":repository.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/repos/settings/env_vars"
+      },
+      {
+        "path": "/settings/ssh_key/#",
+        "displayName": "Get Key",
+        "doc": {
+          "url": "api.travis-ci.org/settings/ssh_key/#"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Ssh_Key ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":ssh_key.id",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/settings/ssh_key/#"
+      },
+      {
+        "path": "/settings/ssh_key/#",
+        "displayName": "Update/Create Key",
+        "doc": {
+          "url": "api.travis-ci.org/settings/ssh_key/#"
+        },
+        "httpMethod": "Patch",
+        "params": [{
+            "displayName": "Ssh_Key ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":ssh_key.id",
+            "required": true
+          },{
+            "displayName": "Ssh Key",
+            "style": "body",
+            "type": "string",
+            "name": "ssh_key"
+          },{
+            "displayName": "Key Description",
+            "style": "body",
+            "type": "string",
+            "name": "ssh_key.description"
+          },{
+            "displayName": "Ssh_Key Value",
+            "style": "body",
+            "type": "string",
+            "name": "ssh_key.value",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/settings/ssh_key/#"
+      },
+      {
+        "path": "/settings/ssh_key/#",
+        "displayName": "Delete Key",
+        "doc": {
+          "url": "api.travis-ci.org/settings/ssh_key/#"
+        },
+        "httpMethod": "Delete",
+        "params": [{
+            "displayName": "Ssh_Key ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":ssh_key.id",
+            "required": true
+          }
+        ],
+        "url": "api.travis-ci.org/settings/ssh_key/#"
+      },
+      {
+        "path": "/users/",
+        "displayName": "Get User",
+        "doc": {
+          "url": "api.travis-ci.org/users/"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "User ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":user.id",
+            "required": true
+          }],
+        "url": "api.travis-ci.org/users/"
+      },
+      {
+        "path": "/users/sync",
+        "displayName": "Sync Users",
+        "doc": {
+          "url": "api.travis-ci.org/users/syncs"
+        },
+        "httpMethod": "Post",
+        "params": [],
+        "url": "api.travis-ci.org/users/sync"
+      },
+      {
+        "path": "/lint",
+        "displayName": "Create Lint",
+        "doc": {
+          "url": "api.travis-ci.org/lint"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Content",
+            "style": "body",
+            "type": "string",
+            "name": "content"
+          }],
+        "url": "api.travis-ci.org/lint"
+      },
+      {
+        "path": "/lint",
+        "displayName": "Put Lint",
+        "doc": {
+          "url": "api.travis-ci.org/lint"
+        },
+        "httpMethod": "Put",
+        "params": [{
+            "displayName": "Content",
+            "style": "body",
+            "type": "string",
+            "name": "content"
+          }],
+        "url": "api.travis-ci.org/lint"
+      }
+    ]
+  }
+}
