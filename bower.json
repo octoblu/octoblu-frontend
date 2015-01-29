@@ -55,7 +55,8 @@
     "angular-marked": "~0.0.12",
     "marked": "~0.3.2",
     "angular-bootstrap": "~0.12.0",
-    "jquery.sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js"
+    "jquery.sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
+    "eventEmitter": "~4.2.11"
   },
   "devDependencies": {
     "chai": "~1.9.1",
