@@ -36,7 +36,6 @@ module.exports = function ( app, passport, config ) {
   });
 
   app.post('/api/reset-token', security.isAuthenticated, function(req, res, next){
-    console.log(req.user.skynet);
     User.resetToken(req.user.skynet.uuid).then(function(token){
       res.send(token);
     }).catch(function(err){
