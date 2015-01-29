@@ -23,7 +23,7 @@
         <div flex="30" layout="row" layout-align="start">{{node.name || node.uuid}}</div>
         <div flex="15" layout="row" layout-align="center">{{node.messagesSent}}</div>
         <div flex="15" layout="row" layout-align="center">{{node.messagesReceived}}</div>
-        <div flex="15" layout="row" layout-align="center">{{getUptime(node.onlineSince)}}</div>
+        <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince)}}</div>
         <div flex="25" layout="row" layout-align="center">{{node.actions}}</div>
       </div>
     </md-content>

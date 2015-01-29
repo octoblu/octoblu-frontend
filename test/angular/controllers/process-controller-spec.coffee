@@ -63,6 +63,38 @@ describe 'ProcessController', ->
       @scope.$digest()
       expect(@fakeProcessNodeService.startProcess).to.have.been.calledWith(fakeProcessNode)
 
+  describe 'resetMessageCounter', =>
+    beforeEach => 
+      @device = {messagesReceived: 123, messagesSent: 123, totalMessagesReceived: 7, totalMessagesSent: 8, messagesSentOverTime: [0], messagesReceivedOverTime : [0]}
+      @fakeProcessNodeService.processNodesDefer.resolve [@device]
+      @scope.$digest()
+      @scope.resetMessageCounter()
 
+    it 'should set messagesReceived to zero', =>
+      expect(@device.messagesReceived).to.equal 0
 
+    it 'should set totalMessagesReceived to messagesReceived', =>
+      expect(@device.totalMessagesReceived).to.equal 130
+    
+    it 'should append messagesReceived to messagesReceivedOverTime', =>
+      expect(@device.messagesReceivedOverTime).to.deep.equal [0,123]
+
+    it 'should set messagesSent to zero', =>
+      expect(@device.messagesSent).to.equal 0
+
+    it 'should set totalMessagesSent to messagesSent', =>
+      expect(@device.totalMessagesSent).to.equal 131
+
+    it 'should append messagesSent to messagesSentOverTime', =>
+      expect(@device.messagesSentOverTime).to.deep.equal [0,123]
+
+  describe 'getUptime', =>
+    it 'should return null if not online', =>
+      expect(@scope.getUptime(false)).to.equal null
+
+    it 'should return null if online and onlineSince is undefined', => 
+      expect(@scope.getUptime(true, undefined)).to.equal null
+ 
+    it 'should return a string if online and onlineSince is defined', => 
+      expect(@scope.getUptime(true, new Date())).not.to.equal null
  
