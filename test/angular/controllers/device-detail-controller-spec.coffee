@@ -10,7 +10,7 @@ describe 'DeviceDetailController', ->
       @fakeLog = new FakeLog
       @fakeState = new FakeState
       @fakeDevice = name: "widget", uuid: 1
-      @fakePermissionsService = new FakePermissionsService
+      @fakePermissionsService = new FakePermissionsService @q
       @fakeDeviceService = new FakeDeviceService @q
       @fakeNotifyService = new FakeNotifyService
 
@@ -106,11 +106,11 @@ describe 'DeviceDetailController', ->
     constructor: ($q) ->
       @q = $q
 
-    allSourcePermissions: => $q.defer().promise
-    flatSourcePermissions: => $q.defer().promise
+    allSourcePermissions: => @q.defer().promise
+    flatSourcePermissions: => @q.defer().promise
 
-    allTargetPermissions: => $q.defer().promise
-    flatTargetPermissions: => $q.defer().promise
+    allTargetPermissions: => @q.defer().promise
+    flatTargetPermissions: => @q.defer().promise
 
 
 

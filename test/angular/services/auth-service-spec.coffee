@@ -1,20 +1,12 @@
 describe 'AuthService', =>
   beforeEach ->
-    module 'octobluApp', () =>
+    module 'octobluApp', ($provide) =>
+      $provide.value '$cookies', {}
+      return
 
-
-    inject (_$httpBackend_) =>
+    inject (_$httpBackend_, AuthService) =>
       @httpBackend = _$httpBackend_
-      @httpBackend.whenGET('/api/auth').respond 200
-      @httpBackend.whenGET('/pages/octoblu.html').respond 200
-      @httpBackend.whenGET('/pages/home.html').respond 200
-      @httpBackend.whenGET('/pages/material.html').respond 200
-      @httpBackend.whenGET('/api/nodes').respond 200, []
-      @httpBackend.flush()
-
-    inject (AuthService) =>
       @sut = AuthService
-
 
   it 'should exist', ->
     expect(@sut).to.exist

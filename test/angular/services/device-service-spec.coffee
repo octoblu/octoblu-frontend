@@ -7,14 +7,12 @@ describe "DeviceService", ->
 
        $provide.value 'PermissionService', @fakePermissionService
        $provide.value 'skynetService', @fakeSkynetService
+       $provide.value 'reservedProperties', ['$$hashKey', '_id']
        return
 
     inject (skynetService, $q, $httpBackend, $rootScope) =>
       @q = $q
       @rootScope = $rootScope
-      $httpBackend.whenGET("/api/auth").respond 200
-      $httpBackend.whenGET("/pages/material.html").respond 200
-      $httpBackend.whenGET("/pages/home.html").respond 200
       sinon.stub(@fakeSkynetService, 'getSkynetConnection').returns @q.when @fakeSkynetConnection
 
     inject (deviceService) =>
@@ -37,7 +35,7 @@ describe "DeviceService", ->
         beforeEach ->
           sinon.stub(@fakeSkynetConnection, 'resetToken').yields 'token5'
           _.defer @rootScope.$digest
-          @sut.resetToken 'uuid3' 
+          @sut.resetToken 'uuid3'
 
         it "should call resetToken on the skynetConnection with the value uuid3", ->
           expect(@fakeSkynetConnection.resetToken).to.have.been.calledWith 'uuid3'
