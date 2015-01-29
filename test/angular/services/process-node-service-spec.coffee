@@ -30,11 +30,11 @@ describe 'ProcessNodeService', ->
       $httpBackend.whenGET("/pages/home.html").respond 200
       @sut.getSkynetConnection = sinon.stub().returns @q.when @fakeSkynetConnection
 
-  describe "getProcessDevices", =>
+  describe "getProcessNodes", =>
     describe "when there are no devices", => 
       beforeEach (done) =>
         @fakeDeviceService.getDevices.returns @q.when []
-        @devicePromise = @sut.getProcessDevices().then (@devices)=> done()
+        @devicePromise = @sut.getProcessNodes().then (@devices)=> done()
         @rootScope.$digest()
 
       it 'should get a connection to meshblu', =>
@@ -152,21 +152,7 @@ describe 'ProcessNodeService', ->
       it "should update the messagesReceived count of the second device", => 
         expect(@secondDevice.messagesReceived).to.equal 1
 
-    describe "when there are two devices", => 
-      beforeEach (done) => 
-        @firstDevice = {uuid : '9c754622-4c14-4266-a3b4-f89016a0e707'}
-        @secondDevice = {uuid : 'e08f163c-60c1-4d5c-804b-4021c8ea58da'}
-        @fakeDeviceService.getDevices.returns @q.when [@firstDevice, @secondDevice]
-        @devicePromise = @sut.getProcessDevices().then (@devices)=> done()
-        @rootScope.$digest()
-
-      it "should call subscribe for each device in the list of devices", => 
-        expect(@fakeSkynetConnection.subscribe).to.have.been.calledWith @firstDevice
-        expect(@fakeSkynetConnection.subscribe).to.have.been.calledWith @secondDevice
-
-
   describe "stopProcess", =>
-
     describe 'calling on a device', =>
       beforeEach =>
         @uuid = '2d05cbf2-69b2-4c70-89a8-3f515d33693f'
