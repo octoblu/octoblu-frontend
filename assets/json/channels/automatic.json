@@ -1,98 +1,10 @@
 {
   "_id": "53e11cd28e3257fb7d6fdad0",
-  "__v": 0,
-  "application": {
-    "base": "https://api.automatic.com/v1/",
-    "resources": [
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "page"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "per_page"
-          }
-        ],
-        "path": "/trips",
-        "displayName": "Get Trips",
-        "authentication": {
-          "required": "true"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.automatic.com/v1//trips"
-      },
-      {
-        "path": "/trips/:id",
-        "displayName": "Get Trip",
-        "authentication": {
-          "required": "true"
-        },
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Trip ID",
-            "name": ":id"
-          }
-        ],
-        "httpMethod": "GET",
-        "url": "https://api.automatic.com/v1//trips/:id"
-      },
-      {
-        "path": "/user",
-        "displayName": "Get User",
-        "authentication": {
-          "required": "true"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.automatic.com/v1//user"
-      },
-      {
-        "path": "/vehicles",
-        "displayName": "Get Vehicles",
-        "authentication": {
-          "required": "true"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.automatic.com/v1//vehicles"
-      },
-      {
-        "path": "/vehicles/:id",
-        "displayName": "Get Vehicle",
-        "authentication": {
-          "required": "true"
-        },
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Vehicle ID",
-            "name": ":id"
-          }
-        ],
-        "httpMethod": "GET",
-        "url": "https://api.automatic.com/v1//vehicles/:id"
-      }
-    ]
-  },
-  "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "https://www.automatic.com/developer/documentation/",
-  "enabled": true,
+  "type": "channel:automatic",
+  "auth_strategy": "automatic",
+  "documentation": "https://developer.automatic.com/documentation/#user",
   "name": "Automatic",
+  "enabled": true,
   "oauth": {
     "version": "1.0",
     "key": "INSERT_SECERT_HERE",
@@ -104,6 +16,95 @@
     "scope": "scope:trip:summary scope:location scope:vehicle scope:notification:hard_accel scope:notification:hard_brake scope:notification:speeding",
     "is0LegAuth": false
   },
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:automatic"
+  "application": {
+    "base": "https://api.automatic.com/v1",
+    "resources": [
+      {
+        "path": "/trips",
+        "displayName": "Get Trips",
+        "doc": {
+          "url": "https://api.automatic.com/v1/trips"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Start",
+            "style": "query",
+            "type": "integer",
+            "name": "start"
+          },{
+            "displayName": "End",
+            "style": "query",
+            "type": "integer",
+            "name": "end"
+          },{
+            "displayName": "Page",
+            "style": "query",
+            "type": "integer",
+            "name": "page"
+          },{
+            "displayName": "Per Page",
+            "style": "query",
+            "type": "integer",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://api.automatic.com/v1/trips"
+      },
+      {
+        "path": "/trips/:id",
+        "displayName": "Get A Single Trip",
+        "doc": {
+          "url": "https://api.automatic.com/v1/:id"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "ID Of A The Trip",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.automatic.com/v1/:id"
+      },
+      {
+        "path": "/user",
+        "displayName": "Get Info About User",
+        "doc": {
+          "url": "https://api.automatic.com/v1/user"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "https://api.automatic.com/v1/user"
+      },
+      {
+        "path": "/vehicles",
+        "displayName": "List Vehicles User",
+        "doc": {
+          "url": "https://api.automatic.com/v1/vehicles"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "https://api.automatic.com/v1/vehicles"
+      },
+      {
+        "path": "/vehicles/:id",
+        "displayName": "Get A Single Vehicle",
+        "doc": {
+          "url": "https://api.automatic.com/v1/vehicles/:id"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "ID Of A The Trip",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          }],
+        "url": "https://api.automatic.com/v1/vehicles/:id"
+      }
+    ]
+  }
 }
