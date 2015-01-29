@@ -208,7 +208,7 @@ describe('User', function () {
         
         it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
           return sut.resetToken(1).then(function(){            
-            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/1/token', null, 'POST', 1, 2);            
+            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/1/token', true, 'POST', 1, 2);            
           });        
         });
 
@@ -283,7 +283,7 @@ describe('User', function () {
 
         it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
           return sut.resetToken(1).then(function(){        
-            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/3/token', null, 'POST', 3, 5);
+            expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/3/token', true, 'POST', 3, 5);
           });
         });
 
