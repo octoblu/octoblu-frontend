@@ -1,27 +1,19 @@
 <md-toolbar md-theme="octo-blue">
-  <h2 class="md-toolbar-tools page-heading">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-    </a>
-
-    <span>Process</span>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars"></i>
+        Profile
+      </a>
+    </div>
   </h2>
 </md-toolbar>
 
-<br>
-
-<style type="text/css">
-    .dashboard-panel {
-        text-align: center;
-    }
-
-    .dashboard-panel h1 {
-        text-decoration: inherit;
-        color: inherit;
-        margin-bottom: 20px;
-    }
-</style>
-
-<div class="col-xs-12">
-   
+<div flex layout-fill layout="row" layout-align="center">
+  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
+    <md-content flex layout-fill>
+      <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
+      </div>
+    </md-content>
+  </div>
 </div>
