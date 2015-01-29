@@ -63,6 +63,7 @@ angular.module('octobluApp')
       return deviceService.getDevices().then(function(devices){
         _.each(devices, function(device){
           device.messagesReceived = 0;
+          device.messagesSent = 0;
         });
         return devices;
       });
