@@ -40,10 +40,10 @@ angular.module('octobluApp')
       processNode.messagesReceivedOverTime = processNode.messagesReceivedOverTime || [];
       processNode.messagesReceivedOverTime.push(processNode.messagesReceived);   
       processNode.messagesSentOverTime = processNode.messagesSentOverTime || [];
-      if (processNode.messagesSentOverTime.length > 9) {
+      if (processNode.messagesSentOverTime.length > 19) {
         processNode.messagesSentOverTime = processNode.messagesSentOverTime.slice(1);
       }
-      if (processNode.messagesReceivedOverTime.length > 9) {
+      if (processNode.messagesReceivedOverTime.length > 19) {
         processNode.messagesReceivedOverTime = processNode.messagesReceivedOverTime.slice(1);
       }
       processNode.messagesSentOverTime.push(processNode.messagesSent);   

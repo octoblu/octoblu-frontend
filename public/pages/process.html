@@ -34,8 +34,14 @@
               <div flex="35" layout="row" layout-align="start">
                 {{node.name || node.uuid}}
               </div>
-              <div flex="15" layout="row" layout-align="center">{{node.totalMessagesSent}}</div>
-              <div flex="15" layout="row" layout-align="center">{{node.totalMessagesReceived}}</div>
+              <div flex="15" layout="row" layout-align="center">
+                <div sparkline-graph ng-model="node.messagesSentOverTime"></div>&nbsp;
+                {{node.totalMessagesSent}}
+              </div>
+              <div flex="15" layout="row" layout-align="center">
+                <div sparkline-graph ng-model="node.messagesReceivedOverTime"></div>&nbsp;
+                {{node.totalMessagesReceived}}
+              </div>
               <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince)}}</div>
               <div flex="20" layout="row" layout-align="center">{{node.actions}}</div>
             </div>

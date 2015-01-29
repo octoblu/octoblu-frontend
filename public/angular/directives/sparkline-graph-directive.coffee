@@ -6,6 +6,8 @@ angular.module('octobluApp')
     opts = {}
 
     opts.type = attrs.type || 'line'
+    opts.chartRangeMin = 0
+    opts.spotRadius = 0
 
     scope.$watch attrs.ngModel, ((value) ->
       render()
