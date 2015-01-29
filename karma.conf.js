@@ -54,6 +54,8 @@ module.exports = function(config) {
         return path.replace(/\.coffee$/, '.js');
       }
     },
+    ngHtml2JsPreprocessor: {
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
