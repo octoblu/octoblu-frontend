@@ -30,7 +30,7 @@ describe 'profileController', ->
         @scope.resetToken()
         expect(@NotifyService.confirm).to.have.been.calledWith(
           title: 'Reset your token',
-          content: 'Resetting your token will cause mobile apps, and possibly others authenticated as you, to stop working. Are you sure you want to do this?')
+          content: 'Resetting your token will cause mobile apps and other apps authenticated as you, to stop working. Are you sure you want to do this?')
 
       describe 'when the user clicks "ok" on the dialog box', =>
         beforeEach =>
