@@ -13,14 +13,17 @@
   <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
     <md-content flex layout-fill>
       <md-toolbar md-default-theme layout="row" flex>
-         <md-button flex="35" ng-click="setSortProcess('name')">Name</md-button>
-         <md-button flex="15" ng-click="setSortProcess('messagesSent')">Sent</md-button>
-         <md-button flex="15" ng-click="setSortProcess('messagesReceived')">Received</md-button>
-         <md-button flex="15" ng-click="setSortProcess('onlineSince')">Uptime</md-button>
-         <md-button flex="20" ng-click="setSortProcess('online')">Actions</md-button>
+         <div class="process-row-logo"></div>
+         <div flex layout="row">
+           <md-button flex="35" ng-click="setSortProcess('name')">Name</md-button>
+           <md-button flex="15" ng-click="setSortProcess('messagesSent')">Sent</md-button>
+           <md-button flex="15" ng-click="setSortProcess('messagesReceived')">Received</md-button>
+           <md-button flex="15" ng-click="setSortProcess('onlineSince')">Uptime</md-button>
+           <md-button flex="20" ng-click="setSortProcess('online')">Actions</md-button>
+         </div>
       </md-toolbar>
        <md-list class="process-row">
-        <md-item ng-repeat="node in processNodes | orderBy: sortProcesses">
+        <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending">
           <md-item-content>
             <div class="md-tile-left">
               <div class="process-row-logo" ng-style="{'background-image': 'url(' + node.logo + ')'}"></div>

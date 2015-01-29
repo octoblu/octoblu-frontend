@@ -97,4 +97,35 @@ describe 'ProcessController', ->
  
     it 'should return a string if online and onlineSince is defined', => 
       expect(@scope.getUptime(true, new Date())).not.to.equal null
- 
+
+  describe 'setSortProcess', =>
+    describe 'by default', =>
+      it "should set sortProcesses to name", =>
+        expect(@scope.sortProcesses).to.equal 'name'
+
+      it "should set sortAscending to true", =>
+        expect(@scope.sortAscending).to.be.true
+        
+    describe 'when called for the first time', =>
+      beforeEach =>
+        @scope.setSortProcess 'Foo'
+
+      it "should set sortProcess on the scope", =>
+        expect(@scope.sortProcesses).to.equal 'Foo'
+
+    describe 'when called with the same name twice', =>
+      beforeEach =>
+        @scope.setSortProcess 'Foo'
+        @scope.setSortProcess 'Foo'
+
+      it "should set sortAscending to false", =>
+        expect(@scope.sortAscending).to.be.false
+
+    describe 'when called with a different name', =>
+      beforeEach =>
+        @scope.setSortProcess 'Foo'
+        @scope.setSortProcess 'Bar'
+
+      it "should set sortAscending to true", =>
+        expect(@scope.sortAscending).to.be.true
+
