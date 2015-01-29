@@ -32,7 +32,7 @@ angular.module('octobluApp')
   $scope.resetToken = function(){
     NotifyService.confirm({
           title: 'Reset your token',
-          content: 'Resetting your token will cause mobile apps, and possibly others authenticated as you, to stop working. Are you sure you want to do this?'
+          content: 'Resetting your token will cause mobile apps and other apps authenticated as you, to stop working. Are you sure you want to do this?'
         }).then(function(){
           return AuthService.resetToken();
         }).then(function(token){
