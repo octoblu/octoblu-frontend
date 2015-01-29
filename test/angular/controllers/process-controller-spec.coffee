@@ -135,6 +135,15 @@ describe 'ProcessController', ->
       it "should set sortAscending to false", =>
         expect(@scope.sortAscending).to.be.false
 
+    describe 'when called with the same name thrice', =>
+      beforeEach =>
+        @scope.setSortProcess 'Foo'
+        @scope.setSortProcess 'Foo'
+        @scope.setSortProcess 'Foo'
+
+      it "should set sortAscending to true", =>
+        expect(@scope.sortAscending).to.be.true
+
     describe 'when called with a different name', =>
       beforeEach =>
         @scope.setSortProcess 'Foo'
