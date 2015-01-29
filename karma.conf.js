@@ -16,11 +16,18 @@ module.exports = function(config) {
         "../test/assets/meshblu.bundle.js",
         "assets/javascripts/dist/dependencies.js",
         "lib/angular-mocks/angular-mocks.js",
-        "angular/**/*.html",
-        "angular/**/*.js",
+        "**/*.html",
         "../test/angular/test_helper.js",
+
+        "angular/config/**/*.js",
+        "angular/controllers/**/*.js",
+        "angular/directives/**/*.js",
+        "angular/models/**/*.js",
+        "angular/services/**/*.js",
+
         "../test/angular/**/*-spec.js",
-        "../test/angular/**/*-spec.coffee"
+        "../test/angular/**/*-spec.coffee",
+        "angular/**/*.coffee"
     ],
 
     // list of files to exclude
@@ -31,8 +38,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'angular/**/*.html': 'ng-html2js',
+      '**/*.html': 'ng-html2js',
       '../test/**/*.coffee':  ['coffee'],
+      'angular/**/*.coffee':  ['coffee']
     },
 
     coffeePreprocessor: {

@@ -7,7 +7,11 @@ describe('FlowNodeRenderer', function () {
   };
 
   beforeEach(function () {
-    module('octobluApp');
+    module('octobluApp', function($provide){
+      $provide.value('skynetConfig', {})
+      $provide.value('$cookies', {})
+      $provide.value('reservedProperties', [])
+    });
     renderScope = d3.select('body').append('svg');
   });
 

@@ -1,6 +1,9 @@
 describe 'FlowController', ->
   beforeEach ->
-    module 'octobluApp'
+    module 'octobluApp', ($provide) =>
+      $provide.value '$cookies', {}
+      $provide.value 'reservedProperties', ['$$hashKey', '_id']
+      return
 
     inject ($controller, $rootScope, $q) =>
       q = $q

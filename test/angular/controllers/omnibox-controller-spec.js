@@ -4,16 +4,6 @@ describe('OmniboxController', function () {
   beforeEach(function () {
     module('octobluApp');
 
-    inject(function(_$httpBackend_){
-      var $httpBackend = _$httpBackend_;
-      $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.whenGET('/pages/octoblu.html').respond(200);
-      $httpBackend.whenGET('/pages/home.html').respond(200);
-      $httpBackend.whenGET('/pages/material.html').respond(200);
-      $httpBackend.whenGET('/api/nodes').respond(200, []);
-      $httpBackend.flush();
-    });
-
     inject(function(_$rootScope_, _$q_, $controller){
       $q = _$q_;
       $rootScope = _$rootScope_;

@@ -7,6 +7,9 @@ describe('FlowNodeTypeService', function () {
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
+      $provide.value('skynetConfig', {})
+      $provide.value('$cookies', {})
+      $provide.value('reservedProperties', [])
     });
 
     inject(function (FlowNodeTypeService, _$httpBackend_, _$q_) {
@@ -14,10 +17,6 @@ describe('FlowNodeTypeService', function () {
       $q = _$q_;
       $httpBackend = _$httpBackend_;
       $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.whenGET('/pages/octoblu.html').respond(200);
-      $httpBackend.whenGET('/pages/home.html').respond(200);
-      $httpBackend.whenGET('/pages/material.html').respond(200);
-      $httpBackend.whenGET('/api/nodes').respond(200, []);
       $httpBackend.flush();
     });
   });
