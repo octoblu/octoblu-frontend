@@ -47,10 +47,31 @@ describe "NotifyService", =>
         @sut.confirm()
         expect(@mdDialog.confirm).to.have.been.called
 
+      it 'should call mdDialog.show', ->
+        @sut.confirm();
+        expect(@mdDialog.confirm).to.have.been.called
+
     describe 'when confirm is called with an object containing a title and content', ->
       it 'should call mdDialog.confirm with the title, content, and defaults for the buttons', ->
         @sut.confirm title: 'Are you a human bean?', content: 'Click ok if you are not a human bean, cancel if you are a robot bean'
         expect(@mdDialog.confirm).to.have.been.calledWith title: 'Are you a human bean?', content: 'Click ok if you are not a human bean, cancel if you are a robot bean', ok: 'ok', cancel: 'cancel'
+
+      describe 'when mdDialog.confirm returns a configuration object', ->
+        beforeEach ->
+          @mdDialog.confirm = sinon.stub().returns hello: 'world'
+
+        it 'should call mdDialog.show with that config object', ->
+          @sut.confirm()
+          expect(@mdDialog.show).to.be.calledWith hello: 'world'
+
+
+      describe 'when mdDialog.confirm returns a different configuration object', ->
+        beforeEach ->
+          @mdDialog.confirm = sinon.stub().returns who: 'knows'
+
+        it 'should call mdDialog.show with that config object', ->
+          @sut.confirm()
+          expect(@mdDialog.show).to.be.calledWith who: 'knows'
 
     describe 'when confirm is called with an object containing a different title and content', ->
       it 'should call mdDialog.confirm with a different title, content, and defaults for the buttons', ->

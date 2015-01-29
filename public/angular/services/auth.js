@@ -94,7 +94,7 @@ angular.module('octobluApp')
 
             resetToken: function(){
                 return $http.post('/api/reset-token', {}).then(function(response){
-                    if(response.status !== 201){
+                    if(response.status >= 400){
                         return $q.reject('Could not reset token');
                     }
                     return response.data;

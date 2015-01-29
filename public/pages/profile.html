@@ -1,10 +1,17 @@
 <md-toolbar md-theme="octo-blue">
-  <h2 class="md-toolbar-tools page-heading">
+   <h2 class="md-toolbar-tools page-heading" layout="row">
     <a href class="menu-icon" ng-click="toggleNav()">
       <i class="fa fa-bars"></i>
     </a>
+    <div flex layout="row" layout-align="space-between">
+      <span>Profile - {{currentUser.displayName || currentUser.email }}</span>
 
-    <span>Profile - {{currentUser.displayName}}</span>
+      <md-button ng-click="resetToken()" md-theme="octo-blue">
+        <md-tooltip>Reset Token</md-tooltip>
+          <i class="fa fa-key"></i>
+          Reset Token
+      </md-button>
+    </div>
   </h2>
 </md-toolbar>
 
