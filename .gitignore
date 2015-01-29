@@ -15,3 +15,5 @@ assets/json/channels.json
 database
 assets/json/nodetypes.json
 meshblu.json
+*.sublime-workspace
+public/angular/compiled
