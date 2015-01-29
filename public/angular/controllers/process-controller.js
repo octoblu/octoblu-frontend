@@ -27,7 +27,7 @@ angular.module('octobluApp')
 
   $scope.setSortProcess = function(sort){
     if ($scope.sortProcesses === sort) {
-      $scope.sortAscending = false;
+      $scope.sortAscending = !$scope.sortAscending;
       return;
     }
     $scope.sortProcesses = sort;
