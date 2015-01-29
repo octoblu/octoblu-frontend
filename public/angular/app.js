@@ -307,7 +307,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.process', {
         url: '/process',
         templateUrl: '/pages/process.html',
-        controller: 'processController'
+        controller: 'ProcessController'
       })
       .state('material.device', {
         url: '/device/:uuid',
