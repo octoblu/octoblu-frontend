@@ -3,13 +3,9 @@
 angular.module('octobluApp')
 .controller('ProcessController', function ($scope, ProcessNodeService) {
 
-  $scope.processNodes = [];
-
-  $scope.getProcessNodes = function(){
-    ProcessNodeService.getProcessNodes().then(function(processNodes){
-      $scope.processNodes = processNodes; 
-    });
-  };
+  ProcessNodeService.getProcessNodes().then(function(processNodes){
+    $scope.processNodes = processNodes;
+  });
 
   $scope.stopProcess = function(processNode){
     ProcessNodeService.stopProcess(processNode);

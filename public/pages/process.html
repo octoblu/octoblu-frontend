@@ -3,16 +3,27 @@
     <div flex layout="row">
       <a href class="menu-icon" ng-click="toggleNav()">
         <i class="fa fa-bars"></i>
-        Profile
+        Process
       </a>
     </div>
   </h2>
 </md-toolbar>
-
+{{processNodes.length}}
 <div flex layout-fill layout="row" layout-align="center">
   <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
     <md-content flex layout-fill>
-      <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
+      <md-toolbar md-default-theme layout="row" flex>
+         <md-button flex>Name</md-button>
+         <md-button flex>Sent</md-button>
+         <md-button flex>Received</md-button>
+         <md-button flex>Uptime</md-button>
+         <md-button flex>Actions</md-button>
+      </md-toolbar>
+      <div class="process-row" ng-repeat="node in processNodes" flex >
+        <span flex>{{node.name || node.uuid}}</span>
+        <span flex>{{node.sentMessageCount}}</span>
+        <span flex>{{node.receivedMessageCount}}</span>
+        <span flex>{{node.uptime}}</span>
       </div>
     </md-content>
   </div>

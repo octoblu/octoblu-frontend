@@ -2,8 +2,8 @@ angular.module('octobluApp')
   .service('ProcessNodeService', function ($q, deviceService, skynetService) {
   'use strict';
   return {
-    
-    getProcessDevices: function() {  
+
+    getProcessNodes: function() {
       var self, skynetConnection;
       self = this;
       return $q.all([
@@ -12,8 +12,7 @@ angular.module('octobluApp')
       ]).then(function(results) {
         skynetConnection = results[0];
         self.devices = results[1];
-        _.map(self.devices, skynetConnection.subscribe);
-        self.listenToMessages()
+        self.listenToMessages();
         return self.devices;
       });
     },
@@ -35,7 +34,7 @@ angular.module('octobluApp')
       }
       var devices = _.filter(self.devices, function(device) {
         if(_.contains(message.devices, device.uuid)){
-          return device; 
+          return device;
         }
       });
 
@@ -49,7 +48,7 @@ angular.module('octobluApp')
       var self = this;
       var devices = _.filter(self.devices, function(device) {
         if(message.fromUuid === device.uuid){
-          return device; 
+          return device;
         }
       });
 
