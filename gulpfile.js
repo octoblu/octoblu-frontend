@@ -7,6 +7,8 @@ var gulp         = require('gulp'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
   nodemon        = require('gulp-nodemon'),
+  coffee         = require('gulp-coffee'),
+  clean          = require('gulp-clean'),
   _              = require('lodash');
 
 gulp.task('bower', function() {
@@ -32,7 +34,20 @@ gulp.task('less:compile', function(){
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
-gulp.task('javascript:concat', function(){
+
+gulp.task('coffee:clean', function(){
+  return gulp.src(['./public/angular/compiled'], {read: false})
+    .pipe(clean())
+})
+
+gulp.task('coffee:compile', ['coffee:clean'], function(){
+  return gulp.src(['./public/angular/**/*.coffee'])
+    .pipe(plumber())
+      .pipe(coffee({bare: true}))
+    .pipe(gulp.dest('./public/angular/compiled/'));
+});
+
+gulp.task('javascript:concat', ['coffee:compile'], function(){
   return gulp.src(['./public/angular/app.js', './public/angular/**/*.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -65,6 +80,7 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
+  gulp.watch(['./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:compile']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
   gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
 
