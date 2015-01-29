@@ -4,6 +4,7 @@ angular.module('octobluApp')
 .controller('ProcessController', function ($scope, $interval, ProcessNodeService) {
 
   $scope.sortProcesses = 'name';
+  $scope.sortAscending = true; 
   ProcessNodeService.getProcessNodes().then(function(processNodes){
     $scope.processNodes = processNodes;
   });
@@ -21,6 +22,16 @@ angular.module('octobluApp')
       return null; 
     }
     return moment(onlineSince).fromNow(true);
+  };
+
+  $scope.setSortProcess = function(sort){
+    if ($scope.sortProcesses === sort) {
+      $scope.sortAscending = false;
+      return;
+    }
+    $scope.sortProcesses = sort;
+    $scope.sortAscending = true;
+
   };
 
   $scope.resetMessageCounter = function(){
