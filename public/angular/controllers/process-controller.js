@@ -4,6 +4,7 @@ angular.module('octobluApp')
 .controller('ProcessController', function ($scope, $interval, ProcessNodeService) {
 
   $scope.sortProcesses = 'name';
+
   ProcessNodeService.getProcessNodes().then(function(processNodes){
     $scope.processNodes = processNodes;
   });

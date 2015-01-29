@@ -19,16 +19,24 @@
          <md-button flex="15" ng-click="setSortProcess('onlineSince')">Uptime</md-button>
          <md-button flex="20" ng-click="setSortProcess('online')">Actions</md-button>
       </md-toolbar>
-      <div class="process-row" ng-repeat="node in processNodes | orderBy: sortProcesses" flex layout="row" >
-        <div flex="35" layout="row" layout-align="start">
-          <div class="process-row-logo" ng-style="{'background-image': 'url(' + node.logo + ')'}"></div>
-          {{node.name || node.uuid}}
-        </div>
-        <div flex="15" layout="row" layout-align="center">{{node.totalMessagesSent}}</div>
-        <div flex="15" layout="row" layout-align="center">{{node.totalMessagesReceived}}</div>
-        <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince)}}</div>
-        <div flex="20" layout="row" layout-align="center">{{node.actions}}</div>
-      </div>
+       <md-list class="process-row">
+        <md-item ng-repeat="node in processNodes | orderBy: sortProcesses">
+          <md-item-content>
+            <div class="md-tile-left">
+              <div class="process-row-logo" ng-style="{'background-image': 'url(' + node.logo + ')'}"></div>
+            </div>
+            <div class="md-tile-content" layout="row">
+              <div flex="35" layout="row" layout-align="start">
+                {{node.name || node.uuid}}
+              </div>
+              <div flex="15" layout="row" layout-align="center">{{node.totalMessagesSent}}</div>
+              <div flex="15" layout="row" layout-align="center">{{node.totalMessagesReceived}}</div>
+              <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince)}}</div>
+              <div flex="20" layout="row" layout-align="center">{{node.actions}}</div>
+            </div>
+          </md-item-content>
+        </md-item>
+      </md-list>
     </md-content>
   </div>
 </div>
