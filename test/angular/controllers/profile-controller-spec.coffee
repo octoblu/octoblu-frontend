@@ -44,7 +44,7 @@ describe 'profileController', ->
 
         describe 'when there is an error resetting the token', =>
           beforeEach =>
-            @AuthService.resetToken.returns @q.reject cats?
+            @AuthService.resetToken.returns @q.reject 'Could not reset token'
 
           it 'should notify the user that resetting the token failed', =>
              @scope.resetToken()
@@ -86,6 +86,11 @@ describe 'profileController', ->
           @scope.$digest()
 
           expect(@AuthService.resetToken).to.not.have.been.called
+
+        it 'should not open the alert with no token', =>
+          @scope.resetToken()
+          @scope.$digest()
+          expect(@NotifyService.alert).to.not.have.been.called
 
 
 class FakeAuthService
