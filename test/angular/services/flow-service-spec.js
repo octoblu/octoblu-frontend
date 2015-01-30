@@ -7,9 +7,11 @@ describe('FlowService', function () {
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
-      $provide.value('skynetConfig', {})
-      $provide.value('$cookies', {})
-      $provide.value('reservedProperties', [])
+      $provide.value('skynetConfig', {});
+      $provide.value('$cookies', {});
+      $provide.value('reservedProperties', []);
+      $provide.value('$intercom', {boot: sinon.stub()});
+      $provide.value('$intercomProvider', {});
     });
 
     inject(function(FlowService, _$httpBackend_){

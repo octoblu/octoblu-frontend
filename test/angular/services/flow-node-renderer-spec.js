@@ -8,9 +8,11 @@ describe('FlowNodeRenderer', function () {
 
   beforeEach(function () {
     module('octobluApp', function($provide){
-      $provide.value('skynetConfig', {})
-      $provide.value('$cookies', {})
-      $provide.value('reservedProperties', [])
+      $provide.value('skynetConfig', {});
+      $provide.value('$cookies', {});
+      $provide.value('reservedProperties', []);
+      $provide.value('$intercom', {boot: sinon.stub()});
+      $provide.value('$intercomProvider', {});
     });
     renderScope = d3.select('body').append('svg');
   });
