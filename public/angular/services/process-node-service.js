@@ -83,10 +83,6 @@ angular.module('octobluApp')
     },
 
     stopProcess: function(node) {
-      if(node.type === 'octoblu:flow'){
-        this.sendMessageToDevice(node.uuid, 'nodered-instance-stop')
-        return;
-      }
       this.sendMessageToDevice(node.uuid, 'device-stop');
     }
   };
