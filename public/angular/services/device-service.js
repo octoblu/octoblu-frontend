@@ -249,7 +249,8 @@ angular.module('octobluApp')
 
             addLogoUrl: function(data) {
                 if(data && data.type){
-                    data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+                    var type = data.type.replace('octoblu:', 'device:');
+                    data.logo = 'https://ds78apnml6was.cloudfront.net/' + type.replace(':', '/') + '.svg';
                 } else {
                     data.logo = 'https://ds78apnml6was.cloudfront.net/device/other.svg';
                 }
