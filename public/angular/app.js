@@ -1,7 +1,7 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap', 'ngClipboard', 'hc.marked', 'ngAnimate'])
+angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap', 'ngClipboard', 'hc.marked', 'ngAnimate', 'ngIntercom'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -34,6 +34,22 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       host: 'ws://' + host,
       port: '3000'
     };
+  })
+  .constant('INTERCOM_APPID', 'ux5bbkjz')
+
+  // Configure your $intercom module with appID
+  .config(function($intercomProvider, INTERCOM_APPID) {
+    // Either include your app_id here or later on boot
+    if (window.location.hostname === 'app.octoblu.com'){
+      $intercomProvider
+        .appID(INTERCOM_APPID);
+    } else {
+      $intercomProvider.appID('thuyk9s6');
+    }
+
+    // you can include the Intercom's script yourself or use the built in async loading feature
+    $intercomProvider
+      .asyncLoading(true)
   })
   .constant('reservedProperties', ['$$hashKey', '_id'])
   // enabled CORS by removing ajax header

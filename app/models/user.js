@@ -9,6 +9,7 @@ var configAuth = require('../../config/auth');
 var request    = require('request');
 var Channel    = require('./channel');
 var debug      = require('debug')('octoblu:user');
+var moment     = require('moment');
 
 function UserModel() {
   var collection = octobluDB.getCollection('users');
@@ -48,7 +49,8 @@ function UserModel() {
             uuid: skynetData.uuid,
             token: skynetData.token
           },
-          api : []
+          api : [],
+          created_at: moment().utc().toDate()
         });
 
         return self.insert(userParams).then(function(users){

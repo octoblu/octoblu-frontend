@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('AuthService', function ($q, $cookies,  $http, $window) {
+    .service('AuthService', function ($q, $cookies,  $http, $window, $intercom) {
         var service;
         var currentUser = {skynet: {}};
 
@@ -17,12 +17,24 @@ angular.module('octobluApp')
             }
         }
 
+        function setupIntercom(user) {
+            var userInfo = {
+              email: user.email,
+              name: user.name,
+              created_at: user.created_at || user.terms_accepted_at,
+              user_id: user.skynet.uuid
+            };
+            $intercom.boot(userInfo); // app_id not required if set in .config() block
+            // boot $intercom after you have user data usually after auth success
+        }
+
         function loginHandler(result) {
             if(result.status >= 400){
                throw result.data;
             }
             _.extend(currentUser, result.data);
             getProfileUrl(currentUser);
+            setupIntercom(currentUser);
             return currentUser;
         }
 
@@ -98,6 +110,13 @@ angular.module('octobluApp')
                         return $q.reject('Could not reset token');
                     }
                     return response.data;
+                });
+            },
+
+            getCurrentUserWithoutRedirect: function () {
+                return $q.when(currentUser);
+                return $http.get('/api/auth').then(function(result) {
+                    return result.data;
                 });
             },
 

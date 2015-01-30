@@ -2,6 +2,8 @@ describe 'FlowController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
+      $provide.value '$intercom', sinon.stub()
+      $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
       return
 
