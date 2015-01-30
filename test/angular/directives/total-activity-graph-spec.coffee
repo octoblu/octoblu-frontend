@@ -15,11 +15,11 @@ describe 'totalActivityGraph', ->
   describe 'when called with no devices', ->
     beforeEach ->
       @scope.devices = []
-      # @element = @sut(@scope)
+      @element = @sut(@scope)
       @scope.$digest()
 
     it 'should replace the html with a div container', ->
-      # expect(@element[0].outerHTML).to.equal '<div></div>'
+      expect($(@element).html()).to.contain '<div></div>'
 
     it 'should go', ->
       expect(true).to.be.true
