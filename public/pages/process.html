@@ -11,16 +11,16 @@
 <div flex layout-fill layout="row" layout-align="center">
   <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
     <md-content flex layout-fill>
-      <sparkline-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime" graph-width="100%" graph-height="300"></sparkline-graph>
+      <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 
       <md-toolbar md-theme="octo-blue"  layout="row" flex>
          <div class="process-row-logo"></div>
          <div flex layout="row">
-           <md-button flex="35" ng-click="setSortProcess('name')">Name</md-button>
-           <md-button flex="15" ng-click="setSortProcess('messagesSent')">Sent</md-button>
-           <md-button flex="15" ng-click="setSortProcess('messagesReceived')">Received</md-button>
-           <md-button flex="15" ng-click="setSortProcess('onlineSince')">Uptime</md-button>
-           <md-button flex="20" ng-click="setSortProcess('online')">Actions</md-button>
+           <md-button flex="35" ng-click="setSortProcess('name')" aria-label="Sort by Name">Name</md-button>
+           <md-button flex="15" ng-click="setSortProcess('messagesSent')" aria-label="Sort by Message Sent">Sent</md-button>
+           <md-button flex="15" ng-click="setSortProcess('messagesReceived')" aria-label="Sort by Message Received">Received</md-button>
+           <md-button flex="15" ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since">Uptime</md-button>
+           <md-button flex="20" ng-click="setSortProcess('online')" aria-label="Sort by Online">Actions</md-button>
          </div>
       </md-toolbar>
        <md-list class="process-row">
@@ -43,11 +43,11 @@
               </div>
               <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince) || '----------'}}</div>
               <div flex="20" layout="row" layout-align="center">{{node.actions}}
-                <md-button ng-click="stopProcess(node.uuid)" class="btn-stopped" ng-class="{ 'btn-stopped': !node.online}">
+                <md-button ng-click="stopProcess(node.uuid)" class="btn-stopped" ng-class="{ 'btn-stopped': !node.online}" aria-label="Stop Process">
                   <i class="fa fa-stop"></i>
                 </md-button>
 
-                <md-button ng-click="startProcess(node.uuid)" class="btn-playing" ng-class="{ 'btn-playing': node.online }">
+                <md-button ng-click="startProcess(node.uuid)" class="btn-playing" ng-class="{ 'btn-playing': node.online }" aria-label="Start Process">
                   <i class="fa fa-play"></i>
                 </md-button>
               </div>

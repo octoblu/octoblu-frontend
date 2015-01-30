@@ -3,8 +3,8 @@
       <div class="md-toolbar-tools">
         <h1>Edit > {{flowNode.name || flowNode.class}}</h1>
         <span flex></span>
-        <md-button ng-click="toggleHelp()"><i class="fa fa-lg fa-question"></i></md-button>
-        <md-button ng-click="close()"><i class="fa fa-lg fa-close"></i></md-button>
+        <md-button ng-click="toggleHelp()" aria-label="Toggle Help"><i class="fa fa-lg fa-question"></i></md-button>
+        <md-button ng-click="close()" aria-label="Close"><i class="fa fa-lg fa-close"></i></md-button>
       </div>
     </md-toolbar>
     <md-content>

@@ -8,13 +8,13 @@
                 </a>
             </div>
 
-            <md-button md-theme="octo-blue" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length">
+            <md-button md-theme="octo-blue" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy to Clipboard">
                 <md-tooltip>Copy to Clipboard</md-tooltip>
                 <i class="fa fa-share-alt"></i>
                 Copy Link
             </md-button>
 
-            <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length">
+            <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length" aria-label="Delete Template">
                 <md-tooltip>Delete Template</md-tooltip>
                 <i class="fa fa-trash"></i>
                 Delete
@@ -56,7 +56,7 @@
                 <md-list flex>
                     <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
                         <md-item-content layout="row" layout-align="space-around">
-                            <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)">
+                            <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)" aria-label="Set Current Template">
                                 <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="30">
                                 <div flex layout layout-align="space-between">
                                     <h3>{{template.name}}</h3>

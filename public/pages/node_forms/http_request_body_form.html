@@ -19,11 +19,11 @@
         <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
         <md-text-float required label="Header" ng-model="flowNode.headerKeys[$index]"> </md-text-float>
         <md-text-float required label="Value" ng-model="flowNode.headerValues[$index]"> </md-text-float>
-        <md-button class="md-fab" ng-click="flowNode.headerKeys.splice($index, 1);flowNode.headerValues.splice($index, 1)">
+        <md-button class="md-fab" ng-click="flowNode.headerKeys.splice($index, 1);flowNode.headerValues.splice($index, 1)" aria-label="Remove Header">
             <i class="fa fa-minus"></i>
         </md-button>
       </div>
     </md-item-content>
   </md-item>
 </md-list>
-<md-button ng-click="flowNode.headerKeys.push('')" class="md-primary">Add Header</md-button>
+<md-button ng-click="flowNode.headerKeys.push('')" class="md-primary" aria-label="Add Header">Add Header</md-button>

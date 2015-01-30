@@ -6,7 +6,7 @@
     <div flex layout="row" layout-align="space-between">
       <span>Profile - {{currentUser.displayName || currentUser.email }}</span>
 
-      <md-button ng-click="resetToken()" md-theme="octo-blue">
+      <md-button ng-click="resetToken()" md-theme="octo-blue" aria-label="Reset Token">
         <md-tooltip>Reset Token</md-tooltip>
           <i class="fa fa-key"></i>
           Reset Token
