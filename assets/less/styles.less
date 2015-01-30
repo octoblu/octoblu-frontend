@@ -130,3 +130,48 @@ html, body, .full-height {
 .process-row {
   font-size: 16px;
 }
+
+.md-button{
+  border: 0;
+  width: 35px;
+
+  &:not([disabled]):hover {
+    color: #eee;
+  }
+
+  &.btn-stopped {
+    color: #AA2200;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      background-color: #CC2200;
+    }
+  }
+
+  &.btn-playing {
+    color: #008800;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      background-color: #00AA00;
+    }
+  }
+
+  &.start-button.deploying {
+    -webkit-animation-name: startPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: startPulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  &.stop-button.stopping {
+    -webkit-animation-name: stopPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: stopPulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}
