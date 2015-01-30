@@ -37,11 +37,11 @@ angular.module('octobluApp')
       lineB = scope.lineB
 
       optsA = _.cloneDeep opts
-      optsA.lineColor = 'blue'
-      optsA.fillColor = false
+      optsA.lineColor = 'darkblue'
+      optsA.fillColor = 'lightblue'
       optsB = _.cloneDeep opts
-      optsB.lineColor = 'red'
-      optsB.fillColor = false
+      optsB.lineColor = 'darkred'
+      optsB.fillColor = 'tomato'
 
       dataA = lineToData(lineA)
       dataB = lineToData(lineB)
