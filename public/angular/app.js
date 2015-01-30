@@ -440,7 +440,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/home');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom) {
 
     // $window.console.log = $log.debug;
 
@@ -451,6 +451,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
       // console.log('transition', fromState.name, toState.name);
+      $intercom.update();
       if (!toState.unsecured) {
         return AuthService.getCurrentUser(true).then(null, function (err) {
           console.log('LOGIN ERROR:');
