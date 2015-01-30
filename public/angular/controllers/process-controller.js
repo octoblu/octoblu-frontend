@@ -5,6 +5,8 @@ angular.module('octobluApp')
 
   $scope.sortProcesses = 'name';
   $scope.sortAscending = true;
+  $scope.totalMessagesReceivedOverTime = [];
+  $scope.totalMessagesSentOverTime = [];
 
   ProcessNodeService.getProcessNodes().then(function(processNodes){
     $scope.processNodes = processNodes;
@@ -36,7 +38,12 @@ angular.module('octobluApp')
   };
 
   $scope.resetMessageCounter = function(){
+    var totalMessagesReceived = 0;
+    var totalMessagesSent = 0;
+
+
     _.each($scope.processNodes, function(processNode){
+
       processNode.messagesReceivedOverTime = processNode.messagesReceivedOverTime || [];
       processNode.messagesReceivedOverTime.push(processNode.messagesReceived);
       processNode.messagesSentOverTime = processNode.messagesSentOverTime || [];
@@ -51,9 +58,14 @@ angular.module('octobluApp')
       processNode.totalMessagesReceived += processNode.messagesReceived;
       processNode.totalMessagesSent = processNode.totalMessagesSent || 0;
       processNode.totalMessagesSent += processNode.messagesSent;
+      totalMessagesReceived += processNode.messagesReceived;
+      totalMessagesSent += processNode.messagesSent;
       processNode.messagesReceived = 0;
       processNode.messagesSent = 0;
     });
+
+    $scope.totalMessagesReceivedOverTime.push(totalMessagesReceived);
+    $scope.totalMessagesSentOverTime.push(totalMessagesSent);
   };
 
   $interval($scope.resetMessageCounter, 1000);

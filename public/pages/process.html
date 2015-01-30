@@ -12,7 +12,7 @@
 <div flex layout-fill layout="row" layout-align="center">
   <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
     <md-content flex layout-fill>
-      <total-activity-graph devices="processNodes"></total-activity-graph>
+      <sparkline-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime" graph-width="100%" graph-height="300"></sparkline-graph>
 
       <md-toolbar md-theme="octo-blue"  layout="row" flex>
          <div class="process-row-logo"></div>
@@ -35,11 +35,11 @@
                 {{node.name || node.uuid}}
               </div>
               <div flex="15" layout="row" layout-align="center">
-                <div sparkline-graph ng-model="node.messagesSentOverTime"></div>&nbsp;
+                <sparkline-graph line-a="node.messagesSentOverTime" graph-width="100"></sparkline-graph>&nbsp;
                 {{node.totalMessagesSent}}
               </div>
               <div flex="15" layout="row" layout-align="center">
-                <div sparkline-graph ng-model="node.messagesReceivedOverTime"></div>&nbsp;
+                <sparkline-graph line-b="node.messagesReceivedOverTime" graph-width="100"></sparkline-graph>&nbsp;
                 {{node.totalMessagesReceived}}
               </div>
               <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince)}}</div>

@@ -18,9 +18,6 @@ describe 'totalActivityGraph', ->
       @element = @sut(@scope)
       @scope.$digest()
 
-    it 'should replace the html with a div container', ->
-      expect($(@element).html()).to.contain '<div></div>'
-
     it 'should go', ->
       expect(true).to.be.true
 
