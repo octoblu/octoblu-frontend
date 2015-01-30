@@ -8,6 +8,9 @@ angular.module('octobluApp')
     opts.type = attrs.type || 'line'
     opts.chartRangeMin = 0
     opts.spotRadius = 0
+    opts.disableTooltips = true
+    opts.disableInteraction = true
+    opts.width = 100
 
     scope.$watch attrs.ngModel, ((value) ->
       render()

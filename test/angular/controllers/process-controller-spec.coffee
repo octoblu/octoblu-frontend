@@ -91,16 +91,16 @@ describe 'ProcessController', ->
 
     describe 'when messagesSentOverTime and messagesReceivedOverTime is full', =>
       beforeEach => 
-        @device = {messagesReceived: 21, messagesSent: 21, totalMessagesReceived: 7, totalMessagesSent: 8, messagesSentOverTime: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], messagesReceivedOverTime : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}
+        @device = {messagesReceived: 11, messagesSent: 11, totalMessagesReceived: 7, totalMessagesSent: 8, messagesSentOverTime: [1,2,3,4,5,6,7,8,9,10], messagesReceivedOverTime : [1,2,3,4,5,6,7,8,9,10]}
         @fakeProcessNodeService.processNodesDefer.resolve [@device]
         @scope.$digest()
         @scope.resetMessageCounter()
 
-      it 'should limit size of messagesSentOverTime to 20', =>
-        expect(@device.messagesSentOverTime).to.deep.equal [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+      it 'should limit size of messagesSentOverTime to 10', =>
+        expect(@device.messagesSentOverTime).to.deep.equal [2,3,4,5,6,7,8,9,10,11]
 
-      it 'should limit size of messagesReceivedOverTime to 20', =>
-        expect(@device.messagesReceivedOverTime).to.deep.equal [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+      it 'should limit size of messagesReceivedOverTime to 10', =>
+        expect(@device.messagesReceivedOverTime).to.deep.equal [2,3,4,5,6,7,8,9,10,11]
 
   describe 'getUptime', =>
     it 'should return null if not online', =>
