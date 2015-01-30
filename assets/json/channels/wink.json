@@ -1,7 +1,8 @@
 {
   "_id": "54959b239be38fdaabb5497a",
   "type": "channel:wink",
-  "bodyFormat": "json[body]",
+  "bodyFormat": "json",
+  "bodyParam": "body",
   "auth_strategy": "wink",
   "documentation": "http://docs.wink.apiary.io",
   "name": "Wink",
