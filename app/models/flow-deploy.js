@@ -84,6 +84,8 @@ var FlowDeploy = function(options){
         node.authHeaderKey = channelApiMatch.auth_header_key;
         // Get User API Match
         userApiMatch = User.findApiByChannel(userApis, channelApiMatch);
+        if (!node.bodyParam)
+          node.bodyParam = channelApiMatch.bodyParam;
       }
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {

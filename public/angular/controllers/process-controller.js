@@ -28,8 +28,6 @@ angular.module('octobluApp')
     ProcessNodeService.stopProcess(node);
   };
 
-  
-
   $scope.getUptime = function(online, onlineSince){
     if(!online || !onlineSince){
       return null;
