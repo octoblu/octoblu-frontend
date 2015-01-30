@@ -8,7 +8,7 @@ describe 'FlowController', ->
       return
 
     inject ($controller, $rootScope, $q) =>
-      q = $q
+      @q = $q
       @scope = $rootScope.$new()
       @scope.flow = {}
 
@@ -18,6 +18,7 @@ describe 'FlowController', ->
       @fakeFlowService = new FakeFlowService $q
       @fakeFlowNodeTypeService = new FakeFlowNodeTypeService $q
       @fakeSkynetService = new FakeSkynetService $q
+      @fakeNotifyService = new FakeNotifyService $q
 
       @sut = $controller('FlowController', {
         $scope : @scope
@@ -27,6 +28,7 @@ describe 'FlowController', ->
         FlowService : @fakeFlowService
         FlowNodeTypeService : @fakeFlowNodeTypeService
         skynetService: @fakeSkynetService
+        NotifyService : @fakeNotifyService
       })
 
   beforeEach ->
@@ -42,11 +44,11 @@ describe 'FlowController', ->
   describe "deleteFlow", ->
     describe "when the user confirms the delete", ->
       beforeEach ->
-        @fakeWindow.confirm.returns = true
 
       it "should call delete flow on the flow service", ->
         flow1 = flowId: "flowEyeD"
         @scope.deleteFlow flow1
+        @scope.$digest()
         expect(@fakeFlowService.deleteFlow).to.have.been.calledWith "flowEyeD"
 
     describe "when the use does not confirm the delete", ->
@@ -245,3 +247,7 @@ describe 'FlowController', ->
     mydevices: =>
     message: =>
     subscribe: =>
+
+  class FakeNotifyService
+    constructor: (@q) ->
+      @confirm = sinon.stub().returns @q.when()
