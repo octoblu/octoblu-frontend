@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -156,13 +156,15 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
-    deleteCookie();
-    var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
-    if (deleteFlowConfirmed) {
+    NotifyService.confirm({
+      title: 'Delete Flow',
+      content: 'Are you sure you want to delete ' + flow.name + '?'
+    }).then(function(){
+      deleteCookie();
       FlowService.deleteFlow(flow.flowId).then(function(){
         $state.go('material.design');
       });
-    }
+    });
   };
 
   $scope.copySelection = function (e) {
