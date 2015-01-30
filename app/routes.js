@@ -186,7 +186,7 @@ module.exports = function(app, passport) {
     var referrer = require('./controllers/middleware/referrer.js');
 
     conn.on('notReady', function(data){
-        console.log('SkyNet authentication: failed');
+        console.log('SkyNet authentication: failed', data);
     });
 
     conn.on('error', function(error){
