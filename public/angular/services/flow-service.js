@@ -34,21 +34,29 @@ angular.module('octobluApp')
     activeFlow = flow;
   };
 
-  self.start = function(){
-    if(!activeFlow){return;}
-    var currentUser;
+  self.start = function(flow){
+    if(!flow && !activeFlow) return;
+    if(!flow){
+      flow = activeFlow;
+    }
 
-    $http.post("/api/flows/" + activeFlow.flowId + '/instance');
+    $http.post("/api/flows/" + flow.flowId + '/instance');
   };
 
-  self.stop = function(){
-    if(!activeFlow){return;}
-    return $http.delete("/api/flows/" + activeFlow.flowId + '/instance');
+  self.stop = function(flow){
+    if(!flow && !activeFlow) return;
+    if(!flow){
+      flow = activeFlow;
+    }
+    return $http.delete("/api/flows/" + flow.flowId + '/instance');
   };
 
-  self.restart = function(){
-    if(!activeFlow){return;}
-    return $http.put('/api/flows/' + activeFlow.flowId + '/instance');
+  self.restart = function(flow){
+    if(!flow && !activeFlow) return;
+    if(!flow){
+      flow = activeFlow;
+    }
+    return $http.put('/api/flows/' + flow.flowId + '/instance');
   };
 
   self.processFlows = function(flows){

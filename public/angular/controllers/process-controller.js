@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('ProcessController', function ($scope, $interval, ProcessNodeService) {
+.controller('ProcessController', function ($scope, $interval, ProcessNodeService, FlowService) {
 
   $scope.sortProcesses = 'name';
   $scope.sortAscending = true;
@@ -12,13 +12,23 @@ angular.module('octobluApp')
     $scope.processNodes = processNodes;
   });
 
-  $scope.stopProcess = function(processNodeUuid){
-    ProcessNodeService.stopProcess(processNodeUuid);
+  $scope.startProcess = function(node){
+    if(node.type === 'octoblu:flow'){
+      FlowService.start({ flowId : node.uuid })
+      return;
+    }
+    ProcessNodeService.startProcess(node);
   };
 
-  $scope.startProcess = function(processNodeUuid){
-    ProcessNodeService.startProcess(processNodeUuid);
+  $scope.stopProcess = function(node){
+    if(node.type === 'octoblu:flow'){
+      FlowService.stop({ flowId : node.uuid })
+      return;
+    }
+    ProcessNodeService.stopProcess(node);
   };
+
+  
 
   $scope.getUptime = function(online, onlineSince){
     if(!online || !onlineSince){

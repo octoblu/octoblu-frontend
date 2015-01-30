@@ -5,7 +5,12 @@ describe 'ProcessController', ->
         @processNodesDefer = @q.defer()
         @getProcessNodes = sinon.stub().returns @processNodesDefer.promise
         @stopProcess = sinon.stub().returns @q.when()
-        @startProcess = sinon.stub().returns @q.when()
+        @startProcess = sinon.stub().returns @q.when()  
+
+    class FakeFlowService
+      constructor: ->
+        @start = sinon.spy()
+        @stop = sinon.spy()
 
     module 'octobluApp'
 
@@ -13,10 +18,12 @@ describe 'ProcessController', ->
       @q = $q
       @scope = $rootScope.$new()
       @fakeProcessNodeService = new FakeProcessNodeService @q
+      @fakeFlowService = new FakeFlowService @q
       
       @sut = $controller('ProcessController', {
         $scope : @scope
         ProcessNodeService : @fakeProcessNodeService,
+        FlowService  : @fakeFlowService,
       })
 
   describe "when the user has no configured nodes available", =>
@@ -35,33 +42,50 @@ describe 'ProcessController', ->
     it "should set processNodes to a populated array", =>
       expect(@scope.processNodes).to.deep.equal [1,2,3]
 
+
   describe "stopProcess", => 
     it "should exist", => 
-      expect(@scope.stopProcess).to.exist
-    it "should call ProcessNodeService.stopProcess", =>
-      @scope.stopProcess()
-      @scope.$digest()
-      expect(@fakeProcessNodeService.stopProcess).to.have.been.called
+        expect(@scope.stopProcess).to.exist
 
-    it "should call ProcessNodeService.stopProcess with a process node", =>
-      fakeProcessNode = {uuid : "12345", token: "45678"}
-      @scope.stopProcess(fakeProcessNode)
-      @scope.$digest()
-      expect(@fakeProcessNodeService.stopProcess).to.have.been.calledWith(fakeProcessNode)
+    describe 'when called with a device', =>
+      beforeEach =>
+        @fakeProcessNode = {type: 'device', uuid : "12345", token: "45678"}
+        @scope.stopProcess(@fakeProcessNode)
+        @scope.$digest()
+
+      it 'should call ProcessNodeService with a device', =>
+        expect(@fakeProcessNodeService.stopProcess).to.have.been.calledWith(@fakeProcessNode)
+
+    describe 'when called with a flow', =>
+      beforeEach =>
+        @fakeProcessNode = {type: 'octoblu:flow', uuid : "12345", token: "45678"}
+        @scope.stopProcess(@fakeProcessNode)
+        @scope.$digest()
+
+      it 'should call FlowService.stop with a flow', =>
+        expect(@fakeFlowService.stop).to.have.been.calledWith({ flowId: @fakeProcessNode.uuid })
 
   describe "startProcess", => 
     it "should exist", => 
-      expect(@scope.startProcess).to.exist
-    it "should call ProcessNodeService.startProcess", =>
-      @scope.startProcess()
-      @scope.$digest()
-      expect(@fakeProcessNodeService.startProcess).to.have.been.called
+        expect(@scope.startProcess).to.exist
 
-    it "should call ProcessNodeService.startProcess with a process node", =>
-      fakeProcessNode = {uuid : "12345", token: "45678"}
-      @scope.startProcess(fakeProcessNode)
-      @scope.$digest()
-      expect(@fakeProcessNodeService.startProcess).to.have.been.calledWith(fakeProcessNode)
+    describe 'when called with a device', =>
+      beforeEach =>
+        @fakeProcessNode = {type: 'device', uuid : "12345", token: "45678"}
+        @scope.startProcess(@fakeProcessNode)
+        @scope.$digest()
+
+      it 'should call ProcessNodeService with a device', =>
+        expect(@fakeProcessNodeService.startProcess).to.have.been.calledWith(@fakeProcessNode)
+
+    describe 'when called with a flow', =>
+      beforeEach =>
+        @fakeProcessNode = {type: 'octoblu:flow', uuid : "12345", token: "45678"}
+        @scope.startProcess(@fakeProcessNode)
+        @scope.$digest()
+
+      it 'should call FlowService.start with a flow', =>
+        expect(@fakeFlowService.start).to.have.been.calledWith({ flowId: @fakeProcessNode.uuid })
 
   describe 'resetMessageCounter', =>
     describe 'updating', =>

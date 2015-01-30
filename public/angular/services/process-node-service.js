@@ -72,16 +72,18 @@ angular.module('octobluApp')
       return skynetService.getSkynetConnection()
     },
 
-    stopProcess: function(processUUID) {
+    sendMessageToDevice: function(uuid, topic){
       this.getSkynetConnection().then(function(skynetConnection){
-        skynetConnection.message(processUUID, null, {topic: 'device-stop'});
+        skynetConnection.message(uuid, null, {topic: topic});
       });
     },
 
-    startProcess: function(processUUID) {
-      this.getSkynetConnection().then(function(skynetConnection){
-        skynetConnection.message(processUUID, null, {topic: 'device-start'});
-      });
+    startProcess: function(node) {
+      this.sendMessageToDevice(node.uuid, 'device-start')
+    },
+
+    stopProcess: function(node) {
+      this.sendMessageToDevice(node.uuid, 'device-stop');
     }
   };
 });

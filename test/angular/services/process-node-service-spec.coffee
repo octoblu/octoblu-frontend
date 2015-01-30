@@ -3,6 +3,7 @@ describe 'ProcessNodeService', ->
   beforeEach =>
     class FakeDeviceService
     class FakeSkynetService
+    class FakeFlowService
     class FakeSkynetConnection extends EventEmitter
       message: sinon.stub()
       subscribe: sinon.stub()
@@ -11,8 +12,11 @@ describe 'ProcessNodeService', ->
       @fakeDeviceService = new FakeDeviceService
       @fakeSkynetService = new FakeSkynetService
       @fakeSkynetConnection = new FakeSkynetConnection
+      @fakeFlowService = new FakeFlowService
       $provide.value 'deviceService', @fakeDeviceService
       $provide.value 'skynetService', @fakeSkynetService
+      $provide.value 'skynetConfig', {}
+      $provide.value 'FlowService', @fakeFlowService
       return
 
     inject (ProcessNodeService, $q, $rootScope, $httpBackend) =>
@@ -151,7 +155,7 @@ describe 'ProcessNodeService', ->
       beforeEach =>
         @uuid = '2d05cbf2-69b2-4c70-89a8-3f515d33693f'
         @options = {topic : 'device-stop'}
-        @sut.stopProcess(@uuid)
+        @sut.stopProcess({ uuid: @uuid })
         @rootScope.$digest()
 
       it 'should get a connection to meshblu', =>
@@ -164,7 +168,7 @@ describe 'ProcessNodeService', ->
       beforeEach =>
         @uuid = 'd995ec6e-4a39-42b9-af0a-178ef76a2433'
         @options = {topic : 'device-stop'}
-        @sut.stopProcess(@uuid)
+        @sut.stopProcess({ uuid: @uuid })
         @rootScope.$digest()
 
       it 'should get a connection to meshblu', =>
