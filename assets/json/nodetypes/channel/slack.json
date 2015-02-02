@@ -1,0 +1,13 @@
+{
+  "_id": "5b1a3256-55a9-4a87-9666-52e4fbb54292",
+  "category": "channel",
+  "description": "Slack",
+  "enabled": true,
+  "name": "Slack",
+  "skynet": {
+    "type": "channel",
+    "subtype": "slack"
+  },
+  "channelid": "54cfca005fc92ac93c601c3f",
+  "type": "channel:slack"
+}

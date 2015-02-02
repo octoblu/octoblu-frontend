@@ -1,26 +1,29 @@
 {
-  "_id": "23823848f8qd93t0342349f49",
+  "_id": "54cfca005fc92ac93c601c3f",
   "__v": 0,
   "type": "channel:slack",
-  "auth_strategy": "slack",
+  "auth_strategy": "oauth",
   "documentation": "https://api.slack.com/methods/channels.archive",
   "name": "Slack",
   "enabled": true,
   "oauth": {
     "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/slack/callback",
+      "tokenMethod": "access_token_query"
     },
     "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/slack/callback",
+      "tokenMethod": "access_token_query"
     },
     "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/slack/callback",
+      "tokenMethod": "access_token_query"
     }
   },
   "application": {
