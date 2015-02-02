@@ -2,12 +2,12 @@
   "_id": "54a6e044721c0cf9b00f98fe",
   "category": "channel",
   "description": "Tesla Model S",
-  "enabled": false,
-  "name": "TeslaModelS",
+  "enabled": true,
+  "name": "tesla",
   "skynet": {
     "type": "channel",
-    "subtype": "TeslaModelS"
+    "subtype": "tesla"
   },
   "channelid": "54aef7242fb43e73e214bb39",
-  "type": "channel:TeslaModelS"
+  "type": "channel:tesla"
 }
