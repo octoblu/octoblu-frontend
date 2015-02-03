@@ -59,7 +59,7 @@
     "eventEmitter": "~4.2.11",
     "moment": "~2.9.0",
     "angular-intercom": "~2.0.4",
-    "angular-chartjs-directive": "~0.0.2"
+    "angular-chart.js": "~0.3.19"
   },
   "devDependencies": {
     "chai": "~1.9.1",

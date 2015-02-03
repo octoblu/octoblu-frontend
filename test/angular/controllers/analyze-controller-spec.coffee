@@ -5,6 +5,9 @@ describe 'AnalyzeController', ->
         @TopicSummaryDefer = @q.defer()
         @getTopicSummary = sinon.stub().returns @TopicSummaryDefer.promise
 
+        @MessageSummaryDefer = @q.defer()
+        @getMessageSummary = sinon.stub().returns @MessageSummaryDefer.promise
+
     module 'octobluApp'
 
     inject ($controller, $rootScope, $q, GraphColors) =>
@@ -22,45 +25,93 @@ describe 'AnalyzeController', ->
   it 'should exist', =>
     expect(@sut).to.exist
 
-  describe 'when it is initialized', =>
+  describe 'Topic Graph', =>
     it 'should call AnalyzeService.getTopicSummary', =>
       expect(@AnalyzeService.getTopicSummary).to.have.been.called
 
-  describe 'when getTopicSummary\'s promise resolves with no topics', =>
-    beforeEach =>
-      @AnalyzeService.TopicSummaryDefer.resolve {}
-      @rootScope.$digest()
+    describe 'when getTopicSummary\'s promise resolves with no topics', =>
+      beforeEach =>
+        @AnalyzeService.TopicSummaryDefer.resolve []
+        @rootScope.$digest()
 
-    it 'should assign an empty array to topicData', =>
-      expect(@scope.topicData).to.deep.equal {data: []}
+      it 'should assign an empty array to topicData', =>
+        expect(@scope.topicData).to.deep.equal {data: [], labels: [], colors: []}
 
-  describe 'when getTopicSummary\'s promise resolves with 1 topic', =>
-    beforeEach =>
-      @AnalyzeService.TopicSummaryDefer.resolve [ {topic: 'pulse', value:10} ]
-      @rootScope.$digest()
+    describe 'when getTopicSummary\'s promise resolves with 1 topic', =>
+      beforeEach =>
+        @AnalyzeService.TopicSummaryDefer.resolve [ {topic: 'pulse', value:10} ]
+        @rootScope.$digest()
 
-    it 'should assign a non-empty array to topicData', =>
-      expect(@scope.topicData).to.not.deep.equal {data: []}
+      it 'should assign a non-empty array to topicData', =>
+        expect(@scope.topicData).to.not.deep.equal {data: []}
 
-    it 'should add color and highlight information to the topicData array', =>
+      it 'should add color and highlight information to the topicData array', =>
+        expect(@scope.topicData).to.deep.equal { data: [10], labels: ["pulse"], colors: [@GraphColors[0].color] }
 
-      expect(@scope.topicData).to.deep.equal { data: [ _.extend({value: 10, label: "pulse"}, @GraphColors[0]) ]}
+    describe 'when getTopicSummary\'s promise resolves with 1 different topic', =>
+      beforeEach =>
+        @AnalyzeService.TopicSummaryDefer.resolve [{ topic :'kittens', value :-1}]
+        @rootScope.$digest()
 
-  describe 'when getTopicSummary\'s promise resolves with 1 different topic', =>
-    beforeEach =>
-      @AnalyzeService.TopicSummaryDefer.resolve [{ topic :'kittens', value :-1}]
-      @rootScope.$digest()
+      it 'should add color and highlight information to the topicData array', =>
+        expect(@scope.topicData).to.deep.equal { data: [ -1], labels: ["kittens"], colors: [@GraphColors[0].color] }
 
-    it 'should add color and highlight information to the topicData array', =>
-      expect(@scope.topicData).to.deep.equal { data: [ _.extend(value: -1, label: "kittens", @GraphColors[0]) ]}
+    describe 'when getTopicSummary\'s promise resolves with 2 topics', =>
+      beforeEach =>
+        @AnalyzeService.TopicSummaryDefer.resolve [{topic: 'kittens', value:-1}, {topic: 'mittens', value: 6}]
+        @rootScope.$digest()
 
-  describe 'when getTopicSummary\'s promise resolves with 2 topics', =>
-    beforeEach =>
-      @AnalyzeService.TopicSummaryDefer.resolve [{topic: 'kittens', value:-1}, {topic: 'mittens', value: 6}]
-      @rootScope.$digest()
+      it 'should add color and highlight information to the topicData array', =>
+        expect(@scope.topicData).to.deep.equal {
+          data: [ 6, -1]
+          labels: [ "mittens", "kittens"]
+          colors: [@GraphColors[0].color, @GraphColors[1].color]
+        }
 
-    it 'should add color and highlight information to the topicData array', =>
-      expect(@scope.topicData).to.deep.equal { data: [
-        _.extend({value: 6, label: "mittens" }, @GraphColors[0])
-        _.extend({ value: -1, label: "kittens" }, @GraphColors[1])
-      ]}
+  describe 'Message Graph', =>
+    it 'should call AnalyzeService.getMessageSummary', =>
+      expect(@AnalyzeService.getMessageSummary).to.have.been.called
+
+    describe 'when getMessageSummary\'s promise resolves with no messages', =>
+      beforeEach =>
+        @AnalyzeService.MessageSummaryDefer.resolve []
+        @rootScope.$digest()
+      it 'should assign an empty configuration object to messageData', =>
+        expect(@scope.messageData).to.deep.equal {
+          labels: []
+          series: ["Received", "Sent"]
+          data: [[], []]
+        }
+
+    describe 'when getMessageSummary\'s promise resolves with a devices', =>
+      beforeEach =>
+        @AnalyzeService.MessageSummaryDefer.resolve [{uuid:'uuid123',sent:-1,received:9000}]
+        @rootScope.$digest()
+      it 'should assign a result configuration object to messageData', =>
+        expect(@scope.messageData).to.deep.equal {
+          labels: ['uuid123']
+          series: ["Received", "Sent"]
+          data: [ [9000], [-1] ]
+        }
+
+    describe 'when getMessageSummary\'s promise resolves with 2 devices', =>
+      beforeEach =>
+        @AnalyzeService.MessageSummaryDefer.resolve [
+          {
+            uuid:'uuid123',
+            sent:-1,
+            received:9000
+          },
+          {
+            uuid:'uuid456',
+            sent: 4600,
+            received:4600
+          }
+        ]
+        @rootScope.$digest()
+      it 'should assign a result configuration object to messageData', =>
+        expect(@scope.messageData).to.deep.equal {
+          labels: ['uuid456', 'uuid123']
+          series: ["Received", "Sent"]
+          data: [ [4600, 9000], [4600, -1] ]
+        }

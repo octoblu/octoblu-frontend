@@ -16,14 +16,15 @@
                 <h2 class="md-toolbar-tools">Topics</h2>
             </md-toolbar>
             <md-card-content>
-                <div class="graph-container" flex layout-gt-md="row" layout-md="column" layout-align="center">
-                    <chart value="topicData" type="Pie"></chart>
-                    <ul class="legend">
-                        <li layout="row" ng-repeat="topic in topicData.data">
-                            <div class="legend-swatch" ng-style="{'background-color': topic.color}">&nbsp;</div> <span>{{topic.label}}</span>
-                        </li>
-                    </ul>
-                </div>
+                <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-toolbar>
+                <h2 class="md-toolbar-tools">Messages/Time</h2>
+            </md-toolbar>
+            <md-card-content>
+              <canvas class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
             </md-card-content>
         </md-card>
     </md-content>

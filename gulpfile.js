@@ -16,7 +16,7 @@ gulp.task('bower', function() {
 });
 
 gulp.task('bower:concat', ['bower'], function(){
-  return gulp.src(mainBowerFiles({filter: /\.js/}))
+  return gulp.src(mainBowerFiles({filter: /\.js$/}))
     .pipe(plumber())
     .pipe(sourcemaps.init())
       .pipe(concat('dependencies.js'))
