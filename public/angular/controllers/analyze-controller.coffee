@@ -21,7 +21,7 @@ angular.module 'octobluApp'
         return -(message.received + message.sent)
 
       $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
-        return label.slice(0,4) + "..." + label.slice(-4) if label.length > 8
+        return label.slice(0,4) + "..." + label.slice(-4) if label.length > 11
         label
 
       $scope.messageData.data = [
