@@ -76,6 +76,7 @@
     "passport-redbooth": "~1.0.0",
     "passport-rightsignature": "^0.1.0",
     "passport-sharefile": "^1.0.0",
+    "passport-slack": "0.0.1",
     "passport-smartsheet": "~1.0.1",
     "passport-spotify": "~0.1.0",
     "passport-stackexchange": "~0.1.0",

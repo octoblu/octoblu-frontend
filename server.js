@@ -78,6 +78,7 @@ passport.use(require('./config/redbooth'));
 passport.use(require('./config/rightsignature'));
 passport.use(require('./config/salesforce'));
 passport.use(require('./config/sharefile'));
+passport.use(require('./config/slack'));
 passport.use(require('./config/smartsheet'));
 passport.use(require('./config/spotify'));
 passport.use(require('./config/survey-monkey'));
