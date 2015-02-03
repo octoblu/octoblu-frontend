@@ -9,24 +9,20 @@
   </h2>
 </md-toolbar>
 <div flex layout-fill layout="row" layout-align="center">
-  <div flex-gt-md="66" flex-md="95" layout-fill layout="column" class="md-whiteframe-z2">
     <md-content flex layout-fill>
-        <md-card>
-            <md-toolbar>
-                <h2 class="md-toolbar-tools">Topics</h2>
-            </md-toolbar>
-            <md-card-content>
-                <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
-            </md-card-content>
-        </md-card>
-        <md-card>
-            <md-toolbar>
-                <h2 class="md-toolbar-tools">Messages/Time</h2>
-            </md-toolbar>
-            <md-card-content>
+        <div flex layout-lg="column" layout-gt-lg="row" layout-align="space-around">
+          <div class="analyze-card md-whiteframe-z2" flex>
+              <md-toolbar>
+                  <h2 class="md-toolbar-tools">Topics</h2>
+              </md-toolbar>
+              <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
+          </div>
+          <div class="analyze-card md-whiteframe-z2" flex>
+              <md-toolbar>
+                  <h2 class="md-toolbar-tools">Messages/Time</h2>
+              </md-toolbar>
               <canvas class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
-            </md-card-content>
-        </md-card>
+          </div>
+        </div>
     </md-content>
-  </div>
 </div>

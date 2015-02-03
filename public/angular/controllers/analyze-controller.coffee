@@ -20,7 +20,10 @@ angular.module 'octobluApp'
       messageSummary = _.sortBy messageSummary, (message) =>
         return -(message.received + message.sent)
 
-      $scope.messageData.labels = _.pluck messageSummary, 'uuid'
+      $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
+        return label.slice(0,4) + "..." + label.slice(-4) if label.length > 8
+        label
+
       $scope.messageData.data = [
         _.pluck messageSummary, 'received'
         _.pluck messageSummary, 'sent'
