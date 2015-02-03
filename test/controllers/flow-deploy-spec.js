@@ -9,10 +9,13 @@ describe('flowDeployController', function () {
   });
 
   describe('startInstance', function () {
-    var sut, res, db, Flow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
+    var sut, res, db, FakeFlow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
 
     beforeEach(function () {
-      Flow = require('../../app/models/flow');
+      FakeFlow = {
+        getFlow: function(){},
+        updateByFlowIdAndUser: function(){}
+      };
       FakeFlowDeploy = {
         start: sinon.spy()
       };
@@ -21,14 +24,14 @@ describe('flowDeployController', function () {
     });
 
     beforeEach(function () {
-      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, meshblu: fakeMeshblu});
+      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, meshblu: fakeMeshblu, Flow : FakeFlow });
       res = new FakeResponse();
     });
 
     describe('with a flow owned by the user', function () {
       var stub;
       beforeEach(function () {
-        stub = sinon.stub(Flow, 'getFlow', function(){
+        stub = sinon.stub(FakeFlow, 'getFlow', function(){
           return {
             then: function(resolve) {
               return resolve({flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}});
@@ -38,7 +41,7 @@ describe('flowDeployController', function () {
       });
 
       afterEach(function(){
-        Flow.getFlow.restore();
+        FakeFlow.getFlow.restore();
       });
 
       describe('an authorized request', function () {
