@@ -42,6 +42,9 @@ angular.module('octobluApp')
 
         var service = {
             addOrUpdateDevice: function(device){
+                if (device.type === 'octoblu:flow') {
+                    return;
+                }
                 subscribeToDevice(device);
                 var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
                 if(existingDevice) {
