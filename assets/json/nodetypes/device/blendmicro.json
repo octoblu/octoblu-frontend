@@ -1,0 +1,14 @@
+{
+  "_id": "54d29faa06ad003ecedd484f",
+  "category": "microblu",
+  "description": "Blend Micro BLE microcontroller",
+  "enabled": true,
+  "name": "Blend Micro",
+  "payloadOnly": true,
+  "skynet": {
+    "type": "device",
+    "subtype": "arduino"
+  },
+  "type": "device:blendmicro",
+  "connector": "meshblu-oculus"
+}
