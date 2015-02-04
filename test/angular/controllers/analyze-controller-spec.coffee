@@ -85,11 +85,11 @@ describe 'AnalyzeController', ->
 
     describe 'when getMessageSummary\'s promise resolves with a devices', =>
       beforeEach =>
-        @AnalyzeService.MessageSummaryDefer.resolve [{uuid:'uuid123',sent:-1,received:9000}]
+        @AnalyzeService.MessageSummaryDefer.resolve [{uuid:'9dc74eac-9007-4442-89f0-7ce276c7e978',sent:-1,received:9000}]
         @rootScope.$digest()
       it 'should assign a result configuration object to messageData', =>
         expect(@scope.messageData).to.deep.equal {
-          labels: ['uuid123']
+          labels: ['9dc7...e978']
           series: ["Received", "Sent"]
           data: [ [9000], [-1] ]
         }
@@ -109,6 +109,7 @@ describe 'AnalyzeController', ->
           }
         ]
         @rootScope.$digest()
+
       it 'should assign a result configuration object to messageData', =>
         expect(@scope.messageData).to.deep.equal {
           labels: ['uuid456', 'uuid123']

@@ -6,7 +6,7 @@ var FlowDeploy = function (options) {
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
   meshblu = options.meshblu;
   _ = require('lodash');
-  Flow = require('../models/flow');
+  Flow = options.Flow || require('../models/flow');
 
   self.startInstance = function (req, res) {
     self.runOnInstance(req, FlowDeploy.start, true);

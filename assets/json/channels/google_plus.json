@@ -23,7 +23,7 @@
       "tokenMethod"  : "access_token_query"
     }
   },
-  "enabled" : false,
+  "enabled" : true,
   "application" : {
     "base" : "https://www.googleapis.com/plus/v1",
     "resources" : [ ]

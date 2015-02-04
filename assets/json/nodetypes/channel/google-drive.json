@@ -6,7 +6,7 @@
   "name": "Google Drive",
   "skynet": {
     "type": "channel",
-    "subtype": "GoogleDrive"
+    "subtype": "google-drive"
   },
   "channelid": "5333aefee5c02952f1c33089",
   "type": "channel:google-drive"

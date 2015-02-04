@@ -3,6 +3,7 @@
   "name" : "Adsense Management",
   "type" : "channel:google-adsense-management",
   "auth_strategy" : "oauth",
+  "enabled": false,
   "application": {
     "base": "https://www.googleapis.com/adsense/v1.4",
     "resources": [
