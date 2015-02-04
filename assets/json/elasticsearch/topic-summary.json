@@ -1,0 +1,25 @@
+{
+  "aggs": {
+    "topic_summary": {
+      "filter": {
+        "and": [
+          {
+            "term": {
+              "@fields.eventCode": 300
+            }
+          },
+          {
+            "or": []
+          }
+        ]
+      },
+      "aggs": {
+        "topics": {
+          "terms": {
+            "field": "@fields.topic.raw"
+          }
+        }
+      }
+    }
+  }
+}

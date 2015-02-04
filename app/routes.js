@@ -96,6 +96,9 @@ module.exports = function(app, passport) {
     var ShareFileController = require('./controllers/sharefile-controller');
     var shareFileController = new ShareFileController();
 
+    var TopicSummaryController = require('./controllers/topic-summary-controller');
+    var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -397,6 +400,7 @@ module.exports = function(app, passport) {
             app.post('/api/templates/:id/flows', templateController.importTemplate);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
             app.get('/api/users/:uuid/templates', templateController.withUserUUID);
+            app.get('/api/topics/summary', topicSummaryController.show);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);

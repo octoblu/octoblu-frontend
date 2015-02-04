@@ -11,10 +11,14 @@ var DeviceCollection = function (userUUID) {
   var User = require('../models/user');
 
   self.fetch = function () {
+    return self.fetchAll().then(function(devices){
+      return _.reject(devices, {type: 'octoblu:flow'});
+    });
+  };
+
+  self.fetchAll = function(){
     return self.getUser(userUUID).then(function (user) {
-      return self.getDevicesByOwner(user).then(function(devices){
-        return _.reject(devices, {type: 'octoblu:flow'});
-      });
+      return self.getDevicesByOwner(user);
     });
   };
 
