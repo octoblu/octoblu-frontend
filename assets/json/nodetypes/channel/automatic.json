@@ -1,0 +1,13 @@
+{
+  "_id": "cc4448af94b97ca266b76f63",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Automatic",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Automatic"
+  },
+  "channelid": "a1374caca54610a9f1b64db5",
+  "type": "channel:automatic"
+}

@@ -1,20 +1,29 @@
 {
-  "_id": "53e11cd28e3257fb7d6fdad0",
+  "_id": "a1374caca54610a9f1b64db5",
   "type": "channel:automatic",
-  "auth_strategy": "automatic",
+  "auth_strategy": "oauth",
   "documentation": "https://developer.automatic.com/documentation/#user",
   "name": "Automatic",
-  "enabled": true,
+  "enabled": false,
   "oauth": {
-    "version": "1.0",
-    "key": "INSERT_SECERT_HERE",
-    "secret": "INSERT_SECERT_HERE",
-    "accessTokenURL": "https://www.automatic.com/oauth/access_token",
-    "requestTokenURL": "https://www.automatic.com/oauth/request_token",
-    "authTokenURL": "https://www.automatic.com/oauth/authorize",
-    "tokenMethod": "oauth_signed",
-    "scope": "scope:trip:summary scope:location scope:vehicle scope:notification:hard_accel scope:notification:hard_brake scope:notification:speeding",
-    "is0LegAuth": false
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/automatic/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/automatic/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/automatic/callback",
+      "tokenMethod": "access_token_bearer"
+    }
   },
   "application": {
     "base": "https://api.automatic.com/v1",

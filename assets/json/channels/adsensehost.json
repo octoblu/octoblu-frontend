@@ -706,7 +706,7 @@
     ]
   },
 	 "oauth" : {
-	  "development" : {
+	  "production" : {
 	    "tokenMethod" : "access_token_query"
 	  },
 	  "staging" : {
