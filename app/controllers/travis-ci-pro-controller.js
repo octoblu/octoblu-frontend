@@ -13,7 +13,7 @@ function authenticate(token){
           'User-Agent': 'Octoblu/1.0.0',
           'Accept': 'application/vnd.travis-ci.2+json'
         },
-        url: 'https://api.travis-ci.org/auth/github'
+        url: 'https://api.travis-ci.com/auth/github'
       }, function(err, httpResponse, body) {
         if(err){
           return reject(err)
@@ -26,12 +26,12 @@ function authenticate(token){
   });
 }
 
-var TravisCIController = function(){
+var TravisCIProController = function(){
   this.authorize = function(req, res, next){
     var channel = User.findApiByChannelType(req.user.api, 'channel:github');
     authenticate(channel.token)
       .then(function(accessToken){
-        User.addApiAuthorization(req.user, 'channel:travis-ci', {authtype: 'oauth', token: accessToken})
+        User.addApiAuthorization(req.user, 'channel:travis-ci-pro', {authtype: 'oauth', token: accessToken})
           .then(function () {
             next(null, req.user);
           }).catch(function(error){
@@ -44,4 +44,4 @@ var TravisCIController = function(){
   };
 };
 
-module.exports = TravisCIController;
+module.exports = TravisCIProController;

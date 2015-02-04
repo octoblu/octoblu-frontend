@@ -3,7 +3,7 @@
   "category": "channel",
   "description": "",
   "enabled": true,
-  "name": "Travis CI",
+  "name": "Travis CI (Open Source)",
   "skynet": {
     "type": "channel",
     "subtype": "travis-ci"

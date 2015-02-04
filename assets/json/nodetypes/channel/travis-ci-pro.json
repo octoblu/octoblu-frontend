@@ -1,0 +1,13 @@
+{
+  "_id": "98724f16899f658cb4f62f8a",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Travis CI Pro",
+  "skynet": {
+    "type": "channel",
+    "subtype": "travis-ci-pro"
+  },
+  "channelid": "e84540d282cd7217107e2208",
+  "type": "channel:travis-ci-pro"
+}

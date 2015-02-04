@@ -153,6 +153,9 @@ module.exports = function(app, passport) {
     var TravisCIController = require('./controllers/travis-ci-controller');
     var travisCIController = new TravisCIController();
 
+    var TravisCIProController = require('./controllers/travis-ci-pro-controller');
+    var travisCIProController = new TravisCIProController();
+
     var XeroController = require('./controllers/xero-controller');
     var xeroController = new XeroController();
 
@@ -399,6 +402,7 @@ module.exports = function(app, passport) {
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
             app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
             app.get('/api/travis-ci/auth', travisCIController.authorize, travisCIController.redirectToDesigner);
+            app.get('/api/travis-ci-pro/auth', travisCIProController.authorize, travisCIProController.redirectToDesigner);
             app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);

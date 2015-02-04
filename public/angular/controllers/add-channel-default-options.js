@@ -19,6 +19,7 @@ angular.module('octobluApp')
     'apikey'                 : 'material.nodewizard.addchannel.apikey',
     'tesla'                  : 'material.nodewizard.addchannel.tesla',
     'travis-ci'              : 'material.nodewizard.addchannel.travis-ci',
+    'travis-ci-pro'          : 'material.nodewizard.addchannel.travis-ci-pro',
     'wink'                  : 'material.nodewizard.addchannel.wink',
   };
 
