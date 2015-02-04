@@ -52,6 +52,7 @@ octobluDB.createConnection(databaseOptions);
 
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/app-net'));
+passport.use(require('./config/automatic'));
 passport.use(require('./config/bitly'));
 passport.use(require('./config/box'));
 passport.use(require('./config/dropbox'));

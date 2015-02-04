@@ -39,7 +39,7 @@ describe 'AnalyzeController', ->
 
     describe 'when getTopicSummary\'s promise resolves with 1 topic', =>
       beforeEach =>
-        @AnalyzeService.TopicSummaryDefer.resolve [ {topic: 'pulse', value:10} ]
+        @AnalyzeService.TopicSummaryDefer.resolve [ {topic: 'pulse', count:10} ]
         @rootScope.$digest()
 
       it 'should assign a non-empty array to topicData', =>
@@ -50,7 +50,7 @@ describe 'AnalyzeController', ->
 
     describe 'when getTopicSummary\'s promise resolves with 1 different topic', =>
       beforeEach =>
-        @AnalyzeService.TopicSummaryDefer.resolve [{ topic :'kittens', value :-1}]
+        @AnalyzeService.TopicSummaryDefer.resolve [{ topic :'kittens', count :-1}]
         @rootScope.$digest()
 
       it 'should add color and highlight information to the topicData array', =>
@@ -58,7 +58,7 @@ describe 'AnalyzeController', ->
 
     describe 'when getTopicSummary\'s promise resolves with 2 topics', =>
       beforeEach =>
-        @AnalyzeService.TopicSummaryDefer.resolve [{topic: 'kittens', value:-1}, {topic: 'mittens', value: 6}]
+        @AnalyzeService.TopicSummaryDefer.resolve [{topic: 'kittens', count:-1}, {topic: 'mittens', count: 6}]
         @rootScope.$digest()
 
       it 'should add color and highlight information to the topicData array', =>

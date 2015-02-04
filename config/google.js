@@ -55,6 +55,7 @@ var googleStrategy = new GoogleStrategy(CONFIG,
       User.addApiAuthorization(user, 'channel:google-plus', {authtype: 'oauth', token: token }),
       User.addApiAuthorization(user, 'channel:youtube', {authtype: 'oauth', token: token }),
       User.addApiAuthorization(user, 'channel:doubleclicksearch', {authtype: 'oauth', token: token }),
+      User.addApiAuthorization(user, 'channel:google-places', {authtype: 'oauth', token: token }),
     ]).then(function(){
       return User.findOne({_id: user._id});
     }).then(function(user){

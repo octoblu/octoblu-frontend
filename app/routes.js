@@ -96,6 +96,9 @@ module.exports = function(app, passport) {
     var ShareFileController = require('./controllers/sharefile-controller');
     var shareFileController = new ShareFileController();
 
+    var TopicSummaryController = require('./controllers/topic-summary-controller');
+    var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -125,6 +128,9 @@ module.exports = function(app, passport) {
 
     var SpotifyController = require('./controllers/spotify-controller');
     var spotifyController = new SpotifyController();
+
+    var AutomaticController = require('./controllers/automatic-controller');
+    var automaticController = new AutomaticController();
 
     var JawboneController = require('./controllers/jawbone-controller');
     var jawboneController = new JawboneController();
@@ -262,6 +268,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/app.net',          appNetController.authorize);
             app.get('/api/oauth/app.net/callback', appNetController.callback, appNetController.redirectToDesigner);
 
+            app.get('/api/oauth/automatic',          automaticController.authorize);
+            app.get('/api/oauth/automatic/callback', automaticController.callback, automaticController.redirectToDesigner);
+
             app.get('/api/oauth/bitly',          bitlyController.authorize);
             app.get('/api/oauth/bitly/callback', bitlyController.callback, bitlyController.redirectToDesigner);
 
@@ -376,7 +385,6 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/uber',          uberController.authorize);
             app.get('/api/oauth/uber/callback', uberController.callback, uberController.redirectToDesigner);
 
-
             app.get('/api/oauth/withings',          withingsController.authorize);
             app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
 
@@ -401,6 +409,7 @@ module.exports = function(app, passport) {
             app.post('/api/templates/:id/flows', templateController.importTemplate);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
             app.get('/api/users/:uuid/templates', templateController.withUserUUID);
+            app.get('/api/topics/summary', topicSummaryController.show);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);
