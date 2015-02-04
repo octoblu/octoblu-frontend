@@ -1,27 +1,10 @@
 {
-  "_id": "92385jhds8234r82349ur390979023",
+  "_id": "e6254608a7797fdea27e9fd5",
   "type": "channel:travis-ci",
   "auth_strategy": "travis-ci",
   "documentation": "http://docs.travis-ci.com/api/#entities",
   "name": "Travis-CI",
   "enabled": true,
-  "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
-    },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
-    },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "tokenMethod": ""
-    }
-  },
   "application": {
     "base": "api.travis-ci.org",
     "resources": [

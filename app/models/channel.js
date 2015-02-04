@@ -50,6 +50,7 @@ var Channel = {
 
   syncFindOauthConfigByType: function(type) {
     var channel = Channel.syncFindByType(type);
+    channel.oauth = channel.oauth || {};
     return channel.oauth[process.env.NODE_ENV] || channel.oauth.development;
   },
 

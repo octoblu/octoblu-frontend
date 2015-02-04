@@ -1,0 +1,13 @@
+{
+  "_id": "518848988ddcbc59718772e7",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Travis CI",
+  "skynet": {
+    "type": "channel",
+    "subtype": "travis-ci"
+  },
+  "channelid": "e6254608a7797fdea27e9fd5",
+  "type": "channel:travis-ci"
+}

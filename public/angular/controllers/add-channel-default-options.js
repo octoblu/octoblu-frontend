@@ -18,6 +18,7 @@ angular.module('octobluApp')
     'apikey-dummypass-basic' : 'material.nodewizard.addchannel.apikey-dummypass-basic',
     'apikey'                 : 'material.nodewizard.addchannel.apikey',
     'tesla'                  : 'material.nodewizard.addchannel.tesla',
+    'travis-ci'              : 'material.nodewizard.addchannel.travis-ci',
     'wink'                  : 'material.nodewizard.addchannel.wink',
   };
 

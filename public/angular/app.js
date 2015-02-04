@@ -239,6 +239,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelTeslaController',
         templateUrl: '/pages/node-wizard/add-channel/tesla.html'
       })
+      .state('material.nodewizard.addchannel.travis-ci', {
+        url: '/travis-ci',
+        controller: 'addChannelTravisCIController',
+        templateUrl: '/pages/node-wizard/add-channel/travis-ci.html'
+      })
       .state('material.nodewizard.addchannel.wink', {
         url: '/wink',
         controller: 'addChannelWinkController',

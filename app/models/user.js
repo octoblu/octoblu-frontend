@@ -113,13 +113,20 @@ function UserModel() {
     },
 
     findApiByChannel : function(apis, channel){
+      if (_.isString(channel.type)) {
+        return this.findApiByChannelType(apis, channel.type);
+      }
       return _.findWhere(apis, function(api){
         var channelid = api.channelid;
         if(channelid && !_.isString(channelid)){
           channelid = channelid.toString();
         }
-        return channel.type === api.type || channel._id === channelid;
+        return channel._id === channelid;
       });
+    },
+
+    findApiByChannelType : function(apis, type) {
+      return _.findWhere(apis, {type: type});
     },
 
     overwriteOrAddApi : function(user, channel, options){
