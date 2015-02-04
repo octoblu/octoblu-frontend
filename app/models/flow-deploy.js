@@ -92,6 +92,10 @@ var FlowDeploy = function(options){
           userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
           userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
         }
+        channel = Channel.syncFindByType(userApiMatch.type);
+        if (channel && channel.overrides) {
+          node.headerParams = _.extend(node.headerParams || {}, channel.overrides.headerParams || {});
+        }
         node.apikey = userApiMatch.apikey;
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
