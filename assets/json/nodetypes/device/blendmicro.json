@@ -10,5 +10,5 @@
     "subtype": "arduino"
   },
   "type": "device:blendmicro",
-  "connector": "meshblu-oculus"
+  "connector": "meshblu-blendmicro"
 }
