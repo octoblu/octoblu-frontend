@@ -10,7 +10,7 @@ class TopicSummaryController
       .then (result) =>
         response.send result
       .catch (error) =>
-        response.send 500, error
+        response.send 500, error: error.message
         airbrake.notify error
 
 
