@@ -13,12 +13,14 @@ class TopicSummary
     @deviceCollection.fetchAll().then (devices) =>
       uuids = _.pluck devices, 'uuid'
       When.promise (resolve, reject) =>
-        @request @requestParams(uuids), (error, response, body) =>
+        params = @requestParams uuids
+        @request params, (error, response, body) =>
           return reject error if error?
           unless response.statusCode == 200
             error = new Error('elasticsearch error')
-            error.statusCode = response.statusCode
-            error.body       = response.body
+            error.statusCode    = response.statusCode
+            error.body          = response.body
+            error.requestParams = params
             return reject error
           resolve @parseResponse body
 
