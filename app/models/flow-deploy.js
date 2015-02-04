@@ -72,6 +72,9 @@ var FlowDeploy = function(options){
             tokenMethod: channelApiMatch.auth_strategy
           };
         }
+        if (channelApiMatch.overrides) {
+          node.headerParams = _.extend(node.headerParams || {}, channelApiMatch.overrides.headerParams || {});
+        }
         var channelOauth = channelApiMatch.oauth[process.env.NODE_ENV] || channelApiMatch.oauth;
         node.application = {base: channelApiMatch.application.base};
         node.bodyFormat = channelApiMatch.bodyFormat;
@@ -84,17 +87,14 @@ var FlowDeploy = function(options){
         node.authHeaderKey = channelApiMatch.auth_header_key;
         // Get User API Match
         userApiMatch = User.findApiByChannel(userApis, channelApiMatch);
-        if (!node.bodyParam)
+        if (!node.bodyParam) {
           node.bodyParam = channelApiMatch.bodyParam;
+        }
       }
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {
           userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
           userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
-        }
-        channel = Channel.syncFindByType(userApiMatch.type);
-        if (channel && channel.overrides) {
-          node.headerParams = _.extend(node.headerParams || {}, channel.overrides.headerParams || {});
         }
         node.apikey = userApiMatch.apikey;
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
