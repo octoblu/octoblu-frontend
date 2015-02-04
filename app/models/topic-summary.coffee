@@ -15,7 +15,11 @@ class TopicSummary
       When.promise (resolve, reject) =>
         @request @requestParams(uuids), (error, response, body) =>
           return reject error if error?
-          return reject new Error('elasticsearch error') unless response.statusCode == 200
+          unless response.statusCode == 200
+            error = new Error('elasticsearch error')
+            error.statusCode = response.statusCode
+            error.body       = response.body
+            return reject error
           resolve @parseResponse body
 
   parseResponse: (response) =>
