@@ -2,7 +2,7 @@
   "_id": "542ee969b3a9540d7c59d5c2",
   "auth_strategy": "aws",
   "documentation": "https://aws.amazon.com/documentation/",
-  "enabled": true,
+  "enabled": false,
   "name": "AWS",
   "type": "channel:aws",
   "application": {
