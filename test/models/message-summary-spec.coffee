@@ -4,7 +4,7 @@ MessageSummary = require '../../app/models/message-summary'
 describe 'MessageSummary', ->
   beforeEach ->
     @DeviceCollection = sinon.stub()
-    @request = sinon.stub().yields null, null, {aggregations: {sent: {buckets: []}, received: {buckets: []}}}
+    @request = sinon.stub().yields null, {statusCode: 200}, {aggregations: {sent: {sent: {buckets: []}}, received: {received: {buckets: []}}}}
     @dependencies = {request: @request, DeviceCollection: @DeviceCollection}
 
   describe 'constructor', ->
@@ -87,7 +87,7 @@ describe 'MessageSummary', ->
         @sut = new MessageSummary null, 'Antman', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When()
         @sut.requestParams = sinon.stub().returns 'dr.freeze' : 1
-        @request.yields null, null, {aggregations: {sent: {buckets: [{key: 'Evil', doc_count: 56}]}, received: {buckets: []}}}
+        @request.yields null, {statusCode: 200}, {aggregations: {sent: {sent: {buckets: [{key: 'Evil', doc_count: 56}]}}, received: {received: {buckets: []}}}}
         @sut.fetch().then (@result) =>
 
       it 'should call request with that data', ->
@@ -106,17 +106,19 @@ describe 'MessageSummary', ->
         response =
           aggregations:
             sent:
-              buckets: [
-                {key: 'Deeds', doc_count: 5},
-                {key: 'promises', doc_count: 5000}
-              ]
+              sent:
+                buckets: [
+                  {key: 'Deeds', doc_count: 5},
+                  {key: 'promises', doc_count: 5000}
+                ]
             received:
-              buckets: [
-                {key: 'Deeds', doc_count: 9},
-                {key: 'promises', doc_count: 400}
-              ]
+              received:
+                buckets: [
+                  {key: 'Deeds', doc_count: 9},
+                  {key: 'promises', doc_count: 400}
+                ]
 
-        @request.yields null, null, response
+        @request.yields null, {statusCode: 200}, response
         @sut.fetch().then (@result) =>
 
       it 'should call request with that data', ->
@@ -141,11 +143,10 @@ describe 'MessageSummary', ->
   describe '->requestParams', ->
     describe 'when it is instantiated with a superhero job search engine url', ->
       beforeEach ->
-        @url = 'http://superjobs.io'
-        @sut = new MessageSummary @url, 'Antman', @dependencies
+        @sut = new MessageSummary 'http://superjobs.io', 'Antman', @dependencies
 
-      it 'should use that search engine', ->
-        expect(@sut.requestParams().url).to.equal @url
+      it 'should use that search engine, with skynet_trans_log/_search added', ->
+        expect(@sut.requestParams().url).to.equal 'http://superjobs.io/skynet_trans_log/_search?search_type=count'
 
       it 'should set the method to "POST"', ->
         expect(@sut.requestParams().method).to.equal 'POST'
@@ -182,10 +183,9 @@ describe 'MessageSummary', ->
 
     describe 'when it is instantiated with a superhero job search engine url', ->
       beforeEach ->
-        @url = 'http://heroes.monster.com'
-        @sut = new MessageSummary @url, 'Antman', @dependencies
+        @sut = new MessageSummary 'http://heroes.monster.com', 'Antman', @dependencies
 
       it 'should use that search engine', ->
-        expect(@sut.requestParams().url).to.equal @url
+        expect(@sut.requestParams().url).to.equal 'http://heroes.monster.com/skynet_trans_log/_search?search_type=count'
 
 

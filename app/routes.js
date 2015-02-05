@@ -84,6 +84,9 @@ module.exports = function(app, passport) {
     var GoToWebinarController = require('./controllers/gotowebinar-controller');
     var goToWebinarController = new GoToWebinarController();
 
+    var MessageSummaryController = require('./controllers/message-summary-controller');
+    var messageSummaryController = new MessageSummaryController(config.elasticSearchUri);
+
     var PaypalController = require('./controllers/paypal-controller');
     var paypalController = new PaypalController();
 
@@ -414,6 +417,7 @@ module.exports = function(app, passport) {
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
             app.get('/api/users/:uuid/templates', templateController.withUserUUID);
             app.get('/api/topics/summary', topicSummaryController.show);
+            app.get('/api/messages/summary', messageSummaryController.show);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);
