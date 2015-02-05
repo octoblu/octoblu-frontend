@@ -1,37 +1,17 @@
 {
-  "_id": "29482949d9gjs8344729v4",
+  "_id": "54d3de524d1462fb04dad0a8",
   "__v": 0,
   "type": "channel:lob",
-  "auth_strategy": "oauth",
+  "auth_strategy": "apikey-basic",
   "documentation": "https://lob.com/docs",
   "name": "Lob",
   "enabled": true,
-  "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    }
-  },
   "application": {
     "base": "https://api.lob.com/v1/addresses",
     "resources": [
       {
         "path": "/jobs",
-        "displayName": "Create A Single Object Job",
+        "displayName": "Create a Single Object Job",
         "doc": {
           "url": "https://api.lob.com/v1/jobs"
         },
@@ -71,7 +51,7 @@
       },
       {
         "path": "/jobs/:JOB_ID",
-        "displayName": "Gets A Job",
+        "displayName": "Gets a Job",
         "doc": {
           "url": "https://api.lob.com/v1/jobs/:JOB_ID"
         },
@@ -95,7 +75,7 @@
       },
       {
         "path": "/jobs",
-        "displayName": "Gets all jobs",
+        "displayName": "Gets all Jobs",
         "doc": {
           "url": "https://api.lob.com/v1/jobs/"
         },
@@ -115,7 +95,7 @@
       },
       {
         "path": "/addresses",
-        "displayName": "Create An Address Object",
+        "displayName": "Create an Address Object",
         "doc": {
           "url": "https://api.lob.com/v1/addresses"
         },
@@ -175,7 +155,7 @@
       },
       {
         "path": "/addresses/:ADDRESS_ID",
-        "displayName": "Gets An Address",
+        "displayName": "Gets an Address",
         "doc": {
           "url": "https://api.lob.com/v1/addresses/:ADDRESS_ID"
         },
@@ -197,7 +177,7 @@
       },
       {
         "path": "/addresses/:ADDRESS_ID",
-        "displayName": "Delete An Address",
+        "displayName": "Delete an Address",
         "doc": {
           "url": "https://api.lob.com/v1/addresses/:ADDRESS_ID"
         },
@@ -213,7 +193,7 @@
       },
       {
         "path": "/addresses/",
-        "displayName": "List All Addresses",
+        "displayName": "List all Addresses",
         "doc": {
           "url": "https://api.lob.com/v1/addresses/"
         },
@@ -233,7 +213,7 @@
       },
       {
         "path": "/objects",
-        "displayName": "Create An Object W/Remote File",
+        "displayName": "Create an Object W/Remote File",
         "doc": {
           "url": "https://api.lob.com/v1/objects"
         },
@@ -280,7 +260,7 @@
       },
       {
         "path": "/objects",
-        "displayName": "Create An Object W/Local File",
+        "displayName": "Create an Object W/Local File",
         "doc": {
           "url": "https://api.lob.com/v1/objects"
         },
@@ -325,7 +305,7 @@
       },
       {
         "path": "/objects/:OBJECT_ID",
-        "displayName": "Gets An Object",
+        "displayName": "Gets an Object",
         "doc": {
           "url": "https://api.lob.com/v1/objects/:OBJECT_ID"
         },
@@ -350,7 +330,7 @@
       },
       {
         "path": "/objects/:OBJECT_ID",
-        "displayName": "Delete An Object",
+        "displayName": "Delete an Object",
         "doc": {
           "url": "https://api.lob.com/v1/objects/:OBJECT_ID"
         },
@@ -369,7 +349,7 @@
       },
       {
         "path": "/objects/",
-        "displayName": "Gets All Objects",
+        "displayName": "Gets all Objects",
         "doc": {
           "url": "https://api.lob.com/v1/objects/"
         },
@@ -392,7 +372,7 @@
       },
       {
         "path": "/settings/:SETTING_ID",
-        "displayName": "Gets A Setting",
+        "displayName": "Gets a Setting",
         "doc": {
           "url": "https://api.lob.com/v1/settings/:SETTING_ID"
         },
@@ -415,7 +395,7 @@
       },
       {
         "path": "/settings",
-        "displayName": "List All Settings",
+        "displayName": "List all Settings",
         "doc": {
           "url": "https://api.lob.com/v1/settings"
         },
@@ -425,7 +405,7 @@
         "url": "https://api.lob.com/v1/settings"
       },{
         "path": "/services",
-        "displayName": "List All Services",
+        "displayName": "List all Services",
         "doc": {
           "url": "https://api.lob.com/v1/services"
         },
@@ -435,7 +415,7 @@
       },
       {
         "path": "/postcards/",
-        "displayName": "Create A Postcard",
+        "displayName": "Create a Postcard",
         "doc": {
           "url": "https://api.lob.com/v1/postcards/"
         },
@@ -497,7 +477,7 @@
       },
       {
         "path": "/postcards/:POSTCARD_ID",
-        "displayName": "Get A Postcard",
+        "displayName": "Get a Postcard",
         "doc": {
           "url": "https://api.lob.com/v1/postcards/:POSTCARD_ID"
         },
@@ -519,7 +499,7 @@
       },
       {
         "path": "/postcards",
-        "displayName": "Gets All Postcards",
+        "displayName": "Gets all Postcards",
         "doc": {
           "url": "https://api.lob.com/v1/postcards"
         },
@@ -539,7 +519,7 @@
       },
       {
         "path": "/checks/",
-        "displayName": "Create A Check",
+        "displayName": "Create a Check",
         "doc": {
           "url": "https://api.lob.com/v1/checks/"
         },
@@ -593,7 +573,7 @@
       },
       {
         "path": "/checks/:CHECK_ID",
-        "displayName": "Gets A Check",
+        "displayName": "Gets a Check",
         "doc": {
           "url": "https://api.lob.com/v1/checks/:CHECK_ID"
         },
@@ -615,7 +595,7 @@
       },
       {
         "path": "/checks",
-        "displayName": "Gets All Checks",
+        "displayName": "Gets all Checks",
         "doc": {
           "url": "https://api.lob.com/v1/checks"
         },
@@ -637,7 +617,7 @@
       },
       {
         "path": "/bank_accounts/",
-        "displayName": "Create A Bank Account",
+        "displayName": "Create a Bank Account",
         "doc": {
           "url": "https://api.lob.com/v1/bank_accounts/"
         },
@@ -677,7 +657,7 @@
       },
       {
         "path": "/bank_accounts/:ACCOUNT_ID",
-        "displayName": "Get A Bank Account",
+        "displayName": "Get a Bank Account",
         "doc": {
           "url": "https://api.lob.com/v1/bank_accounts/:ACCOUNT_ID"
         },
@@ -702,7 +682,7 @@
       },
       {
         "path": "/bank_accounts",
-        "displayName": "Gets All Bank Accounts",
+        "displayName": "Gets all Bank Accounts",
         "doc": {
           "url": "https://api.lob.com/v1/bank_accounts"
         },
@@ -725,7 +705,7 @@
       },
       {
         "path": "/bank_accounts/:BANK_ACCOUNT_ID",
-        "displayName": "Delete A Bank Account",
+        "displayName": "Delete a Bank Account",
         "doc": {
           "url": "https://api.lob.com/v1/bank_accounts/:BANK_ACCOUNT_ID"
         },
@@ -744,7 +724,7 @@
       },
       {
         "path": "/areas/",
-        "displayName": "Create An Area Mailing",
+        "displayName": "Create an Area Mailing",
         "doc": {
           "url": "https://api.lob.com/v1/areas/"
         },
@@ -790,7 +770,7 @@
       },
       {
         "path": "/areas/:AREA_ID",
-        "displayName": "Gets An Area Mailing",
+        "displayName": "Gets an Area Mailing",
         "doc": {
           "url": "https://api.lob.com/areas/:AREA_ID"
         },
@@ -813,7 +793,7 @@
       },
       {
         "path": "/areas",
-        "displayName": "Gets All Area Mailings",
+        "displayName": "Gets all Area Mailings",
         "doc": {
           "url": "https://api.lob.com/v1/areas"
         },
@@ -857,7 +837,7 @@
       },
       {
         "path": "/verify",
-        "displayName": "Verify An Address",
+        "displayName": "Verify an Address",
         "doc": {
           "url": "https://api.lob.com/v1/verify"
         },
@@ -899,7 +879,7 @@
       },
       {
         "path": "/countries/",
-        "displayName": "Gets All Countries",
+        "displayName": "Gets all Countries",
         "doc": {
           "url": "https://api.lob.com/v1/countries/"
         },
@@ -909,7 +889,7 @@
       },
       {
         "path": "/states/",
-        "displayName": "Gets All States",
+        "displayName": "Gets all States",
         "doc": {
           "url": "https://api.lob.com/v1/states/"
         },
