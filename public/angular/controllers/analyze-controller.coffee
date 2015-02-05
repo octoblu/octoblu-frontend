@@ -32,6 +32,8 @@ angular.module 'octobluApp'
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
 
+        messageSummary.length = 7 if messageSummary.length > 7
+
         $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
           return label.slice(0,4) + "..." + label.slice(-4) if label.length > 11
           label
@@ -49,3 +51,8 @@ angular.module 'octobluApp'
       getTopicSummary()
       getMessageSummary()
     , 5000
+
+    $scope.$watch "analyzeSearch", (oldSearch, newSearch) =>
+      return if !newSearch || newSearch.trim().length <= 3
+      AnalyzeService.getMessages(newSearch).then (results) =>
+        $scope.searchResults = results
