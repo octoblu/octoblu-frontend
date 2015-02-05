@@ -66,9 +66,6 @@ angular.module 'octobluApp'
         ]
 
     $scope.$watch "analyzeSearch", (newSearch) =>
-      if !newSearch || newSearch.trim().length <= 3
-        return $scope.searchResults = []
-
       AnalyzeService.getMessages(newSearch).then (results) =>
         $scope.searchResults = results
 
