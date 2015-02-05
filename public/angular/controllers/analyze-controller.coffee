@@ -17,7 +17,10 @@ angular.module 'octobluApp'
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
         $scope.loading = false
-        $scope.topicData = _.map _.sortBy(topics, 'count').reverse(), (data) =>
+        topicsSorted = _.sortBy(topics, 'count').reverse()
+        topicsSorted.length = 7 if topicsSorted.length > 7
+
+        $scope.topicData = _.map topicsSorted, (data) =>
           return _.extend {count: data.count, label: data.topic}, TopicColors.shift()
 
         $scope.topicData = {
@@ -31,7 +34,6 @@ angular.module 'octobluApp'
         $scope.loading = false
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
-
         messageSummary.length = 7 if messageSummary.length > 7
 
         $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
