@@ -12,18 +12,15 @@ describe 'AnalyzeController', ->
 
     inject ($controller, $rootScope, $q, GraphColors) =>
       @q = $q
+      @fakeInterval = sinon.stub()
       @scope = $rootScope.$new()
       @rootScope = $rootScope
       @AnalyzeService = new FakeAnalyzeService @q
       @GraphColors = GraphColors
       @sut = $controller 'AnalyzeController',
         $scope : @scope,
-        AnalyzeService : @AnalyzeService
-
-  beforeEach ->
-
-  it 'should exist', =>
-    expect(@sut).to.exist
+        AnalyzeService : @AnalyzeService,
+        $interval : @fakeInterval
 
   describe 'Topic Graph', =>
     it 'should call AnalyzeService.getTopicSummary', =>
@@ -116,3 +113,13 @@ describe 'AnalyzeController', ->
           series: ["Received", "Sent"]
           data: [ [4600, 9000], [4600, -1] ]
         }
+
+  describe 'update on interval', =>
+    beforeEach =>
+      @rootScope.$digest()
+
+    it 'should call getTopicSummary with a delay', =>
+      expect(@fakeInterval).to.have.been.called
+
+    it 'should call getMessageSummary with a delay', =>
+      expect(@fakeInterval).to.have.been.called.twice
