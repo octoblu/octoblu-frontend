@@ -23,17 +23,23 @@
 <div flex layout-fill layout="row" layout-align="center">
     <md-content flex layout-fill>
         <div flex layout-lg="column" layout-gt-lg="row" layout-align="space-around">
-          <div class="analyze-card md-whiteframe-z2" flex>
+          <div flex class="analyze-card md-whiteframe-z2">
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Topics</h2>
               </md-toolbar>
               <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
+              <div flex ng-if="loading" layout="row" layout-sm="column" layout-align="center center">
+                <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
+              </div>
           </div>
           <div class="analyze-card md-whiteframe-z2" flex>
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Messages/Time</h2>
               </md-toolbar>
               <canvas class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
+              <div flex ng-if="loading" layout="row" layout-sm="column" layout-align="center center">
+                <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
+              </div>
           </div>
         </div>
     </md-content>

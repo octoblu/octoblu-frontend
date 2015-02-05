@@ -6,6 +6,7 @@ angular.module 'octobluApp'
         series: ["Received", "Sent"]
     }
     $scope.updatePeriodically = true
+    $scope.loading = true
 
     $scope.stopUpdating = ->
       $scope.updatePeriodically = false
@@ -15,6 +16,7 @@ angular.module 'octobluApp'
 
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
+        $scope.loading = false
         $scope.topicData = _.map _.sortBy(topics, 'count').reverse(), (data) =>
           return _.extend {count: data.count, label: data.topic}, TopicColors.shift()
 
@@ -26,6 +28,7 @@ angular.module 'octobluApp'
 
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
+        $scope.loading = false
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
 
