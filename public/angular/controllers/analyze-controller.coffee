@@ -16,6 +16,11 @@ angular.module 'octobluApp'
     $scope.startUpdating = ->
       $scope.updatePeriodically = true
 
+    $scope.onClickPieSlice = (el) ->
+      topic = _.first(el)?.label
+      return unless topic?
+      $scope.analyzeSearch = topic
+
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
         $scope.loadingTopicData = false
