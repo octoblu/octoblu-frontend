@@ -12,6 +12,6 @@
   </div>
   <pre>{{message.payload | json}}</pre>
   <div flex layout="row" layout-align="end">
-    {{message.timestamp}}
+    {{message.timestamp | date:'medium'}}
   </div>
 </md-card>
