@@ -20,13 +20,13 @@ angular.module 'octobluApp'
         topicsSorted = _.sortBy(topics, 'count').reverse()
         topicsSorted.length = 7 if topicsSorted.length > 7
 
-        $scope.topicData = _.map topicsSorted, (data) =>
+        topicData = _.map topicsSorted, (data) =>
           return _.extend {count: data.count, label: data.topic}, TopicColors.shift()
 
         $scope.topicData = {
-          data: _.pluck $scope.topicData, 'count'
-          labels: _.pluck $scope.topicData, 'label'
-          colors: _.pluck $scope.topicData, 'color'
+          data: _.pluck topicData, 'count'
+          labels: _.pluck topicData, 'label'
+          colors: _.pluck topicData, 'color'
         }
 
     getMessageSummary = =>
