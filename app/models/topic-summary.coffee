@@ -5,6 +5,7 @@ queryTemplate = require '../../assets/json/elasticsearch/topic-summary.json'
 class TopicSummary
   constructor: ( elasticSearchUrl, ownerUuid, dependencies={}) ->
     @elasticSearchUrl = elasticSearchUrl
+    @ownerUuid        = ownerUuid
     @request = dependencies.request ? require 'request'
     DeviceCollection = dependencies.DeviceCollection ? require '../collections/device-collection'
     @deviceCollection = new DeviceCollection ownerUuid
@@ -12,6 +13,7 @@ class TopicSummary
   fetch: =>
     @deviceCollection.fetchAll().then (devices) =>
       uuids = _.pluck devices, 'uuid'
+      uuids.unshift @ownerUuid
       When.promise (resolve, reject) =>
         @request @requestParams(uuids), (error, response, body) =>
           return reject error if error?
@@ -29,7 +31,11 @@ class TopicSummary
 
   query: (uuids) =>
     queryTemplate.aggs.topic_summary.filter.and[1].or =
-      _.map uuids, (uuid) => term: {'@fields.fromUuid.raw': uuid}
+      _.flatten _.map uuids, (uuid) => [
+        {term: {'@fields.fromUuid.raw': uuid}}
+        {term: {'@fields.toUuid.raw': uuid}}
+      ]
+
     queryTemplate
 
 

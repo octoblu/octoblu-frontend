@@ -1,0 +1,191 @@
+When = require 'when'
+MessageSummary = require '../../app/models/message-summary'
+
+describe 'MessageSummary', ->
+  beforeEach ->
+    @DeviceCollection = sinon.stub()
+    @request = sinon.stub().yields null, null, {aggregations: {sent: {buckets: []}, received: {buckets: []}}}
+    @dependencies = {request: @request, DeviceCollection: @DeviceCollection}
+
+  describe 'constructor', ->
+    beforeEach ->
+      @sut = new MessageSummary null, 'Antman', @dependencies
+
+    it 'should instantiate a DeviceCollection with the ownerUuid', ->
+      expect(@DeviceCollection).to.have.been.calledWith 'Antman'
+
+  describe 'constructor with a different owner', ->
+    beforeEach ->
+      @sut = new MessageSummary null, 'Hatman', @dependencies
+
+    it 'should instantiate a DeviceCollection with that ownerUuid', ->
+      expect(@DeviceCollection).to.have.been.calledWith 'Hatman'
+
+  describe '->fetch', ->
+    describe 'when it is called', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When []
+        @sut.requestParams = sinon.stub()
+        @sut.fetch()
+
+      it 'should call deviceCollection.fetchAll', ->
+        expect(@sut.deviceCollection.fetchAll).to.have.been.called
+
+      it 'should call requestParams with the ownerUuid', ->
+        expect(@sut.requestParams).to.have.been.calledWith ['Antman']
+
+    describe 'when it is called with Dayman', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When []
+        @sut.requestParams = sinon.stub()
+        @sut.fetch()
+
+      it 'should call deviceCollection.fetchAll', ->
+        expect(@sut.deviceCollection.fetchAll).to.have.been.called
+
+      it 'should call requestParams with the ownerUuid', ->
+        expect(@sut.requestParams).to.have.been.calledWith ['Dayman']
+
+    describe 'when request returns with an error', ->
+      beforeEach ->
+        @ogError = new Error('.ogg files are not supported')
+        @dependencies.request = sinon.stub().yields @ogError, null, null
+        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When []
+        @sut.requestParams = sinon.stub()
+        @sut.fetch().catch (@error) =>
+
+      it 'should reject the promise with an error', ->
+        expect(@error).to.have.that.same.is.equal @ogError
+
+    describe 'when request returns with a statusCode not equal to 200', ->
+      beforeEach ->
+        @ogError = new Error('.ogg files are not supported')
+        @dependencies.request = sinon.stub().yields null, {statusCode: 69}, null
+        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When []
+        @sut.requestParams = sinon.stub()
+        @sut.fetch().catch (@error) =>
+
+      it 'should reject with the request error', ->
+        expect(@error.message).to.equal 'elasticsearch error'
+
+    describe 'when it is called and the deviceCollection returns different results', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: 'Cpt. Overalls'}]
+        @sut.requestParams = sinon.stub()
+        @sut.fetch()
+
+      it 'should call deviceCollection.fetchAll', ->
+        expect(@sut.requestParams).to.have.been.calledWith ['Antman', 'Cpt. Overalls']
+
+    describe 'when requestParams returns with some data', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When()
+        @sut.requestParams = sinon.stub().returns 'dr.freeze' : 1
+        @request.yields null, null, {aggregations: {sent: {buckets: [{key: 'Evil', doc_count: 56}]}, received: {buckets: []}}}
+        @sut.fetch().then (@result) =>
+
+      it 'should call request with that data', ->
+        expect(@request).to.have.been.calledWith 'dr.freeze' : 1
+
+      it 'should resolve with an Evil sent count of 56', ->
+        item = @result[0]
+        expect(item.uuid).to.equal 'Evil'
+        expect(item.sent).to.equal 56
+
+    describe 'when requestParams returns with some other data', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When()
+        @sut.requestParams = sinon.stub().returns 'dr.freeze' : 1
+        response =
+          aggregations:
+            sent:
+              buckets: [
+                {key: 'Deeds', doc_count: 5},
+                {key: 'promises', doc_count: 5000}
+              ]
+            received:
+              buckets: [
+                {key: 'Deeds', doc_count: 9},
+                {key: 'promises', doc_count: 400}
+              ]
+
+        @request.yields null, null, response
+        @sut.fetch().then (@result) =>
+
+      it 'should call request with that data', ->
+        expect(@request).to.have.been.calledWith 'dr.freeze' : 1
+
+      it 'should resolve with Deeds of 5 and Promises of 5000', ->
+        expect(@result).to.have.same.deep.members [
+          { uuid: 'Deeds', sent: 5, received: 9 }
+          { uuid: 'promises', sent: 5000, received: 400 }
+        ]
+
+    describe 'when requestParams returns with some other data', ->
+      beforeEach ->
+        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut.deviceCollection.fetchAll = sinon.stub().returns When()
+        @sut.requestParams = sinon.stub().returns 'mr.pib' : 6
+        @sut.fetch()
+
+      it 'should call request with that data', ->
+        expect(@request).to.have.been.calledWith 'mr.pib' : 6
+
+  describe '->requestParams', ->
+    describe 'when it is instantiated with a superhero job search engine url', ->
+      beforeEach ->
+        @url = 'http://superjobs.io'
+        @sut = new MessageSummary @url, 'Antman', @dependencies
+
+      it 'should use that search engine', ->
+        expect(@sut.requestParams().url).to.equal @url
+
+      it 'should set the method to "POST"', ->
+        expect(@sut.requestParams().method).to.equal 'POST'
+
+      describe 'when called with BogeyMan', ->
+        it 'should include the from uuid as an "or" term', ->
+          @result = @sut.requestParams(['BogeyMan'])
+          terms = @result.json.aggs.sent.filter.and[1].or
+          expect(terms).to.include {
+            term: {'@fields.fromUuid.raw': 'BogeyMan'}
+          }
+
+        it 'should include the to uuid as an "or" term', ->
+          @result = @sut.requestParams(['BogeyMan'])
+          terms = @result.json.aggs.received.filter.and[1].or
+          expect(terms).to.include {
+            term: {'@fields.toUuid.raw': 'BogeyMan'}
+          }
+
+      describe 'when called with MonkeyMan', ->
+        it 'should include the from uuid as an "or" term', ->
+          @result = @sut.requestParams(['MonkeyMan'])
+          terms = @result.json.aggs.sent.filter.and[1].or
+          expect(terms).to.deep.equal [{
+            term: {'@fields.fromUuid.raw': 'MonkeyMan'}
+          }]
+
+        it 'should include the to uuid as an "or" term', ->
+          @result = @sut.requestParams(['MonkeyMan'])
+          terms = @result.json.aggs.received.filter.and[1].or
+          expect(terms).to.deep.equal [{
+            term: {'@fields.toUuid.raw': 'MonkeyMan'}
+          }]
+
+    describe 'when it is instantiated with a superhero job search engine url', ->
+      beforeEach ->
+        @url = 'http://heroes.monster.com'
+        @sut = new MessageSummary @url, 'Antman', @dependencies
+
+      it 'should use that search engine', ->
+        expect(@sut.requestParams().url).to.equal @url
+
+

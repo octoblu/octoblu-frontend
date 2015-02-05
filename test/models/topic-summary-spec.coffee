@@ -34,20 +34,38 @@ describe 'TopicSummary', ->
         expect(@result.method).to.equal 'POST'
 
       it 'should inject the first uuid into the body', ->
-        first_term = @result.json.aggs.topic_summary.filter.and[1].or[0]
+        terms = @result.json.aggs.topic_summary.filter.and[1].or
 
-        expect(first_term).to.deep.equal {
+        expect(terms).to.include {
           term: {
             '@fields.fromUuid.raw': 'uuid1'
           }
         }
 
-      it 'should inject the second uuid into the body', ->
-        second_term = @result.json.aggs.topic_summary.filter.and[1].or[1]
+      it 'should inject the first uuid into the bodyusing the toUuid', ->
+        terms = @result.json.aggs.topic_summary.filter.and[1].or
 
-        expect(second_term).to.deep.equal {
+        expect(terms).to.include {
+          term: {
+            '@fields.toUuid.raw': 'uuid1'
+          }
+        }
+
+      it 'should inject the second uuid into the body', ->
+        terms = @result.json.aggs.topic_summary.filter.and[1].or
+
+        expect(terms).to.include {
           term: {
             '@fields.fromUuid.raw': 'uuid2'
+          }
+        }
+
+      it 'should inject the second uuid into the body', ->
+        terms = @result.json.aggs.topic_summary.filter.and[1].or
+
+        expect(terms).to.include {
+          term: {
+            '@fields.toUuid.raw': 'uuid2'
           }
         }
 
@@ -80,7 +98,7 @@ describe 'TopicSummary', ->
           expect(@sut.deviceCollection.fetchAll).to.have.been.called
 
         it 'should call requestParams with the devices of the ownerUuid', ->
-          expect(@sut.requestParams).to.have.been.calledWith [ 'g1', 'g2']
+          expect(@sut.requestParams).to.have.been.calledWith [ 'gooeyuuid', 'g1', 'g2']
 
         it 'should make a rest request with the requestParams', ->
           expect(@request).to.have.been.calledWith {hop: 'frog'}
@@ -104,7 +122,7 @@ describe 'TopicSummary', ->
           @sut.fetch()
 
         it 'should call requestParams with the devices of the ownerUuid', ->
-          expect(@sut.requestParams).to.have.been.calledWith ['frogger']
+          expect(@sut.requestParams).to.have.been.calledWith [ 'gooeyuuid', 'frogger']
 
       describe 'when called and request yields an error', ->
         beforeEach ->
