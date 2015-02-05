@@ -12,38 +12,41 @@ class GeneralSearch
 
   fetch: =>
     @deviceCollection.fetchAll().then (devices) =>
+      uuids = _.pluck devices, 'uuid'
+      uuids.push @ownerUuid
       When.promise (resolve, reject) =>
-        @request @requestParams(), (error, response, body) =>
+        requestParams = @requestParams(@searchQuery, uuids)
+        console.log JSON.stringify(requestParams, null, 2)
+        @request requestParams, (error, response, body) =>
           return reject error if error?
-          return reject new Error('elasticsearch error') unless response.statusCode == 200
+
+          unless response.statusCode == 200
+            error = new Error('elasticsearch error')
+            error.statusCode    = response.statusCode
+            error.body          = response.body
+            error.requestParams = requestParams
+            return reject error
+
           messages = @parseResponse body
-          messages = @filterMessages messages, devices
           resolve messages
 
   parseResponse: (response) =>
     _.map response.hits.hits, (hit) =>
       _.omit hit._source['@fields'], omittedKeys
 
-  filterMessages: (messages, devices) =>
-    ownerUuids = _.pluck devices, 'owner'
-    deviceUuids = _.pluck devices, 'uuid'
-
-    _.filter messages, (message) =>
-      if message.toUuid
-        return true if @checkUuid deviceUuids, ownerUuids, message.toUuid
-      if message.fromUuid
-        return true if @checkUuid deviceUuids, ownerUuids, message.fromUuid
-
   checkUuid: (owners, uuids, uuid) =>
     _.contains owners, uuid || _.contains uuids, uuid
 
-  requestParams: =>
+  requestParams: (searchQuery, uuids) =>
     method: 'POST'
     url:    "#{@elasticSearchUrl}/skynet_trans_log/_search"
-    json:   @query()
+    json:   @query searchQuery, uuids
 
-  query: =>
-    queryTemplate.query.match._all.query = @searchQuery
+  query: (searchQuery, uuids) =>
+    fromTerms = _.map uuids, (uuid) => {term: {'@fields.fromUuid.raw': uuid}}
+    toTerms   = _.map uuids, (uuid) => {term: {'@fields.toUuid.raw':   uuid}}
+    queryTemplate.filter.and[1].or = _.union fromTerms, toTerms
+    queryTemplate.query.match._all.query = searchQuery
     queryTemplate
 
 

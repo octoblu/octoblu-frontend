@@ -9,7 +9,9 @@ class GeneralSearchController
       .then (result) =>
         response.send result
       .catch (error) =>
-        console.error error
-        response.send 500, error
+        response.send 500, error: error.message
+        console.error error.body
+        console.error JSON.stringify(error.requestParams, null ,2)
+        throw error
 
 module.exports = GeneralSearchController

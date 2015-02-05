@@ -14,19 +14,58 @@ describe 'GeneralSearch', ->
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
       expect(@DeviceCollection).to.have.been.calledWith 'Wishbone'
 
-
   describe 'constructor part deux', ->
     beforeEach ->
       @sut = new GeneralSearch 'something', 'kinda-a-query', 'Spengebeb', @dependencies
+
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
       expect(@DeviceCollection).to.have.been.calledWith 'Spengebeb'
+
+  describe '->query', ->
+    beforeEach ->
+      @sut = new GeneralSearch
+
+    it 'should be a function', ->
+      expect(@sut.query).be.a 'function'
+
+    describe 'when called', ->
+      beforeEach ->
+        @result = @sut.query()
+
+      it 'should return an object', ->
+        expect(@result).to.be.an 'object'
+
+      it 'should have an empty "or" filter section', ->
+        expect(@result.filter.and[1].or).to.be.empty
+
+    describe 'when called with a searchQuery of duckhunt and uuids', ->
+      beforeEach ->
+        @result = @sut.query 'duckhunt', ['uber', 'something']
+
+      it 'should be inject uuid filters', ->
+        expect(@result.filter.and[1].or).to.have.same.deep.members [
+          { term : {"@fields.fromUuid.raw": "something"}}
+          { term : {"@fields.toUuid.raw": "something"}}
+          { term : {"@fields.fromUuid.raw": "uber"}}
+          { term : {"@fields.toUuid.raw": "uber"}}
+        ]
+
+      it 'should inject query', ->
+        expect(@result.query.match._all.query).to.equal 'duckhunt'
+
+    describe 'when called with a searchQuery of huntduck', ->
+      beforeEach ->
+        @result = @sut.query 'huntduck'
+
+      it 'should inject the query', ->
+        expect(@result.query.match._all.query).to.equal 'huntduck'
 
   describe '->requestParams', ->
     describe 'when instantiated with karatechicken', ->
       beforeEach ->
         @uri = 'http://karatechicken.io'
-        @sut = new GeneralSearch @uri, 'kinda-a-query', 'gooeyuuid', @dependencies
-        @result = @sut.requestParams ['uuid1', 'uuid2']
+        @sut = new GeneralSearch @uri, 'kinda-a-query'
+        @result = @sut.requestParams 'kinda-a-query', ['uuid1', 'uuid2']
 
       it 'should have a url of karatechicken with the path added', ->
         expect(@result.url).to.equal 'http://karatechicken.io/skynet_trans_log/_search'
@@ -40,8 +79,8 @@ describe 'GeneralSearch', ->
     describe 'when instantiated with firechicken', ->
       beforeEach ->
         @uri = 'http://firechicken.io'
-        @sut = new GeneralSearch @uri, 'kinda-a-query', 'gooeyuuid', @dependencies
-        @result = @sut.requestParams()
+        @sut = new GeneralSearch @uri
+        @result = @sut.requestParams('kinda-a-query')
 
       it 'should have a url of firechicken', ->
         expect(@result.url).to.equal 'http://firechicken.io/skynet_trans_log/_search'
@@ -55,7 +94,7 @@ describe 'GeneralSearch', ->
 
       describe 'when it is called', ->
         beforeEach ->
-          @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: @fromUuid}, {uuid: 'k2'}]
+          @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: 'k2'}]
           result = { worker: "sweet", fromUuid: @fromUuid, sweet: 1, bacon: 3 }
           hits = [{ "_id": "123", "_source": { "@fields": result} }]
           @request.yields null, {statusCode: 200}, { hits : { hits : hits }}
@@ -64,11 +103,8 @@ describe 'GeneralSearch', ->
         it 'should call fetch', ->
           expect(@sut.deviceCollection.fetchAll).to.have.been.called
 
-        it 'should call fetch with a query', ->
-          expect(@sut.deviceCollection.fetch).to.have.been.calledWith 
-
         it 'should call requestParams with the devices of the ownerUuid', ->
-          expect(@sut.requestParams).to.have.been.called
+          expect(@sut.requestParams).to.have.been.calledWith('kinda-a-query', ['k2',@fromUuid])
 
         it 'should make a rest request with the requestParams', ->
           expect(@request).to.have.been.calledWith {hop: 'chicken'}
