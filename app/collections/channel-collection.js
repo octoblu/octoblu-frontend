@@ -33,6 +33,9 @@ var ChannelCollection = function(options){
   self.mergeChannelsAndApis = function(apis, channels){
     return _.map(channels, function(channel){
       var api = User.findApiByChannel(apis, channel);
+      if (!api)
+        return {};
+
       return {
         channelid : channel._id,
         channelActivationId : api._id,

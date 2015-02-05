@@ -11,37 +11,35 @@
 <div flex layout-fill layout="row" layout-align="center">
     <md-content flex layout-fill>
         <div flex layout-lg="column" layout-gt-lg="row" layout-align="space-around">
-          <div class="analyze-card md-whiteframe-z2" flex>
+          <div class="analyze-card md-whiteframe-z1" flex>
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Topics</h2>
               </md-toolbar>
               <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
           </div>
-          <div class="analyze-card md-whiteframe-z2" flex>
+          <div class="analyze-card md-whiteframe-z1" flex>
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Messages/Time</h2>
               </md-toolbar>
               <canvas class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
           </div>
         </div>
-    </md-content>
-</div>
-<div layout="row" layout-align="space-around center" style="margin: auto; min-height: 60px">
-  <md-content flex layout-fill>
-    <div class="analyze-card md-whiteframe-z2" flex>
-      <md-toolbar>
-        <h2 class="md-toolbar-tools">Search</h2>
-      </md-toolbar>
-      <form class="form" layout="row" layout-align="center">
-          <div class="form-group" flex="90" style="margin: 20px 0px">
-              <div class="input-group">
-                  <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus>
-                  <span class="input-group-addon">
-                      <i class="fa fa-search"></i>
-                  </span>
+        <div class="analyze-card md-whiteframe-z1" flex>
+          <md-toolbar>
+            <h2 class="md-toolbar-tools">Search</h2>
+          </md-toolbar>
+          <form class="form" layout="row" layout-align="center">
+              <div class="form-group" flex="90" style="margin: 20px 0px">
+                  <div class="input-group">
+                      <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus>
+                      <span class="input-group-addon">
+                          <i class="fa fa-search"></i>
+                      </span>
+                  </div>
               </div>
-          </div>
-      </form>
-    </div>
-  </md-content>
+          </form>
+        </div>
+        <div ng-repeat="message in messages" ng-include="'/pages/general-search-item.html'">
+        </div>
+    </md-content>
 </div>

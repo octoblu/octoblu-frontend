@@ -1,0 +1,16 @@
+<div class="analyze-card md-whiteframe-z1">
+  <div class="subject-line" flex layout="row" layout-align="space-between">
+    <div flex>
+      <strong>To: {{message.devices}}</strong>
+    </div>
+      <h3 flex>
+        {{message.topic}}
+      </h3>
+    <div flex layout-align="flex-end">
+      <strong>From: {{message.fromUuid}}</strong>
+    </div>
+  </div>
+  <pre>
+    {{message.payload | json}}
+  </pre>
+</div>

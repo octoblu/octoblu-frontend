@@ -9,4 +9,11 @@ angular.module 'octobluApp'
         return $http.get('/api/messages/summary').then (response) =>
           response.data
 
+      getMessages : (query)=>
+        return $http.get('/api/general/search',
+          params:{
+            q: query
+          }).then (response) =>
+            response.data
+
     return new AnalyzeService
