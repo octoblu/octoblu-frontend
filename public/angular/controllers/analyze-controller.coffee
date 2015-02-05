@@ -16,6 +16,19 @@ angular.module 'octobluApp'
     $scope.startUpdating = ->
       $scope.updatePeriodically = true
 
+    $scope.onClickPieSlice = (el) ->
+      topic = _.first(el)?.label
+      return unless topic?
+      $scope.analyzeSearch = topic
+
+    $scope.onClickBar = (el) ->
+      label = _.first(el)?.label
+      return unless label?
+      uuid = $scope.barLabelMap[label]
+      return unless uuid?
+
+      $scope.analyzeSearch = uuid
+
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
         $scope.loadingTopicData = false
@@ -34,12 +47,17 @@ angular.module 'octobluApp'
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
         $scope.loadingMessageData = false
+        $scope.barLabelMap = {}
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
         messageSummary.length = 7 if messageSummary.length > 7
 
-        $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
-          return label.slice(0,4) + "..." + label.slice(-4) if label.length > 11
+        $scope.messageData.labels = _.map messageSummary, (message) =>
+          label = message.uuid
+          label = label.slice(0,4) + "..." + label.slice(-4) if label.length > 11
+
+          $scope.barLabelMap[label] = message.uuid
+
           label
 
         $scope.messageData.data = [
@@ -55,9 +73,11 @@ angular.module 'octobluApp'
     getTopicSummary()
     getMessageSummary()
 
-    $interval =>
+    intervalPromise = $interval =>
       return unless $scope.updatePeriodically?
       getTopicSummary()
       getMessageSummary()
     , 5000
+
+    $scope.$on '$destroy', => $interval.cancel(intervalPromise)
 

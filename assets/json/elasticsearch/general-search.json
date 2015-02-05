@@ -6,6 +6,9 @@
       }
     }
   },
+  "sort" : [
+    { "@timestamp" : {"order" : "desc"}}
+  ],
   "filter": {
     "and": [
       {

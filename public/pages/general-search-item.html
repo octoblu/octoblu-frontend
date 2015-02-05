@@ -10,8 +10,11 @@
       <strong>From: {{message.fromUuid}}</strong>
     </div>
   </div>
-  <pre>{{message.payload | json}}</pre>
+  <div ng-click="showFullMessage = !showFullMessage" style="cursor:pointer;">
+    <pre ng-show="!showFullMessage">{{message.payload | json}}</pre>
+    <pre ng-show="showFullMessage">{{message | json}}</pre>
+  </div>
   <div flex layout="row" layout-align="end">
-    {{message.timestamp}}
+    {{message.timestamp | date:'medium'}}
   </div>
 </md-card>
