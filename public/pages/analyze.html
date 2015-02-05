@@ -26,3 +26,22 @@
         </div>
     </md-content>
 </div>
+<div layout="row" layout-align="space-around center" style="margin: auto; min-height: 60px">
+  <md-content flex layout-fill>
+    <div class="analyze-card md-whiteframe-z2" flex>
+      <md-toolbar>
+        <h2 class="md-toolbar-tools">Search</h2>
+      </md-toolbar>
+      <form class="form" layout="row" layout-align="center">
+          <div class="form-group" flex="90" style="margin: 20px 0px">
+              <div class="input-group">
+                  <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus>
+                  <span class="input-group-addon">
+                      <i class="fa fa-search"></i>
+                  </span>
+              </div>
+          </div>
+      </form>
+    </div>
+  </md-content>
+</div>
