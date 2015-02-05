@@ -89,7 +89,7 @@ describe 'GeneralSearch', ->
         expect(@result.method).to.equal 'POST'
 
       it 'should have the query in the json object', ->
-        expect(@result.json.query.match._all).not.to.have.property 'query'
+        expect(@result.json).not.to.have.property 'query'
 
     describe 'when instantiated with firechicken', ->
       beforeEach ->
