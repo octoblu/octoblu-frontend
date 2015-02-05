@@ -5,8 +5,10 @@ angular.module 'octobluApp'
     $scope.messageData = {
         series: ["Received", "Sent"]
     }
+    $scope.topicData = {}
     $scope.updatePeriodically = true
-    $scope.loading = true
+    $scope.loadingTopicData = true
+    $scope.loadingMessageData = false 
 
     $scope.stopUpdating = ->
       $scope.updatePeriodically = false
@@ -16,7 +18,7 @@ angular.module 'octobluApp'
 
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
-        $scope.loading = false
+        $scope.loadingTopicData = false
         topicsSorted = _.sortBy(topics, 'count').reverse()
         topicsSorted.length = 7 if topicsSorted.length > 7
 
@@ -31,7 +33,7 @@ angular.module 'octobluApp'
 
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
-        $scope.loading = false
+        $scope.loadingMessageData = false
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
         messageSummary.length = 7 if messageSummary.length > 7
@@ -45,6 +47,11 @@ angular.module 'octobluApp'
           _.pluck messageSummary, 'sent'
         ]
 
+    $scope.$watch "analyzeSearch", (oldSearch, newSearch) =>
+      return if !newSearch || newSearch.trim().length <= 3
+      AnalyzeService.getMessages(newSearch).then (results) =>
+        $scope.searchResults = results
+
     getTopicSummary()
     getMessageSummary()
 
@@ -54,7 +61,3 @@ angular.module 'octobluApp'
       getMessageSummary()
     , 5000
 
-    $scope.$watch "analyzeSearch", (oldSearch, newSearch) =>
-      return if !newSearch || newSearch.trim().length <= 3
-      AnalyzeService.getMessages(newSearch).then (results) =>
-        $scope.searchResults = results

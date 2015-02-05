@@ -27,8 +27,11 @@
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Topics</h2>
               </md-toolbar>
-              <canvas class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
-              <div flex ng-if="loading" layout="row" layout-sm="column" layout-align="center center">
+              <div flex ng-show="!loadingTopicData && topicData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
+                <h3>No Data Yet. Try starting a flow.</h3>
+              </div>
+              <canvas ng-hide="loadingTopicData" class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true"></canvas>
+              <div flex ng-show="loadingTopicData" layout="row" layout-sm="column" layout-align="center center">
                 <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
               </div>
           </div>
@@ -36,8 +39,11 @@
               <md-toolbar>
                   <h2 class="md-toolbar-tools">Messages/Time</h2>
               </md-toolbar>
-              <canvas class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
-              <div flex ng-if="loading" layout="row" layout-sm="column" layout-align="center center">
+              <div flex ng-show="!loadingMessageData && messageData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
+                <h3>No Data Yet. Send some messages.</h3>
+              </div>
+              <canvas ng-hide="loadingMessageData" class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" legend="true"></canvas>
+              <div flex ng-show="loadingMessageData" layout="row" layout-sm="column" layout-align="center center">
                 <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
               </div>
           </div>
