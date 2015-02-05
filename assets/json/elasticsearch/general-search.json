@@ -7,8 +7,15 @@
     }
   },
   "filter": {
-    "term": {
-      "@fields.eventCode": 300
-    }
+    "and": [
+      {
+          "term": {
+          "@fields.eventCode": 300
+        }
+      },
+      {
+        "or": []
+      }
+    ]
   }
 }

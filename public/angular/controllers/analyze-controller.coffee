@@ -5,7 +5,10 @@ angular.module 'octobluApp'
     $scope.messageData = {
         series: ["Received", "Sent"]
     }
+    $scope.topicData = {}
     $scope.updatePeriodically = true
+    $scope.loadingTopicData = true
+    $scope.loadingMessageData = false
 
     $scope.stopUpdating = ->
       $scope.updatePeriodically = false
@@ -15,19 +18,25 @@ angular.module 'octobluApp'
 
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
-        $scope.topicData = _.map _.sortBy(topics, 'count').reverse(), (data) =>
+        $scope.loadingTopicData = false
+        topicsSorted = _.sortBy(topics, 'count').reverse()
+        topicsSorted.length = 7 if topicsSorted.length > 7
+
+        topicData = _.map topicsSorted, (data) =>
           return _.extend {count: data.count, label: data.topic}, TopicColors.shift()
 
         $scope.topicData = {
-          data: _.pluck $scope.topicData, 'count'
-          labels: _.pluck $scope.topicData, 'label'
-          colors: _.pluck $scope.topicData, 'color'
+          data: _.pluck topicData, 'count'
+          labels: _.pluck topicData, 'label'
+          colors: _.pluck topicData, 'color'
         }
 
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
+        $scope.loadingMessageData = false
         messageSummary = _.sortBy messageSummary, (message) =>
           return -(message.received + message.sent)
+        messageSummary.length = 7 if messageSummary.length > 7
 
         $scope.messageData.labels = _.map _.pluck(messageSummary, 'uuid'), (label) =>
           return label.slice(0,4) + "..." + label.slice(-4) if label.length > 11
@@ -38,6 +47,11 @@ angular.module 'octobluApp'
           _.pluck messageSummary, 'sent'
         ]
 
+    $scope.$watch "analyzeSearch", (newSearch) =>
+      return if !newSearch || newSearch.trim().length <= 3
+      AnalyzeService.getMessages(newSearch).then (results) =>
+        $scope.searchResults = results
+
     getTopicSummary()
     getMessageSummary()
 
@@ -46,3 +60,4 @@ angular.module 'octobluApp'
       getTopicSummary()
       getMessageSummary()
     , 5000
+

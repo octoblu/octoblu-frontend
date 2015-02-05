@@ -10,6 +10,7 @@ angular.module 'octobluApp'
           response.data
 
       getMessages : (query)=>
+        console.log "looking for #{query}"
         return $http.get('/api/general/search',
           params:{
             q: query

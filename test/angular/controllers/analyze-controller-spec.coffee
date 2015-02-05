@@ -7,6 +7,9 @@ describe 'AnalyzeController', ->
 
         @MessageSummaryDefer = @q.defer()
         @getMessageSummary = sinon.stub().returns @MessageSummaryDefer.promise
+        
+        @MessagesDefer = @q.defer()  
+        @getMessages = sinon.stub().returns @MessagesDefer.promise
 
     module 'octobluApp'
 
@@ -123,3 +126,54 @@ describe 'AnalyzeController', ->
 
     it 'should call getMessageSummary with a delay', =>
       expect(@fakeInterval).to.have.been.called.twice
+
+  describe 'when search input is entered', =>
+    beforeEach =>
+      @scope.analyzeSearch = 'I entered some UUID'
+      @rootScope.$digest()
+
+    it 'should make a call to AnalyzeService.getMessages', =>
+      expect(@AnalyzeService.getMessages).to.have.been.called
+
+    it 'should make a call to AnalyzeService.getMessages with the search string', =>
+      expect(@AnalyzeService.getMessages).to.have.been.calledWith 'I entered some UUID'
+
+  describe 'when search input is undefined', =>
+    beforeEach =>
+      @scope.analyzeSearch = undefined
+      @rootScope.$digest()
+    it 'should not make a call to AnalyzeService.getMessages', =>
+      expect(@AnalyzeService.getMessages).to.not.have.been.called
+
+  describe 'when search input is null', =>
+    beforeEach =>
+      @scope.analyzeSearch = null
+      @rootScope.$digest()
+    it 'should not make a call to AnalyzeService.getMessages', =>
+      expect(@AnalyzeService.getMessages).to.not.have.been.called
+
+  describe 'when search input is empty', =>
+    beforeEach =>
+      @scope.analyzeSearch = ''
+      @rootScope.$digest()
+    it 'should not make a call to AnalyzeService.getMessages', =>
+      expect(@AnalyzeService.getMessages).to.not.have.been.called 
+
+  describe 'when AnalyzeService.getMessages returns no results', =>
+    beforeEach =>
+      @scope.analyzeSearch = 'uuid123'
+      @AnalyzeService.MessagesDefer.resolve []
+      @rootScope.$digest()
+
+    it 'should set $scope.searchResults to an empty array', =>
+      expect(@scope.searchResults).to.deep.equal([])
+
+  describe 'when AnalyzeService.getMessages returns results', =>
+    beforeEach =>
+      @scope.analyzeSearch = 'uuid123'
+      @AnalyzeService.MessagesDefer.resolve [1,2,3]
+      @rootScope.$digest()
+
+    it 'should set $scope.searchResults to the array', =>
+      expect(@scope.searchResults).to.deep.equal([1,2,3])
+
