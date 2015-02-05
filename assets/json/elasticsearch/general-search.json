@@ -1,0 +1,14 @@
+{
+  "query": {
+    "match": {
+      "_all": {
+        "query": null
+      }
+    }
+  },
+  "filter": {
+    "term": {
+      "@fields.eventCode": 300
+    }
+  }
+}

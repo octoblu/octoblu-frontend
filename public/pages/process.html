@@ -47,12 +47,10 @@
                 {{node.name || node.uuid}}
               </div>
               <div flex="15" layout="row" layout-align="center">
-                <sparkline-graph line-a="node.messagesSentOverTime" graph-width="100"></sparkline-graph>&nbsp;
-                {{node.totalMessagesSent}}
+                <sparkline-graph line-a="node.messagesSentOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesSent}}
               </div>
               <div flex="15" layout="row" layout-align="center">
-                <sparkline-graph line-b="node.messagesReceivedOverTime" graph-width="100"></sparkline-graph>&nbsp;
-                {{node.totalMessagesReceived}}
+                <sparkline-graph line-b="node.messagesReceivedOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesReceived}}
               </div>
               <div flex="15" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince) || '----------'}}</div>
               <div flex="20" layout="row" layout-align="center">{{node.actions}}

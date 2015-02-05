@@ -102,6 +102,9 @@ module.exports = function(app, passport) {
     var TopicSummaryController = require('./controllers/topic-summary-controller');
     var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
 
+    var GeneralSearchController = require('./controllers/general-search-controller');
+    var generalSearchController = new GeneralSearchController(config.elasticSearchUri);
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -418,6 +421,7 @@ module.exports = function(app, passport) {
             app.get('/api/users/:uuid/templates', templateController.withUserUUID);
             app.get('/api/topics/summary', topicSummaryController.show);
             app.get('/api/messages/summary', messageSummaryController.show);
+            app.get('/api/general/search', generalSearchController.show);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);
