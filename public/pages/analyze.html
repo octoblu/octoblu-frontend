@@ -6,6 +6,18 @@
         Analyze
       </a>
     </div>
+
+    <md-button ng-if="updatePeriodically" ng-click="stopUpdating()" md-theme="octo-blue" aria-label="Reset Token">
+      <md-tooltip>Live Update</md-tooltip>
+      <i class="fa fa-refresh fa-spin"></i>
+      Live Update 
+    </md-button>
+
+    <md-button ng-if="!updatePeriodically" ng-click="startUpdating()" md-theme="octo-blue" aria-label="Reset Token">
+      <md-tooltip>Paused</md-tooltip>
+      <i class="fa fa-pause"></i>
+      Paused
+    </md-button>
   </h2>
 </md-toolbar>
 <div flex layout-fill layout="row" layout-align="center">

@@ -5,6 +5,13 @@ angular.module 'octobluApp'
     $scope.messageData = {
         series: ["Received", "Sent"]
     }
+    $scope.updatePeriodically = true
+
+    $scope.stopUpdating = ->
+      $scope.updatePeriodically = false
+
+    $scope.startUpdating = ->
+      $scope.updatePeriodically = true
 
     getTopicSummary = =>
       AnalyzeService.getTopicSummary().then (topics)=>
@@ -34,5 +41,8 @@ angular.module 'octobluApp'
     getTopicSummary()
     getMessageSummary()
 
-    $interval getTopicSummary, 5000
-    $interval getMessageSummary, 5000 
+    $interval =>
+      return unless $scope.updatePeriodically?
+      getTopicSummary()
+      getMessageSummary()
+    , 5000
