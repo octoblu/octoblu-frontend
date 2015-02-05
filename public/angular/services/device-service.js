@@ -223,33 +223,6 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
-            gatewayConfig: function (options) {
-               options.timeout = 1000;
-                var defer = $q.defer();
-                skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.gatewayConfig(options, function (result) {
-                        defer.resolve(result);
-                    });
-                });
-
-                return defer.promise;
-            },
-
-            createSubdevice: function (options) {
-                return service.gatewayConfig(_.extend({ method: 'createSubdevice' },
-                    _.omit(options, reservedProperties)));
-            },
-
-            updateSubdevice: function (options) {
-                return service.gatewayConfig(_.extend({ method: 'updateSubdevice' },
-                    _.omit(options, reservedProperties)));
-            },
-
-            deleteSubdevice: function (options) {
-                return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
-                    _.omit(options, reservedProperties)));
-            },
-
             addLogoUrl: function(data) {
                 if(data && data.type){
                     var type = data.type.replace('octoblu:', 'device:');
