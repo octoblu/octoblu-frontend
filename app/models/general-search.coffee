@@ -44,9 +44,15 @@ class GeneralSearch
   query: (searchQuery, uuids) =>
     fromTerms = _.map uuids, (uuid) => {term: {'@fields.fromUuid.raw': uuid}}
     toTerms   = _.map uuids, (uuid) => {term: {'@fields.toUuid.raw':   uuid}}
-    queryTemplate.filter.and[1].or = _.union fromTerms, toTerms
-    queryTemplate.query.match._all.query = searchQuery
-    queryTemplate
+    template = _.cloneDeep queryTemplate
+
+    template.filter.and[1].or = _.union fromTerms, toTerms
+    unless _.isEmpty searchQuery
+      template.query =
+        match:
+          _all:
+            query: searchQuery
+    template
 
 
 module.exports = GeneralSearch

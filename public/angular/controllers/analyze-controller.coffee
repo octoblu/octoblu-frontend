@@ -41,8 +41,23 @@ angular.module 'octobluApp'
         $scope.topicData = {
           data: _.pluck topicData, 'count'
           labels: _.pluck topicData, 'label'
-          colors: _.pluck topicData, 'color'
+          colours: ['red','green', 'blue']#_.pluck topicData, 'color'
         }
+
+    convertToColorObject = (color) =>
+      {
+        "fillColor"           :color.color,
+        "strokeColor"         :color.highlight,
+        "pointColor"          :color.highlight,
+        "pointStrokeColor"    :color.highlight,
+        "pointHighlightFill"  :color.color,
+        "pointHighlightStroke":color.highlight
+      }
+
+    setDefaultColorsForChart = =>
+      colors = _.map GraphColors, (color)=>
+        convertToColorObject(color)
+      Chart.defaults.global.colours = _.shuffle colors
 
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
@@ -71,6 +86,7 @@ angular.module 'octobluApp'
 
     getTopicSummary()
     getMessageSummary()
+    setDefaultColorsForChart()
 
     intervalPromise = $interval =>
       return unless $scope.updatePeriodically?
