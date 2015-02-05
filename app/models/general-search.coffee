@@ -16,7 +16,6 @@ class GeneralSearch
       uuids.push @ownerUuid
       When.promise (resolve, reject) =>
         requestParams = @requestParams(@searchQuery, uuids)
-        console.log JSON.stringify(requestParams, null, 2)
         @request requestParams, (error, response, body) =>
           return reject error if error?
 
