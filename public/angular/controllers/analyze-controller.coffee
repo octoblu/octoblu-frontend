@@ -54,11 +54,6 @@ angular.module 'octobluApp'
         "pointHighlightStroke":color.highlight
       }
 
-    setDefaultColorsForChart = =>
-      colors = _.map GraphColors, (color)=>
-        convertToColorObject(color)
-      Chart.defaults.global.colours = _.shuffle colors
-
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
         $scope.loadingMessageData = false
@@ -86,7 +81,6 @@ angular.module 'octobluApp'
 
     getTopicSummary()
     getMessageSummary()
-    setDefaultColorsForChart()
 
     intervalPromise = $interval =>
       return unless $scope.updatePeriodically?
