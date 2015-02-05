@@ -57,14 +57,14 @@
           <form class="form" layout="row" layout-align="center">
             <div class="form-group" flex="80" style="margin: 20px 0px">
                 <div class="input-group">
-                  <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus>
+                  <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus ng-model-options="{ debounce: 200 }">
                   <span class="input-group-addon">
                       <i class="fa fa-search"></i>
                   </span>
                 </div>
             </div>
           </form>
-          <div ng-repeat="message in searchResults" ng-include="'/pages/general-search-item.html'"></div>
+          <div class="message" ng-repeat="message in searchResults" ng-include="'/pages/general-search-item.html'"></div>
       </div>
 
     </div>

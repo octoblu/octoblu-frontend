@@ -1,18 +1,22 @@
 <md-card>
   <div class="subject-line" flex layout="row" layout-align="space-between">
-    <div flex layout="row">
-      <strong>To: {{message.devices}}</strong>
+    <div flex class="subject-item" layout="row">
+      From:&nbsp;<strong>{{message.fromUuid}}</strong>
     </div>
-      <h3 flex layout="row" layout-align="center">
+      <h2 flex class="subject-item" layout="row" layout-align="center">
         {{message.topic}}
-      </h3>
-    <div flex layout="row" layout-align="end">
-      <strong>From: {{message.fromUuid}}</strong>
+      </h2>
+    <div flex class="subject-item" layout="row" layout-align="end">
+      To:&nbsp;<strong>{{message.devices}}</strong>
     </div>
   </div>
-  <div ng-click="showFullMessage = !showFullMessage" style="cursor:pointer;">
-    <pre ng-show="!showFullMessage">{{message.payload | json}}</pre>
-    <pre ng-show="showFullMessage">{{message | json}}</pre>
+  <div ng-click="fullMessage = !fullMessage">
+    <div class="message-frame" ng-class="{ 'full-message' : fullMessage }">
+      <prism code="message"></prism>
+    </div>
+    <div flex layout="row" layout-align="center" style="cursor:pointer;">
+      <i class="fa fa-ellipsis-h fa-lg"></i>
+    </div>
   </div>
   <div flex layout="row" layout-align="end">
     {{message.timestamp | date:'medium'}}

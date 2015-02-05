@@ -191,18 +191,38 @@ html, body, .full-height {
   min-width: 900px;
   max-width: 1600px;
   flex-wrap: wrap;
+  .message {
+    .message-frame {
+      transition: 0.7s max-height;
+      cursor : pointer;
+      max-height: 7em;
+      overflow: hidden;
+      pre[class*="language-"] {
+        overflow: auto;
+        max-height: none;
+      }
+      &.full-message {
+        max-height: 700em;
+      }
+    }
+
+    &.ng-enter {
+      -webkit-animation-name: fadeInUp;
+      -webkit-animation-duration: 0.7s;
+      animation-name: fadeInUp;
+      animation-duration: 0.7s;
+    }
+
+    &.ng-leave {
+      -webkit-animation-name: fadeOutDown;
+      -webkit-animation-duration: 0.7s;
+      animation-name: fadeOutUp;
+      animation-duration: 0.7s;
+    }
+  }
 }
 .graph-container {
   margin-top: 1em;
   align-items: flex-end;
   -webkit-align-items: flex-end;
-}
-.legend {
-  .legend-swatch {
-    height: 2em;
-    width: 2em;
-    margin-right: 1em;
-    margin-bottom: 0.5em;
-    border: 1px solid black;
-  }
 }
