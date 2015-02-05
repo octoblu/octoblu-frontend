@@ -2,7 +2,7 @@ _    = require 'lodash'
 When = require 'when'
 queryTemplate = require '../../assets/json/elasticsearch/general-search.json'
 
-omittedKeys = ['worker', 'pid', 'path', 'user', 'main', 'uptime', 'rss', 'heapTotal', 'heapUsed']
+omittedKeys = ['worker', 'pid', 'path', 'user', 'main', 'uptime', 'rss', 'heapTotal', 'heapUsed', 'to', 'from']
 
 class GeneralSearch
   constructor: (@elasticSearchUrl, @searchQuery, @ownerUuid, dependencies={}) ->
