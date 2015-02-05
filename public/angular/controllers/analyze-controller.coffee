@@ -55,9 +55,11 @@ angular.module 'octobluApp'
     getTopicSummary()
     getMessageSummary()
 
-    $interval =>
+    intervalPromise = $interval =>
       return unless $scope.updatePeriodically?
       getTopicSummary()
       getMessageSummary()
     , 5000
+
+    $scope.$on '$destroy', => $interval.cancel(intervalPromise)
 
