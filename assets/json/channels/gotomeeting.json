@@ -2,6 +2,7 @@
   "_id": "a053d110f5cc498686f496e5",
   "auth_strategy": "oauth",
   "enabled": "true",
+  "bodyFormat": "json",
   "name": "GoToMeeting",
   "type": "channel:gotomeeting",
   "oauth": {
