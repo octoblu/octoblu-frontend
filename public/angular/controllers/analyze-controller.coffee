@@ -41,7 +41,7 @@ angular.module 'octobluApp'
         $scope.topicData = {
           data: _.pluck topicData, 'count'
           labels: _.pluck topicData, 'label'
-          colours: ['red','green', 'blue']#_.pluck topicData, 'color'
+          colors: _.pluck topicData, 'color'
         }
 
     convertToColorObject = (color) =>
