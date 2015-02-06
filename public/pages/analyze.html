@@ -22,7 +22,7 @@
 </md-toolbar>
 <div flex layout-fill layout="row" layout-align="center">
   <md-content flex layout-fill>
-    <div flex layout-lg="column" layout-gt-lg="row" layout-align="space-around" style="flex-wrap:wrap;">
+    <div flex layout-md="column" layout-gt-md="row" layout-align="space-around">
 
       <div flex class="analyze-card md-whiteframe-z1">
         <md-toolbar>
@@ -49,7 +49,8 @@
           <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
         </div>
       </div>
-
+    </div>
+    <div flex layout-md="column" layout-gt-md="row" layout-align="space-around">
       <div flex class="analyze-card md-whiteframe-z1" layout-align="center" layout="column">
         <md-toolbar>
           <h2 class="md-toolbar-tools">Search</h2>
@@ -66,7 +67,6 @@
           </form>
           <div class="message" ng-repeat="message in searchResults" ng-include="'/pages/general-search-item.html'"></div>
       </div>
-
     </div>
   </md-content>
 </div>
