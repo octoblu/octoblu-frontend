@@ -2,7 +2,7 @@
   "_id": "cc4448af94b97ca266b76f63",
   "category": "channel",
   "description": "",
-  "enabled": false,
+  "enabled": true,
   "name": "Automatic",
   "skynet": {
     "type": "channel",
