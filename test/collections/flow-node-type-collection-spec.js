@@ -93,16 +93,18 @@ describe('FlowNodeTypeCollection', function () {
           name: 'lockitino',
           type: 'channel',
           nodeType: {
-            'logo': 'foo.png'
+            'logo': 'foo.png',
+            'helpText': 'this text helps'
           }
         },
         "logo": "foo.png",
+        "helpText": "this text helps",
         "input": 1,
         "output": 1,
         "type":"channel",
         "formTemplatePath": "/pages/node_forms/channel_form.html"
       };
-      var node = {name: 'lockitino', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'foo.png'}};
+      var node = {name: 'lockitino', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'foo.png', helpText: 'this text helps'}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
@@ -118,16 +120,18 @@ describe('FlowNodeTypeCollection', function () {
           name: 'mockitama',
           type: 'channel',
           nodeType: {
-            'logo': 'bar.png'
+            'logo': 'bar.png',
+            'helpText': 'this text helps',
           }
         },
         "logo" : "bar.png",
+        "helpText": "this text helps",
         "input": 1,
         "output": 1,
         "type":"channel",
         "formTemplatePath": "/pages/node_forms/channel_form.html"
       };
-      var node = {name: 'mockitama', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'bar.png'}};
+      var node = {name: 'mockitama', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'bar.png', helpText: 'this text helps',}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
@@ -143,17 +147,19 @@ describe('FlowNodeTypeCollection', function () {
           name: 'margarita',
           fooCount: 'barnone',
           nodeType: {
-            'logo': 'baz.png'
+            'logo': 'baz.png',
+            'helpText': 'this text helps',
           },
           uuid: 'lksdflksdfj'
         },
         "logo":"baz.png",
+        "helpText": "this text helps",
         "input": 1,
         "output": 1,
         "type":"channel",
         "formTemplatePath": "/pages/node_forms/channel_form.html"
       };
-      var node = {type: 'channel', name: 'margarita', uuid: 'lksdflksdfj', category: 'channel', fooCount: 'barnone', nodeType:{logo:'baz.png'}};
+      var node = {type: 'channel', name: 'margarita', uuid: 'lksdflksdfj', category: 'channel', fooCount: 'barnone', nodeType:{logo:'baz.png', helpText: 'this text helps'}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
   });

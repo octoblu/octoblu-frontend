@@ -213,7 +213,7 @@
       },
       {
         "path": "/objects",
-        "displayName": "Create an Object W/Remote File",
+        "displayName": "Create an Object with File",
         "doc": {
           "url": "https://api.lob.com/v1/objects"
         },
@@ -243,64 +243,19 @@
           },{
             "displayName": "Double Sided",
             "style": "body",
-            "type": "boolean",
+            "type": "string",
             "name": "double_sided"
           },{
             "displayName": "Full Bleed",
             "style": "body",
-            "type": "boolean",
+            "type": "string",
             "name": "full_bleed"
           },{
             "displayName": "Template",
             "style": "body",
-            "type": "boolean",
+            "type": "string",
             "name": "template"
           }],
-        "url": "https://api.lob.com/v1/objects"
-      },
-      {
-        "path": "/objects",
-        "displayName": "Create an Object W/Local File",
-        "doc": {
-          "url": "https://api.lob.com/v1/objects"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "displayName": "Name",
-            "style": "body",
-            "type": "string",
-            "name": "name"
-          },{
-            "displayName": "File",
-            "style": "body",
-            "type": "string",
-            "name": "file",
-            "required": true
-          },{
-            "displayName": "Setting",
-            "style": "body",
-            "type": "string",
-            "name": "setting",
-            "required": true
-          },{
-            "displayName": "Quantity",
-            "style": "body",
-            "type": "string",
-            "name": "quantity"
-          },{
-            "displayName": "Double Sided",
-            "style": "body",
-            "type": "boolean",
-            "name": "double_sided"
-          },{
-            "displayName": "Template",
-            "style": "body",
-            "type": "boolean",
-            "name": "template"
-          }
-        ],
         "url": "https://api.lob.com/v1/objects"
       },
       {
@@ -459,12 +414,12 @@
           },{
             "displayName": "Template",
             "style": "body",
-            "type": "boolean",
+            "type": "string",
             "name": "template"
           },{
             "displayName": "Full Bleed",
             "style": "body",
-            "type": "boolean",
+            "type": "string",
             "name": "full_bleed"
           },{
             "displayName": "Setting",

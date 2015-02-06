@@ -3,6 +3,7 @@
   "category": "channel",
   "description": "",
   "enabled": true,
+  "helpText": "For more help, visit the <a href='https://developer.automatic.com/documentation/#user'>Automatic documentation</a>.",
   "name": "Automatic",
   "skynet": {
     "type": "channel",

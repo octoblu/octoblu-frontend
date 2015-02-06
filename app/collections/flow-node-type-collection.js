@@ -20,6 +20,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
       defaults: node,
       input: 1,
       output: 1,
+      helpText: (node.nodeType && node.nodeType.helpText),
       formTemplatePath: "/pages/node_forms/" + node.category + "_form.html"
     };
   };

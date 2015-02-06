@@ -60,8 +60,10 @@ var NodeCollection = function(userUUID) {
         });
         if (nodeType) {
           node.category = nodeType.category;
+          node.nodeType = nodeType;
+        }else{
+          node.nodeType = {};
         }
-        node.nodeType = {};
         return node;
       });
 
