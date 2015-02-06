@@ -1,4 +1,5 @@
 MessageSummary = require '../models/message-summary'
+airbrake = require('airbrake').createClient process.env.AIRBRAKE_KEY
 
 class MessageSummaryController
   constructor: (@elasticSearchUri) ->
@@ -10,6 +11,6 @@ class MessageSummaryController
         response.send result
       .catch (error) =>
         response.send 500, error: error.message
-        throw error
+        airbrake.notify error
 
 module.exports = MessageSummaryController
