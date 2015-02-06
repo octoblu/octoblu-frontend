@@ -4,7 +4,7 @@
   "auth_strategy": "oauth",
   "documentation": "https://developer.automatic.com/documentation/#user",
   "name": "Automatic",
-  "enabled": false,
+  "enabled": true,
   "oauth": {
     "production" : {
       "clientID": "INSERT_SECERT_HERE",
@@ -62,14 +62,14 @@
       },
       {
         "path": "/trips/:id",
-        "displayName": "Get A Single Trip",
+        "displayName": "Get Single Trip",
         "doc": {
           "url": "https://api.automatic.com/v1/:id"
         },
         "httpMethod": "Get",
         "params": [
           {
-            "displayName": "ID Of A The Trip",
+            "displayName": "Trip ID",
             "style": "URL",
             "type": "string",
             "name": ":id",
@@ -90,7 +90,7 @@
       },
       {
         "path": "/vehicles",
-        "displayName": "List Vehicles User",
+        "displayName": "List User Vehicles",
         "doc": {
           "url": "https://api.automatic.com/v1/vehicles"
         },
@@ -100,13 +100,13 @@
       },
       {
         "path": "/vehicles/:id",
-        "displayName": "Get A Single Vehicle",
+        "displayName": "Get Single Vehicle",
         "doc": {
           "url": "https://api.automatic.com/v1/vehicles/:id"
         },
         "httpMethod": "Get",
         "params": [{
-            "displayName": "ID Of A The Trip",
+            "displayName": "Vehicle ID",
             "style": "URL",
             "type": "string",
             "name": ":id",
