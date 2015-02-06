@@ -41,6 +41,11 @@ angular.module('octobluApp')
   };
 
   var filterParamsByStyle = function(params, style){
+    _.each(params, function(param){
+      if (param.style) {
+        param.style = param.style.toLowerCase();
+      }
+    });
     return _.where(params, {style: style});
   };
 
