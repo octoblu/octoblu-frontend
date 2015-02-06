@@ -4,7 +4,7 @@
   "auth_strategy": "oauth",
   "documentation": "https://developers.google.com/places/documentation/search",
   "name": "GooglePlaces",
-  "enabled": true,
+  "enabled": false,
   "application": {
     "base": "https://maps.googleapis.com/maps/api/place",
     "resources": [
