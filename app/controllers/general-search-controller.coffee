@@ -1,4 +1,5 @@
 GeneralSearch = require '../models/general-search'
+airbrake = require('airbrake').createClient process.env.AIRBRAKE_KEY
 
 class GeneralSearchController
   constructor: (@elasticSearchUri) ->
@@ -10,8 +11,6 @@ class GeneralSearchController
         response.send result
       .catch (error) =>
         response.send 500, error: error.message
-        console.error error.body
-        console.error JSON.stringify(error.requestParams, null ,2)
-        throw error
+        airbrake.notify error
 
 module.exports = GeneralSearchController
