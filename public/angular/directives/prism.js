@@ -3,6 +3,9 @@ angular.module('octobluApp')
   'use strict';
 
   return {
+    scope : {
+      code : '='
+    },
     restrict: 'E',
     templateUrl: '/pages/prism.html',
     replace: true,

@@ -7,8 +7,8 @@ describe 'AnalyzeController', ->
 
         @MessageSummaryDefer = @q.defer()
         @getMessageSummary = sinon.stub().returns @MessageSummaryDefer.promise
-        
-        @MessagesDefer = @q.defer()  
+
+        @MessagesDefer = @q.defer()
         @getMessages = sinon.stub().returns @MessagesDefer.promise
 
     module 'octobluApp'
@@ -137,27 +137,6 @@ describe 'AnalyzeController', ->
 
     it 'should make a call to AnalyzeService.getMessages with the search string', =>
       expect(@AnalyzeService.getMessages).to.have.been.calledWith 'I entered some UUID'
-
-  describe 'when search input is undefined', =>
-    beforeEach =>
-      @scope.analyzeSearch = undefined
-      @rootScope.$digest()
-    it 'should not make a call to AnalyzeService.getMessages', =>
-      expect(@AnalyzeService.getMessages).to.not.have.been.called
-
-  describe 'when search input is null', =>
-    beforeEach =>
-      @scope.analyzeSearch = null
-      @rootScope.$digest()
-    it 'should not make a call to AnalyzeService.getMessages', =>
-      expect(@AnalyzeService.getMessages).to.not.have.been.called
-
-  describe 'when search input is empty', =>
-    beforeEach =>
-      @scope.analyzeSearch = ''
-      @rootScope.$digest()
-    it 'should not make a call to AnalyzeService.getMessages', =>
-      expect(@AnalyzeService.getMessages).to.not.have.been.called 
 
   describe 'when AnalyzeService.getMessages returns no results', =>
     beforeEach =>

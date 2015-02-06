@@ -76,6 +76,21 @@ describe 'GeneralSearch', ->
       it 'should have the query in the json object', ->
         expect(@result.json.query.match._all.query).to.equal 'kinda-a-query'
 
+    describe 'when instantiated with an empty query', ->
+      beforeEach ->
+        @uri = 'http://karatechicken.io'
+        @sut = new GeneralSearch @uri, ''
+        @result = @sut.requestParams '', ['uuid1', 'uuid2']
+
+      it 'should have a url of karatechicken with the path added', ->
+        expect(@result.url).to.equal 'http://karatechicken.io/skynet_trans_log/_search'
+
+      it 'should have a method of POST', ->
+        expect(@result.method).to.equal 'POST'
+
+      it 'should have the query in the json object', ->
+        expect(@result.json).not.to.have.property 'query'
+
     describe 'when instantiated with firechicken', ->
       beforeEach ->
         @uri = 'http://firechicken.io'

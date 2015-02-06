@@ -41,8 +41,18 @@ angular.module 'octobluApp'
         $scope.topicData = {
           data: _.pluck topicData, 'count'
           labels: _.pluck topicData, 'label'
-          colors: _.pluck topicData, 'color'
+          colours: ['red','green', 'blue']#_.pluck topicData, 'color'
         }
+
+    convertToColorObject = (color) =>
+      {
+        "fillColor"           :color.color,
+        "strokeColor"         :color.highlight,
+        "pointColor"          :color.highlight,
+        "pointStrokeColor"    :color.highlight,
+        "pointHighlightFill"  :color.color,
+        "pointHighlightStroke":color.highlight
+      }
 
     getMessageSummary = =>
       AnalyzeService.getMessageSummary().then (messageSummary) =>
@@ -66,7 +76,6 @@ angular.module 'octobluApp'
         ]
 
     $scope.$watch "analyzeSearch", (newSearch) =>
-      return if !newSearch || newSearch.trim().length <= 3
       AnalyzeService.getMessages(newSearch).then (results) =>
         $scope.searchResults = results
 
