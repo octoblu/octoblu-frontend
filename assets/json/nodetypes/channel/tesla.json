@@ -3,7 +3,7 @@
   "category": "channel",
   "description": "Tesla Model S",
   "enabled": true,
-  "name": "tesla",
+  "name": "Tesla",
   "skynet": {
     "type": "channel",
     "subtype": "tesla"

@@ -3,7 +3,7 @@
   "auth_strategy": "tesla",
   "documentation": "http://docs.timdorr.apiary.io",
   "enabled": true,
-  "name": "tesla",
+  "name": "Tesla",
   "type": "channel:tesla",
   "oauth": {
     "production" : {
@@ -54,10 +54,10 @@
         "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/mobile_enabled"
       },
       {
-        "path": "/vehicles/:id/command/charge_state",
+        "path": "/vehicles/:id/data_request/charge_state",
         "displayName": "Gets State Of Charge In The Battery",
         "doc": {
-          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_state"
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/charge_state"
         },
         "httpMethod": "GET",
         "params": [
@@ -69,13 +69,13 @@
             "required": true
           }
         ],
-        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_state"
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/charge_state"
       },
       {
-        "path": "/vehicles/:id/command/climate_state",
+        "path": "/vehicles/:id/data_request/climate_state",
         "displayName": "Gets Current Temperature & Climate Control State",
         "doc": {
-          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/climate_state"
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/climate_state"
         },
         "httpMethod": "GET",
         "params": [
@@ -87,13 +87,13 @@
             "required": true
           }
         ],
-        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/climate_state"
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/climate_state"
       },
       {
-        "path": "/vehicles/:id/command/drive_state",
+        "path": "/vehicles/:id/data_request/drive_state",
         "displayName": "Gets Driving & Position State Of The Vehicle",
         "doc": {
-          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/drive_state"
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/drive_state"
         },
         "httpMethod": "GET",
         "params": [
@@ -105,13 +105,13 @@
             "required": true
           }
         ],
-        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/drive_state"
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/drive_state"
       },
       {
-        "path": "/vehicles/:id/command/gui_settings",
+        "path": "/vehicles/:id/data_request/gui_settings",
         "displayName": "Gets Info About The GUI Settings",
         "doc": {
-          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/gui_settings"
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/gui_settings"
         },
         "httpMethod": "GET",
         "params": [
@@ -123,13 +123,13 @@
             "required": true
           }
         ],
-        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/gui_settings"
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/gui_settings"
       },
       {
-        "path": "/vehicles/:id/command/vehicle_state",
+        "path": "/vehicles/:id/data_request/vehicle_state",
         "displayName": "Gets Vehicle's Physical State",
         "doc": {
-          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/vehicle_state"
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/vehicle_state"
         },
         "httpMethod": "GET",
         "params": [
@@ -141,7 +141,7 @@
             "required": true
           }
         ],
-        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/vehicle_state"
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/vehicle_state"
       },
       {
         "path": "/vehicles/:id/command/charge_port_door_open",
