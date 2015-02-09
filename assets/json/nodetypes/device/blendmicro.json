@@ -4,7 +4,7 @@
   "description": "Blend Micro BLE microcontroller",
   "enabled": true,
   "name": "Blend Micro",
-  "payloadOnly": true,
+  "payloadOnly": false,
   "skynet": {
     "type": "device",
     "subtype": "arduino"
