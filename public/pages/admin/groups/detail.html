@@ -15,14 +15,10 @@
                 </p>
                 <ul ng-if="!(sourcePermissionsGroup.members.length == 0) && sourcePermissionsGroup.members && sourcePermissionsGroup"
                     class="list-group">
-                    <li class="list-group-item" ng-repeat="resource in sourcePermissionsGroup.members | orderBy:'name'"
+                    <li class="list-group-item" layout="row" ng-repeat="resource in sourcePermissionsGroup.members | orderBy:'name'"
                         style="min-height: 50px;">
-                 <span class="fa-stack fa-2x resource-icon">
-                        <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-stack-1x"
-                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
-                 </span>
-                        <span>{{getDisplayName(resource)}}</span>
+                        <span class="resource-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }"></span>
+                        <span flex layout="column" layout-align="center">{{getDisplayName(resource)}}</span>
                         <a class="btn btn-danger pull-right"
                            ng-click="removeResourceFromGroup(sourcePermissionsGroup, resource)"><i
                                 class="fa fa-trash-o"></i></a>
@@ -40,9 +36,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li ng-repeat="resource in allResources">
                             <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
-                                <i class="fa fa-fw"
-                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
-                                {{getDisplayName(resource)}}
+                              <div class="resource-dropdown-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }">&nbsp;</div>
+                              <span>{{getDisplayName(resource)}}</span>
                             </a>
                         </li>
                     </ul>
@@ -154,14 +149,10 @@
                 </p>
                 <ul ng-if="!(targetPermissionsGroup.members.length == 0) && targetPermissionsGroup.members && targetPermissionsGroup"
                     class="list-group">
-                    <li class="list-group-item" ng-repeat="resource in targetPermissionsGroup.members | orderBy:'name'"
+                    <li class="list-group-item" layout="row" ng-repeat="resource in targetPermissionsGroup.members | orderBy:'name'"
                         style="min-height: 50px;">
-                 <span class="fa-stack fa-2x resource-icon">
-                        <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa  fa-stack-1x"
-                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
-                 </span>
-                        <span>{{getDisplayName(resource)}}</span>
+                        <span class="resource-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }"></span>
+                        <span flex layout="column" layout-align="center" >{{getDisplayName(resource)}}</span>
                         <a class="btn btn-danger pull-right"
                            ng-click="removeResourceFromGroup(targetPermissionsGroup, resource)">
                             <i class="fa fa-trash-o"></i></a>
@@ -179,9 +170,8 @@
                     <ul class="dropdown-menu">
                         <li ng-repeat="resource in allResources | filter : {type : 'device'}">
                             <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
-                                <i class="fa fa-fw"
-                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
-                                {{getDisplayName(resource)}}
+                                <div class="resource-dropdown-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }">&nbsp;</div>
+                                <span>{{getDisplayName(resource)}}</span>
                             </a>
                         </li>
                     </ul>
