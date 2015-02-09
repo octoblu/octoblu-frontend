@@ -83,7 +83,7 @@ angular.module 'octobluApp'
     getMessageSummary()
 
     intervalPromise = $interval =>
-      return unless $scope.updatePeriodically?
+      return unless $scope.updatePeriodically
       getTopicSummary()
       getMessageSummary()
     , 5000
