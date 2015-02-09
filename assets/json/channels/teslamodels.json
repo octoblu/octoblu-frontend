@@ -72,6 +72,24 @@
         "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/data_request/charge_state"
       },
       {
+        "path": "/vehicles/:id/wake_up",
+        "displayName": "Wake Up",
+        "doc": {
+          "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/wake_up"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID Number",
+            "style": "url",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/wake_up"
+      },
+      {
         "path": "/vehicles/:id/data_request/climate_state",
         "displayName": "Gets Current Temperature & Climate Control State",
         "doc": {
