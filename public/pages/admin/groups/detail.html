@@ -31,13 +31,13 @@
             </div>
             <div class="panel-footer">
                 <div class="input-group-btn" dropdown>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                         <i class="fa fa-plus">
                             <i class="fa fa-bullhorn fa-lg" style="margin-right: 5px;"></i>
                         </i>
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" role="menu">
                         <li ng-repeat="resource in allResources">
                             <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
                                 <i class="fa fa-fw"
@@ -170,7 +170,7 @@
             </div>
             <div class="panel-footer">
                 <div class="input-group-btn" dropdown>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                         <i class="fa fa-plus">
                             <i class="fa fa-crosshairs fa-lg" style="margin-right: 5px;"></i>
                         </i>
