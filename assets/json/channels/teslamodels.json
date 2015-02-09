@@ -47,7 +47,7 @@
             "displayName": "ID Number Of The Car",
             "name": ":id",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "required": true
           }
         ],
@@ -64,7 +64,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -208,7 +208,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           },
@@ -233,7 +233,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -251,7 +251,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -269,7 +269,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -287,7 +287,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -305,7 +305,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -323,7 +323,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -341,7 +341,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           },
@@ -373,7 +373,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -391,7 +391,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           }
@@ -409,7 +409,7 @@
           {
             "displayName": "ID Number",
             "style": "url",
-            "type": "number",
+            "type": "string",
             "name": ":id",
             "required": true
           },
