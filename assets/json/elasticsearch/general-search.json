@@ -1,6 +1,6 @@
 {
   "sort" : [
-    { "@timestamp" : {"order" : "desc"}}
+    { "timestamp" : {"order" : "desc"}}
   ],
   "filter": {
     "or": []
