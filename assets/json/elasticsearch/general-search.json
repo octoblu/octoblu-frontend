@@ -3,15 +3,6 @@
     { "@timestamp" : {"order" : "desc"}}
   ],
   "filter": {
-    "and": [
-      {
-          "term": {
-          "@fields.eventCode": 300
-        }
-      },
-      {
-        "or": []
-      }
-    ]
+    "or": []
   }
 }

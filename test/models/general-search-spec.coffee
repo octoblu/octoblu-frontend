@@ -36,18 +36,18 @@ describe 'GeneralSearch', ->
         expect(@result).to.be.an 'object'
 
       it 'should have an empty "or" filter section', ->
-        expect(@result.filter.and[1].or).to.be.empty
+        expect(@result.filter.or).to.be.empty
 
     describe 'when called with a searchQuery of duckhunt and uuids', ->
       beforeEach ->
         @result = @sut.query 'duckhunt', ['uber', 'something']
 
       it 'should be inject uuid filters', ->
-        expect(@result.filter.and[1].or).to.have.same.deep.members [
-          { term : {"@fields.fromUuid.raw": "something"}}
-          { term : {"@fields.toUuid.raw": "something"}}
-          { term : {"@fields.fromUuid.raw": "uber"}}
-          { term : {"@fields.toUuid.raw": "uber"}}
+        expect(@result.filter.or).to.have.same.deep.members [
+          { term : {"fromUuid.raw": "something"}}
+          { term : {"toUuid.raw": "something"}}
+          { term : {"fromUuid.raw": "uber"}}
+          { term : {"toUuid.raw": "uber"}}
         ]
 
       it 'should inject query', ->
@@ -68,7 +68,7 @@ describe 'GeneralSearch', ->
         @result = @sut.requestParams 'kinda-a-query', ['uuid1', 'uuid2']
 
       it 'should have a url of karatechicken with the path added', ->
-        expect(@result.url).to.equal 'http://karatechicken.io/skynet_trans_log/_search'
+        expect(@result.url).to.equal 'http://karatechicken.io/meshblu_events_300/_search'
 
       it 'should have a method of POST', ->
         expect(@result.method).to.equal 'POST'
@@ -83,7 +83,7 @@ describe 'GeneralSearch', ->
         @result = @sut.requestParams '', ['uuid1', 'uuid2']
 
       it 'should have a url of karatechicken with the path added', ->
-        expect(@result.url).to.equal 'http://karatechicken.io/skynet_trans_log/_search'
+        expect(@result.url).to.equal 'http://karatechicken.io/meshblu_events_300/_search'
 
       it 'should have a method of POST', ->
         expect(@result.method).to.equal 'POST'
@@ -98,7 +98,7 @@ describe 'GeneralSearch', ->
         @result = @sut.requestParams('kinda-a-query')
 
       it 'should have a url of firechicken', ->
-        expect(@result.url).to.equal 'http://firechicken.io/skynet_trans_log/_search'
+        expect(@result.url).to.equal 'http://firechicken.io/meshblu_events_300/_search'
 
   describe '->fetch', ->
     describe 'when instantiated with karatechicken', ->
@@ -111,7 +111,7 @@ describe 'GeneralSearch', ->
         beforeEach ->
           @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: 'k2'}]
           result = { worker: "sweet", fromUuid: @fromUuid, sweet: 1, bacon: 3 }
-          hits = [{ "_id": "123", "_source": { "@fields": result} }]
+          hits = [{ "_id": "123", "_source": result }]
           @request.yields null, {statusCode: 200}, { hits : { hits : hits }}
           @sut.fetch("bacon").then (@result) =>
 
