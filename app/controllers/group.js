@@ -150,10 +150,11 @@ var groupController = {
                 return dbGroup;
             }
             return Group.insert({
+                uuid: uuid.v1(),
                 name: 'operators',
                 type: 'operators',
                 resource: {
-                    owner: user.resourceId
+                    owner: user.resource
                 }
             });
         })

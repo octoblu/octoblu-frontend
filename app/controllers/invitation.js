@@ -1,13 +1,14 @@
 var _ = require('lodash'),
-    moment = require('moment'),
-    jade = require('jade'),
-    fs = require('fs'),
-    uuid = require('node-uuid'),
-    nodemailer = require('nodemailer'),
-    Invitation = require('../models/invitation'),
-    User = require('../models/user'),
-    Group = require('../models/group'),
-    isAuthenticated = require('./middleware/security').isAuthenticated;
+moment = require('moment'),
+jade = require('jade'),
+fs = require('fs'),
+uuid = require('node-uuid'),
+nodemailer = require('nodemailer'),
+smtpTransport = require('nodemailer-smtp-transport'),
+Invitation = require('../models/invitation'),
+User = require('../models/user'),
+Group = require('../models/group'),
+isAuthenticated = require('./middleware/security').isAuthenticated;
 /*
  File : invitation.js
  provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
@@ -15,64 +16,64 @@ var _ = require('lodash'),
  */
 
 
-var invitationController = {
-    findInvitations: function (req, res, searchParams) {
-        var user = req.user;
+ var invitationController = {
+  findInvitations: function (req, res, searchParams) {
+    var user = req.user;
         //build the search query for invitations. Check to see if we want to
         //check for sent or received invitations.
         var queryParams = {};
         if (searchParams.sent) {
-            queryParams.from = user.skynet.uuid;
+          queryParams.from = user.skynet.uuid;
         }
 
         if (searchParams.received) {
-            queryParams.$or = [];
-            queryParams.push({
-                'recipient.uuid': user.skynet.uuid
-            });
-            queryParams.push({
-                'recipient.email': user.email
-            });
+          queryParams.$or = [];
+          queryParams.push({
+            'recipient.uuid': user.skynet.uuid
+          });
+          queryParams.push({
+            'recipient.email': user.email
+          });
         }
 
         Invitation.find(queryParams)
-            .then(function (invitations) {
-                return res.json(invitations);
-            }, function (err) {
-                return res.json(500, [err]);
-            });
-    },
+        .then(function (invitations) {
+          return res.json(invitations);
+        }, function (err) {
+          return res.json(500, [err]);
+        });
+      },
     /**
      *
      * @param req
      * @param res
      * @returns {*}
      */
-    getAllInvitations: function (req, res) {
-        var searchParams = {
-            sent: true,
-            received: true
-        };
-        this.findInvitations(req, res, searchParams)
+     getAllInvitations: function (req, res) {
+      var searchParams = {
+        sent: true,
+        received: true
+      };
+      this.findInvitations(req, res, searchParams)
     },
 
     getInvitationsSent: function (req, res) {
-        this.findInvitations(req, res, {sent: true});
+      this.findInvitations(req, res, {sent: true});
     },
 
     getInvitationsReceived: function (req, res) {
-        this.findInvitations(req, res, {received: true});
+      this.findInvitations(req, res, {received: true});
     },
 
     getInvitationById: function (req, res) {
-        Invitation.findById(req.params.invitationId)
-            .then(function (invitation) {
-                res.send(invitation);
-            },
-            function (err) {
-                res.send(500, err);
-            }
-        )
+      Invitation.findById(req.params.invitationId)
+      .then(function (invitation) {
+        res.send(invitation);
+      },
+      function (err) {
+        res.send(500, err);
+      }
+      )
     },
 
     /**
@@ -81,8 +82,8 @@ var invitationController = {
      * @param res
      * @returns {*}
      */
-    sendInvitation: function (req, res) {
-        var config = invitationController.config, sender = req.user, recipient, email = req.body.email;
+     sendInvitation: function (req, res) {
+      var config = invitationController.config, sender = req.user, recipient, email = req.body.email;
         //1. Check if the recipient is already an existing octoblu user
         //2. Create a new invitation
         //3. Generate an HTML template for the invitation
@@ -90,126 +91,135 @@ var invitationController = {
         //and return the invitation to the user.
 
         return User.findByEmail(email)
-            .then(function (rcp) {
-                recipient = rcp;
-                var inviteData = {
-                    recipient: {email: email},
-                    from: req.user.skynet.uuid,
-                    status: 'PENDING',
-                    sent: moment.utc()
-                }
+        .then(function (rcp) {
+          recipient = rcp;
+          var inviteData = {
+            uuid : uuid.v1(),
+            recipient: {email: email},
+            from: sender.skynet.uuid,
+            status: 'PENDING',
+            sent: moment.utc().toDate()
+          }
 
-                if (rcp) {
-                    inviteData.recipient.uuid = recipient.skynet.uuid;
-                }
+          if (rcp) {
+            inviteData.recipient.uuid = recipient.skynet.uuid;
+          }
 
-                return Invitation.insert(inviteData);
+          return Invitation.insert(inviteData);
 
-            }, function (err) {
-                console.error(err);
-            })
-            .then(function (invites) {
-            		var invite = _.first(invites);
+        }, function (err) {
+          console.error(err);
+        })
+        .then(function (invites) {
+          var invite = _.first(invites);
 
-                var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
-                var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite._id + '/accept';
-                var options = {
-                    pretty: true,
-                    sender: sender,
-                    invitationUrl: invitationUrl
-                };
-                var messageHtml = jade.renderFile(invitationTemplatePath, options);
+          var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
+          var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite.uuid + '/accept';
+          var options = {
+            pretty: true,
+            sender: sender,
+            invitationUrl: invitationUrl
+          };
+          var messageHtml = jade.renderFile(invitationTemplatePath, options);
 
-                var smtpTransport = nodemailer.createTransport("SMTP", {
-                    service: "Gmail",
-                    auth: {
-                        user: config.email.SMTP.Gmail.user,
-                        pass: config.email.SMTP.Gmail.password
-                    }
-                });
+          var mailTransport = nodemailer.createTransport(smtpTransport(config.email.SMTP));
 
-                var mailOptions = {
-                    to: invite.recipient.email,
-                    subject: 'Invitation to share devices on Octoblu from ' + sender.displayName,
-                    html: messageHtml
-                };
+          var mailOptions = {
+            from : config.email.from,
+            to: invite.recipient.email,
+            subject: 'Invitation to share devices on Octoblu from ' + sender.displayName,
+            html: messageHtml
+          };
 
-                smtpTransport.sendMail(mailOptions, function (error) {
-                    if (error) {
-                        res.json(500, {'error': 'Invitation email could not be sent'});
-                        return;
-                    }
-                    res.send(200, invite);
-                });
-            }, function (error) {
-                res.json(500, {
-                    'error': error
-                });
-            });
-    },
-
-    acceptInvitation: function (req, res) {
-        var invitation, sender, recipient;
-        Invitation.findById(req.params.id)
-            .then(function (inv) {
-                invitation = inv;
-
-                if (invitation.status === 'ACCEPTED') {
-                    return res.redirect('/home');
-                }
-
-                return User.findBySkynetUUID(invitation.from)
-                    .then(function (snd) {
-                        sender = snd;
-                        if (invitation.recipient.uuid) {
-                            return User.findBySkynetUUID(invitation.recipient.uuid);
-                        }
-                        return User.findByEmail(invitation.recipient.email);
-                    })
-                    .then(function (rcp) {
-                        recipient = rcp;
-                        if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
-                            return res.redirect('/login');
-                        }
-                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid })
-                            .then(function (operatorGroup) {
-                                operatorGroup = operatorGroup ||
-                                    new Group({
-                                        name: 'operators',
-                                        'type': 'operators',
-                                        resource: {
-                                            owner: recipient.resourceId
-                                        }
-                                    });
-
-                                var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.resource.uuid });
-
-                                invitation.accepted = moment.utc();
-                                invitation.status = "ACCEPTED";
-                                Invitation.update({_id: invitation._id}, invitation);
-
-                                if (!existingMember) {
-                                    operatorGroup.members.push(recipient.resourceId);
-                                    Group.update({_id: operatorGroup._id}, operatorGroup);
-                                }
-
-                                res.redirect('/home');
-                            });
-                    });
-            })
-            .then(null, function(err){
-                console.error(err);
-            });
-    },
-
-    deleteInvitation: function (req, res) {
-        Invitation.findByIdAndRemove(req.params.invitationId, function (err, invitation) {
-            if (err) {
-                res.json(500, err);
+          mailTransport.sendMail(mailOptions, function (error) {
+            if (error) {
+              console.error(error);
+              res.json(500, {'error': 'Invitation email could not be sent'});
+              return;
             }
-            res.json(200, invitation);
+            res.send(200, invite);
+          });
+        }, function (error) {
+          res.json(500, {
+            'error': error
+          });
         });
+},
+
+acceptInvitation: function (req, res) {
+  var invitation, sender, recipient;
+  Invitation.findByUuid(req.params.id, function (error, invitation) {
+    if(error){
+      console.error(error);
+      res.send(500, error);
+      return;
     }
+
+    if(!invitation){
+      return res.send(404);
+    }
+
+
+    if (invitation.status === 'ACCEPTED') {
+      return res.redirect('/home');
+    }
+
+    return User.findBySkynetUUID(invitation.from)
+      .then(function (snd) {
+        sender = snd;
+        if (invitation.recipient.uuid) {
+          return User.findBySkynetUUID(invitation.recipient.uuid);
+        }
+        return User.findByEmail(invitation.recipient.email);
+      })
+      .then(function (rcp) {
+        recipient = rcp;
+        if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
+          return res.redirect('/signup');
+        }
+        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid })
+          .then(function (operatorGroup) {
+            console.log('operator group at first', operatorGroup);
+            operatorGroup = operatorGroup || {
+              uuid : uuid.v1(),
+              name: 'operators',
+              'type': 'operators',
+              resource: {
+                owner: recipient.resource
+              }
+            };
+            operatorGroup.members = operatorGroup.members || [];
+
+            var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.skynet.uuid });
+
+            invitation.accepted = moment.utc().toDate();
+            invitation.status = "ACCEPTED";
+            Invitation.update({uuid: invitation.uuid}, invitation);
+
+            console.log('operator group after', operatorGroup);
+            if (!existingMember) {
+              operatorGroup.members.push(recipient.resource);
+              if(operatorGroup._id){
+                Group.update({uuid: operatorGroup.uuid}, operatorGroup);
+              }else{
+                Group.insert(operatorGroup);
+              }
+            }
+
+            res.redirect('/home');
+          });
+      });
+  });
+},
+
+deleteInvitation: function (req, res) {
+  Invitation.findByIdAndRemove(req.params.invitationId, function (err, invitation) {
+    if (err) {
+      res.json(500, err);
+    }
+    res.json(200, invitation);
+  });
+}
 };
 
 module.exports = function (app, passport, config) {
@@ -223,4 +233,4 @@ module.exports = function (app, passport, config) {
     app.post('/api/user/invitation/send', isAuthenticated, invitationController.sendInvitation);
     app.get('/api/invitation/:id/accept', invitationController.acceptInvitation);
     app.delete('/api/invitations/:invitationId', isAuthenticated, invitationController.deleteInvitation);
-};
+  };
