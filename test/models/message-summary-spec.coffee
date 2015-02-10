@@ -145,8 +145,8 @@ describe 'MessageSummary', ->
       beforeEach ->
         @sut = new MessageSummary 'http://superjobs.io', 'Antman', @dependencies
 
-      it 'should use that search engine, with skynet_trans_log/_search added', ->
-        expect(@sut.requestParams().url).to.equal 'http://superjobs.io/skynet_trans_log/_search?search_type=count'
+      it 'should use that search engine, with meshblu_events_300/_search added', ->
+        expect(@sut.requestParams().url).to.equal 'http://superjobs.io/meshblu_events_300/_search?search_type=count'
 
       it 'should set the method to "POST"', ->
         expect(@sut.requestParams().method).to.equal 'POST'
@@ -154,31 +154,31 @@ describe 'MessageSummary', ->
       describe 'when called with BogeyMan', ->
         it 'should include the from uuid as an "or" term', ->
           @result = @sut.requestParams(['BogeyMan'])
-          terms = @result.json.aggs.sent.filter.and[1].or
+          terms = @result.json.aggs.sent.filter.or
           expect(terms).to.include {
-            term: {'@fields.fromUuid.raw': 'BogeyMan'}
+            term: {'fromUuid.raw': 'BogeyMan'}
           }
 
         it 'should include the to uuid as an "or" term', ->
           @result = @sut.requestParams(['BogeyMan'])
-          terms = @result.json.aggs.received.filter.and[1].or
+          terms = @result.json.aggs.received.filter.or
           expect(terms).to.include {
-            term: {'@fields.toUuid.raw': 'BogeyMan'}
+            term: {'toUuid.raw': 'BogeyMan'}
           }
 
       describe 'when called with MonkeyMan', ->
         it 'should include the from uuid as an "or" term', ->
           @result = @sut.requestParams(['MonkeyMan'])
-          terms = @result.json.aggs.sent.filter.and[1].or
+          terms = @result.json.aggs.sent.filter.or
           expect(terms).to.deep.equal [{
-            term: {'@fields.fromUuid.raw': 'MonkeyMan'}
+            term: {'fromUuid.raw': 'MonkeyMan'}
           }]
 
         it 'should include the to uuid as an "or" term', ->
           @result = @sut.requestParams(['MonkeyMan'])
-          terms = @result.json.aggs.received.filter.and[1].or
+          terms = @result.json.aggs.received.filter.or
           expect(terms).to.deep.equal [{
-            term: {'@fields.toUuid.raw': 'MonkeyMan'}
+            term: {'toUuid.raw': 'MonkeyMan'}
           }]
 
     describe 'when it is instantiated with a superhero job search engine url', ->
@@ -186,6 +186,6 @@ describe 'MessageSummary', ->
         @sut = new MessageSummary 'http://heroes.monster.com', 'Antman', @dependencies
 
       it 'should use that search engine', ->
-        expect(@sut.requestParams().url).to.equal 'http://heroes.monster.com/skynet_trans_log/_search?search_type=count'
+        expect(@sut.requestParams().url).to.equal 'http://heroes.monster.com/meshblu_events_300/_search?search_type=count'
 
 

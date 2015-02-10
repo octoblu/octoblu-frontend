@@ -32,14 +32,14 @@ class TopicSummary
 
   requestParams: (uuids)=>
     method: 'POST'
-    url:    "#{@elasticSearchUrl}/skynet_trans_log/_search?search_type=count"
+    url:    "#{@elasticSearchUrl}/meshblu_events_300/_search?search_type=count"
     json:   @query uuids
 
   query: (uuids) =>
-    queryTemplate.aggs.topic_summary.filter.and[1].or =
+    queryTemplate.aggs.topic_summary.filter.or =
       _.flatten _.map uuids, (uuid) => [
-        {term: {'@fields.fromUuid.raw': uuid}}
-        {term: {'@fields.toUuid.raw': uuid}}
+        {term: {'fromUuid.raw': uuid}}
+        {term: {'toUuid.raw': uuid}}
       ]
 
     queryTemplate

@@ -2,54 +2,24 @@
   "aggs": {
     "sent": {
       "filter": {
-        "and": [
-          {
-            "term": {
-              "@fields.eventCode": 300
-            }
-          },
-          {
-            "or": [
-            ]
-          }
-        ]
+        "or": []
       },
       "aggs": {
         "sent": {
           "terms": {
-            "field": "@fields.fromUuid.raw"
+            "field": "fromUuid.raw"
           }
         }
       }
     },
     "received": {
       "filter": {
-        "and": [
-          {
-            "term": {
-              "@fields.eventCode": 300
-            }
-          },
-          {
-            "or": [
-                {
-                  "term": {
-                    "@fields.toUuid.raw": "2e79bcc0-acac-11e4-8aeb-957baa310ac0"
-                  }
-                },
-                {
-                  "term": {
-                    "@fields.toUuid.raw": "92ac0690-acab-11e4-8922-27da2f710e51"
-                  }
-                }
-            ]
-          }
-        ]
+        "or": []
       },
       "aggs": {
         "received": {
           "terms": {
-            "field": "@fields.toUuid.raw"
+            "field": "toUuid.raw"
           }
         }
       }

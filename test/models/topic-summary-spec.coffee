@@ -28,44 +28,44 @@ describe 'TopicSummary', ->
         @result = @sut.requestParams ['uuid1', 'uuid2']
 
       it 'should have a url of zaboomafoo with the path added', ->
-        expect(@result.url).to.equal 'http://zaboomafoo.io/skynet_trans_log/_search?search_type=count'
+        expect(@result.url).to.equal 'http://zaboomafoo.io/meshblu_events_300/_search?search_type=count'
 
       it 'should have a method of POST', ->
         expect(@result.method).to.equal 'POST'
 
       it 'should inject the first uuid into the body', ->
-        terms = @result.json.aggs.topic_summary.filter.and[1].or
+        terms = @result.json.aggs.topic_summary.filter.or
 
         expect(terms).to.include {
           term: {
-            '@fields.fromUuid.raw': 'uuid1'
+            'fromUuid.raw': 'uuid1'
           }
         }
 
       it 'should inject the first uuid into the bodyusing the toUuid', ->
-        terms = @result.json.aggs.topic_summary.filter.and[1].or
+        terms = @result.json.aggs.topic_summary.filter.or
 
         expect(terms).to.include {
           term: {
-            '@fields.toUuid.raw': 'uuid1'
+            'toUuid.raw': 'uuid1'
           }
         }
 
       it 'should inject the second uuid into the body', ->
-        terms = @result.json.aggs.topic_summary.filter.and[1].or
+        terms = @result.json.aggs.topic_summary.filter.or
 
         expect(terms).to.include {
           term: {
-            '@fields.fromUuid.raw': 'uuid2'
+            'fromUuid.raw': 'uuid2'
           }
         }
 
       it 'should inject the second uuid into the body', ->
-        terms = @result.json.aggs.topic_summary.filter.and[1].or
+        terms = @result.json.aggs.topic_summary.filter.or
 
         expect(terms).to.include {
           term: {
-            '@fields.toUuid.raw': 'uuid2'
+            'toUuid.raw': 'uuid2'
           }
         }
 
@@ -76,10 +76,10 @@ describe 'TopicSummary', ->
         @result = @sut.requestParams()
 
       it 'should have a url of lambert', ->
-        expect(@result.url).to.equal 'http://lambert.io/skynet_trans_log/_search?search_type=count'
+        expect(@result.url).to.equal 'http://lambert.io/meshblu_events_300/_search?search_type=count'
 
       it 'should have no uuids in the json body', ->
-        ors = @result.json.aggs.topic_summary.filter.and[1].or
+        ors = @result.json.aggs.topic_summary.filter.or
         expect(ors).to.be.empty
 
   describe '->fetch', ->

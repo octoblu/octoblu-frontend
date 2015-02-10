@@ -47,15 +47,15 @@ class MessageSummary
 
   requestParams: (uuids) =>
     fromUuids = _.map uuids, (uuid) =>
-      term: {'@fields.fromUuid.raw': uuid}
+      term: {'fromUuid.raw': uuid}
 
     toUuids = _.map uuids, (uuid) =>
-      term: {'@fields.toUuid.raw': uuid}
+      term: {'toUuid.raw': uuid}
 
-    queryTemplate.aggs.sent.filter.and[1].or = fromUuids
-    queryTemplate.aggs.received.filter.and[1].or = toUuids
+    queryTemplate.aggs.sent.filter.or = fromUuids
+    queryTemplate.aggs.received.filter.or = toUuids
 
-    url: "#{@elasticSearchUrl}/skynet_trans_log/_search?search_type=count"
+    url: "#{@elasticSearchUrl}/meshblu_events_300/_search?search_type=count"
     method: 'POST',
     json: queryTemplate
 
