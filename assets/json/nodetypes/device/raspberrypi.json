@@ -1,12 +1,15 @@
 {
   "_id": "53c9b830f400e177dca325a8",
-  "category": "device",
+  "category": "microblu",
   "description": "Raspberry Pi",
   "enabled": true,
   "name": "RaspberryPi",
   "skynet": {
     "type": "device",
-    "subtype": "raspberrypi"
+    "subtype": "arduino"
   },
-  "type": "device:raspberrypi"
+  "type": "device:raspberrypi",
+  "connector": "meshblu-pi"
 }
+
+
