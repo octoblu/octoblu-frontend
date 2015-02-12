@@ -1,0 +1,15 @@
+{
+  "_id": "54dd3279aceb919c37b07d37",
+  "category": "microblu",
+  "description": "Johnny Five",
+  "enabled": true,
+  "name": "Johnny-Five",
+  "skynet": {
+    "type": "device",
+    "subtype": "arduino"
+  },
+  "type": "device:johnnyfive",
+  "connector": "meshblu-arduino"
+}
+
+
