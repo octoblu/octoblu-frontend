@@ -1,0 +1,581 @@
+{
+  "_id": "357963579gfe568k75et5",
+  "__v": 0,
+  "type": "channel:storefront",
+  "auth_strategy": "oauth",
+  "documentation": "https://www.citrix.com/downloads/storefront-web-interface.html",
+  "name": "StoreFront",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "http://citrix.com/delivery-services/2-0",
+    "resources": [
+      {
+        "path": "/resources/v2/:id/launch/ica",
+        "displayName": "Launch specified resource using ICA protocol",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/ica"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },{
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName"
+          },{
+            "displayName": "Client Address",
+            "style": "body",
+            "type": "string",
+            "name": "clientAddress"
+          },{
+            "displayName": "Device Id",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Audio Settings",
+            "style": "body",
+            "type": "string",
+            "name": "audio"
+          },{
+            "displayName": "Colour Depth",
+            "style": "body",
+            "type": "string",
+            "name": "colourDepth"
+          },{
+            "displayName": "Display",
+            "style": "body",
+            "type": "string",
+            "name": "Display Type"
+          },{
+            "displayName": "Display Percent",
+            "style": "body",
+            "type": "string",
+            "name": "displayPercent"
+          },{
+            "displayName": "Display Absolute",
+            "style": "body",
+            "type": "string",
+            "name": "displayAbsolute"
+          },{
+            "displayName": "Transparent Key Pass Through",
+            "style": "body",
+            "type": "string",
+            "name": "transparentKeyPassthrough"
+          },{
+            "displayName": "Special Folder Redirection",
+            "style": "body",
+            "type": "string",
+            "name": "specialFolderRedirection"
+          },{
+            "displayName": "Clear Type Remoting",
+            "style": "body",
+            "type": "string",
+            "name": "clearTypeRemoting"
+          },{
+            "displayName": "Show Desktop Viewer",
+            "style": "body",
+            "type": "string",
+            "name": "showDesktopViewer"
+          },{
+            "displayName": "Launcher",
+            "style": "body",
+            "type": "string",
+            "name": "launcher"
+          },{
+            "displayName": "Virtual ComPort",
+            "style": "body",
+            "type": "string",
+            "name": "virtualComPort"
+          },{
+            "displayName": "ComPort Mapping",
+            "style": "body",
+            "type": "string",
+            "name": "comPortMapping"
+          },{
+            "displayName": "Client Printer",
+            "style": "body",
+            "type": "string",
+            "name": "clientPrinter"
+          }
+        ],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/ica"
+      },
+      {
+        "path": "/resources/v2/:id/launch/rade",
+        "displayName": "Creates A Channel",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/rade"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },{
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName"
+          },{
+            "displayName": "Client Address",
+            "style": "body",
+            "type": "string",
+            "name": "clientAddress"
+          },{
+            "displayName": "Device Id",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Audio Settings",
+            "style": "body",
+            "type": "string",
+            "name": "audio"
+          },{
+            "displayName": "Colour Depth",
+            "style": "body",
+            "type": "string",
+            "name": "colourDepth"
+          },{
+            "displayName": "Display",
+            "style": "body",
+            "type": "string",
+            "name": "Display Type"
+          },{
+            "displayName": "Display Percent",
+            "style": "body",
+            "type": "string",
+            "name": "displayPercent"
+          },{
+            "displayName": "Display Absolute",
+            "style": "body",
+            "type": "string",
+            "name": "displayAbsolute"
+          },{
+            "displayName": "Transparent Key Pass Through",
+            "style": "body",
+            "type": "string",
+            "name": "transparentKeyPassthrough"
+          },{
+            "displayName": "Special Folder Redirection",
+            "style": "body",
+            "type": "string",
+            "name": "specialFolderRedirection"
+          },{
+            "displayName": "Clear Type Remoting",
+            "style": "body",
+            "type": "string",
+            "name": "clearTypeRemoting"
+          }
+        ],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/rade"
+      },
+      {
+        "path": "/resources/v2/:id/launch/:protocol/:retrykey",
+        "displayName": "Gets History Of Messages & Events",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },{
+            "displayName": "Protocol",
+            "style": "URL",
+            "type": "string",
+            "name": ":protocol",
+            "required": true
+          },{
+            "displayName": "Retry Key",
+            "style": "URL",
+            "type": "string",
+            "name": ":retrykey",
+            "required": true
+          },{
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName"
+          },{
+            "displayName": "Client Address",
+            "style": "body",
+            "type": "string",
+            "name": "clientAddress"
+          },{
+            "displayName": "Device Id",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
+      },
+      {
+        "path": "/resources/v2/:thumbprint/image/:size",
+        "displayName": "Gets The Specified Image",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Thumbprint",
+            "style": "URL",
+            "type": "string",
+            "name": ":thumbprint",
+            "required": true
+          },{
+            "displayName": "Size Of The Image",
+            "style": "URL",
+            "type": "string",
+            "name": ":size",
+            "required": true
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
+      },
+      {
+        "path": "/resources/v2/:thumbprint/icon",
+        "displayName": "Get The Specified Icon Data",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/icon"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Thumbprint",
+            "style": "URL",
+            "type": "string",
+            "name": ":thumbprint",
+            "required": true
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/icon"
+      },
+      {
+        "path": "/resources/v2/:id/poweroff",
+        "displayName": "Triggers A Power Off Operation On Underlying Machine",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/poweroff"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/poweroff"
+      },
+      {
+        "path": "/resources/v2/streaming",
+        "displayName": "Post Rade Service",
+        "doc": {
+         "url": "http://citrix.com/delivery-services/2-0/resources/v2/streaming"
+        },
+        "httpMethod": "Post",
+        "params": [],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/streaming"
+      },
+      {
+        "path": "/resources/v2/subscriptions/:resourceId",
+        "displayName": "Service To Be Subscribed & Unsubscribed",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Id Of Associated Resource",
+            "style": "URL",
+            "type": "string",
+            "name": ":resourceId",
+            "required": true
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
+      },
+      {
+        "path": "/sessions/v1/available",
+        "displayName": "Gets Data On Sessions",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/available"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName",
+            "required": true
+          },{
+            "displayName": "Identifies The Device",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Whether To Include Active Sessions",
+            "style": "body",
+            "type": "boolean",
+            "name": "includeActiveSessions"
+          },{
+            "displayName": "App Sessions Only",
+            "style": "body",
+            "type": "boolean",
+            "name": "appSessionsOnly"
+          },{
+            "displayName": "Represents List Of Tickets",
+            "style": "body",
+            "type": "string",
+            "name": "tickets"
+          }
+        ],
+        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/available"
+      },
+      {
+        "path": "/sessions/v1/disconnect/",
+        "displayName": "Disconnect The Requested Sessions",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/disconnect/"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName",
+            "required": true
+          },{
+            "displayName": "Identifies The Device",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Whether To Include Active Sessions",
+            "style": "body",
+            "type": "boolean",
+            "name": "includeActiveSessions"
+          },{
+            "displayName": "App Sessions Only",
+            "style": "body",
+            "type": "boolean",
+            "name": "appSessionsOnly"
+          },{
+            "displayName": "Represents List Of Tickets",
+            "style": "body",
+            "type": "string",
+            "name": "tickets"
+          }],
+        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/disconnect/"
+      },
+      {
+        "path": "/sessions/v1/logoff/",
+        "displayName": "Logoff The Requested Sessions",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/logoff/"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName",
+            "required": true
+          },{
+            "displayName": "Identifies The Device",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Whether To Include Active Sessions",
+            "style": "body",
+            "type": "boolean",
+            "name": "includeActiveSessions"
+          },{
+            "displayName": "App Sessions Only",
+            "style": "body",
+            "type": "boolean",
+            "name": "appSessionsOnly"
+          },{
+            "displayName": "Represents List Of Tickets",
+            "style": "body",
+            "type": "string",
+            "name": "tickets"
+          }
+        ],
+        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/logoff/"
+      },
+      {
+        "path": "/sessions/v1/:session-id/launch/ica",
+        "displayName": "Attempt To Launch Specified Session Using ICA Protocol",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Idenifier Of Session",
+            "style": "URL",
+            "type": "string",
+            "name": ":session-id",
+            "required": true
+          },{
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName"
+          },{
+            "displayName": "Client Address",
+            "style": "body",
+            "type": "string",
+            "name": "clientAddress"
+          },{
+            "displayName": "Device Id",
+            "style": "body",
+            "type": "string",
+            "name": "deviceId"
+          },{
+            "displayName": "Audio Settings",
+            "style": "body",
+            "type": "string",
+            "name": "audio"
+          },{
+            "displayName": "Colour Depth",
+            "style": "body",
+            "type": "string",
+            "name": "colourDepth"
+          },{
+            "displayName": "Display",
+            "style": "body",
+            "type": "string",
+            "name": "Display Type"
+          },{
+            "displayName": "Display Percent",
+            "style": "body",
+            "type": "string",
+            "name": "displayPercent"
+          },{
+            "displayName": "Display Absolute",
+            "style": "body",
+            "type": "string",
+            "name": "displayAbsolute"
+          },{
+            "displayName": "Transparent Key Pass Through",
+            "style": "body",
+            "type": "string",
+            "name": "transparentKeyPassthrough"
+          },{
+            "displayName": "Special Folder Redirection",
+            "style": "body",
+            "type": "string",
+            "name": "specialFolderRedirection"
+          },{
+            "displayName": "Clear Type Remoting",
+            "style": "body",
+            "type": "string",
+            "name": "clearTypeRemoting"
+          },{
+            "displayName": "Show Desktop Viewer",
+            "style": "body",
+            "type": "string",
+            "name": "showDesktopViewer"
+          },{
+            "displayName": "Launcher",
+            "style": "body",
+            "type": "string",
+            "name": "launcher"
+          },{
+            "displayName": "Virtual ComPort",
+            "style": "body",
+            "type": "string",
+            "name": "virtualComPort"
+          },{
+            "displayName": "ComPort Mapping",
+            "style": "body",
+            "type": "string",
+            "name": "comPortMapping"
+          },{
+            "displayName": "Client Printer",
+            "style": "body",
+            "type": "string",
+            "name": "clientPrinter"
+          }
+        ],
+        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
+      },
+      {
+        "path": "/endpoints/v1/",
+        "displayName": "Get List Of All Endpoints Available",
+        "doc": {
+          "url": "http://citrix.com/delivery-services/2-0/endpoints/v1/"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://citrix.com/delivery-services/2-0/endpoints/v1/"
+      },
+      {
+        "path": "/discovery",
+        "displayName": "Get Discovery Document For The Store",
+        "doc": {
+          "url": "https://server/Citrix/Store/discovery"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://server/Citrix/Store/discovery"
+      },{
+        "path": "/Citrix/Roaming/accounts",
+        "displayName": "Get List Of Available Accounts",
+        "doc": {
+          "url": "https://server/Citrix/Store/Citrix/Roaming/accounts"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Summary",
+            "style": "query",
+            "type": "string",
+            "name": "summary"
+          }],
+        "url": "https://server/Citrix/Store/Citrix/Roaming/accounts"
+      }
+    ]
+  }
+}
