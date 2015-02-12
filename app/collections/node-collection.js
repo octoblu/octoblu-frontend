@@ -73,7 +73,8 @@ var NodeCollection = function(userUUID) {
   self.convertChannelToNode = function(channel) {
     return _.extend({}, channel, {
       category: 'channel',
-      online: true
+      online: true,
+      useStaticMessage: true
     });
   };
 

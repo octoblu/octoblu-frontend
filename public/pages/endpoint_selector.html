@@ -9,8 +9,10 @@
 	<div class="form-group" >
     <small>{{ selectedEndpoint.httpMethod + ' ' + selectedEndpoint.url  }}</small>
   </div>
-  <param-input ng-model="node.headerParams" param-definitions="headerParamDefinitions"></param-input>
-  <param-input ng-model="node.urlParams"   	param-definitions="urlParamDefinitions"></param-input>
-  <param-input ng-model="node.queryParams" 	param-definitions="queryParamDefinitions"></param-input>
-  <param-input ng-model="node.bodyParams"  	param-definitions="bodyParamDefinitions"></param-input>
+  <div ng-show="node.useStaticMessage" ng-hide="!node.useStaticMessage">
+    <param-input ng-model="node.headerParams" param-definitions="headerParamDefinitions"></param-input>
+    <param-input ng-model="node.urlParams"   	param-definitions="urlParamDefinitions"></param-input>
+    <param-input ng-model="node.queryParams" 	param-definitions="queryParamDefinitions"></param-input>
+    <param-input ng-model="node.bodyParams"  	param-definitions="bodyParamDefinitions"></param-input>
+  </div>
 </div>
