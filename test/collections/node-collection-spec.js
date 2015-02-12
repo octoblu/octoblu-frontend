@@ -122,8 +122,8 @@ describe('NodeCollection', function () {
       it('should fulfill a promise with 2 items', function (done) {
         result.then(function (nodes) {
           expect(nodes).to.deep.equal([
-            {category: 'channel', online: true},
-            {category: 'channel', online: true}
+            {category: 'channel', online: true, useStaticMessage: true},
+            {category: 'channel', online: true, useStaticMessage: true}
           ]);
           done();
         }).catch(done);
