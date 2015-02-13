@@ -158,7 +158,12 @@ angular.module('octobluApp')
                     defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.update(device, function () {
+                    skynetConnection.update(device, function (data) {
+                        if (data && data.error) {
+                          defer.reject('Unable to claim device');
+                          return;
+                        }
+
                         defer.resolve(device);
                     });
                 });

@@ -41,7 +41,7 @@ angular.module('octobluApp')
           deviceOptions.token = $scope.existingDevice.token;
           deviceOptions.owner = currentUser.skynet.uuid;
           deviceOptions.isChanged = true;
-          promise = deviceService.updateDevice(deviceOptions);
+          promise = deviceService.claimDevice(deviceOptions);
         } else {
           deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
           promise = deviceService.claimDevice(deviceOptions);
@@ -50,7 +50,7 @@ angular.module('octobluApp')
         promise = deviceService.registerDevice(deviceOptions);
       }
 
-      promise.then(function () {
+      promise.then(function (data) {
         $state.go("material.design");
       }, function (error) {
         $scope.errorMessage = error;
