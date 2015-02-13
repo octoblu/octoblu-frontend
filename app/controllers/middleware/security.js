@@ -39,7 +39,7 @@ module.exports = {
         }
 
         var terms_accepted_at = new Date(req.user.terms_accepted_at || null), // new Date(null) -> Epoch
-            terms_updated_at  = new Date('2014-07-01');
+            terms_updated_at  = new Date('2015-02-13T22:00:00.000Z');
 
 
         if(terms_accepted_at.getTime() >= terms_updated_at.getTime()) {
