@@ -1,33 +1,27 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, skynetService, deviceService, $mdDialog) {
 
   AuthService.getCurrentUser().then(function(user){
     $scope.currentUser = user;
   });
 
-  $scope.updatePassword = function(passwordForm){
-    AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
-      $scope.passwordUpdated = true;
-      delete $scope.oldPassword;
-      delete $scope.newPassword;
-      delete $scope.confirmNewPassword;
-      passwordForm.$setPristine();
-    }, function(result){
-      passwordForm.oldPassword.$setValidity('correct', false);
+  $scope.sessionIds = [];
+
+  skynetService.getSkynetConnection().then(function (skynetConnection) {
+    skynetConnection.whoami({}, function(data) {
+      $scope.device = data;
+      $scope.sessionIds = data.sessionIds || [];
+      $scope.$digest();
     });
-  };
+  });
 
-  $scope.validateOldPassword = function(passwordForm) {
-    $scope.passwordUpdated = false;
-    passwordForm.oldPassword.$setValidity('correct', true);
+  $scope.deleteSession = function(sessionId) {
+    $scope.device.sessionIds = _.without($scope.sessionIds, sessionId);
+    console.log($scope.device.sessionIds);
+    deviceService.updateDevice($scope.device);
   }
-
-  $scope.validateConfirmPassword = function(passwordForm) {
-    $scope.passwordUpdated = false;
-    passwordForm.confirmNewPassword.$setValidity('matches', $scope.newPassword === $scope.confirmNewPassword);
-  };
 
   $scope.resetToken = function(){
     NotifyService.confirm({
@@ -42,6 +36,14 @@ angular.module('octobluApp')
             NotifyService.alert({title: 'Error Resetting Token', content: 'There was an error resetting your token. Please try again.'});
             }
         });
+  };
+
+  $scope.changePassword = function(event) {
+    $mdDialog.show({
+      controller: 'ChangePasswordController',
+      templateUrl: '/pages/change-password.html',
+      targetEvent: event,
+    })
   };
 
 });

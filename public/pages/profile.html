@@ -1,10 +1,17 @@
 <md-toolbar md-theme="octo-blue">
-   <h2 class="md-toolbar-tools page-heading" layout="row">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars"></i>
-    </a>
-    <div flex layout="row" layout-align="space-between">
-      <span>Profile - {{currentUser.displayName || currentUser.email }}</span>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+      <div flex layout="row">
+          <a href class="menu-icon" ng-click="toggleNav()">
+              <i class="fa fa-bars"></i>
+              Profile - {{currentUser.displayName || currentUser.email }}
+          </a>
+      </div>
+
+      <md-button ng-click="changePassword()" md-theme="octo-blue" aria-label="Change Password">
+        <md-tooltip>Change Password</md-tooltip>
+          <i class="fa fa-lock"></i>
+          Change Password
+      </md-button>
 
       <md-button ng-click="resetToken()" md-theme="octo-blue" aria-label="Reset Token">
         <md-tooltip>Reset Token</md-tooltip>
@@ -21,67 +28,41 @@
   <div flex-gt-md="66" flex-md="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white; padding: 0 15px;">
     <br>
 
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12">
-            <div class="alert alert-info">
-              <h4>
-                <strong>Your UUID is:</strong> {{currentUser.skynet.uuid}}
-              </h4>
-            </div>
-          </div>
+    <div flex layout="column">
+      <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+          <span class="md-flex">User Information</span>
         </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="alert alert-success" ng-show="passwordUpdated">
-            Your password has been updated
-          </div>
-          <form name="passwordForm" class="form-horizontal" ng-submit="updatePassword(passwordForm)">
-            <fieldset>
-              <legend>Change Password</legend>
-
-              <div class="form-group" ng-class="{'has-error': passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty}">
-                <label for="old-password" class="col-sm-2 control-label">Old Password</label>
-                <div class="col-sm-10">
-                  <input ng-model="oldPassword" ng-change="validateOldPassword(passwordForm)" id="old-password" name="oldPassword" type="password" class="form-control" required>
-                  <p class="help-block" ng-if="passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty">
-                    <span ng-show="passwordForm.oldPassword.$error.required">Old password is required.</span>
-                    <span ng-show="passwordForm.oldPassword.$error.correct">Old password is not correct.</span>
-                  </p>
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
-                <label for="newPassword" class="col-sm-2 control-label">New Password</label>
-                <div class="col-sm-10">
-                  <input ng-model="newPassword" id="newPassword" name="newPassword" type="password" class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{'has-error': passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty}">
-                <label for="confirmNewPassword" class="col-sm-2 control-label">Confirm Password</label>
-                <div class="col-sm-10">
-                  <input ng-model="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" type="password"  class="form-control" ng-change="validateConfirmPassword(passwordForm)" required>
-                  <p class="help-block" ng-if="passwordForm.confirmNewPassword.$invalid && passwordForm.confirmNewPassword.$dirty">
-                    <span ng-show="passwordForm.confirmNewPassword.$error.matches">
-                      New Password and Password Confirmation must match.
-                    </span>
-                  </p>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input type="submit" class="btn btn-block btn-primary" value="Submit" ng-class="{'disabled': passwordForm.$invalid}">
-                </div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
+      </md-toolbar>
+      <h2>
+        <strong>Your UUID is:</strong> {{currentUser.skynet.uuid}}
+      </h2>
+      <p>To view your token, you must click <md-button md-no-ink ng-click="resetToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Reset Token</md-button> and it will be displayed one time only.</p>
+      <p>Your token gives you full access to your account and connected devices, be sure to keep it secret.</p>
     </div>
+
+    <md-divider></md-divider>
+
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <span class="md-flex">Authorized Sessions</span>
+      </div>
+    </md-toolbar>
+    <md-content flex layout="column" layout-wrap="wrap" class="sessions-list">
+      <div ng-if="!sessionIds.length" class="text-center">
+        <h1 class="text-center">You have no authorized sessions.</h1>
+      </div>
+      <md-list flex>
+        <md-item ng-repeat="session in sessionIds">
+          <md-item-content layout="row" layout-align="space-around">
+            <div flex layout layout-align="space-between">
+              <h3>{{session}}</h3>
+              <md-button class="md-raised md-warn" ng-click="deleteSession(session)">Delete</md-button>
+            </div>
+          </md-item-content>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-item>
+      </md-list>
+    </md-content>
   </div>
 </div>
