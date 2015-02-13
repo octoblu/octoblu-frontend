@@ -19,8 +19,10 @@ angular.module('octobluApp')
             });
 
             conn.on('notReady', function (error) {
-                console.log('Skynet Error during connect', error);
-                defer.reject(error);
+                if (error && user.skynet.uuid === error.uuid) {
+                    console.log('Skynet Error during connect', error);
+                    defer.reject(error);
+                }
             });
 
             return skynetPromise;

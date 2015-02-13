@@ -64,11 +64,6 @@ function UserModel() {
       return self.findOne({'skynet.uuid': skynetuuid});
     },
 
-    findLeanBySkynetUUID : function (skynetuuid) {
-      var self = this;
-      return self.findOne({'skynet.uuid': skynetuuid});
-    },
-
     findByEmail : function (email) {
       var self = this;
       return self.findOne({ email: email });
@@ -217,10 +212,10 @@ function UserModel() {
       var self = this;
       return self.findBySkynetUUID(uuid).then(function(user){
         return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', true, 'POST', user.skynet.uuid, user.skynet.token);
-      }).then(function(token){       
+      }).then(function(token){
         return self.updateWithPromise({'skynet.uuid': uuid}, {$set: {'skynet.token': token}}).then(function(){
           return token;
-        });               
+        });
       }).catch(function(error){
         return when.reject('Token was reset, but not saved. You are in trouble.');
       });
@@ -246,7 +241,7 @@ function UserModel() {
             debug('request error:', error);
             reject(error);
             return;
-          }         
+          }
           if (response.statusCode >= 400) {
             reject('error ' + response.statusCode);
             return;
@@ -287,11 +282,11 @@ function UserModel() {
       });
     }
   };
-  
+
   var User = _.extend({}, collection, methods);
   User.updateWithPromise = when.lift(User.update);
 
-  return User; 
+  return User;
 }
 
 module.exports = new UserModel();
