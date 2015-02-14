@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, skynetService, deviceService, $mdDialog) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService) {
 
   AuthService.getCurrentUser().then(function(user){
     $scope.currentUser = user;
