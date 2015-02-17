@@ -125,6 +125,7 @@ var FlowDeploy = function(options){
         topic: topic,
         qos: 0
       };
+      debug('sendMessage.token', flow.token);
       msg.payload = {
         uuid: flow.flowId,
         token: flow.token,
