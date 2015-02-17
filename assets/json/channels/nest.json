@@ -61,37 +61,37 @@
           {
             "name": "target_temperature_f",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature in Fahrenheit"
           },
           {
             "name": "target_temperature_c",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature in Celsius"
           },
           {
             "name": "target_temperature_high_f",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature High in Fahrenheit"
           },
           {
             "name": "target_temperature_high_c",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature High in Celsius"
           },
           {
             "name": "target_temperature_low_f",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature Low in Fahrenheit"
           },
           {
             "name": "target_temperature_low_c",
             "style": "body",
-            "type": "string",
+            "type": "number",
             "displayName": "Target Temperature Low in Celsius"
           },
           {
