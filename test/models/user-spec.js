@@ -172,7 +172,7 @@ describe('User', function () {
 
     describe('when it is called', function(){
       beforeEach(function(){
-        sut.skynetRestRequest = sinon.stub();
+        sut.skynetRestRequest = sinon.stub().returns({});
       });
 
       describe('when it is called with a uuid', function(){
@@ -183,7 +183,6 @@ describe('User', function () {
               token: 2
             }
           }));
-
         });
 
         it('should call findBySkynetUUID with the user\'s uuid', function(){
@@ -203,7 +202,7 @@ describe('User', function () {
       describe('when the rest request returns with a new token', function(){
 
         beforeEach(function(){
-          sut.skynetRestRequest = sinon.stub().returns(when('newtoken'));
+          sut.skynetRestRequest = sinon.stub().returns(when({token: 'newtoken'}));
         });
 
         it('should update the user with the new token', function(){
@@ -244,7 +243,7 @@ describe('User', function () {
       describe('when the rest request returns with a different token', function(){
 
         beforeEach(function(){
-          sut.skynetRestRequest = sinon.stub().returns(when('differentToken'));
+          sut.skynetRestRequest = sinon.stub().returns(when({token: 'differentToken'}));
         });
 
         it('should update the user with the different token', function(){

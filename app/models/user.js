@@ -212,7 +212,8 @@ function UserModel() {
       var self = this;
       return self.findBySkynetUUID(uuid).then(function(user){
         return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', true, 'POST', user.skynet.uuid, user.skynet.token);
-      }).then(function(token){
+      }).then(function(response){
+        var token = response.token;
         return self.updateWithPromise({'skynet.uuid': uuid}, {$set: {'skynet.token': token}}).then(function(){
           return token;
         });

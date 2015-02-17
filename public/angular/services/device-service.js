@@ -241,7 +241,8 @@ angular.module('octobluApp')
             resetToken: function(uuid) {
                 var defer = $q.defer();
                 skynetPromise.then(function (skynetConnection) {
-                    return skynetConnection.resetToken(uuid, function(token){
+                    return skynetConnection.resetToken(uuid, function(response){
+                        var token = response.token;
                         if(!token) {
                             return defer.reject(new Error('No token provided'));
                         }

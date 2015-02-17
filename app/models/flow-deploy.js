@@ -172,7 +172,7 @@ var FlowDeploy = function(options){
       request.post(uri, options, function(error, response, body){
         debug('resetToken resolved', error, body);
         if(error) { return reject(error); }
-        resolve(body);
+        resolve(body.token);
       });
     });
   };

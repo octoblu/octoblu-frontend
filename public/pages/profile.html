@@ -3,7 +3,7 @@
       <div flex layout="row">
           <a href class="menu-icon" ng-click="toggleNav()">
               <i class="fa fa-bars"></i>
-              Profile - {{currentUser.displayName || currentUser.email }}
+              Profile
           </a>
       </div>
 
@@ -23,44 +23,54 @@
 </md-toolbar>
 
 <div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
-  <div flex-gt-md="66" flex-md="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white; padding: 0 15px;">
-    <br>
+  <div flex-gt-md="66" flex-md="95" layout-fill layout="row" class="md-whiteframe-z2" style="background: white;">
 
-    <div flex layout="column">
-      <md-toolbar class="md-primary">
-        <div class="md-toolbar-tools">
-          <span class="md-flex">User Information</span>
-        </div>
-      </md-toolbar>
-      <h2>
-        <strong>Your UUID is:</strong> {{currentUser.skynet.uuid}}
-      </h2>
-      <p>To view your token, you must click <md-button md-no-ink ng-click="resetToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Reset Token</md-button> and it will be displayed one time only.</p>
-      <p>Your token gives you full access to your account and connected devices, be sure to keep it secret.</p>
-    </div>
-
-    <md-divider></md-divider>
-
-    <md-toolbar class="md-primary">
-      <div class="md-toolbar-tools">
-        <span class="md-flex">Authorized Sessions</span>
-      </div>
-    </md-toolbar>
-    <md-content flex layout="column" layout-wrap="wrap" class="sessions-list">
-      <div ng-if="!sessionIds.length" class="text-center">
-        <h1 class="text-center">You have no authorized sessions.</h1>
-      </div>
-      <md-list flex>
-        <md-item ng-repeat="session in sessionIds">
-          <md-item-content layout="row" layout-align="space-around">
-            <div flex layout layout-align="space-between">
-              <h3>{{session}}</h3>
-              <md-button class="md-raised md-warn" ng-click="deleteSession(session)">Delete</md-button>
+    <md-content flex layout-fill>
+      <div layout-lg="column" layout-gt-lg="row">
+        <div layout="column" flex class="md-whiteframe-z1 profile-card">
+          <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools">
+              <span class="md-flex">User</span>
             </div>
-          </md-item-content>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-item>
-      </md-list>
+          </md-toolbar>
+
+          <div class="card-content">
+            <h1>{{currentUser.displayName || currentUser.email }} <br><small>{{currentUser.skynet.uuid}}</small></h1>
+
+            <p class="help-block">
+              To view your token, you must click <md-button md-no-ink ng-click="resetToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Reset Token</md-button> and it will be displayed one time only. Your token gives you full access to your account and connected devices, be sure to keep it secret.
+            </p>
+          </div>
+        </div>
+
+        <div layout="column" flex class="md-whiteframe-z1 profile-card">
+          <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools">
+              <span class="md-flex">Authorized Sessions</span>
+            </div>
+          </md-toolbar>
+          <div class="card-content">
+            <md-content flex layout="column" layout-wrap="wrap" class="sessions-list">
+              <div ng-if="!tokens.length" class="text-center">
+                <h1 class="text-center">You have no authorized sessions.</h1>
+              </div>
+              <md-list flex>
+                <md-item ng-repeat="token in tokens">
+                  <md-item-content layout="row" layout-align="space-around">
+                    <div flex layout layout-align="space-between">
+                      <h3>{{token.createdAt | date : 'medium'}}</h3>
+                      <md-button class="md-warn" ng-click="confirmDeleteToken(token)" aria-label="Delete Session">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                      </md-button>
+                    </div>
+                  </md-item-content>
+                  <md-divider ng-if="!$last"></md-divider>
+                </md-item>
+              </md-list>
+            </md-content>
+          </div>
+        </div>
+      </div>
     </md-content>
   </div>
 </div>
