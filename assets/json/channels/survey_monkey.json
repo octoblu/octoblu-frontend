@@ -19,10 +19,10 @@
       "tokenMethod": "access_token_bearer_and_api_key"
     },
     "production": {
-      "clientID": "Octoblu",
+      "clientID": "octoblu",
       "clientSecret": "INSERT_SECERT_HERE",
       "api_key": "hgyqrgsdzk3yj7g9zzpu9brz",
-      "callbackURL": "http://app.octoblu.com/api/oauth/survey-monkey/callback",
+      "callbackURL": "https://app.octoblu.com/api/oauth/survey-monkey/callback",
       "tokenMethod": "access_token_bearer_and_api_key"
     },
     "staging": {
