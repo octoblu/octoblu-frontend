@@ -29,7 +29,7 @@
       "clientID": "sqrt",
       "clientSecret": "INSERT_SECERT_HERE",
       "api_key": "ebw3rxpxzt9bzwqhqd6nkm6s",
-      "callbackURL": "http://localhost:8080/api/oauth/survey-monkey/callback",
+      "callbackURL": "http://staging.octoblu.com/api/oauth/survey-monkey/callback",
       "tokenMethod": "access_token_bearer_and_api_key"
     }
   },
