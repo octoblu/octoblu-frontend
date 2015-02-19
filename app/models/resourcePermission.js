@@ -170,22 +170,6 @@ function ResourcePermissionModel() {
                                 receiveWhitelist: permissions.receiveWhitelist
                             };
 
-                            if(_.isEmpty(deviceProperties.discoverWhitelist) ) {
-                                deviceProperties.discoverWhitelist = null;
-                            }
-
-                            if(_.isEmpty(deviceProperties.configureWhitelist) ) {
-                                deviceProperties.configureWhitelist = null;
-                            }
-
-                            if(_.isEmpty(deviceProperties.sendWhitelist ) ) {
-                                deviceProperties.sendWhitelist = null;
-                            }
-
-                            if(_.isEmpty(deviceProperties.receiveWhitelist ) ) {
-                                deviceProperties.receiveWhitelist= null;
-                            }
-
                             return client({
                                 method: 'PUT',
                                 path: skynetUrl + '/devices/' + resource.uuid,
