@@ -1,0 +1,406 @@
+{
+  "_id": "38485738592h9385wp3i4",
+  "__v": 0,
+  "type": "channel:service-now",
+  "auth_strategy": "oauth",
+  "documentation": "http://wiki.servicenow.com/index.php?title=Table_API",
+  "name": "Service-Now",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://myinstance.service-now.com",
+    "resources": [
+      {
+        "path": "/api/now/v1/table/:tableName",
+        "displayName": "Gets Records For Specified Table",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Table Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":tableName",
+            "required": true
+          },{
+            "displayName": "Sysparm Query",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_query"
+          },{
+            "displayName": "Sysparm Display Value",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_display_value"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm View",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_view"
+          },{
+            "displayName": "Sysparm Limit",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_limit"
+          },{
+            "displayName": "Sysparm Exclude Reference Link",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_exclude_reference_link"
+          },{
+            "displayName": "Sysparm Read Replica Category",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_read_replica_category"
+          },{
+            "displayName": "Filter Query Using Key-Value Pairs",
+            "style": "query",
+            "type": "string",
+            "name": "Key-Value Pairs"
+          }
+        ],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName",
+        "displayName": "Inserts One Record In Specified Table",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Tabel Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":tableName",
+            "required": true
+          },{
+            "displayName": "Sysparm Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_display_value"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm View",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_view"
+          },{
+            "displayName": "Sysparm Exclude Reference Link",
+            "style": "body",
+            "type": "context object",
+            "name": "sysparm_exclude_reference_link"
+          },{
+            "displayName": "Sysparm Input Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_input_display_value"
+          }
+        ],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName/:sys_id",
+        "displayName": "Gets The Record Identified By Specified Sys_id",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Tabel Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":tableName",
+            "required": true
+          },{
+            "displayName": "Sys ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          },{
+            "displayName": "Sysparm Display Value",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_display_value"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "query",
+            "type": "context object",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm View",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_view"
+          },{
+            "displayName": "Sysparm Exclude Reference Link",
+            "style": "query",
+            "type": "string",
+            "name": "sysparm_exclude_reference_link"
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName/:sys_id",
+        "displayName": "Updates Specified Record With Request Body",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+        },
+        "httpMethod": "Put",
+        "params": [{
+            "displayName": "Tabel Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":tableName",
+            "required": true
+          },{
+            "displayName": "Sys ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          },{
+            "displayName": "Sysparm Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_display_value"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm View",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_view"
+          },{
+            "displayName": "Sysparm Exclude Reference Link",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_exclude_reference_link"
+          },{
+            "displayName": "Sysparm Input Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_input_display_value"
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName/:sys_id",
+        "displayName": "Updates Specified Record With The Request Body",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+        },
+        "httpMethod": "Patch",
+        "params": [{
+            "displayName": "Tabel Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":tableName",
+            "required": true
+          },{
+            "displayName": "Sys ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          },{
+            "displayName": "Sysparm Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_display_value"
+          },{
+            "displayName": "Sysparm Fields",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_fields"
+          },{
+            "displayName": "Sysparm View",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_view"
+          },{
+            "displayName": "Sysparm Input Display Value",
+            "style": "body",
+            "type": "string",
+            "name": "sysparm_input_display_value"
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName/:sys_id",
+        "displayName": "Deletes Specified Record For Specified Table",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+        },
+        "httpMethod": "Delete",
+        "params": [{
+            "displayName": "ID",
+            "style": "body",
+            "type": "string",
+            "name": "id",
+            "required": true
+          },{
+            "displayName": "Doc",
+            "style": "body",
+            "type": "string",
+            "name": "doc"
+          },{
+            "displayName": "Values",
+            "style": "body",
+            "type": "array",
+            "name": "values"
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/incident",
+        "displayName": "Create An Incident Record",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/incident"
+        },
+        "httpMethod": "Post",
+        "params": [],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/incident"
+      },
+      {
+        "path": "/api/now/v1/table/incident/:sys_id",
+        "displayName": "Get The Inserted Incident",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "SYS ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/incident/:sys_id",
+        "displayName": "Update The Incident",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "SYS ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          },{
+            "displayName": "Sysparm Exclude Ref Link",
+            "style": "body",
+            "type": "boolean",
+            "name": "sysparm_exclude_ref_link"
+          }],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+      },
+      {
+        "path": "/api/now/v1/table/incident/:sys_id",
+        "displayName": "Delete The Incident",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "SYS ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          }
+        ],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/incident/:sys_id"
+      },
+      {
+        "path": "/api/now/import:TableName",
+        "displayName": "Inserts New Record Into the Import Set Staging Table",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/import/:TableName"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Table Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":TableName",
+            "required": true
+          }],
+        "url": "https://myinstance.service-now.com/api/now/import/:TableName"
+      },
+      {
+        "path": "/api/now/v1/table/:tableName/:sys_id",
+        "displayName": "Create Entity Expression",
+        "doc": {
+          "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Table Name",
+            "style": "URL",
+            "type": "string",
+            "name": ":TableName",
+            "required": true
+          },{
+            "displayName": "Sys ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":sys_id",
+            "required": true
+          }
+        ],
+        "url": "https://myinstance.service-now.com/api/now/v1/table/:tableName/:sys_id"
+      }
+    ]
+  }
+}
