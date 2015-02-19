@@ -142,10 +142,7 @@
             <div class="panel-body group-info-panel-body ">
                 <p class="lead text-muted"
                    ng-if="targetPermissionsGroup.members.length == 0 || !targetPermissionsGroup.members || !targetPermissionsGroup">
-                    You have no resources as <i class="fa fa-crosshairs" style="margin-right: 5px;"></i>targets.<br/>
-                    Add
-                    them
-                    using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
+                    You have no resources as <i class="fa fa-crosshairs" style="margin-right: 5px;"></i>targets.<br/> Add them using the "+" button
                 </p>
                 <ul ng-if="!(targetPermissionsGroup.members.length == 0) && targetPermissionsGroup.members && targetPermissionsGroup"
                     class="list-group">
@@ -168,7 +165,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="resource in allResources | filter : {type : 'device'}">
+                        <li ng-repeat="resource in allResources | filter : !{type : 'user'}">
                             <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
                                 <div class="resource-dropdown-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }">&nbsp;</div>
                                 <span>{{getDisplayName(resource)}}</span>

@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions,  $scope, $modal, $state, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
-        $scope.allDevices = allDevices;
-        $scope.allGroupResourcePermissions = allGroupResourcePermissions;
-        $scope.ownedDevices = allDevices;
-        $scope.operatorsGroup = operatorsGroup;
-        $scope.allResources = _.union(operatorsGroup.members, allDevices);
+    .controller('adminController', function (allGroupResourcePermissions,  $scope, $modal, $state, DeviceService, operatorsGroup, GroupService, PermissionsService, InvitationService) {
+        DeviceService.getDevices(true).then(function(allDevices){
+            $scope.allDevices = allDevices;
+            $scope.allGroupResourcePermissions = allGroupResourcePermissions;
+            $scope.ownedDevices = allDevices;
+            $scope.operatorsGroup = operatorsGroup;
+            $scope.allResources = _.union(operatorsGroup.members, allDevices);
+        });
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
