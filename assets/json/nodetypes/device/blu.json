@@ -2,7 +2,7 @@
   "_id": "54e4ed93fd92c9a4f35bd086",
   "category": "device",
   "description": "Blu Flow Trigger Application",
-  "enabled": false,
+  "enabled": true,
   "name": "Blu",
   "skynet": {
     "type": "device",
