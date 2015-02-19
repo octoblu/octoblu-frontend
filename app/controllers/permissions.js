@@ -106,7 +106,7 @@ var permissionsController = {
             ])
             .then(function (results) {
                 ResourcePermission.updateSkynetPermissions({
-                    ownerResource: user.resource,
+                    ownerResource: user.skynet,
                     resources: membersToUpdate,
                     skynetUrl: skynetUrl
                 });

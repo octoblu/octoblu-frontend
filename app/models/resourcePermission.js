@@ -192,7 +192,7 @@ function ResourcePermissionModel() {
                                 entity: deviceProperties,
                                 headers: {
                                     skynet_auth_uuid: ownerResource.uuid,
-                                    skynet_auth_token: ownerResource.properties.skynettoken,
+                                    skynet_auth_token: ownerResource.token,
                                     'Content-Type': 'application/json'
                                 }
                             });
