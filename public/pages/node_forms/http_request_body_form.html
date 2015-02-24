@@ -6,10 +6,30 @@
   <label for="url">Url</label>
   <input  id="url" class="form-control" ng-model="flowNode.url" placeholder="http://example.com" type="url" required>
 </div>
-<div class="form-group">
-    <label for="value">Value</label>
-    <input id="value" class="form-control" ng-model="flowNode.value">
-</div>
+
+<h3>Body</h3>
+<md-list>
+  <md-item ng-repeat="key in flowNode.bodyKeys track by $index">
+    <md-item-content>
+      <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+        <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
+        <md-text-float required label="Value" ng-model="flowNode.bodyValues[$index]"> </md-text-float>
+        <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
+        <md-text-float required label="Key" ng-model="flowNode.bodyKeys[$index]"> </md-text-float>
+        <md-button class="md-fab" ng-click="flowNode.bodyKeys.splice($index, 1);flowNode.bodyValues.splice($index, 1)">
+          <i class="fa fa-minus"></i>
+        </md-button>
+      </div>
+    </md-item-content>
+  </md-item>
+</md-list>
+<md-button ng-click="flowNode.bodyKeys.push('')" class="md-primary" aria-label="Add Key">Add Key</md-button>
+
+<h3>Encoding</h3>
+<md-radio-group ng-model="flowNode.bodyEncoding">
+  <md-radio-button value="json">JSON</md-radio-button>
+  <md-radio-button value="form">Form Urlencoded</md-radio-button>
+</md-radio-group>
 
 <h3>Headers</h3>
 <md-list>

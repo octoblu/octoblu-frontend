@@ -300,8 +300,10 @@
     "type": "operation:http-post-request",
     "defaults": {
       "method": "POST",
-      "headerKeys": ["Content-Type"],
-      "headerValues": ["application/x-www-form-urlencoded"]
+      "headerKeys": [],
+      "headerValues": [],
+      "bodyEncoding": "json",
+      "bodyKeys": [""]
     },
     "input": 1,
     "output": 1,
@@ -317,8 +319,10 @@
     "type": "operation:http-put-request",
     "defaults": {
       "method": "PUT",
-      "headerKeys": ["Content-Type"],
-      "headerValues": ["application/x-www-form-urlencoded"]
+      "headerKeys": [],
+      "headerValues": [],
+      "bodyEncoding" : "json",
+      "bodyKeys": [""]
     },
     "input": 1,
     "output": 1,
