@@ -13,22 +13,16 @@ angular.module('octobluApp')
         control: '='
       },
       link: function (scope, element, attrs) {
-        var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketId', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
-            'localhost', 'secure', 'eventCode', 'discoverWhitelist', 'configureWhitelist', 'sendWhitelist', 'receiveWhitelist'],
-          originalDevice, schema, editor;
+        var originalDevice, schema, editor;
 
         function initializeEditor() {
           originalDevice = scope.model;
           scope.editingDevice = angular.copy(originalDevice)
-          if (_.isPlainObject(scope.editingDevice)) {
-            scope.editingDevice = _.omit(scope.editingDevice, readOnlyKeys);
-          }
           schema = _.extend({ title: 'Options'}, scope.schema);
 
           if (editor) {
             editor.destroy();
           }
-
 
           editor = new JSONEditor(element[0],
             {schema: schema,
