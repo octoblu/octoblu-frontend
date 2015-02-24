@@ -4702,8 +4702,8 @@
             "type": "boolean"
           },
           {
-            "name": "fitlers",
-            "displayName": "Fitlers",
+            "name": "filters",
+            "displayName": "Filters",
             "style": "body",
             "type": "object"
           },
