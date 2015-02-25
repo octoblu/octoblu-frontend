@@ -34,7 +34,7 @@ module.exports = function (options) {
   };
 
   _this.delete = function (req, res) {
-    Flow.deleteByFlowIdAndUserUUID(req.params.id, req.user.resource.uuid, meshblu)
+    Flow.deleteByFlowIdAndUser(req.params.id, req.user.skynet.uuid, req.user.skynet.token, meshblu)
       .then(function(){
         res.send(204);
       }, function (err) {

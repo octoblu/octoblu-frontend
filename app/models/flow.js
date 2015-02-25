@@ -19,7 +19,7 @@ function FlowModel() {
       });
     },
 
-    deleteByFlowIdAndUserUUID : function (flowId, userUUID, meshblu) {
+    deleteByFlowIdAndUser : function (flowId, userUUID, userToken, meshblu) {
       var query, self;
       var FlowDeploy = require('./flow-deploy');
       self = this;
@@ -27,7 +27,7 @@ function FlowModel() {
 
       return self.findOne(query).then(function (flow) {
         FlowDeploy.stop(userUUID, flow, meshblu);
-        return unregisterFlow(meshblu, flow.flowId, flow.token).then(function () {
+        return unregisterFlow(meshblu, flow.flowId, userUUID, userToken).then(function () {
           return self.remove(query, true);
         });
       });
@@ -69,7 +69,7 @@ var registerFlow = function (meshblu, userUUID) {
   });
 };
 
-var unregisterFlow = function (meshblu, flowId, token) {
+var unregisterFlow = function (meshblu, flowId, uuid, token) {
   var self, uri, params;
   self = this;
   uri = 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices/' + flowId;
@@ -79,7 +79,7 @@ var unregisterFlow = function (meshblu, flowId, token) {
     json: true,
     method: 'delete',
     headers: {
-      'meshblu_auth_uuid': flowId,
+      'meshblu_auth_uuid': uuid,
       'meshblu_auth_token': token
     }
   };

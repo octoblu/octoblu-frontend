@@ -115,18 +115,18 @@ describe('FlowController', function () {
     beforeEach(function () {
       var req = {
         params: {id: '5'},
-        user:   { resource: {uuid: '1'} }
+        user:   { skynet: {uuid: '1', token: 'tolkein'} }
       };
       sut.delete(req, res);
     });
 
-    it('should call deleteByFlowIdAndUserUUID on Flow', function () {
-      expect(Flow.deleteByFlowIdAndUserUUID).to.be.have.been.calledWith('5', '1');
+    it('should call deleteByFlowIdAndUser on Flow', function () {
+      expect(Flow.deleteByFlowIdAndUser).to.be.have.been.calledWith('5', '1', 'tolkein');
     });
 
     describe('when fake flow calls the success callback', function () {
       beforeEach(function(){
-        Flow.deleteByFlowIdAndUserUUID.successCallback('some error');
+        Flow.deleteByFlowIdAndUser.successCallback('some error');
       });
 
       it('should respond with a 204 and no content', function () {
@@ -136,7 +136,7 @@ describe('FlowController', function () {
 
     describe('when fake flow calls the error callback', function () {
       beforeEach(function(){
-        Flow.deleteByFlowIdAndUserUUID.errorCallback('some error');
+        Flow.deleteByFlowIdAndUser.errorCallback('some error');
       });
 
       it('should response with a 500 and the error', function () {
@@ -166,11 +166,11 @@ describe('FlowController', function () {
       };
     });
 
-    self.deleteByFlowIdAndUserUUID = sinon.spy(function () {
+    self.deleteByFlowIdAndUser = sinon.spy(function () {
       return {
         then: function (successCallback, errorCallback) {
-          self.deleteByFlowIdAndUserUUID.successCallback = successCallback;
-          self.deleteByFlowIdAndUserUUID.errorCallback   = errorCallback;
+          self.deleteByFlowIdAndUser.successCallback = successCallback;
+          self.deleteByFlowIdAndUser.errorCallback   = errorCallback;
         }
       };
     });
