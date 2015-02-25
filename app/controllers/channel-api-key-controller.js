@@ -4,8 +4,7 @@ var textCrypt = require('../lib/textCrypt');
 function ChannelApiKeyController(){
   var self = this;
 
-  self.create = function(req, res){
-    console.log('apikey', req.body);
+  self.create = function(req, res){    
     var channelId = req.params.id;
     var channelData = { authtype: 'apikey', apikey: req.body.apikey};
     User.overwriteOrAddApiByChannelId(req.user, channelId, channelData);

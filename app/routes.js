@@ -24,6 +24,9 @@ module.exports = function(app, passport) {
     var ChannelCloudDotComController = require('./controllers/channel-clouddotcom-controller');
     var channelCloudDotComController = new ChannelCloudDotComController();
 
+    var ChannelGooglePlacesController = require('./controllers/channel-google-places-controller');
+    var channelGooglePlacesController = new ChannelGooglePlacesController();
+
     var ChannelBasicAuthController = require('./controllers/channel-basic-auth-controller');
     var channelBasicAuthController = new ChannelBasicAuthController();
 
@@ -248,6 +251,7 @@ module.exports = function(app, passport) {
 
             app.post('/api/auth/aws/channel/:id', channelAWSAuthController.create);
             app.post('/api/auth/clouddotcom/channel/:id', channelCloudDotComController.create);
+            app.post('/api/auth/google-places/channel/:id', channelGooglePlacesController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
             app.post('/api/auth/apikey/channel/:id', channelApiKeyController.create);
 

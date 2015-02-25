@@ -20,7 +20,8 @@ angular.module('octobluApp')
     'tesla'                  : 'material.nodewizard.addchannel.tesla',
     'travis-ci'              : 'material.nodewizard.addchannel.travis-ci',
     'travis-ci-pro'          : 'material.nodewizard.addchannel.travis-ci-pro',
-    'wink'                  : 'material.nodewizard.addchannel.wink',
+    'wink'                   : 'material.nodewizard.addchannel.wink',
+    'google-places'          : 'material.nodewizard.addchannel.google-places'
   };
 
   $scope.channelDefaultParams = {};

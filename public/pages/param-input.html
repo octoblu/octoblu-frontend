@@ -2,7 +2,7 @@
     <div ng-repeat="paramDefinition in paramDefinitions">
         <md-text-float ng-if="!paramDefinition.schema" 
             ng-hide="paramDefinition.hidden"
-            label="{{paramDefinition.displayName || paramDefinition.name}}"
+            label="{{getLabel(paramDefinition)}}"
             type="{{inputType(paramDefinition.type)}}"
             ng-model="params[paramDefinition.name]"
             required="{{paramDefinition.required}}" >
