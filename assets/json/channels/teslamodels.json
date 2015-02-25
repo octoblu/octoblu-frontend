@@ -167,7 +167,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_port_door_open"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -185,7 +185,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_standard"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -203,7 +203,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_max_range"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -221,7 +221,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/set_charge_limit"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -246,7 +246,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_start"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -264,7 +264,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/charge_stop"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -282,7 +282,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/flash_lights"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -300,7 +300,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/honk_horn"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -318,7 +318,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/door_unlock"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -336,7 +336,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/door_lock"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -354,7 +354,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/set_temps"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -386,7 +386,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/auto_conditioning_start"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -404,7 +404,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/auto_conditioning_stop"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
@@ -422,7 +422,7 @@
         "doc": {
           "url": "https://owner-api.teslamotors.com/api/1/vehicles/:id/command/sun_roof_control"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "displayName": "ID Number",
