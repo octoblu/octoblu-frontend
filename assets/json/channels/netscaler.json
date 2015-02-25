@@ -1,49 +1,46 @@
 {
-  "_id" : "54634534r345234234r2",
+  "_id" : "54ee3d6806876a770837f7d5",
   "type" : "channel:netscaler",
-  "auth_strategy": "oauth",
+  "auth_strategy": "basic",
   "documentation": "http://support.citrix.com/proddocs/topic/netscaler-main-api-10-5-map/ns-nitro-rest-landing-page-con.html",
   "name": "NetScaler",
   "enabled": true,
   "oauth": {
     "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
     },
     "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
     },
     "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
     }
   },
+  "defaultParams": [
+    {
+      "displayName": "Netscaler IP Address or Domain",
+      "style": "url",
+      "type": "string",
+      "name": ":ipAddressOrDomain",
+      "required": true
+    }
+  ],
   "application" : {
-    "base" : "https://10.102.29.60/nitro/v1",
+    "base" : "https://:ipAddressOrDomain/nitro/v1",
     "resources" : [
       {
         "path": "/config/login/",
         "displayName": "Create The Session ID",
         "doc": {
-          "url": "https://10.102.29.60/nitro/v1/config/login/"
+          "url": "https://:ipAddressOrDomain/nitro/v1/config/login/"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",  
+        "curl": "curl -X",
         "params": [],
-        "url": "https://10.102.29.60/nitro/v1/config/login/"
+        "url": "https://:ipAddressOrDomain/nitro/v1/config/login/"
       },
       {
         "path": "/config/lbvserver/",
         "displayName": "Create New Resource On The Appliance",
         "doc": {
-          "url": "https://10.102.29.60/nitro/v1/config/lbvserver/"
+          "url": "https://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -54,13 +51,13 @@
           "name": ":categoryId",
           "required": true
         }],
-        "url": "https://10.102.29.60/nitro/v1/config/lbvserver/"
+        "url": "https://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
       },
       {
         "path": "/config/nsfeature",
         "displayName": "Enable The Load Balancing Feature",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/nsfeature"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/nsfeature"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -70,13 +67,13 @@
           "type": "string",
           "name": "enable"
         }],
-        "url": "http://10.102.29.60/nitro/v1/config/nsfeature"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/nsfeature"
       },
       {
         "path": "/config/nsconfig",
         "displayName": "Save NetScaler Configurations",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/nsconfig"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/nsconfig"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -86,57 +83,57 @@
           "type": "string",
           "name": "save"
         }],
-        "url": "http://10.102.29.60/nitro/v1/config/nsconfig"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/nsconfig"
       },
       {
         "path": "/config/logout/",
         "displayName": "Disconnecting From The Appliance",
         "doc": {
-          "url": "https://10.102.29.60/nitro/v1/config/logout/"
+          "url": "https://:ipAddressOrDomain/nitro/v1/config/logout/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [],
-        "url": "https://10.102.29.60/nitro/v1/config/logout/"
+        "url": "https://:ipAddressOrDomain/nitro/v1/config/logout/"
       },
       {
         "path": "/config/lbvserver/MyFirstLbVServer/",
         "displayName": "Retrieve Details Of An lbvserver",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer/"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer/"
       },
       {
         "path": "/config/lbvserver/MyFirstLbVServer/",
         "displayName": "Update Details Of An Resource",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer/"
         },
         "httpMethod": "Put",
         "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer/"
       },
       {
         "path": "/config/lbvserver/MyFirstLbVServer",
         "displayName": "Delete A NetScaler Resource",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer"
         },
         "httpMethod": "Delete",
         "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver/MyFirstLbVServer"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/MyFirstLbVServer"
       },
       {
         "path": "/config/lbvserver",
         "displayName": "Enable Resource On NetScaler Appliance",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -153,24 +150,24 @@
           "name": "unset",
           "required": true
           }],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver"
       },
       {
         "path": "/config/lbvserver_service_binding/",
         "displayName": "Bind A Resource To Another",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/"
         },
         "httpMethod": "Put",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/"
       },
       {
         "path": "/config/lbvserver_service_binding/MyFirstLbVServer",
         "displayName": "Unbind A Resource To Another",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
         },
         "httpMethod": "Delete",
         "curl": "curl -X ",
@@ -180,24 +177,24 @@
           "type": "string",
           "name": "servicename"
           }],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
       },
       {
         "path": "/config/lbvserver/",
         "displayName": "Create Bulk Operations",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
       },
       {
         "path": "/config/lbvserver_service_binding/MyFirstLbVServer",
         "displayName": "Adding New Binding Resources",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
         },
         "httpMethod": "Put",
         "curl": "curl -X ",
@@ -208,13 +205,13 @@
           "name": ":bind",
           "required": true
           }],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/MyFirstLbVServer"
       },
       {
         "path": "/config/lbvserver_service_binding/lbv1",
         "displayName": "Retrieve List Of Services Bound To A Virtual Server",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/lbv1"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/lbv1"
         },
         "httpMethod": "Get",
         "curl": "curl -X ",
@@ -225,13 +222,13 @@
           "name": ":servicename",
           "required": true
           }],
-        "url": "http://10.102.29.60/nitro/v1/config/lbvserver_service_binding/lbv1"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/lbvserver_service_binding/lbv1"
       },
       {
         "path": "/config/aaaglobal_aaapreauthenticationpolicy_binding",
         "displayName": "Globally Bind Resources",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/aaaglobal_aaapreauthenticationpolicy_binding"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/aaaglobal_aaapreauthenticationpolicy_binding"
         },
         "httpMethod": "Put",
         "curl": "curl -X ",
@@ -242,67 +239,67 @@
           "name": ":bind",
           "required": true
           }],
-        "url": "http://10.102.29.60/nitro/v1/config/aaaglobal_aaapreauthenticationpolicy_binding"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/aaaglobal_aaapreauthenticationpolicy_binding"
       },
       {
         "path": "/config/clusterinstance/",
         "displayName": "Create & Manage A NetScaler Cluster",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/clusterinstance/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/clusterinstance/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/clusterinstance/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/clusterinstance/"
       },
       {
         "path": "/config/clusternode/",
         "displayName": "Cluster Node Operations",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/clusternode/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/clusternode/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/clusternode/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/clusternode/"
       },
       {
         "path": "/config/nsip/",
         "displayName": "Add A Cluster IP Address",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/nsip/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/nsip/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/nsip/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/nsip/"
       },{
         "path": "/config/cluster/",
         "displayName": "Join NetScaler Appliance To Cluster",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/cluster/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/cluster/"
         },
         "httpMethod": "Post",
-        "curl": "curl -X",  
+        "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/cluster/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/cluster/"
       },
       {
         "path": "/config/linkset/",
         "displayName": "Linkset Operations",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/linkset/"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/linkset/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/config/linkset/"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/linkset/"
       },
       {
         "path": "/config/linkset_interface_binding/ LS%2F1",
         "displayName": "Update Linkset Operations",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/linkset_interface_binding/ LS%2F1"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/linkset_interface_binding/ LS%2F1"
         },
         "httpMethod": "Put",
         "curl": "curl -X",
@@ -313,24 +310,24 @@
           "name": ":bind",
           "required": true
         }],
-        "url": "http://10.102.29.60/nitro/v1/config/linkset_interface_binding/ LS%2F1"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/linkset_interface_binding/ LS%2F1"
       },
       {
         "path": "/stat/lbvserver/MyFirstLbVServer",
         "displayName": "Retrieving Feature Statistics",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/stat/lbvserver/MyFirstLbVServer"
+          "url": "http://:ipAddressOrDomain/nitro/v1/stat/lbvserver/MyFirstLbVServer"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
         "params": [],
-        "url": "http://10.102.29.60/nitro/v1/stat/lbvserver/MyFirstLbVServer"
+        "url": "http://:ipAddressOrDomain/nitro/v1/stat/lbvserver/MyFirstLbVServer"
       },
       {
         "path": "/config/apptemplateinfo",
         "displayName": "Managing AppExpert Applications",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/apptemplateinfo"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/apptemplateinfo"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -341,13 +338,13 @@
           "name": ":export",
           "required": true
         }],
-        "url": "http://10.102.29.60/nitro/v1/config/apptemplateinfo"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/apptemplateinfo"
       },
       {
         "path": "/config/apptemplateinfo",
         "displayName": "Update AppExpert Applications",
         "doc": {
-          "url": "http://10.102.29.60/nitro/v1/config/apptemplateinfo"
+          "url": "http://:ipAddressOrDomain/nitro/v1/config/apptemplateinfo"
         },
         "httpMethod": "Get",
         "curl": "curl -X",
@@ -358,7 +355,7 @@
           "name": ":import",
           "required": true
         }],
-        "url": "http://10.102.29.60/nitro/v1/config/apptemplateinfo"
+        "url": "http://:ipAddressOrDomain/nitro/v1/config/apptemplateinfo"
       }
     ]
   }

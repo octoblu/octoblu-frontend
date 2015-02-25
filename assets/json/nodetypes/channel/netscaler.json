@@ -1,0 +1,13 @@
+{
+  "_id": "54ee3d6706c9d60d1f52a6fa",
+  "category": "channel",
+  "description": "",
+  "enabled": false,
+  "name": "Netscaler",
+  "skynet": {
+    "type": "channel",
+    "subtype": "Netscaler"
+  },
+  "channelid": "54ee3d6806876a770837f7d5",
+  "type": "channel:netscaler"
+}
