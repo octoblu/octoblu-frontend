@@ -106,7 +106,17 @@ this.saveCloudDotComApi = function (uuid, channelid, username, password, callbac
     console.log('Error: ' + data);
     callback({});
   });
+};
 
+this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
+  $http.post('/api/auth/google-places/channel/' + channelid, { apikey: apikey })
+  .success(function (data) {
+    callback(data);
+  })
+  .error(function (data) {    
+    console.error('Error: ' + data);
+    callback({});
+  });
 };
 
 this.saveBasicApi = function (uuid, channelid, username, password, callback) {

@@ -1,16 +1,20 @@
 {
   "_id": "54d002fce6c15d1e658c7d21",
   "type": "channel:google-places",
-  "auth_strategy": "oauth",
+  "auth_strategy": "google-places",
   "documentation": "https://developers.google.com/places/documentation/search",
   "name": "GooglePlaces",
-  "enabled": false,
+  "enabled": true,
+  "oauth": {
+    "tokenMethod": "access_token_query",
+    "tokenQueryParam": "key"
+  },
   "application": {
     "base": "https://maps.googleapis.com/maps/api/place",
     "resources": [
       {
         "path": "/nearbysearch/json",
-        "displayName": "Nearby Search Requests",
+        "displayName": "Search Nearby Places",
         "doc": {
           "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
         },
@@ -24,7 +28,7 @@
             "required": true
           },
           {
-            "displayName": "Defines The Distance",
+            "displayName": "Radius",
             "style": "query",
             "type": "string",
             "name": "radius",
@@ -95,7 +99,7 @@
       },
       {
         "path": "/textsearch/json",
-        "displayName": "Places Text Search",
+        "displayName": "Search Places",
         "doc": {
           "url": "https://maps.googleapis.com/maps/api/place/textsearch/json"
         },
@@ -115,13 +119,13 @@
             "name": "location"
           },
           {
-            "displayName": "Defines The Distance",
+            "displayName": "Radius",
             "style": "query",
             "type": "string",
             "name": "radius"
           },
           {
-            "displayName": "Language Code,",
+            "displayName": "Language Code",
             "style": "query",
             "type": "string",
             "name": "language"
@@ -161,7 +165,7 @@
       },
       {
         "path": "/radarsearch/json",
-        "displayName": "Radar Search Requests",
+        "displayName": "Search Radar",
         "doc": {
           "url": "https://maps.googleapis.com/maps/api/place/radarsearch/json"
         },
@@ -175,7 +179,7 @@
             "required": true
           },
           {
-            "displayName": "Defines The Distance",
+            "displayName": "Radius",
             "style": "query",
             "type": "string",
             "name": "radius",
@@ -185,7 +189,8 @@
             "displayName": "Keyword",
             "style": "query",
             "type": "string",
-            "name": "keyword"
+            "name": "keyword",
+            "required": true
           },
           {
             "displayName": "Minprice",
@@ -258,7 +263,8 @@
       },
       {
         "path": "/add/json",
-        "displayName": "Adding Places",
+        "enabled": false,
+        "displayName": "Add Place",
         "doc": {
           "url": "https://maps.googleapis.com/maps/api/place/add/json"
         },
@@ -322,6 +328,7 @@
       },
       {
         "path": "/delete/json",
+        "enabled": false,
         "displayName": "Deleting Places",
         "doc": {
           "url": "https://maps.googleapis.com/maps/api/place/delete/json"
@@ -337,149 +344,6 @@
           }
         ],
         "url": "https://maps.googleapis.com/maps/api/place/delete/json"
-      },
-      {
-        "path": "/event/add/format",
-        "displayName": "Event Add Requests",
-        "doc": {
-          "url": "https://maps.googleapis.com/maps/api/place/event/add/format"
-        },
-        "httpMethod": "Post",
-        "params": [
-          {
-            "displayName": "ID Of Place Where Event Is Happening",
-            "style": "body",
-            "type": "String",
-            "name": "reference",
-            "required": true
-          },
-          {
-            "displayName": "Textual Description Of The Event",
-            "style": "body",
-            "type": "String",
-            "name": "summary",
-            "required": true
-          },
-          {
-            "displayName": "Language",
-            "style": "body",
-            "type": "String",
-            "name": "language"
-          },
-          {
-            "displayName": "URL Pointing To Details",
-            "style": "body",
-            "type": "String",
-            "name": "url"
-          }
-        ],
-        "url": "https://maps.googleapis.com/maps/api/place/event/add/format"
-      },
-      {
-        "path": "/event/delete/format",
-        "displayName": "Event Deletions",
-        "doc": {
-          "url": "https://maps.googleapis.com/maps/api/place/event/delete/format"
-        },
-        "httpMethod": "Post",
-        "params": [
-          {
-            "displayName": "Unique Event ID For This Event",
-            "style": "body",
-            "type": "String",
-            "name": "event_id",
-            "required": true
-          },
-          {
-            "displayName": "Reference Value",
-            "style": "body",
-            "type": "String",
-            "name": "reference",
-            "required": true
-          }
-        ],
-        "url": "https://maps.googleapis.com/maps/api/place/event/delete/format"
-      },
-      {
-        "path": "/event/details/format",
-        "displayName": "Event Details",
-        "doc": {
-          "url": "https://maps.googleapis.com/maps/api/place/event/details/format"
-        },
-        "httpMethod": "GET",
-        "params": [
-          {
-            "displayName": "Reference Value Of The Place",
-            "style": "query",
-            "type": "String",
-            "name": "reference",
-            "required": true
-          },
-          {
-            "displayName": "Event ID",
-            "style": "query",
-            "type": "String",
-            "name": "event_id",
-            "required": true
-          }
-        ],
-        "url": "https://maps.googleapis.com/maps/api/place/event/details/format"
-      },
-      {
-        "path": "/bump/json",
-        "displayName": "Place Bumps",
-        "doc": {
-          "url": "https://maps.googleapis.com/maps/api/place/bump/json"
-        },
-        "httpMethod": "Post",
-        "params": [
-          {
-            "displayName": "ID Of Place To The Event",
-            "style": "body",
-            "type": "String",
-            "name": "reference",
-            "required": true
-          },
-          {
-            "displayName": "Event ID",
-            "style": "body",
-            "type": "String",
-            "name": "event_id"
-          }
-        ],
-        "url": "https://maps.googleapis.com/maps/api/place/bump/json"
-      },
-      {
-        "path": "/photo",
-        "displayName": "Place Photo",
-        "doc": {
-          "url": "https://maps.googleapis.com/maps/api/place/photo"
-        },
-        "httpMethod": "Post",
-        "params": [
-          {
-            "displayName": "Identifier That Uniquely Identifies A Photo",
-            "style": "query",
-            "type": "String",
-            "name": "photoreference",
-            "required": true
-          },
-          {
-            "displayName": "Max Height",
-            "style": "query",
-            "type": "String",
-            "name": "maxheight",
-            "required": true
-          },
-          {
-            "displayName": "Max Width",
-            "style": "query",
-            "type": "String",
-            "name": "maxwidth",
-            "required": true
-          }
-        ],
-        "url": "https://maps.googleapis.com/maps/api/place/photo"
       },
       {
         "path": "/autocomplete/json",

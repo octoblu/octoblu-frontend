@@ -58,6 +58,14 @@ angular.module('octobluApp')
       });
     };
 
+    $scope.getLabel = function(paramDefinition){
+      var label = paramDefinition.displayName || paramDefinition.name;
+      if(paramDefinition.required) {
+        label += " (required)";
+      }
+      return label;
+    }
+
     $scope.inputType = function(type) {
       if (type === 'boolean') {
         return 'checkbox';
