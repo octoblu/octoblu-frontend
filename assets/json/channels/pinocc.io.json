@@ -1,0 +1,453 @@
+{
+  "_id": "8463409fi049jt23495",
+  "__v": 0,
+  "type": "channel:pinocc.io",
+  "auth_strategy": "",
+  "documentation": "https://docs.pinocc.io/api.html",
+  "name": "Pinocc.io",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://api.pinocc.io",
+    "resources": [
+      {
+        "path": "/v1/login",
+        "displayName": "Creates A New Token",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/login"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "email",
+            "style": "body",
+            "type": "string",
+            "name": "email"
+          },{
+            "displayName": "Password",
+            "style": "body",
+            "type": "string",
+            "name": "password"
+          }
+        ],
+        "url": "https://api.pinocc.io/v1/login"
+      },
+      {
+        "path": "/v1/register",
+        "displayName": "Register For Pinocc.io",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/register"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Email",
+            "style": "body",
+            "type": "string",
+            "name": "email",
+            "required": true
+          },{
+            "displayName": "Password",
+            "style": "body",
+            "type": "string",
+            "name": "password",
+            "required": true
+          },{
+            "displayName": "Has Agreed To Terms",
+            "style": "body",
+            "type": "string",
+            "name": "hasAgreedToTerms",
+            "required": true
+          },{
+            "displayName": "First Name",
+            "style": "body",
+            "type": "string",
+            "name": "firstname"
+          },{
+            "displayName": "Last Name",
+            "style": "body",
+            "type": "string",
+            "name": "lastname"
+          }
+        ],
+        "url": "https://api.pinocc.io/v1/register"
+      },
+      {
+        "path": "/v1/account",
+        "displayName": "Get Account Data",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/account"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "https://api.pinocc.io/v1/account"
+      },
+      {
+        "path": "/v1/logout",
+        "displayName": "Logout An Auth Token",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/logout"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "token",
+            "style": "body",
+            "type": "string",
+            "name": "token",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/logout"
+      },
+      {
+        "path": "/v1/account/token",
+        "displayName": "Creates A “Read Only” Account Token",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/account/token"
+        },
+        "httpMethod": "Post",
+        "params": [],
+        "url": "https://api.pinocc.io/v1/account/token"
+      },
+      {
+        "path": "/v1/troop",
+        "displayName": "Create A New Troop",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/troop"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          }],
+        "url": "https://api.pinocc.io/v1/troop"
+      },
+      {
+        "path": "/v1/troops",
+        "displayName": "Gets All Your Accounts Troops",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/troops"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "https://api.pinocc.io/v1/troops"
+      },
+      {
+        "path": "/v1/:troop_id",
+        "displayName": "Get A Troop By Troop Id",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id"
+      },
+      {
+        "path": "/v1/:troop_id",
+        "displayName": "Update Data Associated With Your Troop",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id"
+        },
+        "httpMethod": "Patch",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id"
+      },
+      {
+        "path": "/v1/:troop_id",
+        "displayName": "Delete A Troop By Troop Id",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id"
+        },
+        "httpMethod": "Delete",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id"
+      },
+      {
+        "path": "/v1/:troop_id/token",
+        "displayName": "Gets Your Troop's Token",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/token"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id/token"
+      },
+      {
+        "path": "/v1/:troop_id/scout",
+        "displayName": "Create A Scout",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/scout"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.pinocc.io/v1/:troop_id/scout"
+      },
+      {
+        "path": "/v1/:troop_id/scouts",
+        "displayName": "Get Scouts In A Troop",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/scouts"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id/scouts"
+      },
+      {
+        "path": "/v1/:troop_id/:scout_id",
+        "displayName": "Get Data For A Scout By Id",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          },{
+            "displayName": "Scout Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":scout_id",
+            "required": true
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+      },{
+        "path": "/v1/:troop_id/:scout_id",
+        "displayName": "Update A Scout",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+        },
+        "httpMethod": "Patch",
+        "params": [
+          {
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          },{
+            "displayName": ":scout_id",
+            "style": "URL",
+            "type": "string",
+            "name": ":scout_id",
+            "required": true
+          },{
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name",
+            "required": true
+          }
+        ],
+        "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+      },
+      {
+        "path": "/v1/:troop_id/:scout_id",
+        "displayName": "Delete A Scout By Scout Id",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+        },
+        "httpMethod": "Delete",
+        "params": [
+          {
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          },{
+            "displayName": ":scout_id",
+            "style": "URL",
+            "type": "string",
+            "name": ":scout_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.pinocc.io/v1/:troop_id/:scout_id"
+      },
+      {
+        "path": "/v1/:troop_id/:scout_id/command",
+        "displayName": "Get A Bitlash Command",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/:scout_id/command"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          },{
+            "displayName": "Scout Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":scout_id",
+            "required": true
+          },{
+            "displayName": "Command",
+            "style": "query",
+            "type": "string",
+            "name": "command"
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id/:scout_id/command"
+      },
+      {
+        "path": "/v1/:troop_id/:scout_id/command",
+        "displayName": "Post A Bitlash Command",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/:troop_id/:scout_id/command"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Troop Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":troop_id",
+            "required": true
+          },{
+            "displayName": "Scout Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":scout_id",
+            "required": true
+          },{
+            "displayName": "Command",
+            "style": "body",
+            "type": "string",
+            "name": "command"
+          }],
+        "url": "https://api.pinocc.io/v1/:troop_id/:scout_id/command"
+      },
+      {
+        "path": "/v1/sync",
+        "displayName": "Get State Of Troops, Scouts, & Events As The State Changes",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/sync"
+        },
+        "httpMethod": "Get",
+        "params": [
+          {
+            "displayName": "Stale",
+            "style": "query",
+            "type": "string",
+            "name": "stale"
+          },{
+            "displayName": "Tail",
+            "style": "query",
+            "type": "string",
+            "name": "tail"
+          }],
+        "url": "https://api.pinocc.io/v1/sync"
+      },
+      {
+        "path": "/v1/stats",
+        "displayName": "Get Stream Of Historical & Live Stats",
+        "doc": {
+          "url": "https://api.pinocc.io/v1/stats"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Troop",
+            "style": "query",
+            "type": "string",
+            "name": "troop",
+            "required": true
+          },{
+            "displayName": "Report",
+            "style": "query",
+            "type": "string",
+            "name": "report",
+            "required": true
+          },{
+            "displayName": "Scout",
+            "style": "query",
+            "type": "string",
+            "name": "scout"
+          },{
+            "displayName": "Start",
+            "style": "query",
+            "type": "string",
+            "name": "start"
+          },{
+            "displayName": "End",
+            "style": "query",
+            "type": "string",
+            "name": "end"
+          },{
+            "displayName": "Tail",
+            "style": "query",
+            "type": "string",
+            "name": "tail"
+          }],
+        "url": "https://api.pinocc.io/v1/stats"
+      }
+    ]
+  }
+}
