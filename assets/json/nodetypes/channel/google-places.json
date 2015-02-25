@@ -2,7 +2,7 @@
   "_id": "54d00303e6c15d1e658c7d22",
   "category": "channel",
   "description": "",
-  "enabled": false,
+  "enabled": true,
   "name": "Google Places",
   "skynet": {
     "type": "channel",

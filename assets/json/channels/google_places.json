@@ -1,10 +1,14 @@
 {
   "_id": "54d002fce6c15d1e658c7d21",
   "type": "channel:google-places",
-  "auth_strategy": "oauth",
+  "auth_strategy": "google-places",
   "documentation": "https://developers.google.com/places/documentation/search",
   "name": "GooglePlaces",
-  "enabled": false,
+  "enabled": true,
+  "oauth": {
+    "tokenMethod": "access_token_query",
+    "tokenQueryParam": "key"
+  },
   "application": {
     "base": "https://maps.googleapis.com/maps/api/place",
     "resources": [
