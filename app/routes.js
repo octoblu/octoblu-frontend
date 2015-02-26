@@ -177,6 +177,9 @@ module.exports = function(app, passport) {
     var PodioController = require('./controllers/podio-controller');
     var podioController = new PodioController();
 
+    var ThingiverseController = require('./controllers/thingiverse-controller');
+    var thingiverseController = new ThingiverseController();
+
     var WithingsController = require('./controllers/withings-controller');
     var withingsController = new WithingsController();
 
@@ -388,6 +391,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/podio',          podioController.authorize);
             app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
+
+            app.get('/api/oauth/thingiverse',          thingiverseController.authorize);
+            app.get('/api/oauth/thingiverse/callback', thingiverseController.callback, thingiverseController.redirectToDesigner);
 
             app.get('/api/oauth/rightsignature',          rightsignatureController.authorize);
             app.get('/api/oauth/rightsignature/callback', rightsignatureController.callback, rightsignatureController.redirectToDesigner);

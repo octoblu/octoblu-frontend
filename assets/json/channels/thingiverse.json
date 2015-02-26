@@ -1,514 +1,554 @@
 {
-  "_id" : "3i28474759294754375767693",
-  "type" : "channel:thingiverse",
+  "_id": "54ef58acc00c65e0eb6654e0",
+  "type": "channel:thingiverse",
   "auth_strategy": "oauth",
   "documentation": "http://www.thingiverse.com/developers/rest-api-reference",
   "name": "Thingiverse",
   "enabled": true,
   "oauth": {
     "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "***REMOVED***",
+      "callbackURL": "http://localhost:8080/api/oauth/thingiverse/callback",
+      "tokenMethod": "access_token_bearer"
     },
     "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/thingiverse/callback",
+      "tokenMethod": "access_token_bearer"
     },
     "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/thingiverse/callback",
+      "tokenMethod": "access_token_bearer"
     }
   },
-  "application" : {
-    "base" : "https://api.thingiverse.com",
-    "resources" : [
+  "application": {
+    "base": "https://api.thingiverse.com",
+    "resources": [
       {
-        "path": "/users/:$username/",
+        "path": "/users/:username/",
         "displayName": "Get Specified User",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",  
-        "params": [{
-          "displayName": "Username of User To Get",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/"
-      },
-      {
-        "path": "/users/:$username/",
-        "displayName": "Update User's Profile",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/"
-        },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User To Get",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        },{
-          "displayName": "First Name",
-          "style": "body",
-          "type": "string",
-          "name": "first_name"
-        },{
-          "displayName": "Last Name",
-          "style": "body",
-          "type": "string",
-          "name": "last_name"
-        },{
-          "displayName": "Biography",
-          "style": "body",
-          "type": "string",
-          "name": "bio"
-        },{
-          "displayName": "Location",
-          "style": "body",
-          "type": "string",
-          "name": "location"
-        },{
-          "displayName": "Default License",
-          "style": "body",
-          "type": "string",
-          "name": "default_license"
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/"
-      },
-      {
-        "path": "/users/:$username/things",
-        "displayName": "Get Things By User",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/things"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/things"
-      },
-      {
-        "path": "/users/:$username/likes",
-        "displayName": "Get Likes By User",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/likes"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/likes"
-      },
-      {
-        "path": "/users/:$username/collections",
-        "displayName": "Get Latest Collections By User",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/collections"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/collections"
-      },
-      {
-        "path": "/users/:$username/downloads",
-        "displayName": "Get Latest Downloaded Things By User",
-        "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/downloads"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/downloads"
+            "displayName": "Username of User To Get",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/"
       },
       {
-        "path": "/users/:$username/followers",
+        "path": "/users/:username/",
+        "displayName": "Update User's Profile",
+        "doc": {
+          "url": "https://api.thingiverse.com/users/:username/"
+        },
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "Username of User To Get",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          },
+          {
+            "displayName": "First Name",
+            "style": "body",
+            "type": "string",
+            "name": "first_name"
+          },
+          {
+            "displayName": "Last Name",
+            "style": "body",
+            "type": "string",
+            "name": "last_name"
+          },
+          {
+            "displayName": "Biography",
+            "style": "body",
+            "type": "string",
+            "name": "bio"
+          },
+          {
+            "displayName": "Location",
+            "style": "body",
+            "type": "string",
+            "name": "location"
+          },
+          {
+            "displayName": "Default License",
+            "style": "body",
+            "type": "string",
+            "name": "default_license"
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/"
+      },
+      {
+        "path": "/users/:username/things",
+        "displayName": "Get Things By User",
+        "doc": {
+          "url": "https://api.thingiverse.com/users/:username/things"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/things"
+      },
+      {
+        "path": "/users/:username/likes",
+        "displayName": "Get Likes By User",
+        "doc": {
+          "url": "https://api.thingiverse.com/users/:username/likes"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/likes"
+      },
+      {
+        "path": "/users/:username/collections",
+        "displayName": "Get Latest Collections By User",
+        "doc": {
+          "url": "https://api.thingiverse.com/users/:username/collections"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/collections"
+      },
+      {
+        "path": "/users/:username/downloads",
+        "displayName": "Get Latest Downloaded Things By User",
+        "doc": {
+          "url": "https://api.thingiverse.com/users/:username/downloads"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/downloads"
+      },
+      {
+        "path": "/users/:username/followers",
         "displayName": "Follow An User",
         "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/followers"
+          "url": "https://api.thingiverse.com/users/:username/followers"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/followers"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/followers"
       },
       {
-        "path": "/users/:$username/followers",
+        "path": "/users/:username/followers",
         "displayName": "Unfollow An User",
         "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/followers"
+          "url": "https://api.thingiverse.com/users/:username/followers"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/followers"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/followers"
       },
       {
-        "path": "/users/:$username/avatarimage",
+        "path": "/users/:username/avatarimage",
         "displayName": "Update The Avatar Image",
         "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/avatarimage"
+          "url": "https://api.thingiverse.com/users/:username/avatarimage"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        },{
-          "displayName": "Name Of The Image",
-          "style": "body",
-          "type": "string",
-          "name": "filename"
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/avatarimage"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          },
+          {
+            "displayName": "Name Of The Image",
+            "style": "body",
+            "type": "string",
+            "name": "filename"
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/avatarimage"
       },
       {
-        "path": "/users/:$username/coverimage",
+        "path": "/users/:username/coverimage",
         "displayName": "Update The Cover Image",
         "doc": {
-          "url": "https://api.thingiverse.com/users/:$username/coverimage"
+          "url": "https://api.thingiverse.com/users/:username/coverimage"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Username of User",
-          "style": "URL",
-          "type": "string",
-          "name": ":$username",
-          "required": true
-        },{
-          "displayName": "Name Of The Image",
-          "style": "body",
-          "type": "string",
-          "name": "filename"
-        }],
-        "url": "https://api.thingiverse.com/users/:$username/coverimage"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Username of User",
+            "style": "url",
+            "type": "string",
+            "name": ":username",
+            "required": true
+          },
+          {
+            "displayName": "Name Of The Image",
+            "style": "body",
+            "type": "string",
+            "name": "filename"
+          }
+        ],
+        "url": "https://api.thingiverse.com/users/:username/coverimage"
       },
       {
-        "path": "/things/:$id/",
+        "path": "/things/:id/",
         "displayName": "Get Thing By ID",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/"
+          "url": "https://api.thingiverse.com/things/:id/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/things/:$id/"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/"
       },
       {
-        "path": "/things/:$id/images/:$image_id",
+        "path": "/things/:id/images/:image_id",
         "displayName": "Get Image(s) By Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+          "url": "https://api.thingiverse.com/things/:id/images/:image_id"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Images From",
-          "style": "url",
-          "type": "String",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Optional ID Of Image",
-          "style": "url",
-          "type": "integer",
-          "name": ":$image_id"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Images From",
+            "style": "url",
+            "type": "String",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Optional ID Of Image",
+            "style": "url",
+            "type": "integer",
+            "name": ":image_id"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/images/:image_id"
       },
       {
-        "path": "/things/:$id/images/:$image_id",
+        "path": "/things/:id/images/:image_id",
         "displayName": "Update Existing Image",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+          "url": "https://api.thingiverse.com/things/:id/images/:image_id"
         },
-        "httpMethod": "Patch",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Images From",
-          "style": "url",
-          "type": "String",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "ID Of Image",
-          "style": "url",
-          "type": "integer",
-          "name": ":$image_id",
-          "required": true
-          },{
-          "displayName": "ID Of Thing To Get Images From",
-          "style": "body",
-          "type": "integer",
-          "name": "rank"
-          },{
-          "displayName": "ID Of Image",
-          "style": "body",
-          "type": "boolean",
-          "name": "featured"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Images From",
+            "style": "url",
+            "type": "String",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Image",
+            "style": "url",
+            "type": "integer",
+            "name": ":image_id",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Thing To Get Images From",
+            "style": "body",
+            "type": "integer",
+            "name": "rank"
+          },
+          {
+            "displayName": "ID Of Image",
+            "style": "body",
+            "type": "boolean",
+            "name": "featured"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/images/:image_id"
       },
       {
-        "path": "/things/:$id/images/:$image_id",
+        "path": "/things/:id/images/:image_id",
         "displayName": "Delete An Image From A Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+          "url": "https://api.thingiverse.com/things/:id/images/:image_id"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Images From",
-          "style": "url",
-          "type": "String",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "ID Of Image",
-          "style": "url",
-          "type": "integer",
-          "name": ":$image_id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/images/:$image_id"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Images From",
+            "style": "url",
+            "type": "String",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Image",
+            "style": "url",
+            "type": "integer",
+            "name": ":image_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/images/:image_id"
       },
       {
-        "path": "/things/:$id/files/:$file_id",
+        "path": "/things/:id/files/:file_id",
         "displayName": "Get File(s) By Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/files/:$file_id"
+          "url": "https://api.thingiverse.com/things/:id/files/:file_id"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Files From",
-          "style": "url",
-          "type": "String",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "ID Of Files",
-          "style": "url",
-          "type": "integer",
-          "name": ":$file_id"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/files/:$file_id"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Files From",
+            "style": "url",
+            "type": "String",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Files",
+            "style": "url",
+            "type": "integer",
+            "name": ":file_id"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/files/:file_id"
       },
       {
-        "path": "/things/:$id/files/:$file_id",
+        "path": "/things/:id/files/:file_id",
         "displayName": "Delete A File From A Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/files/:$file_id"
+          "url": "https://api.thingiverse.com/things/:id/files/:file_id"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Files From",
-          "style": "url",
-          "type": "String",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "ID Of Files",
-          "style": "url",
-          "type": "integer",
-          "name": ":$file_id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/files/:$file_id"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Files From",
+            "style": "url",
+            "type": "String",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "ID Of Files",
+            "style": "url",
+            "type": "integer",
+            "name": ":file_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/files/:file_id"
       },
       {
-        "path": "/things/:$id/likes",
+        "path": "/things/:id/likes",
         "displayName": "Delete A Group",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/likes"
+          "url": "https://api.thingiverse.com/things/:id/likes"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID Of Thing To Get Likes From",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/likes"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID Of Thing To Get Likes From",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/likes"
       },
       {
-        "path": "/things/:$id/ancestors",
+        "path": "/things/:id/ancestors",
         "displayName": "Get A List Of Thing Ancestors",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/ancestors"
+          "url": "https://api.thingiverse.com/things/:id/ancestors"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/ancestors"
-      },{
-        "path": "/things/:$id/derivatives",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/ancestors"
+      },
+      {
+        "path": "/things/:id/derivatives",
         "displayName": "Get A List Of Thing Derivatives",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/derivatives"
+          "url": "https://api.thingiverse.com/things/:id/derivatives"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",  
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/derivatives"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/derivatives"
       },
       {
-        "path": "/things/:$id/tags",
+        "path": "/things/:id/tags",
         "displayName": "Get tags on this thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/tags"
+          "url": "https://api.thingiverse.com/things/:id/tags"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/tags"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/tags"
       },
       {
-        "path": "/things/:$id/categories",
+        "path": "/things/:id/categories",
         "displayName": "Get Thing Category",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/categories"
+          "url": "https://api.thingiverse.com/things/:id/categories"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/categories"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/categories"
       },
       {
-        "path": "/things/:$id/",
+        "path": "/things/:id/",
         "displayName": "Update An Existing Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/"
+          "url": "https://api.thingiverse.com/things/:id/"
         },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Name",
-          "style": "body",
-          "type": "string",
-          "name": "name"
-          },{
-          "displayName": "License",
-          "style": "body",
-          "type": "string",
-          "name": "license"
-          },{
-          "displayName": "Category",
-          "style": "body",
-          "type": "string",
-          "name": "category"
-          },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "string",
-          "name": "description"
-          },{
-          "displayName": "Instructions",
-          "style": "body",
-          "type": "string",
-          "name": "instructions"
-          },{
-          "displayName": "Toggle Whether This Thing Is Work In Progress",
-          "style": "body",
-          "type": "boolean",
-          "name": "is_wip"
-          },{
-          "displayName": "Replaces All Current Tags",
-          "style": "body",
-          "type": "array",
-          "name": "tags"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/"
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "displayName": "License",
+            "style": "body",
+            "type": "string",
+            "name": "license"
+          },
+          {
+            "displayName": "Category",
+            "style": "body",
+            "type": "string",
+            "name": "category"
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          },
+          {
+            "displayName": "Instructions",
+            "style": "body",
+            "type": "string",
+            "name": "instructions"
+          },
+          {
+            "displayName": "Toggle Whether This Thing Is Work In Progress",
+            "style": "body",
+            "type": "boolean",
+            "name": "is_wip"
+          },
+          {
+            "displayName": "Replaces All Current Tags",
+            "style": "body",
+            "type": "array",
+            "name": "tags"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/"
       },
       {
         "path": "/things/",
@@ -516,585 +556,630 @@
         "doc": {
           "url": "https://api.thingiverse.com/things/"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Name",
-          "style": "body",
-          "type": "string",
-          "name": "name"
-          },{
-          "displayName": "License",
-          "style": "body",
-          "type": "string",
-          "name": "license"
-          },{
-          "displayName": "Category",
-          "style": "body",
-          "type": "string",
-          "name": "category"
-          },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "string",
-          "name": "description"
-          },{
-          "displayName": "Instructions",
-          "style": "body",
-          "type": "string",
-          "name": "instructions"
-          },{
-          "displayName": "Toggle Whether This Thing Is Work In Progress",
-          "style": "body",
-          "type": "boolean",
-          "name": "is_wip"
-          },{
-          "displayName": "Replaces All Current Tags",
-          "style": "body",
-          "type": "array",
-          "name": "tags"
-          },{
-          "displayName": "Ancestors",
-          "style": "body",
-          "type": "array",
-          "name": "ancestors"
-          }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "displayName": "License",
+            "style": "body",
+            "type": "string",
+            "name": "license"
+          },
+          {
+            "displayName": "Category",
+            "style": "body",
+            "type": "string",
+            "name": "category"
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          },
+          {
+            "displayName": "Instructions",
+            "style": "body",
+            "type": "string",
+            "name": "instructions"
+          },
+          {
+            "displayName": "Toggle Whether This Thing Is Work In Progress",
+            "style": "body",
+            "type": "boolean",
+            "name": "is_wip"
+          },
+          {
+            "displayName": "Replaces All Current Tags",
+            "style": "body",
+            "type": "array",
+            "name": "tags"
+          },
+          {
+            "displayName": "Ancestors",
+            "style": "body",
+            "type": "array",
+            "name": "ancestors"
+          }
+        ],
         "url": "https://api.thingiverse.com/things/"
       },
       {
-        "path": "/things/:$id/",
+        "path": "/things/:id/",
         "displayName": "Delete A Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/"
+          "url": "https://api.thingiverse.com/things/:id/"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/"
-      },
-      {
-        "path": "/things/:$id/files",
-        "displayName": "Upload A File To Given Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/files"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Filename",
-          "style": "body",
-          "type": "string",
-          "name": "filename"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/files"
-      },
-      {
-        "path": "/things/:$id/publish",
-        "displayName": "Publish A Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/publish"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/publish"
-      },
-      {
-        "path": "/things/:$id/copies",
-        "displayName": "Get Copies/Makes Of A Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/copies"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/copies"
-      },
-      {
-        "path": "/things/:$id/copies",
-        "displayName": "Upload Image For New Copy",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/copies"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Filename",
-          "style": "body",
-          "type": "string",
-          "name": "filename"
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/copies"
-      },
-      {
-        "path": "/things/:$id/likes",
-        "displayName": "Like A Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/likes"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/likes"
-      },
-      {
-        "path": "/things/:$id/likes",
-        "displayName": "Delete A Like",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/likes"
-        },
-        "httpMethod": "Delete",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/likes"
-      },
-      {
-        "path": "/things/:$id/packageurl",
-        "displayName": "Get ZIP Package With All Files Associated With The Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/packageurl"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/packageurl"
-      },
-      {
-        "path": "/things/:$id/prints",
-        "displayName": "Get A List Of Prints Associated With A Thing",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/prints"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/prints"
-      },
-      {
-        "path": "/things/:$id/threadedcomments",
-        "displayName": "Get All Comments For This Thing In A Quick Pre-Threaded View",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/threadedcomments"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/threadedcomments"
-      },
-      {
-        "path": "/things/:$id/comments",
-        "displayName": "Get Unthreaded Paginated List Of Comment Objects",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/comments"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/comments"
-      },
-      {
-        "path": "/things/:$id/comments",
-        "displayName": "Post A Comment",
-        "doc": {
-          "url": "https://api.thingiverse.com/things/:$id/comments"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/things/:$id/comments"
-      },
-      {
-        "path": "/files/:$id/",
-        "displayName": "Get Info About A File By ID",
-        "doc": {
-          "url": "https://api.thingiverse.com/files/:$id/"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/files/:$id/"
-      },{
-        "path": "/files/:$id/finalize",
-        "displayName": "Finalize An Uploaded File",
-        "doc": {
-          "url": "https://api.thingiverse.com/files/:$id/finalize"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X",  
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/files/:$id/finalize"
-      },
-      {
-        "path": "/files/:$id/download",
-        "displayName": "Get Tracked Download URL",
-        "doc": {
-          "url": "https://api.thingiverse.com/files/:$id/download"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/files/:$id/download"
-      },
-      {
-        "path": "/copies/:$id/",
-        "displayName": "Get Copy By ID",
-        "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/copies/:$id/"
-      },
-      {
-        "path": "/copies/:$id/images",
-        "displayName": "Get Images For A Copy",
-        "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/images"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/copies/:$id/images"
-      },
-      {
-        "path": "/copies/:$id/images",
-        "displayName": "Upload Image To A Copy",
-        "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/images"
-        },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Name Of The Image File",
-          "style": "body",
-          "type": "string",
-          "name": "filename"
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/images"
-      },
-      {
-        "path": "/copies/:$id/images/:$image_id",
-        "displayName": "Update An Existing Image",
-        "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/images/:$image_id"
-        },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
+        "httpMethod": "DELETE",
         "params": [
           {
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Image ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$image_id",
-          "required": true
-          },{
-          "displayName": "Rank",
-          "style": "body",
-          "type": "integer",
-          "name": "rank"
-        },{
-          "displayName": "Featured",
-          "style": "body",
-          "type": "boolean",
-          "name": "featured"
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/images/:$image_id"
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/"
       },
       {
-        "path": "/copies/:$id/images/:$image_id",
-        "displayName": "Delete an image from a copy",
+        "path": "/things/:id/files",
+        "displayName": "Upload A File To Given Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/images/:$image_id"
+          "url": "https://api.thingiverse.com/things/:id/files"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Image ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$image_id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/copies/:$id/images/:$image_id"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Filename",
+            "style": "body",
+            "type": "string",
+            "name": "filename"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/files"
       },
       {
-        "path": "/copies/:$id/",
-        "displayName": "Update An Existing Copy",
+        "path": "/things/:id/publish",
+        "displayName": "Publish A Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/"
+          "url": "https://api.thingiverse.com/things/:id/publish"
         },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "string",
-          "name": "description"
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/publish"
       },
       {
-        "path": "/copies/:$id/",
-        "displayName": "Delete A Copy",
+        "path": "/things/:id/copies",
+        "displayName": "Get Copies/Makes Of A Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/"
+          "url": "https://api.thingiverse.com/things/:id/copies"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "url",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-          }],
-        "url": "https://api.thingiverse.com/copies/:$id/"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/copies"
       },
       {
-        "path": "/copies/:$id/likes",
-        "displayName": "Like A Copy",
+        "path": "/things/:id/copies",
+        "displayName": "Upload Image For New Copy",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/likes"
+          "url": "https://api.thingiverse.com/things/:id/copies"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/likes"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Filename",
+            "style": "body",
+            "type": "string",
+            "name": "filename"
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/copies"
       },
       {
-        "path": "/copies/:$id/likes",
+        "path": "/things/:id/likes",
+        "displayName": "Like A Thing",
+        "doc": {
+          "url": "https://api.thingiverse.com/things/:id/likes"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/likes"
+      },
+      {
+        "path": "/things/:id/likes",
         "displayName": "Delete A Like",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/likes"
+          "url": "https://api.thingiverse.com/things/:id/likes"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/likes"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/likes"
       },
       {
-        "path": "/copies/:$id/threadedcomments",
-        "displayName": "Get All Comments For Copy In A Quick Pre-Threaded View",
+        "path": "/things/:id/packageurl",
+        "displayName": "Get ZIP Package With All Files Associated With The Thing",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/threadedcomments"
+          "url": "https://api.thingiverse.com/things/:id/packageurl"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/threadedcomments"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/packageurl"
       },
       {
-        "path": "/copies/:$id/comments",
+        "path": "/things/:id/prints",
+        "displayName": "Get A List Of Prints Associated With A Thing",
+        "doc": {
+          "url": "https://api.thingiverse.com/things/:id/prints"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/prints"
+      },
+      {
+        "path": "/things/:id/threadedcomments",
+        "displayName": "Get All Comments For This Thing In A Quick Pre-Threaded View",
+        "doc": {
+          "url": "https://api.thingiverse.com/things/:id/threadedcomments"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/threadedcomments"
+      },
+      {
+        "path": "/things/:id/comments",
         "displayName": "Get Unthreaded Paginated List Of Comment Objects",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/comments"
+          "url": "https://api.thingiverse.com/things/:id/comments"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/comments"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/comments"
       },
       {
-        "path": "/copies/:$id/comments",
+        "path": "/things/:id/comments",
         "displayName": "Post A Comment",
         "doc": {
-          "url": "https://api.thingiverse.com/copies/:$id/comments"
+          "url": "https://api.thingiverse.com/things/:id/comments"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/copies/:$id/comments"
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/things/:id/comments"
       },
       {
-        "path": "/collections/:$id/",
+        "path": "/files/:id/",
+        "displayName": "Get Info About A File By ID",
+        "doc": {
+          "url": "https://api.thingiverse.com/files/:id/"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/files/:id/"
+      },
+      {
+        "path": "/files/:id/finalize",
+        "displayName": "Finalize An Uploaded File",
+        "doc": {
+          "url": "https://api.thingiverse.com/files/:id/finalize"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/files/:id/finalize"
+      },
+      {
+        "path": "/files/:id/download",
+        "displayName": "Get Tracked Download URL",
+        "doc": {
+          "url": "https://api.thingiverse.com/files/:id/download"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/files/:id/download"
+      },
+      {
+        "path": "/copies/:id/",
+        "displayName": "Get Copy By ID",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/"
+      },
+      {
+        "path": "/copies/:id/images",
+        "displayName": "Get Images For A Copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/images"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/images"
+      },
+      {
+        "path": "/copies/:id/images",
+        "displayName": "Upload Image To A Copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/images"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Name Of The Image File",
+            "style": "body",
+            "type": "string",
+            "name": "filename"
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/images"
+      },
+      {
+        "path": "/copies/:id/images/:image_id",
+        "displayName": "Update An Existing Image",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/images/:image_id"
+        },
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Image ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":image_id",
+            "required": true
+          },
+          {
+            "displayName": "Rank",
+            "style": "body",
+            "type": "integer",
+            "name": "rank"
+          },
+          {
+            "displayName": "Featured",
+            "style": "body",
+            "type": "boolean",
+            "name": "featured"
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/images/:image_id"
+      },
+      {
+        "path": "/copies/:id/images/:image_id",
+        "displayName": "Delete an image from a copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/images/:image_id"
+        },
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Image ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":image_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/images/:image_id"
+      },
+      {
+        "path": "/copies/:id/",
+        "displayName": "Update An Existing Copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/"
+        },
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "string",
+            "name": "description"
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/"
+      },
+      {
+        "path": "/copies/:id/",
+        "displayName": "Delete A Copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/"
+        },
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/"
+      },
+      {
+        "path": "/copies/:id/likes",
+        "displayName": "Like A Copy",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/likes"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/likes"
+      },
+      {
+        "path": "/copies/:id/likes",
+        "displayName": "Delete A Like",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/likes"
+        },
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/likes"
+      },
+      {
+        "path": "/copies/:id/threadedcomments",
+        "displayName": "Get All Comments For Copy In A Quick Pre-Threaded View",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/threadedcomments"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/threadedcomments"
+      },
+      {
+        "path": "/copies/:id/comments",
+        "displayName": "Get Unthreaded Paginated List Of Comment Objects",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/comments"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/comments"
+      },
+      {
+        "path": "/copies/:id/comments",
+        "displayName": "Post A Comment",
+        "doc": {
+          "url": "https://api.thingiverse.com/copies/:id/comments"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/copies/:id/comments"
+      },
+      {
+        "path": "/collections/:id/",
         "displayName": "Get A Collection By ID",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$id/"
+          "url": "https://api.thingiverse.com/collections/:id/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/collections/:$id/"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:id/"
       },
       {
-        "path": "/collections/:$id/things",
+        "path": "/collections/:id/things",
         "displayName": "Get Things In A Collection",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$id/things"
+          "url": "https://api.thingiverse.com/collections/:id/things"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/collections/:$id/things"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:id/things"
       },
       {
         "path": "/collections/",
@@ -1102,131 +1187,144 @@
         "doc": {
           "url": "https://api.thingiverse.com/collections/"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Name",
-          "style": "body",
-          "type": "String",
-          "name": "name"
-          },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "String",
-          "name": "description"
-          }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Name",
+            "style": "body",
+            "type": "String",
+            "name": "name"
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "String",
+            "name": "description"
+          }
+        ],
         "url": "https://api.thingiverse.com/collections/"
       },
       {
-        "path": "/collections/:$collection_id/thing/:$thing_id",
+        "path": "/collections/:collection_id/thing/:thing_id",
         "displayName": "Add A Thing To A Collection",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$collection_id/thing/:$thing_id"
+          "url": "https://api.thingiverse.com/collections/:collection_id/thing/:thing_id"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X ",
-        "params": [{
-          "displayName": "Collection ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$collection_id",
-          "required": true
-        },{
-          "displayName": "Thing ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$thing_id",
-          "required": true
-        },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "String",
-          "name": "description"
-          }],
-        "url": "https://api.thingiverse.com/collections/:$collection_id/thing/:$thing_id"
-      },{
-        "path": "/collections/:$collection_id/thing/:$thing_id",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Collection ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":collection_id",
+            "required": true
+          },
+          {
+            "displayName": "Thing ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":thing_id",
+            "required": true
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "String",
+            "name": "description"
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:collection_id/thing/:thing_id"
+      },
+      {
+        "path": "/collections/:collection_id/thing/:thing_id",
         "displayName": "Removes A Thing From A Collection",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$collection_id/thing/:$thing_id"
+          "url": "https://api.thingiverse.com/collections/:collection_id/thing/:thing_id"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",  
-        "params": [{
-          "displayName": "Collection ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$collection_id",
-          "required": true
-        },{
-          "displayName": "Thing ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$thing_id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/collections/:$collection_id/thing/:$thing_id"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "Collection ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":collection_id",
+            "required": true
+          },
+          {
+            "displayName": "Thing ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":thing_id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:collection_id/thing/:thing_id"
       },
       {
-        "path": "/collections/:$id/",
+        "path": "/collections/:id/",
         "displayName": "Update A Collection",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$id/"
+          "url": "https://api.thingiverse.com/collections/:id/"
         },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        },{
-          "displayName": "Name",
-          "style": "body",
-          "type": "String",
-          "name": "name"
-          },{
-          "displayName": "Description",
-          "style": "body",
-          "type": "String",
-          "name": "description"
-          }],
-        "url": "https://api.thingiverse.com/collections/:$id/"
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Name",
+            "style": "body",
+            "type": "String",
+            "name": "name"
+          },
+          {
+            "displayName": "Description",
+            "style": "body",
+            "type": "String",
+            "name": "description"
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:id/"
       },
       {
-        "path": "/collections/:$id/",
+        "path": "/collections/:id/",
         "displayName": "Delete A Collection",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$id/"
+          "url": "https://api.thingiverse.com/collections/:id/"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/collections/:$id/"
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:id/"
       },
       {
-        "path": "/collections/:$id/",
+        "path": "/collections/:id/",
         "displayName": "Get Comment By ID",
         "doc": {
-          "url": "https://api.thingiverse.com/collections/:$id/"
+          "url": "https://api.thingiverse.com/collections/:id/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/collections/:$id/"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/collections/:id/"
       },
       {
         "path": "/comments/",
@@ -1234,187 +1332,206 @@
         "doc": {
           "url": "https://api.thingiverse.com/comments/"
         },
-        "httpMethod": "Post",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Set The Body Of Comment",
-          "style": "body",
-          "type": "string",
-          "name": "body"
-        },{
-          "displayName": "Either Thing Or Make",
-          "style": "body",
-          "type": "string",
-          "name": "target_type"
-        },{
-          "displayName": "ID Of The Targe",
-          "style": "body",
-          "type": "integer",
-          "name": "target_id"
-        }],
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Set The Body Of Comment",
+            "style": "body",
+            "type": "string",
+            "name": "body"
+          },
+          {
+            "displayName": "Either Thing Or Make",
+            "style": "body",
+            "type": "string",
+            "name": "target_type"
+          },
+          {
+            "displayName": "ID Of The Targe",
+            "style": "body",
+            "type": "integer",
+            "name": "target_id"
+          }
+        ],
         "url": "https://api.thingiverse.com/comments/"
       },
       {
-        "path": "/comments/:$id/",
+        "path": "/comments/:id/",
         "displayName": "Update An Existing Comment",
         "doc": {
-          "url": "https://api.thingiverse.com/comments/:$id/"
+          "url": "https://api.thingiverse.com/comments/:id/"
         },
-        "httpMethod": "Patch",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        },{
-          "displayName": "Replace The Body Of The Thing",
-          "style": "body",
-          "type": "string",
-          "name": "body"
-        }],
-        "url": "https://api.thingiverse.com/comments/:$id/"
-      },{
-        "path": "/comments/:$id/",
+        "httpMethod": "PATCH",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "Replace The Body Of The Thing",
+            "style": "body",
+            "type": "string",
+            "name": "body"
+          }
+        ],
+        "url": "https://api.thingiverse.com/comments/:id/"
+      },
+      {
+        "path": "/comments/:id/",
         "displayName": "Delete A Comment",
         "doc": {
-          "url": "https://api.thingiverse.com/comments/:$id/"
+          "url": "https://api.thingiverse.com/comments/:id/"
         },
-        "httpMethod": "Delete",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID",
-          "style": "URL",
-          "type": "integer",
-          "name": ":$id",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/comments/:$id/"
-      },{
+        "httpMethod": "DELETE",
+        "params": [
+          {
+            "displayName": "ID",
+            "style": "url",
+            "type": "integer",
+            "name": ":id",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/comments/:id/"
+      },
+      {
         "path": "/newest/",
         "displayName": "Get Latest Things Published",
         "doc": {
           "url": "https://api.thingiverse.com/newest/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.thingiverse.com/newest/"
-      },{
+      },
+      {
         "path": "/popular/",
         "displayName": "Get Popular Things",
         "doc": {
           "url": "https://api.thingiverse.com/popular/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.thingiverse.com/popular/"
-      },{
+      },
+      {
         "path": "/featured/",
         "displayName": "Get Latest Featured Things",
         "doc": {
           "url": "https://api.thingiverse.com/featured/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.thingiverse.com/featured/"
-      },{
-        "path": "/search/",
+      },
+      {
+        "path": "/search/:term",
         "displayName": "Perform A Search Of Things By Keyword",
         "doc": {
           "url": "https://api.thingiverse.com/search/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "The Search Query To Perform",
-          "style": "query",
-          "type": "string",
-          "name": "$term"
-        }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Query",
+            "style": "url",
+            "type": "string",
+            "name": ":term"
+          }
+        ],
         "url": "https://api.thingiverse.com/search/"
-      },{
-        "path": "/search/library",
+      },
+      {
+        "path": "/search/:term/library",
         "displayName": "Get Libary Search",
         "doc": {
           "url": "https://api.thingiverse.com/search/library"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "The Search Query",
-          "style": "query",
-          "type": "string",
-          "name": "$term"
-        }],
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Query",
+            "style": "url",
+            "type": "string",
+            "name": ":term"
+          }
+        ],
         "url": "https://api.thingiverse.com/search/library"
-      },{
-        "path": "/categories/:$category_slug/",
+      },
+      {
+        "path": "/categories/:category_slug/",
         "displayName": "Get Category Or Categories",
         "doc": {
-          "url": "https://api.thingiverse.com/categories/:$category_slug/"
+          "url": "https://api.thingiverse.com/categories/:category_slug/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID Of The Category To Fetch",
-          "style": "URL",
-          "type": "string",
-          "name": ":$category_slug",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/categories/:$category_slug/"
-      },{
-        "path": "/categories/:$category_slug/things",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID Of The Category To Fetch",
+            "style": "url",
+            "type": "string",
+            "name": ":category_slug",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/categories/:category_slug/"
+      },
+      {
+        "path": "/categories/:category_slug/things",
         "displayName": "Get Latest Things In A Category",
         "doc": {
-          "url": "https://api.thingiverse.com/categories/:$category_slug/things"
+          "url": "https://api.thingiverse.com/categories/:category_slug/things"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "ID Of The Category To Fetch",
-          "style": "URL",
-          "type": "string",
-          "name": ":$category_slug",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/categories/:$category_slug/things"
-      },{
-        "path": "/tags/:$tag/things",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "ID Of The Category To Fetch",
+            "style": "url",
+            "type": "string",
+            "name": ":category_slug",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/categories/:category_slug/things"
+      },
+      {
+        "path": "/tags/:tag/things",
         "displayName": "Get Latest Things With The Specified Tag",
         "doc": {
-          "url": "https://api.thingiverse.com/tags/:$tag/things"
+          "url": "https://api.thingiverse.com/tags/:tag/things"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Tag For Which To Fetch Things",
-          "style": "URL",
-          "type": "string",
-          "name": ":$tag",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/tags/:$tag/things"
-      },{
-        "path": "/tags/:$tag/",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Tag For Which To Fetch Things",
+            "style": "url",
+            "type": "string",
+            "name": ":tag",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/tags/:tag/things"
+      },
+      {
+        "path": "/tags/:tag/",
         "displayName": "Return A Representation Of The Given Tag",
         "doc": {
-          "url": "https://api.thingiverse.com/tags/:$tag/"
+          "url": "https://api.thingiverse.com/tags/:tag/"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [{
-          "displayName": "Tag For Which To Fetch Things",
-          "style": "URL",
-          "type": "string",
-          "name": ":$tag",
-          "required": true
-        }],
-        "url": "https://api.thingiverse.com/tags/:$tag/"
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Tag For Which To Fetch Things",
+            "style": "url",
+            "type": "string",
+            "name": ":tag",
+            "required": true
+          }
+        ],
+        "url": "https://api.thingiverse.com/tags/:tag/"
       }
     ]
   }

@@ -7,8 +7,6 @@ var CONFIG = Channel.syncFindOauthConfigByType('channel:zendesk');
 CONFIG.passReqToCallback = true;
 
 var zendeskStrategy = new ZendeskStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done) {
-  console.log("AT: ", accessToken);
-  console.log("RT: ", refreshToken);
   User.addApiAuthorization(req.user, 'channel:zendesk', {authtype: 'oauth', token: accessToken}).then(function () {
     done(null, req.user);
   }).catch(function(error){

@@ -1,0 +1,13 @@
+{
+  "_id": "54ef58a7c00c65e0eb6654df",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "name": "Thingiverse",
+  "skynet": {
+    "type": "channel",
+    "subtype": "thingiverse"
+  },
+  "channelid": "54ef58acc00c65e0eb6654e0",
+  "type": "channel:thingiverse"
+}
