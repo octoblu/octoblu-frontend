@@ -16,7 +16,7 @@
   </div>
 
   <br><br>
-  <div ng-if="!!flowNode.useStaticMessage">
+  <div ng-hide="node.useStaticMessage === false">
     <schema-editor schema="flowNode.schema" model="flowNode.staticMessage" allow-json-edit="true" additional-properties="true"></schema-editor>
   </div>
 </div>

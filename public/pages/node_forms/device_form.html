@@ -2,7 +2,7 @@
 <md-switch ng-true-value="false" ng-false-value="true" ng-model="flowNode.useStaticMessage">Forward Message</md-switch>
 <md-text-float label="Filter by Topic" ng-model="flowNode.filterTopic"> </md-text-float>
 
-<div ng-if="!!flowNode.useStaticMessage">
+<div ng-hide="node.useStaticMessage === false">
   <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
 </div>
 
