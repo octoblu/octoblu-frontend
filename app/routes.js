@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
         'port'     : config.skynet.port,
         'protocol' : 'websocket'
     });
-    
+
     var referrer = require('./controllers/middleware/referrer.js');
 
     var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
@@ -55,6 +55,9 @@ module.exports = function(app, passport) {
 
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
+
+    var SessionController = require('./controllers/session-controller');
+    var sessionController = new SessionController();
 
     var TopicSummaryController = require('./controllers/topic-summary-controller');
     var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
@@ -308,11 +311,17 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/fitbit',          fitbitController.authorize);
             app.get('/api/oauth/fitbit/callback', fitbitController.callback, fitbitController.redirectToDesigner);
 
+            app.get('/api/oauth/foursquare',          fourSquareController.authorize);
+            app.get('/api/oauth/foursquare/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
 
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
+            app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
             app.get('/api/oauth/goToAssist',          goToAssistController.authorize);
             app.get('/api/oauth/goToAssist/callback', goToAssistController.callback, goToAssistController.redirectToDesigner);
@@ -320,23 +329,34 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
             app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
 
+            app.get('/api/oauth/gotomeeting-free', goToMeetingFreeController.authorize, goToMeetingFreeController.redirectToDesigner);
+
             app.get('/api/oauth/goToTraining',          goToTrainingController.authorize);
             app.get('/api/oauth/goToTraining/callback', goToTrainingController.callback, goToTrainingController.redirectToDesigner);
 
             app.get('/api/oauth/goToWebinar',          goToWebinarController.authorize);
             app.get('/api/oauth/goToWebinar/callback', goToWebinarController.callback, goToWebinarController.redirectToDesigner);
 
-            app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
-            app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+            app.get('/api/oauth/instagram',          instagramController.authorize);
+            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
 
             app.get('/api/oauth/jawbone',          jawboneController.authorize);
             app.get('/api/oauth/jawbone/callback', jawboneController.callback, jawboneController.redirectToDesigner);
 
-            app.get('/api/oauth/youtube',          referrer.storeReferrer, googleController.authorize);
-            app.get('/api/oauth/youtube/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+            app.get('/api/oauth/linked-in',          linkedinController.authorize);
+            app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
+
+            app.get('/api/oauth/nest',          nestController.authorize);
+            app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
 
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
+
+            app.get('/api/oauth/podio',          podioController.authorize);
+            app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
+
+            app.get('/api/oauth/quickbooks',          quickBooksController.authorize);
+            app.get('/api/oauth/quickbooks/callback', quickBooksController.callback, quickBooksController.redirectToDesigner);
 
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
@@ -344,79 +364,62 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/readability',          readabilityController.authorize);
             app.get('/api/oauth/readability/callback', readabilityController.callback, readabilityController.redirectToDesigner);
 
-            app.get('/api/oauth/sharefile',          shareFileController.authorize);
-            app.get('/api/oauth/sharefile/callback', shareFileController.callback, shareFileController.redirectToDesigner);
-
-            app.get('/api/oauth/instagram',          instagramController.authorize);
-            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
-
-            app.get('/api/oauth/zendesk',          zendeskController.authorize);
-            app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
-
-            app.get('/api/oauth/nest',          nestController.authorize);
-            app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
-
-            app.get('/api/oauth/slack',          slackController.authorize);
-            app.get('/api/oauth/slack/callback', slackController.callback, slackController.redirectToDesigner);
-
-            app.get('/api/oauth/survey-monkey',          surveyMonkeyController.authorize);
-            app.get('/api/oauth/survey-monkey/callback', surveyMonkeyController.callback, surveyMonkeyController.redirectToDesigner);
-
-            app.get('/api/oauth/vimeo',          vimeoController.authorize);
-            app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
-
-            app.get('/api/oauth/linked-in',          linkedinController.authorize);
-            app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
-
-            app.get('/api/oauth/foursquare',          fourSquareController.authorize);
-            app.get('/api/oauth/foursquare/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
-
-            app.get('/api/oauth/swarm',          fourSquareController.authorize);
-            app.get('/api/oauth/swarm/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
-
-            app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
-            app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
-
-            app.get('/api/oauth/salesforce',          salesForceController.authorize);
-            app.get('/api/oauth/salesforce/callback', salesForceController.callback, salesForceController.redirectToDesigner);
-
-            app.get('/api/oauth/spotify',          spotifyController.authorize);
-            app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);
-
-            app.get('/api/oauth/quickbooks',          quickBooksController.authorize);
-            app.get('/api/oauth/quickbooks/callback', quickBooksController.callback, quickBooksController.redirectToDesigner);
-
-            app.get('/api/oauth/xero',          xeroController.authorize);
-            app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
-
             app.get('/api/oauth/redbooth',          redBoothController.authorize);
             app.get('/api/oauth/redbooth/callback', redBoothController.callback, redBoothController.redirectToDesigner);
-
-            app.get('/api/oauth/podio',          podioController.authorize);
-            app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
-
-            app.get('/api/oauth/thingiverse',          thingiverseController.authorize);
-            app.get('/api/oauth/thingiverse/callback', thingiverseController.callback, thingiverseController.redirectToDesigner);
 
             app.get('/api/oauth/rightsignature',          rightsignatureController.authorize);
             app.get('/api/oauth/rightsignature/callback', rightsignatureController.callback, rightsignatureController.redirectToDesigner);
 
-            app.get('/api/oauth/wordpress',          wordPressController.authorize);
-            app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
+            app.get('/api/oauth/salesforce',          salesForceController.authorize);
+            app.get('/api/oauth/salesforce/callback', salesForceController.callback, salesForceController.redirectToDesigner);
+
+            app.get('/api/oauth/sharefile',          shareFileController.authorize);
+            app.get('/api/oauth/sharefile/callback', shareFileController.callback, shareFileController.redirectToDesigner);
+
+            app.get('/api/oauth/slack',          slackController.authorize);
+            app.get('/api/oauth/slack/callback', slackController.callback, slackController.redirectToDesigner);
+
+            app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
+            app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
+
+            app.get('/api/oauth/spotify',          spotifyController.authorize);
+            app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);
+
+            app.get('/api/oauth/survey-monkey',          surveyMonkeyController.authorize);
+            app.get('/api/oauth/survey-monkey/callback', surveyMonkeyController.callback, surveyMonkeyController.redirectToDesigner);
+
+            app.get('/api/oauth/swarm',          fourSquareController.authorize);
+            app.get('/api/oauth/swarm/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+
+            app.get('/api/oauth/thingiverse',          thingiverseController.authorize);
+            app.get('/api/oauth/thingiverse/callback', thingiverseController.callback, thingiverseController.redirectToDesigner);
+
+            app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
+            app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/api/oauth/uber',          uberController.authorize);
             app.get('/api/oauth/uber/callback', uberController.callback, uberController.redirectToDesigner);
 
-            app.get('/api/oauth/withings',          withingsController.authorize);
-            app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
-
             app.get('/api/oauth/uservoice',          userVoiceController.authorize);
             app.get('/api/oauth/uservoice/callback', userVoiceController.callback, userVoiceController.redirectToDesigner);
 
-            app.get('/api/oauth/gotomeeting-free', goToMeetingFreeController.authorize, goToMeetingFreeController.redirectToDesigner);
+            app.get('/api/oauth/vimeo',          vimeoController.authorize);
+            app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
-            app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
-            app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+            app.get('/api/oauth/withings',          withingsController.authorize);
+            app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
+
+            app.get('/api/oauth/wordpress',          wordPressController.authorize);
+            app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
+
+            app.get('/api/oauth/xero',          xeroController.authorize);
+            app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
+
+            app.get('/api/oauth/youtube',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/youtube/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
+            app.get('/api/oauth/zendesk',          zendeskController.authorize);
+            app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
             app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
