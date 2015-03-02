@@ -17,6 +17,8 @@ module.exports = function(app, passport) {
         'port'     : config.skynet.port,
         'protocol' : 'websocket'
     });
+    
+    var referrer = require('./controllers/middleware/referrer.js');
 
     var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
     var channelAWSAuthController = new ChannelAWSAuthController();
@@ -33,14 +35,37 @@ module.exports = function(app, passport) {
     var ChannelApiKeyController = require('./controllers/channel-api-key-controller');
     var channelApiKeyController = new ChannelApiKeyController();
 
+    var FlowController = require('./controllers/flow-controller');
+    var flowController = new FlowController({meshblu: conn});
+
+    var FlowDeployController = require('./controllers/flow-deploy');
+    var flowDeployController = new FlowDeployController({meshblu: conn});
+
+    var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
+    var flowNodeTypeController = new FlowNodeTypeController();
+
+    var GeneralSearchController = require('./controllers/general-search-controller');
+    var generalSearchController = new GeneralSearchController(config.elasticSearchUri);
+
+    var MessageSummaryController = require('./controllers/message-summary-controller');
+    var messageSummaryController = new MessageSummaryController(config.elasticSearchUri);
+
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
 
+    var TopicSummaryController = require('./controllers/topic-summary-controller');
+    var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
+
+    // Channel Auth Controllers
+
     var AppNetController = require('./controllers/app-net-controller');
     var appNetController = new AppNetController();
+
+    var AutomaticController = require('./controllers/automatic-controller');
+    var automaticController = new AutomaticController();
 
     var BitlyController = require('./controllers/bitly-controller');
     var bitlyController = new BitlyController();
@@ -54,20 +79,17 @@ module.exports = function(app, passport) {
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
+    var EchoSignController = require('./controllers/echosign-controller');
+    var echoSignController = new EchoSignController();
+
     var FacebookController = require('./controllers/facebook-controller');
     var facebookController = new FacebookController();
 
     var FitbitController = require('./controllers/fitbit-controller');
     var fitbitController = new FitbitController();
 
-    var FlowController = require('./controllers/flow-controller');
-    var flowController = new FlowController({meshblu: conn});
-
-    var FlowDeployController = require('./controllers/flow-deploy');
-    var flowDeployController = new FlowDeployController({meshblu: conn});
-
-    var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
-    var flowNodeTypeController = new FlowNodeTypeController();
+    var FourSquareController = require('./controllers/foursquare-controller');
+    var fourSquareController = new FourSquareController();
 
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
@@ -81,41 +103,23 @@ module.exports = function(app, passport) {
     var GoToMeetingController = require('./controllers/gotomeeting-controller');
     var goToMeetingController = new GoToMeetingController();
 
+    var GoToMeetingFreeController = require('./controllers/gotomeeting-free-controller');
+    var goToMeetingFreeController = new GoToMeetingFreeController();
+
     var GoToTrainingController = require('./controllers/gototraining-controller');
     var goToTrainingController = new GoToTrainingController();
 
     var GoToWebinarController = require('./controllers/gotowebinar-controller');
     var goToWebinarController = new GoToWebinarController();
 
-    var MessageSummaryController = require('./controllers/message-summary-controller');
-    var messageSummaryController = new MessageSummaryController(config.elasticSearchUri);
-
-    var PaypalController = require('./controllers/paypal-controller');
-    var paypalController = new PaypalController();
-
-    var RdioController = require('./controllers/rdio-controller');
-    var rdioController = new RdioController();
-
-    var ReadabilityController = require('./controllers/readability-controller');
-    var readabilityController = new ReadabilityController();
-
-    var ShareFileController = require('./controllers/sharefile-controller');
-    var shareFileController = new ShareFileController();
-
-    var TopicSummaryController = require('./controllers/topic-summary-controller');
-    var topicSummaryController = new TopicSummaryController(config.elasticSearchUri);
-
-    var GeneralSearchController = require('./controllers/general-search-controller');
-    var generalSearchController = new GeneralSearchController(config.elasticSearchUri);
-
-    var TwitterController = require('./controllers/twitter-controller');
-    var twitterController = new TwitterController();
-
     var InstagramController = require('./controllers/instagram-controller');
     var instagramController = new InstagramController();
 
-    var ZendeskController = require('./controllers/zendesk-controller');
-    var zendeskController = new ZendeskController();
+    var InvitationController = require('./controllers/invitation-controller');
+    var invitationController = new InvitationController(config.betaInvites);
+
+    var JawboneController = require('./controllers/jawbone-controller');
+    var jawboneController = new JawboneController();
 
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
@@ -123,50 +127,20 @@ module.exports = function(app, passport) {
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
 
-    var SlackController = require('./controllers/slack-controller');
-    var slackController = new SlackController();
+    var PaypalController = require('./controllers/paypal-controller');
+    var paypalController = new PaypalController();
 
-    var SurveyMonkeyController = require('./controllers/survey-monkey-controller');
-    var surveyMonkeyController = new SurveyMonkeyController();
-
-    var VimeoController = require('./controllers/vimeo-controller');
-    var vimeoController = new VimeoController();
-
-    var FourSquareController = require('./controllers/foursquare-controller');
-    var fourSquareController = new FourSquareController();
-
-    var SpotifyController = require('./controllers/spotify-controller');
-    var spotifyController = new SpotifyController();
-
-    var AutomaticController = require('./controllers/automatic-controller');
-    var automaticController = new AutomaticController();
-
-    var JawboneController = require('./controllers/jawbone-controller');
-    var jawboneController = new JawboneController();
-
-    var SmartsheetController = require('./controllers/smartsheet-controller');
-    var smartsheetController = new SmartsheetController();
-
-    var SalesForceStrategy = require('./controllers/salesforce-controller');
-    var salesForceController = new SalesForceStrategy();
+    var PodioController = require('./controllers/podio-controller');
+    var podioController = new PodioController();
 
     var QuickBooksContoller = require('./controllers/quickbooks-controller');
     var quickBooksController = new QuickBooksContoller();
 
-    var EchoSignController = require('./controllers/echosign-controller');
-    var echoSignController = new EchoSignController();
+    var RdioController = require('./controllers/rdio-controller');
+    var rdioController = new RdioController();
 
-    var TeslaController = require('./controllers/tesla-controller');
-    var teslaController = new TeslaController();
-
-    var TravisCIController = require('./controllers/travis-ci-controller');
-    var travisCIController = new TravisCIController();
-
-    var TravisCIProController = require('./controllers/travis-ci-pro-controller');
-    var travisCIProController = new TravisCIProController();
-
-    var XeroController = require('./controllers/xero-controller');
-    var xeroController = new XeroController();
+    var ReadabilityController = require('./controllers/readability-controller');
+    var readabilityController = new ReadabilityController();
 
     var RedBoothController = require('./controllers/redbooth-controller');
     var redBoothController = new RedBoothController();
@@ -174,11 +148,59 @@ module.exports = function(app, passport) {
     var RightSignatureController = require('./controllers/rightsignature-controller');
     var rightsignatureController = new RightSignatureController();
 
-    var PodioController = require('./controllers/podio-controller');
-    var podioController = new PodioController();
+    var SalesForceStrategy = require('./controllers/salesforce-controller');
+    var salesForceController = new SalesForceStrategy();
+
+    var ShareFileController = require('./controllers/sharefile-controller');
+    var shareFileController = new ShareFileController();
+
+    var SignupController = require('./controllers/signup-controller');
+    var signupController = new SignupController();
+
+    var SlackController = require('./controllers/slack-controller');
+    var slackController = new SlackController();
+
+    var SmartsheetController = require('./controllers/smartsheet-controller');
+    var smartsheetController = new SmartsheetController();
+
+    var SpotifyController = require('./controllers/spotify-controller');
+    var spotifyController = new SpotifyController();
+
+    var SurveyMonkeyController = require('./controllers/survey-monkey-controller');
+    var surveyMonkeyController = new SurveyMonkeyController();
+
+    var TemplateController = require('./controllers/template-controller');
+    var templateController = new TemplateController({meshblu: conn});
+
+    var TeslaController = require('./controllers/tesla-controller');
+    var teslaController = new TeslaController();
 
     var ThingiverseController = require('./controllers/thingiverse-controller');
     var thingiverseController = new ThingiverseController();
+
+    var TravisCIController = require('./controllers/travis-ci-controller');
+    var travisCIController = new TravisCIController();
+
+    var TravisCIProController = require('./controllers/travis-ci-pro-controller');
+    var travisCIProController = new TravisCIProController();
+
+    var TwitterController = require('./controllers/twitter-controller');
+    var twitterController = new TwitterController();
+
+    var UberController = require('./controllers/uber-controller');
+    var uberController = new UberController();
+
+    var UserVoiceController = require('./controllers/uservoice-controller');
+    var userVoiceController = new UserVoiceController();
+
+    var VimeoController = require('./controllers/vimeo-controller');
+    var vimeoController = new VimeoController();
+
+    var WebhookController = require('./controllers/webhook-controller');
+    var webhookController = new WebhookController({meshblu: conn});
+
+    var WinkController = require('./controllers/wink-controller');
+    var winkController = new WinkController();
 
     var WithingsController = require('./controllers/withings-controller');
     var withingsController = new WithingsController();
@@ -186,31 +208,12 @@ module.exports = function(app, passport) {
     var WordPressController = require('./controllers/wordpress-controller');
     var wordPressController = new WordPressController();
 
-    var UberController = require('./controllers/uber-controller');
-    var uberController = new UberController();
+    var XeroController = require('./controllers/xero-controller');
+    var xeroController = new XeroController();
 
-    var WinkController = require('./controllers/wink-controller');
-    var winkController = new WinkController();
+    var ZendeskController = require('./controllers/zendesk-controller');
+    var zendeskController = new ZendeskController();
 
-    var UserVoiceController = require('./controllers/uservoice-controller');
-    var userVoiceController = new UserVoiceController();
-
-    var GoToMeetingFreeController = require('./controllers/gotomeeting-free-controller');
-    var goToMeetingFreeController = new GoToMeetingFreeController();
-
-    var InvitationController = require('./controllers/invitation-controller');
-    var invitationController = new InvitationController(config.betaInvites);
-
-    var SignupController = require('./controllers/signup-controller');
-    var signupController = new SignupController();
-
-    var TemplateController = require('./controllers/template-controller');
-    var templateController = new TemplateController({meshblu: conn});
-
-    var WebhookController = require('./controllers/webhook-controller');
-    var webhookController = new WebhookController({meshblu: conn});
-
-    var referrer = require('./controllers/middleware/referrer.js');
 
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed', data);
