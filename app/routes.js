@@ -287,6 +287,8 @@ module.exports = function(app, passport) {
             app.get('/api/node_types', nodeTypeController.index);
             app.get('/api/nodes', nodeController.index);
 
+            app.get('/api/sessions', sessionController.show);
+
             app.get('/api/oauth/app.net',          appNetController.authorize);
             app.get('/api/oauth/app.net/callback', appNetController.callback, appNetController.redirectToDesigner);
 
