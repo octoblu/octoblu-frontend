@@ -1,5 +1,6 @@
 url = require 'url'
 async = require 'async'
+bcrypt = require 'bcrypt'
 
 class UserSession
   @ERROR_DEVICE_NOT_FOUND: 'Meshblu device not found'
@@ -41,7 +42,22 @@ class UserSession
 
       callback null, body.devices[0]
 
-  invalidateOneTimeToken: =>
+  invalidateOneTimeToken: (uuid, token, callback=->) =>
+    rejectToken = (tokenObj, cb=->) =>
+      bcrypt.compare token, tokenObj.hash, (error, result) =>
+        cb result
+
+    @getDeviceFromMeshblu uuid, token, (error, device) =>
+      return callback error if error?
+
+      async.reject device.tokens, rejectToken, (tokens) =>
+        @updateDevice {uuid: 'uuid', tokens: tokens}, callback
+
+  generateTokenRejector: (token) =>
+    
+
+
+  updateDevice: =>
 
   _meshbluGetDevice: (uuid, token, callback=->) =>
     {host, port} = @config.skynet

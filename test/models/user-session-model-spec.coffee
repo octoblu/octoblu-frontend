@@ -91,6 +91,7 @@ describe 'UserSession', ->
       it 'should have an error', ->
         expect(@result).to.deep.equal 'session-token'
 
+
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->
       beforeEach ->
@@ -162,3 +163,48 @@ describe 'UserSession', ->
 
       it 'should call its callback with an error', ->
         expect(@error.message).to.equal UserSession.ERROR_DEVICE_NOT_FOUND
+
+  xdescribe '->invalidateOneTimeToken', ->
+    describe 'when called with a uuid and token', ->
+      beforeEach ->
+        sinon.spy(@sut, 'getDeviceFromMeshblu')
+        @sut.invalidateOneTimeToken 'uuid', 'token'
+
+      it 'should call getDeviceFromMeshblu', ->
+        expect(@sut.getDeviceFromMeshblu).to.have.been.calledWith 'uuid', 'token'
+
+    describe 'when called with another uuid and token', ->
+      beforeEach ->
+        sinon.spy(@sut, 'getDeviceFromMeshblu')
+        @sut.invalidateOneTimeToken 'bear', 'hear'
+
+      it 'should call getDeviceFromMeshblu', ->
+        expect(@sut.getDeviceFromMeshblu).to.have.been.calledWith 'bear', 'hear'
+
+    describe 'when called and getDeviceFromMeshblu returns an error', ->
+      beforeEach (done) ->
+        sinon.stub(@sut, 'getDeviceFromMeshblu').yields new Error('Bad Cheese')
+        @sut.invalidateOneTimeToken 'old-age', 'this-cheese-tastes-weird', (@error) => done()
+
+      it 'should yield an error', ->
+        expect(@error).to.exist
+
+    describe 'when it returns a device', ->
+      beforeEach ->
+        sinon.stub(@sut, 'getDeviceFromMeshblu').yields null, {uuid: 'uuid', tokens: [{hash: '$2a$08$R7p9xj2FM1gRgUbmdI7n5uddh92c0ci/F25fiWoibBewIIcQDA41i'}]}
+        sinon.spy(@sut, 'updateDevice')
+        @sut.invalidateOneTimeToken 'uuid', 'token'
+
+      it 'should call updateDevice with the token removed', ->
+        expect(@sut.updateDevice).to.have.been.calledWith {uuid: 'uuid', tokens: []}
+
+    describe 'when it returns a device with other tokens', ->
+      beforeEach (done) ->
+        device = {uuid: 'uuid', tokens: [{hash: '$2a$08$8BeLFJ/vNcEAuQY49bAas.f2gU6kx8fdiV7AOdnglWK.RAXZhxh6a'}, {hash: 'other-token'}]}
+        sinon.stub(@sut, 'getDeviceFromMeshblu').yields null, device
+        sinon.stub(@sut, 'updateDevice').yields new Error()
+        @sut.invalidateOneTimeToken 'uuid', 'token', => done()
+
+      it 'should call updateDevice with the token removed', ->
+        expect(@sut.updateDevice).to.have.been.calledWith {uuid: 'uuid', tokens: [{hash: 'other-token'}]}
+
