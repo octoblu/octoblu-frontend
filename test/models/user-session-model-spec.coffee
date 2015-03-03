@@ -6,7 +6,7 @@ describe 'UserSession', ->
   beforeEach ->
     @config = skynet: {host: 'meshblu.octoblu.com', port: 80}
     @request = sinon.stub()
-    @sut = new UserSession request: @request, config: @config
+    @sut = new UserSession request: @request, config: @config, database: {users: {}}
 
   describe '->create', ->
     describe 'when called with a uuid and token', ->
@@ -25,7 +25,6 @@ describe 'UserSession', ->
       it 'should yield and error', ->
         expect(@error).to.exist
 
-
     describe 'when and exchangeOneTimeTokenForSessionToken yields an error', ->
       beforeEach (done) ->
         sinon.stub(@sut, 'exchangeOneTimeTokenForSessionToken').yields new Error('Lighthouse out of order')
@@ -37,7 +36,7 @@ describe 'UserSession', ->
     describe 'when and exchangeOneTimeTokenForSessionToken yields a token and invalidateOneTimeToken yields nothing', ->
       beforeEach ->
         sinon.stub(@sut, 'exchangeOneTimeTokenForSessionToken').yields null, 'i-am-a-session-token-trust-me'
-        sinon.spy(@sut,  'ensureUserExists')
+        sinon.stub(@sut,  'ensureUserExists')
         @sut.create 'chemicals', 'periodical'
 
       it 'should call ensureUserExists', ->
@@ -52,14 +51,14 @@ describe 'UserSession', ->
       it 'should yield an error', ->
         expect(@error).to.exist
 
-    describe 'when and exchangeOneTimeTokenForSessionToken yields a token and invalidateOneTimeToken yields nothing and ensureUserExists yields a nothing', ->
+    describe 'when and exchangeOneTimeTokenForSessionToken yields a token and ensureUserExists yields a user', ->
       beforeEach (done) ->
         sinon.stub(@sut, 'exchangeOneTimeTokenForSessionToken').yields null, 'i-am-a-session-token-trust-me'
-        sinon.stub(@sut, 'ensureUserExists').yields null
-        @sut.create 'chemicals', 'periodical', (@error, @session) => done()
+        sinon.stub(@sut, 'ensureUserExists').yields null, {skynet: {token: 'i-am-a-session-token-trust-me'}}
+        @sut.create 'chemicals', 'periodical', (@error, @user) => done()
 
-      it 'should call the callback', ->
-        expect(@session).to.deep.equal {uuid: 'chemicals', token: 'i-am-a-session-token-trust-me'}
+      it 'should call the callback and yield a user', ->
+        expect(@user).to.deep.equal skynet: {token: 'i-am-a-session-token-trust-me'}
 
   describe '->createNewSessionToken', ->
     beforeEach ->
@@ -105,8 +104,8 @@ describe 'UserSession', ->
       @database.close?()
 
     describe 'when a user exists in the database', ->
-      beforeEach (done) ->
-        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar'}, done
+      beforeEach ->
+        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar'}
       
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
@@ -115,18 +114,17 @@ describe 'UserSession', ->
         it 'should yield the user', ->
           expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill', token: 'bit'}}
 
-        it 'should update the record with the new token', (done) ->
-          @database.users.findOne 'skynet.uuid': 'drill', (error, user) =>
-            done error if error?
-            expect(user.skynet.token).to.equal 'bit'
-            done()
+        it 'should update the record with the new token',  ->
+          @database.users
+            .findOne 'skynet.uuid': 'drill'
+            .then (user) =>
+              expect(user.skynet.token).to.equal 'bit'
 
-        it 'should not touch foo', (done) ->
-          @database.users.findOne 'skynet.uuid': 'drill', (error, user) =>
-            done error if error?
-            expect(user.foo).to.equal 'bar'
-            done()
-
+        it 'should not touch foo', ->
+          @database.users
+            .findOne 'skynet.uuid': 'drill'
+            .then (user) =>
+              expect(user.foo).to.equal 'bar'
 
     describe 'when there is not user in the database', ->
       describe 'when called with a uuid and token', ->
@@ -136,11 +134,9 @@ describe 'UserSession', ->
         it 'should yield the user', ->
           expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate', token: 'never-mind'}}
 
-        it 'should insert a record with the uuid and token', (done) ->
-          @database.users.findOne 'skynet.uuid': 'boilerplate', (error, user) =>
-            done error if error?
+        it ' should insert a record with the uuid and token', ->
+          @database.users.findOne('skynet.uuid': 'boilerplate').then (user) =>
             expect(user.skynet.token).to.equal 'never-mind'
-            done()
         
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->

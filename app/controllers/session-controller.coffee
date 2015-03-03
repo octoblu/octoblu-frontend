@@ -9,8 +9,14 @@ class SessionController
     userSession = new @dependencies.UserSession
     userSession.create uuid, token, (error, user) =>
       return response.status(500).send(SessionController.ERROR_RETRIEVING_SESSION) if error?
-      request.login user
-      response.redirect '/'
+      request.login user, (error) =>
+        if error?
+          info = 
+            message: error.message
+            stack: error.stack
+            user: user
+          return response.status(500).send(info) if error?
+        response.redirect '/'
      
 module.exports = SessionController
   

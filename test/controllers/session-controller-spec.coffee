@@ -44,9 +44,9 @@ describe 'SessionController', ->
       it 'should call response.send with a the error message', ->
         expect(@response.send).to.have.been.calledWith SessionController.ERROR_RETRIEVING_SESSION
 
-    describe 'when userSession.create responds with a user', ->
+    describe 'when userSession.create responds with a user and login yields', ->
       beforeEach ->
-        @request  = query: {uuid: 'a', token: 'onetimetoken'}, login: sinon.spy()
+        @request  = query: {uuid: 'a', token: 'onetimetoken'}, login: sinon.stub().yields()
         @response = redirect: sinon.spy()
 
         @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'a', token: 'permatoken'}
@@ -58,9 +58,9 @@ describe 'SessionController', ->
       it 'should call response.send with the uuid and token', ->
         expect(@response.redirect).to.have.been.calledWith '/'
 
-    describe 'when userSession.create responds with a different uuid and a new token', ->
+    describe 'when userSession.create responds with a different uuid and a new token and login yields', ->
       beforeEach ->
-        @request  = query: {uuid: 'b', token: 'unotimetoken'}, login: sinon.spy()
+        @request  = query: {uuid: 'b', token: 'unotimetoken'}, login: sinon.stub().yields()
         @response = redirect: sinon.spy()
         
         @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'b', token: 'reallypermatoken'}

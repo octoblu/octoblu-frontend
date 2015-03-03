@@ -17,10 +17,7 @@ class UserSession
     @exchangeOneTimeTokenForSessionToken uuid, token, (error, sessionToken) =>
       return callback error if error?
 
-      @ensureUserExists uuid, sessionToken, (error) =>
-        return callback error if error?
-
-        callback null, {uuid: uuid, token: sessionToken}
+      @ensureUserExists uuid, sessionToken, callback
 
   createNewSessionToken: (uuid, token, callback) =>
     @_meshbluCreateSessionToken uuid, token, (error, response, body) =>
@@ -29,7 +26,12 @@ class UserSession
       callback null, body.token
 
   createUser: (uuid, token, callback=->) =>
-    @users.insert {skynet: {uuid: uuid, token: token}}, callback
+    @users
+      .insert {skynet: {uuid: uuid, token: token}}
+      .then  (user)  => 
+        return callback null, user[0] if _.isArray user
+        callback null, user
+      .catch (error) => callback error
 
   ensureUserExists: (uuid, token, callback=->) =>
     @getUserByUuid uuid, (error, user) =>
@@ -53,7 +55,10 @@ class UserSession
       callback null, body.devices[0]
 
   getUserByUuid: (uuid, callback=->) =>
-    @users.findOne 'skynet.uuid': uuid, callback
+    @users
+      .findOne('skynet.uuid': uuid)
+      .then (user) => callback null, user
+      .catch (error) => callback error
 
   invalidateOneTimeToken: (uuid, token, callback=->) =>
     rejectToken = (tokenObj, cb=->) =>
@@ -73,9 +78,12 @@ class UserSession
       callback()
 
   updateUser: (uuid, token, callback=->) =>
-    @users.update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}, (error) =>
-      return callback error if error?
-      @getUserByUuid uuid, callback
+    @users
+      .update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}
+      .then =>
+        @getUserByUuid uuid, callback
+      .catch (error) =>
+        callback error
 
   _meshbluCreateSessionToken: (uuid, token, callback=->) =>
     @_meshbluRequest uuid, token, 'POST', "/devices/#{uuid}/tokens", callback
