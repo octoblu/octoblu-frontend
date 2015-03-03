@@ -1,4 +1,5 @@
 UserSession = require '../../app/models/user-session-model'
+TestDatabase = require '../test-database'
 
 describe 'UserSession', ->
   beforeEach ->
@@ -90,6 +91,50 @@ describe 'UserSession', ->
 
       it 'should have an error', ->
         expect(@result).to.deep.equal 'session-token'
+
+  describe '->ensureUserExists', ->
+    beforeEach (done) ->
+      TestDatabase.open (error, database) =>
+        @database = database
+        @sut = new UserSession request: @request, config: @config, database: @database
+
+        done error
+
+    afterEach ->
+      @database.close?()
+
+    describe 'when a user exists in the database', ->
+      beforeEach (done) ->
+        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar'}, done
+      
+      describe 'when called with a uuid and token', ->
+        beforeEach (done) ->
+          @sut.ensureUserExists 'drill', 'bit', done
+
+        it 'should update the record with the new token', (done) ->
+          @database.users.findOne 'skynet.uuid': 'drill', (error, user) =>
+            done error if error?
+            expect(user.skynet.token).to.equal 'bit'
+            done()
+
+        it 'should not touch foo', (done) ->
+          @database.users.findOne 'skynet.uuid': 'drill', (error, user) =>
+            done error if error?
+            expect(user.foo).to.equal 'bar'
+            done()
+
+    describe 'when there is not user in the database', ->
+      describe 'when called with a uuid and token', ->
+        beforeEach (done) ->
+          @sut.ensureUserExists 'boilerplate', 'never-mind', done
+
+        it 'should insert a record with the uuid and token', (done) ->
+          @database.users.findOne 'skynet.uuid': 'boilerplate', (error, user) =>
+            done error if error?
+            expect(user.skynet.token).to.equal 'never-mind'
+            done()
+        
+      
 
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->

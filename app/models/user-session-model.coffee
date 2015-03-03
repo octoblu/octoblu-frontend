@@ -11,6 +11,7 @@ class UserSession
   constructor: (dependencies={}) ->
     @request = dependencies.request ? require 'request'
     @config  = dependencies.config ? require '../../config/auth'
+    @users = dependencies.database?.users ? require('../lib/database').getCollection('users')
 
   create: (uuid, token, callback=->) =>
     @exchangeOneTimeTokenForSessionToken uuid, token, (error, sessionToken) =>
@@ -27,7 +28,14 @@ class UserSession
       return callback new Error(UserSession.ERROR_FAILED_TO_GET_SESSION_TOKEN) unless response.statusCode == 200
       callback null, body.token
 
-  ensureUserExists: =>
+  createUser: (uuid, token, callback=->) =>
+    @users.insert {skynet: {uuid: uuid, token: token}}, callback
+
+  ensureUserExists: (uuid, token, callback=->) =>
+    @users.findOne 'skynet.uuid': uuid, (error, user) =>
+      return callback error if error?
+      return @updateUser uuid, token, callback if user?
+      @createUser uuid, token, callback
 
   exchangeOneTimeTokenForSessionToken: (uuid, token, callback=->) => 
     @createNewSessionToken uuid, token, (error, sessionToken) =>
@@ -55,11 +63,14 @@ class UserSession
       async.reject device.tokens, rejectToken, (tokens) =>
         @updateDevice uuid, token, {uuid: 'uuid', tokens: tokens}, callback
 
-  updateDevice: (uuid, token, device, callback) =>
+  updateDevice: (uuid, token, device, callback=->) =>
     @_meshbluRequest uuid, token, 'PUT', "/devices/#{uuid}", device, (error, response) =>
       return callback error if error?
       return callback new Error(UserSession.ERROR_FAILED_TO_UPDATE_DEVICE) unless response.statusCode == 200
       callback()
+
+  updateUser: (uuid, token, callback=->) =>
+    @users.update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}, callback
 
   _meshbluCreateSessionToken: (uuid, token, callback=->) =>
     @_meshbluRequest uuid, token, 'POST', "/devices/#{uuid}/tokens", callback
