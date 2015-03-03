@@ -91,23 +91,34 @@ describe 'UserSession', ->
       it 'should have an error', ->
         expect(@result).to.deep.equal 'session-token'
 
-
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->
       beforeEach ->
         @sut.getDeviceFromMeshblu 'uuid', 'token'
 
       it 'should try to retrieve the device from Meshblu', ->
-        headers = meshblu_auth_uuid: 'uuid', meshblu_auth_token: 'token'
-        expect(@request).to.have.been.calledWith uri: 'http://meshblu.octoblu.com:80/devices/uuid', headers: headers, json: true
+        options =
+          uri: 'http://meshblu.octoblu.com:80/devices/uuid'
+          headers: 
+            meshblu_auth_uuid: 'uuid'
+            meshblu_auth_token: 'token'
+          method: 'GET'
+          json: true
+        expect(@request).to.have.been.calledWith options
 
     describe 'when called with a different uuid and token', ->
       beforeEach ->
         @sut.getDeviceFromMeshblu 'forgot', 'to-breathe'
 
       it 'should try to retrieve the device from Meshblu', ->
-        headers = meshblu_auth_uuid: 'forgot', meshblu_auth_token: 'to-breathe'
-        expect(@request).to.have.been.calledWith uri: 'http://meshblu.octoblu.com:80/devices/forgot', headers: headers, json: true
+        options = 
+          uri: 'http://meshblu.octoblu.com:80/devices/forgot'
+          headers: 
+            meshblu_auth_uuid: 'forgot'
+            meshblu_auth_token: 'to-breathe'
+          method: 'GET'
+          json: true
+        expect(@request).to.have.been.calledWith options
 
     describe 'when called with a different meshblu configuration', ->
       beforeEach ->
@@ -117,10 +128,11 @@ describe 'UserSession', ->
       it 'should try to retrieve the device from Meshblu', ->
         options =
           uri: 'http://localhost:3000/devices/forgot'
-          json: true
           headers:
             meshblu_auth_uuid: 'forgot'
             meshblu_auth_token: 'to-breathe'
+          method: 'GET'
+          json: true
         expect(@request).to.have.been.calledWith options
 
     describe 'when the meshblu configuration uses port 443', ->
@@ -132,6 +144,7 @@ describe 'UserSession', ->
         options =
           uri: 'https://meshblu.octoblu.com:443/devices/abandoned'
           json: true
+          method: 'GET'
           headers:
             meshblu_auth_uuid: 'abandoned'
             meshblu_auth_token: 'in-space'
@@ -164,7 +177,7 @@ describe 'UserSession', ->
       it 'should call its callback with an error', ->
         expect(@error.message).to.equal UserSession.ERROR_DEVICE_NOT_FOUND
 
-  xdescribe '->invalidateOneTimeToken', ->
+  describe '->invalidateOneTimeToken', ->
     describe 'when called with a uuid and token', ->
       beforeEach ->
         sinon.spy(@sut, 'getDeviceFromMeshblu')
@@ -190,13 +203,13 @@ describe 'UserSession', ->
         expect(@error).to.exist
 
     describe 'when it returns a device', ->
-      beforeEach ->
+      beforeEach (done) ->
         sinon.stub(@sut, 'getDeviceFromMeshblu').yields null, {uuid: 'uuid', tokens: [{hash: '$2a$08$R7p9xj2FM1gRgUbmdI7n5uddh92c0ci/F25fiWoibBewIIcQDA41i'}]}
-        sinon.spy(@sut, 'updateDevice')
-        @sut.invalidateOneTimeToken 'uuid', 'token'
+        sinon.stub(@sut, 'updateDevice').yields new Error()
+        @sut.invalidateOneTimeToken 'uuid', 'token', => done()
 
       it 'should call updateDevice with the token removed', ->
-        expect(@sut.updateDevice).to.have.been.calledWith {uuid: 'uuid', tokens: []}
+        expect(@sut.updateDevice).to.have.been.calledWith 'uuid', 'token', {uuid: 'uuid', tokens: []}
 
     describe 'when it returns a device with other tokens', ->
       beforeEach (done) ->
@@ -206,5 +219,64 @@ describe 'UserSession', ->
         @sut.invalidateOneTimeToken 'uuid', 'token', => done()
 
       it 'should call updateDevice with the token removed', ->
-        expect(@sut.updateDevice).to.have.been.calledWith {uuid: 'uuid', tokens: [{hash: 'other-token'}]}
+        expect(@sut.updateDevice).to.have.been.calledWith 'uuid', 'token', {uuid: 'uuid', tokens: [{hash: 'other-token'}]}
 
+  describe '->updateDevice', ->
+    describe 'when called with a uuid, token, and some properties', ->
+      beforeEach ->
+        @sut.updateDevice 'operator-error', 'whoops, my bad', {uuid: 'operator-error', tokens: []}
+        
+      it 'should call request', ->
+        options =
+          uri: 'http://meshblu.octoblu.com:80/devices/operator-error'
+          headers:
+            meshblu_auth_uuid: 'operator-error'
+            meshblu_auth_token: 'whoops, my bad'
+          method: 'PUT'
+          json:
+            uuid: 'operator-error'
+            tokens: []
+        expect(@request).to.have.been.calledWith options
+
+    describe 'when called with a different uuid, token, and some properties', ->
+      beforeEach ->
+        @sut.updateDevice 'dream', 'becomes real', {uuid: 'dream', tokens: []}
+        
+      it 'should call request', ->
+        options =
+          uri: 'http://meshblu.octoblu.com:80/devices/dream'
+          headers:
+            meshblu_auth_uuid: 'dream'
+            meshblu_auth_token: 'becomes real'
+          method: 'PUT'
+          json:
+            uuid: 'dream'
+            tokens: []
+        expect(@request).to.have.been.calledWith options
+
+    describe 'when called and request yields an error', ->
+      beforeEach (done) ->
+        @request.yields new Error('Never forget')
+        @sut.updateDevice 'vengeful', 'elephant', {}, (@error) => done()
+
+      it 'should yield an error', ->
+        expect(@error).to.exist
+
+    describe 'when called and meshblu yields a non 200', ->
+      beforeEach (done) ->
+        @request.yields null, {statusCode: 500}
+        @sut.updateDevice 'vengeful', 'elephant', {}, (@error) => done()
+
+      it 'should yield an error', ->
+        expect(@error.message).to.equal UserSession.ERROR_FAILED_TO_UPDATE_DEVICE
+
+    describe 'when called and meshblu yields 200', ->
+      beforeEach (done) ->
+        @request.yields null, {statusCode: 200}
+        @sut.updateDevice 'vengeful', 'elephant', {}, (@error) => done()
+
+      it 'should yield nothing!', ->
+        expect(@error).not.to.exist
+
+
+          
