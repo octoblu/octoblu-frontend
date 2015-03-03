@@ -1,3 +1,4 @@
+_ = require 'lodash'
 UserSession = require '../../app/models/user-session-model'
 TestDatabase = require '../test-database'
 
@@ -109,7 +110,10 @@ describe 'UserSession', ->
       
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
-          @sut.ensureUserExists 'drill', 'bit', done
+          @sut.ensureUserExists 'drill', 'bit', (error, @user) => done error
+
+        it 'should yield the user', ->
+          expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill', token: 'bit'}}
 
         it 'should update the record with the new token', (done) ->
           @database.users.findOne 'skynet.uuid': 'drill', (error, user) =>
@@ -123,10 +127,14 @@ describe 'UserSession', ->
             expect(user.foo).to.equal 'bar'
             done()
 
+
     describe 'when there is not user in the database', ->
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
-          @sut.ensureUserExists 'boilerplate', 'never-mind', done
+          @sut.ensureUserExists 'boilerplate', 'never-mind', (error, @user) => done error
+
+        it 'should yield the user', ->
+          expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate', token: 'never-mind'}}
 
         it 'should insert a record with the uuid and token', (done) ->
           @database.users.findOne 'skynet.uuid': 'boilerplate', (error, user) =>
@@ -134,8 +142,6 @@ describe 'UserSession', ->
             expect(user.skynet.token).to.equal 'never-mind'
             done()
         
-      
-
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->
       beforeEach ->

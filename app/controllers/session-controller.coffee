@@ -7,9 +7,10 @@ class SessionController
   show: (request, response) =>
     {uuid,token} = request.query
     userSession = new @dependencies.UserSession
-    userSession.create uuid, token, (error, session) =>
+    userSession.create uuid, token, (error, user) =>
       return response.status(500).send(SessionController.ERROR_RETRIEVING_SESSION) if error?
-      response.send session
+      request.login user
+      response.redirect '/'
      
 module.exports = SessionController
   

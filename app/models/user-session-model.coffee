@@ -32,7 +32,7 @@ class UserSession
     @users.insert {skynet: {uuid: uuid, token: token}}, callback
 
   ensureUserExists: (uuid, token, callback=->) =>
-    @users.findOne 'skynet.uuid': uuid, (error, user) =>
+    @getUserByUuid uuid, (error, user) =>
       return callback error if error?
       return @updateUser uuid, token, callback if user?
       @createUser uuid, token, callback
@@ -52,6 +52,9 @@ class UserSession
 
       callback null, body.devices[0]
 
+  getUserByUuid: (uuid, callback=->) =>
+    @users.findOne 'skynet.uuid': uuid, callback
+
   invalidateOneTimeToken: (uuid, token, callback=->) =>
     rejectToken = (tokenObj, cb=->) =>
       bcrypt.compare token, tokenObj.hash, (error, result) =>
@@ -70,7 +73,9 @@ class UserSession
       callback()
 
   updateUser: (uuid, token, callback=->) =>
-    @users.update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}, callback
+    @users.update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}, (error) =>
+      return callback error if error?
+      @getUserByUuid uuid, callback
 
   _meshbluCreateSessionToken: (uuid, token, callback=->) =>
     @_meshbluRequest uuid, token, 'POST', "/devices/#{uuid}/tokens", callback

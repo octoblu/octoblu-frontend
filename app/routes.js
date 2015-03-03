@@ -151,8 +151,8 @@ module.exports = function(app, passport) {
     var RightSignatureController = require('./controllers/rightsignature-controller');
     var rightsignatureController = new RightSignatureController();
 
-    var SalesForceStrategy = require('./controllers/salesforce-controller');
-    var salesForceController = new SalesForceStrategy();
+    var SalesForceController = require('./controllers/salesforce-controller');
+    var salesForceController = new SalesForceController();
 
     var ShareFileController = require('./controllers/sharefile-controller');
     var shareFileController = new ShareFileController();
