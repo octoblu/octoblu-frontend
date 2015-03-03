@@ -1,9 +1,9 @@
 {
   "_id": "53c9b831f400e177dca325ae",
   "category": "device",
-  "description": "Apple iOS Device",
-  "enabled": false,
-  "name": "Apple",
+  "description": "Mobiblu iOS",
+  "enabled": true,
+  "name": "Mobiblu iOS",
   "skynet": {
     "type": "octobluMobile",
     "subtype": "apple"

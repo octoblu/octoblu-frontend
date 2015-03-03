@@ -1,9 +1,9 @@
 {
   "_id": "53c9b831f400e177dca325af",
   "category": "device",
-  "description": "Android Device",
-  "enabled": false,
-  "name": "Android",
+  "description": "Mobiblu Android",
+  "enabled": true,
+  "name": "Mobiblu Android",
   "skynet": {
     "type": "octobluMobile",
     "subtype": "android"
