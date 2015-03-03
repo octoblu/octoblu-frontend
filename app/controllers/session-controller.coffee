@@ -1,6 +1,6 @@
-
 class SessionController
   @ERROR_RETRIEVING_SESSION = 'Error retrieving session'
+
   constructor: (@dependencies={}) ->
     @dependencies.UserSession ?= require '../models/user-session-model'
 
