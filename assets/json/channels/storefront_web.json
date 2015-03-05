@@ -148,7 +148,7 @@
             "style": "body",
             "type": "string",
             "name": "clientName"
-          },
+          }
         ],
         "url": "???"
       },
