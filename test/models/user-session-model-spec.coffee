@@ -75,7 +75,7 @@ describe 'UserSession', ->
 
       it 'should have an error', ->
         expect(@error).to.exist
-        
+
     describe 'when meshblu yields a 400', ->
       beforeEach (done) ->
         @request.yields null, statusCode: 400
@@ -105,14 +105,14 @@ describe 'UserSession', ->
 
     describe 'when a user exists in the database', ->
       beforeEach ->
-        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar'}
-      
+        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar', resource: {uuid: 'drill'}}
+
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
           @sut.ensureUserExists 'drill', 'bit', (error, @user) => done error
 
         it 'should yield the user', ->
-          expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill', token: 'bit'}}
+          expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill', token: 'bit'}, resource: {uuid: 'drill'}}
 
         it 'should update the record with the new token',  ->
           @database.users
@@ -132,12 +132,12 @@ describe 'UserSession', ->
           @sut.ensureUserExists 'boilerplate', 'never-mind', (error, @user) => done error
 
         it 'should yield the user', ->
-          expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate', token: 'never-mind'}}
+          expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate', token: 'never-mind'}, resource: {uuid: 'boilerplate'}}
 
         it ' should insert a record with the uuid and token', ->
           @database.users.findOne('skynet.uuid': 'boilerplate').then (user) =>
             expect(user.skynet.token).to.equal 'never-mind'
-        
+
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->
       beforeEach ->
@@ -146,7 +146,7 @@ describe 'UserSession', ->
       it 'should try to retrieve the device from Meshblu', ->
         options =
           uri: 'http://meshblu.octoblu.com:80/devices/uuid'
-          headers: 
+          headers:
             meshblu_auth_uuid: 'uuid'
             meshblu_auth_token: 'token'
           method: 'GET'
@@ -158,9 +158,9 @@ describe 'UserSession', ->
         @sut.getDeviceFromMeshblu 'forgot', 'to-breathe'
 
       it 'should try to retrieve the device from Meshblu', ->
-        options = 
+        options =
           uri: 'http://meshblu.octoblu.com:80/devices/forgot'
-          headers: 
+          headers:
             meshblu_auth_uuid: 'forgot'
             meshblu_auth_token: 'to-breathe'
           method: 'GET'
@@ -196,7 +196,7 @@ describe 'UserSession', ->
             meshblu_auth_uuid: 'abandoned'
             meshblu_auth_token: 'in-space'
         expect(@request).to.have.been.calledWith options
-    
+
     describe 'when called and meshblu responds with an error', ->
       beforeEach (done) ->
         @request.yields new Error('unspecified error')
@@ -272,7 +272,7 @@ describe 'UserSession', ->
     describe 'when called with a uuid, token, and some properties', ->
       beforeEach ->
         @sut.updateDevice 'operator-error', 'whoops, my bad', {uuid: 'operator-error', tokens: []}
-        
+
       it 'should call request', ->
         options =
           uri: 'http://meshblu.octoblu.com:80/devices/operator-error'
@@ -288,7 +288,7 @@ describe 'UserSession', ->
     describe 'when called with a different uuid, token, and some properties', ->
       beforeEach ->
         @sut.updateDevice 'dream', 'becomes real', {uuid: 'dream', tokens: []}
-        
+
       it 'should call request', ->
         options =
           uri: 'http://meshblu.octoblu.com:80/devices/dream'
@@ -326,4 +326,4 @@ describe 'UserSession', ->
         expect(@error).not.to.exist
 
 
-          
+

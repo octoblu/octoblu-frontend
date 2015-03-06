@@ -27,8 +27,8 @@ class UserSession
 
   createUser: (uuid, token, callback=->) =>
     @users
-      .insert {skynet: {uuid: uuid, token: token}}
-      .then  (user)  => 
+      .insert {skynet: {uuid: uuid, token: token}, resource: {uuid: uuid}}
+      .then  (user)  =>
         return callback null, user[0] if _.isArray user
         callback null, user
       .catch (error) => callback error
@@ -39,11 +39,11 @@ class UserSession
       return @updateUser uuid, token, callback if user?
       @createUser uuid, token, callback
 
-  exchangeOneTimeTokenForSessionToken: (uuid, token, callback=->) => 
+  exchangeOneTimeTokenForSessionToken: (uuid, token, callback=->) =>
     @createNewSessionToken uuid, token, (error, sessionToken) =>
       return callback error if error?
 
-      @invalidateOneTimeToken uuid, token, (error) => 
+      @invalidateOneTimeToken uuid, token, (error) =>
         return callback error if error?
         callback null, sessionToken
 
@@ -106,12 +106,12 @@ class UserSession
         pathname: path
       })
       method: method
-      headers: 
+      headers:
         meshblu_auth_uuid:  uuid
         meshblu_auth_token: token
       json: json
     }
-    
+
     @request options, callback
-  
+
 module.exports = UserSession
