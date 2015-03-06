@@ -1,0 +1,167 @@
+{
+  "_id": "357963579gfe568k75et5",
+  "__v": 0,
+  "type": "channel:storefront",
+  "auth_strategy": "oauth",
+  "documentation": "https://www.citrix.com/downloads/storefront-web-interface.html",
+  "name": "StoreFront",
+  "enabled": false,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "???",
+    "resources": [
+      {
+        "path": "/Home/Configuration",
+        "displayName": "Get Client Configuration",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/Home/KeepAlive",
+        "displayName": "Keep Session Alive",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "HEAD",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/Authentication/GetAuthMethods",
+        "displayName": "Get Authentication Methods",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/DomainPassthroughAuth/Login",
+        "displayName": "Authenticate User with Computer Login Credentials",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/SmartcardAuth/Login",
+        "displayName": "Authenticate User with Smartcard",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/Login",
+        "displayName": "Authenticate User With Explicit Forms",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/LoginAttempt",
+        "displayName": "Attempt an Explicit Login",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/SendForm",
+        "displayName": "Proxy a Form Back to the StoreFront Authentication Service",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/GetChangeCredentialForm",
+        "displayName": "Requests a Change Credential Form",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/CancelForm",
+        "displayName": "Cancel the Current Form",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/PostCredentialsAuth/Login",
+        "displayName": "Authenticate the User",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },{
+            "displayName": "Identifying The Client",
+            "style": "body",
+            "type": "string",
+            "name": "clientName"
+          }
+        ],
+        "url": "???"
+      },
+      {
+        "path": "/ExplicitAuth/CancelForm",
+        "displayName": "Cancel the Current Form",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      }
+    ]
+  }
+}
