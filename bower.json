@@ -59,7 +59,8 @@
     "moment": "~2.9.0",
     "angular-intercom": "~2.0.4",
     "angular-chart.js": "~0.3.19",
-    "angulartics": "~0.17.2"
+    "angulartics": "~0.17.2",
+    "angular-material": "~0.8.3"
   },
   "devDependencies": {
     "chai": "~1.9.1",
