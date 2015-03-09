@@ -7,6 +7,31 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       $logProvider.debugEnabled(false);
     }
   })
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.definePalette('octo-blue', {
+      '50': '82bbed',
+      '100': '5ea8e8',
+      '200': '3b94e3',
+      '300': '1f81d6',
+      '400': '196bb3',
+      '500': '14568f',
+      '600': '124b7d',
+      '700': '0f406b',
+      '800': '0d3659',
+      '900': '0a2b47',
+      'A100': '6c9aff',
+      'A200': '3374ff',
+      'A400': '0a58ff',
+      'A700': '0047e0',
+      'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+                                          // on this palette should be dark or light
+      'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+       '200', '300', '400', 'A100'],
+      'contrastLightColors': undefined    // could also specify this if default was 'dark'
+    });
+    $mdThemingProvider.theme('default')
+      .primaryPalette('octo-blue')
+  })
   .config(['markedProvider', function(marked) {
     marked.setOptions({gfm: true, breaks: true});
   }])
