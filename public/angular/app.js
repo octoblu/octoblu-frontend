@@ -31,7 +31,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
     $mdThemingProvider.theme('default')
       .primaryPalette('octo-blue')
-      .accentPalette('blue-grey');
+      .accentPalette('green', {
+        'default': '500' // use shade 200 for default, and keep all other shades the same
+      });
   })
   .config(['markedProvider', function(marked) {
     marked.setOptions({gfm: true, breaks: true});
