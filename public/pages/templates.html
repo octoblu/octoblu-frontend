@@ -41,7 +41,10 @@
                 <flow-editor style="min-height: 500px" flow="currentTemplate.flow" readonly="true" ></flow-editor>
 
                 <div style="max-height: 40%; padding: 0 0 15px 15px" layout="column">
-                    <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
+                    <md-input-container>
+                      <label>Name</label>
+                      <input ng-model="currentTemplate.name">
+                    </md-input-container>
                     <bill-of-materials class="hidden" flow="currentTemplate.flow"></bill-of-materials>
                 </div>
             </div>

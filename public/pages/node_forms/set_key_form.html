@@ -1,3 +1,14 @@
-<md-text-float label="Name" ng-model="flowNode.name" required> </md-text-float>
-<md-text-float label="Key" ng-model="flowNode.key" required> </md-text-float>
-<md-text-float label="value" ng-model="flowNode.value" required> </md-text-float>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
+
+<md-input-container>
+  <label>Key</label>
+  <input required ng-model="flowNode.key">
+</md-input-container>
+
+<md-input-container>
+  <label>Value</label>
+  <input required ng-model="flowNode.value">
+</md-input-container>
