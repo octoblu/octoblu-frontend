@@ -4516,6 +4516,14 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },
+            {
+            "name": "fields",
+            "displayName": "Fields",
+            "type": "object",
+            "default": {},
+            "style": "body",
+            "required": true
           }
         ],
         "url": "https://api.podio.com/item/app/:app_id/"
@@ -5243,6 +5251,14 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },
+          {
+            "name": "fields",
+            "displayName": "Fields",
+            "type": "object",
+            "default": {},
+            "style": "body",
+            "required": true
           }
         ],
         "url": "https://api.podio.com/item/:item_id"
