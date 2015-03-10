@@ -1,6 +1,10 @@
 class LoginController
   constructor: (AUTHENTICATOR_URIS, $location) ->
-    loginParams = $.param callback: "#{$location.protocol()}://#{$location.host()}/api/session"
+    protocol = $location.protocol()
+    host     = $location.host()
+    port     = $location.port()
+    
+    loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session"
 
     @emailPasswordLoginUri = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '?' + loginParams
     @googleLoginUri        = AUTHENTICATOR_URIS.GOOGLE + '?' + loginParams

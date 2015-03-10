@@ -6,7 +6,8 @@ describe 'LoginController', ->
       @rootScope = $rootScope
       @sut = $controller 'LoginController', 
         $location:
-          host: -> 'the.mothership:1234'
+          host: -> 'the.mothership'
+          port: -> 1234
           protocol: -> 'https'
         AUTHENTICATOR_URIS:
           EMAIL_PASSWORD: 'https://login.to.the.grid'
