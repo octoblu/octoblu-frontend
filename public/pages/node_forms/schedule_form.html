@@ -1,28 +1,26 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
 
-<div class="form-group">
-  <label for="crontab">Schedule (crontab. Flows run in the UTC timezone)</label>
-  <input  id="crontab" class="form-control" type="text" ng-model="flowNode.crontab" required>
-</div>
+<md-input-container>
+  <label>Schedule (crontab. Flows run in the UTC timezone)</label>
+  <input required ng-model="flowNode.crontab">
+</md-input-container>
 
-<div class="form-group">
-  <label for="payloadType">Payload</label>
-  <select id="payloadType" name="payloadType" ng-model="flowNode.payloadType" class="form-control" required>
-    <option value="date">Timestamp</option>
-    <option value="none">Blank</option>
-    <option value="string">String</option>
-  </select>
-</div>
+<md-radio-group ng-model="flowNode.payloadType">
+  <label>Payload Type</label>
+  <md-radio-button value="date">Timestamp</md-radio-button>
+  <md-radio-button value="none"> Blank </md-radio-button>
+  <md-radio-button value="string">String</md-radio-button>
+</md-radio-group>
 
-<div class="form-group" ng-show="flowNode.payloadType === 'string'">
+<md-input-container class="form-group" ng-show="flowNode.payloadType === 'string'">
   <label for="payload">Payload</label>
-  <input  id="payload" class="form-control" type="text" ng-model="flowNode.payload">
-</div>
+  <textarea id="payload" class="form-control" type="text" ng-model="flowNode.payload"></textarea>
+</md-input-container>
 
-<div class="form-group">
-  <label for="topic">Topic</label>
-  <input  id="topic" class="form-control" type="text" ng-model="flowNode.topic">
-</div>
+<md-input-container>
+  <label>Topic</label>
+  <input ng-model="flowNode.topic">
+</md-input-container>
