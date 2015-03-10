@@ -1,0 +1,78 @@
+@email-color:    #009688;
+@google-color:   #DE4D36;
+@facebook-color: #3C5F96;
+@twitter-color:  #36A9DA;
+@github-color:   #444444;
+
+.login-card {
+  width: 450px;
+}
+
+.login-octoblu-logo {
+  height : 100px;
+  width : 100px;
+  margin: 75px auto 40px;
+}
+
+.md-button {
+  span {
+    text-transform: normal;
+  }
+
+  &.login-button {
+    color: #F0F0F0;
+    font-size: 1.2em;
+    text-decoration: none;
+
+    margin: 0 8px 16px;
+  }
+
+  &.login-button-email {
+    background: @email-color;
+  }
+
+  &.login-button-email:not([disabled]):hover,
+  &.login-button-email:not([disabled]):focus {
+    background: darken(@email-color, 10%);
+  }
+
+  &.login-button-github {
+    background: @github-color;
+  }
+
+  &.login-button-github:not([disabled]):hover,
+  &.login-button-github:not([disabled]):focus {
+    background: darken(@github-color, 10%);
+  }
+
+  &.login-button-facebook  {
+    background: @facebook-color;
+  }
+
+  &.login-button-facebook:not([disabled]):hover,
+  &.login-button-facebook:not([disabled]):focus {
+    background: darken(@facebook-color, 10%);
+  }
+
+  &.login-button-twitter {
+    background: @twitter-color;
+  }
+
+  &.login-button-twitter:not([disabled]):hover,
+  &.login-button-twitter:not([disabled]):focus {
+    background: darken(@twitter-color, 10%);
+  }
+
+  &.login-button-google {
+    background: @google-color;
+  }
+
+  &.login-button-google:not([disabled]):hover,
+  &.login-button-google:not([disabled]):focus {
+    background: darken(@google-color, 10%);
+  }
+
+  &.login-button-signup {
+    margin: 8px 8px 16px;
+  }
+}

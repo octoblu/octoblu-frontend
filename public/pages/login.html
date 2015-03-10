@@ -1,109 +1,40 @@
-<div class='contrast-red login contrast-background '>
-  <div class='middle-container'>
-    <div class='middle-row'>
-      <div class='middle-wrapper'>
-        <div class='login-container-header'>
-          <div class='container'>
-            <div class='row'>
-              <div class='col-sm-12'>
-                <div class='text-center'>
-                   <img src="/assets/images/octoblucircle.png" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class='login-container'>
-          <div class='container'>
-            <div class='row'>
+<md-content layout="row" layout-align="center center">
+  <div class="login-card" layout="column">
+    <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
 
-              <div class='col-sm-4 col-sm-offset-4'>
-                <h1 class='text-center title'>Sign in</h1>
-                <p class="text-danger" ng-show="errorMsg">{{ errorMsg }}</p>
-                <form class='validate-form' target="_self" ng-submit="login()">
-                  <div class='form-group'>
-                    <div class='controls with-icon-over-input'>
-                      <input value="" ng-model="email" placeholder="Email" class="form-control" data-rule-required="true" name="email" type="email" />
-                      <i class='icon-user text-muted'></i>
-                    </div>
-                  </div>
-                  <div class='form-group'>
-                    <div class='controls with-icon-over-input'>
-                      <input value="" placeholder="Password" ng-model="password" class="form-control" data-rule-required="true" name="password" type="password" />
-                      <i class='icon-lock text-muted'></i>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-                </form>
-                <div class='text-center'>
+    <div layout="row">
+      <md-button class="login-button login-button-email" href="https://login.octoblu.com/?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
+        <i class="fa fa-envelope-o"></i>
+        Login with Email
+      </md-button>
+    </div>
 
-                  <hr class='hr-normal'>
-                    <div class="col-xs-12 col-lg-6">
-                        <a href="/forgot">Forgot your password?</a>
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                        <a href ui-sref="invitation.request">
-                            <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Request an Invite
-                        </a>
-                    </div>
-                    <br>
-                    <br>
-                </div>
-                <div class="row text-center">
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-github" href="{{getLoginUrl('/api/oauth/github')}}" target="_self">
-                        <span class="fa fa-github"> Github</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-facebook" href="{{getLoginUrl('/api/oauth/facebook')}}" target="_self">
-                        <span class="fa fa-facebook"> Facebook</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-twitter" href="{{getLoginUrl('/api/oauth/twitter')}}" target="_self">
-                        <span class="fa fa-twitter"> Twitter</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-google-plus" href="{{getLoginUrl('/api/oauth/google')}}" target="_self">
-                        <span class="fa fa-google-plus"> Google+</span>
-                      </a>
-                    </p><br>
-                  </div>
-                </div>
+    <div layout="row">
+      <md-button class="login-button login-button-github" href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
+        <i class="fa fa-github-square"></i>
+         Github
+      </md-button>
 
-              </div>
-            </div>
-          </div>
-          <br />
-          <br />
-          <!--<div class="row">-->
+      <md-button class="login-button login-button-facebook" href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
+        <i class="fa fa-facebook-square"></i>
+         Facebook
+      </md-button>
+    </div>
 
-              <!--<div class="col-xs-12 col-lg-6">-->
-                  <!--<a href ui-sref="invitation.accept">Enter your Invitation Code</a>-->
-              <!--</div>-->
-          <!--</div>-->
-          <br />
-          <br />
+    <div layout="row">
+      <md-button class="login-button login-button-twitter" href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
+        <i class="fa fa-twitter-square"></i>
+         Twitter
+      </md-button>
 
-        </div>
-        <div class='login-container-footer'>
-          <div class='container '>
-            <div class='row'>
-              <div class='col-sm-12'>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <md-button class="login-button login-button-google" href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
+        <i class="fa fa-google-plus-square"></i>
+         Google+
+      </md-button>
+    </div>
+
+    <div layout="row">
+      <md-button class="md-primary login-button-signup" href="https://login.octoblu.com/signup?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>Create an Account</md-button>
     </div>
   </div>
-</div>
+</md-content>
