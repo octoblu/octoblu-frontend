@@ -3,10 +3,13 @@
   <input ng-model="flowNode.name">
 </md-input-container>
 
-<md-text-float label="Timeout" ng-model="flowNode.timeout" type="number"></md-text-float>
+<md-input-container>
+  <label>Timeout (in milliseconds)</label>
+  <input required ng-model="flowNode.timeout" type="number">
+</md-input-container>
 
-<span>Units</span>
 <md-radio-group ng-model="flowNode.timeoutUnits">
+  <label>Units</label>
   <md-radio-button value="milliseconds">Milliseconds</md-radio-button>
   <md-radio-button value="seconds">Seconds</md-radio-button>
   <md-radio-button value="minutes">Minutes</md-radio-button>
