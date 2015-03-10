@@ -3,11 +3,18 @@
   <input ng-model="flowNode.name">
 </md-input-container>
 
-
-
-<md-text-float label="Value" ng-model="flowNode.value"> </md-text-float>
-<md-text-float label="Min" ng-model="flowNode.min"> </md-text-float>
-<md-text-float label="Max" ng-model="flowNode.max"> </md-text-float>
+<md-input-container>
+  <label>Value</label>
+  <input required ng-model="flowNode.value">
+</md-input-container>
+<md-input-container>
+  <label>Min</label>
+  <input required ng-model="flowNode.min">
+</md-input-container>
+<md-input-container>
+  <label>Max</label>
+  <input required ng-model="flowNode.max">
+</md-input-container>
 
 <p class="text-info">
   Reference incoming messages with <span ng-non-bindable>{{payload.value}}</span>
