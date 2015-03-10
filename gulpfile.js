@@ -41,7 +41,10 @@ gulp.task('coffee:clean', function(){
 })
 
 gulp.task('coffee:compile', ['coffee:clean'], function(){
-  return gulp.src(['./public/angular/**/*.coffee'])
+  var environment = process.env.NODE_ENV || 'development'
+  var configFile = "./public/config/" + environment + ".coffee"
+
+  return gulp.src(['./public/angular/**/*.coffee', configFile])
     .pipe(plumber())
       .pipe(coffee({bare: true}))
     .pipe(gulp.dest('./public/angular/compiled/'));
@@ -80,7 +83,7 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
-  gulp.watch(['./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:compile']);
+  gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:compile']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
   gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
 

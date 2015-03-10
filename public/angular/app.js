@@ -41,28 +41,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
-  .service('skynetConfig', function ($location) {
-    var host = $location.host();
-
-    if (host === 'app.octoblu.com') {
-      return {
-        host: 'wss://meshblu.octoblu.com',
-        port: '443'
-      };
-    }
-
-    if (host === 'staging.octoblu.com') {
-      return {
-        host: 'wss://meshblu-staging.octoblu.com',
-        port: '443'
-      };
-    }
-
-    return {
-      host: 'ws://' + host,
-      port: '3000'
-    };
-  })
   .constant('INTERCOM_APPID', 'ux5bbkjz')
 
   // Configure your $intercom module with appID
