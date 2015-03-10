@@ -407,7 +407,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
-        controller: 'loginController',
+        controller: 'LoginController',
+        controllerAs: 'controller',
         unsecured: true
       })
       .state('forgot', {

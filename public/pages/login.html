@@ -3,32 +3,32 @@
     <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
 
     <div layout="row">
-      <md-button class="login-button login-button-email" ng-click="goTo" href="https://login.octoblu.com/?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
-        <i class="fa fa-envelope-o"></i>
+      <md-button class="login-button login-button-email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
+        <i class="fa fa-lg fa-envelope-o"></i>
         Sign In with Email
       </md-button>
     </div>
 
     <div layout="row">
-      <md-button class="login-button login-button-github" href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
-        <i class="fa fa-github-square"></i>
+      <md-button class="login-button login-button-github" ng-href="{{controller.githubLoginUri}}" flex>
+        <i class="fa fa-lg fa-github-square"></i>
          Github
       </md-button>
 
-      <md-button class="login-button login-button-facebook" href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
-        <i class="fa fa-facebook-square"></i>
+      <md-button class="login-button login-button-facebook" ng-href="{{controller.facebookLoginUri}}" flex>
+        <i class="fa fa-lg fa-facebook-square"></i>
          Facebook
       </md-button>
     </div>
 
     <div layout="row">
-      <md-button class="login-button login-button-twitter" href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
-        <i class="fa fa-twitter-square"></i>
+      <md-button class="login-button login-button-twitter" ng-href="{{controller.twitterLoginUri}}" flex>
+        <i class="fa fa-lg fa-twitter-square"></i>
          Twitter
       </md-button>
 
-      <md-button class="login-button login-button-google" href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fapi%2Fsession%2F" flex>
-        <i class="fa fa-google-plus-square"></i>
+      <md-button class="login-button login-button-google" ng-href="{{controller.googleLoginUri}}" flex>
+        <i class="fa fa-lg fa-google-plus-square"></i>
          Google+
       </md-button>
     </div>
