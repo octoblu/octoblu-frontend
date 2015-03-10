@@ -11,8 +11,13 @@ cache:
     - public/lib
 notifications:
   flowdock: e7454f5285e7b9ab67009802d5560490
-before_script: 
-  if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export NODE_ENV=staging; fi
+before_script:
+  - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export NODE_ENV=staging; fi
+  - node_modules/.bin/npm rebuild # Uncomment this if bcrypt gives you trouble.
+  - node_modules/.bin/bower install
+  - node_modules/.bin/gulp
+after_success:
+  - gem install nokogiri -- --use-system-libraries
 before_deploy: "mkdir -p build && tar czf build/public.tar.gz public"
 deploy:
   # production
@@ -70,9 +75,3 @@ branches:
     - master
     - staging
     - develop
-before_script:
-  - node_modules/.bin/npm rebuild # Uncomment this if bcrypt gives you trouble.
-  - node_modules/.bin/bower install
-  - node_modules/.bin/gulp
-after_success:
-  - gem install nokogiri -- --use-system-libraries
