@@ -7,5 +7,5 @@ angular.module('octobluApp')
     GITHUB: 'http://localhost:8888'  
   }
   .constant 'MESHBLU_HOST', "ws://${window.location.hostname}"
-  .constant 'MESHBLU_POST', '3000'
+  .constant 'MESHBLU_PORT', '3000'
 

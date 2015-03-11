@@ -7,4 +7,4 @@ angular.module('octobluApp')
     GITHUB: 'https://github-oauth-staging.octoblu.com/login'
   }
   .constant 'MESHBLU_HOST', 'wss://meshblu-staging.octoblu.com'
-  .constant 'MESHBLU_POST', '443'
+  .constant 'MESHBLU_PORT', '443'
