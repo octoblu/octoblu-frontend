@@ -9,18 +9,18 @@
   "enabled": true,
   "oauth": {
     "development": {
-      "clientID": "quirky_wink_android_app",
-      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "tokenMethod": "access_token_bearer"
     },
     "staging": {
-      "clientID": "quirky_wink_android_app",
-      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "tokenMethod": "access_token_bearer"
     },
     "production": {
-      "clientID": "quirky_wink_android_app",
-      "clientSecret": "e749124ad386a5a35c0ab554a4f2c045",
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "tokenMethod": "access_token_bearer"
     }
   },
