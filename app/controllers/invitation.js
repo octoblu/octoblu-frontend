@@ -7,8 +7,8 @@ var _ = require('lodash'),
   smtpTransport = require('nodemailer-smtp-transport'),
   Invitation = require('../models/invitation'),
   User = require('../models/user'),
-  Group = require('../models/group'),
-  isAuthenticated = require('./middleware/security').isAuthenticated;
+  Group = require('../models/group');
+
 /*
  File : invitation.js
  provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
@@ -242,11 +242,11 @@ module.exports = function(app, passport, config) {
 
   //set the configuration for the controller
   invitationController.config = config;
-  app.get('/api/user/invitations', isAuthenticated, invitationController.getAllInvitations);
-  app.get('/api/user/invitations/sent', isAuthenticated, invitationController.getInvitationsSent);
-  app.get('/api/user/invitations/received', isAuthenticated, invitationController.getInvitationsReceived);
-  app.get('/api/user/invitation/:invitationId', isAuthenticated, invitationController.getInvitationById);
-  app.post('/api/user/invitation/send', isAuthenticated, invitationController.sendInvitation);
+  app.get('/api/user/invitations', invitationController.getAllInvitations);
+  app.get('/api/user/invitations/sent', invitationController.getInvitationsSent);
+  app.get('/api/user/invitations/received', invitationController.getInvitationsReceived);
+  app.get('/api/user/invitation/:invitationId', invitationController.getInvitationById);
+  app.post('/api/user/invitation/send', invitationController.sendInvitation);
   app.get('/api/invitation/:id/accept', invitationController.acceptInvitation);
-  app.delete('/api/invitations/:invitationId', isAuthenticated, invitationController.deleteInvitation);
+  app.delete('/api/invitations/:invitationId', invitationController.deleteInvitation);
 };
