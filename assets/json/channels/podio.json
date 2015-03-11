@@ -474,6 +474,12 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "displayName": "Responsible",
+            "name": "responsible"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/assign"
@@ -509,7 +515,17 @@
         "path": "/task/label/",
         "displayName": "Create New Personal Label",
         "httpMethod": "POST",
-        "params": [],
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "displayName": "Text",
+            "name": "text"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Color",
+            "name": "color"
+          }],
         "url": "https://api.podio.com/task/label/"
       },
       {
@@ -528,6 +544,71 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Text",
+            "name": "text"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Description",
+            "name": "description"
+          },{
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Private",
+            "name": "private"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Date",
+            "name": "due_date"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Time",
+            "name": "due_time"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due On",
+            "name": "due_on"
+          },{
+            "style": "body",
+            "type": "integer",
+            "displayName": "Responsible",
+            "name": "responsible"
+          },{
+            "style": "body",
+            "type": "array",
+            "displayName": "File Ids",
+            "name": "file_ids"
+          },{
+            "style": "body",
+            "type": "array",
+            "displayName": "Labels",
+            "name": "labels"
+          },{
+            "style": "body",
+            "type": "array",
+            "displayName": "Label Ids",
+            "name": "label_ids"
+          },{
+            "style": "body",
+            "type": "object",
+            "displayName": "Reminder",
+            "name": "reminder"
+          },{
+            "style": "body",
+            "type": "object",
+            "displayName": "Recurrence",
+            "name": "recurrence"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "External Id",
+            "name": "external_id"
           }
         ],
         "url": "https://api.podio.com/task/"
@@ -661,8 +742,7 @@
             "style": "query",
             "type": "string",
             "displayName": "Limit",
-            "name": "limit",
-            "required": "true"
+            "name": "limit"
           }
         ],
         "url": "https://api.podio.com/task/summary"
@@ -697,8 +777,7 @@
             "style": "query",
             "type": "string",
             "displayName": "Limit",
-            "name": "limit",
-            "required": "true"
+            "name": "limit"
           }
         ],
         "url": "https://api.podio.com/task/personal/summary"
@@ -775,7 +854,7 @@
       },
       {
         "path": "/task/total/",
-        "displayName": "Get Task Totals",
+        "displayName": "Get Task Totals V2",
         "httpMethod": "GET",
         "params": [
           {
@@ -842,7 +921,7 @@
           },
           {
             "style": "query",
-            "type": "string",
+            "type": "boolean",
             "name": "files",
             "displayName": "Files"
           },
@@ -981,6 +1060,16 @@
             "name": ":task_id",
             "displayName": "Task ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "after",
+            "displayName": "After"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "before",
+            "displayName": "Before"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/rank"
@@ -1011,6 +1100,16 @@
             "name": ":label_id",
             "displayName": "Label ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "text",
+            "displayName": "Text"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "color",
+            "displayName": "Conversationolor"
           }
         ],
         "url": "https://api.podio.com/task/label/:label_id"
@@ -1038,6 +1137,61 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Text",
+            "name": "text"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Description",
+            "name": "description"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Date",
+            "name": "due_date"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Time",
+            "name": "due_time"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Responsible",
+            "name": "responsible"
+          },{
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Private",
+            "name": "private"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Reference Type",
+            "name": "ref_type"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Reference ID",
+            "name": "ref_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Labels",
+            "name": "labels"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "File Ids",
+            "name": "file_ids"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Reminder",
+            "name": "reminder"
           }
         ],
         "url": "https://api.podio.com/task/:task_id"
@@ -1065,6 +1219,12 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "displayName": "Description",
+            "name": "description"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/description"
@@ -1083,15 +1243,30 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due On",
+            "name": "due_on"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Date",
+            "name": "due_date"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Due Time",
+            "name": "due_time"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/due"
@@ -1125,15 +1300,20 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "boolean",
+            "displayName": "Private",
+            "name": "private"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/private"
@@ -1152,15 +1332,25 @@
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Hook",
             "name": "hook"
           },
           {
             "style": "body",
-            "type": "string",
+            "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Reference Type",
+            "name": "ref_type"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Reference Id",
+            "name": "ref_id"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/ref"
@@ -1188,6 +1378,11 @@
             "type": "boolean",
             "displayName": "Silent",
             "name": "silent"
+          },{
+            "style": "body",
+            "type": "string",
+            "displayName": "Text",
+            "name": "text"
           }
         ],
         "url": "https://api.podio.com/task/:task_id/text"
@@ -7805,6 +8000,24 @@
             "displayName": "External Contacts",
             "style": "body",
             "type": "object"
+          },
+          {
+            "name": "context_ref_type",
+            "displayName": "Context Ref Type",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "context_ref_id",
+            "displayName": "Context Ref Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "invite_context",
+            "displayName": "Invite Context",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/space/:space_id/member/"
@@ -7833,7 +8046,7 @@
       },
       {
         "path": "/space/:space_id/member/total",
-        "displayName": "Get Count Of Internal And External Members On Space",
+        "displayName": "Get Count Of Internal/ External Members On Space",
         "httpMethod": "GET",
         "params": [
           {
@@ -7867,14 +8080,14 @@
         "httpMethod": "GET",
         "params": [
           {
-            "style": "get",
+            "style": "url",
             "type": "string",
             "name": ":space_id",
             "displayName": "Space ID",
             "required": "true"
           },
           {
-            "style": "get",
+            "style": "url",
             "type": "string",
             "name": ":user_id",
             "displayName": "User ID",
@@ -7896,9 +8109,9 @@
             "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "role",
+            "name": ":role",
             "displayName": "Role",
             "required": "true"
           }
@@ -7907,7 +8120,7 @@
       },
       {
         "path": "/space/:space_id/member/v2/",
-        "displayName": "Get Space Members",
+        "displayName": "Get Space Members v2",
         "httpMethod": "GET",
         "params": [
           {
@@ -8014,9 +8227,29 @@
             "name": ":user_ids",
             "displayName": "User IDs",
             "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "role",
+            "displayName": "Role"
           }
         ],
         "url": "https://api.podio.com/space/:space_id/member/:user_ids"
+      },
+      {
+        "path": "/space/:space_id/archive",
+        "displayName": "Archive Space",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":space_id",
+            "displayName": "Space ID",
+            "required": "true"
+          }],
+        "url": "https://api.podio.com/space/"
       },
       {
         "path": "/space/",
@@ -8093,8 +8326,23 @@
         "url": "https://api.podio.com/space/:space_id/available"
       },
       {
+        "path": "/space/org/:org_id/",
+        "displayName": "Get List Of Organization Workspaces",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":org_id",
+            "displayName": "Organization ID",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.podio.com/space/org/:org_id/"
+      },
+      {
         "path": "/space/:space_id",
-        "displayName": "Get Space Information",
+        "displayName": "Get Space",
         "httpMethod": "GET",
         "params": [
           {
@@ -8168,6 +8416,21 @@
           }
         ],
         "url": "https://api.podio.com/space/top/"
+      },
+      {
+        "path": "/space/:space_id/restore",
+        "displayName": "Restore Space",
+        "httpMethod": "Post",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":space_id",
+            "displayName": "Space ID",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.podio.com/space/:space_id/restore"
       },
       {
         "path": "/space/:space_id",
@@ -8248,11 +8511,17 @@
             "name": "file_ids",
             "displayName": "File Ids",
             "style": "body",
-            "type": "string"
+            "type": "array"
           },
           {
             "name": "embed_id",
             "displayName": "Embed Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "embed_url",
+            "displayName": "Embed Url",
             "style": "body",
             "type": "string"
           },
@@ -8289,6 +8558,7 @@
             "style": "url",
             "type": "string",
             "name": ":status_id",
+            "displayName": "Status ID",
             "required": "true"
           }
         ],
@@ -8296,14 +8566,39 @@
       },
       {
         "path": "/status/:status_id",
-        "displayName": "Update A Status",
+        "displayName": "Update A Status Message",
         "httpMethod": "PUT",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "status_id",
+            "name": ":space_id",
+            "displayName": "Space ID",
             "required": "true"
+          },
+          {
+            "name": "value",
+            "displayName": "Value",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "file_ids",
+            "displayName": "File Ids",
+            "style": "body",
+            "type": "array"
+          },
+          {
+            "name": "embed_id",
+            "displayName": "Embed Id",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": "embed_url",
+            "displayName": "Embed Url",
+            "style": "body",
+            "type": "string"
           }
         ],
         "url": "https://api.podio.com/status/:status_id"
@@ -8348,8 +8643,35 @@
         "url": "https://api.podio.com/stream/app/:app_id/filter"
       },
       {
+        "path": "/stream/app/:app_id/",
+        "displayName": "Get App Stream",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":app_id",
+            "displayName": "App ID",
+            "required": "true"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Limit",
+            "name": "limit"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Offset",
+            "name": "offset"
+          }
+        ],
+        "url": "https://api.podio.com/stream/app/:app_id/v3"
+      },
+      {
         "path": "/stream/app/:app_id/v3",
-        "displayName": "Get Application Stream",
+        "displayName": "Get Application Stream V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8387,8 +8709,28 @@
         "url": "https://api.podio.com/stream/app/:app_id/v3"
       },
       {
-        "path": "/stream/v3/",
+        "path": "/stream/",
         "displayName": "Get Global Stream",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Limit",
+            "name": "limit"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Offset",
+            "name": "offset"
+          }
+        ],
+        "url": "https://api.podio.com/stream/"
+      },
+      {
+        "path": "/stream/v3/",
+        "displayName": "Get Global Stream V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8549,7 +8891,7 @@
       },
       {
         "path": "/stream/org/:org_id/v3/",
-        "displayName": "Get Organization Stream",
+        "displayName": "Get Organization Stream V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8587,8 +8929,61 @@
         "url": "https://api.podio.com/stream/org/:org_id/v3/"
       },
       {
-        "path": "/stream/space/:space_id/v3/",
+        "path": "/stream/org/:org_id/",
+        "displayName": "Get Organization Stream",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":org_id",
+            "displayName": "Organization ID",
+            "required": "true"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Limit",
+            "name": "limit"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "displayName": "Offset",
+            "name": "offset"
+          }
+        ],
+        "url": "https://api.podio.com/stream/org/:org_id/"
+      },{
+        "path": "/stream/space/:space_id/",
         "displayName": "Get Space Stream",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":space_id",
+            "displayName": "Space ID",
+            "required": "true"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "limit",
+            "displayName": "Limit"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "offset",
+            "displayName": "Offset"
+          }
+        ],
+        "url": "https://api.podio.com/stream/space/:space_id/"
+      },
+      {
+        "path": "/stream/space/:space_id/v3/",
+        "displayName": "Get Space Stream V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8612,10 +9007,31 @@
           }
         ],
         "url": "https://api.podio.com/stream/space/:space_id/v3/"
+      },{
+        "path": "/stream/:ref_type/:ref_id/",
+        "displayName": "Get Stream Object",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":ref_type",
+            "displayName": "Reference Type",
+            "required": "true"
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":ref_id",
+            "displayName": "Reference ID",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.podio.com/stream/:ref_type/:ref_id/"
       },
       {
         "path": "/stream/:ref_type/:ref_id/v3",
-        "displayName": "Get Stream Object",
+        "displayName": "Get Stream Object V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8648,8 +9064,36 @@
         "url": "https://api.podio.com/stream/:ref_type/:ref_id/v3"
       },
       {
-        "path": "/stream/user/:user_id/v3",
+        "path": "/stream/user/:user_id/",
         "displayName": "Get User Stream",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user_id",
+            "displayName": "User ID",
+            "required": "true"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "limit",
+            "displayName": "Limit"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "offset",
+            "displayName": "Offset"
+          },
+          
+        ],
+        "url": "https://api.podio.com/stream/user/:user_id/"
+      },
+      {
+        "path": "/stream/user/:user_id/v3",
+        "displayName": "Get User Stream V3",
         "httpMethod": "GET",
         "params": [
           {
@@ -8909,7 +9353,7 @@
       },
       {
         "path": "/tag/app/:app_id/top/",
-        "displayName": "Get Top Tags On App",
+        "displayName": "Get Top On App top",
         "httpMethod": "GET",
         "params": [
           {
@@ -9097,14 +9541,21 @@
         "url": "https://api.podio.com/user/setting/:client_type/"
       },
       {
+        "path": "/user/profile/",
+        "displayName": "Get Profile",
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.podio.com/user/profile/"
+      },
+      {
         "path": "/user/profile/:key",
         "displayName": "Get Profile Field",
         "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "URL",
             "type": "object",
-            "name": "key",
+            "name": ":key",
             "displayName": "Key",
             "required": "true"
           }
@@ -9187,6 +9638,11 @@
             "name": ":notification_type",
             "displayName": "Notification Type",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "boolean",
+            "name": "value",
+            "displayName": "Value"
           }
         ],
         "url": "https://api.podio.com/user/setting/:client_type/:notification_type"
@@ -9216,6 +9672,11 @@
             "name": ":key",
             "displayName": "Key",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "value",
+            "displayName": "Value"
           }
         ],
         "url": "https://api.podio.com/user/profile/:key"
@@ -9242,7 +9703,7 @@
             "name": "private",
             "displayName": "Private ( open / private )",
             "style": "body",
-            "type": "string"
+            "type": "boolean"
           },
           {
             "name": "sort_by",
@@ -9252,7 +9713,7 @@
           },
           {
             "name": "sort_desc",
-            "displayName": "Sort Desc",
+            "displayName": "Sort Descending",
             "style": "body",
             "type": "boolean"
           },
@@ -9271,6 +9732,11 @@
           {
             "name": "fields",
             "displayName": "Fields",
+            "style": "body",
+            "type": "object"
+          },{
+            "name": "grouping",
+            "displayName": "Grouping",
             "style": "body",
             "type": "object"
           }
@@ -9330,8 +9796,7 @@
             "style": "query",
             "type": "boolean",
             "name": "include_standard_views",
-            "displayName": "Include Standard Views",
-            "required": "true"
+            "displayName": "Include Standard Views"
           }
         ],
         "url": "https://api.podio.com/view/app/:app_id/"
@@ -9362,6 +9827,31 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "sort_by",
+            "displayName": "Sort By"
+          },{
+            "style": "body",
+            "type": "boolean",
+            "name": "sort_desc",
+            "displayName": "Sort Descending"
+          },{
+            "style": "body",
+            "type": "array",
+            "name": "filters",
+            "displayName": "Filters"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "layout",
+            "displayName": "Layout"
+          },{
+            "style": "body",
+            "type": "object",
+            "name": "fields",
+            "displayName": "Fields"
           }
         ],
         "url": "https://api.podio.com/view/app/:app_id/last"
@@ -9407,6 +9897,11 @@
             "name": ":voting_id",
             "displayName": "Voting ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "answer_id",
+            "displayName": "Answer Id"
           }
         ],
         "url": "https://api.podio.com/voting/:voting_id/answer/order"
@@ -9422,6 +9917,11 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "voting_id",
+            "displayName": "Voting Id"
           }
         ],
         "url": "https://api.podio.com/voting/app/:app_id/voting/order"
@@ -9437,13 +9937,18 @@
             "name": ":voting_id",
             "displayName": "Voting ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "text",
+            "displayName": "Text"
           }
         ],
         "url": "https://api.podio.com/voting/:voting_id/answers"
       },
       {
         "path": "/voting/app/:app_id/voting",
-        "displayName": "Crete Voting In Application",
+        "displayName": "Create Voting In Application",
         "httpMethod": "POST",
         "params": [
           {
@@ -9452,6 +9957,12 @@
             "name": ":app_id",
             "displayName": "App ID",
             "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "fivestar",
+            "displayName": "Fivestar"
           }
         ],
         "url": "https://api.podio.com/voting/app/:app_id/voting"
@@ -9675,6 +10186,16 @@
             "name": ":voting_id",
             "displayName": "Voting ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "rating",
+            "displayName": "Rating"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "answer_id",
+            "displayName": "Answer Id"
           }
         ],
         "url": "https://api.podio.com/voting/item/:item_id/voting/:voting_id/votes"
@@ -9690,6 +10211,16 @@
             "name": ":widget_id",
             "displayName": "Widget ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "type",
+            "displayName": "Type"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "id",
+            "displayName": "ID"
           }
         ],
         "url": "https://api.podio.com/widget/:widget_id/clone"
@@ -9712,6 +10243,21 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "type",
+            "displayName": "Type"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "title",
+            "displayName": "Title"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "config",
+            "displayName": "Configuration"
           }
         ],
         "url": "https://api.podio.com/widget/:ref_type/:ref_id/"
@@ -9748,7 +10294,7 @@
       },
       {
         "path": "/widget/:ref_type/:ref_id/",
-        "displayName": "Get Widget",
+        "displayName": "Get Widgets",
         "httpMethod": "GET",
         "params": [
           {
@@ -9779,6 +10325,16 @@
             "name": ":widget_id",
             "displayName": "Widget ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "title",
+            "displayName": "Title"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "config",
+            "displayName": "Configuration"
           }
         ],
         "url": "https://api.podio.com/widget/:widget_id"
@@ -9801,6 +10357,11 @@
             "name": ":ref_id",
             "displayName": "Reference ID",
             "required": "true"
+          },{
+            "style": "body",
+            "type": "object",
+            "name": "widget_id",
+            "displayName": "Widget ID"
           }
         ],
         "url": "https://api.podio.com/widget/:ref_type/:ref_id/order"
