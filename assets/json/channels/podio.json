@@ -9086,8 +9086,7 @@
             "type": "string",
             "name": "offset",
             "displayName": "Offset"
-          },
-          
+          }
         ],
         "url": "https://api.podio.com/stream/user/:user_id/"
       },
