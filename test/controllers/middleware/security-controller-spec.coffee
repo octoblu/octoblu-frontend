@@ -83,7 +83,7 @@ describe 'SecurityController', ->
       describe 'when getDeviceFromMeshblu yields a device and ensureUserExists yields no error', ->
         beforeEach ->
           @user = {something: 'user-y'}
-          @request.login = sinon.spy()
+          @request.login = sinon.stub().yields()
           @userSession.ensureUserExists = sinon.stub().yields null, @user
           @userSession.getDeviceFromMeshblu.yield null, uuid: 'steak'
 

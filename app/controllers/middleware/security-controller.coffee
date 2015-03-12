@@ -36,7 +36,7 @@ class SecurityController
       return response.status(401).end() if error?
       @userSession.ensureUserExists uuid, token, (error, user) =>
         return response.status(500).end() if error?
-        request.login user
-        next()
+        debugger
+        request.login user, next
 
 module.exports = SecurityController
