@@ -50,9 +50,9 @@ class UserSession
   getDeviceFromMeshblu: (uuid, token, callback=->) =>
     @_meshbluGetDevice uuid, token, (error, response, body) =>
       return callback error if error?
-      return callback new Error(UserSession.ERROR_DEVICE_NOT_FOUND) unless body.devices[0]?
+      return callback new Error(UserSession.ERROR_DEVICE_NOT_FOUND) if _.isEmpty body.devices
 
-      callback null, body.devices[0]
+      callback null, _.first(body.devices)
 
   getUserByUuid: (uuid, callback=->) =>
     @users
