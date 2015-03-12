@@ -28,7 +28,9 @@ class SecurityController
     return next() if request.user
     return response.status(401).end() unless request.headers
 
-    {uuid, token} = request.headers
+    uuid = request.headers.skynet_auth_uuid
+    token = request.headers.skynet_auth_token
+
 
     @userSession.getDeviceFromMeshblu uuid, token, (error) =>
       return response.status(401).end() if error?
