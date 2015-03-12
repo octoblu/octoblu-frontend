@@ -17,23 +17,23 @@ describe 'SessionController', ->
       beforeEach ->
         @request  = query: {uuid: 'fastball', token: 'outahere'}
         @sut.show @request, null
-        
+
       it 'should call UserSession.create', ->
         expect(@dependencies.UserSession.instanceCreate).to.have.been.calledWith 'fastball', 'outahere'
-      
+
     describe 'when called with a different uuid and token', ->
       beforeEach ->
         @request  = query: {uuid: 'fed-up', token: 'barista'}
         @sut.show @request, null
-        
+
       it 'should call UserSession.create', ->
         expect(@dependencies.UserSession.instanceCreate).to.have.been.calledWith 'fed-up', 'barista'
 
     describe 'when show is called and userSession.create responds with an error', ->
       beforeEach ->
-        @response = 
+        @response =
           send:   sinon.spy(=> @response) # Return response so it can be chained
-          status: sinon.spy(=> @response) 
+          status: sinon.spy(=> @response)
 
         @dependencies.UserSession.instanceCreate.yields new Error('Whoops')
         @sut.show {query: {uuid: 'a', token: 'b'}}, @response
@@ -62,7 +62,7 @@ describe 'SessionController', ->
       beforeEach ->
         @request  = query: {uuid: 'b', token: 'unotimetoken'}, login: sinon.stub().yields()
         @response = redirect: sinon.spy()
-        
+
         @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'b', token: 'reallypermatoken'}
         @sut.show @request, @response
 

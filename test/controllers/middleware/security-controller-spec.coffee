@@ -42,9 +42,9 @@ describe 'SecurityController', ->
         @userSession.getDeviceFromMeshblu = sinon.stub()
         @userSession.ensureUserExists = sinon.stub()
         @request =
-          headers :
-            uuid: 'steak'
-            token: 'fries'
+          headers:
+            skynet_auth_uuid: 'steak'
+            skynet_auth_token: 'fries'
         @response =
           status: sinon.spy(=> @response)
           end: sinon.spy()
@@ -99,9 +99,9 @@ describe 'SecurityController', ->
         @userSession.getDeviceFromMeshblu = sinon.stub()
         @userSession.ensureUserExists = sinon.stub()
         request =
-          headers :
-            uuid: 'pancakes'
-            token: 'eggs'
+          headers:
+            skynet_auth_uuid: 'pancakes'
+            skynet_auth_token: 'eggs'
         @response =
           status: sinon.spy(=> @response)
           end: sinon.spy()
