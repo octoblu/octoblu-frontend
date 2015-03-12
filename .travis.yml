@@ -1,78 +1,78 @@
 sudo: false
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 services:
-  - mongodb
+- mongodb
 cache:
   bundler: true
   directories:
-    - node_modules
-    - public/lib
+  - node_modules
+  - public/lib
 notifications:
-  flowdock: e7454f5285e7b9ab67009802d5560490
+  slack:
+    secure: j8t7GC1MCh75KcJiUh+Wq8AVGrESS9mZG9EnHSHWSIHr1eGHbNYn9GWR2+/vv6M1Te+TRTCbVU38Z4/VfZf4zYOi7HoY8z9XT97h90+ArEc68qQnDpZyfSsI4n7mYLPWMZtLz41ryZGYZ2ISTLHR2gbJX8kxyTXCWrIAxtG8uT8=
 before_script:
-  - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export NODE_ENV=staging; fi
-  - node_modules/.bin/npm rebuild # Uncomment this if bcrypt gives you trouble.
-  - node_modules/.bin/bower install
-  - node_modules/.bin/gulp
-  - export NODE_ENV=test
+- if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
+  NODE_ENV=staging; fi
+- node_modules/.bin/npm rebuild
+- node_modules/.bin/bower install
+- node_modules/.bin/gulp
+- export NODE_ENV=test
 after_success:
-  - gem install nokogiri -- --use-system-libraries
-before_deploy: "mkdir -p build && tar czf build/public.tar.gz public"
+- gem install nokogiri -- --use-system-libraries
+before_deploy: mkdir -p build && tar czf build/public.tar.gz public
 deploy:
-  # production
-  - provider: s3
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    bucket: deploy-octoblu-static
-    region: us-west-2
-    skip_cleanup: true
-    local-dir: build
-    on:
-      branch: master
-  - provider: opsworks
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
-    on:
-      branch: master
-  - provider: opsworks
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
-    on:
-      branch: master
-  # staging
-  - provider: s3
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    bucket: deploy-octoblu-static-staging
-    region: us-west-2
-    skip_cleanup: true
-    local-dir: build
-    on:
-      branch: staging
-  - provider: opsworks
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
-    on:
-      branch: staging
-  - provider: opsworks
-    access_key_id: AKIAJCOOWS3NWOOZRDGQ
-    secret_access_key:
-      secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
-    app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
-    on:
-      branch: staging
+- provider: s3
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  bucket: deploy-octoblu-static
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: build
+  on:
+    branch: master
+- provider: opsworks
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
+  on:
+    branch: master
+- provider: opsworks
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
+  on:
+    branch: master
+- provider: s3
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  bucket: deploy-octoblu-static-staging
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: build
+  on:
+    branch: staging
+- provider: opsworks
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
+  on:
+    branch: staging
+- provider: opsworks
+  access_key_id: AKIAJCOOWS3NWOOZRDGQ
+  secret_access_key:
+    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
+  on:
+    branch: staging
 branches:
   only:
-    - master
-    - staging
-    - develop
+  - master
+  - staging
+  - develop
