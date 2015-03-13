@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowNodeEditorController', function ($scope, FlowService, FlowNodeTypeService) {
+.controller('FlowNodeEditorController', function ($scope, FlowService, FlowEditorService, FlowNodeTypeService) {
   'use strict';
 
   var setFlowNodeType = function() {
@@ -28,21 +28,7 @@ angular.module('octobluApp')
 
   $scope.deleteNode = function(){
     var activeFlow = FlowService.getActiveFlow();
-
-    if (!activeFlow) { return; }
-
-    if(activeFlow.selectedFlowNode) {
-      var nodeId = activeFlow.selectedFlowNode.id;
-      var linksToRemove = _.union( _.filter(activeFlow.links, {to: nodeId}), _.filter(activeFlow.links, {from: nodeId}) );
-      activeFlow.links = _.difference(activeFlow.links, linksToRemove);
-    }
-
-    _.pull(activeFlow.nodes, activeFlow.selectedFlowNode);
-    _.pull(activeFlow.links, activeFlow.selectedLink);
-
-    activeFlow.selectedFlowNode = null;
-    activeFlow.selectedLink = null;
-
+    activeFlow = FlowEditorService.deleteSelection(activeFlow);
     FlowService.saveActiveFlow(activeFlow);
   };
 
