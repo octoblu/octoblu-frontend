@@ -28,8 +28,8 @@ class SecurityController
     return next() if request.user
     return response.status(401).end() unless request.headers
 
-    uuid = request.headers.skynet_auth_uuid
-    token = request.headers.skynet_auth_token
+    uuid = request.headers.skynet_auth_uuid || request.headers.meshblu_auth_uuid
+    token = request.headers.skynet_auth_token || request.headers.meshblu_auth_token
 
 
     @userSession.getDeviceFromMeshblu uuid, token, (error) =>
