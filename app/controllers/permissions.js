@@ -187,7 +187,6 @@ var permissionsController = {
             'target.type': 'group',
             'resource.parent': undefined
         }).then(function (permissions) {
-            console.log(permissions);
                 res.send(permissions);
             }, function (err) {
                 console.error(err.message, err.stack)
