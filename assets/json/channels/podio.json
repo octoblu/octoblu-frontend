@@ -1,5 +1,29 @@
 {
   "_id": "54458c5b5a370c58ca66a147",
+  "type": "channel:podio",
+  "auth_strategy": "oauth",
+  "bodyFormat": "json",
+  "name": "Podio",
+  "oauth": {
+    "development": {
+      "clientID": "octoblu-dev",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "octoblu-staging",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "octoblu",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
   "application": {
     "base": "https://api.podio.com",
     "resources": [
@@ -10366,28 +10390,5 @@
         "url": "https://api.podio.com/widget/:ref_type/:ref_id/order"
       }
     ]
-  },
-  "type": "channel:podio",
-  "auth_strategy": "oauth",
-  "name": "Podio",
-  "oauth": {
-    "development": {
-      "clientID": "octoblu-dev",
-      "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
-    },
-    "staging": {
-      "clientID": "octoblu-staging",
-      "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
-    },
-    "production": {
-      "clientID": "octoblu",
-      "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
-    }
   }
 }
