@@ -12,7 +12,9 @@ var DeviceCollection = function (userUUID) {
 
   self.fetch = function () {
     return self.fetchAll().then(function(devices){
-      return _.reject(devices, {type: 'octoblu:flow'});
+      return _.reject(devices, function(device){
+        return device.type === 'octoblu:flow' || device.type === 'octoblu:user' 
+      });
     });
   };
 
