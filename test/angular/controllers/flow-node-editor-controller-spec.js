@@ -1,5 +1,5 @@
 describe('FlowNodeEditorController', function () {
-  var sut, scope, fakeFlowNodeTypeService, $q;
+  var sut, scope, fakeFlowNodeTypeService, $q, flowService;
 
   beforeEach(function () {
     module('octobluApp');
@@ -7,8 +7,13 @@ describe('FlowNodeEditorController', function () {
     inject(function($controller, $rootScope, _$q_){
       $q = _$q_;
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
+      flowService = new FlowService();
       scope = $rootScope.$new();
-      sut = $controller('FlowNodeEditorController', {$scope: scope, FlowNodeTypeService: fakeFlowNodeTypeService});
+      sut = $controller('FlowNodeEditorController', {
+        $scope: scope,
+        FlowService: flowService,
+        FlowNodeTypeService: fakeFlowNodeTypeService
+      });
     });
   });
 
@@ -54,11 +59,16 @@ describe('FlowNodeEditorController', function () {
   describe('when a FlowNodeEditorController is instantiated with a flowNode already set', function () {
     beforeEach(function () {
       inject(function($controller, $rootScope){
-        fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
         scope = $rootScope.$new();
         scope.flowNode     = {type: 'pluto'};
         scope.flowNodeType = {name: 'pluto'};
-        sut = $controller('FlowNodeEditorController', {$scope: scope, FlowNodeTypeService: fakeFlowNodeTypeService});
+        fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
+        flowService = new FlowService();
+        sut = $controller('FlowNodeEditorController', {
+          $scope: scope,
+          FlowService: flowService,
+          FlowNodeTypeService: fakeFlowNodeTypeService
+        });
       });
     });
 
@@ -97,6 +107,10 @@ describe('FlowNodeEditorController', function () {
 
     sinon.spy(self, 'getFlowNodeType');
     return self;
+  };
+
+  var FlowService = function(){
+    return this;
   };
 });
 

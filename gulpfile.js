@@ -40,7 +40,7 @@ gulp.task('coffee:clean', function(){
     .pipe(clean())
 })
 
-gulp.task('coffee:compile', ['coffee:clean'], function(){
+gulp.task('coffee:compile', function(){
   var environment = process.env.NODE_ENV || 'development'
   var configFile = "./public/config/" + environment + ".coffee"
 

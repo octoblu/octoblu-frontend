@@ -321,6 +321,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
+      .state('material.flow-tutorial', {
+        url: '/design-tutorial',
+        templateUrl: '/pages/flow-tutorial.html',
+        controller: 'FlowTutorialController'
+      })
       .state('material.flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
@@ -403,7 +408,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-
+      .state('material.profile-new', {
+        url: '/profile/new',
+        controller: 'NewProfileController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/profile/new.html'
+      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
