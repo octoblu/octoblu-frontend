@@ -12,7 +12,7 @@ angular.module('octobluApp')
       if (resource.properties) {
         resource = resource.properties;
       }
-      return resource.name || resource.displayName || resource.email || 'unknown';
+      return resource.name || resource.displayName || resource.email || resource.type || 'unknown';
     };
 
     $scope.removeResourceFromGroup = function (group, resource) {
