@@ -6,18 +6,6 @@
   <md-toolbar class="flow-top-bar" layout="row" layout-align="end" layout-phone="column" layout-tablet="column">
     <div flex="0" flex-phone="95" flex-tablet="95" layout="row" layout-align="end" class="flow-controls md-toolbar-tools" style="min-height: 50px;">
       <div flex layout="row" layout-align="center">
-        <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
-          <md-tooltip>Undo</md-tooltip>
-          <i class="fa fa-reply fa-lg"></i>
-        </md-button>
-
-        <md-button ng-click="redoEdit()" ng-disabled="!redoable()" aria-label="Redo Edit">
-          <md-tooltip>Redo</md-tooltip>
-          <i class="fa fa-mail-forward fa-lg"></i>
-        </md-button>
-      </div>
-
-      <div flex layout="row" layout-align="center">
         <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false, stopping: stopping }" aria-label="Stop">
           <md-tooltip>Stop</md-tooltip>
           <i class="fa fa-stop"></i>
