@@ -3,7 +3,8 @@ module.exports = function(app, passport) {
     var env = app.settings.env;
     var config = require('../config/auth');
     var meshblu = require('meshblu');
-    var security = require('./controllers/middleware/security');
+    var SecurityController = require('./controllers/middleware/security-controller');
+    var security = new SecurityController();
 
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 

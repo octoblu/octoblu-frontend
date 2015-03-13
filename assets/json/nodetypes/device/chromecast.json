@@ -1,0 +1,13 @@
+{
+  "_id": "55022639b85ed301b818d521",
+  "category": "device",
+  "description": "Chromecast",
+  "enabled": true,
+  "name": "Chromecast",
+  "skynet": {
+    "type": "device",
+    "subtype": "chromecast"
+  },
+  "type": "device:chromecast",
+  "connector": "meshblu-chromecast"
+}

@@ -3,7 +3,6 @@ var _ = require('lodash'),
     moment = require('moment'),
     User = require('../models/user'),
     Channel = require('../models/channel'),
-    isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request'),
     mongojs = require('mongojs');
 var uuid = require('node-uuid');
@@ -13,18 +12,18 @@ module.exports = function (app) {
         res.send(204, null);
     });
     // Get user
-    app.get('/api/user/:id', isAuthenticated, function (req, res) {
+    app.get('/api/user/:id', function (req, res) {
         res.json(req.user);
     });
 
-    app.get('/api/user', isAuthenticated, function (req, res) {
+    app.get('/api/user', function (req, res) {
         res.json(req.user);
     });
 
-    app.get('/api/user/:id/api/:id', isAuthenticated, function (req, res) {
+    app.get('/api/user/:id/api/:id', function (req, res) {
         res.json(_.findWhere(req.user.api, {channelid: req.params.id}));
     });
-    app.get('/api/user/api/:id', isAuthenticated, function (req, res) {
+    app.get('/api/user/api/:id', function (req, res) {
         res.json(_.findWhere(req.user.api, {channelid: req.params.id}));
     });
 
@@ -43,8 +42,8 @@ module.exports = function (app) {
             res.send(422, error);
         });
     };
-    app.put('/api/user/:id/channel/:id', isAuthenticated, updateUserChannel);
-    app.put('/api/user/channel/:id', isAuthenticated, updateUserChannel);
+    app.put('/api/user/:id/channel/:id', updateUserChannel);
+    app.put('/api/user/channel/:id', updateUserChannel);
 
     var getUserActivation = function (req, res) {
         var user = req.user,
@@ -59,8 +58,8 @@ module.exports = function (app) {
             res.send(422, error);
         });
     };
-    app.put('/api/user/:id/activate/:channelid', isAuthenticated, getUserActivation);
-    app.put('/api/user/activate/:channnelid', isAuthenticated, getUserActivation);
+    app.put('/api/user/:id/activate/:channelid', getUserActivation);
+    app.put('/api/user/activate/:channnelid', getUserActivation);
 
     var deleteUserChannel = function (req, res) {
         User.removeApiByChannelId(req.user, req.params.channelid).then(function(){
@@ -69,6 +68,6 @@ module.exports = function (app) {
             res.send(404, {'error': 'not found'});
         });
     };
-    app.delete('/api/user/:id/channel/:channelid', isAuthenticated, deleteUserChannel);
-    app.delete('/api/user/channel/:channelid', isAuthenticated, deleteUserChannel);
+    app.delete('/api/user/:id/channel/:channelid', deleteUserChannel);
+    app.delete('/api/user/channel/:channelid', deleteUserChannel);
 };

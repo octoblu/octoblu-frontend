@@ -1,14 +1,14 @@
 'use strict';
 angular.module('octobluApp')
-    .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService) {
+    .service('skynetService', function ($q, $rootScope, AuthService, MESHBLU_HOST, MESHBLU_PORT) {
         var user, defer = $q.defer(), skynetPromise = defer.promise;
 
         AuthService.getCurrentUser().then(function (currentUser) {
 
             user = currentUser;
             var conn = meshblu.createConnection({
-                server: skynetConfig.host,
-                port: skynetConfig.port,
+                server: MESHBLU_HOST,
+                port: MESHBLU_PORT,
                 uuid: user.skynet.uuid,
                 token: user.skynet.token
             });

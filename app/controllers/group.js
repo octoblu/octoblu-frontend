@@ -2,8 +2,7 @@ var _ = require('lodash'),
     Group = require('../models/group'),
     User = require('../models/user'),
     request = require('request'),
-    uuid = require('node-uuid'),
-    isAuthenticated = require('./middleware/security').isAuthenticated;
+    uuid = require('node-uuid');
 
 //Look in /test folder for postman api dump.
 var groupController = {
@@ -178,11 +177,11 @@ var groupController = {
 
 module.exports = function (app) {
     groupController.skynetUrl = app.locals.skynetUrl;
-    app.get('/api/groups', isAuthenticated, groupController.getGroups);
-    app.post('/api/groups', isAuthenticated, groupController.addGroup);
-    app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
-    app.get('/api/groups/contain/:uuid', isAuthenticated, groupController.getGroupsContainingResource);
-    app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
-    app.put('/api/groups/:uuid', isAuthenticated, groupController.updateGroup);
-    app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
+    app.get('/api/groups', groupController.getGroups);
+    app.post('/api/groups', groupController.addGroup);
+    app.get('/api/groups/operators', groupController.getOperatorsGroup);
+    app.get('/api/groups/contain/:uuid', groupController.getGroupsContainingResource);
+    app.delete('/api/groups/:uuid', groupController.deleteGroup);
+    app.put('/api/groups/:uuid', groupController.updateGroup);
+    app.get('/api/groups/:uuid', groupController.getGroupById);
 };

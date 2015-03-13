@@ -3,6 +3,9 @@ angular.module('octobluApp')
   'use strict';
 
   var selectResources = function() {
+    if (!$scope.node.channelid) {
+      return;
+    }
     channelService.getById($scope.node.channelid).then(function(channel){
       var resources = _.filter(channel.application.resources, function(resource){
         if(resource.enabled === false){

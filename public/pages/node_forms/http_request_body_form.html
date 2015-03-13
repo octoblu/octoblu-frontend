@@ -1,11 +1,11 @@
-<div class="form-group">
+<md-input-container>
   <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
-<div class="form-group">
+  <input  id="name" type="text" ng-model="flowNode.name">
+</md-input-container>
+<md-input-container>
   <label for="url">Url</label>
-  <input  id="url" class="form-control" ng-model="flowNode.url" placeholder="http://example.com" type="url" required>
-</div>
+  <input  id="url" ng-model="flowNode.url" placeholder="http://example.com" type="url" required>
+</md-input-container>
 
 <h3>Body</h3>
 <md-list>
@@ -13,9 +13,15 @@
     <md-item-content>
       <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
         <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
-        <md-text-float required label="Value" ng-model="flowNode.bodyValues[$index]"> </md-text-float>
+        <md-input-container required>
+          <label>Value</label>
+          <input ng-model="flowNode.bodyValues[$index]">
+        </md-input-container>
         <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
-        <md-text-float required label="Key" ng-model="flowNode.bodyKeys[$index]"> </md-text-float>
+        <md-input-container required>
+          <label>Key</label>
+          <input ng-model="flowNode.bodyKeys[$index]">
+        </md-input-container>
         <md-button class="md-fab" ng-click="flowNode.bodyKeys.splice($index, 1);flowNode.bodyValues.splice($index, 1)">
           <i class="fa fa-minus"></i>
         </md-button>
@@ -37,8 +43,14 @@
     <md-item-content>
       <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
         <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
-        <md-text-float required label="Header" ng-model="flowNode.headerKeys[$index]"> </md-text-float>
-        <md-text-float required label="Value" ng-model="flowNode.headerValues[$index]"> </md-text-float>
+        <md-input-container required>
+          <label>Header</label>
+          <input ng-model="flowNode.headerKeys[$index]">
+        </md-input-container>
+        <md-input-container required>
+          <label>Value</label>
+          <input ng-model="flowNode.headerValues[$index]">
+        </md-input-container>
         <md-button class="md-fab" ng-click="flowNode.headerKeys.splice($index, 1);flowNode.headerValues.splice($index, 1)" aria-label="Remove Header">
             <i class="fa fa-minus"></i>
         </md-button>

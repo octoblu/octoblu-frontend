@@ -8,7 +8,7 @@
                 </a>
             </div>
 
-            <md-button md-theme="octo-blue" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy to Clipboard">
+            <md-button clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy to Clipboard">
                 <md-tooltip>Copy to Clipboard</md-tooltip>
                 <i class="fa fa-share-alt"></i>
                 Copy Link
@@ -41,7 +41,10 @@
                 <flow-editor style="min-height: 500px" flow="currentTemplate.flow" readonly="true" ></flow-editor>
 
                 <div style="max-height: 40%; padding: 0 0 15px 15px" layout="column">
-                    <md-text-float label="Name" ng-model="currentTemplate.name"> </md-text-float>
+                    <md-input-container>
+                      <label>Name</label>
+                      <input ng-model="currentTemplate.name">
+                    </md-input-container>
                     <bill-of-materials class="hidden" flow="currentTemplate.flow"></bill-of-materials>
                 </div>
             </div>

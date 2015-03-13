@@ -372,14 +372,21 @@
         ]
       },
       {
-        "path": "/statuses/update.json",
+        "path": "/:statuses/update.json",
         "displayName": "Post Tweet",
         "authentication": {
           "required": true
         },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/update.json",
+        "url": "https://api.twitter.com/1.1/:statuses/update.json",
         "params": [
+          {
+            "name": ":statuses",
+            "displayName": "WHOTHEFUCKCARES",
+            "style": "url",
+            "type": "string",
+            "required": true
+          },
           {
             "required": true,
             "type": "string",

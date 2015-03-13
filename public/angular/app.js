@@ -7,34 +7,40 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       $logProvider.debugEnabled(false);
     }
   })
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.definePalette('octo-blue', {
+      '50': '82bbed',
+      '100': '5ea8e8',
+      '200': '3b94e3',
+      '300': '1f81d6',
+      '400': '196bb3',
+      '500': '14568f',
+      '600': '124b7d',
+      '700': '0f406b',
+      '800': '0d3659',
+      '900': '0a2b47',
+      'A100': '6c9aff',
+      'A200': '3374ff',
+      'A400': '0a58ff',
+      'A700': '0047e0',
+      'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+                                          // on this palette should be dark or light
+      'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+       '200', '300', '400', 'A100'],
+      'contrastLightColors': undefined    // could also specify this if default was 'dark'
+    });
+    $mdThemingProvider.theme('default')
+      .primaryPalette('octo-blue')
+      .accentPalette('green', {
+        'default': '500' // use shade 200 for default, and keep all other shades the same
+      });
+  })
   .config(['markedProvider', function(marked) {
     marked.setOptions({gfm: true, breaks: true});
   }])
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
-  .service('skynetConfig', function ($location) {
-    var host = $location.host();
-
-    if (host === 'app.octoblu.com') {
-      return {
-        host: 'wss://meshblu.octoblu.com',
-        port: '443'
-      };
-    }
-
-    if (host === 'staging.octoblu.com') {
-      return {
-        host: 'wss://meshblu-staging.octoblu.com',
-        port: '443'
-      };
-    }
-
-    return {
-      host: 'ws://' + host,
-      port: '3000'
-    };
-  })
   .constant('INTERCOM_APPID', 'ux5bbkjz')
 
   // Configure your $intercom module with appID
@@ -315,6 +321,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
+      .state('material.flow-tutorial', {
+        url: '/design-tutorial',
+        templateUrl: '/pages/flow-tutorial.html',
+        controller: 'FlowTutorialController'
+      })
       .state('material.flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
@@ -397,11 +408,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-
+      .state('material.profile-new', {
+        url: '/profile/new',
+        controller: 'NewProfileController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/profile/new.html'
+      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
-        controller: 'loginController',
+        controller: 'LoginController',
+        controllerAs: 'controller',
         unsecured: true
       })
       .state('forgot', {

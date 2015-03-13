@@ -4,8 +4,7 @@ var _ = require('lodash'),
     ResourcePermission = require('../models/resourcePermission');
     User = require('../models/user'),
     request = require('request'),
-    uuid = require('node-uuid'),
-    isAuthenticated = require('./middleware/security').isAuthenticated;
+    uuid = require('node-uuid');
 
 //Look in /test folder for postman api dump.
 var permissionsController = {

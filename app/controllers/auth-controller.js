@@ -5,8 +5,9 @@ var request = require('request'),
     referrer = require('./middleware/referrer.js'),
     querystring = require('querystring'),
     User = require('../models/user'),
-    Channel = require('../models/channel'),
-    isAuthenticated = require('./middleware/security').isAuthenticated;
+    Channel = require('../models/channel');
+var SecurityController = require('./middleware/security-controller');
+var isAuthenticated = (new SecurityController()).isAuthenticated;
 
 module.exports = function (app, passport, config) {
     app.post('/api/auth', passport.authenticate('local'), loginRoute);

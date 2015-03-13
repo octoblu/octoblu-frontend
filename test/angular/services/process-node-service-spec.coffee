@@ -15,7 +15,6 @@ describe 'ProcessNodeService', ->
       @fakeFlowService = new FakeFlowService
       $provide.value 'deviceService', @fakeDeviceService
       $provide.value 'skynetService', @fakeSkynetService
-      $provide.value 'skynetConfig', {}
       $provide.value 'FlowService', @fakeFlowService
       return
 

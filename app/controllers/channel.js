@@ -2,7 +2,6 @@
 
 var _               = require('lodash');
 var Channel         = require('../models/channel');
-var isAuthenticated = require('./middleware/security').isAuthenticated;
 
 module.exports = function (app) {
   var pickProperties, whiteListProperties;
@@ -13,7 +12,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/api/channels/active', isAuthenticated, function (req, res) {
+  app.get('/api/channels/active', function (req, res) {
     var channelIds = _.pluck(req.user.api, 'channelid');
     channelIds = _.map(channelIds, function(id){
       if(id && !_.isString(id)){

@@ -1,9 +1,20 @@
-<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
 
 <div layout="row">
-  <md-text-float flex-sm="33" label="Left" ng-model="flowNode.left"> </md-text-float>
+  <md-input-container flex-sm="33">
+    <label>Left</label>
+    <input required ng-model="flowNode.left">
+  </md-input-container>
+
   <h4 flex-sm="33" class="md-default-theme">
     <i style="font-size: 2.5em; padding: 10px;">&le;</i>
   </h4>
-  <md-text-float flex-sm="33" label="Right" ng-model="flowNode.right"> </md-text-float>
+  
+  <md-input-container flex-sm="33">
+    <label>Right</label>
+    <input required ng-model="flowNode.right">
+  </md-input-container>
 </div>
