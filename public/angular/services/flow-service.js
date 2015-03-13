@@ -34,6 +34,10 @@ angular.module('octobluApp')
     activeFlow = flow;
   };
 
+  self.getActiveFlow = function(){
+    return activeFlow;
+  };
+
   self.start = function(flow){
     if(!flow && !activeFlow) return;
     if(!flow){
