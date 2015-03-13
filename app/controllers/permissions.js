@@ -1,6 +1,6 @@
 var _ = require('lodash'),
     Q = require('q'),
-    Group = require('../models/group');
+    Group = require('../models/group-model');
     ResourcePermission = require('../models/resourcePermission');
     User = require('../models/user'),
     request = require('request'),
@@ -61,19 +61,15 @@ var permissionsController = {
            return _.omit(member, ['token', 'skynettoken']);
         });
 
+        var group = new Group(user.resource.uuid);
+
         Q.all([
             ResourcePermission.findOne({
                 'resource.uuid': req.params.uuid,
                 'resource.owner.uuid': user.resource.uuid
             }),
-            Group.findOne({
-                'resource.owner.uuid': user.resource.uuid,
-                'resource.uuid': newSourceGroup.resource.uuid
-            }),
-            Group.findOne({
-                'resource.owner.uuid': user.resource.uuid,
-                'resource.uuid': newTargetGroup.resource.uuid
-            })
+            group.findByUuid(newSourceGroup.resource.uuid),
+            group.findByUuid(newTargetGroup.resource.uuid)
         ]).then(function (results) {
             var dbPermission = results[0],
                 dbSourceGroup = results[1],
@@ -98,10 +94,12 @@ var permissionsController = {
                 return _.omit(member, 'token', 'skynettoken');
             });
 
+            var group = new Group(user.resource.uuid);
+
             return Q.all([
                 ResourcePermission.update({_id : updatedPermission._id}, updatedPermission),
-                Group.update({_id : dbSourceGroup._id}, dbSourceGroup),
-                Group.update({_id : dbTargetGroup._id}, dbTargetGroup)
+                group.update(dbSourceGroup.uuid, dbSourceGroup),
+                group.update(dbTargetGroup.uuid, dbTargetGroup),
             ])
             .then(function (results) {
                 ResourcePermission.updateSkynetPermissions({
@@ -133,23 +131,16 @@ var permissionsController = {
         }).then(function (dbPermission) {
             permission = dbPermission;
         }).then(function () {
-            return Group.findOne({
-                'resource.owner.uuid': user.resource.uuid,
-                'resource.uuid': permission.target.uuid
-            })
+            var group = new Group(user.resource.uuid);
+            return group.findByUuid(permission.target.uuid);
         }).then(function (group) {
             if (group) {
                 members = group.members;
             }
+            var groupModel = new Group(user.resource.uuid);
             return Q.all([
-                Group.remove({
-                    uuid: permission.target.uuid,
-                    'resource.owner.uuid': user.resource.uuid
-                }),
-                Group.remove({
-                    uuid: permission.source.uuid,
-                    'resource.owner.uuid': user.resource.uuid
-                }),
+                groupModel.removeByUuid(permission.target.uuid),
+                groupModel.removeByUuid(permission.source.uuid),
                 ResourcePermission.remove({
                     'resource.uuid': permission.resource.uuid,
                     'resource.owner.uuid': user.resource.uuid

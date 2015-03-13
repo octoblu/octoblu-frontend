@@ -8,6 +8,7 @@ var uuid      = require('node-uuid');
 var rest      = require('rest');
 var mime      = require('rest/interceptor/mime');
 var errorCode = require('rest/interceptor/errorCode');
+var Group     = require('./group-model');
 var client    = rest.wrap(mime).wrap(errorCode);
 
 function ResourcePermissionModel() {
@@ -20,9 +21,10 @@ function ResourcePermissionModel() {
 
     findPermissionsOnResource : function (options) {
         var self = this;
-        var Group = require('./group');
 
-        return Group.findGroupsContainingResource(options)
+        var group = new Group();
+
+        return group.findGroupsContainingResource(options.resourceUUID)
             .then(function (groups) {
                 var resourceUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
                 resourceUUIDs.push(options.resourceUUID);
@@ -37,15 +39,16 @@ function ResourcePermissionModel() {
 
     findFlattenedPermissionsOnResource : function (options) {
         var self = this;
-        var Group = require('./group'),
-            groups,
+        var groups,
             otherDirection = options.permissionDirection === 'source' ? 'target' : 'source',
             resourceUUIDs = options.resourceUUID instanceof Array ?
                 options.resourceUUID : [options.resourceUUID],
 
             flatPermissions;
 
-        return Group.findGroupsContainingResource({ownerUUID: options.ownerUUID, resourceUUID: resourceUUIDs})
+        var group = new Group()
+
+        return group.findGroupsContainingResource(resourceUUIDs)
             .then(function (dbGroups) {
                 groups = dbGroups;
                 var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
@@ -63,7 +66,7 @@ function ResourcePermissionModel() {
                 flatPermissions = _.xor(permissions, groupPermissions);
 
                 return when.all(_.map(groupPermissions, function (permission) {
-                    return Group.findOne({'resource.uuid': permission[otherDirection].uuid})
+                    return group.findByUuidWithoutRegardToOwner(permission[otherDirection].uuid)
                         .then(function (group) {
                             if (group) {
                                 return {
