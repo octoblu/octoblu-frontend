@@ -8,3 +8,4 @@ angular.module('octobluApp')
   }
   .constant 'MESHBLU_HOST', 'wss://meshblu-staging.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
+  .constant 'PROFILE_URI', '#'
