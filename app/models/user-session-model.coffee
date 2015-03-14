@@ -17,7 +17,8 @@ class UserSession
     @exchangeOneTimeTokenForSessionToken uuid, token, (error, sessionToken) =>
       return callback error if error?
 
-      @ensureUserExists uuid, sessionToken, callback
+      @ensureUserExists uuid, sessionToken, (error, user) =>
+        return callback error, user, sessionToken
 
   createNewSessionToken: (uuid, token, callback) =>
     @_meshbluCreateSessionToken uuid, token, (error, response, body) =>

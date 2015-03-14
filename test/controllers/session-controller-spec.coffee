@@ -47,9 +47,9 @@ describe 'SessionController', ->
     describe 'when userSession.create responds with a user and login yields', ->
       beforeEach ->
         @request  = query: {uuid: 'a', token: 'onetimetoken'}, login: sinon.stub().yields()
-        @response = redirect: sinon.spy()
+        @response = redirect: sinon.spy(), cookie: sinon.spy()
 
-        @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'a', token: 'permatoken'}
+        @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'a', token: 'permatoken'}, 'permatoken'
         @sut.show @request, @response
 
       it 'should call request.login with the user', ->
@@ -58,12 +58,18 @@ describe 'SessionController', ->
       it 'should call response.send with the uuid and token', ->
         expect(@response.redirect).to.have.been.calledWith '/'
 
+      it 'should set the auth_uuid cookie', ->
+        expect(@response.cookie).to.have.been.calledWith 'meshblu_auth_uuid', 'a'
+
+      it 'should set the auth_token cookie', ->
+        expect(@response.cookie).to.have.been.calledWith 'meshblu_auth_token', 'permatoken'
+
     describe 'when userSession.create responds with a different uuid and a new token and login yields', ->
       beforeEach ->
         @request  = query: {uuid: 'b', token: 'unotimetoken'}, login: sinon.stub().yields()
-        @response = redirect: sinon.spy()
+        @response = redirect: sinon.spy(), cookie: sinon.spy()
 
-        @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'b', token: 'reallypermatoken'}
+        @dependencies.UserSession.instanceCreate.yields null, skynet: {uuid: 'b', token: 'reallypermatoken'}, 'reallypermatoken'
         @sut.show @request, @response
 
       it 'should call request.login with the user', ->
@@ -71,3 +77,10 @@ describe 'SessionController', ->
 
       it 'should call response.send with the uuid and token', ->
         expect(@response.redirect).to.have.been.calledWith '/'
+
+      it 'should set the auth_uuid cookie', ->
+        expect(@response.cookie).to.have.been.calledWith 'meshblu_auth_uuid', 'b'
+
+      it 'should set the auth_token cookie', ->
+        expect(@response.cookie).to.have.been.calledWith 'meshblu_auth_token', 'reallypermatoken'
+

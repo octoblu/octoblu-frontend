@@ -7,7 +7,7 @@ var _ = require('lodash'),
   smtpTransport = require('nodemailer-smtp-transport'),
   Invitation = require('../models/invitation'),
   User = require('../models/user'),
-  Group = require('../models/group');
+  Group = require('../models/group-model');
 
 /*
  File : invitation.js
@@ -185,10 +185,8 @@ var invitationController = {
           if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
             return res.redirect('/signup');
           }
-          return Group.findOne({
-              'type': 'operators',
-              'resource.owner.uuid': sender.resource.uuid
-            })
+          var group = new Group(sender.resource.uuid);
+          return group.findByOptionalType('operators')
             .then(function(operatorGroup) {
               operatorGroup = operatorGroup || {
                 uuid: uuid.v1(),
@@ -213,12 +211,11 @@ var invitationController = {
               if (!existingMember) {
                 var member = _.extend({ properties: { name: recipient.email }}, recipient.resource);
                 operatorGroup.members.push(member);
+                var group = new Group(recipient.resource.uuid);
                 if (operatorGroup._id) {
-                  Group.update({
-                    uuid: operatorGroup.uuid
-                  }, operatorGroup);
+                  group.update(operatorGroup.uuid, operatorGroup);
                 } else {
-                  Group.insert(operatorGroup);
+                  group.create(operatorGroup.name);
                 }
               }
 
