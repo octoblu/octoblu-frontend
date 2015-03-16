@@ -8,4 +8,5 @@ angular.module('octobluApp')
   }
   .constant 'MESHBLU_HOST', "ws://#{window.location.hostname}"
   .constant 'MESHBLU_PORT', '3000'
+  .constant 'PROFILE_URI', 'https://localhost:8888/profile'
 

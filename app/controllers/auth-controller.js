@@ -34,9 +34,17 @@ module.exports = function (app, passport, config) {
         res.send(user);
     }
 
-    function logoutRoute(req, res) {
+    function clearCookies(res) {
         res.clearCookie('skynetuuid');
         res.clearCookie('skynettoken');
+        res.clearCookie('meshblu_auth_uuid');
+        res.clearCookie('meshblu_auth_token');
+        res.clearCookie('skynet_auth_uuid');
+        res.clearCookie('skynet_auth_token');
+    }
+
+    function logoutRoute(req, res) {
+        clearCookies(res);
 
         if (req.logout) {
             req.logout();
@@ -45,8 +53,7 @@ module.exports = function (app, passport, config) {
     }
 
     function logoutAndRedirectRoute(req, res) {
-        res.clearCookie('skynetuuid');
-        res.clearCookie('skynettoken');
+        clearCookies(res);
 
         if (req.logout) {
             req.logout();

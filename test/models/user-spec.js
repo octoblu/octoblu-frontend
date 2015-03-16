@@ -282,6 +282,18 @@ describe('User', function () {
     });
 
   });
+
+  describe('updateProfileBySkynetUUID', function() {
+
+    beforeEach(function() {
+      sut = User;
+      sut.updateWithPromise = sinon.stub().returns(when(true));
+    });
+
+    it('should exist', function() {
+      expect(sut.updateProfileBySkynetUUID).to.exist;
+    });
+  });
 });
 
 

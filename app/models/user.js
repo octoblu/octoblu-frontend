@@ -59,6 +59,19 @@ function UserModel() {
       });
     },
 
+    updateProfileBySkynetUUID: function(skynetuuid, profile) {
+      var self = this;
+
+      return self.findBySkynetUUID(skynetuuid)
+        .then(function(user) {
+          console.log(user);
+        })
+        .catch(function(error) {
+          return when.reject('Error updating profile');
+        });
+    },
+
+
     findBySkynetUUID : function (skynetuuid) {
       var self = this;
       return self.findOne({'skynet.uuid': skynetuuid});

@@ -45,6 +45,9 @@ module.exports = function(app, passport) {
     var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
 
+    var GroupController = require('./controllers/group-controller');
+    var groupController = new GroupController();
+
     var GeneralSearchController = require('./controllers/general-search-controller');
     var generalSearchController = new GeneralSearchController(config.elasticSearchUri);
 
@@ -56,6 +59,9 @@ module.exports = function(app, passport) {
 
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
+
+    var ProfileController = require('./controllers/profile-controller');
+    var profileController = new ProfileController();
 
     var SessionController = require('./controllers/session-controller');
     var sessionController = new SessionController();
@@ -255,7 +261,6 @@ module.exports = function(app, passport) {
             require('./controllers/session')(app, passport, config);
             require('./controllers/unlink')(app);
             require('./controllers/user')(app);
-            require('./controllers/group')(app);
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
@@ -272,6 +277,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
+
+            // app.post('/api/profile/:userId', profileController.create);
+
             app.post('/api/demo_flows', demoFlowController.create);
 
             app.post('/api/flows', flowController.create);
@@ -283,6 +291,14 @@ module.exports = function(app, passport) {
             app.put('/api/flows/:id/instance', flowDeployController.restartInstance);
 
             app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
+
+            app.get('/api/groups', groupController.getGroups);
+            app.post('/api/groups', groupController.addGroup);
+            app.get('/api/groups/operators', groupController.getOperatorsGroup);
+            app.get('/api/groups/contain/:uuid', groupController.getGroupsContainingResource);
+            app.delete('/api/groups/:uuid', groupController.deleteGroup);
+            app.put('/api/groups/:uuid', groupController.updateGroup);
+            app.get('/api/groups/:uuid', groupController.getGroupById);
 
             app.post('/api/invitation/request', invitationController.requestInvite);
 
