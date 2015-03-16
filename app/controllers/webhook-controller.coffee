@@ -5,7 +5,7 @@ class WebhookController
 
   trigger: (request, response) =>
     triggerId = request.params.id
-    @Flow.findOne 'nodes.id': triggerId 
+    @Flow.findOne 'nodes.id': triggerId
       .then (flow) =>
         message =
           devices: [flow.flowId]
@@ -14,7 +14,7 @@ class WebhookController
             from: triggerId
             params: request.body
 
-        @meshblu.message message 
+        @meshblu.message message
         response.status(201).end()
       .then null, (err) =>
         response.status(404).end()
