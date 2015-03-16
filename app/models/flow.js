@@ -64,10 +64,10 @@ function FlowModel() {
 var registerFlow = function (meshblu, userUUID) {
   return when.promise(function (resolve, reject) {
     var device = {
-      owner: userUUID, 
+      owner: userUUID,
       type: 'octoblu:flow',
-      sendWhitelist: [userUUID],
-      receiveWhitelist: [userUUID],
+      sendWhitelist: [userUUID, '9b47c2f1-9d9b-11e3-a443-ab1cdce04787'],
+      receiveWhitelist: [userUUID, '9b47c2f1-9d9b-11e3-a443-ab1cdce04787'],
       configureWhitelist: [userUUID]
     }
     meshblu.register(device, function (data) {
