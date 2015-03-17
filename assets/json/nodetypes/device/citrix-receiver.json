@@ -1,0 +1,13 @@
+{
+  "_id": "5508904b5eaf352b59e1c06d",
+  "category": "device",
+  "description": "Citrix Receiver",
+  "enabled": true,
+  "name": "Citrix Receiver",
+  "skynet": {
+    "type": "device",
+    "subtype": "citrix-receiver"
+  },
+  "type": "device:citrix-receiver",
+  "connector": "meshblu-citrix-receiver"
+}
