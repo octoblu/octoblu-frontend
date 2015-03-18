@@ -6,14 +6,16 @@ module.exports = function (options) {
   self = this;
 
   this.getFlowNodeTypes = function (req, res) {
-    var flowNodeTypeCollection = self.getFlowNodeTypeCollection(req.user.resource.uuid);
+    var uuid = req.cookies.meshblu_auth_uuid;
+    var token = req.cookies.meshblu_auth_token;
+    var flowNodeTypeCollection = self.getFlowNodeTypeCollection(uuid, token);
     flowNodeTypeCollection.fetch().then(function (flowNodeTypes) {
       res.send(200, addResourceType(flowNodeTypes));
     });
   };
 
-  this.getFlowNodeTypeCollection = function (userUUID) {
-    return new FlowNodeTypeCollection(userUUID);
+  this.getFlowNodeTypeCollection = function (uuid, token) {
+    return new FlowNodeTypeCollection(uuid, token);
   };
 
   addResourceType = function(items){

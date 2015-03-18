@@ -3,27 +3,20 @@ var octobluDB = require('../../app/lib/database');
 var FlowDeviceCollection = require('../../app/collections/flow-device-collection');
 
 describe('FlowDeviceCollection', function () {
-  var sut, result, getUser, getDevicesByOwner, users;
+  var sut, result, getDevicesByOwner, users;
 
   beforeEach(function () {
     octobluDB.createConnection();
     users = {
       'u1': {
         'skynet.uuid': 'u1',
-        'skynet.token': 't1'
       },
       'u2': {
         'skynet.uuid': 'u2',
-        'skynet.token': 't2'
       }
     };
 
-    sut = new FlowDeviceCollection('u1');
-
-    getUser = sinon.stub(sut, 'getUser', function (userId) {
-      return when.resolve(users[userId]);
-    });
-
+    sut = new FlowDeviceCollection('u1', 't2');
   });
 
   describe('fetch', function () {
@@ -33,11 +26,6 @@ describe('FlowDeviceCollection', function () {
         getDevicesByOwner = sinon.stub(sut, 'getDevicesByOwner');
         getDevicesByOwner.returns(defer.promise);
         defer.resolve([]);
-      });
-
-      it('should call getUser', function () {
-        result = sut.fetch();
-        expect(getUser).to.have.been.called;
       });
 
       it('should return an array', function (done) {
@@ -50,7 +38,7 @@ describe('FlowDeviceCollection', function () {
 
       it('should return a list of devices that the user owns', function (done) {
         sut.fetch().then(function (results) {
-          expect(getDevicesByOwner).to.have.been.calledWith(users['u1']);
+          expect(getDevicesByOwner).to.have.been.calledWith();
           done();
         })
         .catch(done);

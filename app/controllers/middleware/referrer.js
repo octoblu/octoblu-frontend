@@ -1,8 +1,8 @@
 module.exports = {
   redirectToReferrer: function(req, res, next) {
     if (req.user && req.referrer) {
-      var uuid = encodeURIComponent(req.user.skynet.uuid),
-        token = encodeURIComponent(req.user.skynet.token);
+      var uuid = encodeURIComponent(req.cookies.meshblu_auth_uuid),
+        token = encodeURIComponent(req.cookies.meshblu_auth_token);
       res.redirect(req.referrer + '?uuid=' + uuid + '&token=' + token);
     } else {
       next();

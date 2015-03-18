@@ -26,7 +26,7 @@ class SecurityController
   getAuthFromHeaders: (request) =>
     headers = request.headers ? {}
 
-    uuid = headers.skynet_auth_uuid ? headers.meshblu_auth_uuid
+    uuid  = headers.skynet_auth_uuid ? headers.meshblu_auth_uuid
     token = headers.skynet_auth_token ? headers.meshblu_auth_token
 
     return uuid: uuid, token: token
@@ -36,15 +36,12 @@ class SecurityController
     user = request.user
     cookies = request.cookies ? {}
 
-    uuid = cookies.skynet_auth_uuid ? cookies.meshblu_auth_uuid
-    token = cookies.skynet_auth_token ? cookies.meshblu_auth_token
-
-    return uuid: uuid, token: token
+    return uuid: cookies.meshblu_auth_uuid, token: cookies.meshblu_auth_token
 
   authenticateWithMeshblu: (uuid, token, callback=->) =>
     @userSession.getDeviceFromMeshblu uuid, token, (error) =>
       return callback error if error?
-      @userSession.ensureUserExists uuid, token, (error, user) =>
+      @userSession.ensureUserExists uuid, (error, user) =>
         return callback error if error?
         callback null, user
 

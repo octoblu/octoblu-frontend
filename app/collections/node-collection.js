@@ -6,7 +6,7 @@ var FlowCollection     = require('./flow-collection');
 var NodeTypeCollection = require('./node-type-collection');
 var config             = require('../../config/auth');
 
-var NodeCollection = function(userUUID) {
+var NodeCollection = function(userUUID, userToken) {
   var self = this;
 
   self.mergedNodes = function() {
@@ -100,7 +100,7 @@ var NodeCollection = function(userUUID) {
   };
 
   self.getDeviceCollection = function() {
-    return new DeviceCollection(userUUID);
+    return new DeviceCollection(userUUID, userToken);
   };
 
   self.getFlowCollection = function() {

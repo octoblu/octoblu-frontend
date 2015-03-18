@@ -60,9 +60,6 @@ module.exports = function(app, passport) {
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
 
-    var ProfileController = require('./controllers/profile-controller');
-    var profileController = new ProfileController();
-
     var SessionController = require('./controllers/session-controller');
     var sessionController = new SessionController();
 
@@ -277,8 +274,6 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
-
-            // app.post('/api/profile/:userId', profileController.create);
 
             app.post('/api/demo_flows', demoFlowController.create);
 
