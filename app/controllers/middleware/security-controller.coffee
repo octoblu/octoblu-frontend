@@ -17,7 +17,7 @@ class SecurityController
     return next() if request.bypassTerms
     return next() unless request.user?
 
-    userAcceptedDate = new Date request.user.terms_accepted_at
+    userAcceptedDate = new Date(request.user.userDevice?.octoblu?.termsAcceptedAt ? null)
     termsDate = new Date '2015-02-13T22:00:00.000Z'
     return next() if userAcceptedDate.getTime() >= termsDate.getTime()
 
@@ -39,18 +39,19 @@ class SecurityController
     return uuid: cookies.meshblu_auth_uuid, token: cookies.meshblu_auth_token
 
   authenticateWithMeshblu: (uuid, token, callback=->) =>
-    @userSession.getDeviceFromMeshblu uuid, token, (error) =>
+    @userSession.getDeviceFromMeshblu uuid, token, (error, userDevice) =>
       return callback error if error?
       @userSession.ensureUserExists uuid, token, (error, user) =>
         return callback error if error?
-        callback null, user
+        callback null, user, userDevice
 
   isAuthenticated: (request, response, next=->) =>
     return next() if request.bypassAuth
 
-    authenticateCallback = (error, user) =>
-      return response.status(401).end() if error?  
+    authenticateCallback = (error, user, userDevice) =>
+      return response.status(401).end() if error?
       return response.status(404).end() unless user?
+      user.userDevice = userDevice
       request.login user, next
 
     {uuid, token} = @getAuthFromHeaders(request)
