@@ -121,7 +121,7 @@ describe 'SecurityController', ->
         expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'red-curry', 'thai-tea'
 
       it 'should call userSession.ensureUserExists with the uuid and token', ->
-        expect(@userSession.ensureUserExists).to.have.been.calledWith 'red-curry', 'thai-tea'
+        expect(@userSession.ensureUserExists).to.have.been.calledWith 'red-curry'
 
       it 'should call the callback with an error', ->
         expect(@error).to.exist
@@ -140,7 +140,7 @@ describe 'SecurityController', ->
         expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'enchiladas', 'fanta'
 
       it 'should call userSession.ensureUserExists with the uuid and token', ->
-        expect(@userSession.ensureUserExists).to.have.been.calledWith 'enchiladas', 'fanta'
+        expect(@userSession.ensureUserExists).to.have.been.calledWith 'enchiladas'
 
       it 'should call the callback with no error', ->
         expect(@error).to.not.exist

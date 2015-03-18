@@ -172,7 +172,7 @@ describe('User', function () {
 
     describe('when it is called', function(){
       beforeEach(function(){
-        sut.skynetRestRequest = sinon.stub().returns({});
+        sut.skynetRestRequest = sinon.stub().returns(when.resolve({}));
       });
 
       describe('when it is called with a uuid', function(){
@@ -185,14 +185,8 @@ describe('User', function () {
           }));
         });
 
-        it('should call findBySkynetUUID with the user\'s uuid', function(){
-          return sut.resetToken(1).then(function(){
-            expect(sut.findBySkynetUUID).to.be.calledWith(1);
-          });
-        });
-
         it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
-          return sut.resetToken(1).then(function(){
+          return sut.resetToken(1, 2).then(function(){
             expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/1/token', true, 'POST', 1, 2);
           });
         });
@@ -202,58 +196,15 @@ describe('User', function () {
       describe('when the rest request returns with a new token', function(){
 
         beforeEach(function(){
-          sut.skynetRestRequest = sinon.stub().returns(when({token: 'newtoken'}));
+          sut.skynetRestRequest = sinon.stub().returns(when.resolve('newtoken'));
         });
 
         it('should update the user with the new token', function(){
-          return sut.resetToken(1).then(function(token){
-            expect(sut.updateWithPromise).to.have.been.calledWith(
-              {'skynet.uuid' : 1}, {$set : {'skynet.token' : 'newtoken'}});
-          });
-        });
-
-        describe('when the database returns with an error', function(){
-          beforeEach(function(){
-            sut.updateWithPromise.returns(when.reject(true));
-          });
-
-          it('should reject the promise with "Token was reset, but not saved. You are in trouble"', function(){
-            return sut.resetToken(1).then(function(token){
-              expect(true).to.be.false;
-            }, function(message){
-              expect(message).to.equal("Token was reset, but not saved. You are in trouble.");
-            });
-          });
-
-        });
-
-        describe('when the database returns successfully', function(){
-          beforeEach(function(){
-            sut.updateWithPromise.returns(when.resolve(true));
-          });
-
-          it('should return a promise containing the token"', function(){
-            return sut.resetToken(1).then(function(token){
-              expect(token).to.equal('newtoken');
-            });
+          return sut.resetToken(1, 2).then(function(token){
+            expect(token).to.equal('newtoken');
           });
         });
       });
-
-      describe('when the rest request returns with a different token', function(){
-
-        beforeEach(function(){
-          sut.skynetRestRequest = sinon.stub().returns(when({token: 'differentToken'}));
-        });
-
-        it('should update the user with the different token', function(){
-          return sut.resetToken(1).then(function(token){
-            expect(sut.updateWithPromise).to.have.been.calledWith(
-              {'skynet.uuid' : 1}, {$set : {'skynet.token' : 'differentToken'}});
-          });
-        });
-      });
-
 
       describe('when it is called with a different uuid', function(){
         beforeEach(function(){
@@ -267,17 +218,10 @@ describe('User', function () {
         });
 
         it('should make a request to the meshblu resetToken endpoint, authorized as that user', function(){
-          return sut.resetToken(1).then(function(){
+          return sut.resetToken(3, 5).then(function(){
             expect(sut.skynetRestRequest).to.have.been.calledWith('/devices/3/token', true, 'POST', 3, 5);
           });
         });
-
-        it('should call findBySkynetUUID with the different uuid', function(){
-          return sut.resetToken(3).then(function(){
-            expect(sut.findBySkynetUUID).to.be.calledWith(3);
-          });
-        });
-
       });
     });
 
