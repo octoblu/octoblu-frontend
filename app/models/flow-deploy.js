@@ -9,12 +9,13 @@ var _ = require('lodash'),
 var FlowDeploy = function(options){
   var User = require('../models/user');
 
-  var self, config, request, userUUID, meshblu;
+  var self, config, request, userUUID, userToken, meshblu;
   self = this;
 
   options         = options || {};
 
   userUUID        = options.userUUID;
+  userToken       = options.userToken;
   config          = options.config  || require('../../config/auth');
   request         = options.request || require('request');
   meshblu         = options.meshblu;
@@ -56,7 +57,7 @@ var FlowDeploy = function(options){
     return convertedNode;
   };
 
-  self.getUser = function (userUUID) {
+  self.getUser = function () {
     return User.findBySkynetUUID(userUUID);
   };
 
@@ -105,8 +106,8 @@ var FlowDeploy = function(options){
     return flow;
   };
 
-  self.startFlow = function(flow, userUUID, userToken){
-    self.updateMeshbluFlow(flow, userUUID, userToken).then(function(){
+  self.startFlow = function(flow){
+    self.updateMeshbluFlow(flow).then(function(){
       self.sendMessage(flow, 'nodered-instance-start');
     });
   };
@@ -146,14 +147,14 @@ var FlowDeploy = function(options){
     });
   };
 
-  self.updateMeshbluFlow = function(flow, userUUID, userToken){
-    return self.resetMeshbluFlowToken(flow, userUUID, userToken).then(function(token){
+  self.updateMeshbluFlow = function(flow){
+    return self.resetMeshbluFlowToken(flow).then(function(token){
       flow.token = token;
       return self.saveMeshbluFlow(flow);
     });
   };
 
-  self.resetMeshbluFlowToken = function(flow, userUUID, userToken) {
+  self.resetMeshbluFlowToken = function(flow) {
     return when.promise(function(resolve, reject){
 
       var protocol = (config.skynet.port == 443) ? 'https' : 'http';
@@ -203,26 +204,26 @@ var FlowDeploy = function(options){
   };
 };
 
-FlowDeploy.start = function(userUUID, flow, meshblu){
+FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
   var flowDeploy, mergedFlow, flowDevice, user, deviceCollection;
 
-  flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
-  return flowDeploy.getUser(userUUID).then(function(theUser){
+  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
+  return flowDeploy.getUser().then(function(theUser){
     user = theUser;
     return Channel.findAll();
   }).then(function(channels){
     mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
-    flowDeploy.startFlow(mergedFlow, user.skynet.uuid, user.skynet.token);
+    flowDeploy.startFlow(mergedFlow);
   }, function(error){
     console.error(error);
     throw new Error(error);
   });
 };
 
-FlowDeploy.stop = function(userUUID, flow, meshblu){
+FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
   var flowDeploy, flowDevice;
 
-  flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
+  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   return when.promise(function(resolve,reject){
     flowDeploy.stopFlow(flow);
     return resolve();
