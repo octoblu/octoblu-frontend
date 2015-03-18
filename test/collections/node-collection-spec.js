@@ -14,7 +14,8 @@ describe('NodeCollection', function () {
 
   beforeEach(function () {
     var userUUID = 'u1';
-    sut = new NodeCollection(userUUID);
+    var userToken = 't1';
+    sut = new NodeCollection(userUUID, userToken);
 
     fakeChannelCollection = new FakeCollection();
     channelStub = sinon.stub(sut, 'getChannelCollection');

@@ -1,5 +1,4 @@
 var _ = require('lodash'),
-    FlowDeviceCollection = require('../collections/flow-device-collection'),
     when = require('when'),
     debug = require('debug')('octoblu:flow-deploy'),
     textCrypt = require('../lib/textCrypt'),

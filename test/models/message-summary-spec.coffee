@@ -9,22 +9,22 @@ describe 'MessageSummary', ->
 
   describe 'constructor', ->
     beforeEach ->
-      @sut = new MessageSummary null, 'Antman', @dependencies
+      @sut = new MessageSummary null, 'Antman', 'manant', @dependencies
 
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Antman'
+      expect(@DeviceCollection).to.have.been.calledWith 'Antman', 'manant'
 
   describe 'constructor with a different owner', ->
     beforeEach ->
-      @sut = new MessageSummary null, 'Hatman', @dependencies
+      @sut = new MessageSummary null, 'Hatman', 'manhat', @dependencies
 
     it 'should instantiate a DeviceCollection with that ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Hatman'
+      expect(@DeviceCollection).to.have.been.calledWith 'Hatman', 'manhat'
 
   describe '->fetch', ->
     describe 'when it is called', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut = new MessageSummary null, 'Antman', 'manAnt', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When []
         @sut.requestParams = sinon.stub()
         @sut.fetch()
@@ -37,7 +37,7 @@ describe 'MessageSummary', ->
 
     describe 'when it is called with Dayman', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut = new MessageSummary null, 'Dayman', 'manDay', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When []
         @sut.requestParams = sinon.stub()
         @sut.fetch()
@@ -52,7 +52,7 @@ describe 'MessageSummary', ->
       beforeEach ->
         @ogError = new Error('.ogg files are not supported')
         @dependencies.request = sinon.stub().yields @ogError, null, null
-        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut = new MessageSummary null, 'Dayman', 'manDay', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When []
         @sut.requestParams = sinon.stub()
         @sut.fetch().catch (@error) =>
@@ -64,7 +64,7 @@ describe 'MessageSummary', ->
       beforeEach ->
         @ogError = new Error('.ogg files are not supported')
         @dependencies.request = sinon.stub().yields null, {statusCode: 69}, null
-        @sut = new MessageSummary null, 'Dayman', @dependencies
+        @sut = new MessageSummary null, 'Dayman', 'manDay', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When []
         @sut.requestParams = sinon.stub()
         @sut.fetch().catch (@error) =>
@@ -74,7 +74,7 @@ describe 'MessageSummary', ->
 
     describe 'when it is called and the deviceCollection returns different results', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut = new MessageSummary null, 'Antman', 'manAnt', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: 'Cpt. Overalls'}]
         @sut.requestParams = sinon.stub()
         @sut.fetch()
@@ -84,7 +84,7 @@ describe 'MessageSummary', ->
 
     describe 'when requestParams returns with some data', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut = new MessageSummary null, 'Antman', 'manAnt', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When()
         @sut.requestParams = sinon.stub().returns 'dr.freeze' : 1
         @request.yields null, {statusCode: 200}, {aggregations: {sent: {sent: {buckets: [{key: 'Evil', doc_count: 56}]}}, received: {received: {buckets: []}}}}
@@ -100,7 +100,7 @@ describe 'MessageSummary', ->
 
     describe 'when requestParams returns with some other data', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut = new MessageSummary null, 'Antman', 'manAnt', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When()
         @sut.requestParams = sinon.stub().returns 'dr.freeze' : 1
         response =
@@ -132,7 +132,7 @@ describe 'MessageSummary', ->
 
     describe 'when requestParams returns with some other data', ->
       beforeEach ->
-        @sut = new MessageSummary null, 'Antman', @dependencies
+        @sut = new MessageSummary null, 'Antman', 'manAnt', @dependencies
         @sut.deviceCollection.fetchAll = sinon.stub().returns When()
         @sut.requestParams = sinon.stub().returns 'mr.pib' : 6
         @sut.fetch()
@@ -143,7 +143,7 @@ describe 'MessageSummary', ->
   describe '->requestParams', ->
     describe 'when it is instantiated with a superhero job search engine url', ->
       beforeEach ->
-        @sut = new MessageSummary 'http://superjobs.io', 'Antman', @dependencies
+        @sut = new MessageSummary 'http://superjobs.io', 'Antman', 'manAnt', @dependencies
 
       it 'should use that search engine, with meshblu_events_300/_search added', ->
         expect(@sut.requestParams().url).to.equal 'http://superjobs.io/meshblu_events_300/_search?search_type=count'
@@ -183,7 +183,7 @@ describe 'MessageSummary', ->
 
     describe 'when it is instantiated with a superhero job search engine url', ->
       beforeEach ->
-        @sut = new MessageSummary 'http://heroes.monster.com', 'Antman', @dependencies
+        @sut = new MessageSummary 'http://heroes.monster.com', 'Antman', 'manAnt', @dependencies
 
       it 'should use that search engine', ->
         expect(@sut.requestParams().url).to.equal 'http://heroes.monster.com/meshblu_events_300/_search?search_type=count'

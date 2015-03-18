@@ -9,22 +9,22 @@ describe 'TopicSummary', ->
 
   describe 'constructor', ->
     beforeEach ->
-      @sut = new TopicSummary 'something', 'Wishbone', @dependencies
+      @sut = new TopicSummary 'something', 'Wishbone', 'boneWish', @dependencies
 
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Wishbone'
+      expect(@DeviceCollection).to.have.been.calledWith 'Wishbone', 'boneWish'
 
   describe 'constructor part deux', ->
     beforeEach ->
-      @sut = new TopicSummary 'something', 'Spengebeb', @dependencies
+      @sut = new TopicSummary 'something', 'Spengebeb', 'Spangabab', @dependencies
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Spengebeb'
+      expect(@DeviceCollection).to.have.been.calledWith 'Spengebeb', 'Spangabab'
 
   describe '->requestParams', ->
     describe 'when instantiated with zaboomafoo', ->
       beforeEach ->
         @uri = 'http://zaboomafoo.io'
-        @sut = new TopicSummary @uri, 'gooeyuuid', @dependencies
+        @sut = new TopicSummary @uri, 'gooeyuuid', 'gooeytoken', @dependencies
         @result = @sut.requestParams ['uuid1', 'uuid2']
 
       it 'should have a url of zaboomafoo with the path added', ->
@@ -72,7 +72,7 @@ describe 'TopicSummary', ->
     describe 'when instantiated with lambert', ->
       beforeEach ->
         @uri = 'http://lambert.io'
-        @sut = new TopicSummary @uri, 'gooeyuuid', @dependencies
+        @sut = new TopicSummary @uri, 'gooeyuuid', 'gooeytoken', @dependencies
         @result = @sut.requestParams()
 
       it 'should have a url of lambert', ->
@@ -85,7 +85,7 @@ describe 'TopicSummary', ->
   describe '->fetch', ->
     describe 'when instantiated with zaboomafoo', ->
       beforeEach ->
-        @sut = new TopicSummary 'some-url', 'gooeyuuid', @dependencies
+        @sut = new TopicSummary 'some-url', 'gooeyuuid', 'gooeytoken', @dependencies
         @sut.requestParams = sinon.stub().returns {hop: 'frog'}
 
       describe 'when it is called', ->
