@@ -1,26 +1,24 @@
 class ProfileService
-  # @HOST: "https://email-password.octoblu.com"
-  # @HOST: "http://localhost:3003"
+  constructor: (skynetService, $cookies, $state) ->
+    @skynetPromise = skynetService.getSkynetConnection()
+    @cookies       = $cookies
+    @state         = $state
 
-  constructor: ($q, $http, PROFILE_URI) ->
-    @q = $q
-    @http = $http
-    @PROFILE_URI = PROFILE_URI
+  update: (firstName, lastName, email, optInEmail) =>
+    agreeTermsOfService = new Date()
 
-  create: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
-    @http
-      .post "#{@PROFILE_URI}/", {
-        firstName: firstName
-        lastName: lastName
-        email: email
-        optInEmail: optInEmail
-        agreeTermsOfService: agreeTermsOfService
-      }
-      .then (result) =>
-        result.data
-      .catch (result) =>
-        @q.reject result.data
+    @skynetPromise.then (connection) =>
+      query =
+        uuid: @cookies.meshblu_auth_uuid
+        octoblu:
+          firstName: firstName
+          lastName: lastName
+          email: email
+          optInEmail: optInEmail
+          agreeTermsOfService: agreeTermsOfService
 
+      connection.update query, =>
+        @state.go 'material.home'
 
 angular.module('octobluApp').service 'ProfileService', ProfileService
 
