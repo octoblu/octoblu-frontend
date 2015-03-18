@@ -5,8 +5,6 @@ class ProfileService
     @state         = $state
 
   update: (firstName, lastName, email, optInEmail) =>
-    agreeTermsOfService = new Date()
-
     @skynetPromise.then (connection) =>
       query =
         uuid: @cookies.meshblu_auth_uuid
@@ -15,7 +13,7 @@ class ProfileService
           lastName: lastName
           email: email
           optInEmail: optInEmail
-          agreeTermsOfService: agreeTermsOfService
+          termsAcceptedAt: new Date()
 
       connection.update query, =>
         @state.go 'material.home'

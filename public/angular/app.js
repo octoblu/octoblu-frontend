@@ -89,7 +89,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
             }
           }
           if (response.status === 403) {
-            return $window.location = '/accept_terms';
+            return $window.location = '/profile/new';
           }
           return response;
         }
@@ -472,7 +472,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/home');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService) {
 
     // $window.console.log = $log.debug;
 
@@ -482,9 +482,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-      // console.log('transition', fromState.name, toState.name);
       $intercom.update();
       if (!toState.unsecured) {
+
+        if(toState.name !== 'material.profile-new'){
+          IntercomUserService.updateIntercom().catch(function(error){
+            $state.go('material.profile-new');
+          });
+        }
+
         return AuthService.getCurrentUser(true).then(null, function (err) {
           console.log('LOGIN ERROR:');
           console.log(err);
@@ -492,6 +498,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           $location.url('/login');
         });
       }
+
     });
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';

@@ -46,8 +46,7 @@ function UserModel() {
             uuid: skynetData.uuid
           },
           skynet: {
-            uuid: skynetData.uuid,
-            token: skynetData.token
+            uuid: skynetData.uuid
           },
           api : [],
           created_at: moment().utc().toDate()
@@ -92,11 +91,6 @@ function UserModel() {
       };
 
       return self.findOne(userQuery);
-    },
-
-    findBySkynetUUIDAndToken : function (skynetuuid, skynettoken) {
-      var self = this;
-      return self.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken});
     },
 
     generateHash : function (password) {

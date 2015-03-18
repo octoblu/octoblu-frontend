@@ -56,6 +56,10 @@ var permissionsController = {
             newPermission = req.body.resourcePermission,
             newSourceGroup = req.body.sourceGroup,
             newTargetGroup = req.body.targetGroup;
+        var userCredentials = {
+            uuid: req.cookies.meshblu_auth_uuid,
+            token: req.cookies.meshblu_auth_token
+        };
 
         newTargetGroup.members = _.map(newTargetGroup.members, function(member){
            return _.omit(member, ['token', 'skynettoken']);
@@ -103,7 +107,7 @@ var permissionsController = {
             ])
             .then(function (results) {
                 ResourcePermission.updateSkynetPermissions({
-                    ownerResource: user.skynet,
+                    ownerResource: userCredentials,
                     resources: membersToUpdate,
                     skynetUrl: skynetUrl
                 });
