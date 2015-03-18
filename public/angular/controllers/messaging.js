@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function($scope, currentUser, myDevices, myGateways, availableNodeTypes,
+    .controller('MessagingController', function($scope, $cookies, currentUser, myDevices, myGateways, availableNodeTypes,
         skynetService, deviceService, PluginService) {
 
         $scope.model = {
@@ -14,8 +14,8 @@ angular.module('octobluApp')
 
         $scope.model.devices.unshift({
             name: 'Me',
-            uuid: currentUser.skynet.uuid,
-            token: currentUser.skynet.token,
+            uuid: $cookies.meshblu_auth_uuid,
+            token: $cookies.meshblu_auth_token,
             type: 'user'
         });
 
