@@ -7,14 +7,6 @@ describe 'SecurityController', ->
     @sut = new SecurityController @dependecies
 
   describe '->isAuthenticated', ->
-    describe 'when called with a user', ->
-      beforeEach (done) ->
-        @next = sinon.spy done
-        @sut.isAuthenticated user: {}, {}, @next
-
-      it 'should call next()', ->
-        expect(@next).to.have.been.called
-
     describe 'when called without a user, uuid, or token', ->
       beforeEach (done) ->
         @response =
@@ -39,8 +31,6 @@ describe 'SecurityController', ->
     describe 'when called without a user and with valid skynet uuid and token', ->
       beforeEach ->
         @next = sinon.spy()
-        @userSession.getDeviceFromMeshblu = sinon.stub()
-        @userSession.ensureUserExists = sinon.stub()
         @request =
           headers:
             skynet_auth_uuid: 'steak'
@@ -48,16 +38,15 @@ describe 'SecurityController', ->
         @response =
           status: sinon.spy(=> @response)
           end: sinon.spy()
+        @sut.authenticateWithMeshblu = sinon.spy()
         @sut.isAuthenticated @request, @response, @next
 
       it 'should call userSession.getDeviceFromMeshblu()', ->
-        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'steak', 'fries'
+        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'steak', 'fries'
 
     describe 'when called without a user and with valid meshblu uuid and token', ->
       beforeEach ->
         @next = sinon.spy()
-        @userSession.getDeviceFromMeshblu = sinon.stub()
-        @userSession.ensureUserExists = sinon.stub()
         @request =
           headers:
             meshblu_auth_uuid: 'burger'
@@ -65,101 +54,99 @@ describe 'SecurityController', ->
         @response =
           status: sinon.spy(=> @response)
           end: sinon.spy()
+        @sut.authenticateWithMeshblu = sinon.spy()
         @sut.isAuthenticated @request, @response, @next
 
       it 'should call userSession.getDeviceFromMeshblu()', ->
-        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'burger', 'sweet-potato-fries'
+        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'burger', 'sweet-potato-fries'
 
-    describe 'when called without a user and with valid cookies uuid and token', ->
+    describe 'when called with a user and with valid cookies uuid and token', ->
       beforeEach ->
         @next = sinon.spy()
-        @userSession.getDeviceFromMeshblu = sinon.stub()
-        @userSession.ensureUserExists = sinon.stub()
         @request =
+          user: {}
           cookies:
             meshblu_auth_uuid: 'chicken'
             meshblu_auth_token: 'waffles'
+          login: sinon.stub().yields @next
         @response =
           status: sinon.spy(=> @response)
           end: sinon.spy()
+        @sut.authenticateWithMeshblu = sinon.stub()
         @sut.isAuthenticated @request, @response, @next
 
-      it 'should call userSession.getDeviceFromMeshblu()', ->
-        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'chicken', 'waffles'
+      it 'should call authenticateWithMeshblu()', ->
+        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'chicken', 'waffles'
 
-      describe 'when getDeviceFromMeshblu yields an error', ->
+      describe 'when authenticateWithMeshblu yields an error', ->
         beforeEach (done) ->
           @response.end = sinon.spy(done)
-          @userSession.getDeviceFromMeshblu.yield new Error('no device')
+          @sut.authenticateWithMeshblu.yield new Error('no device')
 
         it 'should call response.status(401).end()', ->
           expect(@response.status).to.have.been.calledWith 401
           expect(@response.end).to.have.been.called
 
-      describe 'when getDeviceFromMeshblu yields a device', ->
-        beforeEach (done) ->
-          @userSession.ensureUserExists = sinon.spy(=> done())
-          @userSession.getDeviceFromMeshblu.yield null, uuid: 'chicken'
-
-        it 'should ensureUserExists with the uuid and token', ->
-          expect(@userSession.ensureUserExists).to.have.been.calledWith 'chicken', 'waffles'
-
-      describe 'when getDeviceFromMeshblu yields a device and ensureUserExists yields an error', ->
-        beforeEach (done) ->
-          @response.end = sinon.spy(done)
-          @userSession.ensureUserExists = sinon.stub().yields new Error()
-          @userSession.getDeviceFromMeshblu.yield null, uuid: 'steak'
-
-        it 'should res.status(500).end()', ->
-          expect(@response.status).to.have.been.calledWith 500
-          expect(@response.end).to.have.been.called
-
-      describe 'when getDeviceFromMeshblu yields a device and ensureUserExists yields no error', ->
+      describe 'when authenticateWithMeshblu yields a device', ->
         beforeEach ->
-          @user = {something: 'user-y'}
-          @request.login = sinon.stub().yields()
-          @userSession.ensureUserExists = sinon.stub().yields null, @user
-          @userSession.getDeviceFromMeshblu.yield null, uuid: 'steak'
+          @sut.authenticateWithMeshblu.yield null, uuid: 'chicken'
 
-        it 'should call request.login with the user', ->
-          expect(@request.login).to.have.been.calledWith @user
+        it 'should call request.login', ->
+          expect(@request.login).to.have.been.calledWith uuid: 'chicken' 
 
-        it 'should call next()', ->
+        it 'should call next', ->
           expect(@next).to.have.been.called
 
-    describe 'when called without a user and with a different valid uuid and token', ->
-      beforeEach ->
-        @next = sinon.spy()
-        @userSession.getDeviceFromMeshblu = sinon.stub()
-        @userSession.ensureUserExists = sinon.stub()
-        request =
-          headers:
-            skynet_auth_uuid: 'pancakes'
-            skynet_auth_token: 'eggs'
-        @response =
-          status: sinon.spy(=> @response)
-          end: sinon.spy()
-        @sut.isAuthenticated request, @response, @next
+  describe '->authenticateWithMeshblu', ->
+    describe 'when called with a invalid uuid and token and getDeviceFromMeshblu yields an error', ->
+      beforeEach (done) ->
+        callback = (@error, @user) => done()
+        @userSession.getDeviceFromMeshblu = sinon.stub().yields new Error()
+        @sut.authenticateWithMeshblu 'red-curry', 'thai-tea', callback
 
-      it 'should call userSession.getDeviceFromMeshblu()', ->
-        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'pancakes', 'eggs'
+      it 'should call userSession.getDeviceFromMeshblu with the uuid and token', ->
+        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'red-curry', 'thai-tea'
 
-      describe 'when getDeviceFromMeshblu yields an error', ->
-        beforeEach (done) ->
-          @response.end = sinon.spy(done)
-          @userSession.getDeviceFromMeshblu.yield new Error('no device')
+      it 'should call the callback with an error', ->
+        expect(@error).to.exist
 
-        it 'should call response.status(401).end()', ->
-          expect(@response.status).to.have.been.calledWith 401
-          expect(@response.end).to.have.been.called
+    describe 'when called with a valid device but ensureUserExists yields an error', ->
+      beforeEach (done) ->
+        callback = (@error, @user) => done()
+        @userSession.getDeviceFromMeshblu = sinon.stub().yields()
+        @userSession.ensureUserExists = sinon.stub().yields new Error()
+        @sut.authenticateWithMeshblu 'red-curry', 'thai-tea', callback
 
-      describe 'when getDeviceFromMeshblu yields a device', ->
-        beforeEach (done) ->
-          @userSession.ensureUserExists = sinon.spy(=> done())
-          @userSession.getDeviceFromMeshblu.yield null, uuid: 'pancakes'
+      it 'should call userSession.getDeviceFromMeshblu with the uuid and token', ->
+        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'red-curry', 'thai-tea'
 
-        it 'should ensureUserExists with the uuid and token', ->
-          expect(@userSession.ensureUserExists).to.have.been.calledWith 'pancakes', 'eggs'
+      it 'should call userSession.ensureUserExists with the uuid and token', ->
+        expect(@userSession.ensureUserExists).to.have.been.calledWith 'red-curry', 'thai-tea'
+
+      it 'should call the callback with an error', ->
+        expect(@error).to.exist
+
+    describe 'when called with a valid device', ->
+      beforeEach (done) ->
+        callback = (@error, @user) => done()
+        user =
+          skynet:
+            uuid: 'enchiladas'
+        @userSession.getDeviceFromMeshblu = sinon.stub().yields()
+        @userSession.ensureUserExists = sinon.stub().yields null, user
+        @sut.authenticateWithMeshblu 'enchiladas', 'fanta', callback
+
+      it 'should call userSession.getDeviceFromMeshblu with the uuid and token', ->
+        expect(@userSession.getDeviceFromMeshblu).to.have.been.calledWith 'enchiladas', 'fanta'
+
+      it 'should call userSession.ensureUserExists with the uuid and token', ->
+        expect(@userSession.ensureUserExists).to.have.been.calledWith 'enchiladas', 'fanta'
+
+      it 'should call the callback with no error', ->
+        expect(@error).to.not.exist
+
+      it 'should call the callback with the user', ->
+        expect(@user).to.deep.equal skynet: uuid: 'enchiladas'
 
   describe '->bypassAuth', ->
     describe 'when called with req, res, next', ->

@@ -23,28 +23,45 @@ class SecurityController
 
     response.status(403).send 'Terms of service must be accepted'
 
-  authenticateResponse: (request) =>
+  getAuthFromHeaders: (request) =>
     headers = request.headers ? {}
-    cookies = request.cookies ? {}
 
     uuid = headers.skynet_auth_uuid ? headers.meshblu_auth_uuid
-    uuid ?= cookies.skynet_auth_uuid ? cookies.meshblu_auth_uuid
     token = headers.skynet_auth_token ? headers.meshblu_auth_token
-    token ?= cookies.skynet_auth_token ? cookies.meshblu_auth_token
 
     return uuid: uuid, token: token
 
+  getAuthFromCookies: (request) =>
+    return {} unless request.user?
+    user = request.user
+    cookies = request.cookies ? {}
+
+    uuid = cookies.skynet_auth_uuid ? cookies.meshblu_auth_uuid
+    token = cookies.skynet_auth_token ? cookies.meshblu_auth_token
+
+    return uuid: uuid, token: token
+
+  authenticateWithMeshblu: (uuid, token, callback=->) =>
+    @userSession.getDeviceFromMeshblu uuid, token, (error) =>
+      return callback error if error?
+      @userSession.ensureUserExists uuid, token, (error, user) =>
+        return callback error if error?
+        callback null, user
+
   isAuthenticated: (request, response, next=->) =>
     return next() if request.bypassAuth
-    return next() if request.user
 
-    {uuid, token} = @authenticateResponse(request)
+    authenticateCallback = (error, user) =>
+      return response.status(401).end() if error?  
+      return response.status(404).end() unless user?
+      request.login user, next
+
+    {uuid, token} = @getAuthFromHeaders(request)
+    return @authenticateWithMeshblu uuid, token, authenticateCallback if uuid && token
+
+    {uuid, token} = @getAuthFromCookies(request)
     return response.status(401).end() unless uuid && token
 
-    @userSession.getDeviceFromMeshblu uuid, token, (error) =>
-      return response.status(401).end() if error?
-      @userSession.ensureUserExists uuid, token, (error, user) =>
-        return response.status(500).end() if error?
-        request.login user, next
+    @authenticateWithMeshblu uuid, token, authenticateCallback
 
 module.exports = SecurityController
