@@ -372,7 +372,7 @@
         ]
       },
       {
-        "path": "/:statuses/update.json",
+        "path": "/statuses/update.json",
         "displayName": "Post Tweet",
         "authentication": {
           "required": true
