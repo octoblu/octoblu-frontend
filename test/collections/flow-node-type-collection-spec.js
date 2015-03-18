@@ -7,7 +7,7 @@ describe('FlowNodeTypeCollection', function () {
 
   beforeEach(function () {
     fakeFS = new FakeFS();
-    sut = new FlowNodeTypeCollection('user uuid', {fs: fakeFS});
+    sut = new FlowNodeTypeCollection('user uuid', 'user token', {fs: fakeFS});
 
     fakeNodeCollection = new FakeNodeCollection();
     stub = sinon.stub(sut, 'getNodeCollection');

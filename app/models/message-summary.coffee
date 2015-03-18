@@ -3,12 +3,11 @@ When          = require 'when'
 queryTemplate = require '../../assets/json/elasticsearch/message-summary.json'
 
 class MessageSummary
-  constructor: (elasticSearchUrl, ownerUuid, dependencies={})->
+  constructor: (elasticSearchUrl, @ownerUuid, @ownerToken, dependencies={})->
     @elasticSearchUrl = elasticSearchUrl
-    @ownerUuid = ownerUuid
     DeviceCollection = dependencies.DeviceCollection ? require '../collections/device-collection'
     @request         = dependencies.request ? require 'request'
-    @deviceCollection = new DeviceCollection ownerUuid
+    @deviceCollection = new DeviceCollection @ownerUuid, @ownerToken
 
   fetch: =>
     @deviceCollection.fetchAll().then (devices) =>

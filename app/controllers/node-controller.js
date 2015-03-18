@@ -6,14 +6,16 @@ var NodeController = function(options){
   NodeCollection = require('../collections/node-collection');
 
   self.index = function(req, res){
-    var collection = self.getNodeCollection(req.user.skynet.uuid);
+    var uuid = req.cookies.meshblu_auth_uuid;
+    var token = req.cookies.meshblu_auth_token;
+    var collection = self.getNodeCollection(uuid, token);
     collection.fetch().then(function(nodes){
       res.send(200, addResourceType(nodes));
     });
   };
 
-  self.getNodeCollection = function(uuid){
-    return new NodeCollection(uuid);
+  self.getNodeCollection = function(uuid, token){
+    return new NodeCollection(uuid, token);
   };
 
   addResourceType = function(items){

@@ -6,7 +6,7 @@ var config = require('../../config/auth'),
   errorCode = require('rest/interceptor/errorCode'),
   client = rest.wrap(mime).wrap(errorCode);
 
-var DeviceCollection = function (userUUID) {
+var DeviceCollection = function (userUUID, userToken) {
   var self = this;
   var User = require('../models/user');
 
@@ -19,23 +19,17 @@ var DeviceCollection = function (userUUID) {
   };
 
   self.fetchAll = function(){
-    return self.getUser(userUUID).then(function (user) {
-      return self.getDevicesByOwner(user);
-    });
+    return self.getDevicesByOwner();
   };
 
-  self.getUser = function (userUUID) {
-    return User.findBySkynetUUID(userUUID);
-  };
-
-  self.getDevicesByOwner = function (user) {
+  self.getDevicesByOwner = function () {
     var requestParams = {
       method: 'GET',
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',
       headers: {
-        skynet_auth_uuid: user.skynet.uuid,
-        skynet_auth_token: user.skynet.token
+        meshblu_auth_uuid: userUUID,
+        meshblu_auth_token: userToken
       }
     };
 

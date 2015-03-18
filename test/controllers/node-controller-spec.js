@@ -20,8 +20,8 @@ describe('NodeController', function () {
 
     beforeEach(function () {
       fakeResponse = new FakeResponse();
-      var user = {skynet: {uuid: 'mah uuid'}};
-      sut.index({user: user}, fakeResponse);
+      var cookies = {uuid: 'mah uuid', token: 'mah token'}
+      sut.index({cookies: cookies}, fakeResponse);
     });
 
     describe('when all returns', function(){

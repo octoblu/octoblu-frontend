@@ -5,7 +5,9 @@ class GeneralSearchController
   constructor: (@elasticSearchUri) ->
 
   show: (request, response) =>
-    general_search = new GeneralSearch @elasticSearchUri, request.query.q, request.user.skynet.uuid
+    uuid = request.cookies.meshblu_auth_uuid
+    token = request.cookies.meshblu_auth_token
+    general_search = new GeneralSearch @elasticSearchUri, request.query.q, uuid, token
     general_search.fetch()
       .then (result) =>
         response.send result
