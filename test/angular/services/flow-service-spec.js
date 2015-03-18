@@ -18,8 +18,6 @@ describe('FlowService', function () {
     inject(function(FlowService, _$httpBackend_){
       sut          = FlowService;
       $httpBackend = _$httpBackend_;
-      $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.flush();
     });
   });
 

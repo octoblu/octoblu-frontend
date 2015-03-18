@@ -19,8 +19,6 @@ describe('FlowNodeTypeService', function () {
       sut = FlowNodeTypeService;
       $q = _$q_;
       $httpBackend = _$httpBackend_;
-      $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.flush();
     });
   });
 
