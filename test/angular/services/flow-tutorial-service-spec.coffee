@@ -148,7 +148,7 @@ describe 'FlowTutorialService', =>
       it 'should return 7', ->
         expect(@stepNumber).to.equal 7
 
-    describe 'when everything is wired up, and deployed', ->
+    xdescribe 'when everything is wired up, and deployed', ->
       beforeEach ->
         @stepNumber = @sut.getStepNumber({            
             nodes: [
@@ -163,5 +163,5 @@ describe 'FlowTutorialService', =>
             deployed: true
           })
 
-      it 'should return 7', ->
+      it 'should return 8', ->
         expect(@stepNumber).to.equal 8      
