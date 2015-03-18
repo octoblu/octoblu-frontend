@@ -8,8 +8,10 @@ var request = require('request'),
     Channel = require('../models/channel');
 var SecurityController = require('./middleware/security-controller');
 var isAuthenticated = (new SecurityController()).isAuthenticated;
+var UserSession = require('../models/user-session-model');
 
 module.exports = function (app, passport, config) {
+    var userSession = new UserSession();
     app.post('/api/auth', passport.authenticate('local'), loginRoute);
     app.get('/api/auth/login', passport.authenticate('local'), loginRoute);
 
@@ -44,12 +46,23 @@ module.exports = function (app, passport, config) {
     }
 
     function logoutRoute(req, res) {
+        var cookies = req.cookies || {};
+        var uuid = cookies.meshblu_auth_uuid || cookies.skynet_auth_uuid
+        var token = cookies.meshblu_auth_token || cookies.skynet_auth_token
         clearCookies(res);
 
         if (req.logout) {
             req.logout();
         }
-        res.send(204);
+
+        userSession.invalidateOneTimeToken(uuid, token, function(error){
+            if(error) {
+                console.error(error)
+                return res.status(500).end();
+            }
+
+            res.send(204);
+        })
     }
 
     function logoutAndRedirectRoute(req, res) {
