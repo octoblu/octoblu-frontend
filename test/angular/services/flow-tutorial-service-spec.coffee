@@ -147,3 +147,21 @@ describe 'FlowTutorialService', =>
 
       it 'should return 7', ->
         expect(@stepNumber).to.equal 7
+
+    describe 'when everything is wired up, and deployed', ->
+      beforeEach ->
+        @stepNumber = @sut.getStepNumber({            
+            nodes: [
+              @configuredWeatherNode
+              @triggerNode
+              @configuredEmailNode
+            ]
+            links: [
+              { from: @triggerNode.id, to: @weatherNode.id }
+              { from: @weatherNode.id, to: @emailNode.id }
+            ]
+            deployed: true
+          })
+
+      it 'should return 7', ->
+        expect(@stepNumber).to.equal 8      
