@@ -9,7 +9,7 @@ describe 'UserSession', ->
     @sut = new UserSession request: @request, config: @config, database: {users: {}}
 
   describe '->create', ->
-    describe 'when called with a uuid and token', ->
+    describe 'when called with a uuid', ->
       beforeEach ->
         sinon.spy(@sut, 'exchangeOneTimeTokenForSessionToken')
         @sut.create 'buried', 'leads'
@@ -40,7 +40,7 @@ describe 'UserSession', ->
         @sut.create 'chemicals', 'periodical'
 
       it 'should call ensureUserExists', ->
-        expect(@sut.ensureUserExists).to.have.been.calledWith 'chemicals', 'i-am-a-session-token-trust-me'
+        expect(@sut.ensureUserExists).to.have.been.calledWith 'chemicals'
 
     describe 'when and exchangeOneTimeTokenForSessionToken yields a token and invalidateOneTimeToken yields nothing and ensureUserExists yields an error', ->
       beforeEach (done) ->
@@ -54,11 +54,11 @@ describe 'UserSession', ->
     describe 'when and exchangeOneTimeTokenForSessionToken yields a token and ensureUserExists yields a user', ->
       beforeEach (done) ->
         sinon.stub(@sut, 'exchangeOneTimeTokenForSessionToken').yields null, 'i-am-a-session-token-trust-me'
-        sinon.stub(@sut, 'ensureUserExists').yields null, {skynet: {token: 'i-am-a-session-token-trust-me'}}
+        sinon.stub(@sut, 'ensureUserExists').yields null, {skynet: {uuid: 'i-am-a-uuid'}}
         @sut.create 'chemicals', 'periodical', (@error, @user) => done()
 
       it 'should call the callback and yield a user', ->
-        expect(@user).to.deep.equal skynet: {token: 'i-am-a-session-token-trust-me'}
+        expect(@user).to.deep.equal skynet: {uuid: 'i-am-a-uuid'}
 
   describe '->createNewSessionToken', ->
     beforeEach ->
@@ -105,38 +105,38 @@ describe 'UserSession', ->
 
     describe 'when a user exists in the database', ->
       beforeEach ->
-        @database.users.insert {skynet: {uuid: 'drill', token: 'sergeant'}, foo: 'bar', resource: {uuid: 'drill'}}
+        @database.users.insert {skynet: {uuid: 'drill'}, foo: 'bar', resource: {uuid: 'drill'}}
 
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
-          @sut.ensureUserExists 'drill', 'bit', (error, @user) => done error
+          @sut.ensureUserExists 'drill', (error, @user) => done error
 
         it 'should yield the user', ->
-          expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill', token: 'bit'}, resource: {uuid: 'drill'}}
+          expect(_.omit @user, '_id').to.deep.equal {foo: 'bar', skynet: {uuid: 'drill'}, resource: {uuid: 'drill'}}
 
         it 'should update the record with the new token',  ->
           @database.users
             .findOne 'skynet.uuid': 'drill'
             .then (user) =>
-              expect(user.skynet.token).to.equal 'bit'
+              expect(user).to.exist
 
         it 'should not touch foo', ->
           @database.users
             .findOne 'skynet.uuid': 'drill'
             .then (user) =>
-              expect(user.foo).to.equal 'bar'
+              expect(user).to.exist
 
     describe 'when there is not user in the database', ->
       describe 'when called with a uuid and token', ->
         beforeEach (done) ->
-          @sut.ensureUserExists 'boilerplate', 'never-mind', (error, @user) => done error
+          @sut.ensureUserExists 'boilerplate', (error, @user) => done error
 
         it 'should yield the user', ->
-          expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate', token: 'never-mind'}, resource: {uuid: 'boilerplate'}}
+          expect(_.omit @user, '_id').to.deep.equal {skynet: {uuid: 'boilerplate'}, resource: {uuid: 'boilerplate'}}
 
-        it ' should insert a record with the uuid and token', ->
+        it 'should insert a record with the uuid and token', ->
           @database.users.findOne('skynet.uuid': 'boilerplate').then (user) =>
-            expect(user.skynet.token).to.equal 'never-mind'
+            expect(user).to.exist
 
   describe '->getDeviceFromMeshblu', ->
     describe 'when called with uuid and token', ->

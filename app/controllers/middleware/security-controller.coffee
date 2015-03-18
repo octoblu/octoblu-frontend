@@ -41,7 +41,7 @@ class SecurityController
   authenticateWithMeshblu: (uuid, token, callback=->) =>
     @userSession.getDeviceFromMeshblu uuid, token, (error, userDevice) =>
       return callback error if error?
-      @userSession.ensureUserExists uuid, token, (error, user) =>
+      @userSession.ensureUserExists uuid, (error, user) =>
         return callback error if error?
         callback null, user, userDevice
 
