@@ -89,10 +89,10 @@ describe 'SecurityController', ->
 
       describe 'when authenticateWithMeshblu yields a device', ->
         beforeEach ->
-          @sut.authenticateWithMeshblu.yield null, uuid: 'chicken'
+          @sut.authenticateWithMeshblu.yield null, {uuid: 'chicken'}, {foo: 'bar'}
 
         it 'should call request.login', ->
-          expect(@request.login).to.have.been.calledWith uuid: 'chicken' 
+          expect(@request.login).to.have.been.calledWith uuid: 'chicken', userDevice: {foo: 'bar'}
 
         it 'should call next', ->
           expect(@next).to.have.been.called
@@ -205,7 +205,7 @@ describe 'SecurityController', ->
 
     describe 'when called with a user that has accepted the terms before they were last updated', ->
       beforeEach (done) ->
-        request = user: {terms_accepted_at: '2015-01-01T00:00:00.000Z'}
+        request = user: userDevice: octoblu: termsAcceptedAt: '2015-01-01T00:00:00.000Z'
         @response =
           status: sinon.spy(=> @response)
           send: sinon.spy(=> done())
@@ -219,7 +219,7 @@ describe 'SecurityController', ->
 
     describe 'when called with a user that has accepted the terms', ->
       beforeEach (done) ->
-        request = user: {terms_accepted_at: '2050-01-01T22:00:00.000Z'}
+        request = user: userDevice: octoblu: termsAcceptedAt: '2050-01-01T22:00:00.000Z'
         @next = sinon.spy(done)
         @sut.enforceTerms request, {}, @next
 
