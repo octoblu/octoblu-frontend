@@ -82,7 +82,7 @@
             "displayName": "Text"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "name": "file_ids",
             "displayName": "File Ids"
           },{
@@ -146,7 +146,7 @@
             "displayName": "Text"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "name": "file_ids",
             "displayName": "File Ids"
           },{
@@ -398,7 +398,7 @@
             "required": "true"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "name": "file_ids",
             "displayName": "File Ids",
             "required": "true"
@@ -1208,7 +1208,7 @@
             "name": "labels"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "displayName": "File Ids",
             "name": "file_ids"
           },{
@@ -1800,7 +1800,7 @@
             "displayName": "Category Ids"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "name": "file_ids",
             "displayName": "File Ids"
           },{
@@ -5395,7 +5395,7 @@
             "name": "recurrence"
           },{
             "style": "body",
-            "type": "object",
+            "type": "string",
             "displayName": "Linked Account Id",
             "name": "linked_account_id"
           },{
@@ -6293,17 +6293,17 @@
             "name": "external_id"
           },{
             "style": "body",
-            "type": "string",
+            "type": "object",
             "displayName": "Fields",
             "name": "fields"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "displayName": "File Ids",
             "name": "file_ids"
           },{
             "style": "body",
-            "type": "string",
+            "type": "array",
             "displayName": "Tags",
             "name": "tags"
           },{
