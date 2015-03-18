@@ -23,14 +23,23 @@ class SecurityController
 
     response.status(403).send 'Terms of service must be accepted'
 
+  authenticateResponse: (request) =>
+    headers = request.headers ? {}
+    cookies = request.cookies ? {}
+
+    uuid = headers.skynet_auth_uuid ? headers.meshblu_auth_uuid
+    uuid ?= cookies.skynet_auth_uuid ? cookies.meshblu_auth_uuid
+    token = headers.skynet_auth_token ? headers.meshblu_auth_token
+    token ?= cookies.skynet_auth_token ? cookies.meshblu_auth_token
+
+    return uuid: uuid, token: token
+
   isAuthenticated: (request, response, next=->) =>
     return next() if request.bypassAuth
     return next() if request.user
-    return response.status(401).end() unless request.headers
 
-    uuid = request.headers.skynet_auth_uuid || request.headers.meshblu_auth_uuid
-    token = request.headers.skynet_auth_token || request.headers.meshblu_auth_token
-
+    {uuid, token} = @authenticateResponse(request)
+    return response.status(401).end() unless uuid && token
 
     @userSession.getDeviceFromMeshblu uuid, token, (error) =>
       return response.status(401).end() if error?
