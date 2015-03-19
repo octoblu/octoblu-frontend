@@ -26,11 +26,13 @@ var FlowDeploy = function (options) {
   self.runOnInstance = function (req, cmd, activated) {
     var userUUID, userToken;
 
-    userUUID = req.user.skynet.uuid;
+    userUUID = req.cookies.meshblu_auth_uuid;
+    userToken = req.cookies.meshblu_auth_token;
+    
     Flow.getFlow(req.params.id)
       .then(function (flow) {
         Flow.updateByFlowIdAndUser(flow.flowId, userUUID, {activated: activated});
-        cmd(userUUID, flow, meshblu);
+        cmd(userUUID, userToken, flow, meshblu);
       });
   };
 
