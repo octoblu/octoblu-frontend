@@ -20,7 +20,7 @@ class FlowTutorialController
       .then (step) =>
         console.log step
         @scope.flowNodeTypes = step.flowNodeTypes
-    
+
 
 
 angular.module('octobluApp').controller 'FlowTutorialController', FlowTutorialController

@@ -1,6 +1,5 @@
 class FlowTutorialService
-  constructor: (FlowNodeTypeService) ->
-    @FlowNodeTypeService = FlowNodeTypeService
+  constructor: () ->
 
   getStepNumber: (flow) =>
     weatherNode = _.find flow.nodes, { type: 'channel:weather' }
