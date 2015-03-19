@@ -25,7 +25,7 @@ class FlowTutorialService
       .then (flowNodeTypes) =>
         stepNumber = @getStepNumber flow
         return flowNodeTypes: _.filter flowNodeTypes, { type: 'channel:weather'} if stepNumber == 0
-        return flowNodeTypes: _.filter flowNodeTypes, { type: 'channel:trigger'} if stepNumber == 1
+        return flowNodeTypes: _.filter flowNodeTypes, { type: 'operation:trigger'} if stepNumber == 1
         return flowNodeTypes: _.filter flowNodeTypes, { type: 'channel:email'} if stepNumber   == 3
         return flowNodeTypes: flowNodeTypes
 
