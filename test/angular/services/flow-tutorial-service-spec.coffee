@@ -148,7 +148,7 @@ describe 'FlowTutorialService', =>
       it 'should return 7', ->
         expect(@stepNumber).to.equal 7
 
-    xdescribe 'when everything is wired up, and deployed', ->
+    describe 'when everything is wired up, and deployed', ->
       beforeEach ->
         @stepNumber = @sut.getStepNumber({            
             nodes: [
@@ -164,4 +164,24 @@ describe 'FlowTutorialService', =>
           })
 
       it 'should return 8', ->
-        expect(@stepNumber).to.equal 8      
+        expect(@stepNumber).to.equal 8
+
+
+    describe 'all of the above, plus the trigger was pushed', ->
+      beforeEach ->
+        @stepNumber = @sut.getStepNumber({            
+            nodes: [
+              @configuredWeatherNode
+              @triggerNode
+              @configuredEmailNode
+            ]
+            links: [
+              { from: @triggerNode.id, to: @weatherNode.id }
+              { from: @weatherNode.id, to: @emailNode.id }
+            ]
+            deployed: true
+            triggered: true
+          })
+
+      it 'should return 9', ->
+        expect(@stepNumber).to.equal 9      
