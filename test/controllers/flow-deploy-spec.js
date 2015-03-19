@@ -46,7 +46,10 @@ describe('flowDeployController', function () {
 
       describe('an authorized request', function () {
         beforeEach(function () {
-          var req = {params: {id: 'fake'}, user: {skynet: {uuid: 'some.uuid', token: 'some.hobit'}}};
+          var req = {
+            params: {id: 'fake'},
+            cookies: {meshblu_auth_uuid: 'some.uuid', meshblu_auth_token: 'some.token'}
+          };
           sut.startInstance(req, res);
         });
 
@@ -57,6 +60,7 @@ describe('flowDeployController', function () {
         it('should call FlowDeploy.deploy with the user uuid and token', function () {
           expect(FakeFlowDeploy.start).to.be.calledWith(
             'some.uuid',
+            'some.token',
             {flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}},
             fakeMeshblu
           );
