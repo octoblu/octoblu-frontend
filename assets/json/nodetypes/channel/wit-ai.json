@@ -1,0 +1,13 @@
+{
+  "_id": "550b46044ccc66a2b642ec16",
+  "category": "channel",
+  "description": "Wit.ai",
+  "enabled": false,
+  "name": "Wit.ai",
+  "skynet": {
+    "type": "channel",
+    "subtype": "wit-ai"
+  },
+  "channelid": "550b45b44ccc66a2b642ec15",
+  "type": "channel:wit-ai"
+}
