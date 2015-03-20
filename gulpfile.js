@@ -83,7 +83,7 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
-  gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:compile']);
+  gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:clean', 'coffee:compile']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
   gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
 
