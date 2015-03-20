@@ -327,18 +327,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('material.flow', {
-        url: '/design/:flowId',
+        url: '/design/:flowId/:tutorial?',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
-      })
-      .state('material.flow.tutorial1', {
-        url: '/tutorial1',
-        controller: 'FlowTutorialController',
-        resolve: {
-          tutorial: function(FLOW_TUTORIAL_1){
-            return FLOW_TUTORIAL_1;
-          }
-        }
       })
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
