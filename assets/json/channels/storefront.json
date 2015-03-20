@@ -1,39 +1,27 @@
 {
-  "_id": "357963579gfe568k75et5",
+  "_id": "1d514ea6b2e6da7eb7a4aef2",
   "__v": 0,
   "type": "channel:storefront",
-  "auth_strategy": "oauth",
+  "auth_strategy": "basic",
   "documentation": "https://www.citrix.com/downloads/storefront-web-interface.html",
   "name": "StoreFront",
   "enabled": true,
-  "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+  "defaultParams": [
+    {
+      "name": ":url",
+      "style": "url",
+      "type": "string",
+      "displayName": "Host URL (including protocol, http:// or https://)"
     }
-  },
+  ],
   "application": {
-    "base": "http://citrix.com/delivery-services/2-0",
+    "base": ":url/delivery-services/2-0",
     "resources": [
       {
         "path": "/resources/v2/:id/launch/ica",
         "displayName": "Launch specified resource using ICA protocol",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/ica"
+          "url": ":url/delivery-services/2-0/resources/v2/:id/launch/ica"
         },
         "httpMethod": "Post",
         "params": [
@@ -125,13 +113,13 @@
             "name": "clientPrinter"
           }
         ],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/ica"
+        "url": ":url/delivery-services/2-0/resources/v2/:id/launch/ica"
       },
       {
         "path": "/resources/v2/:id/launch/rade",
         "displayName": "Creates A Channel",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/rade"
+          "url": ":url/delivery-services/2-0/resources/v2/:id/launch/rade"
         },
         "httpMethod": "Post",
         "params": [
@@ -198,13 +186,13 @@
             "name": "clearTypeRemoting"
           }
         ],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/rade"
+        "url": ":url/delivery-services/2-0/resources/v2/:id/launch/rade"
       },
       {
         "path": "/resources/v2/:id/launch/:protocol/:retrykey",
         "displayName": "Gets History Of Messages & Events",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
+          "url": ":url/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
         },
         "httpMethod": "Get",
         "params": [{
@@ -241,13 +229,13 @@
             "type": "string",
             "name": "deviceId"
           }],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
+        "url": ":url/delivery-services/2-0/resources/v2/:id/launch/:protocol/:retrykey"
       },
       {
         "path": "/resources/v2/:thumbprint/image/:size",
         "displayName": "Gets The Specified Image",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
+          "url": ":url/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
         },
         "httpMethod": "Get",
         "params": [{
@@ -263,13 +251,13 @@
             "name": ":size",
             "required": true
           }],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
+        "url": ":url/delivery-services/2-0/resources/v2/:thumbprint/image/:size"
       },
       {
         "path": "/resources/v2/:thumbprint/icon",
         "displayName": "Get The Specified Icon Data",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/icon"
+          "url": ":url/delivery-services/2-0/resources/v2/:thumbprint/icon"
         },
         "httpMethod": "Get",
         "params": [
@@ -280,13 +268,13 @@
             "name": ":thumbprint",
             "required": true
           }],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:thumbprint/icon"
+        "url": ":url/delivery-services/2-0/resources/v2/:thumbprint/icon"
       },
       {
         "path": "/resources/v2/:id/poweroff",
         "displayName": "Triggers A Power Off Operation On Underlying Machine",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/poweroff"
+          "url": ":url/delivery-services/2-0/resources/v2/:id/poweroff"
         },
         "httpMethod": "Post",
         "params": [{
@@ -296,23 +284,23 @@
             "name": ":id",
             "required": true
           }],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/:id/poweroff"
+        "url": ":url/delivery-services/2-0/resources/v2/:id/poweroff"
       },
       {
         "path": "/resources/v2/streaming",
         "displayName": "Post Rade Service",
         "doc": {
-         "url": "http://citrix.com/delivery-services/2-0/resources/v2/streaming"
+         "url": ":url/delivery-services/2-0/resources/v2/streaming"
         },
         "httpMethod": "Post",
         "params": [],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/streaming"
+        "url": ":url/delivery-services/2-0/resources/v2/streaming"
       },
       {
         "path": "/resources/v2/subscriptions/:resourceId",
         "displayName": "Service To Be Subscribed & Unsubscribed",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
+          "url": ":url/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
         },
         "httpMethod": "Post",
         "params": [{
@@ -322,13 +310,13 @@
             "name": ":resourceId",
             "required": true
           }],
-        "url": "http://citrix.com/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
+        "url": ":url/delivery-services/2-0/resources/v2/subscriptions/:resourceId"
       },
       {
         "path": "/sessions/v1/available",
         "displayName": "Gets Data On Sessions",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/available"
+          "url": ":url/delivery-services/2-0/sessions/v1/available"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
@@ -361,13 +349,13 @@
             "name": "tickets"
           }
         ],
-        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/available"
+        "url": ":url/delivery-services/2-0/sessions/v1/available"
       },
       {
         "path": "/sessions/v1/disconnect/",
         "displayName": "Disconnect The Requested Sessions",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/disconnect/"
+          "url": ":url/delivery-services/2-0/sessions/v1/disconnect/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
@@ -399,13 +387,13 @@
             "type": "string",
             "name": "tickets"
           }],
-        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/disconnect/"
+        "url": ":url/delivery-services/2-0/sessions/v1/disconnect/"
       },
       {
         "path": "/sessions/v1/logoff/",
         "displayName": "Logoff The Requested Sessions",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/logoff/"
+          "url": ":url/delivery-services/2-0/sessions/v1/logoff/"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
@@ -438,13 +426,13 @@
             "name": "tickets"
           }
         ],
-        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/logoff/"
+        "url": ":url/delivery-services/2-0/sessions/v1/logoff/"
       },
       {
         "path": "/sessions/v1/:session-id/launch/ica",
         "displayName": "Attempt To Launch Specified Session Using ICA Protocol",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
+          "url": ":url/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
         },
         "httpMethod": "Post",
         "curl": "curl -X ",
@@ -537,18 +525,18 @@
             "name": "clientPrinter"
           }
         ],
-        "url": "http://citrix.com/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
+        "url": ":url/delivery-services/2-0/sessions/v1/:session-id/launch/ica"
       },
       {
         "path": "/endpoints/v1/",
         "displayName": "Get List Of All Endpoints Available",
         "doc": {
-          "url": "http://citrix.com/delivery-services/2-0/endpoints/v1/"
+          "url": ":url/delivery-services/2-0/endpoints/v1/"
         },
         "httpMethod": "Get",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://citrix.com/delivery-services/2-0/endpoints/v1/"
+        "url": ":url/delivery-services/2-0/endpoints/v1/"
       },
       {
         "path": "/discovery",
