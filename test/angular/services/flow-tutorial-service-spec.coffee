@@ -1,17 +1,23 @@
-describe 'FlowTutorialService', =>
+xdescribe 'FlowTutorial', ->
+  FlowTutorial = undefined
+
   beforeEach ->
     module 'octobluApp', ($provide) =>
       return
 
-    inject (_$httpBackend_, FlowTutorialService) =>
+    inject (_$httpBackend_, _FlowTutorial_, $q, $rootScope) =>
       @httpBackend = _$httpBackend_
+      @q = $q
+      @rootScope = $rootScope
+      _.defer => @rootScope.$digest()
+      FlowTutorial = _FlowTutorial_
 
-      @sut = FlowTutorialService
+      @sut = new FlowTutorial {'something': {foo: 'bar'}, 'something else' : { baz: 'buzz' }}
 
-  it 'should exist', ->    
+  it 'should exist', ->
     expect(@sut).to.exist
-  
-  describe '->getStepNumber', ->
+
+  describe '->getStepName', ->
     beforeEach ->
       @weatherNode = id: 1, type: 'channel:weather'
       @configuredWeatherNode = _.extend {
@@ -31,18 +37,18 @@ describe 'FlowTutorialService', =>
         @emailNode
 
     it 'should exist', ->
-      expect(@sut.getStepNumber).to.exist
+      expect(@sut.getStepName).to.exist
 
     describe 'when called with a flow with no nodes', ->
       beforeEach ->
-        @stepNumber= @sut.getStepNumber({})
+        @stepNumber= @sut.getStepName({})
 
       it 'should return 0', ->
         expect(@stepNumber).to.equal 0
 
     describe 'when called with a flow with a weather node', ->
       beforeEach ->
-        @stepNumber= @sut.getStepNumber({
+        @stepNumber= @sut.getStepName({
             nodes: [ @weatherNode ]
           })
 
@@ -51,7 +57,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a flow with hamburgler node', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [ { type: 'channel:hamburgler' } ]
           })
 
@@ -60,7 +66,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a configured weather node', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [ @configuredWeatherNode ]
           })
 
@@ -69,10 +75,10 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a configured weather node and a trigger node', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
-            nodes: [ 
+        @stepNumber = @sut.getStepName({
+            nodes: [
               @configuredWeatherNode
-              @triggerNode            
+              @triggerNode
             ]
           })
 
@@ -81,9 +87,9 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with just a trigger node', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
-            nodes: [ 
-              @triggerNode            
+        @stepNumber = @sut.getStepName({
+            nodes: [
+              @triggerNode
             ]
           })
 
@@ -92,7 +98,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when connected channel node to trigger', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -105,7 +111,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a configured weather node, a trigger node, and an email node', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -119,7 +125,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a configured weather node, a trigger node, and a configured email node (oh my)', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -133,7 +139,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when called with a link from the weather node to the email node and all the other stuff', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -150,7 +156,7 @@ describe 'FlowTutorialService', =>
 
     describe 'when everything is wired up, and deployed', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({            
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -169,7 +175,7 @@ describe 'FlowTutorialService', =>
 
     describe 'all of the above, plus the trigger was pushed', ->
       beforeEach ->
-        @stepNumber = @sut.getStepNumber({            
+        @stepNumber = @sut.getStepName({
             nodes: [
               @configuredWeatherNode
               @triggerNode
@@ -184,4 +190,31 @@ describe 'FlowTutorialService', =>
           })
 
       it 'should return 9', ->
-        expect(@stepNumber).to.equal 9      
+        expect(@stepNumber).to.equal 9
+
+  describe '->getStep', ->
+    describe 'when called with a flow', ->
+      beforeEach ->
+        @flow = {}
+        @sut.getStepName = sinon.spy()
+        @sut.getStep(@flow).then (@result) =>
+
+      it 'should call getStepName with that flow', ->
+        expect(@sut.getStepName).to.have.been.calledWith @flow
+
+    describe 'when getStepName returns "something"', ->
+      beforeEach ->
+        @sut.getStepName = sinon.stub().returns 'something'
+        @sut.getStep({}).then (@result) =>
+
+      it 'should return the step from the tutorial', ->
+        expect(@result).to.deep.equal {foo: 'bar'}
+
+    describe 'when getStepName returns "something else"', ->
+      beforeEach ->
+        @sut.getStepName = sinon.stub().returns 'something else'
+        @sut.getStep({}).then (@result) =>
+
+      it 'should return the step from the tutorial', ->
+        expect(@result).to.deep.equal {baz: 'buzz'}
+

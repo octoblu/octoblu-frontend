@@ -1,26 +1,27 @@
-class FlowTutorialService
-  constructor: () ->
+angular.module('octobluApp').factory 'FlowTutorial', ($q)->
+  class FlowTutorial
+    constructor: (@tutorial) ->
 
-  getStepNumber: (flow) =>
-    weatherNode = _.find flow.nodes, { type: 'channel:weather' }
-    triggerNode = _.find flow.nodes, { type: 'operation:trigger' }
-    weatherTriggerLink = _.find flow.links, { from: triggerNode?.id, to: weatherNode?.id }
-    emailNode = _.find flow.nodes, { type: 'channel:email' }
-    emailLink = _.find flow.links, { from: weatherNode?.id, to: emailNode?.id }
+    getStepName: (flow) =>
+      weatherNode = _.find flow.nodes, { type: 'channel:weather' }
+      triggerNode = _.find flow.nodes, { type: 'operation:trigger' }
+      weatherTriggerLink = _.find flow.links, { from: triggerNode?.id, to: weatherNode?.id }
+      emailNode = _.find flow.nodes, { type: 'channel:email' }
+      emailLink = _.find flow.links, { from: weatherNode?.id, to: emailNode?.id }
+      browserMaximized = flow.browserMaximized
 
-    return 0 unless weatherNode
-    return 1 unless weatherNode.queryParams?.city?
-    return 2 unless triggerNode
-    return 3 unless weatherTriggerLink
-    return 4 unless emailNode
-    return 5 unless emailNode.bodyParams?.to? && emailNode.bodyParams.body == '{{msg.temperature}}'
-    return 6 unless emailLink
-    return 7 unless flow.deployed
-    return 8 unless flow.triggered
-    return 9
+      return 'step1' unless weatherNode?
+      return 'step2' unless weatherNode.queryParams?.city?
+      return 'step3' unless triggerNode
+      return 'step4' unless weatherTriggerLink
+      return 'step5' unless emailNode
+      return 'step6' unless emailNode.bodyParams?.to? && emailNode.bodyParams.body == '{{msg.temperature}}'
+      return 'step7' unless emailLink
+      return 'step8' unless flow.deployed
+      return 'step9' unless flow.triggered
+      return 'step10'
 
-  getStep: (flow) =>
-
-
-angular.module 'octobluApp'
-  .service 'FlowTutorialService', FlowTutorialService
+    getStep: (flow) =>
+      stepName = @getStepName flow
+      console.log 'stepName', stepName
+      $q.when @tutorial[stepName]

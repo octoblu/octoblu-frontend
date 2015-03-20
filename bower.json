@@ -49,7 +49,7 @@
     "prism": "gh-pages",
     "xxhash": "*",
     "mgo-mousetrap": "https://github.com/octoblu/mgo-mousetrap.git#0.1.5",
-    "angular-material": "0.6.1",
+    "angular-material": "~0.8.3",
     "zeroclipboard": "~2.1.6",
     "ng-clip": "~0.2.4",
     "angular-marked": "~0.0.12",
@@ -61,7 +61,7 @@
     "angular-intercom": "~2.0.4",
     "angular-chart.js": "~0.3.19",
     "angulartics": "~0.17.2",
-    "angular-material": "~0.8.3"
+    "shepherd.js": "~0.6.14"
   },
   "devDependencies": {
     "chai": "~1.9.1",
