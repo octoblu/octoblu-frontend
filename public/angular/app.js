@@ -260,10 +260,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelGooglePlacesController',
         templateUrl: '/pages/node-wizard/add-channel/google-places.html'
       })
-        .state('material.nodewizard.addchannel.wink', {
+      .state('material.nodewizard.addchannel.wink', {
         url: '/wink',
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
+      })
+      .state('material.nodewizard.addchannel.wit-ai', {
+        url: '/wit-ai',
+        controller: 'addChannelWitAIController',
+        templateUrl: '/pages/node-wizard/add-channel/wit-ai.html'
       })
       .state('material.nodewizard.addchannel.docusign', {
         url: '/docusign',

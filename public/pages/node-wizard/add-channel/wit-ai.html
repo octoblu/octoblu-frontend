@@ -1,0 +1,22 @@
+<div class="row" ng-if="!githubIsActive">
+  <div class="col-xs-12 col-md-offset-3 col-md-6">
+  <a href="/node-wizard/add/53c9b839f400e177dca325c8">
+    <div class="node-thumbnail" style="background-image: url(https://ds78apnml6was.cloudfront.net/channel/github.svg);"></div>
+  </a>
+    <h1 class="text-center">This channel requires <a href="/node-wizard/add/53c9b839f400e177dca325c8">GitHub</a> to be activated.</h1>
+  </div>
+</div>
+
+<div class="row" ng-if="githubIsActive">
+  <div class="col-xs-12 col-md-offset-3 col-md-6">
+    <h1 class="text-center">Wit.ai uses your <a href="/node-wizard/add/53c9b839f400e177dca325c8">GitHub</a> credentials.</h1>
+    <form class="form" ng-submit="activate()">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          <i class="fa fa-plus"></i>
+          Activate
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

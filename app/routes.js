@@ -209,6 +209,9 @@ module.exports = function(app, passport) {
     var WinkController = require('./controllers/wink-controller');
     var winkController = new WinkController();
 
+    var WitAIController = require('./controllers/wit-ai-controller');
+    var witAIController = new WitAIController();
+
     var WithingsController = require('./controllers/withings-controller');
     var withingsController = new WithingsController();
 
@@ -441,7 +444,8 @@ module.exports = function(app, passport) {
             app.get('/api/travis-ci/auth', travisCIController.authorize, travisCIController.redirectToDesigner);
             app.get('/api/travis-ci-pro/auth', travisCIProController.authorize, travisCIProController.redirectToDesigner);
             app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
-
+            app.get('/api/wit-ai/auth', witAIController.authorize, witAIController.redirectToDesigner);
+            
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);
             app.delete('/api/templates/:id', templateController.delete);
