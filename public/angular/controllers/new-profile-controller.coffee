@@ -16,8 +16,6 @@ class NewProfileController
 
     @ProfileService
       .update firstName, lastName, email, optInEmail
-      .then (result) =>
-        console.log 'RESULT: ', result
       .catch (error) =>
         @loading = false
 

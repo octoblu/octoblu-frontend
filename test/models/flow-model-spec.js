@@ -17,7 +17,7 @@ describe('Flow', function () {
 
       beforeEach(function (done) {
         Meshblu.register.responds = {uuid: '1'};
-        Flow.createByUserUUID('2', {}, Meshblu).then(function(){done()}, done);
+        Flow.createByUserUUID('2', {}, Meshblu).then(function(){ done(); }, done);
       });
 
       it('should save a record in the database', function (done) {

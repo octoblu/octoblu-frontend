@@ -102,6 +102,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'MaterialController',
         abstract: true
       })
+      .state('material.root', {
+        url: '/',
+        templateUrl: '/pages/root.html',
+        controller: 'RootController'
+      })
       .state('material.admin', {
         abstract: true,
         url: '/admin',
@@ -470,7 +475,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
 
     // For any unmatched url, redirect to /
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
   })
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService) {
 
