@@ -270,10 +270,10 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
       })
-      .state('material.nodewizard.addchannel.wit-ai', {
-        url: '/wit-ai',
-        controller: 'addChannelWitAIController',
-        templateUrl: '/pages/node-wizard/add-channel/wit-ai.html'
+      .state('material.nodewizard.addchannel.witai', {
+        url: '/witai',
+        controller: 'addChannelWitaiController',
+        templateUrl: '/pages/node-wizard/add-channel/witai.html'
       })
       .state('material.nodewizard.addchannel.docusign', {
         url: '/docusign',
