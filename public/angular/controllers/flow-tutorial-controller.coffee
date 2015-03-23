@@ -10,16 +10,13 @@ class FlowTutorialController
 
   onFlowChanged: (flow) =>
     return unless flow?
-    return @setupTutorial() unless @flowTutorial?
 
-    @flowTutorial.updateStep()
+    flow = _.cloneDeep @scope.activeFlow
+    flow.tutorial = @tutorial
 
-  setupTutorial: () =>
-    @scope.activeFlow.tutorial = { steps: @tutorial, visited: {} } unless @scope.activeFlow.tutorial?
+    flowTutorial = new @FlowTutorial flow
 
-    @flowTutorial = new @FlowTutorial @scope.activeFlow
-    @flowTutorial.start()
-
-
+    @scope.steps = flowTutorial.getNextChapter()
+    console.log @scope.steps
 
 angular.module('octobluApp').controller 'FlowTutorialController', FlowTutorialController

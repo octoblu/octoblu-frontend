@@ -46,7 +46,8 @@ gulp.task('coffee:compile', function(){
 
   return gulp.src(['./public/angular/**/*.coffee', configFile])
     .pipe(plumber())
-      .pipe(coffee({bare: true}))
+    .pipe(coffee({bare: true}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/angular/compiled/'));
 });
 
