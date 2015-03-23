@@ -1,0 +1,34 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-book"></i>
+        Resources
+      </a>
+    </div>
+  </h2>
+</md-toolbar>
+<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
+  <div flex-gt-md="66" flex-md="95" layout-fill layout="row" class="md-whiteframe-z2" style="background: white;">
+
+    <md-content flex layout-fill>
+      <md-grid-list
+        md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="8px" md-gutter-gt-sm="4px" >
+
+        <div ng-repeat="resource in resources">
+          <a href="{{resource.link}}" target="_blank">
+            <md-grid-tile md-rowspan="2"
+                          md-colspan="2"
+                          class="resource-{{resource.type}}"
+                          >
+                <img src="{{resource.image}}" class="resource__image">
+                <md-grid-tile-footer class="resource-item-footer"><h3><i class="{{resource.icon}} ob-resource-icon"></i>{{resource.title}}</h3></md-grid-tile-footer>
+            </md-grid-tile>
+          </a>
+        </div>
+      </md-grid-list>
+    </md-content>
+  </div>
+</div>
