@@ -5,7 +5,8 @@ class FlowTutorialDirective
       childList: true
       subtree: true
       attributes: true
-      attributeFilter: ['class']
+      attributeFilter: ['class', 'transform']
+      attributeOldValue: true
 
   link: =>
     @scope.$watch 'steps', @start
@@ -21,26 +22,30 @@ class FlowTutorialDirective
     @currentStep = @steps.shift()
     @showStep()
 
-  showStep: =>
+  showStep: (mutations) =>
     return unless @currentStep?
-    return if @tour?.getCurrentStep()?.isOpen()
-
+    return if @mutationWasOnlyShepherd mutations
     return unless @domReady()
 
     @tour?.cancel()
     @tour = new Shepherd.Tour defaults: classes: 'shepherd-theme-dark'
-    @tour.addStep @currentStep.id, @currentStep
+    @tour.addStep @currentStep.id, _.cloneDeep(@currentStep)
     @tour.on 'complete', @nextStep
     @tour.show()
 
   domReady: =>
     return true unless @currentStep.attachTo?
+
     elements = @element.find @currentStep.attachTo.element
-    return false if _.isEmpty elements
+    return _.any elements
 
-    animatedElements = @element.find '.ng-animate'
-    return _.isEmpty animatedElements
+  mutationWasOnlyShepherd: (mutations) =>
+    return _.any mutations, (mutation) =>
+      oldValues = mutation.oldValue?.split?(' ') ? []
+      newValues = mutation.target?.className?.split?(' ') ? []
+      differences = _.xor oldValues, newValues
 
+      _.any differences, (value) => _.startsWith value, 'shepherd'
 
 angular.module('octobluApp')
 .directive 'tutorial', ->

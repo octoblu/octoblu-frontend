@@ -16,6 +16,5 @@ class FlowTutorialController
     flowTutorial = new @FlowTutorial flow
 
     @scope.steps = flowTutorial.getNextChapter()
-    console.log @scope.steps
 
 angular.module('octobluApp').controller 'FlowTutorialController', FlowTutorialController

@@ -4,7 +4,6 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
 
     getNextChapter: =>
       stepName = @getStepName()
-      console.log 'stepName', stepName
       @flow.tutorial[stepName]
 
     getStepName: =>
@@ -31,7 +30,6 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
 
     configuredNodeBrowserOpened: =>
       @flow.browserMaximized && @flow.browserTab?.name == 'nodes'
-
 
     operationNodeBrowserOpened: =>
       @flow.browserMaximized && @flow.browserTab?.name == 'operators'
@@ -79,6 +77,5 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
 
     flowDeployed: =>
       @flow.deployed
-
 
     updateStep: () =>
