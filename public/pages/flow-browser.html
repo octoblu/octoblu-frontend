@@ -1,19 +1,19 @@
 <div class="flow-browser">
   <div class="btn-toolbar drawer-controls">
-    <div class="context-controls" ng-include="activeTab.controlsTemplate"></div>
+    <div class="context-controls" ng-include="activeFlow.browserTab.controlsTemplate"></div>
 
     <div class="tab-controls">
       <div class="btn-group">
-          <button class="btn btn-default btn-sm" ng-click="toggleActiveTab('operators')" ng-class="{'active' : activeTab.name === 'operators'}" tooltip="Operator Nodes" tooltip-placement="top" >
+          <button id="btn-operation-nodes" class="btn btn-default btn-sm" ng-click="toggleActiveTab('operators')" ng-class="{'active' : activeFlow.browserTab.name === 'operators'}" tooltip="Operator Nodes" tooltip-placement="top" >
               <i class="fa fa-plug fa-lg"></i>
           </button>
-        <button id="btn-configured-nodes" class="btn btn-default btn-sm" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : activeTab.name === 'nodes'}" tooltip="Configured Nodes" tooltip-placement="top" >
+        <button id="btn-configured-nodes" class="btn btn-default btn-sm" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : activeFlow.browserTab.name === 'nodes'}" tooltip="Configured Nodes" tooltip-placement="top" >
           <i class="fa fa-code-fork fa-lg"></i>
         </button>
-        <button class="btn btn-default btn-sm" ng-click="toggleActiveTab('unconfigurednodes')" ng-class="{'active' : activeTab.name === 'unconfigurednodes'}" tooltip="Available Nodes" tooltip-placement="top" >
+        <button class="btn btn-default btn-sm" ng-click="toggleActiveTab('unconfigurednodes')" ng-class="{'active' : activeFlow.browserTab.name === 'unconfigurednodes'}" tooltip="Available Nodes" tooltip-placement="top" >
           <i class="fa fa-plus-circle fa-lg"></i>
         </button>
-        <button class="btn btn-default btn-sm" ng-click="toggleActiveTab('debug')" ng-class="{'active' : activeTab.name === 'debug'}" tooltip="Debug" tooltip-placement="top">
+        <button class="btn btn-default btn-sm" ng-click="toggleActiveTab('debug')" ng-class="{'active' : activeFlow.browserTab.name === 'debug'}" tooltip="Debug" tooltip-placement="top">
           <i class="fa fa-bug fa-lg"></i>
         </button>
       </div>
@@ -27,6 +27,6 @@
   </div>
 
   <div class="drawer" ng-class="{maximized: activeFlow.browserMaximized}">
-      <div class="full-height" ng-include="activeTab.template"></div>
+      <div class="full-height" ng-include="activeFlow.browserTab.template"></div>
   </div>
 </div>

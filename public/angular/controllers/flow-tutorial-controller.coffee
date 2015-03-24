@@ -11,7 +11,6 @@ class FlowTutorialController
   onFlowChanged: (flow) =>
     return unless flow?
 
-    flow = _.cloneDeep @scope.activeFlow
     flow.tutorial = @tutorial
 
     flowTutorial = new @FlowTutorial flow
