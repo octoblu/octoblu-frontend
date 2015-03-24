@@ -8,6 +8,33 @@
     </div>
   </h2>
 </md-toolbar>
+
+<div flex layout-fill layout="row" layout-align="center">
+  <div flex-gt-md="50" flex-md="95" layout-fill layout="row" >
+
+    <md-list flex class="resource__list">
+      <md-item ng-repeat="resource in resources">
+        <md-item-content class="resource">
+          <div class="md-tile-content">
+            <h3 class="resource__title">
+              <a href="{{resource.link}}" target="_blank">
+                {{resource.title}}
+              </a>
+            </h3>
+
+            <p class="resource__summary" ng-show="{{resource.summary}}">
+              {{resource.summary}}
+            </p>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+
+  </div>
+</div>
+
+<!--
 <div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
   <div flex-gt-md="66" flex-md="95" layout-fill layout="row" class="md-whiteframe-z2" style="background: white;">
 
@@ -18,7 +45,7 @@
         md-gutter="8px" md-gutter-gt-sm="4px" >
 
         <div ng-repeat="resource in resources">
-          <a href="{{resource.link}}" target="_blank">
+          <a href="{{resource.link}}" target="_blank" class="resource__link">
             <md-grid-tile md-rowspan="2"
                           md-colspan="2"
                           class="resource-{{resource.type}}"
@@ -32,3 +59,4 @@
     </md-content>
   </div>
 </div>
+-->

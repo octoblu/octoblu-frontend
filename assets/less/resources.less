@@ -1,17 +1,39 @@
-.ob-resource-icon {
+.resource__icon {
   width: auto;
   margin-right: 8px;
-  color : white;
 }
 
-.resource__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.resource__list {
+  overflow-y: scroll;
 }
+
+.resource {
+  .resource__title {
+    font-size: 1.5em;
+  }
+
+  .resource__summary {
+    font-size: 1.1em;
+    // margin-bottom: 10px;
+  }
+
+  .resource__link {
+    border: 1px solid;
+    border-radius:2px;
+
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 8px;
+
+    text-decoration: none;
+  }
+}
+
 
 .resource-item-footer {
   background: rgba(55, 55, 55, 0.8);
+
+  .resource__link:hover & {
+    background: rgba(55, 55, 55, 0.95);
+  }
 }
