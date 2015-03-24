@@ -23,11 +23,11 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       return 'open_operation_browser_for_trigger' unless @operationNodeBrowserOpened() || @triggerNodeAdded()
       return 'add_trigger_node' unless @triggerNodeAdded()
       return 'link_trigger_to_weather' unless @triggerLinkedToWeather()
+      return 'deploy_flow' unless @flowDeployed()
+      return 'end_tutorial'
       # return 'step8' unless @flow.deployed
       # return 'step9' unless @flow.triggered
       # return 'step10'
-
-      return 'end_tutorial'
 
     configuredNodeBrowserOpened: =>
       @flow.browserMaximized && @flow.browserTab?.name == 'nodes'
@@ -76,6 +76,9 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       triggerNode = _.find @flow.nodes, { type: 'operation:trigger' }
       weatherNode = _.find @flow.nodes, { type: 'channel:weather' }
       _.any @flow.links, { from: triggerNode?.id, to: weatherNode?.id }
+
+    flowDeployed: =>
+      @flow.deployed
 
 
     updateStep: () =>

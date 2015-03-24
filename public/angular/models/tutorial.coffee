@@ -96,7 +96,6 @@ FLOW_TUTORIAL_1 = {
         on: 'right'
     }
   ]
-
   'link_weather_to_email': [
     {
       text: "The user pointed at the small gray square on the right side of the weather node. Holding his mouse button down, he conjoured a magical snake that he, uh, connected to the email node"
@@ -108,7 +107,6 @@ FLOW_TUTORIAL_1 = {
         on: 'top'
     }
   ]
-
   'open_operation_browser_for_trigger' : [
     {
       text: "The user, curious about other buttons, clicked the 'operation nodes' button"
@@ -123,7 +121,6 @@ FLOW_TUTORIAL_1 = {
       buttons: false
     }
   ]
-
   'add_trigger_node': [
     {
       text: "Clicking randomly, the user added a trigger node"
@@ -133,7 +130,6 @@ FLOW_TUTORIAL_1 = {
         on: 'top'
     }
   ]
-
   'link_trigger_to_weather': [
     {
       text: '"Hocus pocus!"" Chanted the user slowly and rhythmically. As if in a trance, the user summoned another snake from the output port on the trigger and attached it to the weather node'
@@ -145,11 +141,26 @@ FLOW_TUTORIAL_1 = {
         on: 'top'
     }
   ]
-
+  'deploy_flow': [
+    {
+      text: "Then the user deployed the flow and lived happily ever after"
+      buttons: false
+      tetherOptions:
+        offset: '-20px 10px'
+      attachTo:
+        element: 'button.start-button'
+        on: 'left'
+    }
+  ]
   'end_tutorial': [
     {
-      text: "And the user lived happily ever after"
+      text: "Ashamed with their actions, the user deleted all trace of their wrongdoings"
       buttons: false
+      tetherOptions:
+        offset: '-20px 10px'
+      attachTo:
+        element: '[data-action="delete-flow"]'
+        on: 'left'
     }
   ]
 }

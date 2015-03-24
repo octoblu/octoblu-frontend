@@ -12,6 +12,7 @@ class FlowTutorialDirective
 
   start: (steps) =>
     @tour?.cancel()
+    @currentStep = null
     @steps = _.cloneDeep steps
     @nextStep()
 

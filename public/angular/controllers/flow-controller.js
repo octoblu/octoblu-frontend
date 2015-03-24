@@ -34,6 +34,7 @@ angular.module('octobluApp')
   };
 
   var setDeviceStatus = function(status) {
+    $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.deploying = false;
     $scope.stopping = false;
