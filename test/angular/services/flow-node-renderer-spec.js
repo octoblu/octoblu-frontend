@@ -1,5 +1,5 @@
 describe('FlowNodeRenderer', function () {
-  var sut, renderScope, FlowNodeDimensions;
+  var sut, renderScope, FlowNodeDimensions, skynetService;
 
   var nodeType = {
     width: 80,

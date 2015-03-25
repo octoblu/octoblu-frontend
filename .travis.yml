@@ -72,8 +72,3 @@ deploy:
   app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
   on:
     branch: staging
-branches:
-  only:
-  - master
-  - staging
-  - develop

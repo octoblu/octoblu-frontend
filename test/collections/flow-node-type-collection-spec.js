@@ -84,7 +84,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this', function(){
       var flowNodeType = {
         "name": "lockitino",
-        "class": "lockitino",
+        "class": "channel",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -111,7 +111,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this and like that', function(){
       var flowNodeType = {
         "name": "mockitama",
-        "class": "mockitama",
+        "class": "channel",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -138,7 +138,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should merge some stuff into this', function(){
       var flowNodeType = {
         "name": "margarita",
-        "class": "margarita",
+        "class": "channel",
         "category": "channel",
         "uuid": "lksdflksdfj",
         "defaults": {
