@@ -39,7 +39,7 @@ FLOW_TUTORIAL_1 = {
 
   'configure_weather_node': [
     {
-      text: "The user, curious about this mysterious new-added node, decided to inscribe the name of a city into the enticing field labeled.....city"
+      text: "The user, curious about this mysterious new-added node, decided to inscribe the name of a city into the enticing field labeled...city"
       buttons: false
       attachTo:
         element: '[data-name="city"]'

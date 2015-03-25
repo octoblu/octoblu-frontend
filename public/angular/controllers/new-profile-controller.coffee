@@ -1,9 +1,10 @@
 class NewProfileController
-  constructor: ($cookies, $state, FlowService, ProfileService, FLOW_TUTORIAL_1) ->
+  constructor: ($cookies, $state, FlowService, ProfileService, userService, FLOW_TUTORIAL_1) ->
     @cookies        = $cookies
     @state          = $state
     @FlowService    = FlowService
     @ProfileService = ProfileService
+    @userService    = userService    
     @tutorial       = FLOW_TUTORIAL_1
 
   submit: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
@@ -31,7 +32,8 @@ class NewProfileController
       
     @FlowService.createFlow flowAttributes 
       .then (flow) =>
-        # userService.activateNoAuthChannel @cookies.meshblu_auth_uuid,  
+        @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:weather', =>
+        @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:email', =>
         return flow
 
   emailRequiredError: =>

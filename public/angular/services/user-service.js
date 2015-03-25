@@ -82,6 +82,17 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
   });
 };
 
+this.activateNoAuthChannelByType = function(user, channeltype, callback) {
+  $http.put('/api/user/' + user + '/activate/' + channeltype + '/type')
+  .success(function(data) {
+    callback(data);
+  })
+  .error(function(data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
+};
+
 this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
   $http.post('/api/auth/aws/channel/' + channelid, { username: username, password: password })

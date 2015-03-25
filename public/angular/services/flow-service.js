@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService, userService) {
+.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
   'use strict';
   var self, activeFlow;
   self = this;

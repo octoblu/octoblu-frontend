@@ -61,6 +61,19 @@ module.exports = function (app) {
     app.put('/api/user/:id/activate/:channelid', getUserActivation);
     app.put('/api/user/activate/:channnelid', getUserActivation);
 
+    var updateChannelByType = function (request, response) {
+        var user = request.user, type = request.params.channeltype;
+        User.overwriteOrAddApiByChannelType(user, type, {authtype: 'none' });
+        User.update({_id: user._id}, user).then(function(){
+            response.json(user);
+        }).catch(function(error){
+            console.error(error);
+            response.send(422, error);
+        });
+    };
+
+    app.put('/api/user/:id/activate/:channeltype/type', updateChannelByType);
+
     var deleteUserChannel = function (req, res) {
         User.removeApiByChannelId(req.user, req.params.channelid).then(function(){
             res.send(204);
