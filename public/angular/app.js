@@ -470,7 +470,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
-
+      .state('material.oauth', {
+        url: '/oauth',
+        templateUrl : '/pages/oauth.html',
+        controller: 'OAuthProviderController'
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',
