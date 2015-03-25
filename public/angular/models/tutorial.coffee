@@ -154,7 +154,8 @@ FLOW_TUTORIAL_1 = {
   ]
   'end_tutorial': [
     {
-      text: "Ashamed with their actions, the user deleted all trace of their wrongdoings"
+      endTutorial: true
+      text: "You have completed your magical journey. Live long and prosper."
       buttons: false
       tetherOptions:
         offset: '-20px 10px'

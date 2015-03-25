@@ -4,7 +4,19 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
 
     getNextChapter: =>
       stepName = @getStepName()
-      @flow.tutorial[stepName]
+      steps = @flow.tutorial[stepName]
+      if stepName == 'end_tutorial' 
+        steps = @addEndFlowButton steps
+      steps
+
+    addEndFlowButton: (steps) =>
+      step = _.last(steps)
+      step.buttons = [
+        text: 'End Tutorial'
+        action: =>
+          delete @flow.tutorial
+      ]
+      steps
 
     getStepName: =>
       weatherTriggerLink = _.find @flow.links, { from: triggerNode?.id, to: weatherNode?.id }
@@ -12,7 +24,7 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       return 'open_node_browser_for_weather' unless @configuredNodeBrowserOpened() || @weatherNodeAdded()
       return 'add_weather_node' unless @weatherNodeAdded()
       return 'select_weather_node' unless @weatherNodeSelected() || @weatherNodeConfigured()
-      return 'configure_weather_node' unless @weatherNodeConfigured()
+      return 'configure_weather_node' unless @weatherNodeConfigured() && !@weatherNodeSelected()
       return 'open_node_browser_for_email' unless @configuredNodeBrowserOpened() || @emailNodeAdded()
       return 'add_email_node' unless @emailNodeAdded()
       return 'select_email_node' unless @emailNodeSelected() || @emailNodeConfigured()
@@ -24,9 +36,6 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       return 'link_trigger_to_weather' unless @triggerLinkedToWeather()
       return 'deploy_flow' unless @flowDeployed()
       return 'end_tutorial'
-      # return 'step8' unless @flow.deployed
-      # return 'step9' unless @flow.triggered
-      # return 'step10'
 
     configuredNodeBrowserOpened: =>
       @flow.browserMaximized && @flow.browserTab?.name == 'nodes'

@@ -94,7 +94,7 @@ angular.module('octobluApp')
       });
 
       if (_.isEmpty(flowData)) {
-        return self.createDemoFlow().then(function(flow){
+        return self.createFlow().then(function(flow){
           return self.processFlows([flow]);
         });
       }

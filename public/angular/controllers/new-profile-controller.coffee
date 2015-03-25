@@ -1,8 +1,8 @@
 class NewProfileController
 
-  constructor: (ProfileService) ->
+  constructor: (ProfileService, $state) ->
     @ProfileService = ProfileService
-
+    @state          = $state
 
   submit: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
     @newProfileForm.firstName.$setTouched()
@@ -16,6 +16,8 @@ class NewProfileController
 
     @ProfileService
       .update firstName, lastName, email, optInEmail
+      .then () =>
+        @state.go 'material.home'
       .catch (error) =>
         @loading = false
 

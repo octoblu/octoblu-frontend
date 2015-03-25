@@ -6,12 +6,17 @@ class FlowTutorialController
     @FlowTutorial = FlowTutorial
 
     @tutorial = $injector.get $stateParams.tutorial
+
     @scope.$watch 'activeFlow', @onFlowChanged, true
 
-  onFlowChanged: (flow) =>
+  onFlowChanged: (flow, oldFlow) =>
     return unless flow?
 
-    flow.tutorial = @tutorial
+    flow.tutorial = @tutorial unless oldFlow? 
+
+    unless flow.tutorial?
+      delete @scope.steps
+      return
 
     flowTutorial = new @FlowTutorial flow
 
