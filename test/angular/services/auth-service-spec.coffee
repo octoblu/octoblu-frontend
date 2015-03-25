@@ -6,8 +6,8 @@ describe 'AuthService', =>
       $provide.value '$intercomProvider', {}
       return
 
-    inject (_$httpBackend_, AuthService) =>
-      @httpBackend = _$httpBackend_
+    inject ($httpBackend, AuthService) =>
+      @httpBackend = $httpBackend
 
       @sut = AuthService
 

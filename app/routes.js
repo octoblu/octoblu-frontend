@@ -209,8 +209,8 @@ module.exports = function(app, passport) {
     var WinkController = require('./controllers/wink-controller');
     var winkController = new WinkController();
 
-    var WitAIController = require('./controllers/wit-ai-controller');
-    var witAIController = new WitAIController();
+    var WitaiController = require('./controllers/witai-controller');
+    var witaiController = new WitaiController();
 
     var WithingsController = require('./controllers/withings-controller');
     var withingsController = new WithingsController();
@@ -425,7 +425,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
             app.get('/api/oauth/withings',          withingsController.authorize);
-            app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
+            app.get('/api/oauth/withings/callback', withingsController.callback, withingsController.redirectToDesigner);
 
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
@@ -444,7 +444,7 @@ module.exports = function(app, passport) {
             app.get('/api/travis-ci/auth', travisCIController.authorize, travisCIController.redirectToDesigner);
             app.get('/api/travis-ci-pro/auth', travisCIProController.authorize, travisCIProController.redirectToDesigner);
             app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
-            app.get('/api/wit-ai/auth', witAIController.authorize, witAIController.redirectToDesigner);
+            app.post('/api/witai/auth', witaiController.authorize, witaiController.redirectToDesigner);
             
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);

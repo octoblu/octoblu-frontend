@@ -270,10 +270,10 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
       })
-      .state('material.nodewizard.addchannel.wit-ai', {
-        url: '/wit-ai',
-        controller: 'addChannelWitAIController',
-        templateUrl: '/pages/node-wizard/add-channel/wit-ai.html'
+      .state('material.nodewizard.addchannel.witai', {
+        url: '/witai',
+        controller: 'addChannelWitaiController',
+        templateUrl: '/pages/node-wizard/add-channel/witai.html'
       })
       .state('material.nodewizard.addchannel.docusign', {
         url: '/docusign',
@@ -419,6 +419,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         templateUrl: '/pages/profile/new.html'
       })
+      .state('material.resources', {
+        url: '/resources',
+        controller: 'ResourcesController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/resources.html'
+      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
@@ -455,7 +461,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
-
+      .state('material.oauth', {
+        url: '/oauth',
+        templateUrl : '/pages/oauth.html',
+        controller: 'OAuthProviderController'
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',

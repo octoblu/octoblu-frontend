@@ -1,28 +1,14 @@
 {
   "_id": "550b45b44ccc66a2b642ec15",
   "__v": 0,
-  "type": "channel:wit.ai",
-  "auth_strategy": "wit-ai",
+  "type": "channel:witai",
+  "auth_strategy": "witai",
+  "oauth": {
+    "tokenMethod": "access_token_bearer"
+  },
   "documentation": "https://wit.ai/docs/http",
   "name": "Wit.ai",
-  "enabled": false,
-  "oauth": {
-    "development": {
-      "tokenMethod": "auth_token"
-    },
-    "production": {
-      "tokenMethod": "auth_token"
-    },
-    "staging": {
-      "tokenMethod": "auth_token"
-    }
-  },
-  "overrides": {
-    "headerParams": {
-      "Accept": "application/vnd.wit.20141022+json",
-      "Content-Type": "application/json"
-    }
-  },
+  "enabled": true,
   "application": {
     "base": "https://api.wit.ai",
     "resources": [
