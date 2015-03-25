@@ -6,6 +6,7 @@ angular.module('octobluApp')
     TWITTER: 'https://twitter-oauth-staging.octoblu.com/login'
     GITHUB: 'https://github-oauth-staging.octoblu.com/login'
   }
+  .constant 'OAUTH_PROVIDER', 'https://oauth-staging.octoblu.com'
   .constant 'MESHBLU_HOST', 'wss://meshblu-staging.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
   .constant 'PROFILE_URI', '#'

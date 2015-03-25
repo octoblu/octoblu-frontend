@@ -1,6 +1,9 @@
 describe 'OAuthProviderController', ->
   beforeEach ->
-    module 'octobluApp'
+    module 'octobluApp', ($provide) =>
+      $provide.value '$window', {}
+      $provide.value 'OAUTH_PROVIDER', 'https://smurfs.bikes'
+      return
 
     inject ($controller, $rootScope, $q) =>
       @rootScope = $rootScope
@@ -48,18 +51,44 @@ describe 'OAuthProviderController', ->
         expect(@scope.oauthDevice).to.deep.equal {uuid: 'skittles', name: 'rainbow'}
 
   describe '->authorize', ->
-    beforeEach ->
-      @ProfileService = generateSessionToken: sinon.spy()
-      @sut = @controller 'OAuthProviderController',
-        MeshbluDeviceService: get: => @q.when()
-        ProfileService: @ProfileService
-        $scope: @scope
+    describe 'when called with session-token', ->
+      beforeEach ->
+        @ProfileService = generateSessionToken: sinon.stub().returns @q.when(token: 'session-token', uuid: 'junior-mints')
+        @window = location: null
 
-      @sut.authorize()
+        @sut = @controller 'OAuthProviderController',
+          MeshbluDeviceService: get: => @q.when()
+          ProfileService: @ProfileService
+          $stateParams: {uuid: 'snickers'}
+          $scope: @scope
+          $window: @window
 
-    it 'should call ProfileService.generateSessionToken', ->
-      expect(@ProfileService.generateSessionToken).to.have.been.called
+        @sut.authorize()
+        @rootScope.$digest()
 
+      it 'should call ProfileService.generateSessionToken', ->
+        expect(@ProfileService.generateSessionToken).to.have.been.called
 
+      it 'should redirect the user', ->
+        expect(@window.location).to.equal 'https://smurfs.bikes/snickers?token=session-token&uuid=junior-mints'
 
+    describe 'when called with token-session', ->
+      beforeEach ->
+        @ProfileService = generateSessionToken: sinon.stub().returns @q.when(token: 'token-session', uuid: 'mnms')
+        @window = location: null
 
+        @sut = @controller 'OAuthProviderController',
+          MeshbluDeviceService: get: => @q.when()
+          ProfileService: @ProfileService
+          $scope: @scope
+          $stateParams: {uuid: 'mars'}
+          $window: @window
+
+        @sut.authorize()
+        @rootScope.$digest()
+
+      it 'should call ProfileService.generateSessionToken', ->
+        expect(@ProfileService.generateSessionToken).to.have.been.called
+
+      it 'should redirect the user', ->
+        expect(@window.location).to.equal 'https://smurfs.bikes/mars?token=token-session&uuid=mnms'
