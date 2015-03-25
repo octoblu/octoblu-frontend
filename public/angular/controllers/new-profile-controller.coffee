@@ -1,8 +1,10 @@
 class NewProfileController
-
-  constructor: (ProfileService, $state) ->
-    @ProfileService = ProfileService
+  constructor: ($cookies, $state, FlowService, ProfileService, FLOW_TUTORIAL_1) ->
+    @cookies        = $cookies
     @state          = $state
+    @FlowService    = FlowService
+    @ProfileService = ProfileService
+    @tutorial       = FLOW_TUTORIAL_1
 
   submit: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
     @newProfileForm.firstName.$setTouched()
@@ -12,14 +14,25 @@ class NewProfileController
     return unless @newProfileForm.$valid
 
     @loading = true
-    # console.log "Response:", @ProfileService.create firstName, lastName, email, optInEmail, agreeTermsOfService
 
     @ProfileService
       .update firstName, lastName, email, optInEmail
       .then () =>
-        @state.go 'material.home'
+        @createTutorialFlow()
+          .then (flow) =>
+            @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
         @loading = false
+
+  createTutorialFlow: =>
+    flowAttributes = 
+      tutorial: @tutorial
+      name: 'Tutorial Flow'
+      
+    @FlowService.createFlow flowAttributes 
+      .then (flow) =>
+        # userService.activateNoAuthChannel @cookies.meshblu_auth_uuid,  
+        return flow
 
   emailRequiredError: =>
     return true if @newProfileForm.email.$error.required && @newProfileForm.email.$touched

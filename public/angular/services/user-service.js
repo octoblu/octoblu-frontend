@@ -80,7 +80,6 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
     console.log('Error: ' + data);
     callback({});
   });
-
 };
 
 this.saveAWSApi = function (uuid, channelid, username, password, callback) {

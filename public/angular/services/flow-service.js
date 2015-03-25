@@ -1,12 +1,12 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
+.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService, userService) {
   'use strict';
   var self, activeFlow;
   self = this;
   var previousHashableFlow;
 
   self.hashFlow = function(flow) {
-    var hashableFlow = _.pick(flow, ['links', 'nodes', 'name']);
+    var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'tutorial']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
   };
 
@@ -113,8 +113,8 @@ angular.module('octobluApp')
     });
   };
 
-  self.createFlow = function(options) {
-    return $http.post('/api/flows').then(function(response) {
+  self.createFlow = function(flowAttributes) {
+    return $http.post('/api/flows', flowAttributes).then(function(response) {
       return new FlowModel(response.data);
     });
   };
