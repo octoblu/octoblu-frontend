@@ -5,8 +5,11 @@ class OAuthProviderController
     @oauthUUID = $stateParams.uuid
     @OAUTH_PROVIDER = OAUTH_PROVIDER
 
+    $scope.loading = true
     MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) =>
       $scope.oauthDevice = oauthDevice
+    .finally =>
+      $scope.loading = false
 
     $scope.authorize = @authorize
 
