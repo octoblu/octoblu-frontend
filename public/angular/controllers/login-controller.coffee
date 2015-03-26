@@ -3,8 +3,12 @@ class LoginController
     protocol = $location.protocol()
     host     = $location.host()
     port     = $location.port()
-    
-    loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session"
+
+    callbackUrl = $location.search().callbackUrl
+    callbackParams = ''
+    callbackParams = $.param callbackUrl: callbackUrl if callbackUrl?
+
+    loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session?#{callbackParams}"
 
     @emailPasswordLoginUri = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '?' + loginParams
     @facebookLoginUri      = AUTHENTICATOR_URIS.FACEBOOK + '?' + loginParams
