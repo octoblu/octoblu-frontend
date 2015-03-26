@@ -2,6 +2,7 @@
   "_id": "54ee3d6706c9d60d1f52a6fa",
   "category": "channel",
   "description": "",
+  "helpText": "The industry’s leading service delivery platform with the most comprehensive set of application security, acceleration and load balancing (including GSLB) capabilities across the broadest range of platforms.",
   "enabled": true,
   "name": "Netscaler",
   "skynet": {

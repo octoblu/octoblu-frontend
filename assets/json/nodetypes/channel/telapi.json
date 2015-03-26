@@ -2,6 +2,7 @@
   "_id": "545570f1a4c4a0f2edbee150",
   "category": "channel",
   "description": "",
+  "helpText": "A platform that you can build on to create voice and SMS applications - whether on a mobile device, computer or integrated into traditional phone.",
   "enabled": true,
   "name": "TelAPI",
   "skynet": {

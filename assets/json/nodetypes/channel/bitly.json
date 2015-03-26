@@ -2,6 +2,7 @@
   "_id": "53c9b83df400e177dca325d0",
   "category": "channel",
   "description": null,
+  "helpText": "A URL shortening service.",
   "enabled": true,
   "name": "Bitly",
   "skynet": {

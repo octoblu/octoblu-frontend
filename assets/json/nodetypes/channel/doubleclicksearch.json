@@ -2,6 +2,7 @@
   "_id": "22ede53a-7e5d-42d5-84ac-fd5debe042f9",
   "category": "channel",
   "description": "Double Click Search",
+  "helpText": "A centralized Web-based tool for creating, managing, and tracking campaigns across multiple search engines.",
   "enabled": true,
   "name": "Double Click Search",
   "skynet": {

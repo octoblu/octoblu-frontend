@@ -2,6 +2,7 @@
   "_id": "54a449d8620f5ebb13dbc4f0",
   "category": "channel",
   "description": "Right Signature",
+  "helpText": "The easiest, fastest way to get documents filled out and signed online.",
   "enabled": true,
   "name": "Right Signature",
   "skynet": {

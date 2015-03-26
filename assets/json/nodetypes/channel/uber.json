@@ -2,6 +2,7 @@
   "_id": "54ad7b9552be5d4347422fef",
   "category": "channel",
   "description": "Uber",
+  "helpText": "Get a taxi, private car or rideshare from your mobile phone. Uber connects you with a driver in minutes.",
   "enabled": true,
   "name": "Uber",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "66e026d2-06de-465d-bf91-95093899ea06",
   "category": "channel",
   "description": "Adsense Management",
+  "helpText": "Intended for individual developers who want to get reports on AdSense earnings and manage AdSense inventory.",
   "enabled": false,
   "name": "Adsense Management",
   "skynet": {

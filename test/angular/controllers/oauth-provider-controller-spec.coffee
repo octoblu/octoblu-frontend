@@ -12,6 +12,21 @@ describe 'OAuthProviderController', ->
       @controller = $controller
 
   describe '->constructor', ->
+    describe 'when MeshbluDeviceService never resolves', ->
+      beforeEach ->
+        deferred = @q.defer()
+        @MeshbluDeviceService = get: sinon.stub().returns deferred.promise
+        @stateParams = uuid: 'lemon'
+
+        @sut = @controller 'OAuthProviderController',
+          MeshbluDeviceService: @MeshbluDeviceService
+          ProfileService: {}
+          $stateParams : @stateParams
+          $scope : @scope
+
+      it 'should indicate that it is loading', ->
+        expect(@scope.loading).to.be.true
+
     describe 'when called with a uuid of something', ->
       beforeEach ->
         @MeshbluDeviceService = get: sinon.stub().returns @q.when({uuid: 'lemon', name: 'heads'})
@@ -30,6 +45,9 @@ describe 'OAuthProviderController', ->
 
       it 'should set $scope.oauthDevice', ->
         expect(@scope.oauthDevice).to.deep.equal {uuid: 'lemon', name: 'heads'}
+
+      it 'should set loading to false', ->
+        expect(@scope.loading).to.be.false
 
     describe 'when called with a uuid of skittles', ->
       beforeEach ->

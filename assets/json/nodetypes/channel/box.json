@@ -2,6 +2,7 @@
   "_id": "53c9b83af400e177dca325ca",
   "category": "channel",
   "description": "",
+  "helpText": "Transforms the way you share, manage and collaborate on your most valuable corporate information.",
   "enabled": true,
   "name": "Box",
   "skynet": {

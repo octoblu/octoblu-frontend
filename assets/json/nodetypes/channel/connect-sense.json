@@ -2,6 +2,7 @@
   "_id": "cb876fdf-544d-4025-9245-bcc7f88748b2",
   "category": "channel",
   "description": "Connect Sense",
+  "helpText": "These WiFi-based, battery-powered sensors will help you watch over your business, home, and other important locations.",
   "enabled": true,
   "name": "Connect Sense",
   "skynet": {

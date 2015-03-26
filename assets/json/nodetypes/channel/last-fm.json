@@ -2,6 +2,7 @@
   "_id": "53c9b83cf400e177dca325cf",
   "category": "channel",
   "description": "",
+  "helpText": "A music discovery service that gives you personalized recommendations based on the music you listen to.",
   "enabled": false,
   "name": "LastFM",
   "skynet": {

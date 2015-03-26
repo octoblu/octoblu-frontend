@@ -2,6 +2,7 @@
   "_id": "af842668-5197-4181-8052-2ec30cf135f8",
   "category": "channel",
   "description": "Salesforce / Force.com",
+  "helpText": "Lets you integrate with Force.com applications using simple HTTP methods, in either XML or JSON formats, making this an ideal API for developing mobile applications or external clients.",
   "enabled": true,
   "name": "SalesForce",
   "skynet": {

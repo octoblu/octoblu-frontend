@@ -2,6 +2,7 @@
   "_id": "53c9b839f400e177dca325c7",
   "category": "channel",
   "description": "",
+  "helpText": "An online social networking service that enables users to send and read short 140-character messages called \"tweets\".",
   "enabled": true,
   "name": "Twitter",
   "skynet": {
