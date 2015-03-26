@@ -26,6 +26,7 @@ class NewProfileController
         @loading = false
 
   createTutorialFlow: =>
+    emailID = '542ce2ad47a930b1280b0d05'
     flowAttributes = 
       tutorial: @tutorial
       name: 'Tutorial Flow'
@@ -33,7 +34,7 @@ class NewProfileController
     @FlowService.createFlow flowAttributes 
       .then (flow) =>
         @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:weather', =>
-        @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:email', =>
+        @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, =>
         return flow
 
   emailRequiredError: =>

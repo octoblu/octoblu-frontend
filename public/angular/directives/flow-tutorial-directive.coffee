@@ -11,6 +11,9 @@ class FlowTutorialDirective
   link: =>
     @scope.$watch 'steps', @start
 
+  cleanup: =>
+    @tour?.cancel()
+
   start: (steps) =>
     @tour?.cancel()
     @currentStep = null
@@ -28,7 +31,7 @@ class FlowTutorialDirective
     return unless @domReady()
 
     @tour?.cancel()
-    @tour = new Shepherd.Tour defaults: classes: 'shepherd-theme-dark'
+    @tour = new Shepherd.Tour defaults: classes: 'shepherd-theme-dark flow-tutorial-shepherd'
     @tour.addStep @currentStep.id, _.cloneDeep(@currentStep)
     @tour.on 'complete', @nextStep
     @tour.show()
@@ -54,4 +57,7 @@ angular.module('octobluApp')
   link: (scope, element, attributes) =>
     directive = new FlowTutorialDirective scope, element, attributes
     directive.link()
+
+    scope.$on '$destroy', ->
+      directive.cleanup()
 

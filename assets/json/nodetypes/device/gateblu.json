@@ -2,6 +2,7 @@
   "_id": "53c9b831f400e177dca325b0",
   "category": "device",
   "description": "Meshblu device connection manager",
+  "helpText": "Meshblu device connection manager.",
   "enabled": true,
   "name": "Gateblu",
   "skynet": {

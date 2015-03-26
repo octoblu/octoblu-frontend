@@ -2,6 +2,7 @@
   "_id": "54dd3279aceb919c37b07d37",
   "category": "microblu",
   "description": "Johnny Five",
+  "helpText": "JavaScript Robotics and IoT programming framework, developed at Bocoup. Based on Arduino Firmata Protocol.",
   "enabled": true,
   "name": "Johnny-Five",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "90d49e5d-abb8-4f98-8525-7129ca9f1356",
   "category": "channel",
   "description": "",
+  "helpText": "Work can happen any time, anywhere. GoToMeeting with HD video conferencing is a simple yet powerful way to collaborate in real time.",
   "enabled": true,
   "name": "GoToMeeting",
   "skynet": {

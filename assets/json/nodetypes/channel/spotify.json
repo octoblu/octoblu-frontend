@@ -2,6 +2,7 @@
   "_id": "53c9b833f400e177dca325b4",
   "category": "channel",
   "description": "",
+  "helpText": "A digital music service that gives you access to millions of songs.",
   "enabled": true,
   "name": "Spotify",
   "skynet": {

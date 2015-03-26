@@ -2,6 +2,7 @@
   "_id": "device-serial",
   "category": "device",
   "description": "Serial access",
+  "helpText": "Lets you read and write to a serial port on a Gateblu.",
   "enabled": true,
   "name": "serial",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "53c9b830f400e177dca325ad",
   "category": "device",
   "description": "Tessel device",
+  "helpText": "Remote-io plugin to control tessel devices.",
   "enabled": true,
   "name": "Tessel",
   "payloadOnly": true,

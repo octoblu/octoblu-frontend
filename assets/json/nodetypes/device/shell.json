@@ -2,6 +2,7 @@
   "_id": "a83f4dba8d7e2c20549aba48",
   "category": "device",
   "description": "Shell",
+  "helpText": "Gateblu plugin for interfacing with command line.",
   "enabled": true,
   "name": "Shell",
   "skynet": {

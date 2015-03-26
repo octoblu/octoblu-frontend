@@ -2,6 +2,7 @@
   "_id": "576ac129-0ddd-4f56-95e9-ed983ce5012a",
   "category": "channel",
   "description": "Expensify",
+  "helpText": "Import expenses directly from a credit card to create free expense reports quickly.",
   "enabled": false,
   "name": "Expensify",
   "skynet": {

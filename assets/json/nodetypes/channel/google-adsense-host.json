@@ -2,6 +2,7 @@
   "_id": "b7b1b539-6f5b-4f0d-bb5f-533ada0d1196",
   "category": "channel",
   "description": "Adsense Host",
+  "helpText": "Ideal for developers whose users create their own content through blogging, web publishing, forum/wiki/community creation, or any other application where substantial web content is generated.",
   "enabled": false,
   "name": "Adsense Host",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "54a1e61b43b8428f65cb7c01",
   "category": "channel",
   "description": "Withings",
+  "helpText": "Access data from a variety of health monitoring hardware.",
   "enabled": true,
   "name": "Withings",
   "skynet": {
