@@ -73,6 +73,7 @@
     "passport-nest": "~1.0.0",
     "passport-oauth": "~1.0.0",
     "passport-oauth2": "~1.1.2",
+    "passport-octoblu": "^1.0.0",
     "passport-paypal": "^0.3.0",
     "passport-podio": "0.0.3",
     "passport-rdio": "^0.1.2",

@@ -83,6 +83,7 @@ passport.use(require('./config/jawbone'));
 passport.use(require('./config/linked-in'));
 passport.use(require('./config/local'));
 passport.use(require('./config/nest'));
+passport.use(require('./config/octoblu'));
 passport.use(require('./config/paypal'));
 passport.use(require('./config/podio'));
 passport.use(require('./config/quickbooks'));

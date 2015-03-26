@@ -134,6 +134,9 @@ module.exports = function(app, passport) {
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
 
+    var OctobluController = require('./controllers/octoblu-controller');
+    var octobluController = new OctobluController();
+
     var PaypalController = require('./controllers/paypal-controller');
     var paypalController = new PaypalController();
 
@@ -367,6 +370,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
 
+            app.get('/api/oauth/octoblu',          octobluController.authorize);
+            app.get('/api/oauth/octoblu/callback', octobluController.callback, octobluController.redirectToDesigner);
+
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
 
@@ -440,12 +446,16 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
+
             app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
+
             app.get('/api/travis-ci/auth', travisCIController.authorize, travisCIController.redirectToDesigner);
             app.get('/api/travis-ci-pro/auth', travisCIProController.authorize, travisCIProController.redirectToDesigner);
+
             app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
+
             app.post('/api/witai/auth', witaiController.authorize, witaiController.redirectToDesigner);
-            
+
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);
             app.delete('/api/templates/:id', templateController.delete);
