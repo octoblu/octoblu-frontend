@@ -35,6 +35,7 @@ angular.module('octobluApp')
     $scope.template = {};
 
     $scope.activeFlowEdit = false;
+    $scope.operatorViewType = 'thumbnail';
 
     $scope.toggleActiveTab = function(name) {
       if ($scope.activeFlow.browserMaximized && $scope.activeTab.name === name) {
@@ -82,6 +83,10 @@ angular.module('octobluApp')
       if (!$scope.hasActiveTab()) {
         $scope.setActiveTab('debug');
       }
+    };
+
+    $scope.switchOperatorViewType = function(viewType) {
+      $scope.operatorViewType = viewType;
     };
 
     $scope.setActiveEdit = function(){

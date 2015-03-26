@@ -1,8 +1,5 @@
 <h4 class="text-center text-muted">Operators</h4>
-<ul class="flow-browser-nodes">
-    <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes | filter: {category: 'operation'}" ng-click="addFlowNodeType(flowNodeType)">
-        <div class="node-thumbnail"
-             style="background-image: url({{flowNodeType.logo}});"></div>
-        <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
-    </li>
-</ul>
+
+<div ng-include="operatorViewType === 'thumbnail' ? '/pages/flow-node-operator-thumbnail-list.html' : null"></div>
+
+<div ng-include="operatorViewType === 'detail' ? '/pages/flow-node-operator-detail-list.html' : null"></div>
