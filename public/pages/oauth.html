@@ -5,13 +5,13 @@
       <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
     </div>
 
-    <h1 class="profile-header">Allow [[something]] access to your Octoblu account?</h1>
+    <h1 class="profile-header">Allow {{oauthDevice.name}} access to your Octoblu account?</h1>
     <br>
     <br>
-
     <div layout="row">
-      <md-button ng-disabled="controller.loading" class="md-primary md-raised" flex>
-        <h3>Authorize</h3></md-button>
+      <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised" flex>
+        <h3>Authorize</h3>
+      </md-button>
     </div>
   </div>
 </md-content>

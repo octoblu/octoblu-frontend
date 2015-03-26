@@ -5,8 +5,10 @@ class OAuthProviderController
     @oauthUUID = $stateParams.uuid
     @OAUTH_PROVIDER = OAUTH_PROVIDER
 
-    MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) ->
+    MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) =>
       $scope.oauthDevice = oauthDevice
+
+    $scope.authorize = @authorize
 
   authorize: =>
     @ProfileService.generateSessionToken().then (session) =>

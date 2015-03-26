@@ -23,6 +23,16 @@ class ProfileService
 
     deferred.promise
 
+  generateSessionToken: =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+      connection.generateAndStoreToken uuid: @cookies.meshblu_auth_uuid, token: @cookies.meshblu_auth_token, (data) =>
+        return deferred.reject(new Error('Unable to generate a token')) unless data?
+        deferred.resolve data
+
+    deferred.promise
+
 angular.module('octobluApp').service 'ProfileService', ProfileService
 
 
