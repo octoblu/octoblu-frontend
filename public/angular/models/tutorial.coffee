@@ -1,7 +1,7 @@
 FLOW_TUTORIAL_1 = {
   'open_node_browser_for_weather' : [
     {
-      text: "Welcome to the Octoblu designer. Let's begin by creating a flow."
+      text: "Welcome to the Octoblu designer."
     }
     {
       text: "Open the 'Configured Nodes' tab in the bottom drawer to see a list of activated nodes"
@@ -19,7 +19,7 @@ FLOW_TUTORIAL_1 = {
 
   'add_weather_node': [
     {
-      text: "Let's add a weather node to our flow. You can do this by clicking on the weather node."
+      text: "Add a weather node to your flow. You can do this by clicking on the weather node."
       buttons: false
       attachTo:
         element: '.flow-browser .flow-node-channel-weather'
@@ -39,7 +39,7 @@ FLOW_TUTORIAL_1 = {
 
   'configure_weather_node': [
     {
-      text: "Type the name of a city in the city field."
+      text: "Type the name of a city in the city field. Then click outside the node to proceed."
       buttons: false
       attachTo:
         element: '[data-name="city"]'
@@ -48,7 +48,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'open_node_browser_for_email': [
     {
-      text: "Wonderful! Now let's add an email node from your configured nodes."
+      text: "Wonderful! Now let's add another node from your configured nodes tray."
       attachTo:
         element: '#btn-configured-nodes'
         on: 'top'
@@ -80,7 +80,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'configure_email_node_to': [
     {
-      text: "Add an email in the 'to:' field"
+      text: "Add an email address in the 'to:' field"
       buttons: false
       attachTo:
         element: '[data-name="to"]'
@@ -155,7 +155,7 @@ FLOW_TUTORIAL_1 = {
   'end_tutorial': [
     {
       endTutorial: true
-      text: "Okay...great you did something simple. Congrats...I guess........"
+      text: "Click on the trigger to fire your flow and send an email with the weather!"
       buttons: false
     }
   ]

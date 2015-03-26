@@ -5,7 +5,7 @@ class FlowTutorialController
 
     @scope.$watch 'activeFlow', @onFlowChanged, true
 
-  onFlowChanged: (flow, oldFlow) =>
+  onFlowChanged: (flow) =>
     return unless flow?
 
     unless flow.tutorial?
