@@ -1,17 +1,29 @@
 <md-content layout="row" layout-align="center center">
-  <div class="oauth-provider-card" layout="column">
-    <div layout="row">
-      <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
-      <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
+  <div class="oauth-provider-loading-card" ng-show="loading">
+    <h1 class="profile-header"><i class="fa fa-5x fa-spin fa-refresh"></i></h1>
+  </div>
+
+  <div ng-hide="loading">
+    <div class="oauth-provider-loading-card" ng-hide="oauthDevice">
+      <h1 class="profile-header">
+        Unable to authorize the application.
+      </h1>
     </div>
 
-    <h1 class="profile-header">Allow {{oauthDevice.name}} access to your Octoblu account?</h1>
-    <br>
-    <br>
-    <div layout="row">
-      <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised" flex>
-        <h3>Authorize</h3>
-      </md-button>
+    <div class="oauth-provider-card" layout="column" ng-show="oauthDevice">
+      <div layout="row">
+        <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png" >
+        <img class="login-octoblu-logo" ng-src="{{oauthDevice.imageUrl}}">
+      </div>
+
+      <h1 class="profile-header">Allow {{oauthDevice.name}} access to your Octoblu account?</h1>
+      <br>
+      <br>
+      <div layout="row">
+        <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised" flex>
+          <h3>Authorize</h3>
+        </md-button>
+      </div>
     </div>
   </div>
 </md-content>

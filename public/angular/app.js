@@ -80,16 +80,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // change page event name
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-    $httpProvider.interceptors.push(function ($window) {
+    $httpProvider.interceptors.push(function ($window,$location) {
       return {
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login';
+              console.log('oh snap, redirecting to login');
+              return $window.location = '/login?callbackUrl=' + $location.url();
             }
           }
           if (response.status === 403) {
-            return $window.location = '/profile/new';
+            return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
           return response;
         }
@@ -332,7 +333,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('material.flow', {
-        url: '/design/:flowId/:tutorial?',
+        url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })

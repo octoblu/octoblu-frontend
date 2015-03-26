@@ -9,32 +9,6 @@
     "base": "http://weather.octoblu.com",
     "resources": [
       {
-        "url": "http://weather.octoblu.com/temperature/celsius",
-        "displayName": "Get Temperature In Celsius",
-        "path": "/temperature/celsius",
-        "httpMethod": "GET",
-        "params": [
-          {
-            "name": "city",
-            "displayName": "City",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "state",
-            "displayName": "State",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "country",
-            "displayName": "Country",
-            "style": "query",
-            "type": "string"
-          }
-        ]
-      },
-      {
         "url": "http://weather.octoblu.com/temperature/fahrenheit",
         "displayName": "Get Temperature In Fahrenheit",
         "path": "/temperature/fahrenheit",
@@ -57,6 +31,32 @@
             "type": "string",
             "displayName": "Country",
             "style": "query"
+          }
+        ]
+      },
+      {
+        "url": "http://weather.octoblu.com/temperature/celsius",
+        "displayName": "Temperature In Celsius",
+        "path": "/temperature/celsius",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "city",
+            "displayName": "City",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "displayName": "State",
+            "style": "query",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "displayName": "Country",
+            "style": "query",
+            "type": "string"
           }
         ]
       }

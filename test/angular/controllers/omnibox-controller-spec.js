@@ -55,20 +55,6 @@ describe('OmniboxController', function () {
     it('should call OmniService.selectItem with the item', function () {
       expect(omniService.selectItem).to.have.been.called;
     });
-
-    describe('when OmniService.selectItem resolves with an item', function () {
-      var selectedItem
-
-      beforeEach(function(){
-        selectedItem = {type: 'flowNode'};
-        omniService.selectItem.resolve(selectedItem);
-        $rootScope.$apply();
-      });
-
-      xit('should set the returned item on the scope', function(){
-        expect(scope.nodeType).to.equal(selectedItem);
-      });
-    });
   });
 
   // describe('when the OmniService emits a selected item', function () {
