@@ -26,10 +26,10 @@ angular.module('octobluApp')
       var deviceOptions, promise;
       delete $scope.errorMessage;
 
-      deviceOptions = {
+      deviceOptions = _.defaults({
         type: $scope.nodeType.type,
         name: $scope.newDevice.name
-      };
+      }, $scope.nodeType.defaults);
 
       if($scope.nodeType.payloadOnly){
         deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;

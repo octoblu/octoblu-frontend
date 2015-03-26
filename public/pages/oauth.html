@@ -13,10 +13,10 @@
     <div class="oauth-provider-card" layout="column" ng-show="oauthDevice">
       <div layout="row">
         <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png" >
-        <img class="login-octoblu-logo" ng-src="{{oauthDevice.imageUrl}}">
+        <img class="login-octoblu-logo" ng-src="{{oauthDevice.options.imageUrl}}">
       </div>
 
-      <h1 class="profile-header">Allow {{oauthDevice.name}} access to your Octoblu account?</h1>
+      <h1 class="profile-header">Allow {{oauthDevice.options.name}} access to your Octoblu account?</h1>
       <br>
       <br>
       <div layout="row">

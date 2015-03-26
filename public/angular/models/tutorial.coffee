@@ -98,7 +98,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'link_weather_to_email': [
     {
-      text: "To connect the nodes, click and drag the line from the right side of the weather node to the left side of the email node."
+      text: "Click and drag the line from the right side of the weather node to the left side of the email node. You can also drag nodes to position them."
       buttons: false
       tetherOptions:
         offset: '15px 0'
