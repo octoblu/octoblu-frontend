@@ -1,10 +1,10 @@
 FLOW_TUTORIAL_1 = {
   'open_node_browser_for_weather' : [
     {
-      text: "Once upon a time, a user wanted to know what the weather was like."
+      text: "Welcome to the Octoblu designer. Let's begin by creating a flow."
     }
     {
-      text: "This user opened their magical tray of 'Configured Nodes'"
+      text: "Open the 'Configured Nodes' tab in the bottom drawer to see a list of activated nodes"
       attachTo:
         element: '#btn-configured-nodes'
         on: 'top'
@@ -19,7 +19,7 @@ FLOW_TUTORIAL_1 = {
 
   'add_weather_node': [
     {
-      text: "Then the user clicked on the magical weather node to cast it onto their flow."
+      text: "Let's add a weather node to our flow. You can do this by clicking on the weather node."
       buttons: false
       attachTo:
         element: '.flow-browser .flow-node-channel-weather'
@@ -29,7 +29,7 @@ FLOW_TUTORIAL_1 = {
 
   'select_weather_node': [
     {
-      text: '"What is this?" the user proclaimed as they clicked the weather node'
+      text: "Splendid! Click on the weather node to configure it."
       buttons: false
       attachTo:
         element: '.flow-editor-workspace .flow-node-channel-weather'
@@ -39,7 +39,7 @@ FLOW_TUTORIAL_1 = {
 
   'configure_weather_node': [
     {
-      text: "The user, curious about this mysterious new-added node, decided to inscribe the name of a city into the enticing field labeled...city"
+      text: "Type the name of a city in the city field."
       buttons: false
       attachTo:
         element: '[data-name="city"]'
@@ -48,7 +48,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'open_node_browser_for_email': [
     {
-      text: 'The user once again opened their magical tray of "Configured Nodes"'
+      text: "Wonderful! Now let's add an email node from your configured nodes."
       attachTo:
         element: '#btn-configured-nodes'
         on: 'top'
@@ -62,7 +62,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'add_email_node': [
     {
-      text: "Mad with power, the user quickly went back to the configured nodes and added an email node"
+      text: "Click on the email node to add it to your flow."
       buttons: false
       attachTo:
         element: '.flow-browser .flow-node-channel-email'
@@ -71,7 +71,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'select_email_node': [
     {
-      text: '"What is this?" the user proclaimed as they clicked the email node'
+      text: "Click on the email node to configure it."
       buttons: false
       attachTo:
         element: '.flow-editor-workspace .flow-node-channel-email'
@@ -80,7 +80,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'configure_email_node_to': [
     {
-      text: "fairy tale speak entered something into the 'to' field"
+      text: "Add an email in the 'to:' field"
       buttons: false
       attachTo:
         element: '[data-name="to"]'
@@ -89,7 +89,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'configure_email_node_body': [
     {
-      text: "Possessed with a strange desire to enter text with strange symbols, the user entered {{msg.temperature}} into the body field of the email node"
+      text: "In order to send the temperature, add {{msg.temperature}} to the 'body' field"
       buttons: false
       attachTo:
         element: '[data-name="body"]'
@@ -98,7 +98,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'link_weather_to_email': [
     {
-      text: "The user pointed at the small gray square on the right side of the weather node. Holding his mouse button down, he conjoured a magical snake that he, uh, connected to the email node"
+      text: "To connect the nodes, click and drag the line from the right side of the weather node to the left side of the email node."
       buttons: false
       tetherOptions:
         offset: '15px 0'
@@ -109,7 +109,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'open_operation_browser_for_trigger' : [
     {
-      text: "The user, curious about other buttons, clicked the 'operation nodes' button"
+      text: "Awesome! Let's open up the 'operator nodes' in the bottom drawer."
       attachTo:
         element: '#btn-operation-nodes'
         on: 'top'
@@ -123,7 +123,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'add_trigger_node': [
     {
-      text: "Clicking randomly, the user added a trigger node"
+      text: "Now, click on the trigger node to add it to your flow."
       buttons: false
       attachTo:
         element: '.flow-browser .flow-node-trigger'
@@ -132,7 +132,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'link_trigger_to_weather': [
     {
-      text: '"Hocus pocus!"" Chanted the user slowly and rhythmically. As if in a trance, the user summoned another snake from the output port on the trigger and attached it to the weather node'
+      text: "Connect the trigger to your weather node."
       buttons: false
       tetherOptions:
         offset: '15px 0'
@@ -143,7 +143,7 @@ FLOW_TUTORIAL_1 = {
   ]
   'deploy_flow': [
     {
-      text: "Then the user deployed the flow and lived happily ever after"
+      text: "Now, you can deploy your flow."
       buttons: false
       tetherOptions:
         offset: '-20px 10px'
@@ -155,13 +155,8 @@ FLOW_TUTORIAL_1 = {
   'end_tutorial': [
     {
       endTutorial: true
-      text: "You have completed your magical journey. Live long and prosper."
+      text: "Okay...great you did something simple. Congrats...I guess........"
       buttons: false
-      tetherOptions:
-        offset: '-20px 10px'
-      attachTo:
-        element: '[data-action="delete-flow"]'
-        on: 'left'
     }
   ]
 }
