@@ -2,6 +2,7 @@
   "_id": "54d3de754d1462fb04dad0a9",
   "category": "channel",
   "description": "",
+  "helpText": "Enables you to seamlessly print and mail documents, postcards, photos, and more.",
   "enabled": true,
   "name": "Lob",
   "skynet": {

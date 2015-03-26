@@ -2,6 +2,7 @@
   "_id": "53c9b83bf400e177dca325cb",
   "category": "channel",
   "description": "",
+  "helpText": "Get access to files anywhere through secure cloud storage and file backup for your photos, videos, files and more.",
   "enabled": true,
   "name": "Google Drive",
   "skynet": {

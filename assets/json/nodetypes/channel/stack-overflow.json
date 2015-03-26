@@ -2,6 +2,7 @@
   "_id": "53c9b835f400e177dca325ba",
   "category": "channel",
   "description": "",
+  "helpText": "A question and answer site for professional and enthusiast programmers.",
   "enabled": false,
   "name": "StackOverflow",
   "skynet": {

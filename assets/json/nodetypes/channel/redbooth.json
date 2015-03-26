@@ -2,6 +2,7 @@
   "_id": "fe7eba68-0e91-4c5e-b163-241158be76be",
   "category": "channel",
   "description": "RedBooth",
+  "helpText": "The online collaboration platform for team and task management. Be more productive with project management tools like video chat and file sharing.",
   "enabled": true,
   "name": "RedBooth",
   "skynet": {

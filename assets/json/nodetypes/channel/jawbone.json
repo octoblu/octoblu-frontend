@@ -2,6 +2,7 @@
   "_id": "540107bdb6df48bb4ec6d62f",
   "category": "channel",
   "description": "",
+  "helpText": "A world-leader in consumer technology and wearable devices, building hardware products and software platforms powered by data science.",
   "enabled": true,
   "name": "Jawbone",
   "skynet": {

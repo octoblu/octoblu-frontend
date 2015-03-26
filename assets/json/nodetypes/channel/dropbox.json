@@ -2,6 +2,7 @@
   "_id": "53c9b83af400e177dca325c9",
   "category": "channel",
   "description": "",
+  "helpText": "A free service that lets you bring your photos, docs, and videos anywhere and share them easily. Never email yourself a file again!",
   "enabled": true,
   "name": "Dropbox",
   "skynet": {

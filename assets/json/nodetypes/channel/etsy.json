@@ -2,6 +2,7 @@
   "_id": "53c9b838f400e177dca325c6",
   "category": "channel",
   "description": "",
+  "helpText": "Buy and sell handmade or vintage items, art and supplies on Etsy, the world's most vibrant handmade marketplace.",
   "enabled": false,
   "name": "Etsy",
   "skynet": {

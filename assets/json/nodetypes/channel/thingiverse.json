@@ -2,6 +2,7 @@
   "_id": "54ef58a7c00c65e0eb6654df",
   "category": "channel",
   "description": "",
+  "helpText": "",
   "enabled": true,
   "name": "Thingiverse",
   "skynet": {
