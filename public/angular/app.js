@@ -333,7 +333,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('material.flow', {
-        url: '/design/:flowId/:tutorial?',
+        url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })
