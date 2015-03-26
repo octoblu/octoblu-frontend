@@ -2,6 +2,7 @@
   "_id": "54bd99f3e9412e988f2f20e9",
   "category": "device",
   "description": "Oculus Rift Tracking Data",
+  "helpText": "A new virtual reality (VR) headset designed specifically for video games that will change the way you think about gaming forever.",
   "enabled": true,
   "name": "Oculus Rift",
   "skynet": {

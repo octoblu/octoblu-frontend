@@ -2,6 +2,7 @@
   "_id": "54a91a102ef277e103b65404",
   "category": "device",
   "description": "Wunder Bar",
+  "helpText": "Internet of Things (IoT) Starter Kit for App Developers.",
   "enabled": true,
   "name": "Wunder Bar",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "5508904b5eaf352b59e1c06d",
   "category": "device",
   "description": "Citrix Receiver",
+  "helpText": "The easy-to-install client software that provides access to your XenDesktop and XenApp installations.",
   "enabled": true,
   "name": "Citrix Receiver",
   "skynet": {

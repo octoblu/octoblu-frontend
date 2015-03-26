@@ -2,6 +2,7 @@
   "_id": "28be4cebbbbc8bbaf576d6f3",
   "category": "device",
   "description": "Polar Heart Rate Monitor",
+  "helpText": "Offers a high-quality selection of heart rate monitors for running, triathlon, fitness & cross-training, as well as GPS-enabled cycling computers.",
   "enabled": true,
   "name": "Polar Heart Rate Monitor",
   "skynet": {
