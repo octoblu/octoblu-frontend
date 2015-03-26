@@ -2,6 +2,7 @@
   "_id": "0d46c3dd-e020-40cb-8bc0-bb38034b92e6",
   "category": "channel",
   "description": "YouTube",
+  "helpText": "A video sharing website. Share your videos with friends, family, and the world.",
   "enabled": true,
   "name": "YouTube",
   "skynet": {

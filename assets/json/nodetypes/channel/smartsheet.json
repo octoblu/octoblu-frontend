@@ -2,6 +2,7 @@
   "_id": "53c9b83cf400e177dca325cd",
   "category": "channel",
   "description": "",
+  "helpText": "An intuitive online project management tool enabling teams to increase productivity using cloud, collaboration, & mobile technologies.",
   "enabled": true,
   "name": "Smartsheet",
   "skynet": {

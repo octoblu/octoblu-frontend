@@ -2,6 +2,7 @@
   "_id": "53c9b836f400e177dca325be",
   "category": "channel",
   "description": "",
+  "helpText": "A super simple weather API, built as a simplified interface to the OpenWeatherMap API for maximizing development speed.",
   "enabled": true,
   "name": "Weather",
   "skynet": {

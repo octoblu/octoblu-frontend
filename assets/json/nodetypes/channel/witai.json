@@ -2,6 +2,7 @@
   "_id": "550b46044ccc66a2b642ec16",
   "category": "channel",
   "description": "Wit.ai",
+  "helpText": "Makes it easy for developers to build a Siri-like speech interface for their app or device. It's an API that turns natural language (speech or messages) into actionable data.",
   "enabled": true,
   "name": "Wit.ai",
   "skynet": {

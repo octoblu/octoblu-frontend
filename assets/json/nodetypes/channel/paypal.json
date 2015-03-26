@@ -2,6 +2,7 @@
   "_id": "53c9b838f400e177dca325c4",
   "category": "channel",
   "description": "",
+  "helpText": "The faster, safer way to send money, make an online payment, receive money or set up a merchant account.",
   "enabled": true,
   "name": "Paypal",
   "skynet": {

@@ -2,6 +2,7 @@
   "_id": "546a874814a08dc76cb0e197",
   "category": "channel",
   "description": "Swarm",
+  "helpText": "Lets you easily see who's out nearby and who wants to hang out later.",
   "enabled": true,
   "name": "Swarm",
   "skynet": {
