@@ -1,0 +1,40 @@
+<!-- <ul class="flow-browser-nodes">
+    <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes | filter: {category : '!operation'}" ng-click="addFlowNodeType(flowNodeType)" data-type="{{flowNodeType.type}}">
+        <div class="node-thumbnail"
+             style="background-image: url({{flowNodeType.logo}});"></div>
+        <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
+    </li>
+</ul>
+ -->
+
+ <div class="node-detail-list"
+  layout="row"
+  layout-wrap
+  layout-padding>
+
+  <md-card class="node-detail-card"
+    flex-sm="100"
+    flex-md="50"
+    flex-gt-md="33"
+    ng-repeat="flowNodeType in flowNodeTypes | filter: {category : '!operation'}"
+    ng-click="addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}">
+
+    <md-card-content layout="row" layout-padding>
+      <img class="node-detail-thumbnail"
+        src="{{flowNodeType.logo}}"
+        alt="{{flowNodeType.name || flowNodeType.type}}"
+        flex="33" />
+
+      <div flex="66">
+        <h3 class="node-detail-name">
+          {{flowNodeType.name || flowNodeType.type}}
+        </h3>
+
+        <p class="node-detail-body">
+          {{flowNodeType.helpText}}
+        </p>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>
