@@ -25,7 +25,7 @@ FLOW_TUTORIAL_1 = {
       text: "Add a weather node to your flow. You can do this by clicking on the weather node."
       buttons: false
       attachTo:
-        element: '.flow-browser .flow-node-channel-weather'
+        element: '.flow-browser [data-type="channel:weather"]'
         on: 'top'
     }
   ]
@@ -68,7 +68,7 @@ FLOW_TUTORIAL_1 = {
       text: "Click on the email node to add it to your flow."
       buttons: false
       attachTo:
-        element: '.flow-browser .flow-node-channel-email'
+        element: '.flow-browser [data-type="channel:email"]'
         on: 'top'
     }
   ]
@@ -129,7 +129,7 @@ FLOW_TUTORIAL_1 = {
       text: "Now, click on the trigger node to add it to your flow."
       buttons: false
       attachTo:
-        element: '.flow-browser .flow-node-trigger'
+        element: '.flow-browser [data-type="operator:trigger"]'
         on: 'top'
     }
   ]
@@ -165,4 +165,3 @@ FLOW_TUTORIAL_1 = {
 }
 
 angular.module('octobluApp').constant 'FLOW_TUTORIAL_1', FLOW_TUTORIAL_1
-
