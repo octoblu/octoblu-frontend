@@ -7,7 +7,7 @@ FLOW_TUTORIAL_1 = {
       text: "You may end this tutorial at any time by deleting this flow."
     }
     {
-      text: "Open the 'Configured Nodes' tab in the bottom drawer to see a list of activated nodes"
+      text: 'Open the "Configured Nodes" tab in the bottom drawer to see a list of activated nodes'
       attachTo:
         element: '#btn-configured-nodes'
         on: 'top'

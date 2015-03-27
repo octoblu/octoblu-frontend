@@ -31,7 +31,9 @@ class FlowTutorialDirective
     return unless @domReady()
 
     @tour?.cancel()
+    console.log 'creating tour'
     @tour = new Shepherd.Tour defaults: classes: 'shepherd-theme-dark flow-tutorial-shepherd'
+    Shepherd.currentTour = @tour
     @tour.addStep @currentStep.id, _.cloneDeep(@currentStep)
     @tour.on 'complete', @nextStep
     @tour.show()
@@ -60,4 +62,3 @@ angular.module('octobluApp')
 
     scope.$on '$destroy', ->
       directive.cleanup()
-
