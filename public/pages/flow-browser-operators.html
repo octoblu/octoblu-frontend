@@ -1,5 +1,3 @@
 <h4 class="text-center text-muted">Operators</h4>
 
-<div ng-include="operatorViewType === 'thumbnail' ? '/pages/flow-node-operator-thumbnail-list.html' : null"></div>
-
-<div ng-include="operatorViewType === 'detail' ? '/pages/flow-node-operator-detail-list.html' : null"></div>
+<div ng-include="templateForViewStyle()"></div>

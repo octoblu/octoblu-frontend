@@ -11,17 +11,26 @@ angular.module('octobluApp')
       operators : {
         name: 'operators',
         template: '/pages/flow-browser-operators.html',
-        controlsTemplate: '/pages/flow-browser-operators-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-operators-detail-list.html',
+        thumbnailTemplate: '/pages/flow-operators-thumbnail-list.html'
       },
       nodes: {
         name: 'nodes',
         template: '/pages/flow-browser-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-nodes-thumbnail-list.html'
       },
       unconfigurednodes: {
         name: 'unconfigurednodes',
         template: '/pages/flow-browser-unconfigured-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-unconfigured-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-unconfigured-nodes-thumbnail-list.html'
       },
       shareflow: {
         name: 'shareflow',
@@ -35,7 +44,6 @@ angular.module('octobluApp')
     $scope.template = {};
 
     $scope.activeFlowEdit = false;
-    $scope.operatorViewType = 'thumbnail';
 
     $scope.toggleActiveTab = function(name) {
       if ($scope.activeFlow.browserMaximized && $scope.activeTab.name === name) {
@@ -85,9 +93,16 @@ angular.module('octobluApp')
       }
     };
 
-    $scope.switchOperatorViewType = function(viewType) {
-      $scope.operatorViewType = viewType;
+    $scope.switchViewStyle = function(viewStyle) {
+      $scope.activeTab.viewStyle = viewStyle;
     };
+
+    $scope.templateForViewStyle = function() {
+      if ($scope.activeTab.viewStyle === 'detail') return $scope.activeTab.detailTemplate;
+      if ($scope.activeTab.viewStyle === 'thumbnail') return $scope.activeTab.thumbnailTemplate;
+
+      return null;
+    }
 
     $scope.setActiveEdit = function(){
       $scope.activeFlowEdit = !$scope.activeFlowEdit;

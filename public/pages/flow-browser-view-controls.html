@@ -2,16 +2,16 @@
   <button class="btn btn-default btn-sm"
     title="Thumbnail View"
     tooltip="Thumbnail View"
-    ng-click="switchOperatorViewType('thumbnail')"
-    ng-class="{'active': operatorViewType == 'thumbnail'}">
+    ng-click="switchViewStyle('thumbnail')"
+    ng-class="{'active': activeTab.viewStyle === 'thumbnail'}">
     <i class="fa fa-th"></i>
   </button>
 
   <button class="btn btn-default btn-sm"
     title="Detail View"
     tooltip="Detail View"
-    ng-click="switchOperatorViewType('detail')"
-    ng-class="{'active': operatorViewType == 'detail'}">
+    ng-click="switchViewStyle('detail')"
+    ng-class="{'active': activeTab.viewStyle === 'detail'}">
     <i class="fa fa-th-list"></i>
   </button>
 </div>
