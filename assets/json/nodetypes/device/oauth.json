@@ -25,7 +25,8 @@
           "required": true
         }
       }
-    }
+    },
+    "options" : {}
   },
   "type": "device:oauth"
 }
