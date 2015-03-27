@@ -28,7 +28,8 @@ class NewProfileController
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, smsID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
         ], (error) =>
-          @state.go 'material.flow'
+          @createTutorialFlow().then (flow) =>
+            @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
         @loading = false
 
@@ -39,10 +40,6 @@ class NewProfileController
       name: 'Tutorial Flow'
 
     @FlowService.createFlow flowAttributes
-      .then (flow) =>
-        @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:weather', =>
-        @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, =>
-        return flow
 
   emailRequiredError: =>
     return true if @newProfileForm.email.$error.required && @newProfileForm.email.$touched
