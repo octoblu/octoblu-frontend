@@ -131,6 +131,9 @@ module.exports = function(app, passport) {
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
 
+    var LittlebitsController = require('./controllers/littlebits-controller');
+    var littlebitsController = new LittlebitsController();
+
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
 
@@ -366,6 +369,8 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/linked-in',          linkedinController.authorize);
             app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
+
+            app.post('/api/littlebits/auth', littlebitsController.authorize, littlebitsController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);

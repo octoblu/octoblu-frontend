@@ -1,31 +1,14 @@
 {
-  "_id": "382849ed249ufj24820",
+  "_id": "1498421f8974d91db796891e",
   "__v": 0,
   "type": "channel:littlebits",
-  "auth_strategy": "",
+  "auth_strategy": "littlebits",
+  "oauth": {
+    "tokenMethod": "access_token_bearer"
+  },
   "documentation": "",
   "name": "LittleBits",
   "enabled": true,
-  "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    }
-  },
   "application": {
     "base": "https://api-http.littlebitscloud.cc",
     "resources": [
