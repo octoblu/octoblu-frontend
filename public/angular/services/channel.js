@@ -1,13 +1,13 @@
 'use strict';
 angular.module('octobluApp')
-    .service('channelService', function ($q, $http) {
+    .service('channelService', function ($q, $http, OCTOBLU_ICON_URL) {
         var customchannels = [];
         var activechannels = [];
         var availablechannels = [];
 
         this.addLogoUrl = function(data) {
             if (data && data.type) {
-                data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+                data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
             }
             return data;
         }

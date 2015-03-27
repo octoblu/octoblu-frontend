@@ -74,22 +74,22 @@ angular.module('octobluApp')
 this.activateNoAuthChannel = function(user, channelid, callback) {
   $http.put('/api/user/' + user + '/activate/' + channelid)
   .success(function(data) {
-    callback(data);
+    callback(null, data);
   })
-  .error(function(data) {
-    console.log('Error: ' + data);
-    callback({});
+  .error(function(error) {
+    console.error(error);
+    callback(error);
   });
 };
 
 this.activateNoAuthChannelByType = function(user, channeltype, callback) {
   $http.put('/api/user/' + user + '/activate/' + channeltype + '/type')
   .success(function(data) {
-    callback(data);
+    callback(null, data);
   })
-  .error(function(data) {
-    console.log('Error: ' + data);
-    callback({});
+  .error(function(error) {
+    console.error(error);
+    callback(error);
   });
 };
 
@@ -123,7 +123,7 @@ this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   .success(function (data) {
     callback(data);
   })
-  .error(function (data) {    
+  .error(function (data) {
     console.error('Error: ' + data);
     callback({});
   });
@@ -133,11 +133,11 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
   $http.post('/api/auth/basic/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
-    callback(data);
+    callback(null, data);
   })
-  .error(function (data) {
-    console.log('Error: ' + data);
-    callback({});
+  .error(function (error) {
+    console.error(error);
+    callback(error);
   });
 
 };
@@ -154,9 +154,9 @@ this.saveApiKey = function(channelid, apikey, callback){
 
 this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey, callback){
   $http.post('/api/auth/simpleauthquery/channel/' + channelid, {
-      userId : userId, 
-      domain : domain, 
-      password : password, 
+      userId : userId,
+      domain : domain,
+      password : password,
       appKey : appKey})
   .success(function(data){
     callback(data);
@@ -184,4 +184,3 @@ this.removeConnection = function (channelid) {
 };
 
 });
-

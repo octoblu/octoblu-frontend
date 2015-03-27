@@ -5,18 +5,34 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
     getNextChapter: =>
       stepName = @getStepName()
       steps = @flow.tutorial[stepName]
-      if stepName == 'end_tutorial' 
+      steps = @addEndFlowButton steps
+      if stepName == 'end_tutorial'
         steps = @addEndFlowButton steps
       steps
 
     addEndFlowButton: (steps) =>
-      step = _.last(steps)
-      step.buttons = [
-        text: 'End Tutorial'
-        action: =>
-          delete @flow.tutorial
-      ]
-      steps
+      _.map steps, (step) =>
+        step = _.cloneDeep step
+        step.showCancelLink = true
+
+        addNext = step.buttons != false
+
+        step.buttons = []
+        step.buttons.push
+          text: 'End Tutorial'
+          classes: 'end-tutorial-button'
+          action: =>
+            Shepherd.currentTour?.cancel()
+            @flow.tutorial = null
+
+        if addNext
+          step.buttons.push
+            text: 'Next'
+            classes: 'flow-tutorial-button'
+            action: ->
+              Shepherd.currentTour.next()
+        step
+
 
     getStepName: =>
       weatherTriggerLink = _.find @flow.links, { from: triggerNode?.id, to: weatherNode?.id }

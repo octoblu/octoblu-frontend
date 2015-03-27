@@ -11,17 +11,26 @@ angular.module('octobluApp')
       operators : {
         name: 'operators',
         template: '/pages/flow-browser-operators.html',
-        controlsTemplate: '/pages/flow-browser-operators-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-operators-detail-list.html',
+        thumbnailTemplate: '/pages/flow-operators-thumbnail-list.html'
       },
       nodes: {
         name: 'nodes',
         template: '/pages/flow-browser-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-nodes-thumbnail-list.html'
       },
       unconfigurednodes: {
         name: 'unconfigurednodes',
         template: '/pages/flow-browser-unconfigured-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-unconfigured-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-unconfigured-nodes-thumbnail-list.html'
       },
       shareflow: {
         name: 'shareflow',
@@ -87,6 +96,20 @@ angular.module('octobluApp')
         $scope.setActiveTab('debug');
       }
     };
+
+    $scope.switchViewStyle = function(viewStyle) {
+      $scope.activeFlow.browserTab.viewStyle = viewStyle;
+    };
+
+    $scope.templateForViewStyle = function() {
+      if ($scope.activeFlow.browserTab.viewStyle === 'detail')
+        return $scope.activeFlow.browserTab.detailTemplate;
+
+      if ($scope.activeFlow.browserTab.viewStyle === 'thumbnail')
+        return $scope.activeFlow.browserTab.thumbnailTemplate;
+
+      return null;
+    }
 
     $scope.setActiveEdit = function(){
       $scope.activeFlowEdit = !$scope.activeFlowEdit;

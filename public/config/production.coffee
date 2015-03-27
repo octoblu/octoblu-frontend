@@ -10,3 +10,4 @@ angular.module('octobluApp')
   .constant 'MESHBLU_HOST', 'wss://meshblu.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
   .constant 'PROFILE_URI', '#'
+  .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'

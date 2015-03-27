@@ -8,6 +8,7 @@ describe "DeviceService", ->
        $provide.value 'PermissionService', @fakePermissionService
        $provide.value 'skynetService', @fakeSkynetService
        $provide.value 'reservedProperties', ['$$hashKey', '_id']
+       $provide.value 'OCTOBLU_ICON_URL', ''
        return
 
     inject (skynetService, $q, $httpBackend, $rootScope) =>

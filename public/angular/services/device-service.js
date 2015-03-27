@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties) {
+    .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
         var myDevices, skynetPromise, subscribeToDevice;
 
         myDevices = [];
@@ -231,9 +231,9 @@ angular.module('octobluApp')
             addLogoUrl: function(data) {
                 if(data && data.type){
                     var type = data.type.replace('octoblu:', 'device:');
-                    data.logo = 'https://ds78apnml6was.cloudfront.net/' + type.replace(':', '/') + '.svg';
+                    data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
                 } else {
-                    data.logo = 'https://ds78apnml6was.cloudfront.net/device/other.svg';
+                    data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
                 }
                 return data;
             },
