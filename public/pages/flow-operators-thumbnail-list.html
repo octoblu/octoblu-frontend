@@ -9,7 +9,8 @@
     ng-repeat="flowNodeType in flowNodeTypes | filter: {category: 'operation'}"
     md-rowspan="1"
     md-colspan="1"
-    ng-click="addFlowNodeType(flowNodeType)">
+    ng-click="addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}">
 
     <div class="node-thumbnail"
          style="background-image: url({{flowNodeType.logo}});"></div>

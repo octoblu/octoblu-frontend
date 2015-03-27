@@ -129,7 +129,7 @@ FLOW_TUTORIAL_1 = {
       text: "Now, click on the trigger node to add it to your flow."
       buttons: false
       attachTo:
-        element: '.flow-browser [data-type="operator:trigger"]'
+        element: '.flow-browser [data-type="operation:trigger"]'
         on: 'top'
     }
   ]

@@ -8,7 +8,8 @@
     flex-md="50"
     flex-gt-md="33"
     ng-repeat="flowNodeType in flowNodeTypes | filter: {category: 'operation'}"
-    ng-click="addFlowNodeType(flowNodeType)">
+    ng-click="addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}">
 
     <md-card-content layout="row" layout-padding>
       <img class="node-detail-thumbnail"
