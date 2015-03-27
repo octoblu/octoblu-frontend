@@ -13,6 +13,7 @@ describe('FlowService', function () {
       $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
+      $provide.constant('OCTOBLU_ICON_URL', '');
     });
 
     inject(function(FlowService, _$httpBackend_){

@@ -13,6 +13,7 @@ describe('FlowNodeTypeService', function () {
       $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
+      $provide.constant('OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/');
     });
 
     inject(function (FlowNodeTypeService, _$httpBackend_, _$q_) {

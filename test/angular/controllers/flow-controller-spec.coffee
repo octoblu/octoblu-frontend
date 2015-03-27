@@ -5,6 +5,7 @@ describe 'FlowController', ->
       $provide.value '$intercom', sinon.stub()
       $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
+      $provide.value 'OCTOBLU_ICON_URL', ''
       return
 
     inject ($controller, $rootScope, $q) =>
