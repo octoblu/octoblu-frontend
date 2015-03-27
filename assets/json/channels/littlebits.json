@@ -1,0 +1,147 @@
+{
+  "_id": "382849ed249ufj24820",
+  "__v": 0,
+  "type": "channel:littlebits",
+  "auth_strategy": "",
+  "documentation": "",
+  "name": "LittleBits",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://api-http.littlebitscloud.cc",
+    "resources": [
+      {
+        "path": "/devices/{device_id}",
+        "displayName": "Attendee Updates",
+        "doc": {
+          "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Device Id",
+            "style": "Url",
+            "type": "string",
+            "name": "device_id",
+            "required": "true"
+          }
+        ],
+        "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID"
+      },{
+        "path": "/devices/{device_id}/output",
+        "displayName": "Attendee Updates",
+        "doc": {
+          "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID/output"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Device Id",
+            "style": "Url",
+            "type": "string",
+            "name": "device_id",
+            "required": "true"
+          },{
+            "displayName": "Percent",
+            "style": "body",
+            "type": "integer",
+            "name": "percent"
+          },{
+            "displayName": "Duration For Given Milliseconds",
+            "style": "body",
+            "type": "integer",
+            "name": "duration_ms"
+          }
+        ],
+        "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID/output"
+      },{
+        "path": "/subscriptions",
+        "displayName": "Get Subscriptions",
+        "doc": {
+          "url": "https://api-http.littlebitscloud.cc/subscriptions"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Subscriber Id",
+            "style": "query",
+            "type": "string",
+            "name": "subscriber_id"
+          },{
+            "displayName": "Publisher Id",
+            "style": "query",
+            "type": "string",
+            "name": "publisher_id"
+          }
+        ],
+        "url": "https://api-http.littlebitscloud.cc/subscriptions"
+      },{
+        "path": "/subscriptions",
+        "displayName": "Delete Subscriptions",
+        "doc": {
+          "url": "https://api-http.littlebitscloud.cc/subscriptions"
+        },
+        "httpMethod": "Delete",
+        "params": [
+          {
+            "displayName": "Subscriber Id",
+            "style": "query",
+            "type": "string",
+            "name": "subscriber_id"
+          },{
+            "displayName": "Publisher Id",
+            "style": "query",
+            "type": "string",
+            "name": "publisher_id"
+          }
+        ],
+        "url": "https://api-http.littlebitscloud.cc/subscriptions"
+      },{
+        "path": "/subscriptions",
+        "displayName": "Post Subscriptions",
+        "doc": {
+          "url": "https://api-http.littlebitscloud.cc/subscriptions"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Subscriber Id",
+            "style": "query",
+            "type": "string",
+            "name": "subscriber_id"
+          },{
+            "displayName": "Publisher Id",
+            "style": "query",
+            "type": "string",
+            "name": "publisher_id"
+          },{
+            "displayName": "Publisher Events",
+            "style": "query",
+            "type": "string",
+            "name": "publisher_events"
+          }
+        ],
+        "url": "https://api-http.littlebitscloud.cc/subscriptions"
+      }
+    ]
+  }
+}
