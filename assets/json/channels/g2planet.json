@@ -1,0 +1,101 @@
+{
+  "_id": "23842p9djucsleow0q03",
+  "__v": 0,
+  "type": "channel:g2planet",
+  "auth_strategy": "",
+  "documentation": "",
+  "name": "G2Planet",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://demo.g2planet.com/synergyorlando2015",
+    "resources": [
+      {
+        "path": "/api_attendee_udates.php",
+        "displayName": "Attendee Updates",
+        "doc": {
+          "url": "https://demo.g2planet.com/synergyorlando2015/api_attendee_udates.php"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Project Identifier",
+            "style": "body",
+            "type": "string",
+            "name": "project_id",
+            "required": "true"
+          },{
+            "displayName": "Project Unique Secret Key (PUSK) Id",
+            "style": "body",
+            "type": "string",
+            "name": "pusk_id",
+            "required": "true"
+          },{
+            "displayName": "Interface Feature Version",
+            "style": "body",
+            "type": "string",
+            "name": "api_version",
+            "required": "true"
+          },{
+            "displayName": "Name Of 3rd Party",
+            "style": "body",
+            "type": "string",
+            "name": "vendor_name",
+            "required": "true"
+          },{
+            "displayName": "The Return Format",
+            "style": "body",
+            "type": "string",
+            "name": "output_format"
+          },{
+            "displayName": "Name Of Set Of Fields To Return",
+            "style": "body",
+            "type": "string",
+            "name": "output_field_set",
+            "required": "true"
+          },{
+            "displayName": "Provide Records Were Updated On/After This Date/Time",
+            "style": "body",
+            "type": "string",
+            "name": "beginning_timestamp"
+          },{
+            "displayName": "Provide Records Were Updated On/Before This Date/Time",
+            "style": "body",
+            "type": "string",
+            "name": "ending_timestamp"
+          },{
+            "displayName": "Registration Identifier",
+            "style": "body",
+            "type": "string",
+            "name": "reg_id"
+          },{
+            "displayName": "Badge Id",
+            "style": "body",
+            "type": "string",
+            "name": "badge_id"
+          }
+        ],
+        "url": "https://demo.g2planet.com/synergyorlando2015/api_attendee_udates.php"
+      }
+    ]
+  }
+}
