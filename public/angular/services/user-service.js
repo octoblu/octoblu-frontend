@@ -80,7 +80,17 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
     console.log('Error: ' + data);
     callback({});
   });
+};
 
+this.activateNoAuthChannelByType = function(user, channeltype, callback) {
+  $http.put('/api/user/' + user + '/activate/' + channeltype + '/type')
+  .success(function(data) {
+    callback(data);
+  })
+  .error(function(data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
 };
 
 this.saveAWSApi = function (uuid, channelid, username, password, callback) {

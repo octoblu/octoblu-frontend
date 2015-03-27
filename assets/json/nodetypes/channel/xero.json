@@ -2,6 +2,7 @@
   "_id": "750242b3-b960-4828-a7f1-c5a07672e98c",
   "category": "channel",
   "description": "Xero",
+  "helpText": "Online accounting software for small businesses. Use Xero to manage invoicing, bank reconciliation, bookkeeping & more.",
   "enabled": true,
   "name": "Xero",
   "skynet": {

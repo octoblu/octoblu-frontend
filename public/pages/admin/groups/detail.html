@@ -165,7 +165,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="resource in allResources | filter : !{type : 'user'}">
+                        <li ng-repeat="resource in allResources | filter: {type: '!octoblu:user'} | filter: {type: '!user'}">
                             <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
                                 <div class="resource-dropdown-icon" ng-style="{ 'background-image': 'url(' + resource.logo + ')' }">&nbsp;</div>
                                 <span>{{getDisplayName(resource)}}</span>

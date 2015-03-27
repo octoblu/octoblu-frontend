@@ -1,5 +1,5 @@
 describe('FlowNodeRenderer', function () {
-  var sut, renderScope, FlowNodeDimensions;
+  var sut, renderScope, FlowNodeDimensions, skynetService;
 
   var nodeType = {
     width: 80,
@@ -129,15 +129,6 @@ describe('FlowNodeRenderer', function () {
             });
           });
         });
-
-        xdescribe('when the x and y coordinates are too far to the right of the input port', function () {
-          it('should return a match', function(){
-            var node = {id: '1', x: 0, y: 0, inputLocations: [15] };
-
-            var port = sut.findInputPortByCoordinate(11,16,[node]);
-            expect(port).to.be.undefined;
-          });
-        });
       });
     });
 
@@ -227,15 +218,6 @@ describe('FlowNodeRenderer', function () {
                 expect(port).to.deep.equal(match);
               });
             });
-          });
-        });
-
-        xdescribe('when the x and y coordinates are too far to the left of the input port', function () {
-          it('should return a match', function(){
-            var node = {id: '1', x: 0, y: 0, outputLocations: [15] };
-
-            var port = sut.findOutputPortByCoordinate(FlowNodeDimensions.width - 11,16,[node]);
-            expect(port).to.be.undefined;
           });
         });
       });

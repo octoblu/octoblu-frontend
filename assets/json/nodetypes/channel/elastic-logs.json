@@ -1,7 +1,8 @@
 {
   "_id": "53c9b83df400e177dca325d2",
   "category": "channel",
-  "description": "Parse skynet data logged to ElasticSearch",
+  "description": "Parse Meshblu data logged to ElasticSearch",
+  "helpText": "Parse Meshblu data logged to ElasticSearch.",
   "enabled": false,
   "name": "ElasticLogs",
   "skynet": {

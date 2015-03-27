@@ -2,6 +2,7 @@
   "_id": "53c9b837f400e177dca325c2",
   "category": "channel",
   "description": "",
+  "helpText": "The home for high-quality videos and the people who love them.",
   "enabled": false,
   "name": "Vimeo",
   "skynet": {

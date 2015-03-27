@@ -46,7 +46,7 @@ angular.module('octobluApp')
     $scope.activeFlowEdit = false;
 
     $scope.toggleActiveTab = function(name) {
-      if ($scope.activeFlow.browserMaximized && $scope.activeTab.name === name) {
+      if ($scope.activeFlow.browserMaximized && $scope.activeFlow.browserTab.name === name) {
         $scope.minimize();
       } else {
         $scope.maximize();
@@ -71,15 +71,19 @@ angular.module('octobluApp')
     };
 
     $scope.clearActiveTab = function() {
-      $scope.activeTab = {};
+      if(!$scope.activeFlow) {
+        return;
+      }
+
+      $scope.activeFlow.browserTab = {};
     };
 
     $scope.setActiveTab = function(name) {
-      $scope.activeTab = tabs[name];
+      $scope.activeFlow.browserTab = tabs[name];
     };
 
     $scope.hasActiveTab = function() {
-      return !_.isEmpty($scope.activeTab);
+      return !_.isEmpty($scope.activeFlow.browserTab);
     };
 
     $scope.toggleMaximize = function() {

@@ -2,6 +2,7 @@
   "_id": "54a6e044721c0cf9b00f98fe",
   "category": "channel",
   "description": "Tesla Model S",
+  "helpText": "Control features of your Tesla Model S remotely.",
   "enabled": true,
   "name": "Tesla",
   "skynet": {

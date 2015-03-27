@@ -12,7 +12,7 @@ var FlowNodeTypeCollection = function(userUUID, userToken, options){
   self.convertNode = function(node){
     return {
       name: node.name,
-      class: node.name,
+      class: _.kebabCase(node.type),
       type: node.type,
       logo: (node.nodeType && node.nodeType.logo),
       category: node.category,

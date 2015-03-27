@@ -1,0 +1,14 @@
+{
+  "_id": "8be24d05982d5d112731d1ab",
+  "category": "channel",
+  "description": "",
+  "enabled": true,
+  "helpText": "For more help, visit the <a href='https://developer.octoblu.com'>Octoblu documentation</a>.",
+  "name": "Octoblu",
+  "skynet": {
+    "type": "channel",
+    "subtype": "octoblu"
+  },
+  "channelid": "3c3e4c2eaaf50073ed93641b",
+  "type": "channel:octoblu"
+}

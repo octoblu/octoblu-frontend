@@ -1,13 +1,13 @@
 <div>
     <div ng-repeat="paramDefinition in paramDefinitions">
-        <md-input-container ng-if="!paramDefinition.schema" 
-            ng-hide="paramDefinition.hidden">
+        <md-input-container ng-if="!paramDefinition.schema"
+            ng-hide="paramDefinition.hidden" data-name="{{paramDefinition.name}}">
           <label>{{getLabel(paramDefinition)}}</label>
           <input type="{{inputType(paramDefinition.type)}}"
             ng-model="params[paramDefinition.name]"
             required="{{paramDefinition.required}}">
         </md-input-container>
-        <div ng-if="paramDefinition.schema">        
+        <div ng-if="paramDefinition.schema">
             <schema-editor schema="paramDefinition.schema" model="params[paramDefinition.name]" allow-json-edit="true" additional-properties="true"></schema-editor>
         </div>
     </div>

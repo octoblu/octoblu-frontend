@@ -2,6 +2,7 @@
   "_id": "613691c2-efaa-445f-bf30-1e62f8e46c86",
   "category": "channel",
   "description": "Splunk",
+  "helpText": "Provides the leading platform for Operational Intelligence. Use Splunk to search, monitor, analyze and visualize machine data.",
   "enabled": true,
   "name": "Splunk",
   "skynet": {

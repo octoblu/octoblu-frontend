@@ -2,6 +2,7 @@
   "_id": "53c9b832f400e177dca325b3",
   "category": "device",
   "description": "Other Generic Device",
+  "helpText": "Connect custom devices to Octoblu.",
   "enabled": true,
   "name": "Generic Device",
   "skynet": {

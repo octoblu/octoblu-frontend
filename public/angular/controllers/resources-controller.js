@@ -5,7 +5,7 @@ angular
   .controller('ResourcesController', function($rootScope, $scope, $http) {
     $scope.resources = [
       {
-        title: 'Getting started with Octoblu video',
+        title: 'Getting started with Octoblu Video',
         link: 'https://youtu.be/UAT1F8hF-nI?list=PLyh2CvBTlon4R_ibknRl9CCKfn_1eAted',
         summary: 'Octoblu quick start tutorial video is a great way to familiarize yourself with creating solutions with Octoblu.',
       },
@@ -15,9 +15,14 @@ angular
         summary: 'Documentation for "Getting started with Octoblu".',
       },
       {
-        title: 'Octoblu Developer Site',
+        title: 'Octoblu & Meshblu Developer Site',
         link: 'https://developer.octoblu.com',
         summary: 'Documentation for developers.',
+      },
+      {
+        title: 'Gateblu Gateway & Documentation',
+        link: 'https://gateblu.octoblu.com/',
+        summary: 'Gateblu allows you to connect smart devices, motors, servos, sensors and additional protocols to Meshblu and Octoblu!',
       },
       {
         title: 'Octoblu Blog',
@@ -43,11 +48,6 @@ angular
         title: 'Blu - Android',
         link: 'https://play.google.com/store/apps/details?id=com.octoblu.blu',
         summary: 'Blu for Android provides a dead simple way for Octoblu users to trigger flows created in the Octoblu designer. With a simple click of a button, you can do just about anything.',
-      },
-      {
-        title: 'Gateblu',
-        link: 'https://gateblu.octoblu.com/',
-        summary: 'Gateblu allows you to connect smart devices, motors, servos, sensors, and additional protocols to Meshblu and Octoblu!',
       },
       {
         title: 'Contact via Chat',

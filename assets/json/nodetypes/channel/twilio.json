@@ -2,6 +2,7 @@
   "_id": "53c9b834f400e177dca325b8",
   "category": "channel",
   "description": "",
+  "helpText": "A cloud communications company. Twilio allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service.",
   "enabled": true,
   "name": "Twilio",
   "skynet": {

@@ -23,30 +23,6 @@ describe('FlowNodeEditorController', function () {
     expect(sut).to.exist;
   });
 
-  xdescribe('when a flowNode is set', function () {
-    beforeEach(function () {
-      scope.flowNode = { type: 'planet'};
-      scope.$digest();
-    });
-
-    it('should find the matching flowNodeType from the FlowNodeType service', function () {
-      expect(fakeFlowNodeTypeService.getFlowNodeType).to.have.been.calledWith('planet');
-    });
-
-    describe('when a flowNodeType is found', function(){
-      it('should find the matching flowNodeType from the FlowNodeType service', function () {
-        fakeFlowNodeTypeService.getFlowNodeType.successCallback({name: 'planet'});
-        expect(scope.flowNodeType).to.deep.equal({name: 'planet'});
-      });
-    });
-    describe('when a different flowNodeType is found', function(){
-      it('should find the matching flowNodeType from the FlowNodeType service', function () {
-        fakeFlowNodeTypeService.getFlowNodeType.successCallback({name: 'asteroid'});
-        expect(scope.flowNodeType).to.deep.equal({name: 'asteroid'});
-      });
-    });
-  });
-
   describe('when a different flowNode is set', function () {
     beforeEach(function () {
       scope.flowNode = { type: 'asteroid'};

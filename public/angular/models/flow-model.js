@@ -16,6 +16,7 @@ angular.module('octobluApp')
     zoomY = options.zoomY || 0;
 
     var FlowModel = {
+      tutorial: options.tutorial,
       getFlowId: function(){
         return flowId;
       },

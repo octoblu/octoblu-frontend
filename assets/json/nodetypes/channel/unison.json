@@ -2,6 +2,7 @@
   "_id": "53ea57ee2522c76ff9298af9",
   "category": "channel",
   "description": "",
+  "helpText": "Create \"rooms\" which are a fast, secure way for groups to work together.",
   "enabled": true,
   "name": "Unison",
   "skynet": {

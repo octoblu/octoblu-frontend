@@ -49,6 +49,7 @@ angular.module('octobluApp')
   }
 
   //"borrowed" from the back end until we can query subdevices on the backend.
+  // Can we give it back now?
   self.convertSubdevice = function(node) {
     return {
       name: node.name,

@@ -2,6 +2,7 @@
   "_id": "813b4dadbee582e6075b1847",
   "category": "device",
   "description": "BeaconBlu",
+  "helpText": "An iOS and Android app for iBeacons.",
   "enabled": true,
   "name": "BeaconBlu",
   "skynet": {

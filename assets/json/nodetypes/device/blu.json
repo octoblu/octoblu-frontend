@@ -2,6 +2,7 @@
   "_id": "54e4ed93fd92c9a4f35bd086",
   "category": "device",
   "description": "Blu Flow Trigger Application",
+  "helpText": "Trigger your Octoblu triggers remotely.",
   "enabled": true,
   "name": "Blu",
   "skynet": {

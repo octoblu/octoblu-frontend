@@ -1,47 +1,63 @@
-# describe 'ProfileService', ->
-#   beforeEach ->
-#     module 'email-password', ($provide) =>
-#       @http = post: sinon.stub()
-#       $provide.value '$http', @http
-#       $provide.constant 'PROFILE_URI', '#'
-#       return
+describe 'ProfileService', ->
+  beforeEach ->
+    @skynet = {}
+    @skynetService = {}
+    @cookies = {}
 
-#     inject ($q, $rootScope, ProfileService) =>
-#       @q = $q
-#       @rootScope = $rootScope
-#       @sut = ProfileService
+    module 'octobluApp', ($provide) =>
+      $provide.value '$cookies', @cookies
+      $provide.value 'skynetService', @skynetService
+      return # !important
 
-#   describe '->register', ->
-#     describe 'when called', ->
-#       beforeEach ->
-#         @http.post.returns @q.when(data: {callbackUrl: 'something.biz'})
-#         @sut.register 'taft@president.org', 'bathtub', 'underwater.dive'
-#         @rootScope.$digest()
+    inject ($q, $httpBackend, $rootScope) =>
+      @q = $q
+      @skynetService.getSkynetConnection = => @q.when(@skynet)
+      @httpBackend = $httpBackend
+      @rootScope = $rootScope
 
-#       it 'should post to signup.octoblu.com with the email and password', ->
-#         url = '#/devices'
-#         params =
-#           email: 'taft@president.org'
-#           password: 'bathtub'
-#           callbackUrl: 'underwater.dive'
-#         expect(@http.post).to.have.been.calledWith url, params
+    inject (ProfileService) =>
+      @sut = ProfileService
 
-#     describe 'when called and the service rejects', ->
-#       beforeEach (done) ->
-#         @http.post.returns @q.reject({data: 'you done screwed up'})
-#         @sut.register 'complicated', 'dolphin', 'rockslide.gz'
-#             .catch (@errorMessage) => done()
-#         @rootScope.$digest()
+  it 'should exist', ->
+    expect(@sut).to.exist
 
-#       it 'should reject the promise and return the error', ->
-#         expect(@errorMessage).to.equal 'you done screwed up'
+  describe '->generateSessionToken', ->
+    describe 'with these cookies', ->
+      beforeEach ->
+        @cookies.meshblu_auth_uuid  = '3musket'
+        @cookies.meshblu_auth_token  = 'teers'
+        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @sut.generateSessionToken()
+        @rootScope.$digest()
 
-#     describe 'when called and the service resolves', ->
-#       beforeEach (done) ->
-#         @http.post.returns @q.when(data: {callbackUrl: 'die.cool'})
-#         @sut.register 'crippling', 'insecurity', 'sucked-out'
-#             .then (@result) => done()
-#         @rootScope.$digest()
+      it 'should call generateAndStoreToken on the meshblu', ->
+        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: '3musket', token: 'teers'
 
-#       it 'should reject the promise and return the error', ->
-#         expect(@result).to.equal 'die.cool'
+    describe 'with those cookies', ->
+      beforeEach ->
+        @cookies.meshblu_auth_uuid  = 'milky'
+        @cookies.meshblu_auth_token  = 'way'
+        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @sut.generateSessionToken()
+        @rootScope.$digest()
+
+      it 'should call generateAndStoreToken on the meshblu', ->
+        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'milky', token: 'way'
+
+    describe 'when there is an error', ->
+      beforeEach ->
+        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @sut.generateSessionToken().catch (@error) =>
+        @rootScope.$digest()
+
+      it 'should have an error', ->
+        expect(@error).to.exist
+
+    describe 'when there is not an error', ->
+      beforeEach ->
+        @skynet.generateAndStoreToken = sinon.stub().yields(uuid: 'this', token: 'that')
+        @sut.generateSessionToken().catch (@error) =>
+        @rootScope.$digest()
+
+      it 'should not have an error', ->
+        expect(@error).not.to.exist

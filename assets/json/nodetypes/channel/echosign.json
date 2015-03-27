@@ -2,6 +2,7 @@
   "_id": "3e1d77cf-b5fd-467d-903b-58ae5245348a",
   "category": "channel",
   "description": "EchoSign",
+  "helpText": "Offers trusted electronic signature software online. Send, e-sign, track, and file documents and contracts securely.",
   "enabled": true,
   "name": "EchoSign",
   "skynet": {

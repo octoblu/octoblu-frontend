@@ -1,35 +1,19 @@
 class FlowTutorialController
-
-  constructor: ($scope, $window, FlowTutorial, tutorial) ->
-    console.log 'sup dawg'
-    @flowTutorial = new FlowTutorial tutorial
+  constructor: ($scope, $stateParams, $injector, FlowTutorial) ->
     @scope = $scope
-    @window = $window
     @FlowTutorial = FlowTutorial
 
-    @scope.$watch 'activeFlow', @updateStep, true
-    @scope.$watch 'tutorial', @startTutorial
+    @scope.$watch 'activeFlow', @onFlowChanged, true
 
-  startTutorial: (tutorial) =>
-    return unless tutorial?
-    @flowTutorial = new @FlowTutorial tutorial
+  onFlowChanged: (flow) =>
+    return unless flow?
 
-  updateStep: (newFlow)=>
-    return unless newFlow?
-    @flowTutorial.getStep(newFlow).then (step) =>
-      @startShepherd step?.helpers
+    unless flow.tutorial?
+      delete @scope.steps
+      return
 
-  startShepherd: (helpers) =>
-    @shepherd?.cancel()
-    return if _.isEmpty helpers
+    flowTutorial = new @FlowTutorial flow
 
-    @shepherd = new @window.Shepherd.Tour defaults: classes: 'shepherd-theme-default'
-
-    _.each helpers, (helper) =>
-      @shepherd.addStep 'tutorial', helper
-
-    @shepherd.start()
-
-
+    @scope.steps = flowTutorial.getNextChapter()
 
 angular.module('octobluApp').controller 'FlowTutorialController', FlowTutorialController

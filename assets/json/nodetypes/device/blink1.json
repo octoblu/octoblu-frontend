@@ -2,6 +2,7 @@
   "_id": "53c9b82ff400e177dca325a7",
   "category": "device",
   "description": "Blink1 USB LED",
+  "helpText": "The world's best indicator light, designed to give you glanceable notice of anything on your computer or the internet.",
   "enabled": true,
   "name": "Blink(1)",
   "skynet": {

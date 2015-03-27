@@ -80,16 +80,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // change page event name
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-    $httpProvider.interceptors.push(function ($window) {
+    $httpProvider.interceptors.push(function ($window,$location) {
       return {
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login';
+              console.log('oh snap, redirecting to login');
+              return $window.location = '/login?callbackUrl=' + $location.url();
             }
           }
           if (response.status === 403) {
-            return $window.location = '/profile/new';
+            return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
           return response;
         }
@@ -336,15 +337,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/flow.html',
         controller: 'FlowController'
       })
-      .state('material.flow.tutorial1', {
-        url: '/tutorial1',
-        controller: 'FlowTutorialController',
-        resolve: {
-          tutorial: function(FLOW_TUTORIAL_1){
-            return FLOW_TUTORIAL_1;
-          }
-        }
-      })
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
@@ -470,7 +462,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
-
+      .state('material.oauth', {
+        url: '/oauth/:uuid?redirect&response_type&redirect_uri',
+        templateUrl : '/pages/oauth.html',
+        controller: 'OAuthProviderController'
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',

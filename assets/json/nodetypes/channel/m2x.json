@@ -2,6 +2,7 @@
   "_id": "c4df42fe-172e-46ff-b741-018d1f86d67c",
   "category": "channel",
   "description": "",
+  "helpText": "A cloud-based fully managed time-series data storage service for network connected machine-to-machine (M2M) devices and the industrial Internet of Things (IoT).",
   "enabled": true,
   "name": "M2X",
   "skynet": {
