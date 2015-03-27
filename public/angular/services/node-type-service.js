@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('NodeTypeService', function ($http, $q) {
+.service('NodeTypeService', function ($http, $q, OCTOBLU_ICON_URL) {
   'use strict';
 
   var self = this;
@@ -16,7 +16,7 @@ angular.module('octobluApp')
 
   self.addLogo = function(node){
     var nodeCopy = _.clone(node);
-    nodeCopy.logo = 'https://ds78apnml6was.cloudfront.net/' + nodeCopy.type.replace(':', '/') + '.svg';
+    nodeCopy.logo = OCTOBLU_ICON_URL + nodeCopy.type.replace(':', '/') + '.svg';
     return nodeCopy;
   };
 

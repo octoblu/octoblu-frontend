@@ -1,7 +1,7 @@
 <md-grid-list class="node-grid-list"
   md-cols-sm="2" md-cols-md="4"
-  md-cols-gt-md="6" md-cols-gt-lg="8"
-  md-row-height-gt-md="1:1" md-row-height="1:1"
+  md-cols-gt-md="6" md-cols-lg="8" md-cols-gt-lg="10"
+  md-row-height="1:1"
   md-gutter="4px" md-gutter-gt-sm="2px">
 
   <md-grid-tile
@@ -12,8 +12,7 @@
     ng-click="addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}">
 
-    <div class="node-thumbnail"
-         style="background-image: url({{flowNodeType.logo}});"></div>
+    <md-icon md-svg-src="{{flowNodeType.logo}}"></md-icon>
 
     <md-grid-tile-footer class="node-grid-title-footer">
       <p class="node-label">{{flowNodeType.name || flowNodeType.type}}</p>

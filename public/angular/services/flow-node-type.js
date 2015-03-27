@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowNodeTypeService', function ($http, $q, UUIDService, NodeService) {
+.service('FlowNodeTypeService', function ($http, $q, UUIDService, NodeService, OCTOBLU_ICON_URL) {
   'use strict';
 
   var self = this;
@@ -26,7 +26,7 @@ angular.module('octobluApp')
     return $http.get('/api/flow_node_types').then(function(res){
       return _.map(res.data, function(data){
         if (data && data.type) {
-          data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+          data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
         }
         return data;
       });
