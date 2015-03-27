@@ -9,7 +9,7 @@ if ((process.env.USE_APP_DYNAMICS || 'false').toLowerCase() === 'true') {
   var appdynamics;
   try {
     appdynamics = require('appdynamics');
-  } catch {
+  } catch (e) {
     appdynamics = {profile: function(){}};
   }
   appdynamics.profile({
