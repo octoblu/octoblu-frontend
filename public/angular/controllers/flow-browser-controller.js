@@ -98,7 +98,6 @@ angular.module('octobluApp')
     };
 
     $scope.switchViewStyle = function(viewStyle) {
-      // $scope.activeTab.viewStyle = viewStyle;
       $scope.activeFlow.browserTab.viewStyle = viewStyle;
     };
 
