@@ -1,31 +1,11 @@
 {
-  "_id": "23842p9djucsleow0q03",
+  "_id": "ef894c709edd1c69b176dee6",
   "__v": 0,
   "type": "channel:g2planet",
-  "auth_strategy": "",
+  "auth_strategy": "none",
   "documentation": "",
-  "name": "G2Planet",
+  "name": "G2 Planet",
   "enabled": true,
-  "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
-    }
-  },
   "application": {
     "base": "https://demo.g2planet.com/synergyorlando2015",
     "resources": [
