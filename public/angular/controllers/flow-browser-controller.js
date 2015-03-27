@@ -98,12 +98,16 @@ angular.module('octobluApp')
     };
 
     $scope.switchViewStyle = function(viewStyle) {
-      $scope.activeTab.viewStyle = viewStyle;
+      // $scope.activeTab.viewStyle = viewStyle;
+      $scope.activeFlow.browserTab.viewStyle = viewStyle;
     };
 
     $scope.templateForViewStyle = function() {
-      if ($scope.activeTab.viewStyle === 'detail') return $scope.activeTab.detailTemplate;
-      if ($scope.activeTab.viewStyle === 'thumbnail') return $scope.activeTab.thumbnailTemplate;
+      if ($scope.activeFlow.browserTab.viewStyle === 'detail')
+        return $scope.activeFlow.browserTab.detailTemplate;
+
+      if ($scope.activeFlow.browserTab.viewStyle === 'thumbnail')
+        return $scope.activeFlow.browserTab.thumbnailTemplate;
 
       return null;
     }
