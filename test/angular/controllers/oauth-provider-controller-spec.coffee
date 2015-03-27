@@ -77,7 +77,7 @@ describe 'OAuthProviderController', ->
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: get: => @q.when()
           ProfileService: @ProfileService
-          $stateParams: {uuid: 'snickers'}
+          $stateParams: {uuid: 'snickers', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $scope: @scope
           $window: @window
 
@@ -88,7 +88,7 @@ describe 'OAuthProviderController', ->
         expect(@ProfileService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
-        expect(@window.location).to.equal 'https://smurfs.bikes/snickers?token=session-token&uuid=junior-mints'
+        expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=snickers&redirect_uri=foo&token=session-token&uuid=junior-mints'
 
     describe 'when called with token-session', ->
       beforeEach ->
@@ -99,7 +99,7 @@ describe 'OAuthProviderController', ->
           MeshbluDeviceService: get: => @q.when()
           ProfileService: @ProfileService
           $scope: @scope
-          $stateParams: {uuid: 'mars'}
+          $stateParams: {uuid: 'mars', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $window: @window
 
         @sut.authorize()
@@ -109,4 +109,4 @@ describe 'OAuthProviderController', ->
         expect(@ProfileService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
-        expect(@window.location).to.equal 'https://smurfs.bikes/mars?token=token-session&uuid=mnms'
+        expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=mars&redirect_uri=foo&token=token-session&uuid=mnms'
