@@ -12,7 +12,7 @@
     ng-click="addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}">
 
-    <md-icon md-svg-src="{{flowNodeType.logo}}"></md-icon>
+    <md-icon md-svg-src="{{flowNodeType.logo}}" class="node-grid-thumbnail"></md-icon>
 
     <md-grid-tile-footer class="node-grid-title-footer">
       <p class="node-label">{{flowNodeType.name || flowNodeType.type}}</p>

@@ -1,12 +1,3 @@
-<!-- <ul class="flow-browser-nodes">
-    <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes | filter: {category : '!operation'}" ng-click="addFlowNodeType(flowNodeType)" data-type="{{flowNodeType.type}}">
-        <div class="node-thumbnail"
-             style="background-image: url({{flowNodeType.logo}});"></div>
-        <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
-    </li>
-</ul>
- -->
-
  <div class="node-detail-list"
   layout="row"
   layout-wrap
@@ -21,7 +12,7 @@
     data-type="{{flowNodeType.type}}">
 
     <md-card-content layout="row" layout-padding>
-      <img class="node-detail-thumbnail"
+      <img class="node-grid-thumbnail"
         src="{{flowNodeType.logo}}"
         alt="{{flowNodeType.name || flowNodeType.type}}"
         flex="33" />
