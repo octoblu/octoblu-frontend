@@ -59,5 +59,10 @@ angular
         link: 'http://status.octoblu.com/',
         summary: 'View the current status of the designer.',
       },
+      {
+        title: 'Flow Tutorial',
+        link: '/tutorial/create',
+        summary: 'Learn to create your own flow by importing the tutorial flow.'
+      }
     ];
   });
