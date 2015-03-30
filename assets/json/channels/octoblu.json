@@ -4,7 +4,7 @@
   "auth_strategy": "oauth",
   "documentation": "https://developer.octoblu.com/documentation/#user",
   "name": "Octoblu",
-  "enabled": true,
+  "enabled": false,
   "oauth": {
     "production" : {
       "clientID": "INSERT_SECERT_HERE",

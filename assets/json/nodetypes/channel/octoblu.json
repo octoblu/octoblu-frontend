@@ -2,7 +2,7 @@
   "_id": "8be24d05982d5d112731d1ab",
   "category": "channel",
   "description": "",
-  "enabled": true,
+  "enabled": false,
   "helpText": "For more help, visit the <a href='https://developer.octoblu.com'>Octoblu documentation</a>.",
   "name": "Octoblu",
   "skynet": {
