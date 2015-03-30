@@ -6,8 +6,6 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       stepName = @getStepName()
       steps = @flow.tutorial[stepName]
       steps = @addEndFlowButton steps
-      if stepName == 'end_tutorial'
-        steps = @addEndFlowButton steps
       steps
 
     addEndFlowButton: (steps) =>
