@@ -62,7 +62,7 @@
     "angular-chart.js": "~0.3.19",
     "angulartics": "~0.17.2",
     "shepherd.js": "~0.6.14",
-    "webcomponentsjs": "~0.6.0"
+    "MutationObservers": "Polymer/MutationObservers#~0.4.2"
   },
   "devDependencies": {
     "chai": "~1.9.1",
