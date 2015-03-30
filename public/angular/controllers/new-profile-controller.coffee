@@ -38,6 +38,7 @@ class NewProfileController
     flowAttributes =
       tutorial: @tutorial
       name: 'Tutorial Flow'
+      nodes: []
 
     @FlowService.createFlow flowAttributes
 
