@@ -1,6 +1,6 @@
 class RootController
   constructor: ($state) ->
     @state = $state
-    @state.go('material.home')
+    @state.go('material.design')
 
 angular.module('octobluApp').controller 'RootController', RootController
