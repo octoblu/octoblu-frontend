@@ -14,7 +14,7 @@ var authenticate = function(options){
 
 var UserVoiceController = function(){
   this.authorize = authenticate();
-  this.callback  = authenticate({ failureRedirect: '/home' });
+  this.callback  = authenticate({ failureRedirect: '/design' });
   this.redirectToDesigner = function(req, res){
     res.redirect('/design');
   };

@@ -7,7 +7,7 @@ var JawboneController = function() {
         scope: jawboneScope
     });
     this.callback = passport.authenticate('jawbone', {
-        failureRedirect: '/home'
+        failureRedirect: '/design'
     });
     this.redirectToDesigner = function(req, res) {
         res.redirect('/design');

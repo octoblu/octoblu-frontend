@@ -347,11 +347,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
       })
-      .state('material.home', {
-        url: '/home',
-        templateUrl: '/pages/home.html',
-        controller: 'homeController'
-      })
       .state('material.nodes', {
         url: '/connect',
         controller: 'NodeController',
