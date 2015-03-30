@@ -8,7 +8,7 @@
     class="animated-popout"
     md-rowspan="1"
     md-colspan="1"
-    ng-repeat="flowNodeType in flowNodeTypes | filter: {category : '!operation', type: '!device:flow'}"
+    ng-repeat="flowNodeType in flowNodeTypes | filter: {type: 'device:flow'}"
     ng-click="addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}">
 

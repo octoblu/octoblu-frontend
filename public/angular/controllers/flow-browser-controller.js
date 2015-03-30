@@ -8,6 +8,14 @@ angular.module('octobluApp')
         template: '/pages/flow-browser-debug.html',
         controlsTemplate: '/pages/flow-browser-debug-controls.html'
       },
+      flows : {
+        name: 'flows',
+        template: '/pages/flow-browser-flows.html',
+        viewStyle: 'thumbnail',
+        controlsTemplate: '',
+        detailTemplate: '',
+        thumbnailTemplate: '/pages/flow-flows-thumbnail-list.html'
+      },
       operators : {
         name: 'operators',
         template: '/pages/flow-browser-operators.html',
