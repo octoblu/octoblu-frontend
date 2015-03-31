@@ -5,7 +5,7 @@
     <div class="tab-controls">
       <div class="btn-group">
         <button id="btn-flows" class="btn btn-default btn-sm" ng-click="toggleActiveTab('flows')" ng-class="{'active' : activeFlow.browserTab.name === 'flows'}" tooltip="Flows" tooltip-placement="top">
-            <md-icon class="flow-browser-control-icon" md-svg-src="http://octoblu-icons.s3.amazonaws.com/device/flow.svg"></md-icon>
+            <img class="flow-browser-control-icon" src="{{OCTOBLU_ICON_URL}}device/flow.svg" />
         </button>
         <button id="btn-operation-nodes" class="btn btn-default btn-sm" ng-click="toggleActiveTab('operators')" ng-class="{'active' : activeFlow.browserTab.name === 'operators'}" tooltip="Operator Nodes" tooltip-placement="top" >
             <i class="fa fa-plug fa-lg"></i>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, reservedProperties) {
+  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, reservedProperties, OCTOBLU_ICON_URL) {
     var tabs = {
       debug: {
         name: 'debug',
@@ -50,6 +50,7 @@ angular.module('octobluApp')
     $scope.flowBrowser = {};
     $scope.flowBrowser.activeFlowJson = '';
     $scope.template = {};
+    $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
 
     $scope.activeFlowEdit = false;
 

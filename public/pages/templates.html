@@ -60,7 +60,7 @@
                     <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
                         <md-item-content layout="row" layout-align="space-around">
                             <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)" aria-label="Set Current Template">
-                                <img src="https://ds78apnml6was.cloudfront.net/device/flow.svg" height="30">
+                                <img src="{{OCTOBLU_ICON_URL}}device/flow.svg" height="30">
                                 <div flex layout layout-align="space-between">
                                     <h3>{{template.name}}</h3>
                                     <h4>{{template.created | date: 'short'}}</h4>

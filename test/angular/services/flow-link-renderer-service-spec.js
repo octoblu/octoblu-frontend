@@ -1,4 +1,4 @@
-xdescribe('FlowLinkRenderer', function () {
+describe('FlowLinkRenderer', function () {
   var sut, renderScope;
 
   beforeEach(function () {
