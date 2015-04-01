@@ -15,10 +15,10 @@
     </div>
 
     <div flex layout="row" class="md-toolbar-tools" layout-align="end">
-      <div class="input-group flow-name dropdown" dropdown>
+      <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
         <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
-        <span class="input-group-btn flow-dropdown" id="flowMenuDropdown" data-toggle="dropdown" style="border-left: 0px;">
-          <button class="btn btn-white dropdown-toggle" dropdown-toggle>
+        <span class="input-group-btn flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
+          <button class="btn btn-white" ng-click="toggleDropdown($event)">
             <i class="fa fa-lg fa-angle-down input-addon"></i>
           </button>
         </span>

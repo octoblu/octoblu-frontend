@@ -168,6 +168,18 @@ angular.module('octobluApp')
     });
   };
 
+  var debouncedToggle = _.debounce(function(){
+    $scope.flowDropDownIsOpen = !$scope.flowDropDownIsOpen;
+  }, 100, {leading: true, trailing: false});
+
+  $scope.toggleDropdown = function($event){
+    $event.preventDefault();
+    $event.stopPropagation();
+    debouncedToggle();
+  };
+
+
+
   $scope.copySelection = function (e) {
     if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
