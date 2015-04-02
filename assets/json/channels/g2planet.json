@@ -5,7 +5,7 @@
   "auth_strategy": "none",
   "documentation": "",
   "name": "G2 Planet",
-  "enabled": true,
+  "enabled": false,
   "application": {
     "base": "https://demo.g2planet.com/synergyorlando2015",
     "resources": [
