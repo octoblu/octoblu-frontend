@@ -13,18 +13,22 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "../test/assets/meshblu.bundle.js",
-        "assets/javascripts/dist/dependencies.js",
+        "lib/angular/angular.js",
+        "lib/lodash/lodash.js",
+        "lib/d3/d3.js",
+        "lib/angular-ui-router/release/angular-ui-router.js",
         "lib/angular-mocks/angular-mocks.js",
+        "lib/moment/moment.js",
+        "lib/jquery/dist/jquery.js",
+        "lib/node-uuid/uuid.js",
+        "lib/eventEmitter/EventEmitter.js",
         "**/*.html",
         "../test/angular/test_helper.js",
-
         "angular/config/**/*.js",
         "angular/controllers/**/*.js",
         "angular/directives/**/*.js",
         "angular/models/**/*.js",
         "angular/services/**/*.js",
-
         "../test/angular/**/*-spec.js",
         "../test/angular/**/*-spec.coffee",
         "angular/**/*.coffee"

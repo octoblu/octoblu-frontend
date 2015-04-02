@@ -1,7 +1,7 @@
-<div class="materialize" layout="row" md-theme="octo-blue">
+<div class="materialize" layout="row">
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="navIsOpen">
     <md-toolbar class="md-octo-blue-theme" layout-align="center">
-      <a href ng-click="closeNav()" ui-sref="material.home" class="navbar-logo">
+      <a href ng-click="closeNav()" ui-sref="material.design" class="navbar-logo">
         <img src="/assets/images/octoblu_logo.png">
       </a>
     </md-toolbar>
@@ -11,10 +11,6 @@
     </md-button>
 
     <md-content>
-      <a href ng-click="closeNav()" ui-sref="material.home" layout="row" layout-align="start center">
-        <i class="fa fa-home fa-lg"></i>
-        <span>Home</span>
-      </a>
       <a href ng-click="closeNav()" ui-sref="material.nodes" layout="row" layout-align="start center">
         <i class="fa fa-plug fa-lg"></i>
         <span>Connect</span>
@@ -38,6 +34,11 @@
       <a href ng-click="closeNav()" ui-sref="material.admin.all" layout="row" layout-align="start center">
         <i class="fa fa-lock fa-lg"></i>
         <span>Admin</span>
+      </a>
+
+      <a href ng-click="closeNav()" ui-sref="material.resources" layout="row" layout-align="start center">
+        <i class="fa fa-book fa-lg"></i>
+        <span>Resources</span>
       </a>
 
       <md-divider></md-divider>

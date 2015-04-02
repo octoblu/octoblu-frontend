@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes, OCTOBLU_ICON_URL) {
 
     function getNodeHeight(node) {
       var inputPorts = node.input || 0;
@@ -231,7 +231,7 @@ angular.module('octobluApp')
 
         var logoUrl = function(data) {
           if (data && data.type) {
-            return 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+            return OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
           }
         };
 
@@ -263,7 +263,7 @@ angular.module('octobluApp')
             .append("svg:image")
             .attr('width', FlowNodeDimensions.width)
             .attr('height', nodeHeight)
-            .attr("xlink:href", "https://ds78apnml6was.cloudfront.net/socket.svg");
+            .attr("xlink:href", OCTOBLU_ICON_URL + "socket.svg");
         }
 
         if (node.errorMessage) {

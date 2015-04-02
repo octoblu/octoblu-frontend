@@ -1,0 +1,256 @@
+{
+  "_id": "8582957029375djf9240",
+  "__v": 0,
+  "type": "channel:tempo_iq",
+  "auth_strategy": "oauth",
+  "documentation": "https://developers.tempoiq.com/docs/html/index.html",
+  "name": "TempoIQ",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://th8129-trial.backend.tempoiq.com",
+    "resources": [
+      {
+        "path": "/v2/devices",
+        "displayName": "Create Device",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices"
+        },
+        "httpMethod": "Post",
+        "params": [
+          {
+            "displayName": "Key",
+            "style": "body",
+            "type": "string",
+            "name": "key",
+            "required": true
+          },{
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },{
+            "displayName": "Attributes",
+            "style": "body",
+            "type": "hash",
+            "name": "attributes"
+          },{
+            "displayName": "Sensors",
+            "style": "body",
+            "type": "array",
+            "name": "sensors"
+          }
+        ],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices"
+      },
+      {
+        "path": "/v2/devices",
+        "displayName": "Get Devices",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices"
+        },
+        "httpMethod": "Get",
+        "params": [],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices"
+      },
+      {
+        "path": "/v2/devices/:key",
+        "displayName": "Get Device Key",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key"
+        },
+        "httpMethod": "Get",
+        "params": [{
+            "displayName": "Key Of The Device",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key"
+      },
+      {
+        "path": "/v2/devices/:key",
+        "displayName": "Update Device",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key"
+        },
+        "httpMethod": "Put",
+        "params": [{
+            "displayName": "Key",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          },{
+            "displayName": "Name",
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },{
+            "displayName": "Attributes",
+            "style": "body",
+            "type": "hash",
+            "name": "attributes"
+          },{
+            "displayName": "Sensors",
+            "style": "body",
+            "type": "array",
+            "name": "sensors"
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key"
+      },
+      {
+        "path": "/v2/devices/",
+        "displayName": "Delete Devices",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/"
+        },
+        "httpMethod": "Delete",
+        "params": [],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/"
+      },
+      {
+        "path": "/v2/devices/:key/",
+        "displayName": "Delete Device Key",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key/"
+        },
+        "httpMethod": "Delete",
+        "params": [{
+            "displayName": "Key Of Device",
+            "style": "URL",
+            "type": "string",
+            "name": ":key",
+            "required": true
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:key/"
+      },
+      {
+        "path": "/v2/write/",
+        "displayName": "Writing Data",
+        "doc": {
+         "url": "https://th8129-trial.backend.tempoiq.com/v2/write/"
+        },
+        "httpMethod": "Post",
+        "params": [{
+            "displayName": "Device1",
+            "style": "body",
+            "type": "array",
+            "name": "device1"
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/write/"
+      },
+      {
+        "path": "/v2/devices/:devicekey/sensors/:sensorkey/datapoints",
+        "displayName": "Deleting Data",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:devicekey/sensors/:sensorkey/datapoints"
+        },
+        "httpMethod": "Delete",
+        "params": [{
+            "displayName": "Start Of Time Range",
+            "style": "",
+            "type": "string",
+            "name": "start"
+          },{
+            "displayName": "End Of Time Range",
+            "style": "",
+            "type": "string",
+            "name": "stop"  
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/devices/:devicekey/sensors/:sensorkey/datapoints"
+      },
+      {
+        "path": "/v2/read/",
+        "displayName": "Read Data",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/read/"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Selects The Sensors To Read",
+            "style": "query",
+            "type": "string",
+            "name": "search",
+            "required": true
+          },{
+            "displayName": "Start Of Time Range",
+            "style": "body",
+            "type": "string",
+            "name": "start",
+            "required": true
+          },{
+            "displayName": "End Of Time Range",
+            "style": "body",
+            "type": "string",
+            "name": "stop",
+            "required": true
+          },{
+            "displayName": "Functions",
+            "style": "body",
+            "type": "array",
+            "name": "functions"
+          }
+        ],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/read/"
+      },
+      {
+        "path": "/v2/single",
+        "displayName": "Gets A Single Data Point",
+        "doc": {
+          "url": "https://th8129-trial.backend.tempoiq.com/v2/single"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "displayName": "Selects The Sensors To Read",
+            "style": "query",
+            "type": "string",
+            "name": "search",
+            "required": true
+          },{
+            "displayName": "Function",
+            "style": "query",
+            "type": "string",
+            "name": "function",
+            "required": true
+          },{
+            "displayName": "Timestamp",
+            "style": "body",
+            "type": "string",
+            "name": "timestamp",
+            "required": true
+          },{
+            "displayName": "Functions",
+            "style": "body",
+            "type": "array",
+            "name": "functions"
+          }],
+        "url": "https://th8129-trial.backend.tempoiq.com/v2/single"
+      }
+    ]
+  }
+}

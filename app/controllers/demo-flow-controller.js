@@ -15,11 +15,12 @@ var DemoFlowController = function (options) {
 
   self.create = function (req, res) {
     var user = req.user;
+    var cookies = req.cookies || {};
     when.all([
       User.addApiAuthorization(user, 'channel:weather', {authtype: 'none'}),
       User.addApiAuthorization(user, 'channel:stock-price', {authtype: 'none'}),
-      User.addApiAuthorization(user, 'channel:sms-send', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token }),
-      User.addApiAuthorization(user, 'channel:email', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token})
+      User.addApiAuthorization(user, 'channel:sms-send', {authtype: 'basic', token : cookies.meshblu_auth_uuid, secret : cookies.meshblu_auth_token }),
+      User.addApiAuthorization(user, 'channel:email', {authtype: 'basic', token : cookies.meshblu_auth_uuid, secret : cookies.meshblu_auth_token})
     ]).then(function(){
       Template.importFlow(user.resource.uuid, demoFlow, meshblu).then(function(flow){
         res.send(201, flow);

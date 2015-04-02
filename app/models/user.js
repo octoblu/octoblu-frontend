@@ -46,8 +46,7 @@ function UserModel() {
             uuid: skynetData.uuid
           },
           skynet: {
-            uuid: skynetData.uuid,
-            token: skynetData.token
+            uuid: skynetData.uuid
           },
           api : [],
           created_at: moment().utc().toDate()
@@ -58,6 +57,19 @@ function UserModel() {
         });
       });
     },
+
+    updateProfileBySkynetUUID: function(skynetuuid, profile) {
+      var self = this;
+
+      return self.findBySkynetUUID(skynetuuid)
+        .then(function(user) {
+          console.log(user);
+        })
+        .catch(function(error) {
+          return when.reject('Error updating profile');
+        });
+    },
+
 
     findBySkynetUUID : function (skynetuuid) {
       var self = this;
@@ -79,11 +91,6 @@ function UserModel() {
       };
 
       return self.findOne(userQuery);
-    },
-
-    findBySkynetUUIDAndToken : function (skynetuuid, skynettoken) {
-      var self = this;
-      return self.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken});
     },
 
     generateHash : function (password) {
@@ -208,18 +215,9 @@ function UserModel() {
       return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
     },
 
-    resetToken: function(uuid){
+    resetToken: function(uuid, token){
       var self = this;
-      return self.findBySkynetUUID(uuid).then(function(user){
-        return self.skynetRestRequest('/devices/' + user.skynet.uuid + '/token', true, 'POST', user.skynet.uuid, user.skynet.token);
-      }).then(function(response){
-        var token = response.token;
-        return self.updateWithPromise({'skynet.uuid': uuid}, {$set: {'skynet.token': token}}).then(function(){
-          return token;
-        });
-      }).catch(function(error){
-        return when.reject('Token was reset, but not saved. You are in trouble.');
-      });
+      return self.skynetRestRequest('/devices/' + uuid + '/token', true, 'POST', uuid, token);
     },
 
     skynetRestRequest: function(uri_fragment, json, method, auth_uuid, auth_token) {

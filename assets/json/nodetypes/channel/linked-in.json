@@ -2,6 +2,7 @@
   "_id": "53c9b833f400e177dca325b5",
   "category": "channel",
   "description": "",
+  "helpText": "Manage your professional identity. Build and engage with your professional network. Access knowledge, insights and opportunities.",
   "enabled": false,
   "name": "LinkedIn",
   "skynet": {

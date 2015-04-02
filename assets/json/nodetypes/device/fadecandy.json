@@ -2,6 +2,7 @@
   "_id": "device-fadecandy",
   "category": "device",
   "description": "FadeCandy device",
+  "helpText": "Easy to use open source hardware to drive WS2811 LEDs.",
   "enabled": true,
   "name": "FadeCandy",
   "skynet": {

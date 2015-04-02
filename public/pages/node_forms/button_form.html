@@ -1,13 +1,32 @@
-<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
 
-<md-text-float label="Topic" ng-model="flowNode.topic"> </md-text-float>
+<md-input-container>
+  <label>Topic</label>
+  <input ng-model="flowNode.topic">
+</md-input-container>
 <br/>
 
-<span>Payload Type</span>
 <md-radio-group ng-model="flowNode.payloadType">
+  <label>Payload Type</label>
   <md-radio-button value="date">Timestamp</md-radio-button>
   <md-radio-button value="none"> Blank </md-radio-button>
   <md-radio-button value="string">String</md-radio-button>
 </md-radio-group>
 
-<md-text-float ng-show="flowNode.payloadType === 'string'" label="Payload" ng-model="flowNode.payload"> </md-text-float>
+<md-input-container ng-show="flowNode.payloadType === 'string'">
+  <label>Payload</label>
+  <textarea ng-model="flowNode.payload"></textarea>
+</md-input-container>
+
+<p>
+There are two ways to trigger your webhook:
+<br>
+<h4>Email</h4>
+<a href="mailto:{{flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowNode.id}}@webhook.octoblu.com</a>
+<br>
+<h4>HTTP POST</h4>
+<a ng-href="https://app.octoblu.com/api/webhooks/{{flowNode.id}}" target="_blank">https://app.octoblu.com/api/webhooks/{{flowNode.id}}</a>
+</p>

@@ -2,7 +2,8 @@
   "_id": "53c9b82ef400e177dca325a1",
   "category": "device",
   "description": "SkyNet cloud",
-  "enabled": true,
+  "helpText": "disabled",
+  "enabled": false,
   "name": "Meshblu",
   "skynet": {
     "type": "skynet",

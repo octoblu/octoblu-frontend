@@ -9,17 +9,17 @@ describe 'GeneralSearch', ->
 
   describe 'constructor', ->
     beforeEach ->
-      @sut = new GeneralSearch 'something', 'kinda-a-query', 'Wishbone', @dependencies
+      @sut = new GeneralSearch 'something', 'kinda-a-query', 'Wishbone', 'boneWish', @dependencies
 
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Wishbone'
+      expect(@DeviceCollection).to.have.been.calledWith 'Wishbone', 'boneWish'
 
   describe 'constructor part deux', ->
     beforeEach ->
-      @sut = new GeneralSearch 'something', 'kinda-a-query', 'Spengebeb', @dependencies
+      @sut = new GeneralSearch 'something', 'kinda-a-query', 'Spengebeb', 'Spangabab', @dependencies
 
     it 'should instantiate a DeviceCollection with the ownerUuid', ->
-      expect(@DeviceCollection).to.have.been.calledWith 'Spengebeb'
+      expect(@DeviceCollection).to.have.been.calledWith 'Spengebeb', 'Spangabab'
 
   describe '->query', ->
     beforeEach ->
@@ -103,14 +103,13 @@ describe 'GeneralSearch', ->
   describe '->fetch', ->
     describe 'when instantiated with karatechicken', ->
       beforeEach ->
-        @fromUuid = 'gooeyuuid'
-        @sut = new GeneralSearch 'some-url', 'kinda-a-query', @fromUuid, @dependencies
+        @sut = new GeneralSearch 'some-url', 'kinda-a-query', 'gooeyuuid', 'gooeytoken', @dependencies
         @sut.requestParams = sinon.stub().returns {hop: 'chicken'}
 
       describe 'when it is called', ->
         beforeEach ->
           @sut.deviceCollection.fetchAll = sinon.stub().returns When [{uuid: 'k2'}]
-          result = { worker: "sweet", fromUuid: @fromUuid, sweet: 1, bacon: 3 }
+          result = { worker: "sweet", fromUuid: 'gooeyuuid', sweet: 1, bacon: 3 }
           hits = [{ "_id": "123", "_source": result }]
           @request.yields null, {statusCode: 200}, { hits : { hits : hits }}
           @sut.fetch("bacon").then (@result) =>
@@ -119,13 +118,13 @@ describe 'GeneralSearch', ->
           expect(@sut.deviceCollection.fetchAll).to.have.been.called
 
         it 'should call requestParams with the devices of the ownerUuid', ->
-          expect(@sut.requestParams).to.have.been.calledWith('kinda-a-query', ['k2',@fromUuid])
+          expect(@sut.requestParams).to.have.been.calledWith('kinda-a-query', ['k2','gooeyuuid'])
 
         it 'should make a rest request with the requestParams', ->
           expect(@request).to.have.been.calledWith {hop: 'chicken'}
 
         it 'should sane-itize the results', ->
-          expect(@result).to.deep.equal [{sweet : 1, bacon : 3, fromUuid: @fromUuid }]
+          expect(@result).to.deep.equal [{sweet : 1, bacon : 3, fromUuid: 'gooeyuuid' }]
 
       describe 'when called and request yields an error', ->
         beforeEach ->

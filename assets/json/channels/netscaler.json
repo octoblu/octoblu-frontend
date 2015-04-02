@@ -5,42 +5,34 @@
   "documentation": "http://support.citrix.com/proddocs/topic/netscaler-main-api-10-5-map/ns-nitro-rest-landing-page-con.html",
   "name": "NetScaler",
   "enabled": true,
-  "oauth": {
-    "development": {
-    },
-    "staging": {
-    },
-    "production": {
-    }
-  },
   "defaultParams": [
     {
-      "displayName": "Netscaler IP Address or Domain",
+      "displayName": "Netscaler Host (including http:// or https://)",
       "style": "url",
       "type": "string",
-      "name": ":ipAddressOrDomain",
+      "name": ":url",
       "required": true
     }
   ],
   "application" : {
-    "base" : "https://:ipAddressOrDomain/nitro/v1",
+    "base" : ":url/nitro/v1",
     "resources" : [
       {
         "path": "/config/login/",
         "displayName": "Create The Session ID",
         "doc": {
-          "url": "https://:ipAddressOrDomain/nitro/v1/config/login/"
+          "url": ":url/nitro/v1/config/login/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [],
-        "url": "https://:ipAddressOrDomain/nitro/v1/config/login/"
+        "url": ":url/nitro/v1/config/login/"
       },
       {
         "path": "/config/lbvserver/",
         "displayName": "Create New Resource On The Appliance",
         "doc": {
-          "url": "https://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
+          "url": ":url/nitro/v1/config/lbvserver/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
@@ -51,7 +43,7 @@
           "name": ":categoryId",
           "required": true
         }],
-        "url": "https://:ipAddressOrDomain/nitro/v1/config/lbvserver/"
+        "url": ":url/nitro/v1/config/lbvserver/"
       },
       {
         "path": "/config/nsfeature",
@@ -89,12 +81,12 @@
         "path": "/config/logout/",
         "displayName": "Disconnecting From The Appliance",
         "doc": {
-          "url": "https://:ipAddressOrDomain/nitro/v1/config/logout/"
+          "url": ":url/nitro/v1/config/logout/"
         },
         "httpMethod": "Post",
         "curl": "curl -X",
         "params": [],
-        "url": "https://:ipAddressOrDomain/nitro/v1/config/logout/"
+        "url": ":url/nitro/v1/config/logout/"
       },
       {
         "path": "/config/lbvserver/MyFirstLbVServer/",

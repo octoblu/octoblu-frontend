@@ -2,6 +2,7 @@
   "_id": "54c95e10c6caa4da13042abd",
   "category": "device",
   "description": "Local Motors Rally Fighter",
+  "helpText": "Local Motors Rally Fighter.",
   "enabled": true,
   "name": "Rally Fighter",
   "skynet": {

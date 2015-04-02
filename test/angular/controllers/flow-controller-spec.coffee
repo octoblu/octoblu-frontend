@@ -5,6 +5,7 @@ describe 'FlowController', ->
       $provide.value '$intercom', sinon.stub()
       $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
+      $provide.value 'OCTOBLU_ICON_URL', ''
       return
 
     inject ($controller, $rootScope, $q) =>
@@ -16,6 +17,7 @@ describe 'FlowController', ->
 
       @fakeWindow = new FakeWindow
       @fakeFlowService = new FakeFlowService $q
+      @flowEditorService = new FlowEditorService
       @fakeFlowNodeTypeService = new FakeFlowNodeTypeService $q
       @fakeSkynetService = new FakeSkynetService $q
       @fakeNotifyService = new FakeNotifyService $q
@@ -26,6 +28,7 @@ describe 'FlowController', ->
         $stateParams : @stateParams
         $window : @fakeWindow
         FlowService : @fakeFlowService
+        FlowEditorService: @flowEditorService
         FlowNodeTypeService : @fakeFlowNodeTypeService
         skynetService: @fakeSkynetService
         NotifyService : @fakeNotifyService
@@ -60,97 +63,23 @@ describe 'FlowController', ->
         @scope.deleteFlow flow1
         expect(@fakeFlowService.deleteFlow).not.to.have.been.called
 
-  describe "deleteSelection", ->
-    it "should be callable", ->
-      @scope.deleteSelection()
-
-    describe "when there is a selectedFlowNode", ->
+  describe "->deleteSelection", ->
+    describe 'when called with an activeFlow', ->
       beforeEach ->
-        @node1 = some: "node"
-        @scope.activeFlow =
-          flowId: "123"
-          nodes: [@node1]
-          links: []
-
-        @scope.activeFlow.selectedFlowNode = @node1
-
-      it "should set the selectedFlowNode to null", ->
+        @scope.activeFlow = { flowId: 123 }
+        @flowEditorService.deleteSelection = sinon.stub().returns { flowId: 123 }
         @scope.deleteSelection()
-        expect(@scope.activeFlow.selectedFlowNode).to.be.null
 
-      it "should delete the node from flow.nodes", ->
-        @scope.deleteSelection()
-        expect(@scope.activeFlow.nodes).to.be.empty
+      it 'should call FlowEditorService.deleteSelection()', ->
+        expect(@flowEditorService.deleteSelection).to.have.been.calledWith { flowId: 123 }
 
-      describe "when there are multiple nodes in the flow", ->
-        beforeEach ->
-          @node2 = some: "otherNode"
-          @scope.activeFlow =
-            flowId: "123"
-            nodes: [
-              @node1
-              @node2
-            ]
-            links: []
-
-        describe "when node1 is selected", ->
-          beforeEach ->
-            @scope.activeFlow.selectedFlowNode = @node1
-
-          it "should delete node1", ->
-            @scope.deleteSelection()
-            expect(@scope.activeFlow.nodes).not.to.include @node1
-            expect(@scope.activeFlow.nodes).to.include @node2
-
-        describe "when node2 is selected", ->
-          beforeEach ->
-            @scope.activeFlow.selectedFlowNode = @node2
-
-          it "should delete node2", ->
-            @scope.deleteSelection()
-            expect(@scope.activeFlow.nodes).to.include @node1
-            expect(@scope.activeFlow.nodes).not.to.include @node2
-
-    describe "when there is a selectedLink", ->
+    describe 'when called without an activeFlow', ->
       beforeEach ->
-        @link1 = some: "link"
-        @scope.activeFlow =
-          flowId: "123"
-          nodes: []
-          links: [@link1]
-
-        @scope.activeFlow.selectedLink = @link1
-
-      it "should clear the selected link", ->
+        @flowEditorService.deleteSelection = sinon.stub().returns { flowId: 123 }
         @scope.deleteSelection()
-        expect(@scope.activeFlow.selectedLink).to.be.null;
 
-      it "should delete the link from flow.links", ->
-        @scope.deleteSelection()
-        expect(@scope.activeFlow.links).to.be.empty
-
-      describe "when there are multiple links in the flow", ->
-        beforeEach ->
-          @link2 = some: "otherLink"
-          @scope.activeFlow.links.push @link2
-
-        describe "when link1 is selected", ->
-          beforeEach ->
-            @scope.activeFlow.selectedLink = @link1
-
-          it "should delete link1", ->
-            @scope.deleteSelection()
-            expect(@scope.activeFlow.links).not.to.include @link1
-            expect(@scope.activeFlow.links).to.include @link2
-
-        describe "when link2 is selected", ->
-          beforeEach ->
-            @scope.activeFlow.selectedLink = @link2
-
-          it "should delete link2", ->
-            @scope.deleteSelection()
-            expect(@scope.activeFlow.links).to.include @link1
-            expect(@scope.activeFlow.links).not.to.include @link2
+      it 'should call FlowEditorService.deleteSelection()', ->
+        expect(@flowEditorService.deleteSelection).to.not.have.been.called
 
   describe "on instantiate", ->
     it "should call FlowService.getAllFlows", ->
@@ -221,6 +150,9 @@ describe 'FlowController', ->
 
     hashFlow: (flow) =>
       return 1
+
+  class FlowEditorService
+    deleteSelection: =>
 
   class FakeFlowNodeTypeService
     constructor: ($q) ->

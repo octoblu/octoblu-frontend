@@ -17,7 +17,8 @@ class UserSession
     @exchangeOneTimeTokenForSessionToken uuid, token, (error, sessionToken) =>
       return callback error if error?
 
-      @ensureUserExists uuid, sessionToken, callback
+      @ensureUserExists uuid, (error, user) =>
+        return callback error, user, sessionToken
 
   createNewSessionToken: (uuid, token, callback) =>
     @_meshbluCreateSessionToken uuid, token, (error, response, body) =>
@@ -25,19 +26,19 @@ class UserSession
       return callback new Error(UserSession.ERROR_FAILED_TO_GET_SESSION_TOKEN) unless response.statusCode == 200
       callback null, body.token
 
-  createUser: (uuid, token, callback=->) =>
+  createUser: (uuid, callback=->) =>
     @users
-      .insert {skynet: {uuid: uuid, token: token}, resource: {uuid: uuid}}
+      .insert {skynet: {uuid: uuid}, resource: {uuid: uuid}}
       .then  (user)  =>
         return callback null, user[0] if _.isArray user
         callback null, user
       .catch (error) => callback error
 
-  ensureUserExists: (uuid, token, callback=->) =>
+  ensureUserExists: (uuid, callback=->) =>
     @getUserByUuid uuid, (error, user) =>
       return callback error if error?
-      return @updateUser uuid, token, callback if user?
-      @createUser uuid, token, callback
+      return @getUserByUuid uuid, callback if user?
+      @createUser uuid, callback
 
   exchangeOneTimeTokenForSessionToken: (uuid, token, callback=->) =>
     @createNewSessionToken uuid, token, (error, sessionToken) =>
@@ -50,9 +51,9 @@ class UserSession
   getDeviceFromMeshblu: (uuid, token, callback=->) =>
     @_meshbluGetDevice uuid, token, (error, response, body) =>
       return callback error if error?
-      return callback new Error(UserSession.ERROR_DEVICE_NOT_FOUND) unless body.devices[0]?
+      return callback new Error(UserSession.ERROR_DEVICE_NOT_FOUND) if _.isEmpty body.devices
 
-      callback null, body.devices[0]
+      callback null, _.first(body.devices)
 
   getUserByUuid: (uuid, callback=->) =>
     @users
@@ -76,14 +77,6 @@ class UserSession
       return callback error if error?
       return callback new Error(UserSession.ERROR_FAILED_TO_UPDATE_DEVICE) unless response.statusCode == 200
       callback()
-
-  updateUser: (uuid, token, callback=->) =>
-    @users
-      .update {'skynet.uuid': uuid}, {$set: {'skynet.token': token}}
-      .then =>
-        @getUserByUuid uuid, callback
-      .catch (error) =>
-        callback error
 
   _meshbluCreateSessionToken: (uuid, token, callback=->) =>
     @_meshbluRequest uuid, token, 'POST', "/devices/#{uuid}/tokens", callback

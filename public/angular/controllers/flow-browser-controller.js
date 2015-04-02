@@ -1,27 +1,44 @@
 'use strict';
 
 angular.module('octobluApp')
-  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, reservedProperties) {
+  .controller('FlowBrowserController', function ($scope, $mdDialog, FlowNodeTypeService, reservedProperties, OCTOBLU_ICON_URL) {
     var tabs = {
       debug: {
         name: 'debug',
         template: '/pages/flow-browser-debug.html',
         controlsTemplate: '/pages/flow-browser-debug-controls.html'
       },
+      flows : {
+        name: 'flows',
+        template: '/pages/flow-browser-flows.html',
+        viewStyle: 'thumbnail',
+        controlsTemplate: '',
+        detailTemplate: '',
+        thumbnailTemplate: '/pages/flow-flows-thumbnail-list.html'
+      },
       operators : {
         name: 'operators',
         template: '/pages/flow-browser-operators.html',
-        controlsTemplate: '/pages/flow-browser-operators-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-operators-detail-list.html',
+        thumbnailTemplate: '/pages/flow-operators-thumbnail-list.html'
       },
       nodes: {
         name: 'nodes',
         template: '/pages/flow-browser-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-nodes-thumbnail-list.html'
       },
       unconfigurednodes: {
         name: 'unconfigurednodes',
         template: '/pages/flow-browser-unconfigured-nodes.html',
-        controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        viewStyle: 'thumbnail',
+        controlsTemplate: '/pages/flow-browser-view-controls.html',
+        detailTemplate: '/pages/flow-unconfigured-nodes-detail-list.html',
+        thumbnailTemplate: '/pages/flow-unconfigured-nodes-thumbnail-list.html'
       },
       shareflow: {
         name: 'shareflow',
@@ -33,11 +50,12 @@ angular.module('octobluApp')
     $scope.flowBrowser = {};
     $scope.flowBrowser.activeFlowJson = '';
     $scope.template = {};
+    $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
 
     $scope.activeFlowEdit = false;
 
     $scope.toggleActiveTab = function(name) {
-      if ($scope.activeFlow.browserMaximized && $scope.activeTab.name === name) {
+      if ($scope.activeFlow.browserMaximized && $scope.activeFlow.browserTab.name === name) {
         $scope.minimize();
       } else {
         $scope.maximize();
@@ -62,15 +80,19 @@ angular.module('octobluApp')
     };
 
     $scope.clearActiveTab = function() {
-      $scope.activeTab = {};
+      if(!$scope.activeFlow) {
+        return;
+      }
+
+      $scope.activeFlow.browserTab = {};
     };
 
     $scope.setActiveTab = function(name) {
-      $scope.activeTab = tabs[name];
+      $scope.activeFlow.browserTab = tabs[name];
     };
 
     $scope.hasActiveTab = function() {
-      return !_.isEmpty($scope.activeTab);
+      return !_.isEmpty($scope.activeFlow.browserTab);
     };
 
     $scope.toggleMaximize = function() {
@@ -83,6 +105,20 @@ angular.module('octobluApp')
         $scope.setActiveTab('debug');
       }
     };
+
+    $scope.switchViewStyle = function(viewStyle) {
+      $scope.activeFlow.browserTab.viewStyle = viewStyle;
+    };
+
+    $scope.templateForViewStyle = function() {
+      if ($scope.activeFlow.browserTab.viewStyle === 'detail')
+        return $scope.activeFlow.browserTab.detailTemplate;
+
+      if ($scope.activeFlow.browserTab.viewStyle === 'thumbnail')
+        return $scope.activeFlow.browserTab.thumbnailTemplate;
+
+      return null;
+    }
 
     $scope.setActiveEdit = function(){
       $scope.activeFlowEdit = !$scope.activeFlowEdit;

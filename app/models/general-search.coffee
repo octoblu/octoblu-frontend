@@ -5,10 +5,10 @@ queryTemplate = require '../../assets/json/elasticsearch/general-search.json'
 omittedKeys = ['worker', 'pid', 'path', 'user', 'main', 'uptime', 'rss', 'heapTotal', 'heapUsed', 'to', 'from']
 
 class GeneralSearch
-  constructor: (@elasticSearchUrl, @searchQuery, @ownerUuid, dependencies={}) ->
+  constructor: (@elasticSearchUrl, @searchQuery, @ownerUuid, @ownerToken, dependencies={}) ->
     @request = dependencies.request ? require 'request'
     DeviceCollection = dependencies.DeviceCollection ? require '../collections/device-collection'
-    @deviceCollection = new DeviceCollection @ownerUuid
+    @deviceCollection = new DeviceCollection @ownerUuid, @ownerToken
 
   fetch: =>
     @deviceCollection.fetchAll().then (devices) =>

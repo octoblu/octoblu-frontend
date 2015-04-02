@@ -7,34 +7,40 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       $logProvider.debugEnabled(false);
     }
   })
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.definePalette('octo-blue', {
+      '50': '82bbed',
+      '100': '5ea8e8',
+      '200': '3b94e3',
+      '300': '1f81d6',
+      '400': '196bb3',
+      '500': '14568f',
+      '600': '124b7d',
+      '700': '0f406b',
+      '800': '0d3659',
+      '900': '0a2b47',
+      'A100': '6c9aff',
+      'A200': '3374ff',
+      'A400': '0a58ff',
+      'A700': '0047e0',
+      'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+                                          // on this palette should be dark or light
+      'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+       '200', '300', '400', 'A100'],
+      'contrastLightColors': undefined    // could also specify this if default was 'dark'
+    });
+    $mdThemingProvider.theme('default')
+      .primaryPalette('octo-blue')
+      .accentPalette('green', {
+        'default': '500' // use shade 200 for default, and keep all other shades the same
+      });
+  })
   .config(['markedProvider', function(marked) {
     marked.setOptions({gfm: true, breaks: true});
   }])
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
-  .service('skynetConfig', function ($location) {
-    var host = $location.host();
-
-    if (host === 'app.octoblu.com') {
-      return {
-        host: 'wss://meshblu.octoblu.com',
-        port: '443'
-      };
-    }
-
-    if (host === 'staging.octoblu.com') {
-      return {
-        host: 'wss://meshblu-staging.octoblu.com',
-        port: '443'
-      };
-    }
-
-    return {
-      host: 'ws://' + host,
-      port: '3000'
-    };
-  })
   .constant('INTERCOM_APPID', 'ux5bbkjz')
 
   // Configure your $intercom module with appID
@@ -74,16 +80,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // change page event name
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-    $httpProvider.interceptors.push(function ($window) {
+    $httpProvider.interceptors.push(function ($window,$location) {
       return {
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login';
+              console.log('oh snap, redirecting to login');
+              return $window.location = '/login?callbackUrl=' + $location.url();
             }
           }
           if (response.status === 403) {
-            return $window.location = '/accept_terms';
+            return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
           return response;
         }
@@ -95,6 +102,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/material.html',
         controller: 'MaterialController',
         abstract: true
+      })
+      .state('material.root', {
+        url: '/',
+        templateUrl: '/pages/root.html',
+        controller: 'RootController'
       })
       .state('material.admin', {
         abstract: true,
@@ -254,10 +266,20 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelGooglePlacesController',
         templateUrl: '/pages/node-wizard/add-channel/google-places.html'
       })
-        .state('material.nodewizard.addchannel.wink', {
+      .state('material.nodewizard.addchannel.littlebits', {
+        url: '/littlebits',
+        controller: 'addChannelLittlebitsController',
+        templateUrl: '/pages/node-wizard/add-channel/littlebits.html'
+      })
+      .state('material.nodewizard.addchannel.wink', {
         url: '/wink',
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
+      })
+      .state('material.nodewizard.addchannel.witai', {
+        url: '/witai',
+        controller: 'addChannelWitaiController',
+        templateUrl: '/pages/node-wizard/add-channel/witai.html'
       })
       .state('material.nodewizard.addchannel.docusign', {
         url: '/docusign',
@@ -324,11 +346,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
-      })
-      .state('material.home', {
-        url: '/home',
-        templateUrl: '/pages/home.html',
-        controller: 'homeController'
       })
       .state('material.nodes', {
         url: '/connect',
@@ -397,11 +414,28 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-
+      .state('material.profile-new', {
+        url: '/profile/new',
+        controller: 'NewProfileController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/profile/new.html'
+      })
+      .state('material.create-tutorial', {
+        url: '/tutorial/create',
+        controller: 'CreateFlowTutorialController',
+        controllerAs: 'controller'
+      })
+      .state('material.resources', {
+        url: '/resources',
+        controller: 'ResourcesController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/resources.html'
+      })
       .state('login', {
         url: '/login',
         templateUrl: '/pages/login.html',
-        controller: 'loginController',
+        controller: 'LoginController',
+        controllerAs: 'controller',
         unsecured: true
       })
       .state('forgot', {
@@ -433,7 +467,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
-
+      .state('material.oauth', {
+        url: '/oauth/:uuid?redirect&response_type&redirect_uri',
+        templateUrl : '/pages/oauth.html',
+        controller: 'OAuthProviderController'
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',
@@ -453,9 +491,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
 
     // For any unmatched url, redirect to /
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService) {
 
     // $window.console.log = $log.debug;
 
@@ -465,9 +503,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-      // console.log('transition', fromState.name, toState.name);
       $intercom.update();
       if (!toState.unsecured) {
+
+        if(toState.name !== 'material.profile-new'){
+          IntercomUserService.updateIntercom().catch(function(error){
+            $state.go('material.profile-new');
+          });
+        }
+
         return AuthService.getCurrentUser(true).then(null, function (err) {
           console.log('LOGIN ERROR:');
           console.log(err);
@@ -475,6 +519,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           $location.url('/login');
         });
       }
+
     });
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';

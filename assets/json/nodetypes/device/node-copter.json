@@ -2,6 +2,7 @@
   "_id": "4251418bac23bc96fe6577b1",
   "category": "device",
   "description": "Node Copter",
+  "helpText": "Plugin for remote controlling drones.",
   "enabled": true,
   "name": "Node Copter",
   "skynet": {

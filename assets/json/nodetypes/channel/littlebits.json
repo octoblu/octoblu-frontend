@@ -1,0 +1,14 @@
+{
+  "_id": "89bc4f6f8afe0b0bcabef806",
+  "category": "channel",
+  "description": "littleBits",
+  "helpText": "Program your littleBits cloudBit with Octoblu",
+  "enabled": true,
+  "name": "littleBits",
+  "skynet": {
+    "type": "channel",
+    "subtype": "littlebits"
+  },
+  "channelid": "1498421f8974d91db796891e",
+  "type": "channel:littlebits"
+}

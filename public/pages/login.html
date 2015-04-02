@@ -1,109 +1,44 @@
-<div class='contrast-red login contrast-background '>
-  <div class='middle-container'>
-    <div class='middle-row'>
-      <div class='middle-wrapper'>
-        <div class='login-container-header'>
-          <div class='container'>
-            <div class='row'>
-              <div class='col-sm-12'>
-                <div class='text-center'>
-                   <img src="/assets/images/octoblucircle.png" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class='login-container'>
-          <div class='container'>
-            <div class='row'>
+<md-content layout="row" layout-align="center center">
+  <div class="login-card" layout="column">
+    <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
 
-              <div class='col-sm-4 col-sm-offset-4'>
-                <h1 class='text-center title'>Sign in</h1>
-                <p class="text-danger" ng-show="errorMsg">{{ errorMsg }}</p>
-                <form class='validate-form' target="_self" ng-submit="login()">
-                  <div class='form-group'>
-                    <div class='controls with-icon-over-input'>
-                      <input value="" ng-model="email" placeholder="Email" class="form-control" data-rule-required="true" name="email" type="email" />
-                      <i class='icon-user text-muted'></i>
-                    </div>
-                  </div>
-                  <div class='form-group'>
-                    <div class='controls with-icon-over-input'>
-                      <input value="" placeholder="Password" ng-model="password" class="form-control" data-rule-required="true" name="password" type="password" />
-                      <i class='icon-lock text-muted'></i>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-                </form>
-                <div class='text-center'>
+    <div layout="row" class="login-notice">
+      <p><strong>Look different?</strong> We have rolled out an upgrade that greatly enhances the security of our platform. Find out more <a target="_blank" href="http://blogs.citrix.com/2015/03/10/octoblu-is-rolling-out-a-new-authentication-system/">here</a>.</p>
+    </div>
 
-                  <hr class='hr-normal'>
-                    <div class="col-xs-12 col-lg-6">
-                        <a href="/forgot">Forgot your password?</a>
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                        <a href ui-sref="invitation.request">
-                            <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Request an Invite
-                        </a>
-                    </div>
-                    <br>
-                    <br>
-                </div>
-                <div class="row text-center">
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-github" href="{{getLoginUrl('/api/oauth/github')}}" target="_self">
-                        <span class="fa fa-github"> Github</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-facebook" href="{{getLoginUrl('/api/oauth/facebook')}}" target="_self">
-                        <span class="fa fa-facebook"> Facebook</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-twitter" href="{{getLoginUrl('/api/oauth/twitter')}}" target="_self">
-                        <span class="fa fa-twitter"> Twitter</span>
-                      </a>
-                    </p><br>
-                  </div>
-                  <div class="col-xs-12 col-lg-6">
-                    <p>
-                      <a class="btn-lg btn-block btn-google-plus" href="{{getLoginUrl('/api/oauth/google')}}" target="_self">
-                        <span class="fa fa-google-plus"> Google+</span>
-                      </a>
-                    </p><br>
-                  </div>
-                </div>
+    <div layout="row">
+      <md-button class="login-button login-button-email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
+        <i class="fa fa-lg fa-envelope-o"></i>
+        Sign In with Email
+      </md-button>
+    </div>
 
-              </div>
-            </div>
-          </div>
-          <br />
-          <br />
-          <!--<div class="row">-->
+    <div layout="row">
+      <md-button class="login-button login-button-github" ng-href="{{controller.githubLoginUri}}" flex>
+        <i class="fa fa-lg fa-github-square"></i>
+         Github
+      </md-button>
 
-              <!--<div class="col-xs-12 col-lg-6">-->
-                  <!--<a href ui-sref="invitation.accept">Enter your Invitation Code</a>-->
-              <!--</div>-->
-          <!--</div>-->
-          <br />
-          <br />
+      <md-button class="login-button login-button-facebook" ng-href="{{controller.facebookLoginUri}}" flex>
+        <i class="fa fa-lg fa-facebook-square"></i>
+         Facebook
+      </md-button>
+    </div>
 
-        </div>
-        <div class='login-container-footer'>
-          <div class='container '>
-            <div class='row'>
-              <div class='col-sm-12'>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div layout="row">
+      <md-button class="login-button login-button-twitter" ng-href="{{controller.twitterLoginUri}}" flex>
+        <i class="fa fa-lg fa-twitter-square"></i>
+         Twitter
+      </md-button>
+
+      <md-button class="login-button login-button-google" ng-href="{{controller.googleLoginUri}}" flex>
+        <i class="fa fa-lg fa-google-plus-square"></i>
+         Google+
+      </md-button>
+    </div>
+
+    <div layout="row">
+      <md-button class="md-primary login-button-signup" ng-href="{{controller.signUpUri}}" flex>Create an Account</md-button>
     </div>
   </div>
-</div>
+</md-content>

@@ -23,25 +23,25 @@ describe('FlowNodeTypeController', function () {
     });
 
     it('should be a function', function () {
-      var request = { user : {resource : {uuid : '1234'}}};
+      var request = { cookies : { meshblu_auth_uuid: '1234', meshblu_auth_token: '4321' }};
       sut.getFlowNodeTypes(request, response);
     });
 
     it('should call getFlowNodeTypeCollection with user uuid', function () {
-      var request = { user : {resource : {uuid : '1234'}}};
+      var request = { cookies : { meshblu_auth_uuid: '1234', meshblu_auth_token: '4321' }};
       sut.getFlowNodeTypes(request, response);
       expect(sut.getFlowNodeTypeCollection).to.have.been.calledWith('1234');
     });
 
     it('should call fetch on the flowNodeTypeCollection', function () {
-      var request = { user : {resource : {uuid : '1234'}}};
+      var request = { cookies : { meshblu_auth_uuid: '1234', meshblu_auth_token: '4321' }};
       sut.getFlowNodeTypes(request, response);
       expect(flowNodeTypeCollection.fetch).to.have.been.called;
     });
 
     describe('when fetch resolves with some items', function () {
       beforeEach(function () {
-        var request = { user : {resource : {uuid : '1234'}}};
+        var request = { cookies : { meshblu_auth_uuid: '1234', meshblu_auth_token: '4321' }};
         sut.getFlowNodeTypes(request, response);
         flowNodeTypeCollection.fetch.successCallback([{uuid: '1234'}]);
       });

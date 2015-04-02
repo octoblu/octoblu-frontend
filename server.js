@@ -4,6 +4,25 @@ if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
   require('newrelic');
 }
 
+if ((process.env.USE_APP_DYNAMICS || 'false').toLowerCase() === 'true') {
+  var os = require('os');
+  var appdynamics;
+  try {
+    appdynamics = require('appdynamics');
+  } catch (e) {
+    appdynamics = {profile: function(){}};
+  }
+  appdynamics.profile({
+    controllerHostName: process.env.APP_DYNAMICS_HOST_NAME,
+    controllerPort: process.env.APP_DYNAMICS_PORT, // If SSL, be sure to enable the next line
+    accountName: process.env.APP_DYNAMICS_ACCOUNT_NAME, // Required for a controller running in multi-tenant mode
+    accountAccessKey: process.env.APP_DYNAMICS_KEY, // Required for a controller running in multi-tenant mode
+    applicationName: process.env.APP_DYNAMICS_APPLICATION_NAME,
+    tierName: process.env.APP_DYNAMICS_TIER_NAME,
+    nodeName: os.hostname(), // Node names must be unique. A unique name has been generated for you.
+  });
+}
+
 require('coffee-script/register');
 var express        = require('express');
 var path           = require('path');
@@ -70,6 +89,7 @@ passport.use(require('./config/jawbone'));
 passport.use(require('./config/linked-in'));
 passport.use(require('./config/local'));
 passport.use(require('./config/nest'));
+passport.use(require('./config/octoblu'));
 passport.use(require('./config/paypal'));
 passport.use(require('./config/podio'));
 passport.use(require('./config/quickbooks'));

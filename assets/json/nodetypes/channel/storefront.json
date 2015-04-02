@@ -1,0 +1,14 @@
+{
+  "_id": "d93d422d8aecd342155d2c80",
+  "category": "channel",
+  "description": "",
+  "helpText": "A sharing-economy company that provides short-term retail spaces for rent to companies through an online platform, used specifically as pop-up retail locations.",
+  "enabled": true,
+  "name": "StoreFront",
+  "skynet": {
+    "type": "channel",
+    "subtype": "storefront"
+  },
+  "channelid": "1d514ea6b2e6da7eb7a4aef2",
+  "type": "channel:storefront"
+}

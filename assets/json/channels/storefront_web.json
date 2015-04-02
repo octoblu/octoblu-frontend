@@ -138,28 +138,160 @@
         "httpMethod": "POST",
         "params": [
           {
-            "displayName": "Id",
-            "style": "URL",
-            "type": "string",
-            "name": ":id",
-            "required": true
-          },{
-            "displayName": "Identifying The Client",
+            "displayName": "Username",
             "style": "body",
             "type": "string",
-            "name": "clientName"
+            "name": "username",
+            "required": true
+          },{
+            "displayName": "Password",
+            "style": "body",
+            "type": "string",
+            "name": "password",
+            "required": true
           }
         ],
         "url": "???"
       },
       {
-        "path": "/ExplicitAuth/CancelForm",
-        "displayName": "Cancel the Current Form",
+        "path": "/GatewayAuth/Login",
+        "displayName": "Authenticate the User Using NetScaler Gateway Single Sign-on",
         "doc": {
           "url": "???"
         },
         "httpMethod": "POST",
         "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/Authentication/GetUserName",
+        "displayName": "Return the User's Name",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/Authentication/Logoff",
+        "displayName": "Terminate the User's Web Session",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [],
+        "url": "???"
+      },
+      {
+        "path": "/Resources/List",
+        "displayName": "Returns a List of All Resources Available for the User ",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Resource Details",
+            "style": "body",
+            "type": "string",
+            "name": "resourcesDetails",
+            "required": true
+          }
+        ],
+        "url": "???"
+      },
+      {
+        "path": "/Resources/GetLaunchStatus/:id",
+        "displayName": "See Whether the Specified Resource is Ready to Launch",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "The Desktop Display Name",
+            "style": "body",
+            "type": "string",
+            "name": "displayNameDesktopTitle",
+            "required": true
+          }
+        ],
+        "url": "???"
+      },
+      {
+        "path": "/Resources/LaunchIca/:id",
+        "displayName": "Request an ICA File for Launching the Specified Resource",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          },
+          {
+            "displayName": "The Desktop Display Name",
+            "style": "query",
+            "type": "string",
+            "name": "displayNameDesktopTitle",
+            "required": true
+          }
+        ],
+        "url": "???"
+      },
+      {
+        "path": "/Resources/Icon/:thumbprint?size=:size",
+        "displayName": "Return the Specified Icon Image",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Thumbprint for the Icon Image",
+            "style": "URL",
+            "type": "string",
+            "name": ":thumbprint",
+            "required": true
+          },
+          {
+            "displayName": "Pixel Size of the Icon Image to Return",
+            "style": "query",
+            "type": "string",
+            "name": ":size",
+            "required": true
+          }
+        ],
+        "url": "???"
+      },
+      {
+        "path": "/Resources/PowerOff/:id",
+        "displayName": "Attempt to Power Off the Specified Resource",
+        "doc": {
+          "url": "???"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "displayName": "Id",
+            "style": "URL",
+            "type": "string",
+            "name": ":id",
+            "required": true
+          }
+        ],
         "url": "???"
       }
     ]

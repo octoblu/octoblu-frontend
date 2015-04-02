@@ -2,7 +2,9 @@ describe('channelService', function () {
   var sut, $httpBackend;
 
   beforeEach(function () {
-    module('octobluApp');
+    module('octobluApp', function($provide){
+      $provide.constant('OCTOBLU_ICON_URL', '');
+    });
 
     inject(function(channelService, _$httpBackend_){
       sut          = channelService;

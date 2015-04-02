@@ -7,18 +7,18 @@ describe('FlowService', function () {
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
-      $provide.value('skynetConfig', {});
       $provide.value('$cookies', {});
       $provide.value('reservedProperties', []);
       $provide.value('$intercom', {boot: sinon.stub()});
       $provide.value('$intercomProvider', {});
+      $provide.constant('MESHBLU_HOST', '');
+      $provide.constant('MESHBLU_PORT', '');
+      $provide.constant('OCTOBLU_ICON_URL', '');
     });
 
     inject(function(FlowService, _$httpBackend_){
       sut          = FlowService;
       $httpBackend = _$httpBackend_;
-      $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.flush();
     });
   });
 
@@ -60,24 +60,6 @@ describe('FlowService', function () {
       $httpBackend.flush();
     });
 
-    describe('when the server gives us zero flows', function(){
-      beforeEach(function(){
-        $httpBackend.expectGET('/api/flows').respond(200, []);
-        $httpBackend.expectPOST('/api/demo_flows').respond(201, {flowId: '101', name: 'Flow 1'});
-        $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
-      });
-
-      it('should inject an empty flow with a name and flowId', function(done){
-        fakeUUIDService.v1.returns = 'fakeFlowID';
-        sut.getAllFlows().then(function (flows) {
-          expect(flows[0].name).to.equal('Flow 1');
-          expect(flows[0].flowId).to.equal('101');
-          done();
-        }, done);
-
-        $httpBackend.flush();
-      });
-    });
   });
 
   describe('#deleteFlow', function(){

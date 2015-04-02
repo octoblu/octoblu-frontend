@@ -2,7 +2,7 @@ var NodeCollection = require('./node-collection');
 var when = require('when');
 var _ = require('lodash');
 
-var FlowNodeTypeCollection = function(userUUID, options){
+var FlowNodeTypeCollection = function(userUUID, userToken, options){
   var self, fs;
   self = this;
 
@@ -12,7 +12,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
   self.convertNode = function(node){
     return {
       name: node.name,
-      class: node.name,
+      class: _.kebabCase(node.type),
       type: node.type,
       logo: (node.nodeType && node.nodeType.logo),
       category: node.category,
@@ -42,7 +42,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
   };
 
   self.fromNodes = function(){
-    var nodeCollection = self.getNodeCollection(userUUID);
+    var nodeCollection = self.getNodeCollection();
 
     return nodeCollection.fetch().then(function(nodes){
       return _.map(nodes, self.convertNode);
@@ -50,7 +50,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
   };
 
   self.getNodeCollection = function(){
-    return new NodeCollection(userUUID);
+    return new NodeCollection(userUUID, userToken);
   };
 
   return self;

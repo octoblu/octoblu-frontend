@@ -2,6 +2,7 @@
   "_id": "53c9b837f400e177dca325c3",
   "category": "channel",
   "description": "",
+  "helpText": "Keep, share, and discover the best of the Web using Delicious, the world's leading social bookmarking service.",
   "enabled": false,
   "name": "Delicious",
   "skynet": {

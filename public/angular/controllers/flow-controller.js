@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService, NotifyService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -34,6 +34,7 @@ angular.module('octobluApp')
   };
 
   var setDeviceStatus = function(status) {
+    $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.deploying = false;
     $scope.stopping = false;
@@ -167,6 +168,18 @@ angular.module('octobluApp')
     });
   };
 
+  var debouncedToggle = _.debounce(function(){
+    $scope.flowDropDownIsOpen = !$scope.flowDropDownIsOpen;
+  }, 100, {leading: true, trailing: false});
+
+  $scope.toggleDropdown = function($event){
+    $event.preventDefault();
+    $event.stopPropagation();
+    debouncedToggle();
+  };
+
+
+
   $scope.copySelection = function (e) {
     if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
@@ -263,17 +276,7 @@ angular.module('octobluApp')
       return;
     }
 
-    if($scope.activeFlow.selectedFlowNode) {
-      var nodeId = $scope.activeFlow.selectedFlowNode.id;
-      var linksToRemove = _.union( _.filter($scope.activeFlow.links, {to: nodeId}), _.filter($scope.activeFlow.links, {from: nodeId}) );
-      $scope.activeFlow.links = _.difference($scope.activeFlow.links, linksToRemove);
-    }
-
-    _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
-    _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
-
-    $scope.activeFlow.selectedFlowNode = null;
-    $scope.activeFlow.selectedLink = null;
+    FlowEditorService.deleteSelection($scope.activeFlow);
   };
 
   $scope.pasteSelection = function (e) {

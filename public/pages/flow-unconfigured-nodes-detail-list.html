@@ -1,0 +1,31 @@
+
+ <div class="node-detail-list"
+  layout="row"
+  layout-wrap
+  layout-padding>
+
+  <md-card class="node-detail-card"
+    flex-sm="100"
+    flex-md="50"
+    flex-gt-md="33"
+    ng-repeat="flowNodeType in nodeTypes"
+    ng-click="addFlowNodeType(flowNodeType)">
+
+    <md-card-content layout="row" layout-padding>
+      <img class="node-grid-thumbnail"
+        src="{{flowNodeType.logo}}"
+        alt="{{flowNodeType.name || flowNodeType.type}}"
+        flex="33" />
+
+      <div flex="66">
+        <h3 class="node-detail-name">
+          {{flowNodeType.name || flowNodeType.type}}
+        </h3>
+
+        <p class="node-detail-body">
+          {{flowNodeType.helpText}}
+        </p>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

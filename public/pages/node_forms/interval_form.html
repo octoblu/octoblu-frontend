@@ -1,8 +1,17 @@
-<md-text-float label="Name" ng-model="flowNode.name"></md-text-float>
-<md-text-float label="Interval" ng-model="flowNode.repeat" type="number"></md-text-float>
-<p class="text-info">Interval is in milliseconds.</p>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
 
-<md-text-float label="Topic" ng-model="flowNode.topic"> </md-text-float>
+<md-input-container>
+  <label>Interval (in milliseconds)</label>
+  <input required ng-model="flowNode.repeat" type="number">
+</md-input-container>
+
+<md-input-container>
+  <label>Topic</label>
+  <input ng-model="flowNode.topic">
+</md-input-container>
 
 <span>Payload Type</span>
 <md-radio-group ng-model="flowNode.payloadType">
@@ -11,4 +20,7 @@
   <md-radio-button value="string">String</md-radio-button>
 </md-radio-group>
 
-<md-text-float ng-show="flowNode.payloadType === 'string'" label="Payload" ng-model="flowNode.payload"> </md-text-float>
+<md-input-container>
+  <label>Payload</label>
+  <input ng-show="flowNode.payloadType === 'string'" ng-model="flowNode.payload">
+</md-input-container>

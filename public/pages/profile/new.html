@@ -1,0 +1,60 @@
+<md-content layout="row" layout-align="center center">
+  <div class="profile-card" layout="column">
+    <img class="login-octoblu-logo" src="/assets/images/octoblucirclebig.png">
+
+    <h1 class="profile-header">Profile Information:</h1>
+
+    <form name="controller.newProfileForm" class="user-form" ng-submit="controller.submit(firstName, lastName, email, optInEmail, agreeTermsOfService)" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>First Name</label>
+          <input required autofocus name="firstName" ng-model="firstName">
+          <div ng-messages="controller.newProfileForm.firstName.$error">
+            <div ng-message="required" ng-show="controller.firstNameRequiredError()">Required.</div>
+            <div ng-message="email" ng-show="controller.newProfileForm.firstName.$error.email">Must be a valid email address.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Last Name</label>
+          <input required name="lastName" ng-model="lastName">
+          <div ng-messages="controller.newProfileForm.lastName.$error">
+            <div ng-message="required" ng-show="controller.lastNameRequiredError()">Required.</div>
+            <div ng-message="email" ng-show="controller.newProfileForm.lastName.$error.email">Must be a valid email address.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-input-container flex>
+          <label>Email</label>
+          <input required name="email" ng-model="email" type="email">
+          <div ng-messages="controller.newProfileForm.email.$error">
+            <div ng-message="required" ng-show="controller.emailRequiredError()">Required.</div>
+            <div ng-message="email" ng-show="controller.newProfileForm.email.$error.email">Must be a valid email address.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-checkbox name="optInEmail" ng-model="optInEmail">
+          May we send you email updates?
+        </md-checkbox>
+      </div>
+
+      <div layout="row">
+        <md-checkbox required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
+          I agree to the Terms of Service
+        </md-checkbox>
+      </div>
+
+      <div layout="row">
+        <md-button ng-disabled="controller.loading" class="md-primary md-raised profile-button-submit" flex>Get Started</md-button>
+      </div>
+
+    </form>
+    <div layout="row">
+      <md-button ui-sref="terms" md-no-ink class="md-primary profile-button-tos" flex>View Terms of Service</md-button>
+    </div>
+  </div>
+</md-content>

@@ -2,6 +2,7 @@
   "_id": "53c9b837f400e177dca325c0",
   "category": "channel",
   "description": "",
+  "helpText": "Plays your music, any way you want. Tune in to your personal radio station, You FM, or choose from countless others to suit the mood.",
   "enabled": true,
   "name": "Rdio",
   "skynet": {

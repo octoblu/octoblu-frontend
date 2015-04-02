@@ -3,7 +3,8 @@ module.exports = function(app, passport) {
     var env = app.settings.env;
     var config = require('../config/auth');
     var meshblu = require('meshblu');
-    var security = require('./controllers/middleware/security');
+    var SecurityController = require('./controllers/middleware/security-controller');
+    var security = new SecurityController();
 
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 
@@ -43,6 +44,9 @@ module.exports = function(app, passport) {
 
     var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
+
+    var GroupController = require('./controllers/group-controller');
+    var groupController = new GroupController();
 
     var GeneralSearchController = require('./controllers/general-search-controller');
     var generalSearchController = new GeneralSearchController(config.elasticSearchUri);
@@ -127,8 +131,14 @@ module.exports = function(app, passport) {
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
 
+    var LittlebitsController = require('./controllers/littlebits-controller');
+    var littlebitsController = new LittlebitsController();
+
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
+
+    var OctobluController = require('./controllers/octoblu-controller');
+    var octobluController = new OctobluController();
 
     var PaypalController = require('./controllers/paypal-controller');
     var paypalController = new PaypalController();
@@ -205,6 +215,9 @@ module.exports = function(app, passport) {
     var WinkController = require('./controllers/wink-controller');
     var winkController = new WinkController();
 
+    var WitaiController = require('./controllers/witai-controller');
+    var witaiController = new WitaiController();
+
     var WithingsController = require('./controllers/withings-controller');
     var withingsController = new WithingsController();
 
@@ -254,7 +267,6 @@ module.exports = function(app, passport) {
             require('./controllers/session')(app, passport, config);
             require('./controllers/unlink')(app);
             require('./controllers/user')(app);
-            require('./controllers/group')(app);
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
@@ -271,6 +283,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
+
             app.post('/api/demo_flows', demoFlowController.create);
 
             app.post('/api/flows', flowController.create);
@@ -282,6 +295,14 @@ module.exports = function(app, passport) {
             app.put('/api/flows/:id/instance', flowDeployController.restartInstance);
 
             app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
+
+            app.get('/api/groups', groupController.getGroups);
+            app.post('/api/groups', groupController.addGroup);
+            app.get('/api/groups/operators', groupController.getOperatorsGroup);
+            app.get('/api/groups/contain/:uuid', groupController.getGroupsContainingResource);
+            app.delete('/api/groups/:uuid', groupController.deleteGroup);
+            app.put('/api/groups/:uuid', groupController.updateGroup);
+            app.get('/api/groups/:uuid', groupController.getGroupById);
 
             app.post('/api/invitation/request', invitationController.requestInvite);
 
@@ -349,8 +370,13 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/linked-in',          linkedinController.authorize);
             app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
 
+            app.post('/api/littlebits/auth', littlebitsController.authorize, littlebitsController.redirectToDesigner);
+
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
+
+            app.get('/api/oauth/octoblu',          octobluController.authorize);
+            app.get('/api/oauth/octoblu/callback', octobluController.callback, octobluController.redirectToDesigner);
 
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
@@ -410,7 +436,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
             app.get('/api/oauth/withings',          withingsController.authorize);
-            app.get('/api/oauth/withings/callback', withingsController.callback, wordPressController.redirectToDesigner);
+            app.get('/api/oauth/withings/callback', withingsController.callback, withingsController.redirectToDesigner);
 
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
@@ -425,10 +451,15 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
+
             app.post('/api/tesla/auth', teslaController.authorize, teslaController.redirectToDesigner);
+
             app.get('/api/travis-ci/auth', travisCIController.authorize, travisCIController.redirectToDesigner);
             app.get('/api/travis-ci-pro/auth', travisCIProController.authorize, travisCIProController.redirectToDesigner);
+
             app.post('/api/wink/auth', winkController.authorize, winkController.redirectToDesigner);
+
+            app.post('/api/witai/auth', witaiController.authorize, witaiController.redirectToDesigner);
 
             app.post('/api/templates', templateController.create);
             app.get('/api/templates', templateController.getAllTemplates);

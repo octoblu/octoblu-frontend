@@ -2,6 +2,7 @@
   "_id": "543bf1bd652c4207680866f7",
   "category": "channel",
   "description": "",
+  "helpText": "Integrate your app or website with Google+. This enables users to connect with each other for maximum engagement using Google+ features from within your application.",
   "enabled": false,
   "name": "Google+",
   "skynet": {

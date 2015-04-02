@@ -1,0 +1,23 @@
+<md-grid-list class="node-grid-list"
+  md-cols-sm="2" md-cols-md="4"
+  md-cols-gt-md="6" md-cols-lg="8" md-cols-gt-lg="10"
+  md-row-height="1:1"
+  md-gutter="4px" md-gutter-gt-sm="2px">
+
+  <md-grid-tile
+    class="animated-popout"
+    md-rowspan="1"
+    md-colspan="1"
+    ng-repeat="flowNodeType in flowNodeTypes | filter: {category: 'operation'}"
+    ng-click="addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}">
+
+    <img class="node-grid-thumbnail"
+        src="{{flowNodeType.logo}}"
+        alt="{{flowNodeType.name || flowNodeType.type}}" />
+
+    <md-grid-tile-footer class="node-grid-title-footer">
+      <p class="node-label">{{flowNodeType.name || flowNodeType.type}}</p>
+    </md-grid-tile-footer>
+  </md-grid-tile>
+</md-grid-list>

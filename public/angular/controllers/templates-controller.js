@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, BillOfMaterialsService, UrlService) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
 
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
+  $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
 
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {

@@ -7,19 +7,19 @@ describe('FlowNodeTypeService', function () {
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
-      $provide.value('skynetConfig', {});
       $provide.value('$cookies', {});
       $provide.value('reservedProperties', []);
       $provide.value('$intercom', {boot: sinon.stub()});
       $provide.value('$intercomProvider', {});
+      $provide.constant('MESHBLU_HOST', '');
+      $provide.constant('MESHBLU_PORT', '');
+      $provide.constant('OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/');
     });
 
     inject(function (FlowNodeTypeService, _$httpBackend_, _$q_) {
       sut = FlowNodeTypeService;
       $q = _$q_;
       $httpBackend = _$httpBackend_;
-      $httpBackend.whenGET('/api/auth').respond(200);
-      $httpBackend.flush();
     });
   });
 

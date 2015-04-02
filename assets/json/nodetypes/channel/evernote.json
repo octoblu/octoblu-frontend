@@ -2,6 +2,7 @@
   "_id": "53c9b837f400e177dca325bf",
   "category": "channel",
   "description": "",
+  "helpText": "Write notes and access them on any device. Collect web articles, handwritten notes, and photos to keep all the details in one place. Find your work quickly with Evernote’s powerful search.",
   "enabled": false,
   "name": "Evernote",
   "skynet": {

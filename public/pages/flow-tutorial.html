@@ -1,0 +1,43 @@
+<div class="design2 designer-container" flex layout-fill layout="column" helpers="helpers">
+  <div class="logo-toolbar"> <!-- Defined first so its on the bottom layer -->
+    <img src="/assets/images/octoblu.png" height="50px"/>
+  </div>
+
+  <md-toolbar class="flow-top-bar" layout="row" layout-align="end" layout-phone="column" layout-tablet="column">
+    <div flex="0" flex-phone="95" flex-tablet="95" layout="row" layout-align="end" class="flow-controls md-toolbar-tools" style="min-height: 50px;">
+      <div flex layout="row" layout-align="center">
+        <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false, stopping: stopping }" aria-label="Stop">
+          <md-tooltip>Stop</md-tooltip>
+          <i class="fa fa-stop"></i>
+        </md-button>
+
+        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying }" aria-label="Start">
+          <md-tooltip>Start</md-tooltip>
+          <i class="fa fa-play"></i>
+        </md-button>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <div style="z-index: 0;" class="workspace-container" flex layout-fill layout="column" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+    <flow-editor flow="activeFlow"></flow-editor>
+  </div>
+
+  <div class="zoom-controls" flex layout="column" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
+        <button class="btn btn-default btn-sm" ng-click="center()">
+          <i class="fa fa-crosshairs fa-lg"></i>
+        </button>
+        <md-divider></md-divider>
+
+        <button class="btn btn-default btn-sm" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+          <i class="fa fa-plus fa-lg"></i>
+        </button>
+
+        <button class="btn btn-default btn-sm" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+          <i class="fa fa-minus fa-lg"></i>
+        </button>
+  </div>
+  <flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
+  <flow-node-editor flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
+  <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
+</div>

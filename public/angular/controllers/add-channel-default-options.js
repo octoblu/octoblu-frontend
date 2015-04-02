@@ -17,9 +17,11 @@ angular.module('octobluApp')
     'docusign'               : 'material.nodewizard.addchannel.docusign',
     'apikey-dummypass-basic' : 'material.nodewizard.addchannel.apikey-dummypass-basic',
     'apikey'                 : 'material.nodewizard.addchannel.apikey',
+    'littlebits'                   : 'material.nodewizard.addchannel.littlebits',
     'tesla'                  : 'material.nodewizard.addchannel.tesla',
     'travis-ci'              : 'material.nodewizard.addchannel.travis-ci',
     'travis-ci-pro'          : 'material.nodewizard.addchannel.travis-ci-pro',
+    'witai'                  : 'material.nodewizard.addchannel.witai',
     'wink'                   : 'material.nodewizard.addchannel.wink',
     'google-places'          : 'material.nodewizard.addchannel.google-places'
   };

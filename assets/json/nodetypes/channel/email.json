@@ -2,6 +2,7 @@
   "_id": "9115e25c-8eed-40f8-a1d8-140a1ffea5be",
   "category": "channel",
   "description": "Send Email messages through Octoblu.",
+  "helpText": "Send Email messages through Octoblu.",
   "enabled": true,
   "name": "Send Email",
   "skynet": {

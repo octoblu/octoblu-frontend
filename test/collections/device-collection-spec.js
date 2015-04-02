@@ -9,20 +9,14 @@ describe('DeviceCollection', function () {
     octobluDB.createConnection();
     users = {
       'u1': {
-        'skynet.uuid': 'u1',
-        'skynet.token': 't1'
+        'skynet.uuid': 'u1'
       },
       'u2': {
-        'skynet.uuid': 'u2',
-        'skynet.token': 't2'
+        'skynet.uuid': 'u2'
       }
     };
 
     sut = new DeviceCollection('u1');
-
-    getUser = sinon.stub(sut, 'getUser', function (userId) {
-      return when.resolve(users[userId]);
-    });
 
   });
 
@@ -35,11 +29,6 @@ describe('DeviceCollection', function () {
         defer.resolve([]);
       });
 
-      it('should call getUser', function () {
-        result = sut.fetch();
-        expect(getUser).to.have.been.called;
-      });
-
       it('should return an array', function (done) {
         sut.fetch().then(function (devices) {
           expect(devices).to.be.instanceof(Array);
@@ -50,7 +39,7 @@ describe('DeviceCollection', function () {
 
       it('should return a list of devices that the user owns', function (done) {
         sut.fetch().then(function (results) {
-          expect(getDevicesByOwner).to.have.been.calledWith(users['u1']);
+          expect(getDevicesByOwner).to.have.been.calledWith();
           done();
         })
         .catch(done);

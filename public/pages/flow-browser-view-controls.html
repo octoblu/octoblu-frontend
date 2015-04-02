@@ -1,0 +1,17 @@
+<div class="btn-group">
+  <button class="btn btn-default btn-sm"
+    title="Thumbnail View"
+    tooltip="Thumbnail View"
+    ng-click="switchViewStyle('thumbnail')"
+    ng-class="{'active': activeFlow.browserTab.viewStyle == 'thumbnail'}">
+    <i class="fa fa-th"></i>
+  </button>
+
+  <button class="btn btn-default btn-sm"
+    title="Detail View"
+    tooltip="Detail View"
+    ng-click="switchViewStyle('detail')"
+    ng-class="{'active': activeFlow.browserTab.viewStyle == 'detail'}">
+    <i class="fa fa-th-list"></i>
+  </button>
+</div>

@@ -1,2 +1,9 @@
-<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
-<md-text-float label="Value" ng-model="flowNode.value"> </md-text-float>
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
+
+<md-input-container>
+  <label>Value</label>
+  <input required ng-model="flowNode.value">
+</md-input-container>

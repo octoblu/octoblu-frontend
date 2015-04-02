@@ -2,6 +2,7 @@
   "_id": "7fadeaa0-4990-11e4-9bbb-e70e4226a18f",
   "category": "channel",
   "description": "Send SMS text messages through Octoblu.",
+  "helpText": "Send SMS text messages through Octoblu.",
   "enabled": true,
   "name": "Send SMS",
   "skynet": {

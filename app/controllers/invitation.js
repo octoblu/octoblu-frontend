@@ -7,8 +7,8 @@ var _ = require('lodash'),
   smtpTransport = require('nodemailer-smtp-transport'),
   Invitation = require('../models/invitation'),
   User = require('../models/user'),
-  Group = require('../models/group'),
-  isAuthenticated = require('./middleware/security').isAuthenticated;
+  Group = require('../models/group-model');
+
 /*
  File : invitation.js
  provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
@@ -185,10 +185,8 @@ var invitationController = {
           if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
             return res.redirect('/signup');
           }
-          return Group.findOne({
-              'type': 'operators',
-              'resource.owner.uuid': sender.resource.uuid
-            })
+          var group = new Group(sender.resource.uuid);
+          return group.findByOptionalType('operators')
             .then(function(operatorGroup) {
               operatorGroup = operatorGroup || {
                 uuid: uuid.v1(),
@@ -213,12 +211,11 @@ var invitationController = {
               if (!existingMember) {
                 var member = _.extend({ properties: { name: recipient.email }}, recipient.resource);
                 operatorGroup.members.push(member);
+                var group = new Group(recipient.resource.uuid);
                 if (operatorGroup._id) {
-                  Group.update({
-                    uuid: operatorGroup.uuid
-                  }, operatorGroup);
+                  group.update(operatorGroup.uuid, operatorGroup);
                 } else {
-                  Group.insert(operatorGroup);
+                  group.create(operatorGroup.name);
                 }
               }
 
@@ -242,11 +239,11 @@ module.exports = function(app, passport, config) {
 
   //set the configuration for the controller
   invitationController.config = config;
-  app.get('/api/user/invitations', isAuthenticated, invitationController.getAllInvitations);
-  app.get('/api/user/invitations/sent', isAuthenticated, invitationController.getInvitationsSent);
-  app.get('/api/user/invitations/received', isAuthenticated, invitationController.getInvitationsReceived);
-  app.get('/api/user/invitation/:invitationId', isAuthenticated, invitationController.getInvitationById);
-  app.post('/api/user/invitation/send', isAuthenticated, invitationController.sendInvitation);
+  app.get('/api/user/invitations', invitationController.getAllInvitations);
+  app.get('/api/user/invitations/sent', invitationController.getInvitationsSent);
+  app.get('/api/user/invitations/received', invitationController.getInvitationsReceived);
+  app.get('/api/user/invitation/:invitationId', invitationController.getInvitationById);
+  app.post('/api/user/invitation/send', invitationController.sendInvitation);
   app.get('/api/invitation/:id/accept', invitationController.acceptInvitation);
-  app.delete('/api/invitations/:invitationId', isAuthenticated, invitationController.deleteInvitation);
+  app.delete('/api/invitations/:invitationId', invitationController.deleteInvitation);
 };

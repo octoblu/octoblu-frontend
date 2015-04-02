@@ -7,7 +7,7 @@ describe('FlowNodeTypeCollection', function () {
 
   beforeEach(function () {
     fakeFS = new FakeFS();
-    sut = new FlowNodeTypeCollection('user uuid', {fs: fakeFS});
+    sut = new FlowNodeTypeCollection('user uuid', 'user token', {fs: fakeFS});
 
     fakeNodeCollection = new FakeNodeCollection();
     stub = sinon.stub(sut, 'getNodeCollection');
@@ -84,7 +84,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this', function(){
       var flowNodeType = {
         "name": "lockitino",
-        "class": "lockitino",
+        "class": "channel",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -111,7 +111,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this and like that', function(){
       var flowNodeType = {
         "name": "mockitama",
-        "class": "mockitama",
+        "class": "channel",
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -138,7 +138,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should merge some stuff into this', function(){
       var flowNodeType = {
         "name": "margarita",
-        "class": "margarita",
+        "class": "channel",
         "category": "channel",
         "uuid": "lksdflksdfj",
         "defaults": {
