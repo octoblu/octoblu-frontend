@@ -1,0 +1,138 @@
+{
+  "_id": "3df24e99a3c35b3a1e6f1260",
+  "__v": 0,
+  "type": "channel:ninjaspherecloud",
+  "auth_strategy": "",
+  "documentation": "https://developers.ninja/apireference/index.html",
+  "name": "Ninja Sphere",
+  "enabled": false,
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  },
+  "application": {
+    "base": "https://api.sphere.ninja/rest/v1",
+    "resources": [
+      {
+        "path": "/user",
+        "displayName": "Get Information About User",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1"
+        },
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.sphere.ninja/rest/v1/user"
+      },
+      {
+        "path": "/user/configuration",
+        "displayName": "Get Configuration For The Environment",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/user/configuration"
+        },
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.sphere.ninja/rest/v1/user/configuration"
+      },
+      {
+        "path": "/rooms",
+        "displayName": "Get All Rooms",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/rooms"
+        },
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.sphere.ninja/rest/v1/rooms"
+      },
+      {
+        "path": "/rooms/:roomId",
+        "displayName": "Get A Room",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/rooms/:roomId"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Room ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":roomId",
+            "required": true
+          }
+        ],
+        "url": "https://api.sphere.ninja/rest/v1/rooms/:roomId"
+      },
+      {
+        "path": "/sites",
+        "displayName": "Get All Sites",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/sites"
+        },
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.sphere.ninja/rest/v1/sites"
+      },
+      {
+        "path": "/sites/:siteId",
+        "displayName": "Get A Site",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/sites/:siteId"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Site ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":siteId",
+            "required": true
+          }
+        ],
+        "url": "https://api.sphere.ninja/rest/v1/sites/:siteId"
+      },
+      {
+        "path": "/things",
+        "displayName": "Get All Things",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/things"
+        },
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://api.sphere.ninja/rest/v1/things"
+      },
+      {
+        "path": "/sites/:thingId",
+        "displayName": "Get A Thing",
+        "doc": {
+          "url": "https://api.sphere.ninja/rest/v1/things/:thingId"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Thing ID",
+            "style": "URL",
+            "type": "string",
+            "name": ":thingId",
+            "required": true
+          }
+        ],
+        "url": "https://api.sphere.ninja/rest/v1/things/:thingId"
+      }
+    ]
+  }
+}
