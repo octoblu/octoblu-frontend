@@ -5,18 +5,25 @@ module.exports = function(app, passport) {
     var meshblu = require('meshblu');
     var SecurityController = require('./controllers/middleware/security-controller');
     var security = new SecurityController();
+    var meshbluJSON;
+    try {
+        meshbluJSON  = require('./meshblu.json');
+    }
+    catch (error) {
+        meshbluJSON = {
+            uuid:   process.env.OCTOBLU_UUID,
+            token:  process.env.OCTOBLU_TOKEN,
+            server: config.skynet.host,
+            port:   config.skynet.port,
+            protocol: 'websocket'
+        };
+    }
 
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 
     console.log('Connecting to SkyNet...');
 
-    var conn = meshblu.createConnection({
-        'uuid'     : process.env.OCTOBLU_UUID,
-        'token'    : process.env.OCTOBLU_TOKEN,
-        'server'   : config.skynet.host,
-        'port'     : config.skynet.port,
-        'protocol' : 'websocket'
-    });
+    var conn = meshblu.createConnection(meshbluJSON);
 
     var referrer = require('./controllers/middleware/referrer.js');
 
