@@ -23,6 +23,7 @@ class IntercomUserService
       user_id: userDevice.uuid
 
     @intercom.boot userInfo
+    @intercom.update userInfo
 
 
 angular.module('octobluApp').service 'IntercomUserService', IntercomUserService

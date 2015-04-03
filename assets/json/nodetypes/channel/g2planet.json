@@ -3,7 +3,7 @@
   "category": "channel",
   "description": "Badge Reader",
   "helpText": "Reads Badge ID's",
-  "enabled": true,
+  "enabled": false,
   "name": "G2 Planet",
   "skynet": {
     "type": "channel",
