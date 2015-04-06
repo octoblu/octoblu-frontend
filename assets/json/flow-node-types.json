@@ -171,16 +171,16 @@
   {
     "name": "Interval",
     "class": "interval",
-    "helpText": "Emit a message at the specified interval",
+    "helpText": "Emit a message at the specified interval.<br> ```{ \"on\": true || false, \"interval\": 1000 } ```",
     "category": "operation",
     "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:interval",
     "defaults": {
       "payloadType": "date",
       "repeat": 1000,
-      "once": true
+      "on": true
     },
-    "input": 0,
+    "input": 1,
     "output": 1,
     "formTemplatePath": "/pages/node_forms/interval_form.html"
   },

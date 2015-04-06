@@ -3,24 +3,16 @@
   <input ng-model="flowNode.name">
 </md-input-container>
 
+<md-switch ng-true-value="false" ng-false-value="true" ng-model="flowNode.useStaticMessage">Forward Message</md-switch>
+
 <md-input-container>
   <label>Interval (in milliseconds)</label>
   <input required ng-model="flowNode.repeat" type="number">
 </md-input-container>
 
+<md-switch ng-model="flowNode.on">On</md-switch>
+
 <md-input-container>
   <label>Topic</label>
   <input ng-model="flowNode.topic">
-</md-input-container>
-
-<span>Payload Type</span>
-<md-radio-group ng-model="flowNode.payloadType">
-  <md-radio-button value="date">Timestamp</md-radio-button>
-  <md-radio-button value="none"> Blank </md-radio-button>
-  <md-radio-button value="string">String</md-radio-button>
-</md-radio-group>
-
-<md-input-container>
-  <label>Payload</label>
-  <input ng-show="flowNode.payloadType === 'string'" ng-model="flowNode.payload">
 </md-input-container>
