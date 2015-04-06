@@ -5,54 +5,19 @@
   "auth_strategy": "none",
   "documentation": "",
   "name": "G2 Planet",
-  "enabled": false,
+  "enabled": true,
   "application": {
-    "base": "https://demo.g2planet.com/synergyorlando2015",
+    "base": "https://g3planet.octoblu.com",
     "resources": [
       {
-        "path": "/api_attendee_udates.php",
+        "path": "/attendees",
         "displayName": "Attendee Updates",
         "doc": {
-          "url": "https://demo.g2planet.com/synergyorlando2015/api_attendee_udates.php"
+          "url": "https://g3planet.octoblu.com/attendees"
         },
         "httpMethod": "Post",
         "params": [
           {
-            "displayName": "Project Identifier",
-            "style": "body",
-            "type": "string",
-            "name": "project_id",
-            "required": "true"
-          },{
-            "displayName": "Project Unique Secret Key (PUSK) Id",
-            "style": "body",
-            "type": "string",
-            "name": "pusk_id",
-            "required": "true"
-          },{
-            "displayName": "Interface Feature Version",
-            "style": "body",
-            "type": "string",
-            "name": "api_version",
-            "required": "true"
-          },{
-            "displayName": "Name Of 3rd Party",
-            "style": "body",
-            "type": "string",
-            "name": "vendor_name",
-            "required": "true"
-          },{
-            "displayName": "The Return Format",
-            "style": "body",
-            "type": "string",
-            "name": "output_format"
-          },{
-            "displayName": "Name Of Set Of Fields To Return",
-            "style": "body",
-            "type": "string",
-            "name": "output_field_set",
-            "required": "true"
-          },{
             "displayName": "Provide Records Were Updated On/After This Date/Time",
             "style": "body",
             "type": "string",
@@ -62,19 +27,26 @@
             "style": "body",
             "type": "string",
             "name": "ending_timestamp"
-          },{
-            "displayName": "Registration Identifier",
-            "style": "body",
-            "type": "string",
-            "name": "reg_id"
-          },{
-            "displayName": "Badge Id",
-            "style": "body",
-            "type": "string",
-            "name": "badge_id"
           }
         ],
-        "url": "https://demo.g2planet.com/synergyorlando2015/api_attendee_udates.php"
+        "url": "https://g3planet.octoblu.com/attendee/badge/:id"
+      }, 
+      {
+        "path": "/attendee/badge/:id",
+        "displayName": "Find Attendee by Badge ID",
+        "doc": {
+          "url": "https://g3planet.octoblu.com/attendee/registration/:id"
+        },
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Registration ID",
+            "style": "url",
+            "type": "string",
+            "name": ":id"
+          }
+        ],
+        "url": "https://g3planet.octoblu.com/attendee/registration/:id"
       }
     ]
   }
