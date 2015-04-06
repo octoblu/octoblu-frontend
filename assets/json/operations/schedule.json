@@ -1,0 +1,16 @@
+{
+  "name": "Schedule",
+  "class": "schedule",
+  "helpText": "Emits messages at the specified time using Cron syntax",
+  "category": "operation",
+  "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
+  "type": "operation:schedule",
+  "defaults": {
+    "payloadType": "date",
+    "crontab": "* * * * *",
+    "once": false
+  },
+  "input": 0,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/schedule_form.html"
+}

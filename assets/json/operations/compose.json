@@ -1,0 +1,16 @@
+{
+  "name": "Compose",
+  "class": "compose",
+  "helpText": "Wait for all values to be received before sending the message",
+  "category": "operation",
+  "uuid": "46b72292-e288-4bc4-855c-019fb241c1ad",
+  "type": "operation:compose",
+  "defaults": {
+    "composeKeys": [
+      ""
+    ]
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/compose_form.html"
+}

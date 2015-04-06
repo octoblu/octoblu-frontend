@@ -1,0 +1,12 @@
+{
+  "name": "Template",
+  "class": "template",
+  "helpText": "Sends a custom message using handlebars (e.g. {{msg.text}})",
+  "category": "operation",
+  "uuid": "8f2e02ff-08da-446d-ab50-e5115f511cba",
+  "type": "operation:template",
+  "defaults": {},
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/template_form.html"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "http GET",
+  "class": "http-request",
+  "helpText": "Perform an HTTP Get request",
+  "category": "operation",
+  "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
+  "type": "operation:http-request",
+  "defaults": {
+    "method": "GET",
+    "headerKeys": [
+      "Content-Type"
+    ],
+    "headerValues": [
+      "text/html"
+    ]
+  },
+  "input": 1,
+  "output": 1,
+  "align": "right",
+  "formTemplatePath": "/pages/node_forms/http_request_form.html"
+}

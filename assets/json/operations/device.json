@@ -1,0 +1,13 @@
+{
+  "name": "Meshblu device",
+  "class": "device",
+  "helpText": "Generic Meshblu device for specifying custom UUIDs",
+  "category": "operation",
+  "uuid": "be0d21d3-f6b0-4f21-ae3b-484d69f6063a",
+  "type": "operation:device",
+  "defaults": {},
+  "input": 1,
+  "output": 1,
+  "align": "right",
+  "formTemplatePath": "/pages/node_forms/generic_device_form.html"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Debounce",
+  "class": "debounce",
+  "helpText": "Debounce will delay the message until after the specified interval has elapsed since the last time it received a message",
+  "type": "operation:debounce",
+  "category": "operation",
+  "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
+  "defaults": {
+    "interval": 1000
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/debounce_form.html"
+}

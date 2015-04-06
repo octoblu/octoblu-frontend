@@ -76,9 +76,17 @@ gulp.task('nodetypes:concat', function(){
     .pipe(gulp.dest('./assets/json/'));
 });
 
-gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat', 'nodetypes:concat'], function() {});
+gulp.task('operations:concat', function(){
+  return gulp.src('./assets/json/operations/**/*.json')
+    .pipe(jsoncombine('operations.json', function(data){
+      return new Buffer(JSON.stringify(_.values(data)));
+    }))
+    .pipe(gulp.dest('./assets/json/'));
+});
 
-gulp.task('production', ['channels:concat', 'nodetypes:concat']);
+gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat', 'nodetypes:concat', 'operations:concat'], function() {});
+
+gulp.task('production', ['channels:concat', 'nodetypes:concat', 'operations:concat']);
 
 gulp.task('watch', ['default'], function() {
   gulp.watch(['./bower.json'], ['bower']);
@@ -87,6 +95,7 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:clean', 'coffee:compile']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
   gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
+  gulp.watch(['./assets/json/operations/**/*.json'], ['operations:concat']);
 
   nodemon({
     script : 'server.js',

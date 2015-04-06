@@ -1,0 +1,14 @@
+{
+  "name": "Throttle",
+  "class": "throttle",
+  "helpText": "Slow down the incoming messages so that one is emitted at each occurrence of the specified interval",
+  "type": "operation:throttle",
+  "category": "operation",
+  "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
+  "defaults": {
+    "interval": 1000
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/throttle_form.html"
+}

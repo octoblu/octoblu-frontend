@@ -1,0 +1,14 @@
+{
+  "name": "Sample",
+  "class": "sample",
+  "helpText": "Return a random element from an array",
+  "category": "operation",
+  "uuid": "236e8515-6218-4062-beb8-00ae81449bad",
+  "type": "operation:sample",
+  "defaults": {
+    "topic": "message"
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/sample_form.html"
+}
