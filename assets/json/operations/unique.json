@@ -1,0 +1,14 @@
+{
+  "name": "Unique",
+  "class": "unique",
+  "helpText": "Unique input data and output entire uniqueion",
+  "category": "operation",
+  "uuid": "325ea182-f5e7-4182-a7f0-f94f651e4375",
+  "type": "operation:unique",
+  "defaults": {
+    "topic": "message"
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/unique_form.html"
+}
