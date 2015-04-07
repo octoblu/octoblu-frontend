@@ -5,12 +5,18 @@ var config  = require('../../config/database'),
   _         = require('lodash'),
   path      = require('path');
 
+var nedbCollections = {};
 function createNeDBCollection(collection){
-  var Datastore = require('nedb');
-  return new Datastore({
-    filename: path.join(config.databaseDirectory, collection + '.db'),
-    autoload: true
-  });
+  if(!nedbCollections[collection]){
+    var Datastore = require('nedb');
+
+    nedbCollections[collection] = new Datastore({
+      filename: path.join(config.databaseDirectory, collection + '.db'),
+      autoload: true
+    });
+  }
+  
+  return nedbCollections[collection];
 }
 
 function createObjectId(id) {
