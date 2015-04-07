@@ -1,0 +1,13 @@
+{
+  "name": "Microblu device",
+  "class": "microblu",
+  "helpText": "Generic Microblu device for specifying custom UUIDs",
+  "category": "operation",
+  "uuid": "fb99604a-3ed3-4292-872b-a5b1ec1c16ab",
+  "type": "operation:microblu",
+  "defaults": {},
+  "input": 1,
+  "output": 1,
+  "align": "right",
+  "formTemplatePath": "/pages/node_forms/generic_microblu_form.html"
+}

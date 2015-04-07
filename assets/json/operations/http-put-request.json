@@ -1,0 +1,21 @@
+{
+  "name": "http PUT",
+  "class": "http-put-request",
+  "helpText": "Perform an HTTP Put request",
+  "category": "operation",
+  "uuid": "adb9dfe0-5326-11e4-ad12-c7f5132c4ef6",
+  "type": "operation:http-put-request",
+  "defaults": {
+    "method": "PUT",
+    "headerKeys": [],
+    "headerValues": [],
+    "bodyEncoding": "json",
+    "bodyKeys": [
+      ""
+    ]
+  },
+  "input": 1,
+  "output": 1,
+  "align": "right",
+  "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
+}

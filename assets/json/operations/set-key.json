@@ -1,0 +1,12 @@
+{
+  "name": "Set Key",
+  "class": "set-key",
+  "helpText": "Store a value for later retrieval",
+  "category": "operation",
+  "uuid": "5a6bb5a5-b2ef-4a9e-b15f-f0f646ee90d6",
+  "type": "operation:set-key",
+  "defaults": {},
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/set_key_form.html"
+}

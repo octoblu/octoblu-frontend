@@ -33,7 +33,7 @@ var FlowNodeTypeCollection = function(userUUID, userToken, options){
 
   self.fromFile = function(){
     var promise = when.promise(function(resolve){
-      fs.readFile('assets/json/flow-node-types.json', {encoding: 'utf8'}, function(error, nodeTypes){
+      fs.readFile('assets/json/operations.json', {encoding: 'utf8'}, function(error, nodeTypes){
         resolve(JSON.parse(nodeTypes));
       });
     });

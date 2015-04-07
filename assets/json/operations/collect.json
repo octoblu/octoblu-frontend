@@ -1,0 +1,14 @@
+{
+  "name": "Collect",
+  "class": "collect",
+  "helpText": "Collect input data and output entire collection",
+  "category": "operation",
+  "uuid": "5431b4eb-133f-42ca-b96c-491b8a68d040",
+  "type": "operation:collect",
+  "defaults": {
+    "topic": "message"
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/collect_form.html"
+}
