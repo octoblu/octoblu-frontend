@@ -3,7 +3,6 @@
   "__v": 0,
   "type": "channel:g2planet",
   "auth_strategy": "none",
-  "documentation": "",
   "name": "G2 Planet",
   "enabled": true,
   "application": {
@@ -11,32 +10,26 @@
     "resources": [
       {
         "path": "/attendees",
-        "displayName": "Attendee Updates",
-        "doc": {
-          "url": "https://g3planet.octoblu.com/attendees"
-        },
-        "httpMethod": "Post",
+        "displayName": "Find Attendee by Updated Time",
+        "httpMethod": "POST",
         "params": [
           {
-            "displayName": "Provide Records Were Updated On/After This Date/Time",
+            "displayName": "Beginning Time Stamp for Query",
             "style": "body",
             "type": "string",
             "name": "beginning_timestamp"
           },{
-            "displayName": "Provide Records Were Updated On/Before This Date/Time",
+            "displayName": "Ending Time Stamp for Query",
             "style": "body",
             "type": "string",
             "name": "ending_timestamp"
           }
         ],
-        "url": "https://g3planet.octoblu.com/attendee/badge/:id"
-      }, 
+        "url": "https://g3planet.octoblu.com/attendees"
+      },
       {
-        "path": "/attendee/badge/:id",
-        "displayName": "Find Attendee by Badge ID",
-        "doc": {
-          "url": "https://g3planet.octoblu.com/attendee/registration/:id"
-        },
+        "path": "/attendee/registration/:id",
+        "displayName": "Find Attendee by Registration ID",
         "httpMethod": "GET",
         "params": [
           {
@@ -47,6 +40,20 @@
           }
         ],
         "url": "https://g3planet.octoblu.com/attendee/registration/:id"
+      },
+      {
+        "path": "/attendee/badge/:id",
+        "displayName": "Find Attendee by Badge ID",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "displayName": "Badge ID",
+            "style": "url",
+            "type": "string",
+            "name": ":id"
+          }
+        ],
+        "url": "https://g3planet.octoblu.com/attendee/badge/:id"
       }
     ]
   }
