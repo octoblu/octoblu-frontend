@@ -1,5 +1,6 @@
 _ = require 'lodash'
 UserSession = require '../../models/user-session-model'
+basicAuth = require 'basic-auth'
 
 class SecurityController
   constructor: (dependencies={}) ->
@@ -38,7 +39,35 @@ class SecurityController
 
     return uuid: cookies.meshblu_auth_uuid, token: cookies.meshblu_auth_token
 
+  getAuthFromBasic: (request) =>
+    return {} unless request.headers?
+    auth = basicAuth request
+    return {} unless auth?
+    {name, pass} = auth
+    return {} unless name && pass
+    return uuid: name, token: pass
+
+  getAuthFromBearer: (request) =>
+    return {} unless request.headers?
+    parts = request.headers.authorization?.split(' ')
+    return {} unless parts? && parts[0] == 'Bearer'
+
+    auth = new Buffer(parts[1], 'base64').toString().split(':')
+    uuid = auth[0]
+    token = auth[1]
+    return {} unless uuid && token
+
+    return uuid: uuid, token: token
+
+  getAuthFromAnywhere: (request) =>
+    {uuid, token} = @getAuthFromHeaders(request)
+    {uuid, token} = @getAuthFromBearer(request) unless uuid && token
+    {uuid, token} = @getAuthFromBasic(request) unless uuid && token
+    {uuid, token} = @getAuthFromCookies(request) unless uuid && token
+    return uuid: uuid, token: token
+
   authenticateWithMeshblu: (uuid, token, callback=->) =>
+    return callback new Error('No UUID or Token found') unless uuid && token
     @userSession.getDeviceFromMeshblu uuid, token, (error, userDevice) =>
       return callback error if error?
       @userSession.ensureUserExists uuid, (error, user) =>
@@ -54,12 +83,7 @@ class SecurityController
       user.userDevice = userDevice
       request.login user, next
 
-    {uuid, token} = @getAuthFromHeaders(request)
-    return @authenticateWithMeshblu uuid, token, authenticateCallback if uuid && token
-
-    {uuid, token} = @getAuthFromCookies(request)
-    return response.status(401).end() unless uuid && token
-
+    {uuid, token} = @getAuthFromAnywhere request
     @authenticateWithMeshblu uuid, token, authenticateCallback
 
 module.exports = SecurityController

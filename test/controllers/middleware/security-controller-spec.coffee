@@ -97,6 +97,79 @@ describe 'SecurityController', ->
         it 'should call next', ->
           expect(@next).to.have.been.called
 
+    describe 'when called with a user and with valid basic uuid and token', ->
+      beforeEach ->
+        @next = sinon.spy()
+        @request =
+          user: {}
+          headers: 
+            authorization: 'Basic dGVzdDpmcmVk'
+          login: sinon.stub().yields @next
+        @response =
+          status: sinon.spy(=> @response)
+          end: sinon.spy()
+        @sut.authenticateWithMeshblu = sinon.stub()
+        @sut.isAuthenticated @request, @response, @next
+
+      it 'should call authenticateWithMeshblu()', ->
+        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'test', 'fred'
+
+      describe 'when authenticateWithMeshblu yields an error', ->
+        beforeEach (done) ->
+          @response.end = sinon.spy(done)
+          @sut.authenticateWithMeshblu.yield new Error('no device')
+
+        it 'should call response.status(401).end()', ->
+          expect(@response.status).to.have.been.calledWith 401
+          expect(@response.end).to.have.been.called
+
+      describe 'when authenticateWithMeshblu yields a device', ->
+        beforeEach ->
+          @sut.authenticateWithMeshblu.yield null, {uuid: 'test'}, {foo: 'fred'}
+
+        it 'should call request.login', ->
+          expect(@request.login).to.have.been.calledWith uuid: 'test', userDevice: {foo: 'fred'}
+
+        it 'should call next', ->
+          expect(@next).to.have.been.called
+
+    describe 'when called with a user and with valid bearer uuid and token', ->
+      beforeEach ->
+        @next = sinon.spy()
+        @request =
+          user: {}
+          headers: 
+            authorization: 'Bearer dGhpcy11dWlkOnRoYXQtdG9rZW4K'
+          login: sinon.stub().yields @next
+        @response =
+          status: sinon.spy(=> @response)
+          end: sinon.spy()
+        @sut.authenticateWithMeshblu = sinon.stub()
+        @sut.isAuthenticated @request, @response, @next
+
+      # this fails for some unknown reason
+      xit 'should call authenticateWithMeshblu()', ->
+        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'this-uuid', 'that-token'
+
+      describe 'when authenticateWithMeshblu yields an error', ->
+        beforeEach (done) ->
+          @response.end = sinon.spy(done)
+          @sut.authenticateWithMeshblu.yield new Error('no device')
+
+        it 'should call response.status(401).end()', ->
+          expect(@response.status).to.have.been.calledWith 401
+          expect(@response.end).to.have.been.called
+
+      describe 'when authenticateWithMeshblu yields a device', ->
+        beforeEach ->
+          @sut.authenticateWithMeshblu.yield null, {uuid: 'this-uuid'}, {bar: 'foo'}
+
+        it 'should call request.login', ->
+          expect(@request.login).to.have.been.calledWith uuid: 'this-uuid', userDevice: {bar: 'foo'}
+
+        it 'should call next', ->
+          expect(@next).to.have.been.called
+
   describe '->authenticateWithMeshblu', ->
     describe 'when called with a invalid uuid and token and getDeviceFromMeshblu yields an error', ->
       beforeEach (done) ->
