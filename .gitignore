@@ -17,3 +17,4 @@ assets/json/nodetypes.json
 meshblu.json
 *.sublime-workspace
 public/angular/compiled
+assets/json/operations.json

@@ -4,7 +4,10 @@ FLOW_TUTORIAL_1 = {
       text: "Welcome to the Octoblu designer."
     }
     {
-      text: 'Open the "Configured Nodes" tab in the bottom drawer to see a list of activated nodes'
+      text: "This tutorial will walk you through creating a flow that sends an email of the weather."
+    }
+    {
+      text: 'Open the "Configured Nodes" tab in the bottom drawer to see a list of activated nodes.'
       attachTo:
         element: '#btn-configured-nodes'
         on: 'top'
@@ -84,6 +87,15 @@ FLOW_TUTORIAL_1 = {
       buttons: false
       attachTo:
         element: '[data-name="to"]'
+        on: 'right'
+    }
+  ]
+  'configure_email_node_subject': [
+    {
+      text: "Add a subject to your email!"
+      buttons: false
+      attachTo:
+        element: '[data-name="subject"]'
         on: 'right'
     }
   ]

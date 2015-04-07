@@ -38,7 +38,7 @@ describe('FlowNodeTypeCollection', function () {
   describe('fromFile', function () {
     it('should call readFile with the filename', function () {
       sut.fromFile();
-      expect(fakeFS.readFile).to.have.been.calledWith('assets/json/flow-node-types.json');
+      expect(fakeFS.readFile).to.have.been.calledWith('assets/json/operations.json');
     });
 
     it('should return the nodetypes in a promise', function (done) {

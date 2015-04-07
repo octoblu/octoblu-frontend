@@ -1,0 +1,12 @@
+{
+  "name": "Get Key",
+  "class": "get-key",
+  "helpText": "Get a value stored by Set Key",
+  "category": "operation",
+  "uuid": "6daa638e-ced8-4de9-be9b-dcd026be6348",
+  "type": "operation:get-key",
+  "defaults": {},
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/get_key_form.html"
+}

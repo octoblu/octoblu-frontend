@@ -1,0 +1,14 @@
+{
+  "name": "Greater Than",
+  "class": "greater-than",
+  "helpText": "Filter out messages that do not pass a greater than test. Reference incoming messages using {{msg.values}}  \n  \nSupported inputs include: date and numbers",
+  "category": "operation",
+  "uuid": "7c801bad-4e1d-4ad0-aabd-d1ace2fcc001",
+  "type": "operation:greater-than",
+  "defaults": {
+    "value": 0
+  },
+  "input": 1,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/greater_than_form.html"
+}

@@ -5,6 +5,11 @@ angular
   .controller('ResourcesController', function($rootScope, $scope, $http) {
     $scope.resources = [
       {
+        title: 'Flow Tutorial',
+        link: '/tutorial/create',
+        summary: 'Learn to create your own flow by importing the tutorial flow.'
+      },
+      {
         title: 'Getting started with Octoblu Video',
         link: 'https://youtu.be/UAT1F8hF-nI?list=PLyh2CvBTlon4R_ibknRl9CCKfn_1eAted',
         summary: 'Octoblu quick start tutorial video is a great way to familiarize yourself with creating solutions with Octoblu.',
@@ -58,11 +63,6 @@ angular
         title: 'Status',
         link: 'http://status.octoblu.com/',
         summary: 'View the current status of the designer.',
-      },
-      {
-        title: 'Flow Tutorial',
-        link: '/tutorial/create',
-        summary: 'Learn to create your own flow by importing the tutorial flow.'
       }
     ];
   });

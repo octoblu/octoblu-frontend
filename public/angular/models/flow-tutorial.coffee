@@ -43,6 +43,7 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
       return 'add_email_node' unless @emailNodeAdded()
       return 'select_email_node' unless @emailNodeSelected() || @emailNodeConfigured()
       return 'configure_email_node_to' unless @emailNodeConfiguredTo()
+      return 'configure_email_node_subject' unless @emailNodeConfiguredSubject()
       return 'configure_email_node_body' unless @emailNodeConfiguredBody()
       return 'link_weather_to_email' unless @weatherLinkedToEmail()
       return 'open_operation_browser_for_trigger' unless @operationNodeBrowserOpened() || @triggerNodeAdded()
@@ -80,6 +81,10 @@ angular.module('octobluApp').factory 'FlowTutorial', ($window)->
     emailNodeConfiguredBody: =>
       emailNode = _.find @flow.nodes, { type: 'channel:email' }
       emailNode.bodyParams?.body == '{{msg.temperature}}'
+
+    emailNodeConfiguredSubject: =>
+      emailNode = _.find @flow.nodes, { type: 'channel:email' }
+      emailNode.bodyParams?.subject?
 
     emailNodeConfiguredTo: =>
       emailNode = _.find @flow.nodes, { type: 'channel:email' }

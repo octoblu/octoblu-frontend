@@ -1,0 +1,21 @@
+{
+  "name": "http POST",
+  "class": "http-post-request",
+  "helpText": "Perform an HTTP Post request",
+  "category": "operation",
+  "uuid": "95675c2c-5305-11e4-9e35-164230d1df67",
+  "type": "operation:http-post-request",
+  "defaults": {
+    "method": "POST",
+    "headerKeys": [],
+    "headerValues": [],
+    "bodyEncoding": "json",
+    "bodyKeys": [
+      ""
+    ]
+  },
+  "input": 1,
+  "output": 1,
+  "align": "right",
+  "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
+}
