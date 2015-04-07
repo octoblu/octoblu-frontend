@@ -47,14 +47,26 @@
             "displayName": "Sensors",
             "style": "body",
             "type": "array",
-            "name": "sensors",
+             "default" : [],
              "schema" : {
-               "type" : "array",
-               "items" : {
-                 "type" : "object",
-                 "display" : "keys"
-               }
-              }
+                "type": "array",
+                "format": "table",
+                "title" : "Sensors",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "required": true
+                    }
+                  }
+                }
+              },
+             "name":"Sensors"
           }
         ],
         "url": "https://:subdomain.tempoiq.com/v2/devices"

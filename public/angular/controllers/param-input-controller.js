@@ -37,11 +37,11 @@ angular.module('octobluApp')
         var existingValue = $scope.ngModel[paramDefinition.name];
         var paramDefault = '';
         if(paramDefinition.type === 'object') {
-            paramDefinition.schema = getSchema(paramDefinition.name);
+            paramDefinition.schema = paramDefinition.schema || getSchema(paramDefinition.name);
             paramDefault = {};
         }
         if(paramDefinition.type === 'array') {
-          paramDefinition.schema = getArraySchema(paramDefinition.displayName);
+          paramDefinition.schema = paramDefinition.schema || getArraySchema(paramDefinition.displayName);
           paramDefault = [];
         }
         $scope.params[paramDefinition.name] = existingValue || paramDefinition.default || paramDefault;
