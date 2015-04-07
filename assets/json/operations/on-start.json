@@ -1,0 +1,11 @@
+{
+  "name": "On Start",
+  "class": "on-start",
+  "helpText": "Automatically trigger on flow start",
+  "category": "operation",
+  "uuid": "9d524707-1152-4765-9fb4-5e6cac65da50",
+  "type": "operation:on-start",
+  "input": 0,
+  "output": 1,
+  "formTemplatePath": "/pages/node_forms/on_start_form.html"
+}
