@@ -1,0 +1,30 @@
+<div layout="column">
+  <table flex layout-fill class="ugly-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Can Be Discovered By</th>
+        <th>Can Be Sent Messages By</th>
+        <th>Can Be Modified By</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="device in devices">
+        <td>
+          <div class="process-row-logo" ng-style="{'background-image': 'url(' + device.logo + ')'}" ng-class="{faded: !device.online}"></div>
+          {{device.name}} ({{device.type}})
+        </td>
+        <td>
+          <md-checkbox></md-checkbox>
+        </td>
+        <td>
+          <md-checkbox></md-checkbox>
+        </td>
+        <td>
+          <md-checkbox></md-checkbox>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
