@@ -19,7 +19,7 @@ desiredState:
             mountPath: /var/run/docker.sock
         env:
           - name: GIT_REPO
-            value: https://github.com/$TRAVIS_REPO_SLUG.git
+            value: $GIT_REPO
           - name: GIT_TAG
             value: $TRAVIS_COMMIT
           - name: IMAGE_NAME

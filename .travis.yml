@@ -28,8 +28,9 @@ env:
   - secure: B+x8ED48lOM7lrgkng0HVKoikZuYKRMQ6Da8a4sTlqiSxHIli6RoXR+QdK9BFY4fRlenCForYrwyAXkrVzGwIuC/0aiXNOCXG1BLST4Kw4POTOK5H912Y4YIVVrzRQP6nw2VXBt8ixuJ0ihB+EZrm5Ugx7z2chCBcw5Tca8oj7w=
   - secure: IW0rIoY1P2RxFJn1/Z/aqVw4KRNExs9nsGVDQhMCcoAWt9Ag4owifGtEpcyNq9tVK4Xh1HgHvaCAiegeuEB8wF0L+Hp54yhAICITQh12hrnL8o8na/pi9OwnW4uO0qTFdthw5/bYmmqXF36bjWOeCMgUnVBsxi5Zbchpj2suKHE=
   - secure: hXSwhCUp1ICE6bwFLRcAcX3ZyiA5kJdtuovCS25dTB8nqqalM71lbWp5ca/Bjeck8wzNEL0/sbFcxelfmD6+73G900W9CPGYZUM0TrawOEJtPOyPZntF3dOpg7EzLKi9jwlVKn5272gIVIq4AkIaLasT+GuEuynYnsaOzb0mf/0=
+  - secure: G4fVIEEfGCoQEGUHPFBzC7AUgxbP8z9kMkQBgLm+86jRBwnlcERlls0WW7wm+g842y34oP8oaGSzJG7Lcv/AlcPkxzAG1YZsAnAmAP5OWO7OCxuRorX1tnHM26oNdlY3VK0jnBZw6GZEHoH7lxTX0S4Pb/GpJk0yKCFSsgikPtA=
 after_success:
-- .kubernetes/travis_after_success
+- ".kubernetes/travis_after_success"
 notifications:
   slack:
     secure: j8t7GC1MCh75KcJiUh+Wq8AVGrESS9mZG9EnHSHWSIHr1eGHbNYn9GWR2+/vv6M1Te+TRTCbVU38Z4/VfZf4zYOi7HoY8z9XT97h90+ArEc68qQnDpZyfSsI4n7mYLPWMZtLz41ryZGYZ2ISTLHR2gbJX8kxyTXCWrIAxtG8uT8=
@@ -45,9 +46,9 @@ before_deploy:
 - mkdir -p build && tar czf build/public.tar.gz public
 deploy:
 - provider: s3
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: &1
+    secure: SUC78nnA3eIepYCqxrU+So32VUl7qvmP50Cc6ykR7bBmwI9BFmEUbrzC7M2l2IiMJa0P7QdXuRmA+jgtxFOw+5y8ISI6kHdUt/OG++j26zF1gqMzPxxynVcoi8P4gyBcQw+/YjEtw9j2QMTP1k0QgY4e4lcXZ4kO6bMPmkzT23o=
   bucket: deploy-octoblu-static
   region: us-west-2
   skip_cleanup: true
@@ -55,23 +56,20 @@ deploy:
   on:
     branch: master
 - provider: opsworks
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
   app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
   on:
     branch: master
 - provider: opsworks
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
   app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
   on:
     branch: master
 - provider: s3
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
   bucket: deploy-octoblu-static-staging
   region: us-west-2
   skip_cleanup: true
@@ -79,23 +77,20 @@ deploy:
   on:
     branch: staging
 - provider: opsworks
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
   app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
   on:
     branch: staging
 - provider: opsworks
-  access_key_id: AKIAJCOOWS3NWOOZRDGQ
-  secret_access_key:
-    secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
   app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
   on:
     branch: staging
 - provider: s3
   access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: &1
-    secure: SUC78nnA3eIepYCqxrU+So32VUl7qvmP50Cc6ykR7bBmwI9BFmEUbrzC7M2l2IiMJa0P7QdXuRmA+jgtxFOw+5y8ISI6kHdUt/OG++j26zF1gqMzPxxynVcoi8P4gyBcQw+/YjEtw9j2QMTP1k0QgY4e4lcXZ4kO6bMPmkzT23o=
+  secret_access_key: *1
   local_dir: dpl_cd_upload
   skip_cleanup: true
   bucket: octoblu-deploy
