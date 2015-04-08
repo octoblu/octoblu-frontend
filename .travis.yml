@@ -29,7 +29,7 @@ env:
   - secure: IW0rIoY1P2RxFJn1/Z/aqVw4KRNExs9nsGVDQhMCcoAWt9Ag4owifGtEpcyNq9tVK4Xh1HgHvaCAiegeuEB8wF0L+Hp54yhAICITQh12hrnL8o8na/pi9OwnW4uO0qTFdthw5/bYmmqXF36bjWOeCMgUnVBsxi5Zbchpj2suKHE=
   - secure: hXSwhCUp1ICE6bwFLRcAcX3ZyiA5kJdtuovCS25dTB8nqqalM71lbWp5ca/Bjeck8wzNEL0/sbFcxelfmD6+73G900W9CPGYZUM0TrawOEJtPOyPZntF3dOpg7EzLKi9jwlVKn5272gIVIq4AkIaLasT+GuEuynYnsaOzb0mf/0=
 after_success:
-- gem install nokogiri -- --use-system-libraries
+- .kubernetes/travis_after_success
 notifications:
   slack:
     secure: j8t7GC1MCh75KcJiUh+Wq8AVGrESS9mZG9EnHSHWSIHr1eGHbNYn9GWR2+/vv6M1Te+TRTCbVU38Z4/VfZf4zYOi7HoY8z9XT97h90+ArEc68qQnDpZyfSsI4n7mYLPWMZtLz41ryZGYZ2ISTLHR2gbJX8kxyTXCWrIAxtG8uT8=
