@@ -9,6 +9,27 @@ cache:
   directories:
   - node_modules
   - public/lib
+env:
+  global:
+  - AWS_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
+  - DOCKER_USERNAME=octoblu
+  - DEPLOY_APPLICATION_NAME=octoblu
+  - DEPLOY_REGION=us-west-2
+  - DEPLOY_BUCKET=octoblu-deploy
+  - DEPLOYMENT_GROUP=master
+  - DEPLOY_KEY=octoblu/octoblu-$TRAVIS_COMMIT.zip
+  - ELASTIC_SEARCH_URI=http://es.octoblu.com
+  - APP_DYNAMICS_APPLICATION_NAME=Octoblu
+  - secure: dCHYIySwlqWZ5sDpvi22CRdMU1sq3uZGR06nY2GkQ7Mp+jtirgSrLSnIzPwWRqOV0J9sjkkKi7f2DO/hwyBWpLJEmhV2AFhyqaW6paNm/YN6aheulKAmtRjQu1LfrEL6bZTvarl4HSzAdMv804RjNij5RKHumYSnokNeXtACQNY=
+  - secure: DJtlV4j2cQ2wgbCqODzn+hjd2DK5HarCSltzKrGs7YlwON1pYKCKJHAYibV2+TYMwHLivN63febO7Sk8uNObxne/dt0J5hDZBbCtzKFDHEsxxixiRVdgKNKJa60jVt4qOCnbyKo3oGvTF9yesbiqWrfAL4rkP2iXWeBI1LqMtqU=
+  - secure: YINWdmf38Ts2+mHQgEWTavkUqTqOz+O/XfO+wEQw95teIj8OBpVESA+SHn9+oo3WCZ2wCbcOE5jpVYnJqrS7usZIj+EsmP7IKLdeMPgQIlnSNB6tp+MQmelhBaacv5kCMIPpbWJr0p+PhDOq/X7CpHCUo/fTzWB2sB6Frd7T9h8=
+  - secure: k72PlEGq2sqRnOP1yt27pWnFYc9PoQqRu6PVk3jYt0mYau/90Wx5EOcQaQNAQT7l9WB2hMOyYYegZ8jLzU7qsdWMlXGLhdjwhJa2ggB7Xa7k5N1tLnwb2XHPlbbcp4CBSiq/9cgUawH9MhBARQZK0RwiZM1FOxmfK0iWhoqPIdk=
+  - secure: Os3JUhzKLMJFwIp3ZLPeOYt5l1S6bJ5vMro3sKnwKY/6DehQ/93ZBmNPAfPxzvr8uP6Ak7h9lNHNMdY2yyLwK2Nk5cXenTo77tIcgsAYCExWyE0nCIHwFdgtjq54j4bULRzq+Mbl7PbiEvWdQ9A8H/jjSVjBeA+3mlQdn9qfjdI=
+  - secure: B+x8ED48lOM7lrgkng0HVKoikZuYKRMQ6Da8a4sTlqiSxHIli6RoXR+QdK9BFY4fRlenCForYrwyAXkrVzGwIuC/0aiXNOCXG1BLST4Kw4POTOK5H912Y4YIVVrzRQP6nw2VXBt8ixuJ0ihB+EZrm5Ugx7z2chCBcw5Tca8oj7w=
+  - secure: IW0rIoY1P2RxFJn1/Z/aqVw4KRNExs9nsGVDQhMCcoAWt9Ag4owifGtEpcyNq9tVK4Xh1HgHvaCAiegeuEB8wF0L+Hp54yhAICITQh12hrnL8o8na/pi9OwnW4uO0qTFdthw5/bYmmqXF36bjWOeCMgUnVBsxi5Zbchpj2suKHE=
+  - secure: hXSwhCUp1ICE6bwFLRcAcX3ZyiA5kJdtuovCS25dTB8nqqalM71lbWp5ca/Bjeck8wzNEL0/sbFcxelfmD6+73G900W9CPGYZUM0TrawOEJtPOyPZntF3dOpg7EzLKi9jwlVKn5272gIVIq4AkIaLasT+GuEuynYnsaOzb0mf/0=
+after_success:
+- gem install nokogiri -- --use-system-libraries
 notifications:
   slack:
     secure: j8t7GC1MCh75KcJiUh+Wq8AVGrESS9mZG9EnHSHWSIHr1eGHbNYn9GWR2+/vv6M1Te+TRTCbVU38Z4/VfZf4zYOi7HoY8z9XT97h90+ArEc68qQnDpZyfSsI4n7mYLPWMZtLz41ryZGYZ2ISTLHR2gbJX8kxyTXCWrIAxtG8uT8=
@@ -20,9 +41,8 @@ before_script:
 - node_modules/.bin/bower install
 - node_modules/.bin/gulp
 - export NODE_ENV=test
-after_success:
-- gem install nokogiri -- --use-system-libraries
-before_deploy: mkdir -p build && tar czf build/public.tar.gz public
+before_deploy:
+- mkdir -p build && tar czf build/public.tar.gz public
 deploy:
 - provider: s3
   access_key_id: AKIAJCOOWS3NWOOZRDGQ
@@ -70,5 +90,25 @@ deploy:
   secret_access_key:
     secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
   app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
+  on:
+    branch: staging
+- provider: s3
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: &1
+    secure: SUC78nnA3eIepYCqxrU+So32VUl7qvmP50Cc6ykR7bBmwI9BFmEUbrzC7M2l2IiMJa0P7QdXuRmA+jgtxFOw+5y8ISI6kHdUt/OG++j26zF1gqMzPxxynVcoi8P4gyBcQw+/YjEtw9j2QMTP1k0QgY4e4lcXZ4kO6bMPmkzT23o=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  bucket: octoblu-deploy
+  on:
+    branch: staging
+- provider: codedeploy
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  bucket: octoblu-deploy
+  key: docker-builder/octoblu-$TRAVIS_COMMIT.zip
+  bundle_type: zip
+  region: us-west-2
+  application: docker-builder
+  deployment_group: octoblu
   on:
     branch: staging

@@ -138,7 +138,7 @@
   },
   "scripts": {
     "test": "mocha && node_modules/karma/bin/karma start --single-run",
-    "start": "node server.js"
+    "start": "node_modules/.bin/gulp production && node server.js"
   },
   "engines": {
     "node": ">=0.6"
