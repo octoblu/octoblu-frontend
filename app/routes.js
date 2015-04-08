@@ -42,6 +42,9 @@ module.exports = function(app, passport) {
     var ChannelApiKeyController = require('./controllers/channel-api-key-controller');
     var channelApiKeyController = new ChannelApiKeyController();
 
+    var FlowAuthCredentialsController = require('./controllers/flow-auth-credentials-controller');
+    var flowAuthCredentialsController = new FlowAuthCredentialsController(meshbluJSON);
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController({meshblu: conn});
 
@@ -254,6 +257,7 @@ module.exports = function(app, passport) {
             app.post('/api/auth', security.bypassAuth);
             app.all('/api/auth', security.bypassTerms);
             app.all('/api/auth/*', security.bypassAuth, security.bypassTerms);
+            app.all('/api/flow-auth-credentials/*', security.bypassTerms);
             app.all('/api/oauth/*', security.bypassAuth, security.bypassTerms);
             app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms);
             app.post('/api/webhooks/:id', security.bypassAuth, webhookController.trigger);
@@ -299,6 +303,8 @@ module.exports = function(app, passport) {
             app.post('/api/flows/:id/instance', flowDeployController.startInstance);
             app.delete('/api/flows/:id/instance', flowDeployController.stopInstance);
             app.put('/api/flows/:id/instance', flowDeployController.restartInstance);
+
+            app.get('/api/flow-auth-credentials/:id', flowAuthCredentialsController.show);
 
             app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 

@@ -131,6 +131,13 @@ function UserModel() {
       return _.findWhere(apis, {type: type});
     },
 
+    findUserAndApiByChannelType : function(uuid, type) {
+      var self = this;
+      return self.findBySkynetUUID(uuid).then(function(user) {
+        return self.findApiByChannelType(user.api, type);
+      });
+    },
+    
     overwriteOrAddApi : function(user, channel, options){
       var self = this;
       var index, new_api, old_api, oldUuid;
