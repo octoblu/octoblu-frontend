@@ -359,11 +359,13 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.newDevice', {
         url: '/ndevice/:uuid',
         controller: 'DeviceDetailController',
+        controllerAs: 'controller',
         templateUrl: '/pages/device-detail.html'
       })
       .state('material.newDeviceTab', {
         url: '/ndevice/:uuid/:tab',
         controller: 'DeviceDetailController',
+        controllerAs: 'controller',
         templateUrl: '/pages/device-detail.html'
       })
       .state('material.device', {

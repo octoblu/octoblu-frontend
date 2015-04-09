@@ -1,4 +1,4 @@
-describe 'DeviceDetailController', ->
+xdescribe 'DeviceDetailControllerOld', ->
   beforeEach =>
     module 'octobluApp'
 
@@ -127,4 +127,3 @@ describe 'DeviceDetailController', ->
     constructor : ->
       @notify = sinon.spy()
       @alert = sinon.spy()
-

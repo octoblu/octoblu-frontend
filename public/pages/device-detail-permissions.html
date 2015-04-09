@@ -1,28 +1,31 @@
 <div layout="column">
+  <div layout="row">
+  </div>
+
   <table flex layout-fill class="ugly-table">
     <thead>
       <tr>
         <th></th>
-        <th>Can Be Discovered By</th>
-        <th>Can Be Sent Messages By</th>
-        <th>Can Be Modified By</th>
+        <th ng-show="controller.device.discoverWhitelist">Can Be Discovered By</th>
+        <th ng-show="controller.device.receiveWhitelist">Can Be Sent Messages By</th>
+        <th ng-show="controller.device.configureWhitelist">Can Be Modified By</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr ng-repeat="device in devices">
+      <tr ng-repeat="device in controller.devices">
         <td>
           <div class="process-row-logo" ng-style="{'background-image': 'url(' + device.logo + ')'}" ng-class="{faded: !device.online}"></div>
           {{device.name}} ({{device.type}})
         </td>
-        <td>
-          <md-checkbox></md-checkbox>
+        <td ng-show="controller.device.discoverWhitelist">
+          <md-checkbox aria-label="Discover"></md-checkbox>
         </td>
-        <td>
-          <md-checkbox></md-checkbox>
+        <td ng-show="controller.device.receiveWhitelist">
+          <md-checkbox aria-label="Send"></md-checkbox>
         </td>
-        <td>
-          <md-checkbox></md-checkbox>
+        <td ng-show="controller.device.configureWhitelist">
+          <md-checkbox aria-label="Configure"></md-checkbox>
         </td>
       </tr>
     </tbody>

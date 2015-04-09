@@ -4,16 +4,21 @@ TABS =
   permissions: 1
 
 class DeviceDetailController
-
-  constructor: ($scope, $stateParams, deviceService) ->
-    @scope = $scope
-    @scope.activeTabIndex = TABS[$stateParams.tab]
+  constructor: ($scope, $state, $stateParams, deviceService) ->
+    @state = $state
+    @activeTabIndex = TABS[$stateParams.tab]
 
     deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
-      $scope.device = device
+      @device = device
+      window.device = device
 
     deviceService.getDevices().then (devices) =>
-      $scope.devices = devices
+      @devices = devices
+
+  onTabSelection: (tabName) =>
+    return unless @device?
+    @state.go 'material.newDeviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
+
 
 angular.module 'octobluApp'
        .controller 'DeviceDetailController', DeviceDetailController

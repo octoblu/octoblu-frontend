@@ -9,11 +9,11 @@
   </h2>
 </md-toolbar>
 
-<md-tabs md-selected="activeTabIndex">
-  <md-tab label="Properties">
+<md-tabs md-selected="controller.activeTabIndex">
+  <md-tab label="Properties" md-on-select="controller.onTabSelection('properties')">
     <div ng-include="'/pages/device-detail-properties.html'"></div>
   </md-tab>
-  <md-tab label="Permissions">
+  <md-tab label="Permissions" md-on-select="controller.onTabSelection('permissions')">
     <div ng-include="'/pages/device-detail-permissions.html'"></div>
   </md-tab>
 </md-tabs>
