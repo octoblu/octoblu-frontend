@@ -70,7 +70,6 @@ function UserModel() {
         });
     },
 
-
     findBySkynetUUID : function (skynetuuid) {
       var self = this;
       return self.findOne({'skynet.uuid': skynetuuid});
@@ -137,7 +136,7 @@ function UserModel() {
         return self.findApiByChannelType(user.api, type);
       });
     },
-    
+
     overwriteOrAddApi : function(user, channel, options){
       var self = this;
       var index, new_api, old_api, oldUuid;
@@ -177,6 +176,12 @@ function UserModel() {
       var channel = Channel.syncFindById(channelid);
 
       self.overwriteOrAddApi(user, channel, options);
+    },
+
+    addApiToUserByChannelType: function(uuid, type, options) {
+      return User.findBySkynetUUID(uuid).then(function(user){
+        return User.addApiAuthorization(user, type, options);
+      });
     },
 
     overwriteOrAddApiByChannelType : function (user, type, options) {

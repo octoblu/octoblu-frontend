@@ -99,6 +99,8 @@ var FlowDeploy = function(options){
         node.apikey = userApiMatch.apikey;
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
+        node.oauth.refreshToken = userApiMatch.refreshToken
+        node.oauth.expiresOn = userApiMatch.expiresOn
         node.defaultParams = userApiMatch.defaultParams;
       }
 

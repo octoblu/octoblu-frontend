@@ -1,6 +1,9 @@
 'use strict'
 _ = require 'lodash'
 debug = require('debug')('octoblu:flow-auth-credentials-controller')
+textCrypt = require '../lib/textCrypt'
+moment = require 'moment'
+passportRefresh = require 'passport-oauth2-refresh'
 
 class FlowAuthCredentialsController
   constructor: (@meshbluJSON, @dependencies={}) ->
@@ -9,14 +12,14 @@ class FlowAuthCredentialsController
 
   show: (request, response) =>
     uuid = request.params.id
-    {token, access_token, type} = request.query
+    {token, type, access_token} = request.query
     @verifyDevice uuid, token, (error, device) =>
       return response.status(401).send() if error?
       debug 'found device', device
-      @getAccessToken device.owner, type, access_token, (error, token) =>
-        debug 'got token', token, error
+      @getAccessToken device.owner, type, access_token, (error, auth) =>
+        debug 'got token', auth, error
         return response.status(401).send() if error?
-        response.status(200).send({access_token: token})
+        response.status(200).send access_token: auth.token, access_token_secret: auth.secret
 
   verifyDevice: (uuid, token, callback=(->)) =>
     debug 'verifyDevice', uuid, token
@@ -25,10 +28,37 @@ class FlowAuthCredentialsController
 
   getAccessToken: (uuid, type, access_token, callback=(->)) =>
     debug 'getAccessToken', uuid, type, access_token
-    User.findUserAndApiByChannelType(uuid, type).then (channelAuth) =>
-      debug 'foundAuth', channelAuth
-      return callback new Error('Invalid Token') if channelAuth.token != access_token
-      callback null, channelAuth.token
+    User.findUserAndApiByChannelType(uuid, type)
     .catch callback
+    .then (channelAuth) =>
+      debug 'foundAuth', channelAuth
+      return callback new Error('Invalid Token') unless @isAccessTokenValid access_token, channelAuth
+
+      @refreshToken uuid, channelAuth, type, callback
+
+  getDecryptedTokenAndSecret: (channelAuth) =>
+    channel_token = channelAuth.token
+    channel_secret = channelAuth.secret
+    if channelAuth.token_crypt?
+      channel_token = textCrypt.decrypt(channelAuth.token_crypt)
+      channel_secret = textCrypt.decrypt(channelAuth.secret_crypt)
+
+    return token: channel_token, secret: channel_secret
+
+  isAccessTokenValid: (access_token, channelAuth) =>
+    {token} = @getDecryptedTokenAndSecret channelAuth
+    debug 'compareAuth', token, access_token, token == access_token
+    return token == access_token
+
+  refreshToken: (uuid, channelAuth, type, callback=(->)) =>
+    debug 'refreshToken', channelAuth.refreshToken, channelAuth.expiresOn, moment().isAfter(channelAuth.expiresOn)
+    return callback null, @getDecryptedTokenAndSecret(channelAuth) unless channelAuth.refreshToken? && moment().isAfter(channelAuth.expiresOn)
+    passportRefresh.requestNewAccessToken _.last(type.split(':')), channelAuth.refreshToken, (error, accessToken, refreshToken) =>
+      channelAuth.token = accessToken
+      channelAuth.refreshToken = refreshToken
+      User.addApiToUserByChannelType uuid, type, channelAuth
+      .catch callback
+      .then ->
+        callback null, token: accessToken
 
 module.exports = FlowAuthCredentialsController
