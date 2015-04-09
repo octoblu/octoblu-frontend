@@ -20,7 +20,7 @@ describe 'FlowAuthCredentialsController', ->
         @stubGetAccessToken: sinon.stub()
 
       @dependencies = MeshbluHttp: MeshbluHttp, octobluDb: @octobluDb
-        
+
       @sut = new FlowAuthCredentialsController {}, @dependencies
       @sut.getAccessToken = sinon.stub()
       @sut.verifyDevice = sinon.stub()
@@ -28,11 +28,11 @@ describe 'FlowAuthCredentialsController', ->
     describe 'when called with uuid and token', ->
       beforeEach ->
         @sut.verifyDevice.yields null, owner: 'dad'
-        @sut.getAccessToken.yields null, '1234'
-        @request  = 
+        @sut.getAccessToken.yields null, token: '1234'
+        @request  =
           params:
             id: 'fastball'
-          query: 
+          query:
             token: 'outahere'
             type: 'channel:foobar'
             access_token: 'abcd'
@@ -53,11 +53,11 @@ describe 'FlowAuthCredentialsController', ->
     describe 'when called with another uuid and token', ->
       beforeEach ->
         @sut.verifyDevice.yields null, owner: 'mom'
-        @sut.getAccessToken.yields null, '51234'
-        @request  = 
+        @sut.getAccessToken.yields null, token: '51234'
+        @request  =
           params:
             id: 'coke'
-          query: 
+          query:
             token: 'pepsi'
             type: 'channel:barfo'
             access_token: 'dcba'
@@ -78,10 +78,10 @@ describe 'FlowAuthCredentialsController', ->
     describe 'when called with an invalid uuid and token', ->
       beforeEach ->
         @sut.verifyDevice.yields new Error
-        @request  = 
+        @request  =
           params:
             id: 'coken'
-          query: 
+          query:
             token: 'pepsi'
         @sut.show @request, @response
 

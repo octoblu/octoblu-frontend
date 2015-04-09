@@ -19,7 +19,7 @@ class FlowAuthCredentialsController
       @getAccessToken device.owner, type, access_token, (error, auth) =>
         debug 'got token', auth, error
         return response.status(401).send() if error?
-        response.status(200).send access_token: auth.token, access_token_secret: auth.secret
+        response.status(200).send access_token: auth.token
 
   verifyDevice: (uuid, token, callback=(->)) =>
     debug 'verifyDevice', uuid, token
@@ -38,12 +38,10 @@ class FlowAuthCredentialsController
 
   getDecryptedTokenAndSecret: (channelAuth) =>
     channel_token = channelAuth.token
-    channel_secret = channelAuth.secret
     if channelAuth.token_crypt?
       channel_token = textCrypt.decrypt(channelAuth.token_crypt)
-      channel_secret = textCrypt.decrypt(channelAuth.secret_crypt)
 
-    return token: channel_token, secret: channel_secret
+    return token: channel_token
 
   isAccessTokenValid: (access_token, channelAuth) =>
     {token} = @getDecryptedTokenAndSecret channelAuth
