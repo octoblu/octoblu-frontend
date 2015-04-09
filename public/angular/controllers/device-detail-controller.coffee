@@ -4,7 +4,7 @@ TABS =
   permissions: 1
 
 class DeviceDetailController
-  constructor: ($scope, $state, $stateParams, deviceService) ->
+  constructor: ($scope, $state, $stateParams, deviceService, ThingService) ->
     @state = $state
     @activeTabIndex = TABS[$stateParams.tab]
 
@@ -12,7 +12,7 @@ class DeviceDetailController
       @device = device
       window.device = device
 
-    deviceService.getDevices().then (devices) =>
+    ThingService.getThings().then (devices) =>
       @devices = devices
 
   onTabSelection: (tabName) =>
