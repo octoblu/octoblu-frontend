@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
     var security = new SecurityController();
     var meshbluJSON;
     try {
-        meshbluJSON  = require('./meshblu.json');
+        meshbluJSON  = require(process.cwd()+'/meshblu.json');
     }
     catch (error) {
         meshbluJSON = {
