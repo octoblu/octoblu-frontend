@@ -28,7 +28,7 @@ describe 'FlowAuthCredentialsController', ->
     describe 'when called with uuid and token', ->
       beforeEach ->
         @sut.verifyDevice.yields null, owner: 'dad'
-        @sut.getAccessToken.yields null, token: '1234'
+        @sut.getAccessToken.yields null, token: '1234', expiresOn: 1203510235
         @request  =
           params:
             id: 'fastball'
@@ -48,12 +48,12 @@ describe 'FlowAuthCredentialsController', ->
         expect(@response.status).to.have.been.calledWith 200
 
       it 'should return an access_token', ->
-        expect(@response.send).to.have.been.calledWith access_token: '1234'
+        expect(@response.send).to.have.been.calledWith access_token: '1234', expiresOn: 1203510235
 
     describe 'when called with another uuid and token', ->
       beforeEach ->
         @sut.verifyDevice.yields null, owner: 'mom'
-        @sut.getAccessToken.yields null, token: '51234'
+        @sut.getAccessToken.yields null, token: '51234', expiresOn: 19599559
         @request  =
           params:
             id: 'coke'
@@ -73,7 +73,7 @@ describe 'FlowAuthCredentialsController', ->
         expect(@response.status).to.have.been.calledWith 200
 
       it 'should return an access_token', ->
-        expect(@response.send).to.have.been.calledWith access_token: '51234'
+        expect(@response.send).to.have.been.calledWith access_token: '51234', expiresOn: 19599559
 
     describe 'when called with an invalid uuid and token', ->
       beforeEach ->

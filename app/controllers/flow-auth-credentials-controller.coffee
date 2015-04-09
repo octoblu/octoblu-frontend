@@ -19,7 +19,7 @@ class FlowAuthCredentialsController
       @getAccessToken device.owner, type, access_token, (error, auth) =>
         debug 'got token', auth, error
         return response.status(401).send() if error?
-        response.status(200).send access_token: auth.token
+        response.status(200).send access_token: auth.token, expiresOn: auth.expiresOn
 
   verifyDevice: (uuid, token, callback=(->)) =>
     debug 'verifyDevice', uuid, token
@@ -49,14 +49,15 @@ class FlowAuthCredentialsController
     return token == access_token
 
   refreshToken: (uuid, channelAuth, type, callback=(->)) =>
-    debug 'refreshToken', channelAuth.refreshToken, channelAuth.expiresOn, moment().isAfter(channelAuth.expiresOn)
-    return callback null, @getDecryptedTokenAndSecret(channelAuth) unless channelAuth.refreshToken? && moment().isAfter(channelAuth.expiresOn)
-    passportRefresh.requestNewAccessToken _.last(type.split(':')), channelAuth.refreshToken, (error, accessToken, refreshToken) =>
+    debug 'refreshToken', channelAuth.refreshToken, channelAuth.expiresOn
+    passportRefresh.requestNewAccessToken _.last(type.split(':')), channelAuth.refreshToken, (error, accessToken, refreshToken, results) =>
+      expiresOn = Date.now() + (results.expires_in * 1000)
       channelAuth.token = accessToken
       channelAuth.refreshToken = refreshToken
+      channelAuth.expiresOn = expiresOn
       User.addApiToUserByChannelType uuid, type, channelAuth
       .catch callback
       .then ->
-        callback null, token: accessToken
+        callback null, token: accessToken, expiresOn: expiresOn
 
 module.exports = FlowAuthCredentialsController
