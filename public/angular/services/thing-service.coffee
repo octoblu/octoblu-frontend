@@ -11,6 +11,9 @@ class ThingService
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
 
+  extractWhitelist: (permission) =>
+    return _.keys _.pick(permission, _.identity)
+
   getThings: =>
     deferred = @q.defer()
 
@@ -37,16 +40,29 @@ class ThingService
 
     receive: receive, configure: configure, discover: discover
 
+  updateDeviceWithPermissions: (device={}, permissions={}) =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+
+      updateDevice =
+        uuid: device.uuid
+        discoverWhitelist:  @extractWhitelist(permissions.discover)
+        configureWhitelist: @extractWhitelist(permissions.configure)
+        receiveWhitelist:   @extractWhitelist(permissions.receive)
+
+      connection.update updateDevice, =>
+        deferred.resolve()
+
+    deferred.promise
+
   whitelistToPermission: (whitelist) =>
     return {'*': true} unless whitelist?
-    
+
     permission = {}
     _.each whitelist, (uuid) =>
       permission[uuid] = true
 
     permission
 
-
 angular.module('octobluApp').service 'ThingService', ThingService
-
-

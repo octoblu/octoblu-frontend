@@ -41,7 +41,7 @@ describe 'ThingService', ->
 
       it 'should add the logo to me', ->
         [everything, me, a, b] = @results
-        expect(me.logo).to.equal 's3/device/user.svg' 
+        expect(me.logo).to.equal 's3/device/user.svg'
 
     describe 'when mydevices yields some devices', ->
       beforeEach ->
@@ -53,20 +53,20 @@ describe 'ThingService', ->
 
       it 'should add the logo to me', ->
         [everything, a, b, c] = @results
-        expect(c.logo).to.equal 's3/device/cool-beans.svg' 
-        
+        expect(c.logo).to.equal 's3/device/cool-beans.svg'
+
   describe '->mapWhitelistsToPermissions', ->
     describe 'when called with no device', ->
       beforeEach ->
         @result = @sut.mapWhitelistsToPermissions()
 
       it 'should return null', ->
-        expect(@result).to.be.null 
+        expect(@result).to.be.null
 
     describe 'when called with a device that has no whitelists', ->
       beforeEach ->
         @result = @sut.mapWhitelistsToPermissions {}
-        
+
       it 'should have everything for discover', ->
         expect(@result.discover).to.deep.equal {'*': true}
 
@@ -79,7 +79,7 @@ describe 'ThingService', ->
     describe 'when called with device that has empty whitelists', ->
       beforeEach ->
         @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], receiveWhitelist: [], configureWhitelist: []}
-        
+
       it 'should have an empty object for discover', ->
         expect(@result.discover).to.be.empty
 
@@ -97,7 +97,7 @@ describe 'ThingService', ->
           configureWhitelist: ['uuid3']
         }
         @result = @sut.mapWhitelistsToPermissions device
-        
+
       it 'should have an object containing the uuid for discover', ->
         expect(@result.discover).to.deep.equal {'uuid1': true}
 
@@ -107,6 +107,74 @@ describe 'ThingService', ->
       it 'should have an object containing the uuid for configure', ->
         expect(@result.configure).to.deep.equal {'uuid3': true}
 
-      
+  describe '->updateDeviceWithPermissions', ->
+    describe 'when update yields immediatly', ->
+      beforeEach ->
+        @skynet.update = sinon.stub().yields {}
 
-      
+      it 'should be a function that returns a promise', ->
+        _.defer => @rootScope.$digest()
+        @sut.updateDeviceWithPermissions().then =>
+
+      describe 'when called with a device and empty permissions', ->
+        beforeEach ->
+          _.defer => @rootScope.$digest()
+
+          device      = {uuid: '12'}
+          permissions = {discover: {}, configure: {}, receive: {}}
+
+          @sut.updateDeviceWithPermissions device, permissions
+
+        it 'should call update with empty whitelists', ->
+          expect(@skynet.update).to.have.been.calledWith {
+            uuid: '12'
+            discoverWhitelist: []
+            configureWhitelist: []
+            receiveWhitelist: []
+          }
+
+      describe 'when called with device and everything permissions', ->
+        beforeEach ->
+          _.defer => @rootScope.$digest()
+
+          device = uuid: '13'
+          permissions =
+            discover:
+              '*': true
+            configure:
+              '*': true
+            receive:
+              '*': true
+
+          @sut.updateDeviceWithPermissions device, permissions
+
+        it 'should call update on the skynet connection with the device', ->
+          expect(@skynet.update).to.have.been.calledWith {
+            uuid: '13'
+            discoverWhitelist: ['*']
+            configureWhitelist: ['*']
+            receiveWhitelist: ['*']
+          }
+
+      describe 'when called with device and the permissions are false', ->
+        beforeEach ->
+          _.defer => @rootScope.$digest()
+
+          device = uuid: '13'
+          permissions =
+            discover:
+              '1': false
+            configure:
+              '1': false
+            receive:
+              '1': false
+
+          @sut.updateDeviceWithPermissions device, permissions
+
+        it 'should call update on the skynet connection with the device', ->
+          expect(@skynet.update).to.have.been.calledWith {
+            uuid: '13'
+            discoverWhitelist: []
+            configureWhitelist: []
+            receiveWhitelist: []
+          }
