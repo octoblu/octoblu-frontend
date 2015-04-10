@@ -55,3 +55,58 @@ describe 'ThingService', ->
         [everything, a, b, c] = @results
         expect(c.logo).to.equal 's3/device/cool-beans.svg' 
         
+  describe '->mapWhitelistsToPermissions', ->
+    describe 'when called with no device', ->
+      beforeEach ->
+        @result = @sut.mapWhitelistsToPermissions()
+
+      it 'should return null', ->
+        expect(@result).to.be.null 
+
+    describe 'when called with a device that has no whitelists', ->
+      beforeEach ->
+        @result = @sut.mapWhitelistsToPermissions {}
+        
+      it 'should have everything for discover', ->
+        expect(@result.discover).to.deep.equal {'*': true}
+
+      it 'should have everything for configure', ->
+        expect(@result.configure).to.deep.equal {'*': true}
+
+      it 'should have everything for receive', ->
+        expect(@result.receive).to.deep.equal {'*': true}
+
+    describe 'when called with device that has empty whitelists', ->
+      beforeEach ->
+        @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], receiveWhitelist: [], configureWhitelist: []}
+        
+      it 'should have an empty object for discover', ->
+        expect(@result.discover).to.be.empty
+
+      it 'should have an empty object for configure', ->
+        expect(@result.configure).to.be.empty
+
+      it 'should have an empty object for receive', ->
+        expect(@result.receive).to.be.empty
+
+    describe 'when called with device that has non-empty whitelists', ->
+      beforeEach ->
+        device = {
+          discoverWhitelist:  ['uuid1']
+          receiveWhitelist:   ['uuid2']
+          configureWhitelist: ['uuid3']
+        }
+        @result = @sut.mapWhitelistsToPermissions device
+        
+      it 'should have an object containing the uuid for discover', ->
+        expect(@result.discover).to.deep.equal {'uuid1': true}
+
+      it 'should have an object containing the uuid for receive', ->
+        expect(@result.receive).to.deep.equal {'uuid2': true}
+
+      it 'should have an object containing the uuid for configure', ->
+        expect(@result.configure).to.deep.equal {'uuid3': true}
+
+      
+
+      

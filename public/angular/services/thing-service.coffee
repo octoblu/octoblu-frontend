@@ -4,6 +4,13 @@ class ThingService
     @q = $q
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
+  addLogo: (data) =>
+    return _.clone data unless data.type?
+
+    filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
+    logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
+    _.extend logo: logo, data
+
   getThings: =>
     deferred = @q.defer()
 
@@ -21,12 +28,23 @@ class ThingService
 
     deferred.promise
 
-  addLogo: (data) =>
-    return _.clone data unless data.type?
+  mapWhitelistsToPermissions: (device) =>
+    return null unless device?
 
-    filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
-    logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
-    _.extend logo: logo, data
+    receive   = @whitelistToPermission device.receiveWhitelist
+    configure = @whitelistToPermission device.configureWhitelist
+    discover  = @whitelistToPermission device.discoverWhitelist
+
+    receive: receive, configure: configure, discover: discover
+
+  whitelistToPermission: (whitelist) =>
+    return {'*': true} unless whitelist?
+    
+    permission = {}
+    _.each whitelist, (uuid) =>
+      permission[uuid] = true
+
+    permission
 
 
 angular.module('octobluApp').service 'ThingService', ThingService
