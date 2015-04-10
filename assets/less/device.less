@@ -82,3 +82,74 @@
 .device-detail .tab-pane {
   padding: 20px 5px;
 }
+
+.device-details {
+  padding: 2em;
+
+  .device-header {
+    .flexbox;
+    .flex-direction(row);
+    .justify-content(space-between);
+
+    .logo-header {
+      .flexbox;
+      .flex-direction(row);
+
+      .device-name {
+        .flexbox;
+        .flex-direction(column);
+        .justify-content(center);
+
+        padding-left: 12px;
+
+        h1 {
+          margin: 0 0;
+          font-size: 2em;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .device-actions {
+      .flexbox;
+      .flex-direction(column);
+      .justify-content(space-around);
+    }
+  }
+
+  .device-meta {
+    margin: 2em 0;
+    .meta-item {
+      height: 2em;
+      line-height: 2;
+
+      .flexbox;
+      .flex-direction(row);
+
+      .meta-key {
+        width: 4em;
+        font-weight: bold;
+      }
+
+      .meta-value {
+        .md-button {
+          line-height: 1;
+          margin-left: -6px;
+        }
+      }
+    }
+  }
+
+  .device-logo {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .md-tabs-content {
+    margin: 1em 0;
+  }
+}

@@ -40,21 +40,22 @@ class ThingService
 
     receive: receive, configure: configure, discover: discover
 
-  updateDeviceWithPermissions: (device={}, permissions={}) =>
+  updateDevice: (device={}) =>
     deferred = @q.defer()
 
     @skynetPromise.then (connection) =>
-
-      updateDevice =
-        uuid: device.uuid
-        discoverWhitelist:  @extractWhitelist(permissions.discover)
-        configureWhitelist: @extractWhitelist(permissions.configure)
-        receiveWhitelist:   @extractWhitelist(permissions.receive)
-
-      connection.update updateDevice, =>
+      connection.update device, =>
         deferred.resolve()
 
     deferred.promise
+
+  updateDeviceWithPermissions: (device={}, permissions={}) =>
+    @updateDevice(
+      uuid: device.uuid
+      discoverWhitelist:  @extractWhitelist(permissions.discover)
+      configureWhitelist: @extractWhitelist(permissions.configure)
+      receiveWhitelist:   @extractWhitelist(permissions.receive)
+    )
 
   whitelistToPermission: (whitelist) =>
     return {'*': true} unless whitelist?

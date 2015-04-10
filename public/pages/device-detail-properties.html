@@ -1,11 +1,11 @@
-<h1>Hello Properties</h1>
 <form role="form">
-  <div class="form-group">
-    <label>Name</label>
-    <input type="text" name="deviceName" ng-model="device.name" placeholder="Name" class="form-control" required="required">
-  </div>
-  <div class="form-group" ng-if="device.optionsSchema">
-    <schema-editor schema="device.optionsSchema" model="device.options" allow-json-edit="true" additional-properties="true"></schema-editor>
+  <md-input-container>
+    <label>name</label>
+    <input ng-model="controller.device.name">
+  </md-input-container>
+
+  <div class="form-group" ng-if="controller.device.optionsSchema">
+    <schema-editor schema="controller.optionsSchema" model="controller.options" allow-json-edit="true" additional-properties="true"></schema-editor>
   </div>
 </form>
 

@@ -9,11 +9,61 @@
   </h2>
 </md-toolbar>
 
-<md-tabs md-selected="controller.activeTabIndex">
-  <md-tab label="Properties" md-on-select="controller.onTabSelection('properties')">
-    <div ng-include="'/pages/device-detail-properties.html'"></div>
-  </md-tab>
-  <md-tab label="Permissions" md-on-select="controller.onTabSelection('permissions')">
-    <div ng-include="'/pages/device-detail-permissions.html'"></div>
-  </md-tab>
-</md-tabs>
+<md-content class="device-details">
+  <div class="device-header">
+    <div class="logo-header">
+      <div class="device-logo" ng-style="{'background-image': 'url(' + controller.device.logo + ')'}" ng-class="{faded: !controller.device.online}"></div>
+
+      <div class="device-name">
+        <h1>{{controller.device.name}}</h1>
+
+        <div>
+          <span ng-show="controller.device.online" class="label label-success">Online</span>
+          <span ng-hide="controller.device.online" class="label label-danger">Offline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="device-actions">
+      <md-button class="md-raised md-warn md-hue-2">Delete</md-button>
+    </div>
+  </div>
+
+  <div class="device-meta">
+    <div class="meta-item">
+      <div class="meta-key">
+        Type
+      </div>
+      <div class="meta-value">
+        {{controller.device.type}}
+      </div>
+    </div>
+
+    <div class="meta-item">
+      <div class="meta-key">
+        Uuid
+      </div>
+      <div class="meta-value">
+        {{controller.device.uuid}}
+      </div>
+    </div>
+
+    <div class="meta-item">
+      <div class="meta-key">
+        Token
+      </div>
+      <div class="meta-value">
+        <md-button class="md-primary">Generate Token</md-button>
+      </div>
+    </div>
+  </div>
+
+  <md-tabs md-selected="controller.activeTabIndex">
+    <md-tab label="Properties" md-on-select="controller.onTabSelection('properties')">
+      <div ng-include="'/pages/device-detail-properties.html'"></div>
+    </md-tab>
+    <md-tab label="Permissions" md-on-select="controller.onTabSelection('permissions')">
+      <div ng-include="'/pages/device-detail-permissions.html'"></div>
+    </md-tab>
+  </md-tabs>
+</md-content>

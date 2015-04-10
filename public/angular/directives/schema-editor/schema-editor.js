@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('schemaEditor', function () {
+  .directive('schemaEditor', function ($interval) {
     return {
       restrict: 'AE',
       templateUrl: '/angular/directives/schema-editor/schema-editor.html',
@@ -15,7 +15,10 @@ angular.module('octobluApp')
       link: function (scope, element, attrs) {
         var originalDevice, schema, editor;
 
+        var timeoutId;
         function initializeEditor() {
+          $interval.cancel(timeoutId);
+          console.log('initializeEditor');
           originalDevice = scope.model;
           scope.editingDevice = angular.copy(originalDevice)
           schema = _.extend({ title: 'Options'}, scope.schema);
@@ -34,22 +37,28 @@ angular.module('octobluApp')
               iconlib: 'font-awesome4'
             });
 
-          editor.on('change', function () {
-            if (editor.getValue()) {
-              angular.copy(editor.getValue(), scope.editingDevice);
-              scope.$apply();
 
-              if (!scope.control && editor.validate().length === 0) {
-                angular.copy(scope.editingDevice, originalDevice);
-              }
-            }
+          element.on('$destroy', function() {
+            $interval.cancel(timeoutId);
           });
+
+          timeoutId = $interval(function(){
+            _.each(editor.editors, function(e){e.refreshValue()});
+
+            var newValue = editor.getValue();
+            if (!newValue) {
+              return;
+            }
+
+            angular.copy(newValue, scope.editingDevice);
+            if (!scope.control && editor.validate().length === 0) {
+              angular.copy(scope.editingDevice, originalDevice);
+            }
+          }, 1000);
         }
 
         scope.$watch('schema', initializeEditor);
-        scope.$watch('model', function () {
-          initializeEditor();
-        });
+        scope.$watch('model', initializeEditor);
 
         if (scope.control) {
           scope.control.validate = function () {
