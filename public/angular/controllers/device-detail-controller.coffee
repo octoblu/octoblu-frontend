@@ -49,7 +49,7 @@ class DeviceDetailController
 
   onTabSelection: (tabName) =>
     return unless @device?
-    @state.go 'material.newDeviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
+    @state.go 'material.deviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
 
   saveDevice: =>
     return unless @device?
