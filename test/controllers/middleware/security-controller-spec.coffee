@@ -102,7 +102,7 @@ describe 'SecurityController', ->
         @next = sinon.spy()
         @request =
           user: {}
-          headers: 
+          headers:
             authorization: 'Basic dGVzdDpmcmVk'
           login: sinon.stub().yields @next
         @response =
@@ -138,7 +138,7 @@ describe 'SecurityController', ->
         @next = sinon.spy()
         @request =
           user: {}
-          headers: 
+          headers:
             authorization: 'Bearer dGhpcy11dWlkOnRoYXQtdG9rZW4K'
           login: sinon.stub().yields @next
         @response =
@@ -146,10 +146,6 @@ describe 'SecurityController', ->
           end: sinon.spy()
         @sut.authenticateWithMeshblu = sinon.stub()
         @sut.isAuthenticated @request, @response, @next
-
-      # this fails for some unknown reason
-      xit 'should call authenticateWithMeshblu()', ->
-        expect(@sut.authenticateWithMeshblu).to.have.been.calledWith 'this-uuid', 'that-token'
 
       describe 'when authenticateWithMeshblu yields an error', ->
         beforeEach (done) ->
@@ -317,9 +313,3 @@ describe 'SecurityController', ->
 
       it 'should call next()', ->
         expect(@next).to.have.been.called
-
-
-
-
-
-
