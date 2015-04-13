@@ -54,49 +54,10 @@ octobluDB.createConnection(databaseOptions);
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
 
-require('./config/passport')(env, passport); // pass passport for configuration
-passport.use(require('./config/app-net'));
-passport.use(require('./config/automatic'));
-passport.use(require('./config/bitly'));
-passport.use(require('./config/box'));
-passport.use(require('./config/dropbox'));
-passport.use(require('./config/facebook'));
-passport.use(require('./config/fitbit'));
-passport.use(require('./config/foursquare'));
-passport.use(require('./config/github'));
-passport.use(require('./config/google'));
-passport.use(require('./config/gotoassist'));
-passport.use(require('./config/gotomeeting'));
-passport.use(require('./config/gototraining'));
-passport.use(require('./config/gotowebinar'));
-passport.use(require('./config/instagram'));
-passport.use(require('./config/jawbone'));
-passport.use(require('./config/linked-in'));
-passport.use(require('./config/local'));
-passport.use(require('./config/nest'));
-passport.use(require('./config/octoblu'));
-passport.use(require('./config/paypal'));
-passport.use(require('./config/podio'));
-passport.use(require('./config/quickbooks'));
-passport.use(require('./config/rdio'));
-passport.use(require('./config/readability'));
-passport.use(require('./config/redbooth'));
-passport.use(require('./config/rightsignature'));
-passport.use(require('./config/salesforce'));
-passport.use(require('./config/sharefile'));
-passport.use(require('./config/slack'));
-passport.use(require('./config/smartsheet'));
-passport.use(require('./config/spotify'));
-passport.use(require('./config/survey-monkey'));
-passport.use(require('./config/thingiverse'));
-passport.use(require('./config/twitter'));
-passport.use(require('./config/uber'));
-passport.use(require('./config/uservoice'));
-passport.use(require('./config/vimeo'));
-passport.use(require('./config/withings'));
-passport.use(require('./config/wordpress'));
-passport.use(require('./config/xero'));
-passport.use(require('./config/zendesk'));
+var PassportStrategyLoader = require('./config/passport-strategy-loader');
+var passportStrategyLoader = new PassportStrategyLoader();
+passportStrategyLoader.load();
+
 
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
