@@ -3,6 +3,7 @@ angular.module('octobluApp')
   'use strict';
 
   var setFlowNodeType = function() {
+    console.log('changed flownodetype');
     if(!$scope.flowNode) {
       $scope.flowNodeType = null;
       return;

@@ -6,9 +6,11 @@ class DeviceDetailController
 
   constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, ThingService) ->
     @mdDialog = $mdDialog
+    @scope = $scope
     @state = $state
     @activeTabIndex = DeviceDetailController.TABS[$stateParams.tab]
     @ThingService = ThingService
+    @form = ['*']
 
     deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
       @device = device
@@ -18,11 +20,11 @@ class DeviceDetailController
     @ThingService.getThings().then (devices) =>
       @devices = devices
 
-    $scope.$watch 'controller.device',  @updatePermissions, true
-    $scope.$watch 'controller.device',  @updateSchemas, true
-    $scope.$watch 'controller.permissions', @updateDevice, true
-    $scope.$watch 'controller.device.name', @saveDevice
-    $scope.$watch 'controller.options',  @saveDevice, true
+    @scope.$watch 'controller.device',  @updatePermissions, true
+    @scope.$watch 'controller.device',  @updateSchemas, true
+    @scope.$watch 'controller.permissions', @updateDevice, true
+    @scope.$watch 'controller.device.name', @saveDevice
+    @scope.$watch 'controller.options',  @saveDevice, true
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -52,9 +54,13 @@ class DeviceDetailController
     @state.go 'material.deviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
 
   saveDevice: =>
+    _.throttle @saveDeviceNow, 100
+
+  saveDeviceNow: =>
     return unless @device?
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
+    @scope.$apply()
 
   updatePermissions: =>
     @permissions = @ThingService.mapWhitelistsToPermissions @device

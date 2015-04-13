@@ -18,7 +18,6 @@ angular.module('octobluApp')
         var timeoutId;
         function initializeEditor() {
           $interval.cancel(timeoutId);
-          console.log('initializeEditor');
           originalDevice = scope.model;
           scope.editingDevice = angular.copy(originalDevice)
           schema = _.extend({ title: 'Options'}, scope.schema);
@@ -43,7 +42,12 @@ angular.module('octobluApp')
           });
 
           timeoutId = $interval(function(){
-            _.each(editor.editors, function(e){e.refreshValue()});
+            _.each(editor.editors, function(e){
+              if(!e || !e.refreshValue) {
+                return;
+              }
+              e.refreshValue();
+            });
 
             var newValue = editor.getValue();
             if (!newValue) {
@@ -57,8 +61,14 @@ angular.module('octobluApp')
           }, 1000);
         }
 
-        scope.$watch('schema', initializeEditor);
-        scope.$watch('model', initializeEditor);
+        scope.$watch('schema', function(){
+          console.log('schema change');
+          initializeEditor();
+        });
+        scope.$watch('model', function(){
+          console.log('model change');
+          initializeEditor();
+        });
 
         if (scope.control) {
           scope.control.validate = function () {

@@ -1,10 +1,6 @@
-<form role="form">
-  <md-input-container>
-    <label>name</label>
-    <input ng-model="controller.device.name">
-  </md-input-container>
+<md-input-container>
+  <label>name</label>
+  <input ng-model="controller.device.name">
+</md-input-container>
 
-  <div class="form-group" ng-if="controller.device.optionsSchema">
-    <schema-editor schema="controller.optionsSchema" model="controller.options" allow-json-edit="true" additional-properties="true"></schema-editor>
-  </div>
-</form>
+<form sf-schema="controller.optionsSchema" sf-form="controller.form" sf-model="controller.options"></form>

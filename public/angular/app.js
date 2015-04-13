@@ -121,6 +121,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           }
         }
       })
+      .state('material.schemaeditortest', {
+        url: '/schema-editor-test',
+        templateUrl: '/pages/schema-editor-test.html',
+        controller: 'SchemaEditorTestController',
+        controllerAs: 'controller'
+      })
       .state('material.clearauth', {
         url: '/clearauth',
         templateUrl: '/pages/clear-auth.html',
