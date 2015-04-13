@@ -16,6 +16,34 @@ describe 'ThingService', ->
     inject (ThingService) =>
       @sut = ThingService
 
+  describe '->generateSessionToken', ->
+    describe 'when called with a device and meshblu responds with a token', ->
+      beforeEach ->
+        @skynet.generateAndStoreToken = sinon.stub().yields token: 'has-a'
+        _.defer => @rootScope.$digest()
+
+        storeResult = (@result) =>
+        @sut.generateSessionToken({uuid: 'every-sip'}).then storeResult
+
+      it 'should call generateAndStoreToken', ->
+        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'every-sip'
+
+      it 'should resolve with the token', ->
+        expect(@result).to.equal 'has-a'
+
+    describe 'when called with a different device', ->
+      beforeEach ->
+        @skynet.generateAndStoreToken = sinon.stub().yields token: 'sweet'
+        _.defer => @rootScope.$digest()
+        storeResult = (@result) =>
+        @sut.generateSessionToken({uuid: 'sweet-ending'}).then storeResult
+
+      it 'should call generateAndStoreToken', ->
+        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'sweet-ending'
+
+      it 'should resolve with the token', ->
+        expect(@result).to.equal 'sweet'
+
   describe '->getThings', ->
     beforeEach ->
       @skynet.mydevices = sinon.stub()

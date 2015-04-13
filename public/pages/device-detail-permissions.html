@@ -2,29 +2,29 @@
   <div layout="row">
   </div>
 
-  <table flex layout-fill class="ugly-table">
+  <table flex layout-fill class="permissions-table">
     <thead>
       <tr>
         <th></th>
-        <th>Can Be Discovered By</th>
-        <th>Can Be Sent Messages By</th>
-        <th>Can Be Modified By</th>
+        <th class="text-center">Can Be Discovered By</th>
+        <th class="text-center">Can Be Sent Messages By</th>
+        <th class="text-center">Can Be Modified By</th>
       </tr>
     </thead>
 
     <tbody>
       <tr ng-repeat="device in controller.devices">
-        <td>
-          <div class="process-row-logo" ng-style="{'background-image': 'url(' + device.logo + ')'}" ng-class="{faded: !device.online}"></div>
+        <td class="permission-row-name">
+          <div class="permission-row-logo" ng-style="{'background-image': 'url(' + device.logo + ')'}" ng-class="{faded: !device.online}"></div>
           {{device.name}} ({{device.type}})
         </td>
-        <td>
+        <td class="text-center">
           <md-checkbox aria-label="Discover" ng-model="controller.permissions.discover[device.uuid]"></md-checkbox>
         </td>
-        <td>
+        <td class="text-center">
           <md-checkbox aria-label="Send" ng-model="controller.permissions.receive[device.uuid]"></md-checkbox>
         </td>
-        <td>
+        <td class="text-center">
           <md-checkbox aria-label="Configure" ng-model="controller.permissions.configure[device.uuid]"></md-checkbox>
         </td>
       </tr>

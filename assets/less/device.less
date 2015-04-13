@@ -132,6 +132,9 @@
       }
 
       .meta-value {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         .md-button {
           line-height: 1;
           margin-left: -6px;
@@ -151,5 +154,22 @@
 
   .md-tabs-content {
     margin: 1em 0;
+  }
+
+  .permissions-table {
+    .permission-row-name {
+      line-height: 3;
+      vertical-align: middle;
+    }
+
+    .permission-row-logo {
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      margin-right: 10px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      vertical-align: middle;
+    }
   }
 }

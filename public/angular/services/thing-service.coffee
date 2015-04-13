@@ -14,6 +14,15 @@ class ThingService
   extractWhitelist: (permission) =>
     return _.keys _.pick(permission, _.identity)
 
+  generateSessionToken: (device) =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+      connection.generateAndStoreToken uuid: device.uuid, (result) =>
+        deferred.resolve result.token
+
+    deferred.promise
+
   getThings: =>
     deferred = @q.defer()
 

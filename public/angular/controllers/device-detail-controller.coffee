@@ -23,6 +23,10 @@ class DeviceDetailController
     $scope.$watch 'controller.device.name', @saveDevice
     $scope.$watch 'controller.options',  @saveDevice, true
 
+  generateSessionToken: =>
+    @ThingService.generateSessionToken(@device).then (token) =>
+      alert token
+
   onTabSelection: (tabName) =>
     return unless @device?
     @state.go 'material.newDeviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
