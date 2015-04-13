@@ -360,27 +360,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/process.html',
         controller: 'ProcessController'
       })
-      .state('material.newDevice', {
-        url: '/ndevice/:uuid',
-        controller: 'DeviceDetailController',
-        controllerAs: 'controller',
-        templateUrl: '/pages/device-detail.html'
-      })
-      .state('material.newDeviceTab', {
-        url: '/ndevice/:uuid/:tab',
-        controller: 'DeviceDetailController',
-        controllerAs: 'controller',
-        templateUrl: '/pages/device-detail.html'
-      })
       .state('material.device', {
         url: '/device/:uuid',
-        controller: 'DeviceDetailControllerOld',
-        templateUrl: '/pages/connector/devices/detail/index.html',
-        resolve: {
-          device: function(deviceService, $stateParams){
-            return deviceService.getDeviceByUUID($stateParams.uuid);
-          }
-        }
+        controller: 'DeviceDetailController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/device-detail.html'
+      })
+      .state('material.deviceTab', {
+        url: '/device/:uuid/:tab',
+        controller: 'DeviceDetailController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/device-detail.html'
       })
       .state('material.microblu', {
         url: '/device/:uuid',
