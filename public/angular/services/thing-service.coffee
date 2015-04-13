@@ -53,11 +53,11 @@ class ThingService
   mapWhitelistsToPermissions: (device) =>
     return null unless device?
 
-    receive   = @whitelistToPermission device.receiveWhitelist
+    send   = @whitelistToPermission device.sendWhitelist
     configure = @whitelistToPermission device.configureWhitelist
     discover  = @whitelistToPermission device.discoverWhitelist
 
-    receive: receive, configure: configure, discover: discover
+    send: send, configure: configure, discover: discover
 
   updateDevice: (device={}) =>
     deferred = @q.defer()
@@ -73,7 +73,7 @@ class ThingService
       uuid: device.uuid
       discoverWhitelist:  @extractWhitelist(permissions.discover)
       configureWhitelist: @extractWhitelist(permissions.configure)
-      receiveWhitelist:   @extractWhitelist(permissions.receive)
+      sendWhitelist:   @extractWhitelist(permissions.send)
     )
 
   whitelistToPermission: (whitelist) =>

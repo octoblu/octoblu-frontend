@@ -120,12 +120,12 @@ describe 'ThingService', ->
       it 'should have everything for configure', ->
         expect(@result.configure).to.deep.equal {'*': true}
 
-      it 'should have everything for receive', ->
-        expect(@result.receive).to.deep.equal {'*': true}
+      it 'should have everything for send', ->
+        expect(@result.send).to.deep.equal {'*': true}
 
     describe 'when called with device that has empty whitelists', ->
       beforeEach ->
-        @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], receiveWhitelist: [], configureWhitelist: []}
+        @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], sendWhitelist: [], configureWhitelist: []}
 
       it 'should have an empty object for discover', ->
         expect(@result.discover).to.be.empty
@@ -133,14 +133,14 @@ describe 'ThingService', ->
       it 'should have an empty object for configure', ->
         expect(@result.configure).to.be.empty
 
-      it 'should have an empty object for receive', ->
-        expect(@result.receive).to.be.empty
+      it 'should have an empty object for send', ->
+        expect(@result.send).to.be.empty
 
     describe 'when called with device that has non-empty whitelists', ->
       beforeEach ->
         device = {
           discoverWhitelist:  ['uuid1']
-          receiveWhitelist:   ['uuid2']
+          sendWhitelist:   ['uuid2']
           configureWhitelist: ['uuid3']
         }
         @result = @sut.mapWhitelistsToPermissions device
@@ -148,8 +148,8 @@ describe 'ThingService', ->
       it 'should have an object containing the uuid for discover', ->
         expect(@result.discover).to.deep.equal {'uuid1': true}
 
-      it 'should have an object containing the uuid for receive', ->
-        expect(@result.receive).to.deep.equal {'uuid2': true}
+      it 'should have an object containing the uuid for send', ->
+        expect(@result.send).to.deep.equal {'uuid2': true}
 
       it 'should have an object containing the uuid for configure', ->
         expect(@result.configure).to.deep.equal {'uuid3': true}
@@ -168,7 +168,7 @@ describe 'ThingService', ->
           _.defer => @rootScope.$digest()
 
           device      = {uuid: '12'}
-          permissions = {discover: {}, configure: {}, receive: {}}
+          permissions = {discover: {}, configure: {}, send: {}}
 
           @sut.updateDeviceWithPermissions device, permissions
 
@@ -177,7 +177,7 @@ describe 'ThingService', ->
             uuid: '12'
             discoverWhitelist: []
             configureWhitelist: []
-            receiveWhitelist: []
+            sendWhitelist: []
           }
 
       describe 'when called with device and everything permissions', ->
@@ -190,7 +190,7 @@ describe 'ThingService', ->
               '*': true
             configure:
               '*': true
-            receive:
+            send:
               '*': true
 
           @sut.updateDeviceWithPermissions device, permissions
@@ -200,7 +200,7 @@ describe 'ThingService', ->
             uuid: '13'
             discoverWhitelist: ['*']
             configureWhitelist: ['*']
-            receiveWhitelist: ['*']
+            sendWhitelist: ['*']
           }
 
       describe 'when called with device and the permissions are false', ->
@@ -213,7 +213,7 @@ describe 'ThingService', ->
               '1': false
             configure:
               '1': false
-            receive:
+            send:
               '1': false
 
           @sut.updateDeviceWithPermissions device, permissions
@@ -223,5 +223,5 @@ describe 'ThingService', ->
             uuid: '13'
             discoverWhitelist: []
             configureWhitelist: []
-            receiveWhitelist: []
+            sendWhitelist: []
           }
