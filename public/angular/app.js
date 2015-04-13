@@ -111,43 +111,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/root.html',
         controller: 'RootController'
       })
-      .state('material.admin', {
-        abstract: true,
-        url: '/admin',
-        templateUrl: '/pages/admin/index.html',
-        controller: 'AdminController',
-        resolve: {
-          operatorsGroup: function (GroupService) {
-            return GroupService.getOperatorsGroup();
-          },
-          allDevices: function (deviceService) {
-            return deviceService.getDevices();
-          },
-          allGroupResourcePermissions: function (PermissionsService) {
-            return PermissionsService.allGroupPermissions();
-          }
-        }
-      })
-      .state('material.admin.all', {
-        url: '/groups',
-        templateUrl: '/pages/admin/groups/all.html'
-      })
-      .state('material.admin.detail', {
-        url: '/groups/:uuid',
-        templateUrl: '/pages/admin/groups/detail.html',
-        controller: 'adminGroupDetailController',
-        resolve: {
-          resourcePermission: function (allGroupResourcePermissions, $stateParams) {
-            return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
-          },
-          sourcePermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.source.uuid);
-          },
-          targetPermissionsGroup: function (resourcePermission, GroupService) {
-            return GroupService.getGroup(resourcePermission.target.uuid);
-          }
-        }
-      })
       .state('material.analyze', {
         url: '/analyze',
         templateUrl: '/pages/analyze.html',

@@ -16,7 +16,7 @@
 </md-toolbar>
 
 <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
-  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white;">
+  <div layout-fill layout="column" style="background: white;">
     <md-content flex layout-fill>
       <div flex layout-fill layout="row" layout-wrap="wrap" layout-align="space-around">
         <div ng-if="nodes.length" ng-repeat="node in nodes | filter: filterFlows | orderBy: 'name'" class="bill-of-materials-icon">
