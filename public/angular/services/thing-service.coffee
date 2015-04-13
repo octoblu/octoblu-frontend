@@ -11,6 +11,16 @@ class ThingService
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
 
+  deleteThing: (device) =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+      connection.unregister uuid: device.uuid, =>
+        deferred.resolve()
+
+    deferred.promise
+
+
   extractWhitelist: (permission) =>
     return _.keys _.pick(permission, _.identity)
 

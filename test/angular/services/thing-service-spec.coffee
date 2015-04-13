@@ -16,6 +16,25 @@ describe 'ThingService', ->
     inject (ThingService) =>
       @sut = ThingService
 
+  describe '->deleteThing', ->
+    describe 'when called with a device', ->
+      beforeEach ->
+        @skynet.unregister = sinon.stub().yields =>
+        _.defer => @rootScope.$digest()
+        @sut.deleteThing(uuid: 'nuc')
+
+      it 'should call unregister with the uuid', ->
+        expect(@skynet.unregister).to.have.been.calledWith uuid: 'nuc'
+
+    describe 'when called with a different device', ->
+      beforeEach ->
+        @skynet.unregister = sinon.stub().yields =>
+        _.defer => @rootScope.$digest()
+        @sut.deleteThing(uuid: 'what-will')
+
+      it 'should call unregister with the uuid', ->
+        expect(@skynet.unregister).to.have.been.calledWith uuid: 'what-will'
+
   describe '->generateSessionToken', ->
     describe 'when called with a device and meshblu responds with a token', ->
       beforeEach ->

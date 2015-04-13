@@ -4,7 +4,8 @@ class DeviceDetailController
     properties: 0
     permissions: 1
 
-  constructor: ($scope, $state, $stateParams, deviceService, ThingService) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, ThingService) ->
+    @mdDialog = $mdDialog
     @state = $state
     @activeTabIndex = DeviceDetailController.TABS[$stateParams.tab]
     @ThingService = ThingService
@@ -23,9 +24,28 @@ class DeviceDetailController
     $scope.$watch 'controller.device.name', @saveDevice
     $scope.$watch 'controller.options',  @saveDevice, true
 
+  confirmDeleteDevice: =>
+    confirmOptions = {
+      title: 'Are You Sure?'
+      content: 'This action cannot be undone'
+      ok: 'Delete'
+      cancel: 'Cancel'
+    }
+    @mdDialog.show(@mdDialog.confirm(confirmOptions))
+      .then =>
+        @ThingService.deleteThing(@device)
+      .then =>
+        @state.go 'material.nodes'
+
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (token) =>
-      alert token
+      alertOptions = {
+        title: 'New Session Token'
+        content: token
+        ok: 'Dismiss'
+      }
+
+      @mdDialog.show @mdDialog.alert(alertOptions).clickOutsideToClose(false)
 
   onTabSelection: (tabName) =>
     return unless @device?
