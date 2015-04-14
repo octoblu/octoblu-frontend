@@ -8,7 +8,7 @@
   },
   "documentation": "",
   "name": "LittleBits",
-  "enabled": true,
+  "enabled": false,
   "application": {
     "base": "https://api-http.littlebitscloud.cc",
     "resources": [
