@@ -2,7 +2,7 @@
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
     <div flex layout="row">
       <a href class="menu-icon" ng-click="toggleNav()">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
         Process
       </a>
     </div>
@@ -10,7 +10,7 @@
 </md-toolbar>
 
 <div flex layout-fill layout="row" layout-align="center">
-  <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2">
+  <div layout-fill layout="column">
     <md-content flex layout-fill>
       <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 

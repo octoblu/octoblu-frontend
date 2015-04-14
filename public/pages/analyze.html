@@ -3,7 +3,7 @@
     <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
       <div flex layout="row">
         <a href class="menu-icon" ng-click="toggleNav()">
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
           Analyze
         </a>
       </div>
@@ -22,7 +22,7 @@
     </h2>
   </md-toolbar>
   <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
-    <div flex="66" flex-phone="95" flex-tablet="95" layout-fill layout="column" class="md-whiteframe-z2" style="background: white;">
+    <div layout-fill layout="column" style="background: white;">
       <md-content flex layout-fill>
         <div flex layout-md="column" layout-gt-md="row" layout-align="space-around">
 

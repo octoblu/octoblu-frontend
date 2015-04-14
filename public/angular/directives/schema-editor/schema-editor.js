@@ -61,14 +61,8 @@ angular.module('octobluApp')
           }, 1000);
         }
 
-        scope.$watch('schema', function(){
-          console.log('schema change');
-          initializeEditor();
-        });
-        scope.$watch('model', function(){
-          console.log('model change');
-          initializeEditor();
-        });
+        scope.$watch('schema', initializeEditor);
+        scope.$watch('model', initializeEditor);
 
         if (scope.control) {
           scope.control.validate = function () {

@@ -8,6 +8,7 @@
         <th></th>
         <th class="text-center">Can Be Discovered By</th>
         <th class="text-center">Can Be Sent Messages By</th>
+        <th class="text-center">Can Broadcast To</th>
         <th class="text-center">Can Be Modified By</th>
       </tr>
     </thead>
@@ -23,6 +24,9 @@
         </td>
         <td class="text-center">
           <md-checkbox aria-label="Send" ng-model="controller.permissions.send[device.uuid]"></md-checkbox>
+        </td>
+        <td class="text-center">
+          <md-checkbox aria-label="Receive" ng-model="controller.permissions.receive[device.uuid]"></md-checkbox>
         </td>
         <td class="text-center">
           <md-checkbox aria-label="Configure" ng-model="controller.permissions.configure[device.uuid]"></md-checkbox>

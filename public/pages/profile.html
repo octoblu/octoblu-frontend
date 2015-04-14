@@ -2,7 +2,7 @@
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
       <div flex layout="row">
           <a href class="menu-icon" ng-click="toggleNav()">
-              <i class="fa fa-bars"></i>
+              <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
               Profile
           </a>
       </div>
@@ -23,8 +23,7 @@
 </md-toolbar>
 
 <div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
-  <div flex-gt-md="66" flex-md="95" layout-fill layout="row" class="md-whiteframe-z2" style="background: white;">
-
+  <div layout-fill layout="row" style="background: white;">
     <md-content flex layout-fill>
       <div layout-lg="column" layout-gt-lg="row">
         <div layout="column" flex class="md-whiteframe-z1 profile-card">
