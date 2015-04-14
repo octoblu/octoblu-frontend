@@ -125,7 +125,7 @@ describe 'ThingService', ->
 
     describe 'when called with device that has empty whitelists', ->
       beforeEach ->
-        @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], sendWhitelist: [], configureWhitelist: []}
+        @result = @sut.mapWhitelistsToPermissions {discoverWhitelist: [], sendWhitelist: [], configureWhitelist: [], receiveWhitelist: []}
 
       it 'should have an empty object for discover', ->
         expect(@result.discover).to.be.empty
@@ -136,12 +136,16 @@ describe 'ThingService', ->
       it 'should have an empty object for send', ->
         expect(@result.send).to.be.empty
 
+      it 'should have an empty object for receive', ->
+        expect(@result.receive).to.be.empty
+
     describe 'when called with device that has non-empty whitelists', ->
       beforeEach ->
         device = {
           discoverWhitelist:  ['uuid1']
           sendWhitelist:   ['uuid2']
           configureWhitelist: ['uuid3']
+          receiveWhitelist: ['uuid4']
         }
         @result = @sut.mapWhitelistsToPermissions device
 
@@ -153,6 +157,9 @@ describe 'ThingService', ->
 
       it 'should have an object containing the uuid for configure', ->
         expect(@result.configure).to.deep.equal {'uuid3': true}
+
+      it 'should have an object containing the uuid for receive', ->
+        expect(@result.receive).to.deep.equal {'uuid4': true}
 
   describe '->updateDeviceWithPermissions', ->
     describe 'when update yields immediatly', ->
@@ -168,7 +175,7 @@ describe 'ThingService', ->
           _.defer => @rootScope.$digest()
 
           device      = {uuid: '12'}
-          permissions = {discover: {}, configure: {}, send: {}}
+          permissions = {discover: {}, configure: {}, send: {}, receive: {}}
 
           @sut.updateDeviceWithPermissions device, permissions
 
@@ -178,6 +185,7 @@ describe 'ThingService', ->
             discoverWhitelist: []
             configureWhitelist: []
             sendWhitelist: []
+            receiveWhitelist: []
           }
 
       describe 'when called with device and everything permissions', ->
@@ -192,6 +200,8 @@ describe 'ThingService', ->
               '*': true
             send:
               '*': true
+            receive:
+              '*': true
 
           @sut.updateDeviceWithPermissions device, permissions
 
@@ -201,6 +211,7 @@ describe 'ThingService', ->
             discoverWhitelist: ['*']
             configureWhitelist: ['*']
             sendWhitelist: ['*']
+            receiveWhitelist: ['*']
           }
 
       describe 'when called with device and the permissions are false', ->
@@ -215,6 +226,8 @@ describe 'ThingService', ->
               '1': false
             send:
               '1': false
+            receive:
+              '1': false
 
           @sut.updateDeviceWithPermissions device, permissions
 
@@ -224,4 +237,5 @@ describe 'ThingService', ->
             discoverWhitelist: []
             configureWhitelist: []
             sendWhitelist: []
+            receiveWhitelist: []
           }
