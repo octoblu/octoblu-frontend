@@ -3,6 +3,9 @@ angular.module('octobluApp')
   'use strict';
 
   $scope.isNavLockedOpen = function() {
+    if($state.is('material.design') || $state.is('material.flow')){
+      return false;
+    }
     return $mdMedia('gt-lg');
   };
 
