@@ -7,7 +7,7 @@ passportRefresh = require 'passport-oauth2-refresh'
 
 class FlowAuthCredentialsController
   constructor: (@meshbluJSON, @dependencies={}) ->
-    @MeshbluHttp = @dependencies.MeshbluHttp ? require '../../meshblu-http'
+    @MeshbluHttp = @dependencies.MeshbluHttp ? require 'meshblu-http'
     @meshbluDb = @dependencies.meshbluDb ? require '../lib/database'
 
   show: (request, response) =>
