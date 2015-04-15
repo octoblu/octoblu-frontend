@@ -25,6 +25,11 @@ angular
         summary: 'Documentation for developers.',
       },
       {
+        title: 'Building A Connector Tutorial',
+        link: 'https://github.com/octoblu/generator-meshblu-connector/wiki/Tutorial:-Building-a-custom-meshblu-device',
+        summary: 'Tutorial on how to build a custom meshblu device (connector).',
+      },
+      {
         title: 'Gateblu Gateway & Documentation',
         link: 'https://gateblu.octoblu.com/',
         summary: 'Gateblu allows you to connect smart devices, motors, servos, sensors and additional protocols to Meshblu and Octoblu!',
