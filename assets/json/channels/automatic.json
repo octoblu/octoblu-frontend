@@ -64,7 +64,7 @@
         "path": "/trips/:id",
         "displayName": "Get Single Trip",
         "doc": {
-          "url": "https://api.automatic.com/v1/:id"
+          "url": "https://api.automatic.com/v1/trips/:id"
         },
         "httpMethod": "Get",
         "params": [
@@ -76,7 +76,7 @@
             "required": true
           }
         ],
-        "url": "https://api.automatic.com/v1/:id"
+        "url": "https://api.automatic.com/v1/trips/:id"
       },
       {
         "path": "/user",
