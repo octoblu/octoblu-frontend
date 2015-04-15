@@ -18,41 +18,41 @@ desiredState:
       manifest:
         version: v1beta1
         id: octoblu-blue
-        env:
-          - name: OCTOBLU_PORT
-            value: 9000
-          - name: NODE_ENV
-            value: $NODE_ENV
-          - name: TEXT_CRYPT_KEY
-            value: $TEXT_CRYPT_KEY
-          - name: TEXT_CRYPT_NONCE
-            value: $TEXT_CRYPT_NONCE
-          - name: AIRBRAKE_KEY
-            value: $AIRBRAKE_KEY
-          - name: INVITATION_REQUIRED
-            value: true
-          - name: ELASTIC_SEARCH_URI
-            value: $ELASTIC_SEARCH_URI
-          - name: USE_APP_DYNAMICS
-            value: true
-          - name: APP_DYNAMICS_KEY
-            value: $APP_DYNAMICS_KEY
-          - name: APP_DYNAMICS_TIER_NAME
-            value: nodejs
-          - name: APP_DYNAMICS_HOST_NAME
-            value: octoblu.saas.appdynamics.com
-          - name: APP_DYNAMICS_ACCOUNT_NAME
-            value: octoblu
-          - name: APP_DYNAMICS_APPLICATION_NAME
-            value: $APP_DYNAMICS_APPLICATION_NAME
-          - name: APP_DYNAMICS_PORT
-            value: 80
-          - name: OCTOBLU_UUID
-            value: $OCTOBLU_UUID
-          - name: OCTOBLU_TOKEN
-            value: $OCTOBLU_TOKEN
         containers:
           - name: octoblu-blue
             image: octoblu/octoblu:$SHORT_COMMIT
             ports:
               - containerPort: 9000
+            env:
+              - name: OCTOBLU_PORT
+                value: 9000
+              - name: NODE_ENV
+                value: $NODE_ENV
+              - name: TEXT_CRYPT_KEY
+                value: $TEXT_CRYPT_KEY
+              - name: TEXT_CRYPT_NONCE
+                value: $TEXT_CRYPT_NONCE
+              - name: AIRBRAKE_KEY
+                value: $AIRBRAKE_KEY
+              - name: INVITATION_REQUIRED
+                value: true
+              - name: ELASTIC_SEARCH_URI
+                value: $ELASTIC_SEARCH_URI
+              - name: USE_APP_DYNAMICS
+                value: true
+              - name: APP_DYNAMICS_KEY
+                value: $APP_DYNAMICS_KEY
+              - name: APP_DYNAMICS_TIER_NAME
+                value: nodejs
+              - name: APP_DYNAMICS_HOST_NAME
+                value: octoblu.saas.appdynamics.com
+              - name: APP_DYNAMICS_ACCOUNT_NAME
+                value: octoblu
+              - name: APP_DYNAMICS_APPLICATION_NAME
+                value: $APP_DYNAMICS_APPLICATION_NAME
+              - name: APP_DYNAMICS_PORT
+                value: 80
+              - name: OCTOBLU_UUID
+                value: $OCTOBLU_UUID
+              - name: OCTOBLU_TOKEN
+                value: $OCTOBLU_TOKEN
