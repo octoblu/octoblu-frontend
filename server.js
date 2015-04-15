@@ -30,6 +30,7 @@ var configAuth     = require('./config/auth.js');
 var port           = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 var databaseConfig = require('./config/database');
+var meshbluHealthcheck = require('express-meshblu-healthcheck');
 
 
 if (process.env.AIRBRAKE_KEY) {
@@ -58,7 +59,7 @@ var PassportStrategyLoader = require('./config/passport-strategy-loader');
 var passportStrategyLoader = new PassportStrategyLoader();
 passportStrategyLoader.load();
 
-
+app.use(meshbluHealthcheck())
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
