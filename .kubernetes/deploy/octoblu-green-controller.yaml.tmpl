@@ -27,7 +27,7 @@ desiredState:
               - name: OCTOBLU_PORT
                 value: 9000
               - name: NODE_ENV
-                value: $NODE_ENV
+                value: "production"
               - name: TEXT_CRYPT_KEY
                 value: $TEXT_CRYPT_KEY
               - name: TEXT_CRYPT_NONCE
@@ -56,3 +56,5 @@ desiredState:
                 value: $OCTOBLU_UUID
               - name: OCTOBLU_TOKEN
                 value: $OCTOBLU_TOKEN
+              - name: REDIS_URL
+                value: redis://app-octoblu-com.csy8op.0001.usw2.cache.amazonaws.com

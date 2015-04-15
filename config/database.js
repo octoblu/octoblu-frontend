@@ -24,7 +24,7 @@ var config = {
         databaseType : 'mongodb',
         url : 'mongodb://172.31.33.28:27017/octoblu-staging,mongodb://172.31.38.108:27017/octoblu-staging,mongodb://172.31.32.97:27017/octoblu-staging',
         mongojsUrl : '172.31.33.28,172.31.38.108,172.31.32.97/octoblu-staging?slaveOk=true',
-        redisSessionUrl: 'redis://staging-redis.csy8op.0001.usw2.cache.amazonaws.com'
+        redisSessionUrl: process.env.REDIS_URL || 'redis://staging-redis.csy8op.0001.usw2.cache.amazonaws.com'
     },
     production: {
         sessionSecret: 'e2em2miotskynetZOMGBBQ',
@@ -32,7 +32,7 @@ var config = {
         databaseType : 'mongodb',
         url : 'mongodb://172.31.33.28:27017/octoblu,mongodb://172.31.38.108:27017/octoblu,mongodb://172.31.32.97:27017/octoblu',
         mongojsUrl : '172.31.33.28,172.31.38.108,172.31.32.97/octoblu?slaveOk=true',
-        redisSessionUrl: 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
+        redisSessionUrl: process.env.REDIS_URL || 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
     },
     nedb: {
         sessionSecret: 'e2em2miotskynetZOMGBBQ',
