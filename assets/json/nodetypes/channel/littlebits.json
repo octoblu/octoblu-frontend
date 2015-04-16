@@ -3,7 +3,7 @@
   "category": "channel",
   "description": "littleBits",
   "helpText": "Program your littleBits cloudBit with Octoblu",
-  "enabled": true,
+  "enabled": false,
   "name": "littleBits",
   "skynet": {
     "type": "channel",

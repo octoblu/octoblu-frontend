@@ -5,7 +5,7 @@
   "auth_strategy": "",
   "documentation": "http://developer.littlebitscloud.cc/api-http#object-schemas",
   "name": "LittleBitsCloud",
-  "enabled": true,
+  "enabled": false,
   "oauth": {
     "development": {
       "clientID": "",

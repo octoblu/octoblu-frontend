@@ -8,63 +8,64 @@
   },
   "documentation": "",
   "name": "LittleBits",
-  "enabled": true,
+  "enabled": false,
   "application": {
     "base": "https://api-http.littlebitscloud.cc",
     "resources": [
       {
-        "path": "/devices/{device_id}",
-        "displayName": "Attendee Updates",
+        "path": "/devices/:device_id",
+        "displayName": "Returns An Array Of Device Objects",
         "doc": {
-          "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID"
+          "url": "https://api-http.littlebitscloud.cc/devices/:device_id"
         },
-        "httpMethod": "GET",
+        "httpMethod": "Get",
         "params": [
           {
-            "displayName": "Device Id",
-            "style": "Url",
+            "displayName": "Device ID",
+            "style": "URL",
             "type": "string",
-            "name": "device_id",
-            "required": "true"
+            "name": ":device_id",
+            "required": true
           }
         ],
-        "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID"
-      },{
-        "path": "/devices/{device_id}/output",
-        "displayName": "Attendee Updates",
+        "url": "https://api-http.littlebitscloud.cc/devices/:device_id"
+      },
+      {
+        "path": "/devices/:device_id/output",
+        "displayName": "Post Devices Output",
         "doc": {
-          "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID/output"
+          "url": "https://api-http.littlebitscloud.cc/devices/:device_id/output"
         },
-        "httpMethod": "POST",
+        "httpMethod": "Post",
         "params": [
           {
             "displayName": "Device Id",
-            "style": "Url",
+            "style": "URL",
             "type": "string",
-            "name": "device_id",
-            "required": "true"
+            "name": ":device_id",
+            "required": true
           },{
             "displayName": "Percent",
             "style": "body",
             "type": "integer",
             "name": "percent"
           },{
-            "displayName": "Duration For Given Milliseconds",
+            "displayName": "Duration Milliseconds",
             "style": "body",
             "type": "integer",
             "name": "duration_ms"
           }
         ],
-        "url": "https://api-http.littlebitscloud.cc/devices/DEVICE_ID/output"
-      },{
+        "url": "https://api-http.littlebitscloud.cc/devices/:device_id/output"
+      },
+      {
         "path": "/subscriptions",
-        "displayName": "Get Subscriptions",
+        "displayName": "Gets An Array Of Subscription Objects",
         "doc": {
           "url": "https://api-http.littlebitscloud.cc/subscriptions"
         },
-        "httpMethod": "GET",
-        "params": [
-          {
+        "httpMethod": "Get",
+        "params": [{
             "displayName": "Subscriber Id",
             "style": "query",
             "type": "string",
@@ -74,18 +75,17 @@
             "style": "query",
             "type": "string",
             "name": "publisher_id"
-          }
-        ],
+          }],
         "url": "https://api-http.littlebitscloud.cc/subscriptions"
-      },{
+      },
+      {
         "path": "/subscriptions",
         "displayName": "Delete Subscriptions",
         "doc": {
           "url": "https://api-http.littlebitscloud.cc/subscriptions"
         },
         "httpMethod": "Delete",
-        "params": [
-          {
+        "params": [{
             "displayName": "Subscriber Id",
             "style": "query",
             "type": "string",
@@ -95,34 +95,32 @@
             "style": "query",
             "type": "string",
             "name": "publisher_id"
-          }
-        ],
+          }],
         "url": "https://api-http.littlebitscloud.cc/subscriptions"
-      },{
+      },
+      {
         "path": "/subscriptions",
         "displayName": "Post Subscriptions",
         "doc": {
           "url": "https://api-http.littlebitscloud.cc/subscriptions"
         },
-        "httpMethod": "POST",
-        "params": [
-          {
+        "httpMethod": "Post",
+        "params": [{
             "displayName": "Subscriber Id",
-            "style": "query",
+            "style": "body",
             "type": "string",
             "name": "subscriber_id"
           },{
             "displayName": "Publisher Id",
-            "style": "query",
+            "style": "body",
             "type": "string",
             "name": "publisher_id"
           },{
             "displayName": "Publisher Events",
-            "style": "query",
+            "style": "body",
             "type": "string",
             "name": "publisher_events"
-          }
-        ],
+          }],
         "url": "https://api-http.littlebitscloud.cc/subscriptions"
       }
     ]
