@@ -14,8 +14,7 @@ COPY package.json /usr/src/app/
 RUN npm install --production
 COPY bower.json /usr/src/app/
 RUN bower --allow-root install
-COPY gulpfile.js /usr/src/app/
 COPY . /usr/src/app
-RUN gulp production
+RUN gulp
 
 CMD [ "npm", "start" ]
