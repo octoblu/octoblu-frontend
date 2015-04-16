@@ -10,12 +10,9 @@ WORKDIR /usr/src/app
 
 RUN npm install -g bower gulp
 
-COPY package.json /usr/src/app/
-RUN npm install --production
-COPY bower.json /usr/src/app/
-RUN bower --allow-root install
-COPY gulpfile.js /usr/src/app/
 COPY . /usr/src/app
+RUN npm install --production
+RUN mkdir -p /usr/src/app/public/lib && bower --allow-root install
 RUN gulp || echo " WARNING: Gulp Failed"
 
 CMD [ "npm", "start" ]
