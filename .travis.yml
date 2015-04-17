@@ -16,7 +16,7 @@ env:
   - DEPLOY_APPLICATION_NAME=octoblu
   - DEPLOY_REGION=us-west-2
   - DEPLOY_BUCKET=octoblu-deploy
-  - DEPLOYMENT_GROUP=master
+  - DEPLOYMENT_GROUP=$TRAVIS_BRANCH
   - DEPLOY_KEY=octoblu/octoblu-$TRAVIS_COMMIT.zip
   - ELASTIC_SEARCH_URI=http://es.octoblu.com
   - APP_DYNAMICS_APPLICATION_NAME=Octoblu
@@ -95,7 +95,7 @@ deploy:
   skip_cleanup: true
   bucket: octoblu-deploy
   on:
-    branch: staging
+    branch: master
 - provider: codedeploy
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
@@ -106,4 +106,4 @@ deploy:
   application: docker-builder
   deployment_group: octoblu
   on:
-    branch: staging
+    branch: master
