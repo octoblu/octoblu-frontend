@@ -13,6 +13,6 @@ RUN npm install -g bower gulp
 COPY . /usr/src/app
 RUN cd /usr/src/app && npm install --production --silent
 RUN cd /usr/src/app && mkdir -p public/lib && bower --allow-root --silent install
-RUN cd /usr/src/app && gulp
+RUN cd /usr/src/app && NODE_ENV=production gulp
 
 CMD [ "npm", "start" ]
