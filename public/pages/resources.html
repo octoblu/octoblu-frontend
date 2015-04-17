@@ -16,12 +16,12 @@
         <md-item-content class="resource">
           <div class="md-tile-content">
             <h3 class="resource__title">
-              <a href="{{resource.link}}" target="_blank">
+              <a href="{{resource.link}}">
                 {{resource.title}}
               </a>
             </h3>
 
-            <p class="resource__summary" ng-show="{{!!resource.summary}}">
+            <p class="resource__summary" ng-show="{{resource.summary}}">
               {{resource.summary}}
             </p>
           </div>
