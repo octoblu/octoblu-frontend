@@ -1,39 +1,26 @@
-sudo: false
 language: node_js
-node_js:
-- '0.10'
-services:
-- mongodb
+sudo: false
 cache:
   bundler: true
   directories:
   - node_modules
   - public/lib
+node_js:
+- '0.10'
 env:
   global:
   - AWS_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
   - DOCKER_USERNAME=octoblu
-  - DEPLOY_APPLICATION_NAME=octoblu
+  - DEPLOY_APPLICATION_NAME=app-octoblu-frontend
   - DEPLOY_REGION=us-west-2
   - DEPLOY_BUCKET=octoblu-deploy
-  - DEPLOYMENT_GROUP=$TRAVIS_BRANCH
-  - DEPLOY_KEY=octoblu/octoblu-$TRAVIS_COMMIT.zip
-  - ELASTIC_SEARCH_URI=http://es.octoblu.com
-  - APP_DYNAMICS_APPLICATION_NAME=Octoblu
-  - secure: dCHYIySwlqWZ5sDpvi22CRdMU1sq3uZGR06nY2GkQ7Mp+jtirgSrLSnIzPwWRqOV0J9sjkkKi7f2DO/hwyBWpLJEmhV2AFhyqaW6paNm/YN6aheulKAmtRjQu1LfrEL6bZTvarl4HSzAdMv804RjNij5RKHumYSnokNeXtACQNY=
-  - secure: DJtlV4j2cQ2wgbCqODzn+hjd2DK5HarCSltzKrGs7YlwON1pYKCKJHAYibV2+TYMwHLivN63febO7Sk8uNObxne/dt0J5hDZBbCtzKFDHEsxxixiRVdgKNKJa60jVt4qOCnbyKo3oGvTF9yesbiqWrfAL4rkP2iXWeBI1LqMtqU=
-  - secure: YINWdmf38Ts2+mHQgEWTavkUqTqOz+O/XfO+wEQw95teIj8OBpVESA+SHn9+oo3WCZ2wCbcOE5jpVYnJqrS7usZIj+EsmP7IKLdeMPgQIlnSNB6tp+MQmelhBaacv5kCMIPpbWJr0p+PhDOq/X7CpHCUo/fTzWB2sB6Frd7T9h8=
-  - secure: k72PlEGq2sqRnOP1yt27pWnFYc9PoQqRu6PVk3jYt0mYau/90Wx5EOcQaQNAQT7l9WB2hMOyYYegZ8jLzU7qsdWMlXGLhdjwhJa2ggB7Xa7k5N1tLnwb2XHPlbbcp4CBSiq/9cgUawH9MhBARQZK0RwiZM1FOxmfK0iWhoqPIdk=
-  - secure: Os3JUhzKLMJFwIp3ZLPeOYt5l1S6bJ5vMro3sKnwKY/6DehQ/93ZBmNPAfPxzvr8uP6Ak7h9lNHNMdY2yyLwK2Nk5cXenTo77tIcgsAYCExWyE0nCIHwFdgtjq54j4bULRzq+Mbl7PbiEvWdQ9A8H/jjSVjBeA+3mlQdn9qfjdI=
-  - secure: B+x8ED48lOM7lrgkng0HVKoikZuYKRMQ6Da8a4sTlqiSxHIli6RoXR+QdK9BFY4fRlenCForYrwyAXkrVzGwIuC/0aiXNOCXG1BLST4Kw4POTOK5H912Y4YIVVrzRQP6nw2VXBt8ixuJ0ihB+EZrm5Ugx7z2chCBcw5Tca8oj7w=
-  - secure: IW0rIoY1P2RxFJn1/Z/aqVw4KRNExs9nsGVDQhMCcoAWt9Ag4owifGtEpcyNq9tVK4Xh1HgHvaCAiegeuEB8wF0L+Hp54yhAICITQh12hrnL8o8na/pi9OwnW4uO0qTFdthw5/bYmmqXF36bjWOeCMgUnVBsxi5Zbchpj2suKHE=
-  - secure: hXSwhCUp1ICE6bwFLRcAcX3ZyiA5kJdtuovCS25dTB8nqqalM71lbWp5ca/Bjeck8wzNEL0/sbFcxelfmD6+73G900W9CPGYZUM0TrawOEJtPOyPZntF3dOpg7EzLKi9jwlVKn5272gIVIq4AkIaLasT+GuEuynYnsaOzb0mf/0=
-  - secure: G4fVIEEfGCoQEGUHPFBzC7AUgxbP8z9kMkQBgLm+86jRBwnlcERlls0WW7wm+g842y34oP8oaGSzJG7Lcv/AlcPkxzAG1YZsAnAmAP5OWO7OCxuRorX1tnHM26oNdlY3VK0jnBZw6GZEHoH7lxTX0S4Pb/GpJk0yKCFSsgikPtA=
+  - DEPLOYMENT_GROUP=master
+  - DEPLOY_KEY=app-octoblu-frontend/app-octoblu-frontend-$TRAVIS_COMMIT.zip
+  - secure: YymURBsnETYUEJ/yTBXfA3hmInTsY/hm2W0rXtCDAOpQPlcNT08aksiGaJzzSXWnEUznOEd8FQhc6fLSTx3glZFOsyXt29FQHCG/8gdZG+IUx+7JqaWvv1cSe4vw1SqYSKbmzsL0udaLV5KMqQ92p11MDOBuBtNn3wIUTwN1AB4=
+  - secure: KihNBJIMr1WlgKXXysrdRYWiko1GiCxZJGODwfbfh6p8QXgxM1lA5m+7Z96/O+riHJo3O93Gwbljmx8sIW8SzYHBVpTKUTdUfdzn198sq9vxnZC5tc6+r0GA7X8UuGgrt/++OR3B3jlrqY7z0VCwyLR6F87ktZGFwNJ9e1R/3zE=
+  - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
 after_success:
 - ".kubernetes/travis_after_success"
-notifications:
-  slack:
-    secure: j8t7GC1MCh75KcJiUh+Wq8AVGrESS9mZG9EnHSHWSIHr1eGHbNYn9GWR2+/vv6M1Te+TRTCbVU38Z4/VfZf4zYOi7HoY8z9XT97h90+ArEc68qQnDpZyfSsI4n7mYLPWMZtLz41ryZGYZ2ISTLHR2gbJX8kxyTXCWrIAxtG8uT8=
 before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
   NODE_ENV=staging; fi
@@ -48,23 +35,11 @@ deploy:
 - provider: s3
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: &1
-    secure: SUC78nnA3eIepYCqxrU+So32VUl7qvmP50Cc6ykR7bBmwI9BFmEUbrzC7M2l2IiMJa0P7QdXuRmA+jgtxFOw+5y8ISI6kHdUt/OG++j26zF1gqMzPxxynVcoi8P4gyBcQw+/YjEtw9j2QMTP1k0QgY4e4lcXZ4kO6bMPmkzT23o=
+    secure: S1f1Hx3/rncOz2Sh+iSl+ay6Y9x0bRADF6lbgL3NZimIeUMG/AaXN5ctwcNs2/t4PPdsVj+3Mr60pBMrGfh8COXktBnCDqOtNGWNT9i94j5HPP0LCDB6Aqm5OJCEuSE3v4zXIv7t8Vg3lIY3Q8jJP+alnMF1qye986ywQNPQynM=
   bucket: deploy-octoblu-static
   region: us-west-2
   skip_cleanup: true
   local-dir: build
-  on:
-    branch: master
-- provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
-  on:
-    branch: master
-- provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
   on:
     branch: master
 - provider: s3
@@ -74,18 +49,6 @@ deploy:
   region: us-west-2
   skip_cleanup: true
   local-dir: build
-  on:
-    branch: staging
-- provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
-  on:
-    branch: staging
-- provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
   on:
     branch: staging
 - provider: s3
@@ -100,10 +63,10 @@ deploy:
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
   bucket: octoblu-deploy
-  key: docker-builder/octoblu-$TRAVIS_COMMIT.zip
+  key: docker-builder/app-octoblu-frontend-$TRAVIS_COMMIT.zip
   bundle_type: zip
   region: us-west-2
   application: docker-builder
-  deployment_group: octoblu
+  deployment_group: app-octoblu-frontend
   on:
     branch: master

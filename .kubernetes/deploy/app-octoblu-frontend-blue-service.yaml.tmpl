@@ -1,15 +1,15 @@
-id: octoblu-green
+id: app-octoblu-blue
 kind: Service
 apiVersion: v1beta1
-port: $GREEN_PORT
-containerPort: 9000
+port: $BLUE_PORT
+containerPort: 80
 publicIPs:
   - 172.20.0.10
   - 172.20.0.11
   - 172.20.0.12
   - 172.20.0.13
 labels:
-  name: octoblu-green
+  name: app-octoblu-frontend-blue
   version: 1.0.0
 selector:
-  name: octoblu-green
+  name: app-octoblu-frontend-blue

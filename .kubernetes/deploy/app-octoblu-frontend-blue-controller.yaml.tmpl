@@ -1,0 +1,25 @@
+id: app-octoblu-frontend-blue-controller
+kind: ReplicationController
+apiVersion: v1beta1
+labels:
+  name: app-octoblu-frontend-blue
+  version: "$SHORT_COMMIT"
+desiredState:
+  replicas: 2
+  replicaSelector:
+    name: app-octoblu-frontend-blue
+    version: "$SHORT_COMMIT"
+  podTemplate:
+    labels:
+      name: app-octoblu-frontend-blue
+      app: app-octoblu-frontend-blue
+      version: "$SHORT_COMMIT"
+    desiredState:
+      manifest:
+        version: v1beta1
+        id: app-octoblu-frontend-blue
+        containers:
+          - name: app-octoblu-frontend-blue
+            image: octoblu/app-octoblu-frontend:$SHORT_COMMIT
+            ports:
+              - containerPort: 80

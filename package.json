@@ -1,6 +1,6 @@
 {
-  "name": "octoblu",
-  "version": "1.2.2",
+  "name": "app-octoblu-frontend",
+  "version": "1.0.0",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -141,7 +141,7 @@
     "webdriverjs": "^1.7.5"
   },
   "scripts": {
-    "test": "mocha && node_modules/karma/bin/karma start --single-run",
+    "test": "node_modules/karma/bin/karma start --single-run",
     "start": "node_modules/.bin/gulp production && node server.js"
   },
   "engines": {
