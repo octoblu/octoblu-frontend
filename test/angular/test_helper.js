@@ -6,3 +6,10 @@ window.meshblu = {
     return new EventEmitter();
   }
 }
+
+beforeEach(function () {
+  module('octobluApp', function($provide) {
+    $provide.constant('OCTOBLU_API_URL', '');
+    $provide.constant('OCTOBLU_ICON_URL', '');
+  });
+});

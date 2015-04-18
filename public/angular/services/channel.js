@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('channelService', function ($q, $http, OCTOBLU_ICON_URL) {
+    .service('channelService', function (OCTOBLU_API_URL, $q, $http, OCTOBLU_ICON_URL) {
         var customchannels = [];
         var activechannels = [];
         var availablechannels = [];

@@ -20,13 +20,13 @@ describe 'AuthService', =>
 
     describe 'when it is called', ->
       it 'should post to the octoblu resetToken endpoint', ->
-        @httpBackend.expectPOST(OCTOBLU_API_URL + '/api/reset-token').respond 201
+        @httpBackend.expectPOST('/api/reset-token').respond 201
         @sut.resetToken()
         @httpBackend.flush()
 
       describe 'when the server returns with an error', ->
         it 'should reject it\'s promise', (done)->
-          @httpBackend.expectPOST(OCTOBLU_API_URL + '/api/reset-token').respond 400
+          @httpBackend.expectPOST('/api/reset-token').respond 400
           @sut.resetToken().then( ->
             assert false, 'things failed! we shouldn\'t say they are good.'
             done()
@@ -37,7 +37,7 @@ describe 'AuthService', =>
 
       describe 'when the server returns with a token', ->
         it 'should resolve the promise with that token', (done)->
-          @httpBackend.expectPOST(OCTOBLU_API_URL + '/api/reset-token').respond 201, 5
+          @httpBackend.expectPOST('/api/reset-token').respond 201, 5
           @sut.resetToken().then( (token) ->
             expect(token).to.equal(5)
             done()
@@ -49,7 +49,7 @@ describe 'AuthService', =>
 
       describe 'when the server returns with a different token', ->
         it 'should resolve the promise with that token', (done)->
-          @httpBackend.expectPOST(OCTOBLU_API_URL + '/api/reset-token').respond 201, 8
+          @httpBackend.expectPOST('/api/reset-token').respond 201, 8
           @sut.resetToken().then( (token) ->
             expect(token).to.equal(8)
             done()

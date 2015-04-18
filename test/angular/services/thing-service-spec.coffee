@@ -5,7 +5,7 @@ describe 'ThingService', ->
 
     module 'octobluApp', ($provide) =>
       $provide.value 'skynetService', @skynetService
-      $provide.value 'OCTOBLU_ICON_URL', 's3/'
+      $provide.constant 'OCTOBLU_ICON_URL', 's3/'
       return # !important
 
     inject ($q, $rootScope) =>
