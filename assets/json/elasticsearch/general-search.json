@@ -1,8 +1,0 @@
-{
-  "sort" : [
-    { "timestamp" : {"order" : "desc"}}
-  ],
-  "filter": {
-    "or": []
-  }
-}
