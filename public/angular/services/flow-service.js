@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
   'use strict';
   var self, activeFlow;
   self = this;
@@ -17,7 +17,7 @@ angular.module('octobluApp')
 
   self.saveFlow = function(flow) {
     flow.hash = self.hashFlow(flow);
-    return $http.put("/api/flows/" + flow.flowId, _.clone(flow));
+    return $http.put(OCTOBLU_API_URL + "/api/flows/" + flow.flowId, _.clone(flow));
   };
 
   self.selectNode = function(flowNode){
@@ -44,7 +44,7 @@ angular.module('octobluApp')
       flow = activeFlow;
     }
 
-    $http.post("/api/flows/" + flow.flowId + '/instance');
+    $http.post(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
 
   self.stop = function(flow){
@@ -52,7 +52,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
-    return $http.delete("/api/flows/" + flow.flowId + '/instance');
+    return $http.delete(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
 
   self.restart = function(flow){
@@ -60,7 +60,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
-    return $http.put('/api/flows/' + flow.flowId + '/instance');
+    return $http.put(OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance');
   };
 
   self.processFlows = function(flows){
@@ -88,7 +88,7 @@ angular.module('octobluApp')
   };
 
   self.getAllFlows = function () {
-    return $http.get('/api/flows').then(function(response){
+    return $http.get(OCTOBLU_API_URL + '/api/flows').then(function(response){
       var flowData = _.reject(response.data, function(flow){
         return !flow.flowId;
       });
@@ -114,19 +114,19 @@ angular.module('octobluApp')
   };
 
   self.createFlow = function(flowAttributes) {
-    return $http.post('/api/flows', flowAttributes).then(function(response) {
+    return $http.post(OCTOBLU_API_URL + '/api/flows', flowAttributes).then(function(response) {
       return new FlowModel(response.data);
     });
   };
 
   self.createDemoFlow = function(options) {
-    return $http.post('/api/demo_flows').then(function(response) {
+    return $http.post(OCTOBLU_API_URL + '/api/demo_flows').then(function(response) {
       return new FlowModel(response.data);
     });
   };
 
   self.deleteFlow = function(flowId){
-    return $http.delete('/api/flows/' + flowId).then(function(response){
+    return $http.delete(OCTOBLU_API_URL + '/api/flows/' + flowId).then(function(response){
       return response.data;
     });
   };

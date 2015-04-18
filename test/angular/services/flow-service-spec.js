@@ -24,7 +24,7 @@ describe('FlowService', function () {
 
   describe('#createFlow', function () {
     it('should return a flow', function (done) {
-      $httpBackend.expectPOST('/api/flows').respond(201, {flowId:'1'});
+      $httpBackend.expectPOST(OCTOBLU_API_URL + '/api/flows').respond(201, {flowId:'1'});
 
       sut.createFlow().then(function (flow) {
         expect(flow.flowId).to.eq('1');
@@ -37,8 +37,8 @@ describe('FlowService', function () {
 
   describe('#getAllFlows', function () {
     it('should return an array', function (done) {
-      $httpBackend.expectGET('/api/flows').respond(200, [{flowId: 'h1'}]);
-      $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flows').respond(200, [{flowId: 'h1'}]);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flow_node_types').respond(200, []);
 
       sut.getAllFlows().then(function (flows) {
         expect(flows.length).to.eq(1);
@@ -49,8 +49,8 @@ describe('FlowService', function () {
     });
 
     it('should return an array with objects', function (done) {
-      $httpBackend.expectGET('/api/flows').respond(200, [{flowId: 2}]);
-      $httpBackend.expectGET('/api/flow_node_types').respond(200, []);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flows').respond(200, [{flowId: 2}]);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flow_node_types').respond(200, []);
 
       sut.getAllFlows().then(function (flows) {
         expect(flows[0]).to.be.instanceof(Object);
@@ -65,7 +65,7 @@ describe('FlowService', function () {
   describe('#deleteFlow', function(){
     it('should exist', function(){
       var flowId = '123456';
-      $httpBackend.expectDELETE('/api/flows/' + flowId).respond(200);
+      $httpBackend.expectDELETE(OCTOBLU_API_URL + '/api/flows/' + flowId).respond(200);
       sut.deleteFlow(flowId);
       $httpBackend.flush();
     });

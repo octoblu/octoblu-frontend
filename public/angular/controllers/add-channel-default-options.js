@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addDefaultOptionsController', function($scope, $state, nodeType, userService, channelService, AuthService) {
+.controller('addDefaultOptionsController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, channelService, AuthService) {
 	var AUTH_DESTINATIONS = {
     'aws'                    : 'material.nodewizard.addchannel.aws',
     'basic'                  : 'material.nodewizard.addchannel.basic',

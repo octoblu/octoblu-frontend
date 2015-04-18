@@ -72,7 +72,7 @@ angular.module('octobluApp')
 };
 
 this.activateNoAuthChannel = function(user, channelid, callback) {
-  $http.put('/api/user/' + user + '/activate/' + channelid)
+  $http.put(OCTOBLU_API_URL + '/api/user/' + user + '/activate/' + channelid)
   .success(function(data) {
     callback(null, data);
   })
@@ -83,7 +83,7 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
 };
 
 this.activateNoAuthChannelByType = function(user, channeltype, callback) {
-  $http.put('/api/user/' + user + '/activate/' + channeltype + '/type')
+  $http.put(OCTOBLU_API_URL + '/api/user/' + user + '/activate/' + channeltype + '/type')
   .success(function(data) {
     callback(null, data);
   })
@@ -95,7 +95,7 @@ this.activateNoAuthChannelByType = function(user, channeltype, callback) {
 
 this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
-  $http.post('/api/auth/aws/channel/' + channelid, { username: username, password: password })
+  $http.post(OCTOBLU_API_URL + '/api/auth/aws/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
     callback(data);
   })
@@ -108,7 +108,7 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 this.saveCloudDotComApi = function (uuid, channelid, username, password, callback) {
 
-  $http.post('/api/auth/clouddotcom/channel/' + channelid, { username: username, password: password })
+  $http.post(OCTOBLU_API_URL + '/api/auth/clouddotcom/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
     callback(data);
   })
@@ -119,7 +119,7 @@ this.saveCloudDotComApi = function (uuid, channelid, username, password, callbac
 };
 
 this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
-  $http.post('/api/auth/google-places/channel/' + channelid, { apikey: apikey })
+  $http.post(OCTOBLU_API_URL + '/api/auth/google-places/channel/' + channelid, { apikey: apikey })
   .success(function (data) {
     callback(data);
   })
@@ -131,7 +131,7 @@ this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
 
 this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
-  $http.post('/api/auth/basic/channel/' + channelid, { username: username, password: password })
+  $http.post(OCTOBLU_API_URL + '/api/auth/basic/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
     callback(null, data);
   })
@@ -143,7 +143,7 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 };
 
 this.saveApiKey = function(channelid, apikey, callback){
-  $http.post('/api/auth/apikey/channel/' + channelid, {apikey: apikey})
+  $http.post(OCTOBLU_API_URL + '/api/auth/apikey/channel/' + channelid, {apikey: apikey})
   .success(function(data){
     callback(data);
   })
@@ -153,7 +153,7 @@ this.saveApiKey = function(channelid, apikey, callback){
 };
 
 this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey, callback){
-  $http.post('/api/auth/simpleauthquery/channel/' + channelid, {
+  $http.post(OCTOBLU_API_URL + '/api/auth/simpleauthquery/channel/' + channelid, {
       userId : userId,
       domain : domain,
       password : password,
@@ -168,7 +168,7 @@ this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey,
 
 this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
 
-  $http.put('/api/user/' + uuid+ '/channel/' + channelid,
+  $http.put(OCTOBLU_API_URL + '/api/user/' + uuid+ '/channel/' + channelid,
   	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams })
   .success(function (data) {
     callback(data);
@@ -180,7 +180,7 @@ this.saveConnection = function (uuid, channelid, key, token, custom_tokens, call
 };
 
 this.removeConnection = function (channelid) {
-  return $http.delete('/api/user/channel/' + channelid);
+  return $http.delete(OCTOBLU_API_URL + '/api/user/channel/' + channelid);
 };
 
 });

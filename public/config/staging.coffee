@@ -11,3 +11,4 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PORT', '443'
   .constant 'PROFILE_URI', '#'
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
+  .constant 'OCTOBLU_API_URL', 'https://staging-api.octoblu.com'

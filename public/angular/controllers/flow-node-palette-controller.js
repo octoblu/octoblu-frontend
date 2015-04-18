@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowNodePaletteController', function($scope) {
+.controller('FlowNodePaletteController', function(OCTOBLU_API_URL, $scope) {
     'use strict';
 
     $scope.$watch('flowNodeTypes', function(newFlowNodeTypes){

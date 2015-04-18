@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowNodeTypeService', function ($http, $q, UUIDService, NodeService, OCTOBLU_ICON_URL) {
+.service('FlowNodeTypeService', function (OCTOBLU_API_URL, $http, $q, UUIDService, NodeService, OCTOBLU_ICON_URL) {
   'use strict';
 
   var self = this;
@@ -23,7 +23,7 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function(cache) {
-    return $http.get('/api/flow_node_types').then(function(res){
+    return $http.get(OCTOBLU_API_URL + '/api/flow_node_types').then(function(res){
       return _.map(res.data, function(data){
         if (data && data.type) {
           data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
@@ -76,4 +76,3 @@ angular.module('octobluApp')
 
   return self;
 });
-

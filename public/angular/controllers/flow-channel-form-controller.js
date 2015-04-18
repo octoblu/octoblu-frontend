@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowChannelFormController', function($scope, channelService) {
+.controller('FlowChannelFormController', function(OCTOBLU_API_URL, $scope, channelService) {
   'use strict';
 
   var selectResources = function() {

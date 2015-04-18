@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('DevicePickerController', function($scope) {
+.controller('DevicePickerController', function(OCTOBLU_API_URL, $scope) {
   'use strict';
 
   $scope.$watch('model.uuid', function(){

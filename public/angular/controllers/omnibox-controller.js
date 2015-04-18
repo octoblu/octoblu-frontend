@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('OmniboxController', function($scope, OmniService) {
+.controller('OmniboxController', function(OCTOBLU_API_URL, $scope, OmniService) {
   'use strict';
   var fetchFlowNodes = function(flowNodes){
     OmniService.fetch(flowNodes).then(function(omniList){

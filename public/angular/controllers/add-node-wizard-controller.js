@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('AddNodeWizardController', function($scope, $state, NodeTypeService) {
+.controller('AddNodeWizardController', function(OCTOBLU_API_URL, $scope, $state, NodeTypeService) {
   'use strict';
 
   NodeTypeService.getById($state.params.nodeTypeId).then(function(nodeType){

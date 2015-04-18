@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('clearAuthController', function($scope, userService, channelService, AuthService) {
+.controller('clearAuthController', function(OCTOBLU_API_URL, $scope, userService, channelService, AuthService) {
   'use strict';
 
   $scope.clearAllAuthorizedChannels = function(){

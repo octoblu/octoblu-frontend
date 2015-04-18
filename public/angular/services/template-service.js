@@ -5,7 +5,7 @@ angular.module('octobluApp')
   self = this;
 
   self.createTemplate = function(template) {
-    return $http.post("/api/templates", template).then(function(response) {
+    return $http.post(OCTOBLU_API_URL + "/api/templates", template).then(function(response) {
       return response.data;
     });
   };
@@ -15,42 +15,42 @@ angular.module('octobluApp')
       name: data.name,
       flow: data.flow
     };
-    return $http.put('/api/templates/' + uuid, template).then(function(response){
+    return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, template).then(function(response){
       return response.data;
     });
   };
 
   self.withFlowId = function(flowId) {
-    return $http.get('/api/flows/' + flowId + '/templates').then(function(response) {
+    return $http.get(OCTOBLU_API_URL + '/api/flows/' + flowId + '/templates').then(function(response) {
       return response.data;
     });
   };
 
   self.withUserUUID = function(uuid) {
-    return $http.get('/api/users/' + uuid + '/templates').then(function(response) {
+    return $http.get(OCTOBLU_API_URL + '/api/users/' + uuid + '/templates').then(function(response) {
       return response.data;
     });
   };
 
   self.getAllTemplates = function() {
-    return $http.get('/api/templates').then(function(response) {
+    return $http.get(OCTOBLU_API_URL + '/api/templates').then(function(response) {
       return response.data;
     });
   };
   
   self.getTemplate = function(id) {
-    return $http.get('/api/templates/' + id).then(function(response){
+    return $http.get(OCTOBLU_API_URL + '/api/templates/' + id).then(function(response){
       return response.data;
     });
   };
 
   self.importTemplate = function(id) {
-    return $http.post('/api/templates/' + id + '/flows').then(function(response) {
+    return $http.post(OCTOBLU_API_URL + '/api/templates/' + id + '/flows').then(function(response) {
       return response.data;
     })
   }
 
   self.deleteTemplate = function(id) {
-    return $http.delete('/api/templates/' + id);
+    return $http.delete(OCTOBLU_API_URL + '/api/templates/' + id);
   };
 });

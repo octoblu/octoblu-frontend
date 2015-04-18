@@ -3,7 +3,7 @@ angular.module('octobluApp')
 .constant('NO_PARAM_RULES',     ["true", "false", "null", "nnull", "else"])
 .constant('SINGLE_PARAM_RULES', ["eq", "neq", "lt", "lte", "gt", "gte", "cont", "regex"])
 .constant('DOUBLE_PARAM_RULES', ["btwn"])
-.controller('switchRulesController', function($scope, NO_PARAM_RULES, SINGLE_PARAM_RULES, DOUBLE_PARAM_RULES) {
+.controller('switchRulesController', function(OCTOBLU_API_URL, $scope, NO_PARAM_RULES, SINGLE_PARAM_RULES, DOUBLE_PARAM_RULES) {
   'use strict';
 
   $scope.$watch('node.rules', function(newRules, oldRules) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelGooglePlacesController', function($scope, $state, nodeType, userService, AuthService) {
+.controller('addChannelGooglePlacesController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, AuthService) {
 
   $scope.activate = function(){    
     AuthService.getCurrentUser().then(function(user){

@@ -3,14 +3,14 @@ angular.module('octobluApp').
     service('PermissionsService', function ($http, $q) {
         return {
             all: function (uuid, token) {
-                return $http.get('/api/permissions').then(function (res) {
+                return $http.get(OCTOBLU_API_URL + '/api/permissions').then(function (res) {
                     return res.data;
                 });
             },
 
             add: function (permission) {
                 return $http({method: 'POST',
-                    url: '/api/permissions',
+                    url: OCTOBLU_API_URL + '/api/permissions',
                     data: permission
                 }).then(function (res) {
                     return res.data;
@@ -18,7 +18,7 @@ angular.module('octobluApp').
             },
 
             allGroupPermissions: function () {
-                return $http({method: 'GET', url: '/api/permissions/groups'})
+                return $http({method: 'GET', url: OCTOBLU_API_URL + '/api/permissions/groups'})
                     .then(function (res) {
                         return res.data;
                     });
@@ -27,14 +27,14 @@ angular.module('octobluApp').
             delete: function (resourceUUID) {
                 return $http(
                     {method: 'DELETE',
-                        url: '/api/permissions/' + resourceUUID
+                        url: OCTOBLU_API_URL + '/api/permissions/' + resourceUUID
                     }).then(function (res) {
                         return res.data;
                     });
             },
             update: function (permissionGroupTriple) {
                 return $http({method: 'PUT',
-                    url: '/api/permissions/' + permissionGroupTriple.resourcePermission.resource.uuid,
+                    url: OCTOBLU_API_URL + '/api/permissions/' + permissionGroupTriple.resourcePermission.resource.uuid,
                     data: permissionGroupTriple
                 }).then(function (res) {
                     return res.data;
@@ -42,35 +42,35 @@ angular.module('octobluApp').
             },
             allSourcePermissions: function (resourceUUID) {
                 return $http({method: 'GET',
-                    url: '/api/permissions/source/' + resourceUUID + '/compiled'
+                    url: OCTOBLU_API_URL + '/api/permissions/source/' + resourceUUID + '/compiled'
                 }).then(function (res) {
                     return res.data;
                 });
             },
             allTargetPermissions: function (resourceUUID) {
                 return $http({method: 'GET',
-                    url: '/api/permissions/target/' + resourceUUID + '/compiled'
+                    url: OCTOBLU_API_URL + '/api/permissions/target/' + resourceUUID + '/compiled'
                 }).then(function (res) {
                     return res.data;
                 });
             },
             flatSourcePermissions: function (resourceUUID) {
                 return $http({method: 'GET',
-                    url: '/api/permissions/source/' + resourceUUID + '/flat'
+                    url: OCTOBLU_API_URL + '/api/permissions/source/' + resourceUUID + '/flat'
                 }).then(function (res) {
                     return res.data;
                 });
             },
             flatTargetPermissions: function (resourceUUID) {
                 return $http({method: 'GET',
-                    url: '/api/permissions/target/' + resourceUUID + '/flat'
+                    url: OCTOBLU_API_URL + '/api/permissions/target/' + resourceUUID + '/flat'
                 }).then(function (res) {
                     return res.data;
                 });
             },
             getSharedResources: function (type) {
                 return $http({method: 'GET',
-                    url: '/api/permissions/shared/' + (type || 'all')
+                    url: OCTOBLU_API_URL + '/api/permissions/shared/' + (type || 'all')
                 }).then(function (res) {
                     return res.data;
                 });

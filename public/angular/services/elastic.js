@@ -4,7 +4,7 @@ angular.module('octobluApp')
         protocol: $location.protocol(),
         host: $location.host(),
         port: $location.port(),
-        path: '/api/elastic',
+        path: OCTOBLU_API_URL + '/api/elastic',
         es_index: 'skynet_trans_log',
         debug_logging: true
     };
@@ -86,7 +86,7 @@ angular.module('octobluApp')
     };
 
     this.getEvents = function(test, callback) {
-        $http.get('/api/events/')
+        $http.get(OCTOBLU_API_URL + '/api/events/')
         .success(function(data) {
             callback(data);
         })

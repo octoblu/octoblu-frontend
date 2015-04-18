@@ -1,13 +1,13 @@
 
 angular.module('octobluApp')
-.controller('addChannelEchoSignController', function($scope, $window, nodeType, channelService) {
+.controller('addChannelEchoSignController', function(OCTOBLU_API_URL, $scope, $window, nodeType, channelService) {
   'use strict';
 
   var channelPromise, getPath;
 
   channelPromise = channelService.getById(nodeType.channelid);
   getPath = function(){
-    return '/api/echosign/auth?apiKey=' + $scope.apiKey;
+    return OCTOBLU_API_URL + '/api/echosign/auth?apiKey=' + $scope.apiKey;
   };
 
   $scope.activate = function(){

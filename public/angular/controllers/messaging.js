@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function($scope, $cookies, currentUser, myDevices, myGateways, availableNodeTypes,
+    .controller('MessagingController', function(OCTOBLU_API_URL, $scope, $cookies, currentUser, myDevices, myGateways, availableNodeTypes,
         skynetService, deviceService, PluginService) {
 
         $scope.model = {

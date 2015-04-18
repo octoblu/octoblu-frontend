@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addChannelDocuSignController', function($scope, $state, nodeType, userService, AuthService) {
+.controller('addChannelDocuSignController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, AuthService) {
   'use strict';
 
   $scope.activate = function(){

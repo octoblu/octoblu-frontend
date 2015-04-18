@@ -145,7 +145,7 @@ describe('FlowNodeTypeService', function () {
 
   describe('.getFlowNodeType', function () {
     it('should return a single flowNodeType', function (done) {
-      $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('function').then(function (flowNodeType) {
         expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://ds78apnml6was.cloudfront.net/function.svg'});
@@ -156,7 +156,7 @@ describe('FlowNodeTypeService', function () {
     });
 
     it('should return a single flowNodeType', function (done) {
-      $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('inject').then(function (flowNodeType) {
         expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://ds78apnml6was.cloudfront.net/inject.svg'});
@@ -170,7 +170,7 @@ describe('FlowNodeTypeService', function () {
   describe('.getFlowNodeTypes', function () {
 
     beforeEach(function(){
-      $httpBackend.expectGET('/api/flow_node_types').respond(200, [{}]);
+      $httpBackend.expectGET(OCTOBLU_API_URL + '/api/flow_node_types').respond(200, [{}]);
     });
 
     it('should return an array', function (done) {

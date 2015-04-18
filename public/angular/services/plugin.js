@@ -12,19 +12,19 @@ angular.module('octobluApp').
         };
 
         this.getSkynetPlugins = function(){
-            return $http.get('/api/plugins').then(function(result){
+            return $http.get(OCTOBLU_API_URL + '/api/plugins').then(function(result){
                 return result.data;
             });
         };
 
         this.getSkynetPlugin = function(pluginName){
-            return $http.get('/api/plugins/' + pluginName).then(function(result){
+            return $http.get(OCTOBLU_API_URL + '/api/plugins/' + pluginName).then(function(result){
                 return result.data;
             });
         };
 
         this.getPluginDefaultOptions = function(pluginName){
-            return $http.get('/api/plugins/' + pluginName + '/defaultoptions').then(function(result){
+            return $http.get(OCTOBLU_API_URL + '/api/plugins/' + pluginName + '/defaultoptions').then(function(result){
                 return result.data;
             });
         };
@@ -99,7 +99,7 @@ angular.module('octobluApp').
         };
 
         this.getAvailablePlugins = function(){
-            return $http.get('/api/device/plugins').then(function(result){
+            return $http.get(OCTOBLU_API_URL + '/api/device/plugins').then(function(result){
                 return result.data;
             });
         }

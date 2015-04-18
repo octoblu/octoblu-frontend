@@ -15,7 +15,7 @@ angular.module('octobluApp')
             },
 	    compile: function CompilingFunction($templateElement, $templateAttributes) {
        	   	$templateElement.replaceWith(this.template);
-	        return function LinkingFunction($scope, $element, $attrs) {
+	        return function Linkingfunction(OCTOBLU_API_URL, $scope, $element, $attrs) {
 			$scope.graph = $attrs.graph;
                 console.log("scope graph");console.log($scope.graph);
                 $scope.myGraphOptions = $attrs.graphoptions;

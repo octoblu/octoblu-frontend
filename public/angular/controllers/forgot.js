@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('forgotController', function($scope, $location, AuthService) {
+    .controller('forgotController', function(OCTOBLU_API_URL, $scope, $location, AuthService) {
       $scope.resetPassword = function(){
         AuthService.resetPassword($scope.email).then(function(){
           $scope.successMessage = 'We a reset password link to: ' + $scope.email;

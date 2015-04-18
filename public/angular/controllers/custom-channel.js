@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .controller('CustomChannelController',function($scope, $state, $log, customChannels ) {
+    .controller('CustomChannelController',function(OCTOBLU_API_URL, $scope, $state, $log, customChannels ) {
         $scope.customChannels = customChannels;
         $scope.updateCustomChannel = function(channel) {
         	$log.info('update...');

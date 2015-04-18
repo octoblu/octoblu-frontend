@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('AuthService', function ($q, $cookies,  $http, $window, $intercom) {
+    .service('AuthService', function ($q, $cookies,  $http, $window, $intercom, OCTOBLU_API_URL) {
         var service;
         var currentUser = {skynet: {}};
 
@@ -47,7 +47,7 @@ angular.module('octobluApp')
 
         return service = {
             acceptTerms: function(){
-                return $http.put('/api/auth/accept_terms', {accept_terms: true}).then(function(response){
+                return $http.put(OCTOBLU_API_URL + '/api/auth/accept_terms', {accept_terms: true}).then(function(response){
                     if(response && response.status !== 204) {
                         throw response.data;
                     }
@@ -55,7 +55,7 @@ angular.module('octobluApp')
                 });
             },
             login: function (email, password) {
-                return $http.post('/api/auth', {
+                return $http.post(OCTOBLU_API_URL + '/api/auth', {
                     email: email,
                     password: password
                 }).then(loginHandler, function (err) {
@@ -65,7 +65,7 @@ angular.module('octobluApp')
             },
 
             signup: function (email, password, testerId, invitationCode, sqrtofsaturn) {
-                return $http.post('/api/auth/signup', {
+                return $http.post(OCTOBLU_API_URL + '/api/auth/signup', {
                     email: email,
                     password: password,
                     testerId : testerId,
@@ -77,11 +77,11 @@ angular.module('octobluApp')
             },
 
             logout: function () {
-                return $http.delete('/api/auth').then(logoutHandler, logoutHandler);
+                return $http.delete(OCTOBLU_API_URL + '/api/auth').then(logoutHandler, logoutHandler);
             },
 
             resetPassword: function(email) {
-                return $http.post('/api/reset', {email: email}).then(function(response){
+                return $http.post(OCTOBLU_API_URL + '/api/reset', {email: email}).then(function(response){
                     if(response.status !== 201) {
                         throw response.data;
                     }
@@ -89,7 +89,7 @@ angular.module('octobluApp')
             },
 
             setPassword: function(resetToken, password) {
-                return $http.put('/api/reset/'+resetToken, {password: password}).then(function(response){
+                return $http.put(OCTOBLU_API_URL + '/api/reset/'+resetToken, {password: password}).then(function(response){
                     if(response.status !== 204) {
                         throw response.data;
                     }
@@ -97,7 +97,7 @@ angular.module('octobluApp')
             },
 
             updatePassword: function(oldPassword, newPassword) {
-                return $http.put('/api/auth/password', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
+                return $http.put(OCTOBLU_API_URL + '/api/auth/password', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
                     if(response.status !== 204) {
                         throw response.data;
                     }
@@ -105,7 +105,7 @@ angular.module('octobluApp')
             },
 
             resetToken: function(){
-                return $http.post('/api/reset-token', {}).then(function(response){
+                return $http.post(OCTOBLU_API_URL + '/api/reset-token', {}).then(function(response){
                     if(response.status >= 400){
                         return $q.reject('Could not reset token');
                     }
@@ -115,7 +115,7 @@ angular.module('octobluApp')
 
             getCurrentUserWithoutRedirect: function () {
                 return $q.when(currentUser);
-                return $http.get('/api/auth').then(function(result) {
+                return $http.get(OCTOBLU_API_URL + '/api/auth').then(function(result) {
                     return result.data;
                 });
             },
@@ -124,7 +124,7 @@ angular.module('octobluApp')
                 if (currentUser.id && !force) {
                     return $q.when(currentUser);
                 } else {
-                    return $http.get('/api/auth').then(loginHandler, function (err) {
+                    return $http.get(OCTOBLU_API_URL + '/api/auth').then(loginHandler, function (err) {
                         logoutHandler(err);
                         throw err;
                     });

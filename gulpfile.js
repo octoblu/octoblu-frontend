@@ -2,15 +2,14 @@ var gulp         = require('gulp'),
   bower          = require('gulp-bower'),
   mainBowerFiles = require('main-bower-files'),
   concat         = require('gulp-concat'),
-  jsoncombine    = require('gulp-jsoncombine'),
   less           = require('gulp-less'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
   coffee         = require('gulp-coffee'),
   clean          = require('gulp-clean'),
-  ecstatic       = require('ecstatic'),
-  http           = require('http'),
   _              = require('lodash');
+
+var server = require('pushstate-server');
 
 gulp.task('bower', function() {
   bower('./public/lib');
@@ -64,12 +63,25 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
 gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
 
 gulp.task('static', function(){
-  http.createServer(
-    ecstatic({ root: __dirname + '/public' })
-  ).listen(9999);
+  var port = process.env.OCTOBLU_FRONTEND_PORT || 8080;
+  process.env.PORT = port;
 
-  console.log('Listening on :8080');
-})
+  var url = require('url');
+  var proxy = require('proxy-middleware');
+  var proxyOptions = url.parse('http://localhost:8081/api');
+  proxyOptions.cookieRewrite = true;
+
+  server.app.use('/api', function(req, res, next) {
+    proxy(proxyOptions)(req, res, next);
+  });
+
+  server.start({
+    port: port,
+    directory: './public'
+  });
+
+  console.log('Listening on :' + port);
+});
 
 gulp.task('watch', ['default', 'static'], function() {
   gulp.watch(['./bower.json'], ['bower']);

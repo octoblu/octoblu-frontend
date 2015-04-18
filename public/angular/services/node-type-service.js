@@ -1,11 +1,11 @@
 angular.module('octobluApp')
-.service('NodeTypeService', function ($http, $q, OCTOBLU_ICON_URL) {
+.service('NodeTypeService', function (OCTOBLU_API_URL, $http, $q, OCTOBLU_ICON_URL) {
   'use strict';
 
   var self = this;
 
   self.getNodeTypes = function(){
-    return $http.get('/api/node_types', {cache:true}).then(function(res){
+    return $http.get(OCTOBLU_API_URL + '/api/node_types', {cache:true}).then(function(res){
       var nodeTypes = _.filter(res.data, function(data){
         return data.enabled;
       });
@@ -36,4 +36,3 @@ angular.module('octobluApp')
 
   return self;
 });
-

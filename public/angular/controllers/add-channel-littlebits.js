@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelLittlebitsController', function($scope, $state, $http, nodeType, userService, channelService, AuthService) {
+.controller('addChannelLittlebitsController', function(OCTOBLU_API_URL, $scope, $state, $http, nodeType, userService, channelService, AuthService) {
   var channelPromise;
 
   channelPromise = channelService.getById(nodeType.channelid);
@@ -9,7 +9,7 @@ angular.module('octobluApp')
   $scope.activate = function(){
     var profile = { accessToken: $scope.newChannel.accessToken};
     channelPromise.then(function(channel){
-      $http.post('/api/littlebits/auth', profile).then(function(){
+      $http.post(OCTOBLU_API_URL + '/api/littlebits/auth', profile).then(function(){
         $state.go('material.design');
       })
     })

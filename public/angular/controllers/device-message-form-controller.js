@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('DeviceMessageFormController', function($scope, deviceService) {
+.controller('DeviceMessageFormController', function(OCTOBLU_API_URL, $scope, deviceService) {
   'use strict';
 
   $scope.schema = {};

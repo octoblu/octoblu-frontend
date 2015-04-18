@@ -1,6 +1,6 @@
 
 angular.module('octobluApp')
-.controller('addChannelTravisCIController', function($scope, $window, nodeType, channelService, AuthService) {
+.controller('addChannelTravisCIController', function(OCTOBLU_API_URL, $scope, $window, nodeType, channelService, AuthService) {
   'use strict';
 
   var channelPromise, getPath;
@@ -13,7 +13,7 @@ angular.module('octobluApp')
 
   $scope.activate = function(){
     channelPromise.then(function(){
-      $window.location.href = '/api/travis-ci/auth';
+      $window.location.href = OCTOBLU_API_URL + '/api/travis-ci/auth';
     });
   };
 });

@@ -13,7 +13,7 @@ angular.module('octobluApp')
         }
 
         this.getList = function(callback) {
-            $http.get('/api/channels', { cache: true})
+            $http.get(OCTOBLU_API_URL + '/api/channels', { cache: true})
                 .success(function(data) { callback(data); })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -29,7 +29,7 @@ angular.module('octobluApp')
          */
         this.getAllChannels = function(){
             var defer = $q.defer();
-            $http.get('/api/channels', { cache: true})
+            $http.get(OCTOBLU_API_URL + '/api/channels', { cache: true})
                 .success(function(data) {
                     defer.resolve(data);
                 })
@@ -45,7 +45,7 @@ angular.module('octobluApp')
          * @param callback
          */
         this.getActive = function(callback) {
-            $http.get('/api/channels/active', { cache: false})
+            $http.get(OCTOBLU_API_URL + '/api/channels/active', { cache: false})
                 .success(function(data) { callback(data); })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -59,7 +59,7 @@ angular.module('octobluApp')
          * @param callback
          */
         this.getAvailable = function(callback) {
-            return $http.get('/api/channels/available', { cache: false})
+            return $http.get(OCTOBLU_API_URL + '/api/channels/available', { cache: false})
                 .success(function(data) { callback(null, data); })
                 .error(function(error) {
                     console.log('Error: ' + error);
@@ -73,7 +73,7 @@ angular.module('octobluApp')
          * @returns {*}
          */
         this.getActiveChannels = function(force){
-            // return $http.get('/api/channels/active', { cache: false})
+            // return $http.get(OCTOBLU_API_URL + '/api/channels/active', { cache: false})
             //     .then(function(result){
             //         return result.data;
             //     });
@@ -82,7 +82,7 @@ angular.module('octobluApp')
                 defer.resolve(activechannels);
                 return defer.promise;
             } else {
-                return $http.get('/api/channels/active').then(function (res) {
+                return $http.get(OCTOBLU_API_URL + '/api/channels/active').then(function (res) {
                    activechannels.length = 0;
                    activechannels.push.apply(activechannels, res.data);
                    return activechannels;
@@ -108,7 +108,7 @@ angular.module('octobluApp')
          * @returns {*}
          */
         this.getAvailableChannels = function(force){
-            // return $http.get('/api/channels/available', { cache: false})
+            // return $http.get(OCTOBLU_API_URL + '/api/channels/available', { cache: false})
             //     .then(function(result){
             //         return result.data;
             //     });
@@ -117,7 +117,7 @@ angular.module('octobluApp')
                 defer.resolve(availablechannels);
                 return defer.promise;
             } else {
-                return $http.get('/api/channels/available').then(function (res) {
+                return $http.get(OCTOBLU_API_URL + '/api/channels/available').then(function (res) {
                     availablechannels.length = 0;
                     availablechannels.push.apply(availablechannels, res.data);
                     return availablechannels;
@@ -139,7 +139,7 @@ angular.module('octobluApp')
          */
           this.getNodeTypes = function() {
             var addLogoUrl = this.addLogoUrl;
-            return $http.get('/api/node_types')
+            return $http.get(OCTOBLU_API_URL + '/api/node_types')
                 .then(function(result){
                     return _.map(result.data, function(data) {
                         return addLogoUrl(data);
@@ -148,7 +148,7 @@ angular.module('octobluApp')
         };
 
         this.getCustomList = function(force) {
-            // return $http.get('/api/customchannels/', { cache: false})
+            // return $http.get(OCTOBLU_API_URL + '/api/customchannels/', { cache: false})
             //     .then(function(result){
             //         return result.data;
             //     });
@@ -157,7 +157,7 @@ angular.module('octobluApp')
                 defer.resolve(customchannels);
                 return defer.promise;
             } else {
-                return $http.get('/api/customchannels/').then(function (res) {
+                return $http.get(OCTOBLU_API_URL + '/api/customchannels/').then(function (res) {
                    angular.copy(res.data, customchannels);
                    return customchannels;
                 }, function (err) {
@@ -183,7 +183,7 @@ angular.module('octobluApp')
 
         this.getById = function(channelId){
             var addLogoUrl = this.addLogoUrl;
-            return $http.get('/api/channels/' + channelId).then(function(response){
+            return $http.get(OCTOBLU_API_URL + '/api/channels/' + channelId).then(function(response){
                 var data = response.data;
                 data = addLogoUrl(data);
                 return data;
@@ -192,7 +192,7 @@ angular.module('octobluApp')
 
         this.get = function(id, callback) {
             var addLogoUrl = this.addLogoUrl;
-            $http.get('/api/channels/'+id, { cache: false})
+            $http.get(OCTOBLU_API_URL + '/api/channels/'+id, { cache: false})
                 .success(function(data) {
                     data = addLogoUrl(data);
                     callback(data);
@@ -205,7 +205,7 @@ angular.module('octobluApp')
 
         this.save = function(channel, callback) {
             var d = angular.toJson(channel);
-            $http.put('/api/channels/', d, { cache: false})
+            $http.put(OCTOBLU_API_URL + '/api/channels/', d, { cache: false})
                 .success(function(data) {
                     callback(data);
                 })
@@ -216,7 +216,7 @@ angular.module('octobluApp')
         };
 
         this.delete = function(channelId, callback) {
-            $http.delete('/api/channels/'+channelId, { cache: false})
+            $http.delete(OCTOBLU_API_URL + '/api/channels/'+channelId, { cache: false})
                 .success(function(data) {
                     callback(true);
                 })

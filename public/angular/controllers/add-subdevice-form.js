@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addSubdeviceFormController', function($scope, $state, $stateParams, GatebluService, deviceService, NodeTypeService) {
+.controller('addSubdeviceFormController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, GatebluService, deviceService, NodeTypeService) {
   'use strict';
   NodeTypeService.getNodeTypeById($stateParams.nodeTypeId).then(function(nodeType){
     $scope.nodeType = nodeType;

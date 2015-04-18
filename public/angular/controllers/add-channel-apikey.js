@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addChannelApiKeyController', function($scope, $state, nodeType, AuthService, userService) {
+.controller('addChannelApiKeyController', function(OCTOBLU_API_URL, $scope, $state, nodeType, AuthService, userService) {
   'use strict';
 
   $scope.activate = function(){

@@ -1,4 +1,4 @@
-(function(global, $) {
+(function(global, $, OCTOBLU_API_URL) {
 
 	var rootUrl = '//' + global.location.host;
 
@@ -24,7 +24,7 @@
   }
 
   function loginViaProvider(provider) {
-    var url = '/api/oauth/' + provider;
+    var url = OCTOBLU_API_URL + '/api/oauth/' + provider;
     url += '?mobile=true&referrer=' + encodeURIComponent(rootUrl + '/static/auth-login-success.html');
     global.open(url, '_self', 'location=no,toolbar=no');
   }
@@ -48,7 +48,7 @@
 
     $('#loginForm').submit(function(e) {
       e.preventDefault();
-      $.post('/api/auth', {
+      $.post(OCTOBLU_API_URL + '/api/auth', {
         email: $('#email').val(),
         password: $('#password').val()
       }).success(function(currentUser) {

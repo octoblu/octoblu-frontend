@@ -36,8 +36,8 @@ describe 'FlowController', ->
 
   beforeEach ->
     inject ($httpBackend) =>
-      $httpBackend.whenGET("/api/auth").respond 200
-      $httpBackend.whenGET("/api/node_types").respond 200
+      $httpBackend.whenGET(OCTOBLU_API_URL + "/api/auth").respond 200
+      $httpBackend.whenGET(OCTOBLU_API_URL + "/api/node_types").respond 200
       $httpBackend.whenGET("/pages/octoblu.html").respond 200
       $httpBackend.whenGET("/pages/home.html").respond 200
 

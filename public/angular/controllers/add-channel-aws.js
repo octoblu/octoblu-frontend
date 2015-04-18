@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelAWSController', function($scope, $state, nodeType, userService, AuthService) {
+.controller('addChannelAWSController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, AuthService) {
   $scope.activate = function(){
     AuthService.getCurrentUser().then(function(user){
       userService.saveAWSApi(user.resource.uuid, nodeType.channelid,

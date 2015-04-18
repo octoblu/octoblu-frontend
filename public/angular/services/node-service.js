@@ -1,12 +1,12 @@
 angular.module('octobluApp')
-  .service('NodeService', function ($q, $http, deviceService, NodeTypeService, skynetService) {
+  .service('NodeService', function (OCTOBLU_API_URL, $q, $http, deviceService, NodeTypeService, skynetService) {
     'use strict';
     var self = this;
 
     self.getNodes = function (options) {
       options = options || {};
 
-      return $http.get('/api/nodes', options).then(function (results) {
+      return $http.get(OCTOBLU_API_URL + '/api/nodes', options).then(function (results) {
         deviceService.clearCache();
         _.each(results.data, deviceService.addOrUpdateDevice);
         return deviceService.getDevices();

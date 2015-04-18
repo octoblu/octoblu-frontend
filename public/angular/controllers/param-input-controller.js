@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('ParamInputController', function($scope) {
+  .controller('ParamInputController', function(OCTOBLU_API_URL, $scope) {
     'use strict';
     var copyParamsToNgModel, instantiateParams;
 
