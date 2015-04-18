@@ -70,3 +70,15 @@ deploy:
   deployment_group: app-octoblu-frontend
   on:
     branch: master
+- provider: opsworks
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
+  on:
+    branch: master
+- provider: opsworks
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
+  on:
+    branch: staging
