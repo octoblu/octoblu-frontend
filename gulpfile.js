@@ -6,9 +6,10 @@ var gulp         = require('gulp'),
   less           = require('gulp-less'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
-  nodemon        = require('gulp-nodemon'),
   coffee         = require('gulp-coffee'),
   clean          = require('gulp-clean'),
+  ecstatic       = require('ecstatic'),
+  http           = require('http'),
   _              = require('lodash');
 
 gulp.task('bower', function() {
@@ -60,47 +61,19 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
-gulp.task('channels:concat', function(){
-  return gulp.src('./assets/json/channels/*.json')
-    .pipe(jsoncombine('channels.json', function(data){
-      return new Buffer(JSON.stringify(_.values(data)));
-    }))
-    .pipe(gulp.dest('./assets/json/'));
-});
+gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
 
-gulp.task('nodetypes:concat', function(){
-  return gulp.src('./assets/json/nodetypes/**/*.json')
-    .pipe(jsoncombine('nodetypes.json', function(data){
-      return new Buffer(JSON.stringify(_.values(data)));
-    }))
-    .pipe(gulp.dest('./assets/json/'));
-});
+gulp.task('static', function(){
+  http.createServer(
+    ecstatic({ root: __dirname + '/public' })
+  ).listen(9999);
 
-gulp.task('operations:concat', function(){
-  return gulp.src('./assets/json/operations/**/*.json')
-    .pipe(jsoncombine('operations.json', function(data){
-      return new Buffer(JSON.stringify(_.values(data)));
-    }))
-    .pipe(gulp.dest('./assets/json/'));
-});
+  console.log('Listening on :8080');
+})
 
-gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat', 'channels:concat', 'nodetypes:concat', 'operations:concat'], function() {});
-
-gulp.task('production', ['channels:concat', 'nodetypes:concat', 'operations:concat']);
-
-gulp.task('watch', ['default'], function() {
+gulp.task('watch', ['default', 'static'], function() {
   gulp.watch(['./bower.json'], ['bower']);
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
   gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:clean', 'coffee:compile']);
-  gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
-  gulp.watch(['./assets/json/nodetypes/**/*.json'], ['nodetypes:concat']);
-  gulp.watch(['./assets/json/operations/**/*.json'], ['operations:concat']);
-
-  nodemon({
-    script : 'server.js',
-    ext : 'js json coffee',
-    watch : ['server.js', 'app/*', 'config/*', 'assets/*'],
-    env: { 'NODE_ENV': 'development' }
-  });
 });
