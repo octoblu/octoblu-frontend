@@ -1,10 +1,4 @@
-describe 'ListOctosController', ->
-  beforeEach ->
-    module 'octobluApp'
+class ListOctosController
+  constructor: ($scope) ->
 
-    inject ($controller, $rootScope) =>
-      @rootScope = $rootScope
-      @sut = $controller 'ListOctosController'
-
-  it 'should exist', ->
-    expect(@sut).to.exist
+angular.module('octobluApp').controller 'ListOctosController', ListOctosController
