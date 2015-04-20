@@ -1,4 +1,4 @@
-describe 'FlowEditorService', =>
+describe 'FlowEditorService', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       return
@@ -95,5 +95,3 @@ describe 'FlowEditorService', =>
 
       it 'should return nothing', ->
         expect(@activeFlow).to.not.exist
-
-
