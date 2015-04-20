@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('GroupService', function ($http) {
+    .service('GroupService', function ($http, OCTOBLU_API_URL) {
 
         this.addGroup = function (name) {
             return $http.post(OCTOBLU_API_URL + '/api/groups', {
@@ -60,4 +60,3 @@ angular.module('octobluApp')
         };
     })
 ;
-

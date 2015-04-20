@@ -1,5 +1,5 @@
 angular.module 'octobluApp'
-  .service 'AnalyzeService', ($q, $http)=>
+  .service 'AnalyzeService', ($q, $http, OCTOBLU_API_URL)=>
     class AnalyzeService
       getTopicSummary : =>
         return $http.get(OCTOBLU_API_URL + '/api/topics/summary').then (response) =>

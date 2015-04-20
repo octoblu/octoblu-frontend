@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp').
-    service('PermissionsService', function ($http, $q) {
+    service('PermissionsService', function ($http, $q, OCTOBLU_API_URL) {
         return {
             all: function (uuid, token) {
                 return $http.get(OCTOBLU_API_URL + '/api/permissions').then(function (res) {
