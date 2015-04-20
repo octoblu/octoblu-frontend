@@ -13,7 +13,6 @@ desiredState:
     containers:
       - name: docker-builder-$SHORT_COMMIT
         image: octoblu/dind-codedeploy
-        privileged: true
         volumeMounts:
           - name: docker-sock
             mountPath: /var/run/docker.sock
@@ -22,6 +21,8 @@ desiredState:
             value: "true"
           - name: GIT_REPO
             value: $GIT_REPO
+          - name: GIT_BRANCH
+            value: $TRAVIS_BRANCH
           - name: GIT_TAG
             value: $TRAVIS_COMMIT
           - name: IMAGE_NAME

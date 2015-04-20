@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('TemplateService', function ($http) {
+.service('TemplateService', function ($http, OCTOBLU_API_URL) {
   'use strict';
   var self;
   self = this;
@@ -37,7 +37,7 @@ angular.module('octobluApp')
       return response.data;
     });
   };
-  
+
   self.getTemplate = function(id) {
     return $http.get(OCTOBLU_API_URL + '/api/templates/' + id).then(function(response){
       return response.data;

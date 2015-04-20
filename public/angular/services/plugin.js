@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp').
-    service('PluginService', function ($q, $http,  deviceService) {
+    service('PluginService', function ($q, $http,  deviceService, OCTOBLU_API_URL) {
 
         this.getDefaultOptions = function (hub, pluginName) {
             return deviceService.gatewayConfig({
@@ -104,4 +104,3 @@ angular.module('octobluApp').
             });
         }
     });
-

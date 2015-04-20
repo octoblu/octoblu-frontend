@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('InvitationService', function ($q, $http) {
+    .service('InvitationService', function ($q, $http, OCTOBLU_API_URL) {
 
         /**
          * Sends an invitation to the Operators group an email address
