@@ -27,7 +27,7 @@ before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
   NODE_ENV=staging; fi
 - cp .npmrc ~/.npmrc
-- npm rebuild
+- npm install
 - node_modules/.bin/bower install
 - node_modules/.bin/gulp
 - export NODE_ENV=test
