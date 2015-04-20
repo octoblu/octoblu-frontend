@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-.service('userService', function ($http, $q, elasticService, OCTOBLU_API_URL) {
+.service('userService', function ($http, $q, OCTOBLU_API_URL) {
 
 this.activateNoAuthChannel = function(user, channelid, callback) {
   $http.put(OCTOBLU_API_URL + '/api/user/' + user + '/activate/' + channelid)
