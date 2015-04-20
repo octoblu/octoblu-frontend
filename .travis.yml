@@ -21,6 +21,7 @@ env:
   - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
 after_success:
 - ".kubernetes/travis_after_success"
+- mkdir -p build/$TRAVIS_BRANCH && tar czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz public
 before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
   NODE_ENV=staging; fi
@@ -39,6 +40,13 @@ deploy:
   bucket: octoblu-deploy
   on:
     branch: master
+- provider: s3
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  bucket: deploy-octoblu-static
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: build
 - provider: codedeploy
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
