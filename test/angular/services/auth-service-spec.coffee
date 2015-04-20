@@ -1,4 +1,4 @@
-describe 'AuthService', =>
+describe 'AuthService', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
