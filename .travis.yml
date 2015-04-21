@@ -22,8 +22,9 @@ env:
   - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
 after_success:
 - ".kubernetes/travis_after_success"
-- mkdir -p build/$TRAVIS_BRANCH && tar czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
-- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT 
+- find public -name *.html | xargs sed -i bak -E "s%=\"/(assets|lib)%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/\1%g" && find public -name *.htmlbak | xargs rm
+- mkdir -p build/$TRAVIS_BRANCH && tar --exclude-pattern public/lib --exclude-pattern public/assets -czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
+- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets public/lib dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
 before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
   NODE_ENV=staging; fi
