@@ -1,6 +1,5 @@
 class ListOctosController
-  constructor: ($mdToast, $scope, OctoService) ->
-    @mdToast = $mdToast
+  constructor: ($scope, OctoService) ->
     @OctoService = OctoService
     @refresh()
     @octos = [
@@ -14,8 +13,6 @@ class ListOctosController
         @octos = octos
       .catch (error) =>
         @errorMessage = error.message
-        toast = @mdToast.simple(position: 'top right').content @errorMessage
-        @mdToast.show toast
 
 
 angular.module('octobluApp').controller 'ListOctosController', ListOctosController

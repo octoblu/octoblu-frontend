@@ -1,4 +1,4 @@
-describe 'OctoService', ->
+xdescribe 'OctoService', ->
   beforeEach ->
     module 'octobluApp'
 
