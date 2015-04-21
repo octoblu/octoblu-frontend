@@ -2,10 +2,18 @@ class ListOctosController
   constructor: ($scope, OctoService) ->
     @OctoService = OctoService
     @refresh()
-    @octos = [
-      {name: 'Octo 1', online: false}
-      {name: 'Octo 2', online: true}
-    ]
+    @octos = []
+
+  addOcto: =>
+    return unless @canAddOcto()
+    @OctoService.add()
+    @octos.push({})
+
+  canAddOcto: =>
+    _.size(@octos) < 1
+
+  canRemoveOcto: =>
+    _.size(@octos) > 0
 
   refresh: =>
     @OctoService.list()
@@ -14,5 +22,12 @@ class ListOctosController
       .catch (error) =>
         @errorMessage = error.message
 
+  removeErrorMessage: =>
+    @errorMessage = null
+
+  removeOcto: =>
+    return unless @canRemoveOcto()
+    @OctoService.remove()
+    @octos = _.drop(@octos, 1)
 
 angular.module('octobluApp').controller 'ListOctosController', ListOctosController

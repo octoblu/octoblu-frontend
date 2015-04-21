@@ -13,3 +13,4 @@ angular.module('octobluApp')
   # .constant 'OCTOBLU_ICON_URL', 'http://octoblu-icons.s3.amazonaws.com/'
   .constant 'OCTOBLU_ICON_URL', 'http://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', 'http://localhost:8080'
+  .constant 'OCTO_MASTER_UUID', 'CHANGE_MEEEEEE'
