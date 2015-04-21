@@ -282,7 +282,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/octos',
         controller: 'ListOctosController',
         controllerAs: 'controller',
-        templateUrl: '/pages/octos.html'
+        templateUrl: '/pages/list-octos.html'
       })
       .state('material.channel', {
         url: '/channel/:id',

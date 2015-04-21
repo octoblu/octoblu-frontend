@@ -1,0 +1,31 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+        Octos
+      </a>
+    </div>
+  </h2>
+</md-toolbar>
+
+<md-toolbar class="md-warn" ng-show="controller.errorMessage">
+  <div class="md-toolbar-tools">
+    <h1>{{controller.errorMessage}}</h1>
+  </div>
+</md-toolbar>
+<md-content layout-padding>
+  <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+    <md-grid-tile ng-repeat="octo in controller.octos" class="octo-tile">
+      <div class="text-center">
+        <h1>{{octo.name}}</h1>
+        <span ng-show="octo.online" class="label label-success">Online</span>
+        <span ng-hide="octo.online" class="label label-danger">Offline</span>
+      </div>
+    </md-grid-tile>
+
+    <md-grid-tile class="text-muted">
+      <i class="fa fa-plus fa-5x"></i>
+    </md-grid-tile>
+  </md-grid-list>
+</md-content>
