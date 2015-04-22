@@ -4,7 +4,6 @@ describe 'OctoService', ->
 
     module 'octobluApp', ($provide) =>
       $provide.value 'deviceService', @deviceService
-      $provide.value 'OCTOBLU_API_URL', 'http://awesome.com'
       return
 
     inject ($q, $rootScope, OctoService, _$httpBackend_) =>
@@ -55,7 +54,16 @@ describe 'OctoService', ->
 
   describe '->remove', ->
     describe 'when called with a octo', ->
+      it 'should unregister the device', ->
+        @httpBackend.expectDELETE('/api/octos/sweet-uuid').respond(200)
+        @deviceService.unregisterDevice = sinon.stub().returns @q.when()
+        @sut.remove(uuid: 'sweet-uuid')
+        @httpBackend.flush()
+        expect(@deviceService.unregisterDevice).to.have.been.calledWith uuid: 'sweet-uuid'
+
+    describe 'when called with another octo', ->
       it 'should send a request to start the octo', ->
+        @deviceService.unregisterDevice = sinon.stub().returns @q.when()
         @httpBackend.expectDELETE('/api/octos/great-uuid').respond(200)
         @sut.remove(uuid: 'great-uuid')
         @httpBackend.flush()

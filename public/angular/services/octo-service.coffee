@@ -1,13 +1,12 @@
 class OctoService
-  constructor: ($http, $q, OCTOBLU_API_URL, deviceService) ->
+  constructor: ($http, $q, deviceService) ->
     @http = $http
     @q = $q
-    @OCTOBLU_API_URL = OCTOBLU_API_URL
     @deviceService = deviceService
 
   add: =>
     @http
-      .post "#{@OCTOBLU_API_URL}/api/octos"
+      .post "/api/octos"
       .then (response) =>
         response.data
 
@@ -22,6 +21,9 @@ class OctoService
     deferred.promise
 
   remove: (octo) =>
-    @http.delete "#{@OCTOBLU_API_URL}/api/octos/#{octo.uuid}"
+    @deviceService
+      .unregisterDevice(octo)
+      .then =>
+        @http.delete "/api/octos/#{octo.uuid}"
 
 angular.module('octobluApp').service 'OctoService', OctoService
