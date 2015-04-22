@@ -9,23 +9,29 @@
   </h2>
 </md-toolbar>
 
-<md-toolbar class="md-warn" ng-show="controller.errorMessage">
-  <div class="md-toolbar-tools">
-    <h1>{{controller.errorMessage}}</h1>
-  </div>
-</md-toolbar>
-<md-content layout-padding>
-  <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
-    <md-grid-tile ng-repeat="octo in controller.octos" class="octo-tile">
-      <div class="text-center">
-        <h1>{{octo.name}}</h1>
-        <span ng-show="octo.online" class="label label-success">Online</span>
-        <span ng-hide="octo.online" class="label label-danger">Offline</span>
-      </div>
-    </md-grid-tile>
+<div flex class="list-octos">
+  <div class="octo-column">
+    <md-card ng-show="controller.errorMessage">
+      <md-card-content>
+        <h3 class="md-title">Warning</h3>
+        <p>{{controller.errorMessage}}</p>
+      </md-card-content>
 
-    <md-grid-tile class="text-muted">
-      <i class="fa fa-plus fa-5x"></i>
-    </md-grid-tile>
-  </md-grid-list>
-</md-content>
+      <md-action-bar layout="row" layout-align="end center" ng-click="controller.removeErrorMessage()">
+        <md-button>Dismiss</md-button>
+      </md-action-bar>
+    </md-card>
+
+    <div class="big-count">
+      <md-button class="md-fab md-warn xcrement-button" ng-disabled="!controller.canRemoveOcto()" ng-click="controller.removeOcto()">
+        <i class="fa fa-2x fa-minus"></i>
+      </md-button>
+      <h1>{{controller.octos.length}}</h1>
+      <md-button class="md-fab xcrement-button" ng-disabled="!controller.canAddOcto()" ng-click="controller.addOcto()">
+        <i class="fa fa-2x fa-plus"></i>
+      </md-button>
+    </div>
+
+    <h2 class="text-muted">Octos</h2>
+  </div>
+</div>

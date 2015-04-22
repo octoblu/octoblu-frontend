@@ -2,10 +2,18 @@ class ListOctosController
   constructor: ($scope, OctoService) ->
     @OctoService = OctoService
     @refresh()
-    @octos = [
-      {name: 'Octo 1', online: false}
-      {name: 'Octo 2', online: true}
-    ]
+    @octos = []
+
+  addOcto: =>
+    return unless @canAddOcto()
+    @OctoService.add()
+    @octos.push({})
+
+  canAddOcto: =>
+    _.size(@octos) < 1
+
+  canRemoveOcto: =>
+    _.size(@octos) > 0
 
   refresh: =>
     @OctoService.list()
@@ -14,5 +22,15 @@ class ListOctosController
       .catch (error) =>
         @errorMessage = error.message
 
+  removeErrorMessage: =>
+    @errorMessage = null
+
+  removeOcto: =>
+    unless @canRemoveOcto()
+      @errorMessage = 'Octo limit reached'
+      return
+    octoToRemove = _.first(@octos)
+    @OctoService.remove octoToRemove
+    @octos = _.without @octos, octoToRemove
 
 angular.module('octobluApp').controller 'ListOctosController', ListOctosController
