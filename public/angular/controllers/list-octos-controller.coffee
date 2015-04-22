@@ -6,8 +6,8 @@ class ListOctosController
 
   addOcto: =>
     return unless @canAddOcto()
-    @OctoService.add()
-    @octos.push({})
+    @OctoService.add().then (octo) =>
+      @octos.push octo
 
   canAddOcto: =>
     _.size(@octos) < 1

@@ -26,6 +26,8 @@ describe 'ListOctosController', ->
     describe 'when called and we have one octo', ->
       beforeEach ->
         @sut.octos = [{}]
+        @OctoService.add = sinon.stub().returns @q.when({})
+        _.defer => @rootScope.$digest()
         @sut.addOcto()
 
       it 'should not add an octo to the octos', ->
@@ -34,6 +36,8 @@ describe 'ListOctosController', ->
     describe 'when called and we have zero octos', ->
       beforeEach ->
         @sut.octos = []
+        @OctoService.add = sinon.stub().returns @q.when({})
+        _.defer => @rootScope.$digest()
         @sut.addOcto()
 
       it 'should add an octo to the octos', ->
