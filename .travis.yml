@@ -22,8 +22,7 @@ env:
   - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
 after_success:
 - ".kubernetes/travis_after_success"
-- find public -name *.html | xargs sed -iE "s%=\"/(assets|lib)%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/\1%g"
-- find public -name *.htmlbak | xargs rm
+- find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
 - mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
 - mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
 before_script:
