@@ -130,11 +130,11 @@ describe 'ListOctosController', ->
 
     describe 'when called and we have one octo', ->
       beforeEach ->
-        @sut.octos = [{}]
+        @sut.octos = [uuid: 'bo-ya']
         @sut.removeOcto()
 
       it 'should remove the last octo', ->
         expect(@sut.octos).to.deep.equal []
 
       it 'should call OctoService.remove()', ->
-        expect(@OctoService.remove).to.have.been.called
+        expect(@OctoService.remove).to.have.been.calledWith uuid: 'bo-ya'

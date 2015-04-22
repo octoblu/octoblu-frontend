@@ -1,45 +1,27 @@
 class OctoService
-  constructor: (OCTO_MASTER_UUID, $q, $cookies, skynetService, deviceService) ->
-    @OCTO_MASTER_UUID = OCTO_MASTER_UUID
-    @cookies = $cookies
+  constructor: ($http, $q, OCTOBLU_API_URL, deviceService) ->
+    @http = $http
     @q = $q
-    @skynetService = skynetService
+    @OCTOBLU_API_URL = OCTOBLU_API_URL
     @deviceService = deviceService
 
-  list: =>
-    @q.when []
-    # @q.reject(new Error('Octo limit reached.'))
-
   add: =>
-    userUuid = @cookies.meshblu_auth_uuid
-    deviceProperties =
-      type: 'octoblu:octo'
-      discoverWhitelist: [userUuid]
-      configureWhitelist: [userUuid]
-      receiveWhitelist: ['*']
-      sendWhitelist: [userUuid]
+    @http
+      .post "#{@OCTOBLU_API_URL}/api/octos"
+      .then (response) =>
+        response.data
 
-    @deviceService
-      .registerDevice(deviceProperties)
-      .then (newDevice) =>
-        messagePayload =
-          uuid: newDevice.uuid
-          token: newDevice.token
-        @sendCommand('add-octo', messagePayload)
+  list: =>
+    deferred = @q.defer()
+    @deviceService.getDevices()
+      .then (devices) =>
+        octos = _.where devices, type: 'octoblu:octo'
+        deferred.resolve(octos)
+      .catch (error) =>
+        deferred.reject new Error('Error retrieving octos')
+    deferred.promise
 
   remove: (octo) =>
-    @deviceService
-      .resetToken(octo.uuid)
-      .then =>
-        @sendCommand('remove-octo', uuid : octo.uuid)
-
-  sendCommand: (command, payload={}) =>
-    deviceMessage =
-      devices: @OCTO_MASTER_UUID
-      topic: command
-      payload: payload
-
-    @skynetService.sendMessage deviceMessage
-
+    @http.delete "#{@OCTOBLU_API_URL}/api/octos/#{octo.uuid}"
 
 angular.module('octobluApp').service 'OctoService', OctoService

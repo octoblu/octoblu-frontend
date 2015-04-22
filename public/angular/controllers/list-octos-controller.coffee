@@ -26,8 +26,11 @@ class ListOctosController
     @errorMessage = null
 
   removeOcto: =>
-    return unless @canRemoveOcto()
-    @OctoService.remove()
-    @octos = _.drop(@octos, 1)
+    unless @canRemoveOcto()
+      @errorMessage = 'Octo limit reached'
+      return
+    octoToRemove = _.first(@octos)
+    @OctoService.remove octoToRemove
+    @octos = _.without @octos, octoToRemove
 
 angular.module('octobluApp').controller 'ListOctosController', ListOctosController

@@ -1,123 +1,61 @@
 describe 'OctoService', ->
   beforeEach ->
-    @skynetService =
-      sendMessage: sinon.spy()
-
     @deviceService = {}
 
-    @cookies = {}
-
     module 'octobluApp', ($provide) =>
-      $provide.value 'skynetService', @skynetService
       $provide.value 'deviceService', @deviceService
-      $provide.value '$cookies', @cookies
-      $provide.value 'OCTO_MASTER_UUID', 'octo-master'
+      $provide.value 'OCTOBLU_API_URL', 'http://awesome.com'
       return
 
-    inject ($q, $rootScope, OctoService) =>
+    inject ($q, $rootScope, OctoService, _$httpBackend_) =>
       @q = $q
       @rootScope = $rootScope
+      @httpBackend = _$httpBackend_
       @sut = OctoService
 
   it 'should exist', ->
     expect(@sut).to.exist
 
-  xdescribe '->list', ->
-    beforeEach ->
-      _.defer => @rootScope.$digest()
-      @sut.list().then (@octos) =>
+  describe '->list', ->
+    describe 'when called and the device service resolves only two octos', ->
+      beforeEach ->
+        devices = [{type: 'octoblu:octo'}, {type: 'octoblu:octo'}]
+        @deviceService.getDevices = sinon.stub().returns @q.when(devices)
+        _.defer => @rootScope.$digest()
+        @sut.list().then (@octos) =>
 
-    it 'should resolve a list of octo-owls', ->
-      expect(@octos).to.deep.equal [{}, {}]
+      it 'should resolve a list of octo-owls', ->
+        expect(@octos).to.deep.equal [{type: 'octoblu:octo'}, {type: 'octoblu:octo'}]
+
+    describe 'when called and the device service resolves one octo and one other device', ->
+      beforeEach ->
+        devices = [{type: 'someother:device'}, {type: 'octoblu:octo'}]
+        @deviceService.getDevices = sinon.stub().returns @q.when(devices)
+        _.defer => @rootScope.$digest()
+        @sut.list().then (@octos) =>
+
+      it 'should resolve a list of octo-owls without the other device', ->
+        expect(@octos).to.deep.equal [{type: 'octoblu:octo'}]
+
+    describe 'when called and the device service rejects', ->
+      beforeEach ->
+        @deviceService.getDevices = sinon.stub().returns @q.reject()
+        _.defer => @rootScope.$digest()
+        @sut.list().catch (@error) =>
+
+      it 'should resolve a list of octo-owls without the other device', ->
+        expect(@error).to.exist
 
   describe '->add', ->
-    describe 'when called with a octoblu-user', ->
-      beforeEach ->
-        device = uuid: 'some-super-uuid', token: 'some-super-token'
-        @deviceService.registerDevice = sinon.stub().returns @q.when(device)
-        @cookies.meshblu_auth_uuid = 'octoblu-user'
-        _.defer => @rootScope.$digest()
+    describe 'when called', ->
+      it 'should send a request to start the octo', ->
+        @httpBackend.expectPOST('/api/octos').respond(201)
         @sut.add()
-
-      it 'should call deviceService.registerDevice with the device properties', ->
-        deviceProperties =
-          type: 'octoblu:octo'
-          discoverWhitelist: ['octoblu-user']
-          configureWhitelist: ['octoblu-user']
-          receiveWhitelist: ['*']
-          sendWhitelist: ['octoblu-user']
-        expect(@deviceService.registerDevice).to.have.been.calledWith deviceProperties
-
-      it 'should send a meshblu message to the octo manager with a device', ->
-        deviceMessage =
-          devices: 'octo-master'
-          topic: 'add-octo'
-          payload:
-            uuid: 'some-super-uuid'
-            token: 'some-super-token'
-        expect(@skynetService.sendMessage).to.have.been.calledWith deviceMessage
-
-    describe 'when called a different octoblu-user', ->
-      beforeEach ->
-        device = uuid: 'some-lame-uuid', token: 'some-lame-token'
-        @deviceService.registerDevice = sinon.stub().returns @q.when(device)
-        @cookies.meshblu_auth_uuid = 'amazing-user'
-        _.defer => @rootScope.$digest()
-        @sut.add()
-
-      it 'should call deviceService.registerDevice with the device properties', ->
-        deviceProperties =
-          type: 'octoblu:octo'
-          discoverWhitelist: ['amazing-user']
-          configureWhitelist: ['amazing-user']
-          receiveWhitelist: ['*']
-          sendWhitelist: ['amazing-user']
-        expect(@deviceService.registerDevice).to.have.been.calledWith deviceProperties
-
-      it 'should send a meshblu message to the octo manager with a device', ->
-        deviceMessage =
-          devices: 'octo-master'
-          topic: 'add-octo'
-          payload:
-            uuid: 'some-lame-uuid'
-            token: 'some-lame-token'
-        expect(@skynetService.sendMessage).to.have.been.calledWith deviceMessage
+        @httpBackend.flush()
 
   describe '->remove', ->
-    describe 'when called with a octoblu-user', ->
-      beforeEach ->
-        @deviceService.resetToken = sinon.stub().returns @q.when()
-        @cookies.meshblu_auth_uuid = 'octoblu-user'
-        _.defer => @rootScope.$digest()
-        @sut.remove(uuid: 'some-super-uuid')
-
-      it 'should reset the device', ->
-        expect(@deviceService.resetToken).to.have.been.calledWith 'some-super-uuid'
-
-      it 'should send a meshblu message to the octo manager with a device', ->
-        deviceMessage =
-          devices: 'octo-master'
-          topic: 'remove-octo'
-          payload:
-            uuid: 'some-super-uuid'
-
-        expect(@skynetService.sendMessage).to.have.been.calledWith deviceMessage
-
-    describe 'when called a different octoblu-user', ->
-      beforeEach ->
-        @deviceService.resetToken = sinon.stub().returns @q.when()
-        @cookies.meshblu_auth_uuid = 'amazing-user'
-        _.defer => @rootScope.$digest()
-        @sut.remove(uuid: 'some-lame-uuid')
-
-      it 'should reset the device', ->
-        expect(@deviceService.resetToken).to.have.been.calledWith 'some-lame-uuid'
-
-      it 'should send a meshblu message to the octo manager with a device', ->
-        deviceMessage =
-          devices: 'octo-master'
-          topic: 'remove-octo'
-          payload:
-            uuid: 'some-lame-uuid'
-
-        expect(@skynetService.sendMessage).to.have.been.calledWith deviceMessage
+    describe 'when called with a octo', ->
+      it 'should send a request to start the octo', ->
+        @httpBackend.expectDELETE('/api/octos/great-uuid').respond(200)
+        @sut.remove(uuid: 'great-uuid')
+        @httpBackend.flush()
