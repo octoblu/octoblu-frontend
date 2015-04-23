@@ -1,75 +1,63 @@
 <div class="templates" layout-fill layout="column" flex>
-    <md-toolbar>
-        <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-            <div flex layout="row">
-                <a href class="menu-icon" ng-click="toggleNav()">
-                    <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-                    Templates
-                </a>
+  <md-toolbar>
+    <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+      <div flex layout="row">
+        <a href class="menu-icon" ng-click="toggleNav()">
+          <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i> Templates
+        </a>
+      </div>
+
+      <md-button clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy to Clipboard">
+        <md-tooltip>Copy to Clipboard</md-tooltip>
+        <i class="fa fa-share-alt"></i> Copy Link
+      </md-button>
+
+      <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length" aria-label="Delete Template">
+        <md-tooltip>Delete Template</md-tooltip>
+        <i class="fa fa-trash"></i> Delete
+      </md-button>
+    </h2>
+  </md-toolbar>
+  <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
+    <md-content layout="row" layout-wrap="wrap" class="templates-list">
+      <div ng-if="!templates.length" class="text-center">
+        <img style="max-width:50%;max-height:50%" ng-src="{{randomRobot()}}" flex="1">
+        <h1 class="text-center">You have no shared templates.</h1>
+      </div>
+      <md-list flex>
+        <form class="form" layout="row" layout-align="center">
+          <div class="form-group" flex="100" style="margin-bottom: 0; padding: 10px;">
+            <div class="input-group">
+            <input type="text" class="form-control" ng-model="templateSearch" autofocus>
+            <span class="input-group-addon">
+              <i class="fa fa-search"></i>
+            </span>
             </div>
-
-            <md-button clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy to Clipboard">
-                <md-tooltip>Copy to Clipboard</md-tooltip>
-                <i class="fa fa-share-alt"></i>
-                Copy Link
+          </div>
+        </form>
+        <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
+          <md-item-content layout="row" layout-align="space-around">
+            <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)" aria-label="Set Current Template">
+              <img src="{{OCTOBLU_ICON_URL}}device/flow.svg" height="30">
+              <div flex layout layout-align="space-between">
+                <h3>{{template.name}}</h3>
+                <h4>{{template.created | date: 'short'}}</h4>
+              </div>
             </md-button>
+          </md-item-content>
+        </md-item>
+      </md-list>
+    </md-content>
 
-            <md-button ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length" aria-label="Delete Template">
-                <md-tooltip>Delete Template</md-tooltip>
-                <i class="fa fa-trash"></i>
-                Delete
-            </md-button>
-        </h2>
-    </md-toolbar>
-    <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
-        <div layout-fill layout="column" style="background: white;">
-
-            <div style="min-height: 60%" class="template-preview" layout="column" layout-sm="row" ng-if="templates.length">
-                <div layout="row" layout-align="space-around center" style="margin: auto; min-height: 60px">
-                    <form class="form" layout="row" layout-align="center">
-                        <div class="form-group" flex="66" style="margin-bottom: 0">
-                            <div class="input-group">
-                                <input type="text" class="form-control" ng-model="templateSearch" autofocus>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <flow-editor style="min-height: 500px" flow="currentTemplate.flow" readonly="true" ></flow-editor>
-
-                <div style="max-height: 40%; padding: 0 0 15px 15px" layout="column">
-                    <md-input-container>
-                      <label>Name</label>
-                      <input ng-model="currentTemplate.name">
-                    </md-input-container>
-                    <bill-of-materials class="hidden" flow="currentTemplate.flow"></bill-of-materials>
-                </div>
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-content flex layout="column" layout-wrap="wrap" class="templates-list">
-                <div ng-if="!templates.length" class="text-center">
-                    <img ng-src="{{randomRobot()}}" flex="33">
-                    <h1 class="text-center">You have no shared templates.</h1>
-                </div>
-                <md-list flex>
-                    <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
-                        <md-item-content layout="row" layout-align="space-around">
-                            <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)" aria-label="Set Current Template">
-                                <img src="{{OCTOBLU_ICON_URL}}device/flow.svg" height="30">
-                                <div flex layout layout-align="space-between">
-                                    <h3>{{template.name}}</h3>
-                                    <h4>{{template.created | date: 'short'}}</h4>
-                                </div>
-                            </md-button>
-                        </md-item-content>
-                    </md-item>
-                </md-list>
-            </md-content>
+    <div style="min-height: 60%" flex="66" class="template-preview" layout="column" ng-if="templates.length">
+      <flow-editor flex="1" flow="currentTemplate.flow" readonly="true"></flow-editor>
+        <div style="padding: 0 0 15px 15px" flex="1" layout="column">
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="currentTemplate.name">
+        </md-input-container>
+          <bill-of-materials flow="currentTemplate.flow"></bill-of-materials>
         </div>
     </div>
+  </div>
 </div>
