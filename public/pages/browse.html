@@ -1,0 +1,29 @@
+<div class="browse" layout-fill layout="column" flex>
+  <md-toolbar>
+      <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+          <div flex layout="row">
+              <a href class="menu-icon" ng-click="toggleNav()">
+                  <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+                  Browse Templates
+              </a>
+          </div>
+          <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
+            <md-tooltip>My Templates</md-tooltip>
+            <i class="fa fa-clipboard fa-lg"></i> My Templates
+          </md-button>
+      </h2>
+  </md-toolbar>
+  <div flex layout-fill layout="row" layout-align="center">
+    <md-content flex="80" layout="column" layout-wrap="wrap">
+      <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-cols-gt-lg="8" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="15px" md-gutter-gt-sm="4px" layout-margin>
+        <md-grid-tile ng-repeat="template in templates" md-rowspan="1" md-colspan="1" class="template" ng-style="{'background-color': template.color}">
+          <div class="tile-container ng-scope" flex layout-fill layout="column" layout-align="space-around center">
+            <md-button class="md-icon-button"><i class="fa fa-share-alt"></i> Import Template</md-button>
+            <h4 class="template-description">{{template.description}}</h4>
+          </div>
+          <md-grid-tile-footer><h3>{{template.name}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-content>
+  </div>
+</div>
