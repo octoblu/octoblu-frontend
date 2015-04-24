@@ -26,6 +26,7 @@ after_success:
 - mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
 - mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
 - mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
+- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT/lib/zeroclipboard/dist && cp -rf public/lib/zeroclipboard/dist/ZeroClipboard.swf dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT/lib/zeroclipboard/dist/ZeroClipboard.swf
 - for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done
 before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
