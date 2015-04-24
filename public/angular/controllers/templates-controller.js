@@ -28,12 +28,6 @@ angular.module('octobluApp')
     });
   };
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.isopen = !$scope.isopen;
-  };
-
   $scope.confirmDeleteTemplate = function(id){
     var confirm = $mdDialog.confirm()
       .content("Are you sure you want to delete this template?")

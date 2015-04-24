@@ -361,6 +361,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/templates.html',
         controller: 'TemplatesController'
       })
+      .state('material.templates.browse', {
+        url: '/templates/browse',
+        templateUrl: '/pages/templates/browse.html',
+        controller: 'BrowseTemplatesController'
+      })
       .state('accept_terms', {
         url: '/accept_terms',
         templateUrl: '/pages/accept_terms.html',
