@@ -24,7 +24,9 @@ after_success:
 - ".kubernetes/travis_after_success"
 - find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
 - mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -czf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
+- mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
 - mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
+- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT/lib/zeroclipboard/dist && cp -rf public/lib/zeroclipboard/dist/ZeroClipboard.swf dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT/lib/zeroclipboard/dist/ZeroClipboard.swf
 - for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done
 before_script:
 - if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
@@ -60,6 +62,13 @@ deploy:
   region: us-west-2
   skip_cleanup: true
   local-dir: build
+- provider: s3
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  bucket: deploy-octoblu-static
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: dpl_static
 - provider: codedeploy
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
@@ -69,5 +78,11 @@ deploy:
   region: us-west-2
   application: docker-builder
   deployment_group: app-octoblu-frontend
+  on:
+    branch: master
+- provider: opsworks
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
   on:
     branch: master

@@ -5,11 +5,10 @@ var gulp         = require('gulp'),
   less           = require('gulp-less'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
+  webserver      = require('gulp-webserver'),
   coffee         = require('gulp-coffee'),
   clean          = require('gulp-clean'),
   _              = require('lodash');
-
-var server = require('pushstate-server');
 
 gulp.task('bower', function() {
   bower('./public/lib');
@@ -63,24 +62,22 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
 gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
 
 gulp.task('static', function(){
+
   var port = process.env.OCTOBLU_FRONTEND_PORT || 8080;
   process.env.PORT = port;
 
-  var url = require('url');
-  var proxy = require('proxy-middleware');
-  var proxyOptions = url.parse('http://localhost:8081/api');
-  proxyOptions.cookieRewrite = true;
-
-  server.app.use('/api', function(req, res, next) {
-    proxy(proxyOptions)(req, res, next);
-  });
-
-  server.start({
+  gulp.src('./public').pipe(webserver({
+    host: '0.0.0.0',
     port: port,
-    directory: './public'
-  });
-
-  console.log('Listening on :' + port);
+    livereload: false,
+    directoryListing: false,
+    open: false,
+    fallback: 'index.html',
+    proxies: [{
+      source: '/api',
+      target: 'http://localhost:8081/api'
+      }]
+  }));
 });
 
 gulp.task('watch', ['default', 'static'], function() {
