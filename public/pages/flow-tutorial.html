@@ -37,7 +37,8 @@
           <i class="fa fa-minus fa-lg"></i>
         </button>
   </div>
+
   <flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
-  <flow-node-editor flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
+  <flow-node-editor flow-id="activeFlow.flowId" flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
   <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
 </div>

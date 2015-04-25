@@ -7,7 +7,8 @@ angular.module('octobluApp')
     replace: true,
     transclude: true,
     scope: {
-      flowNode: '='
+      flowNode: '=',
+      flowId: '='
     },
     link: function(scope, element) {
       var setScrollableHeight = function() {
