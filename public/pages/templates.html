@@ -41,8 +41,7 @@
               </form>
           </div>
             <md-item ng-class="{'selected' : template === currentTemplate}" class="template-item" ng-repeat="template in templates | filter: {name:templateSearch}">
-                <md-item-content layout="row" layout-align="space-around">
-                    <md-button flex layout="row" layout-align="start center" ng-click="setCurrentTemplate(template)" aria-label="Set Current Template">
+                <md-item-content ng-click="setCurrentTemplate(template)">
                         <img ng-src="{{OCTOBLU_ICON_URL}}device/flow.svg" height="30">
                         <div flex layout layout-align="space-between" layout-wrap>
                             <h3>{{template.name}}</h3>
@@ -58,7 +57,6 @@
                             <i class="fa fa-trash fa-lg"></i>
                           </md-button>
                         </div>
-                    </md-button>
                 </md-item-content>
             </md-item>
         </md-list>

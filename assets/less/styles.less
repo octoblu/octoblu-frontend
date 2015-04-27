@@ -88,6 +88,12 @@ html, body, .full-height {
   }
 }
 .template-item {
+  cursor:pointer;
+  & > md-item-content{
+    .flex-display;
+    .flex-direction(row);
+    .justify-content(space-around);
+  }
   img {
     margin:15px;
   }
@@ -99,8 +105,6 @@ html, body, .full-height {
   h4 {
     margin-right: 15px;
   }
-
-  cursor:pointer;
   md-item-content {
     transition: 0.2s box-shadow;
     box-shadow: none;
