@@ -23,11 +23,13 @@
   	global.location.href = rootUrl + "/static/auth-login-success.html?uuid=" + uuid + "&token=" + token;
   }
 
-  function loginViaProvider(provider) {
-    var url = OCTOBLU_API_URL + '/api/oauth/' + provider;
-    url += '?mobile=true&referrer=' + encodeURIComponent(rootUrl + '/static/auth-login-success.html');
-    global.open(url, '_self', 'location=no,toolbar=no');
-  }
+	function closePebble(uuid, token){
+		console.log('closing pebble')
+		global.location.href = "pebblejs://close#" + encodeURIComponent(JSON.stringify({
+			uuid: uuid,
+			token: token
+		}));
+	}
 
   $(document).ready(function() {
     if($('#creds').size()){
@@ -36,28 +38,14 @@
       if(uuid && token){
         $('#creds').attr('data-uuid', uuid);
         $('#creds').attr('data-token', token);
+				var pebble = getParam('closePebble')
+				console.log('close-pebble', pebble);
+				if(pebble === 'true' || pebble === true){
+					closePebble(uuid, token)
+				}
       }
+
     }
-
-
-    $('.login-via-provider').click(function(e) {
-      e.preventDefault();
-      loginViaProvider($(this).attr('data-provider'));
-      return false;
-    });
-
-    $('#loginForm').submit(function(e) {
-      e.preventDefault();
-      $.post(OCTOBLU_API_URL + '/api/auth', {
-        email: $('#email').val(),
-        password: $('#password').val()
-      }).success(function(currentUser) {
-        closeSettings(currentUser.skynet.uuid, currentUser.skynet.token);
-      }).error(function() {
-        alert('There was an error signing into Octoblu');
-      });
-      return false;
-    });
   });
 
 })(window, jQuery);
