@@ -1,9 +1,11 @@
 .directory {
+  padding: 25px;
+  text-rendering: optimizeLegibility;
 }
 
 .directory__header {
   border-bottom: 1px solid #DEDEDE;
-  padding: 0 15px;
+  padding: 0;
 }
 
 .directory__header-text {
@@ -23,37 +25,84 @@
 }
 
 .directory__flow {
-  width: 100%;
+  .flex-display;
+  .flex-direction(column);
+  .justify-content(space-between);
+
+  position: relative;
+
   padding: 15px;
+  width: 32%;
   margin-top: 25px;
 
-  background: whitesmoke;
+  background: #FFF;
+  border-radius: 2px;
+  color: #3D4048;
+
+  @media @mobile, @tablet {
+    width: 100%;
+  }
 
   @media @desktop {
-    background: green;
-    width: 50%;
+    width: 48%;
   }
 
-  @media @desktop-xl {
-    width: 33%;
-  }
-
-  @media @desktop, @desktop-xl {
+  @media @desktop-xxl {
+    width: 24%;
   }
 }
 
-
 .directory__flow-name {
-  margin-top: 0;
-  font-weight: normal;
+  margin: 0 25px 10px 0;
+
+  /* color: #609CDD; */
+}
+
+.directory__flow-description {
+  line-height: 1.5;
 }
 
 .directory__flow-tag {
-  margin-right: 10px;
+  display: inline-block;
+  margin: 0 10px 5px 0;
   padding: 5px 10px;
 
-  background: rgb(224,224,224);
+  background: #F0F0F0;
   color: #444;
   font-size: 12px;
   line-height: 1;
+
+  &&:hover {
+    background: #FFF;
+    text-decoration: none;
+    transition: all 0.7s ease;
+  }
+}
+
+.directory__flow-import-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+
+  background: #F0F0F0;
+  color: #6F6F6F;
+
+  /* display: none; */
+}
+
+.directory__flow-footer {
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-between);
+
+  margin-top: 15px;
+}
+
+.directory__flow-meta {
+  margin-right: 10px;
+}
+
+.directory__flow-meta--downloads {
+  margin-right: 0;
 }

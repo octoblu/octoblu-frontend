@@ -20,9 +20,13 @@
     </div>
 
     <ul class="directory__flows">
-      <li ng-repeat="flow in controller.flows" class="directory__flow">
+      <li ng-repeat="flow in controller.flows" class="md-whiteframe-z1 directory__flow">
+        <a ng-click="controller.importFlow(flow.id)" class="directory__flow-import-link">
+          <i class="fa fa-plus"></i>
+        </a>
+
         <h3 class="directory__flow-name">
-          {{flow.name}}
+          <a ng-click="controller.importFlow(flow.id)" class="directory__flow-name-link">{{flow.name}}</a>
         </h3>
 
         <p class="directory__flow-description">
@@ -33,20 +37,23 @@
           <a href="#" ng-repeat="tag in flow.tags" class="directory__flow-tag">{{tag}}</a>
         </div>
 
-        <span class="directory__flow-author">
-          <i class="fa fa-user"></i>
-          {{flow.author}}
-        </span>
+        <div class="directory__flow-footer">
+          <span class="directory__flow-meta directory__flow-meta--author">
+            <i class="fa fa-user"></i>
+            {{flow.author}}
+          </span>
 
-        <div class="directory__flow-meta">
-          <span class="directory__flow-likes">
-             <i class="fa fa-heart"></i>
-             {{flow.like_count}}
-          </span>
-          <span class="directory__flow-downloads">
-             <i class="fa fa-download"></i>
-             {{flow.download_count}}
-          </span>
+          <div>
+            <span class="directory__flow-meta directory__flow-meta--likes">
+               <i class="fa fa-heart"></i>
+               {{flow.like_count}}
+            </span>
+
+            <span class="directory__flow-meta directory__flow-meta--downloads">
+               <i class="fa fa-user-plus"></i>
+               {{flow.download_count}}
+            </span>
+          </div>
         </div>
       </li>
     </ul>
