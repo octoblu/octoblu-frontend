@@ -2,57 +2,64 @@
 	<head>
 			<title>Octoblu Login</title>
       <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css">
       <link rel="stylesheet" type="text/css" href="/assets/stylesheets/font-awesome.min.css">
-      <script src="/lib/jquery/dist/jquery.js"></script>
-      <script src="/static/pebble-login.js"></script>
+      <style>
+       .login-via-provider {
+       	 display : block;
+       }
+       .login-header {
+       	 margin: 50px 0 30px;
+       }
+      </style>
 	</head>
 	<body>
-    <div class="row">
-      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
-        <h3>Octoblu Login</h3>
-    		<form id="loginForm">
-    			<div class="form-group">
-    				<label for="email">Email</label>
-    				<input class="form-control" name="email" type="email" id="email" placeholder="john.doe@example.com" />
-    			</div>
-    			<div class="form-group">
-    				<label for="password">Password</label>
-    				<input class="form-control" name="password" type="password" id="password" />
-    			</div>
-    		  <button type="submit" class="btn btn-lg center-block btn-success">Login</button>
-    		</form>
-      </div>
-    </div>
-
-		<div class="row text-center">
-      <div class="col-xs-12 col-lg-4 col-lg-offset-2">
-        <p>
-          <button class="btn-lg btn-primary btn-github login-via-provider" data-provider="github">
-            <span class="fa fa-github"> Github</span>
-          </button>
-        </p><br>
-      </div>
-      <div class="col-xs-12 col-lg-4">
-        <p>
-          <button class="btn-lg btn-primary btn-facebook login-via-provider" data-provider="facebook">
-            <span class="fa fa-facebook"> Facebook</span>
-          </button>
-        </p><br>
-      </div>
-      <div class="col-xs-12 col-lg-4 col-lg-offset-2">
-        <p>
-          <button class="btn-lg btn-primary btn-twitter login-via-provider" data-provider="twitter">
-            <span class="fa fa-twitter"> Twitter</span>
-          </button>
-        </p><br>
-      </div>
-      <div class="col-xs-12 col-lg-4">
-        <p>
-          <button class="btn-lg btn-primary btn-google-plus login-via-provider" data-provider="google">
-            <span class="fa fa-google-plus"> Google+</span>
-          </button>
-        </p><br>
-      </div>
+		<div class="row">
+			<div class="col-xs-12" style="padding: 20px">
+	      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+	      	<img src="/assets/images/octoblucircle.png" class="center-block">
+	        <h3 class="text-center login-header">Octoblu Login</h3>
+	      </div>
+	      <div class="text-center">
+		      <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+		        <p>
+		          <a href="https://login.octoblu.com/?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html%3FclosePebble%3Dtrue" class="btn-lg btn-success login-via-provider" data-provider="email-password">
+		            <span class="fa fa-envelope-o"> Email</span>
+		          </a>
+		        </p><br>
+		      </div>
+	      <div class="text-center">
+		      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
+		        <p>
+		          <a href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html%3FclosePebble%3Dtrue" class="btn-lg btn-github login-via-provider" data-provider="github">
+		            <span class="fa fa-github"> Github</span>
+		          </a>
+		        </p><br>
+		      </div>
+		      <div class="col-xs-6 col-lg-4">
+		        <p>
+		          <a href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html%3FclosePebble%3Dtrue" class="btn-lg btn-facebook login-via-provider" data-provider="facebook">
+		            <span class="fa fa-facebook"> Facebook</span>
+		          </a>
+		        </p><br>
+		      </div>
+		      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
+		        <p>
+		          <a href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html%3FclosePebble%3Dtrue" class="btn-lg btn-twitter login-via-provider" data-provider="twitter">
+		            <span class="fa fa-twitter"> Twitter</span>
+		          </a>
+		        </p><br>
+		      </div>
+		      <div class="col-xs-6 col-lg-4">
+		        <p>
+		          <a href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html%3FclosePebble%3Dtrue" class="btn-lg btn-google-plus login-via-provider" data-provider="google">
+		            <span class="fa fa-google-plus"> Google+</span>
+		          </a>
+		        </p><br>
+					  </div>
+					</div>
+				</div>
+			</div>
     </div>
 	</body>
 </html>
