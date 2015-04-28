@@ -4,7 +4,7 @@ SHARED_TEMPLATES =
     'id': 'fbc3a070-e91e-11e4-bd02-3515df578f32'
     'description': 'Sends a text message containing the weather'
     'tags': ['sms', 'weather', 'essential', 'text']
-    'like_count': 30
+    'liked_by': ['userid1','userid2','userid3','userid4','userid5']
     'download_count': 50
     'author': 'Octoblu'
   }
@@ -13,7 +13,7 @@ SHARED_TEMPLATES =
     'id': 'b2490ca0-e91e-11e4-bd02-3515df578f32'
     'description': 'Changes color of Blink(1) depending on sentiment analysis of tweets from Twitter'
     'tags': ['twitter', 'blink', 'tweet', 'sentiment']
-    'like_count': 100
+    'liked_by': ['userid1','userid2','userid3','userid4','userid5']
     'download_count': 944
     'author': 'Octoblu'
   }
@@ -22,7 +22,7 @@ SHARED_TEMPLATES =
     'id': '2c674e60-e92f-11e4-84e5-75b844d80250'
     'description': 'Creates and starts a GoToMeeting, then opens it from the shell.'
     'tags': ['gotomeeting', 'shell', 'essential', 'enterprise']
-    'like_count': 0
+    'liked_by': ['userid1','userid2','userid3','userid4','userid5']
     'download_count': 10
     'author': 'Octoblu'
   }
@@ -31,7 +31,7 @@ SHARED_TEMPLATES =
     'id': '9883e770-e934-11e4-84e5-75b844d80250'
     'description': 'Searches Giphy.com for gifs and opens them using the shell node.'
     'tags': ['fun', 'shell', 'genericdevice', 'gifs']
-    'like_count': 33
+    'liked_by': ['userid1','userid2','userid3','userid4','userid5','b7cdcf1d-aa8d-4ee3-85ee-cbaab78e8f34']
     'download_count': 33
     'author': 'Octoblu'
   }
