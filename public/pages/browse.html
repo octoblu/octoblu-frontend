@@ -13,17 +13,43 @@
           </md-button>
       </h2>
   </md-toolbar>
-  <div flex layout-fill layout="row" layout-align="center">
-    <md-content flex="80" layout="column" layout-wrap="wrap">
-      <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-cols-gt-lg="8" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="15px" md-gutter-gt-sm="4px" layout-margin>
-        <md-grid-tile ng-click="controller.importTemplate(template.id)" ng-repeat="template in controller.templates" md-rowspan="1" md-colspan="1" class="template md-whiteframe-z1">
-          <div class="tile-container" flex layout-fill layout="column" layout-align="space-around center">
-            <md-button class="md-icon-button"><i class="fa fa-share-alt"></i> Import Template</md-button>
-            <h4 class="template-description"></h4>
-          </div>
-          <md-grid-tile-footer><h3>{{template.name}}</h3></md-grid-tile-footer>
-        </md-grid-tile>
-      </md-grid-list>
-    </md-content>
+
+  <div class="directory">
+    <div class="directory__header">
+      <h2 class="directory__header-text">Top Liked</h2>
+    </div>
+
+    <ul class="directory__flows">
+      <li ng-repeat="flow in controller.flows" class="directory__flow">
+        <h3 class="directory__flow-name">
+          {{flow.name}}
+        </h3>
+
+        <p class="directory__flow-description">
+          {{flow.description}}
+        </p>
+
+        <div class="directory__flow-tags">
+          <a href="#" ng-repeat="tag in flow.tags" class="directory__flow-tag">{{tag}}</a>
+        </div>
+
+        <span class="directory__flow-author">
+          <i class="fa fa-user"></i>
+          {{flow.author}}
+        </span>
+
+        <div class="directory__flow-meta">
+          <span class="directory__flow-likes">
+             <i class="fa fa-heart"></i>
+             {{flow.like_count}}
+          </span>
+          <span class="directory__flow-downloads">
+             <i class="fa fa-download"></i>
+             {{flow.download_count}}
+          </span>
+        </div>
+      </li>
+    </ul>
   </div>
+
 </div>

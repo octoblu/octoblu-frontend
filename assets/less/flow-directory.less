@@ -1,0 +1,59 @@
+.directory {
+}
+
+.directory__header {
+  border-bottom: 1px solid #DEDEDE;
+  padding: 0 15px;
+}
+
+.directory__header-text {
+  font-weight: normal;
+}
+
+.directory__flows {
+  .flex-display;
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .justify-content(space-between);
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.directory__flow {
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+
+  background: whitesmoke;
+
+  @media @desktop {
+    background: green;
+    width: 50%;
+  }
+
+  @media @desktop-xl {
+    width: 33%;
+  }
+
+  @media @desktop, @desktop-xl {
+  }
+}
+
+
+.directory__flow-name {
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.directory__flow-tag {
+  margin-right: 10px;
+  padding: 5px 10px;
+
+  background: rgb(224,224,224);
+  color: #444;
+  font-size: 12px;
+  line-height: 1;
+}
