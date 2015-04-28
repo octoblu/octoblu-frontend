@@ -1,4 +1,4 @@
-describe "NotifyService", =>
+describe "NotifyService", ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       @mdToast = new FakeToast
@@ -98,4 +98,3 @@ class FakeDialog
     @alert = sinon.spy()
     @show = sinon.spy()
     @confirm = sinon.spy()
-

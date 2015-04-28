@@ -13,15 +13,16 @@ desiredState:
     containers:
       - name: docker-builder-$SHORT_COMMIT
         image: octoblu/dind-codedeploy
-        privileged: true
         volumeMounts:
           - name: docker-sock
             mountPath: /var/run/docker.sock
         env:
           - name: SKIP_CLEAN
             value: "true"
-          - name: GIT_REPO
-            value: $GIT_REPO
+          - name: TGZ_URL
+            value: $TGZ_URL
+          - name: GIT_BRANCH
+            value: $TRAVIS_BRANCH
           - name: GIT_TAG
             value: $TRAVIS_COMMIT
           - name: IMAGE_NAME

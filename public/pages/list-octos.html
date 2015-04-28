@@ -1,0 +1,37 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+        Octos
+      </a>
+    </div>
+  </h2>
+</md-toolbar>
+
+<div flex class="list-octos">
+  <div class="octo-column">
+    <md-card ng-show="controller.errorMessage">
+      <md-card-content>
+        <h3 class="md-title">Warning</h3>
+        <p>{{controller.errorMessage}}</p>
+      </md-card-content>
+
+      <md-action-bar layout="row" layout-align="end center" ng-click="controller.removeErrorMessage()">
+        <md-button>Dismiss</md-button>
+      </md-action-bar>
+    </md-card>
+
+    <div class="big-count">
+      <md-button class="md-fab md-warn xcrement-button" ng-disabled="!controller.canRemoveOcto()" ng-click="controller.removeOcto()">
+        <i class="fa fa-2x fa-minus"></i>
+      </md-button>
+      <h1>{{controller.octos.length}}</h1>
+      <md-button class="md-fab xcrement-button" ng-disabled="!controller.canAddOcto()" ng-click="controller.addOcto()">
+        <i class="fa fa-2x fa-plus"></i>
+      </md-button>
+    </div>
+
+    <h2 class="text-muted">Octos</h2>
+  </div>
+</div>

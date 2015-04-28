@@ -1,0 +1,54 @@
+.list-octos {
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(center);
+  .align-items(center);
+
+  .octo-column {
+    .flex-display;
+    .flex-direction(column);
+
+    .big-count {
+      text-align: center;
+      .flex-display;
+      .flex-direction(row);
+      .align-items(center);
+
+      h1 {
+        font-size: 10em;
+        margin: 0;
+      }
+
+
+      .md-button { // (de/in)crement-button
+        margin: 1em 3em 0;
+
+        i {
+          line-height: 1.7;
+        }
+      }
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 3em;
+  }
+
+  md-card {
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    md-action-bar {
+      .flex-order(2);
+      padding-bottom: 16px;
+      padding-right: 16px;
+    }
+  }
+}

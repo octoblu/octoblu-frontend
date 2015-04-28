@@ -278,6 +278,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelMeshbluController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
+      .state('material.octos',{
+        url: '/octos',
+        controller: 'ListOctosController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/list-octos.html'
+      })
       .state('material.channel', {
         url: '/channel/:id',
         templateUrl: '/pages/connector/channels/detail.html',

@@ -51,7 +51,12 @@ angular.module('octobluApp')
       }
 
       promise.then(function (data) {
-        $state.go("material.design");
+        if(data.type === "device:gateblu"){
+          $state.go("material.nodewizard.addnode");
+        }
+        else{
+          $state.go("material.design");
+        }
       }, function (error) {
         $scope.errorMessage = error;
       });
