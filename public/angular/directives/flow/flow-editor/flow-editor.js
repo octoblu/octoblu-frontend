@@ -13,7 +13,6 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        $scope.grid = 'blue-grid';
         var renderScope = d3
           .select(element.find('.flow-editor-render-area')[0]);
 
