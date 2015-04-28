@@ -3,8 +3,8 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
     constructor: () ->
       AuthService
         .getCurrentUser()
-        .then (user) ->
-          $scope.userUuid = user.resource.uuid
+        .then (user) =>
+          @userUuid = user.resource.uuid
 
       @flows = SHARED_TEMPLATES
 
@@ -12,9 +12,13 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
       $state.go 'material.flow-import', {flowTemplateId: flowId}, {location: 'replace'}
 
     liked: (flow) =>
-      _.includes flow.liked_by, $scope.userUuid
+      _.includes flow.liked_by, @userUuid
 
-    likeFlow: (flow) =>
-      flow.liked_by = _.union(flow.liked_by, [$scope.userUuid])
+    toggleLike: (flow) =>
+      flow.liked_by =
+        if @liked(flow)
+          _.without(flow.liked_by, @userUuid)
+        else
+          _.union(flow.liked_by, [@userUuid])
 
   new BrowseFlowsController()

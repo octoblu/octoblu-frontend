@@ -88,7 +88,7 @@
   background: #F0F0F0;
   color: #6F6F6F;
 
-  /* display: none; */
+  cursor: pointer;
 }
 
 .directory__flow-footer {
@@ -102,16 +102,19 @@
 .directory__flow-meta {
   margin-right: 10px;
 
-  .liked {
-    color: #C53A3A;
+  &.liked {
     cursor: default;
+
+    i {
+      color: #C53A3A;
+    }
   }
+}
+
+.directory__flow-meta--likes {
+  cursor: pointer;
 }
 
 .directory__flow-meta--downloads {
   margin-right: 0;
-}
-
-.directory__flow-meta--likes i {
-  cursor: pointer;
 }

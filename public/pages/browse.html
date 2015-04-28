@@ -44,8 +44,8 @@
           </span>
 
           <div>
-            <span class="directory__flow-meta directory__flow-meta--likes">
-               <i ng-class="{liked: controller.liked(flow)}" ng-click="controller.likeFlow(flow)" class="fa fa-heart"></i>
+            <span ng-click="controller.toggleLike(flow)" ng-class="{liked: controller.liked(flow)}" class="directory__flow-meta directory__flow-meta--likes">
+               <i class="fa fa-heart"></i>
                {{flow.liked_by.length}}
             </span>
 
