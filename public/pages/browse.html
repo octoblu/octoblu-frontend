@@ -15,11 +15,33 @@
   </md-toolbar>
 
   <div class="directory">
+    <form class="directory__search-form">
+      <input type="text" placeholder="Search..." class="directory__search-input" autofocus>
+      <button type="submit" class="directory__search-button">
+        <i class="fa fa-search"></i>
+        Search
+      </button>
+    </form>
+
+    <div class="directory__collections">
+      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--home">
+        <h1 class="directory__collection-name">Home <br> Automation</h1>
+      </a>
+
+      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--robots">
+        <h1 class="directory__collection-name">Robots</h1>
+      </a>
+
+      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--work">
+        <h1 class="directory__collection-name">Work Automation</h1>
+      </a>
+    </div>
+
     <div class="directory__header">
       <h2 class="directory__header-text">Top Liked</h2>
     </div>
 
-    <ul class="directory__flows">
+    <ul class="unstyled-list directory__flows">
       <li ng-repeat="flow in controller.flows" class="md-whiteframe-z1 directory__flow">
         <a ng-click="controller.importFlow(flow.id)" class="directory__flow-import-link">
           <i class="fa fa-plus"></i>
