@@ -13,6 +13,8 @@ angular.module('octobluApp')
   self.update = function(uuid, data) {
     var template = {
       name: data.name,
+      public: data.public,
+      tags: data.tags,
       flow: data.flow
     };
     return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, template).then(function(response){

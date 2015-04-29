@@ -1,0 +1,145 @@
+.bill-of-materials-icon {
+  .node-thumbnail;
+
+  height: 150px;
+  min-width: 150px;
+  margin: 2em 0;
+}
+
+.bill-of-materials {
+  .md-tile-content {
+    h3&.template-item{
+      font-size: 1.0em;
+    }
+    h4.template-item{
+      font-size: 0.8em
+    }
+  }
+}
+
+.search-container{
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-around center);
+
+  margin: auto;
+  min-height: 60px;
+}
+
+.search-bar{
+  .flex(90);
+
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.search-bar-form{
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(center);
+}
+.template-list-container {
+  .flex-display;
+  .flex(1);
+  min-width: 30em;
+  .template-list {
+    .flex(1);
+  }
+}
+.current-template-info {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .align-items(flex-start);
+  max-height: 30%;
+  padding: 0 0 15px 15px;
+  @media mobile,tablet{
+    width: 100%;
+  }
+  .template-name {
+    .flex(1);
+  }
+  .template-tags {
+    .flex(1);
+    min-width: 100%;
+  }
+  .bill-of-materials {
+    min-width: 100%;
+  }
+}
+
+.template-preview{
+  .flex-display;
+  .flex(3);
+  .flex-direction(column);
+}
+
+.template-preview md-input-group {
+  font-size: 1.1em;
+  input {
+    width: 50%;
+  }
+}
+
+.template-info{
+  .flex(4);
+  .flex-display;
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .justify-content(space-between);
+  min-width: 20em;
+}
+
+.template-button-container{
+  .flex-grow(1);
+  .flex-display;
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .justify-content(center);
+}
+
+.template-container{
+  .flex(1);
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(center);
+
+  z-index: 3;
+  background-repeat: repeat;
+}
+
+.templates-list{
+  .flex-display;
+  .flex-direction(column);
+  .flex-wrap(wrap);
+}
+
+.template-item {
+  cursor:pointer;
+  & > md-item-content{
+    .flex-display;
+    .flex-direction(row);
+    .justify-content(space-around);
+  }
+  img {
+    margin:15px;
+  }
+
+  h3 {
+    margin-top: 24px;
+
+  }
+  h4 {
+    margin-right: 15px;
+  }
+  md-item-content {
+    transition: 0.2s box-shadow;
+    box-shadow: none;
+  }
+  &.selected {
+    md-item-content {
+      .selected-item;
+    }
+  }
+}
