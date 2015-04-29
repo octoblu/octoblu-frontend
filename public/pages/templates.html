@@ -64,10 +64,13 @@
       <div class="template-preview" flex=66 ng-if="templates.length">
           <flow-editor flex flow="currentTemplate.flow" readonly="true" ></flow-editor>
           <div class="current-template-info">
-              <md-input-container>
+              <md-input-container class="template-name">
                 <label>Name</label>
                 <input ng-model="currentTemplate.name">
               </md-input-container>
+              <md-checkbox ng-model="currentTemplate.public" aria-label="Checkbox 2" ng-true-value="'yup'" ng-false-value="'nope'" class="md-warn">
+                Public
+              </md-checkbox>
               <bill-of-materials flow="currentTemplate.flow"></bill-of-materials>
           </div>
       </div>

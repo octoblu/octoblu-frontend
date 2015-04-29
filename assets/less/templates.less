@@ -39,14 +39,22 @@
   .justify-content(center);
 }
 
-.current-template-info{
+.current-template-info {
   .flex-display;
   .flex(1);
-  .flex-direction(column);
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .align-items(flex-start);
   max-height: 30%;
   padding: 0 0 15px 15px;
   @media mobile,tablet{
     width: 100%;
+  }
+  .template-name {
+    .flex(1);
+  }
+  .bill-of-materials {
+    min-width: 100%;
   }
 }
 
