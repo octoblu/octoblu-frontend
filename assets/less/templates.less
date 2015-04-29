@@ -38,7 +38,14 @@
   .flex-direction(row);
   .justify-content(center);
 }
-
+.template-list-container {
+  .flex-display;
+  .flex(1);
+  min-width: 30em;
+  .template-list {
+    .flex(1);
+  }
+}
 .current-template-info {
   .flex-display;
   .flex(1);
@@ -53,6 +60,10 @@
   .template-name {
     .flex(1);
   }
+  .template-tags {
+    .flex(1);
+    min-width: 100%;
+  }
   .bill-of-materials {
     min-width: 100%;
   }
@@ -60,7 +71,7 @@
 
 .template-preview{
   .flex-display;
-  .flex(66);
+  .flex(3);
   .flex-direction(column);
 }
 
@@ -72,15 +83,17 @@
 }
 
 .template-info{
-  .flex(100);
+  .flex(4);
   .flex-display;
   .flex-direction(row);
   .flex-wrap(wrap);
   .justify-content(space-between);
+  min-width: 20em;
 }
 
 .template-button-container{
-  .flex(10);
+  .flex-grow(1);
+  .flex-display;
   .flex-direction(row);
   .flex-wrap(wrap);
   .justify-content(center);

@@ -1,4 +1,4 @@
-<div class="templates" layout-fill layout="column" flex>
+<div class="templates" layout-fill layout="column">
   <md-toolbar>
       <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
           <div flex layout="row">
@@ -22,12 +22,12 @@
       </h2>
   </md-toolbar>
   <div class="template-container">
-    <md-content class="templates-list">
+    <md-content class="template-list-container">
         <div ng-if="!templates.length" class="text-center">
             <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:50%;">
             <h1 class="text-center">You have no shared templates.</h1>
         </div>
-        <md-list ng-if="templates.length" flex="33">
+        <md-list class="template-list" ng-if="templates.length">
           <div class="search-container">
               <form class="search-bar-form form">
                   <div class="search-bar form-group">
@@ -61,8 +61,8 @@
             </md-item>
         </md-list>
     </md-content>
-      <div class="template-preview" flex=66 ng-if="templates.length">
-          <flow-editor flex flow="currentTemplate.flow" readonly="true" ></flow-editor>
+      <div class="template-preview" ng-if="currentTemplate">
+          <flow-editor flow="currentTemplate.flow" readonly="true" ></flow-editor>
           <div class="current-template-info">
               <md-input-container class="template-name">
                 <label>Name</label>
@@ -71,6 +71,10 @@
               <md-checkbox ng-model="currentTemplate.public" aria-label="Checkbox 2" ng-true-value="'yup'" ng-false-value="'nope'" class="md-warn">
                 Public
               </md-checkbox>
+              <div class="template-tags">
+                <p>Tags</p>
+                <md-chips secondary-placeholder="Tags are searchable" ng-model="currentTemplate.tags"></md-chips>
+              </div>
               <bill-of-materials flow="currentTemplate.flow"></bill-of-materials>
           </div>
       </div>
