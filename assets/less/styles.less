@@ -47,24 +47,6 @@ html, body, .full-height {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.bill-of-materials-icon {
-  .node-thumbnail;
-
-  height: 150px;
-  min-width: 150px;
-  margin: 2em 0;
-}
-
-.bill-of-materials {
-  .md-tile-content {
-    h3&.template-item{
-      font-size: 1.0em;
-    }
-    h4.template-item{
-      font-size: 0.8em
-    }
-  }
-}
 
 .flow-importing {
   .bill-of-materials {
@@ -78,41 +60,6 @@ html, body, .full-height {
       animation: 1s bounceOutDown ease;
     }
 
-  }
-}
-
-.template-preview md-input-group {
-  font-size: 1.1em;
-  input {
-    width: 50%;
-  }
-}
-.template-item {
-  cursor:pointer;
-  & > md-item-content{
-    .flex-display;
-    .flex-direction(row);
-    .justify-content(space-around);
-  }
-  img {
-    margin:15px;
-  }
-
-  h3 {
-    margin-top: 24px;
-
-  }
-  h4 {
-    margin-right: 15px;
-  }
-  md-item-content {
-    transition: 0.2s box-shadow;
-    box-shadow: none;
-  }
-  &.selected {
-    md-item-content {
-      .selected-item;
-    }
   }
 }
 

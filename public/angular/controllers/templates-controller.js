@@ -5,11 +5,11 @@ angular.module('octobluApp')
 
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
-
   $scope.refreshTemplates = function(){
     TemplateService.getAllTemplates().then(function(templates) {
       $scope.templates = _.map(templates, function(template) {
         template.url = UrlService.withNewPath('/design/import/' + template.uuid);
+        template.tags = template.tags || [];
         return template;
       });
       var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId })  || _.first($scope.templates);
