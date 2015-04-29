@@ -157,19 +157,36 @@
   }
 
   .permissions-table {
-    .permission-row-name {
-      line-height: 3;
-      vertical-align: middle;
+    th {
+      padding: 5px;
     }
+    .permission-row-name {
+      .flex-display();
+      .flex-direction(row);
+      .align-items(center);
 
-    .permission-row-logo {
-      display: inline-block;
-      height: 30px;
-      width: 30px;
-      margin-right: 10px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      vertical-align: middle;
+      .permission-row-logo {
+        .flex();
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+      }
+
+      .permission-row-title {
+        .flex-display();
+        .flex-direction(column);
+
+        span {
+          .flex();
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
   }
 }

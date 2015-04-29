@@ -22,11 +22,14 @@ class DeviceDetailController
     @ThingService.getThings().then (devices) =>
       @devices = devices
 
-    @scope.$watch 'controller.device',  @updatePermissions, true
     @scope.$watch 'controller.device',  @updateSchemas, true
-    @scope.$watch 'controller.permissions', @updateDevice, true
     @scope.$watch 'controller.device.name', @saveDevice
     @scope.$watch 'controller.options',  @saveDevice, true
+
+    @scope.$watch 'controller.devices', @updatePermissionRows, true
+    @scope.$watch 'controller.device', @updateRows, true
+
+    @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -60,12 +63,11 @@ class DeviceDetailController
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
 
-  updatePermissions: =>
-    @permissions = @ThingService.mapWhitelistsToPermissions @device
+  updateDeviceWithPermissions: =>
+    @ThingService.updateDeviceWithPermissionRows @device, @permissionRows
 
-  updateDevice: =>
-    return unless @permissions?
-    @ThingService.updateDeviceWithPermissions @device, @permissions
+  updatePermissionRows: =>
+    @permissionRows = @ThingService.combineDeviceWithPeers @device, @devices
 
   updateSchemas: =>
     return unless @device?
