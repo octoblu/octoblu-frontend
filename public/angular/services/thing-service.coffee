@@ -11,6 +11,34 @@ class ThingService
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
 
+  calculateTheEverything: (device, peers) =>
+    uuid: '*'
+    name: 'Everything'
+    type: 'device:other'
+    discover: !device.discoverWhitelist?
+    configure: true
+    send: true
+    receive: true
+
+
+  combineDeviceWithPeers: (device, peers) =>
+    return unless device? && peers?
+    things = []
+    things.push @calculateTheEverything(device, peers)
+
+    _.each device.discoverWhitelist, (uuid) =>
+      things.push {
+        uuid: '123'
+        name: '123'
+        type: 'device:other'
+        discover: true
+        configure: false
+        send: false
+        receive: false
+      }
+
+    things
+
   deleteThing: (device) =>
     deferred = @q.defer()
 

@@ -16,6 +16,99 @@ describe 'ThingService', ->
     inject (ThingService) =>
       @sut = ThingService
 
+  describe '->combineDeviceWithPeers', ->
+    describe 'when called with nothing', ->
+      beforeEach ->
+        @result = @sut.combineDeviceWithPeers()
+
+      it 'should return nothing', ->
+        expect(@result).not.to.exist
+
+    describe 'when called with a device but no peers', ->
+      beforeEach ->
+        @result = @sut.combineDeviceWithPeers {}, undefined
+
+      it 'should return nothing', ->
+        expect(@result).not.to.exist
+
+    describe 'when called with peers, but no device', ->
+      beforeEach ->
+        @result = @sut.combineDeviceWithPeers undefined, []
+
+      it 'should return nothing', ->
+        expect(@result).not.to.exist
+
+    describe 'when called with a device and empty peers', ->
+      beforeEach ->
+        device = {}
+        peers = []
+        @result = @sut.combineDeviceWithPeers device, peers
+
+      it 'should return an array containing only everything', ->
+        expect(@result).to.have.a.lengthOf 1
+        item = _.first @result
+        expect(item).to.deep.equal {
+          uuid: '*'
+          name: 'Everything'
+          type: 'device:other'
+          discover: true
+          configure: true
+          send: true
+          receive: true
+        }
+
+    describe 'when the device has a discoverWhitelist and empty peers', ->
+      beforeEach ->
+        device = {discoverWhitelist: ['123']}
+        peers = []
+        @result = @sut.combineDeviceWithPeers device, peers
+
+      it 'should return two things', ->
+        expect(@result).to.have.a.lengthOf 2
+
+      it 'should return everything first', ->
+        item = _.first @result
+        expect(item).to.deep.equal {
+          uuid: '*'
+          name: 'Everything'
+          type: 'device:other'
+          discover: false
+          configure: true
+          send: true
+          receive: true
+        }
+
+      it 'should return the item last', ->
+        item = _.last @result
+        expect(item).to.deep.equal {
+          uuid: '123'
+          name: '123'
+          type: 'device:other'
+          discover: true
+          configure: false
+          send: false
+          receive: false
+        }
+
+    xdescribe 'when the device has a sendWhitelist and empty peers', ->
+      beforeEach ->
+        device = {discoverWhitelist: ['123']}
+        peers = []
+        @result = @sut.combineDeviceWithPeers device, peers
+
+      it 'should return an item', ->
+        expect(@result).to.have.a.lengthOf 1
+        item = _.first @result
+        expect(item).to.deep.equal {
+          uuid: '1233'
+          name: '123'
+          type: 'device:other'
+          discover: true
+          configure: false
+          send: false
+          receive: false
+        }
+
   describe '->deleteThing', ->
     describe 'when called with a device', ->
       beforeEach ->

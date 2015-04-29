@@ -27,6 +27,8 @@ class DeviceDetailController
     @scope.$watch 'controller.permissions', @updateDevice, true
     @scope.$watch 'controller.device.name', @saveDevice
     @scope.$watch 'controller.options',  @saveDevice, true
+    @scope.$watch 'controller.devices', @updateRows, true
+    @scope.$watch 'controller.permissions', @updateRows, true
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -60,12 +62,17 @@ class DeviceDetailController
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
 
-  updatePermissions: =>
-    @permissions = @ThingService.mapWhitelistsToPermissions @device
-
   updateDevice: =>
     return unless @permissions?
+    return console.log 'refusing to update device'
     @ThingService.updateDeviceWithPermissions @device, @permissions
+
+  updatePermissions: =>
+    @permissions = @ThingService.mapWhitelistsToPermissions @device
+    console.log @permissions
+
+  updateRows: =>
+    @things = @ThingService.combineDevicesAndPermissions @devices, @permissions
 
   updateSchemas: =>
     return unless @device?
