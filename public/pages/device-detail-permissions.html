@@ -14,22 +14,19 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="device in controller.devices">
-        <td class="permission-row-name">
-          <div class="permission-row-logo" ng-style="{'background-image': 'url(' + device.logo + ')'}" ng-class="{faded: !device.online}"></div>
-          {{device.name}} ({{device.type}})
+      <tr ng-repeat="row in controller.permissionRows">
+        <td thing-logo-cell="row"></td>
+        <td class="text-center">
+          <md-checkbox aria-label="Discover" ng-model="row.discover"></md-checkbox>
         </td>
         <td class="text-center">
-          <md-checkbox aria-label="Discover" ng-model="controller.permissions.discover[device.uuid]"></md-checkbox>
+          <md-checkbox aria-label="Send" ng-model="row.send"></md-checkbox>
         </td>
         <td class="text-center">
-          <md-checkbox aria-label="Send" ng-model="controller.permissions.send[device.uuid]"></md-checkbox>
+          <md-checkbox aria-label="Receive" ng-model="row.receive"></md-checkbox>
         </td>
         <td class="text-center">
-          <md-checkbox aria-label="Receive" ng-model="controller.permissions.receive[device.uuid]"></md-checkbox>
-        </td>
-        <td class="text-center">
-          <md-checkbox aria-label="Configure" ng-model="controller.permissions.configure[device.uuid]"></md-checkbox>
+          <md-checkbox aria-label="Configure" ng-model="row.configure"></md-checkbox>
         </td>
       </tr>
     </tbody>
