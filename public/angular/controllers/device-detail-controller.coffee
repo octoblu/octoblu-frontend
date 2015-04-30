@@ -4,11 +4,12 @@ class DeviceDetailController
     properties: 0
     permissions: 1
 
-  constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, ThingService) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
     @activeTabIndex = DeviceDetailController.TABS[$stateParams.tab]
+    @NotifyService = NotifyService
     @ThingService = ThingService
     @form = ['*']
 
@@ -30,6 +31,8 @@ class DeviceDetailController
     @scope.$watch 'controller.device', @updateRows, true
 
     @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
+
+    @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -63,8 +66,11 @@ class DeviceDetailController
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
 
+  notifyDeviceUpdatedImmediate: =>
+    @NotifyService.notify 'Changes Saved'
+
   updateDeviceWithPermissions: =>
-    @ThingService.updateDeviceWithPermissionRows @device, @permissionRows
+    @ThingService.updateDeviceWithPermissionRows(@device, @permissionRows).then @notifyDeviceUpdated
 
   updatePermissionRows: =>
     @permissionRows = @ThingService.combineDeviceWithPeers @device, @devices
