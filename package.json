@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu-frontend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -51,7 +51,7 @@
   },
   "scripts": {
     "test": "node_modules/karma/bin/karma start --single-run",
-    "start": "node_modules/.bin/gulp production && node server.js"
+    "start": "node_modules/.bin/gulp static"
   },
   "engines": {
     "node": ">=0.6"
