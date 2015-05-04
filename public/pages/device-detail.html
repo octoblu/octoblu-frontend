@@ -12,7 +12,7 @@
 <md-content class="device-details">
   <div class="device-header">
     <div class="logo-header">
-      <div class="device-logo" ng-style="{'background-image': 'url(' + controller.device.logo + ')'}" ng-class="{faded: !controller.device.online}"></div>
+      <img src="{{controller.device.logo}}" class="device-logo" ng-class="{faded: !controller.device.online}">
 
       <div class="device-name">
         <h1>{{controller.device.name}}</h1>
