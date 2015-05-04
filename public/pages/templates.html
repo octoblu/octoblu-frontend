@@ -29,7 +29,8 @@
         </div>
         <md-list class="template-list" ng-if="templates.length">
           <div class="search-container">
-              <form class="search-bar-form form">
+              <div class="search-bar-form">
+                <form class="form">
                   <div class="search-bar form-group">
                       <div class="input-group">
                           <input type="text" class="form-control" ng-model="templateSearch" autofocus>
@@ -38,7 +39,8 @@
                           </span>
                       </div>
                   </div>
-              </form>
+                </form>
+              </div>
           </div>
             <md-item class="template-item" ng-class="{'selected' : template === currentTemplate}" ng-repeat="template in templates | filter: {name:templateSearch}">
                 <md-item-content ng-click="setCurrentTemplate(template)">

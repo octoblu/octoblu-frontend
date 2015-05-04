@@ -1,4 +1,4 @@
-<div class="materialize" layout="row">
+<div class="materialize">
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="navIsOpen" md-is-locked-open="isNavLockedOpen()">
     <md-toolbar class="md-octo-blue-theme" layout-align="center">
       <a href ng-click="closeNav()" class="navbar-logo" ng-hide="isNavLockedOpen()">
@@ -51,6 +51,5 @@
       </a>
     </md-content>
   </md-sidenav>
-  <div class='toast-container' flex layout="row" layout-align="center center"></div>
-  <ui-view layout="column" layout-fill></ui-view>
+  <ui-view></ui-view>
 </div>
