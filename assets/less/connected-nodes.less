@@ -1,0 +1,25 @@
+.connected-nodes {
+  .flex-display;
+  .flex(1);
+  .justify-content(space-around);
+  .flex-wrap(wrap);
+
+  .connected-node {
+    .flex-grow(1);
+    .flex-display;
+    .align-items(center);
+    .flex-direction(column);
+  }
+
+  .connected-node-name {
+    font-weight: bold;
+    text-align: center;
+    color: @gray;
+  }
+
+  .connected-node-thumbnail {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+  }
+}
