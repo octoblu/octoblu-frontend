@@ -15,7 +15,8 @@
       <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 
       <div layout="row" layout-align="space-around center" style="margin: auto; min-height: 60px">
-          <form class="form" layout="row" layout-align="center">
+          <div layout="row" layout-align="center">
+            <form class="form">
               <div class="form-group" flex="95" style="margin-bottom: 0">
                   <div class="input-group">
                       <input type="text" class="form-control" ng-model="processSearch" placeholder="Filter" autofocus>
@@ -24,7 +25,8 @@
                       </span>
                   </div>
               </div>
-          </form>
+            </form>
+          </div>
       </div>
 
       <md-toolbar layout="row" flex>
