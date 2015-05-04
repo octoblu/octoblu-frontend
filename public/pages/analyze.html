@@ -1,75 +1,70 @@
-<div class="analyze" layout-fill layout="column" flex>
-  <md-toolbar>
-    <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-      <div flex layout="row">
-        <a href class="menu-icon" ng-click="toggleNav()">
-          <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-          Analyze
-        </a>
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+        Analyze
+      </a>
+    </div>
+
+    <md-button ng-if="updatePeriodically" ng-click="stopUpdating()" aria-label="Reset Token">
+      <md-tooltip>Live Update</md-tooltip>
+      <i class="fa fa-refresh fa-spin"></i>
+      Live Update
+    </md-button>
+
+    <md-button ng-if="!updatePeriodically" ng-click="startUpdating()" aria-label="Reset Token">
+      <md-tooltip>Paused</md-tooltip>
+      <i class="fa fa-pause"></i>
+      Paused
+    </md-button>
+  </h2>
+</md-toolbar>
+
+<md-content flex>
+  <div flex layout-md="column" layout-gt-md="row" layout-align="space-around">
+    <div flex class="analyze-card md-whiteframe-z1">
+      <md-toolbar>
+          <h2 class="md-toolbar-tools">Topics</h2>
+      </md-toolbar>
+      <div flex ng-show="!loadingTopicData && topicData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
+        <h3>No Data Yet. Try starting a flow.</h3>
       </div>
+      <canvas ng-if="!loadingTopicData" class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true" click="onClickPieSlice"></canvas>
+      <div flex ng-show="loadingTopicData" layout="row" layout-sm="column" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
+      </div>
+    </div>
 
-      <md-button ng-if="updatePeriodically" ng-click="stopUpdating()" aria-label="Reset Token">
-        <md-tooltip>Live Update</md-tooltip>
-        <i class="fa fa-refresh fa-spin"></i>
-        Live Update
-      </md-button>
-
-      <md-button ng-if="!updatePeriodically" ng-click="startUpdating()" aria-label="Reset Token">
-        <md-tooltip>Paused</md-tooltip>
-        <i class="fa fa-pause"></i>
-        Paused
-      </md-button>
-    </h2>
-  </md-toolbar>
-  <div flex layout-fill layout="row" layout-align="center" style="z-index: 3; background-repeat: repeat;">
-    <div layout-fill layout="column" style="background: white;">
-      <md-content flex layout-fill>
-        <div flex layout-md="column" layout-gt-md="row" layout-align="space-around">
-
-          <div flex class="analyze-card md-whiteframe-z1">
-            <md-toolbar>
-                <h2 class="md-toolbar-tools">Topics</h2>
-            </md-toolbar>
-            <div flex ng-show="!loadingTopicData && topicData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
-              <h3>No Data Yet. Try starting a flow.</h3>
-            </div>
-            <canvas ng-if="!loadingTopicData" class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true" click="onClickPieSlice"></canvas>
-            <div flex ng-show="loadingTopicData" layout="row" layout-sm="column" layout-align="center center">
-              <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
-            </div>
-          </div>
-
-          <div class="analyze-card md-whiteframe-z1" flex>
-            <md-toolbar>
-                <h2 class="md-toolbar-tools">Messages/Time</h2>
-            </md-toolbar>
-            <div flex ng-show="!loadingMessageData && messageData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
-              <h3>No Data Yet. Send some messages.</h3>
-            </div>
-            <canvas ng-hide="loadingMessageData" class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" click="onClickBar" legend="true"></canvas>
-            <div flex ng-show="loadingMessageData" layout="row" layout-sm="column" layout-align="center center">
-              <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
-            </div>
-          </div>
-        </div>
-
-        <div flex class="analyze-card md-whiteframe-z1" layout-align="center" layout="column">
-          <md-toolbar>
-            <h2 class="md-toolbar-tools">Search</h2>
-          </md-toolbar>
-          <form class="form" layout="row" layout-align="center">
-            <div class="form-group" flex="80" style="margin: 20px 0px">
-                <div class="input-group">
-                  <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus ng-model-options="{ debounce: 200 }">
-                  <span class="input-group-addon">
-                      <i class="fa fa-search"></i>
-                  </span>
-                </div>
-            </div>
-          </form>
-          <div class="message" ng-repeat="message in searchResults" ng-include="'/pages/general-search-item.html'"></div>
-        </div>
-      </md-content>
+    <div class="analyze-card md-whiteframe-z1" flex>
+      <md-toolbar>
+          <h2 class="md-toolbar-tools">Messages/Time</h2>
+      </md-toolbar>
+      <div flex ng-show="!loadingMessageData && messageData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
+        <h3>No Data Yet. Send some messages.</h3>
+      </div>
+      <canvas ng-hide="loadingMessageData" class="chart chart-bar", series="messageData.series" data="messageData.data" labels="messageData.labels" click="onClickBar" legend="true"></canvas>
+      <div flex ng-show="loadingMessageData" layout="row" layout-sm="column" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-hue-2 md-default-theme"></md-progress-circular>
+      </div>
     </div>
   </div>
-</div>
+
+  <div flex class="analyze-card md-whiteframe-z1" layout-align="center" layout="column">
+    <md-toolbar>
+      <h2 class="md-toolbar-tools">Search</h2>
+    </md-toolbar>
+    <form class="form" layout="row" layout-align="center">
+      <div class="form-group" flex="80" style="margin: 20px 0px">
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="analyzeSearch" placeholder="Filter" autofocus ng-model-options="{ debounce: 200 }">
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+          </div>
+      </div>
+    </form>
+
+    <div class="message" ng-repeat="message in searchResults" ng-include="'/pages/general-search-item.html'"></div>
+  </div>
+</md-content>
