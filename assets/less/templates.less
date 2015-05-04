@@ -5,8 +5,13 @@
   min-width: 150px;
   margin: 2em 0;
 }
-
+/* flex layout="row" layout-wrap="wrap" layout-align="space-around" */
 .bill-of-materials {
+  .flex();
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .justify-content(space-around);
+
   .md-tile-content {
     h3&.template-item{
       font-size: 1.0em;
@@ -17,8 +22,17 @@
   }
 }
 
+.bill-of-materials__item {
+  .flex-direction(column);
+}
+
 .templates {
   .flex(1);
+  .flex-direction(column);
+
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
 }
 
 .search-container{
