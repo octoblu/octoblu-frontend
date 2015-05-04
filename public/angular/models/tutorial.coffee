@@ -26,7 +26,7 @@ FLOW_TUTORIAL_1 = {
       buttons: false
       attachTo:
         element: '.flow-browser [data-type="channel:weather"]'
-        on: 'top'
+        on: 'left'
     }
   ]
 
@@ -139,7 +139,7 @@ FLOW_TUTORIAL_1 = {
       buttons: false
       attachTo:
         element: '.flow-browser [data-type="operation:trigger"]'
-        on: 'top'
+        on: 'left'
     }
   ]
   'link_trigger_to_weather': [
