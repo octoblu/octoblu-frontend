@@ -2,8 +2,11 @@ angular.module('octobluApp')
 .controller('NodeController', function ($scope, $state, NodeService) {
   'use strict';
 
+  $scope.loading = true;
+
   NodeService.getNodes().then(function(nodes){
-    $scope.nodes = nodes;
+    $scope.loading = false;
+    $scope.nodes = nodes.concat(nodes);
   });
 
   $scope.nextStepUrl = function (node) {
