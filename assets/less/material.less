@@ -1,0 +1,33 @@
+.materialize {
+  .flex-display;
+  .flex(1);
+
+  &>ui-view {
+    .flex(1);
+    .flex-display;
+    .flex-direction(column);
+  }
+
+  .page-heading {
+    font-size: 1.5em;
+  }
+
+  .flow-image-but-really-the-flow {
+    background-color: lightgrey;
+    transition: 1s all;
+    .flow-editor {
+      min-height:100vh;
+      flex-shrink: 0;
+      -webkit-flex-shrink: 0;
+    }
+    &.importing {
+      background-color: #fff;
+    }
+
+    button.importing {
+      -webkit-animation: 1s bounceOutRight ease;
+      -ms-animation: 1s bounceOutRight ease;
+      animation: 1s bounceOutRight ease;
+    }
+  }
+}
