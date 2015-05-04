@@ -1,0 +1,56 @@
+.analyze-card {
+  margin: 1em;
+  .message {
+    .message-frame {
+      transition: 0.7s max-height;
+      cursor : pointer;
+      max-height: 7em;
+      overflow: hidden;
+      pre[class*="language-"] {
+        max-height: none;
+      }
+      &.full-message {
+        max-height: 700em;
+      }
+    }
+
+    &.ng-enter {
+      -webkit-animation-name: fadeInUp;
+      -webkit-animation-duration: 0.7s;
+      animation-name: fadeInUp;
+      animation-duration: 0.7s;
+    }
+
+    &.ng-leave {
+      -webkit-animation-name: fadeOutDown;
+      -webkit-animation-duration: 0.7s;
+      animation-name: fadeOutUp;
+      animation-duration: 0.7s;
+    }
+  }
+}
+
+.general-search-item {
+  .flex-display;
+  .flex-direction(column);
+  padding: 0 16px 16px;
+  border-bottom: 1px solid #eee;
+
+  .subject-line {
+    .flex-display;
+    .flex-direction(row);
+    .align-items(center);
+    h2 {
+      .flex(1);
+      text-align: center;
+    }
+
+    div {
+      width: 23em;
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}

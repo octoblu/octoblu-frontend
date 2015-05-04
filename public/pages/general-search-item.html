@@ -1,15 +1,16 @@
-<md-card>
-  <div class="subject-line" flex layout="row" layout-align="space-between">
-    <div flex class="subject-item" layout="row">
-      From:&nbsp;<strong>{{message.fromUuid}}</strong>
+<div class="general-search-item">
+  <div class="subject-line">
+    <div class="subject-item">
+      From: <strong>{{message.fromUuid}}</strong>
     </div>
-      <h2 flex class="subject-item" layout="row" layout-align="center">
-        {{message.topic}}
-      </h2>
-    <div flex class="subject-item" layout="row" layout-align="end">
-      To:&nbsp;<strong>{{message.devices}}</strong>
+    <h2 class="subject-item">
+      {{message.topic}}
+    </h2>
+    <div class="subject-item">
+      To: <strong>{{message.devices}}</strong>
     </div>
   </div>
+
   <div ng-click="fullMessage = !fullMessage">
     <div class="message-frame" ng-class="{ 'full-message' : fullMessage }">
       <prism code="message"></prism>
@@ -18,7 +19,8 @@
       <i class="fa fa-ellipsis-h fa-lg"></i>
     </div>
   </div>
+
   <div flex layout="row" layout-align="end">
     {{message.timestamp | date:'medium'}}
   </div>
-</md-card>
+</div>
