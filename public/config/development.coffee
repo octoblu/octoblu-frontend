@@ -12,4 +12,4 @@ angular.module('octobluApp')
   .constant 'PROFILE_URI', "http://#{window.location.hostname}:8888/profile"
   # .constant 'OCTOBLU_ICON_URL', 'http://octoblu-icons.s3.amazonaws.com/'
   .constant 'OCTOBLU_ICON_URL', 'http://ds78apnml6was.cloudfront.net/'
-  .constant 'OCTOBLU_API_URL', "http://#{window.location.hostname}:8081"
+  .constant 'OCTOBLU_API_URL', "http://#{window.location.hostname}:8080"
