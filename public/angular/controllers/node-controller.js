@@ -6,7 +6,7 @@ angular.module('octobluApp')
 
   NodeService.getNodes().then(function(nodes){
     $scope.loading = false;
-    $scope.nodes = nodes.concat(nodes);
+    $scope.nodes = nodes;
   });
 
   $scope.nextStepUrl = function (node) {
