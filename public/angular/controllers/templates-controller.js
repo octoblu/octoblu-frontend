@@ -2,7 +2,6 @@
 
 angular.module('octobluApp')
 .controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
-
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.refreshTemplates = function(){
@@ -15,8 +14,10 @@ angular.module('octobluApp')
       var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId })  || _.first($scope.templates);
       $scope.setCurrentTemplate(currentTemplate);
 
+      if(currentTemplate) $scope.isLoading = false;
 
       if(!currentTemplate) {
+        $scope.isLoading = true
         return;
       }
 
@@ -24,7 +25,6 @@ angular.module('octobluApp')
       .then(function(billOfMaterials){
           $scope.billOfMaterials = billOfMaterials;
         });
-
     });
   };
 

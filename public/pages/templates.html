@@ -23,7 +23,7 @@
   </md-toolbar>
   <div class="template-container">
     <md-content class="template-list-container">
-        <div ng-if="!templates.length" class="text-center">
+        <div ng-if="isLoading" class="text-center">
             <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:50%;">
             <h1 class="text-center">You have no shared templates.</h1>
         </div>
