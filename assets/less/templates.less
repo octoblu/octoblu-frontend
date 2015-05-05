@@ -6,9 +6,6 @@
 
   position: relative;
   margin-bottom: 16px;
-  &:last-child {
-    margin-bottom: 0;
-  }
 
   background: #FFF;
   border-radius: 2px;
@@ -37,11 +34,12 @@
   .actions {
     .flex-display;
     .justify-content(flex-end);
-    .flex-grow(1);
 
     .action {
       .flex-display;
       .flex-direction(column);
+
+      min-width: 56px;
 
       cursor: pointer;
       padding: 16px;
@@ -49,14 +47,20 @@
   }
 
   .info-group {
-    .flex(1);
+    .flex-display;
+
+    padding-top: 16px;
+
     color: #7A7A7A;
 
     .info {
-      padding-right: 16px;
+      padding: 0 16px;
       white-space: nowrap;
-      &:last-child {
-        padding-right: 0;
+
+      &.author {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -67,6 +71,7 @@
     .flex(1);
     .justify-content(space-between);
     .name {
+      .flex(1);
       padding: 16px;
       margin: 0;
       line-height: 1;
@@ -78,9 +83,10 @@
   .footer {
     .flex-display;
     .flex-direction(row);
+    .flex-wrap(wrap);
     .justify-content(space-between);
 
-    padding: 16px;
+    padding-bottom: 16px;
   }
 
   .likes {
