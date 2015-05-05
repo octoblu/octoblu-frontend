@@ -1,98 +1,148 @@
-<div class="design2 designer-container" flex layout-fill layout="column" tutorial>
-  <div class="logo-toolbar"> <!-- Defined first so its on the bottom layer -->
-    <img src="/assets/images/octoblu.png" height="50px"/>
-  </div>
-
-  <md-toolbar class="flow-top-bar" layout="row" layout-phone="column" layout-tablet="column">
-    <div flex layout="row" class="md-toolbar-tools">
-      <h2 class="page-heading">
-        <a href class="menu-icon" ng-click="toggleNav()">
-          <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-        </a>
-      </h2>
-
-      <flow-editor-omnibox flex omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
+<div class="design2 designer-container" tutorial>
+  <flow-editor flow="activeFlow"></flow-editor>
+  <div class="sidebar">
+    <div class="sidebar-pane inspector">
+      <div class="sidebar-toolbar">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
+      <div class="sidebar-body"></div>
     </div>
 
-    <div flex layout="row" class="md-toolbar-tools" layout-align="end">
-      <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
-        <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
-        <span class="input-group-btn flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
-          <button class="btn btn-white" ng-click="toggleDropdown($event)">
-            <i class="fa fa-lg fa-angle-down input-addon"></i>
-          </button>
-        </span>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
-          <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
-          <li role="presentation"  class="divider"></li>
-          <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
-            <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
-          </li>
-        </ul>
+    <div class="sidebar-pane browser">
+      <header class="sidebar-toolbar toolbar">
+        <button class="toolbar-button toolbar-button--active" ng-click="toggleActiveTab('flows')" ng-class="{'active' : activeFlow.browserTab.name === 'flows'}" title="Flows">
+            <i class="fa fa-money fa-lg"></i>
+        </button>
+        <button class="toolbar-button" ng-click="toggleActiveTab('operators')" ng-class="{'active' : activeFlow.browserTab.name === 'operators'}" title="Operator Nodes" >
+            <i class="fa fa-plug fa-lg"></i>
+        </button>
+        <button class="toolbar-button" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : activeFlow.browserTab.name === 'nodes'}" title="Configured Nodes" >
+          <i class="fa fa-code-fork fa-lg"></i>
+        </button>
+        <button class="toolbar-button" ng-click="toggleActiveTab('unconfigurednodes')" ng-class="{'active' : activeFlow.browserTab.name === 'unconfigurednodes'}" title="Available Nodes" >
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+        <button class="toolbar-button" ng-click="toggleActiveTab('debug')" ng-class="{'active' : activeFlow.browserTab.name === 'debug'}" title="Debug">
+          <i class="fa fa-bug fa-lg"></i>
+        </button>
+      </header>
+
+
+      <div class="sidebar-body">
+
       </div>
+
+      <footer class="sidebar-toolbar sidebar-toolbar--footer">
+        <button class="toolbar-button"><i class="fa fa-th fa-lg"></i></button>
+
+        <form action="" class="collection-browser__form">
+          <div class="collection-browser__input-wrap">
+            <i class="fa fa-search fa-lg collection-browser__filter-icon"></i>
+            <input class="collection-browser__input" type="search" name="Filter" placeholder="Filter...">
+          </div>
+        </form>
+      </footer>
+
     </div>
 
-    <div flex="0" flex-phone="95" flex-tablet="95" layout="row" layout-align="end" class="flow-controls md-toolbar-tools" style="min-height: 50px;">
-      <div flex layout="row" layout-align="space-between center">
-        <md-button ng-click="deleteFlow(activeFlow)" data-action="delete-flow" aria-label="Delete Flow">
-          <md-tooltip>Delete Flow</md-tooltip>
-          <i class="fa fa-lg fa-trash"></i>
-        </md-button>
+  </div>
 
-        <md-button ng-click="createTemplate(activeFlow)" aria-label="Create Template">
-          <md-tooltip>Create a Template</md-tooltip>
-          <i class="fa fa-lg fa-share-alt"></i>
-        </md-button>
-      </div>
 
-      <div flex layout="row" layout-align="center">
-        <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
-          <md-tooltip>Undo</md-tooltip>
-          <i class="fa fa-reply fa-lg"></i>
-        </md-button>
+<!--   <div class="logo-toolbar"> Defined first so its on the bottom layer
+  <img src="/assets/images/octoblu.png" height="50px"/>
+</div> -->
 
-        <md-button ng-click="redoEdit()" ng-disabled="!redoable()" aria-label="Redo Edit">
-          <md-tooltip>Redo</md-tooltip>
-          <i class="fa fa-mail-forward fa-lg"></i>
-        </md-button>
-      </div>
+<!--   <md-toolbar class="flow-top-bar">
+  <div class="md-toolbar-tools">
+    <h2 class="page-heading">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+      </a>
+    </h2>
 
-      <div flex layout="row" layout-align="center">
-        <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false, stopping: stopping }" aria-label="Stop">
-          <md-tooltip>Stop</md-tooltip>
-          <i class="fa fa-stop"></i>
-        </md-button>
+    <flow-editor-omnibox omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
+  </div>
 
-        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying }" aria-label="Start">
-          <md-tooltip>Start</md-tooltip>
-          <i class="fa fa-play"></i>
-        </md-button>
-      </div>
+  <div class="md-toolbar-tools">
+    <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
+      <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
+      <span class="input-group-btn flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
+        <button class="btn btn-white" ng-click="toggleDropdown($event)">
+          <i class="fa fa-lg fa-angle-down input-addon"></i>
+        </button>
+      </span>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
+        <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
+        <li role="presentation"  class="divider"></li>
+        <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
+          <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
+        </li>
+      </ul>
     </div>
-  </md-toolbar>
-
-  <div style="z-index: 0;" class="workspace-container" flex layout-fill layout="column" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
-    <flow-editor flow="activeFlow"></flow-editor>
   </div>
 
-  <div class="zoom-controls" flex layout="column" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
-        <button class="btn btn-default btn-sm" ng-click="center()">
-          <i class="fa fa-crosshairs fa-lg"></i>
-        </button>
-        <md-divider></md-divider>
+  <div class="flow-controls md-toolbar-tools" style="min-height: 50px;">
+    <div>
+      <md-button ng-click="deleteFlow(activeFlow)" data-action="delete-flow" aria-label="Delete Flow">
+        <md-tooltip>Delete Flow</md-tooltip>
+        <i class="fa fa-lg fa-trash"></i>
+      </md-button>
 
-        <button class="btn btn-default btn-sm" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
-          <i class="fa fa-plus fa-lg"></i>
-        </button>
+      <md-button ng-click="createTemplate(activeFlow)" aria-label="Create Template">
+        <md-tooltip>Create a Template</md-tooltip>
+        <i class="fa fa-lg fa-share-alt"></i>
+      </md-button>
+    </div>
 
-        <button class="btn btn-default btn-sm" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
-          <i class="fa fa-minus fa-lg"></i>
-        </button>
+    <div>
+      <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
+        <md-tooltip>Undo</md-tooltip>
+        <i class="fa fa-reply fa-lg"></i>
+      </md-button>
+
+      <md-button ng-click="redoEdit()" ng-disabled="!redoable()" aria-label="Redo Edit">
+        <md-tooltip>Redo</md-tooltip>
+        <i class="fa fa-mail-forward fa-lg"></i>
+      </md-button>
+    </div>
+
+    <div>
+      <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false, stopping: stopping }" aria-label="Stop">
+        <md-tooltip>Stop</md-tooltip>
+        <i class="fa fa-stop"></i>
+      </md-button>
+
+      <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying }" aria-label="Start">
+        <md-tooltip>Start</md-tooltip>
+        <i class="fa fa-play"></i>
+      </md-button>
+    </div>
   </div>
-  <flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
-  <flow-node-editor flow-id="activeFlow.flowId" flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
-  <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
+</md-toolbar> -->
 
+  <!-- <div style="z-index: 0;" class="workspace-container" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+  </div> -->
+
+<!--   <div class="zoom-controls" flex layout="column" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
+      <button class="btn btn-default btn-sm" ng-click="center()">
+        <i class="fa fa-crosshairs fa-lg"></i>
+      </button>
+      <md-divider></md-divider>
+
+      <button class="btn btn-default btn-sm" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+        <i class="fa fa-plus fa-lg"></i>
+      </button>
+
+      <button class="btn btn-default btn-sm" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+        <i class="fa fa-minus fa-lg"></i>
+      </button>
+</div>
+<flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
+<flow-node-editor flow-id="activeFlow.flowId" flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
+<flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>
+ -->
   <style>
     .container-fluid #intercom-container .intercom-launcher {
       bottom: 155px;
