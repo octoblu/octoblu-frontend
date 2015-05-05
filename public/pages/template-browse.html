@@ -1,19 +1,19 @@
-<md-content class="browse">
-  <md-toolbar>
-      <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-          <div class="toolbar-header">
-              <a href class="menu-icon" ng-click="toggleNav()">
-                  <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-              </a>
-                  Browse Templates
-          </div>
-          <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
-            <md-tooltip>My Templates</md-tooltip>
-            <i class="fa fa-clipboard fa-lg"></i> My Templates
-          </md-button>
-      </h2>
-  </md-toolbar>
+<md-toolbar>
+    <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+        <div class="toolbar-header">
+            <a href class="menu-icon" ng-click="toggleNav()">
+                <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+            </a>
+                Browse Templates
+        </div>
+        <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
+          <md-tooltip>My Templates</md-tooltip>
+          <i class="fa fa-clipboard fa-lg"></i> My Templates
+        </md-button>
+    </h2>
+</md-toolbar>
 
+<md-content class="browse">
   <div class="directory">
     <form class="directory__search-form">
       <input type="text" placeholder="Search..." ng-model="templateSearch" class="directory__search-input" autofocus>

@@ -1,35 +1,111 @@
-.bill-of-materials-icon {
-  .node-thumbnail;
 
-  height: 150px;
-  min-width: 150px;
-  margin: 2em 0;
-}
-/* flex layout="row" layout-wrap="wrap" layout-align="space-around" */
-.bill-of-materials {
-  .flex();
-  .flex-direction(row);
-  .flex-wrap(wrap);
-  .justify-content(space-around);
+.flow-blueprint {
+  .flex-display;
+  .flex-direction(column);
+  .justify-content(space-between);
 
-  .md-tile-content {
-    h3&.template-item{
-      font-size: 1.0em;
+  position: relative;
+  margin-top: 25px;
+
+  background: #FFF;
+  border-radius: 2px;
+  color: #3D4048;
+
+  .description {
+    line-height: 1.5;
+  }
+  .tag {
+    display: inline-block;
+    margin: 0 10px 5px 0;
+    padding: 5px 10px;
+
+    background: #F0F0F0;
+    color: #444;
+    font-size: 12px;
+    line-height: 1;
+
+    &&:hover {
+      background: #FFF;
+      text-decoration: none;
+      transition: all 0.7s ease;
     }
-    h4.template-item{
-      font-size: 0.8em
+  }
+
+  .meta-items {
+    .flex-display;
+    .align-content(flex-start);
+
+    .action {
+      .flex-display;
+      .flex-direction(column);
+
+      cursor: pointer;
+      padding: 16px;
     }
+    .info {
+      padding-right: 16px;
+    }
+  }
+
+  .info {
+    color: #7A7A7A;
+  }
+  .header {
+    .flex-display;
+    .flex-direction(row);
+    .flex(1);
+    .justify-content(space-between);
+    .name {
+      padding: 16px;
+      margin: 0;
+      line-height: 1;
+    }
+  }
+  .content {
+    padding: 0 16px;
+  }
+  .footer {
+    .flex-display;
+    .flex-direction(row);
+    .justify-content(space-between);
+
+    padding: 16px;
+  }
+
+  .likes {
+    cursor: pointer;
+    margin-right: 10px;
+
+    &.liked {
+      cursor: default;
+
+      i {
+        color: #C53A3A;
+      }
+    }
+  }
+
+  .downloads {
+    margin-right: 0;
   }
 }
 
-.bill-of-materials__item {
-  .flex-direction(column);
-}
-
-.templates {
+.templates-container {
   .flex(1);
   .flex-display;
-  .flex-direction(column);
+  padding: 16px;
+
+  .flows {
+    .flex-display;
+    .flex-direction(column);
+    .justify-content(flex-start);
+    .flex(1);
+    padding: 0;
+  }
+
+  .flow {
+    .flow-blueprint;
+  }
 }
 
 .search-container{
