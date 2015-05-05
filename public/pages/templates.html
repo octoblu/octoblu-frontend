@@ -13,7 +13,7 @@
     <li ng-repeat="flow in templates | filter: {name:templateSearch}" class="md-whiteframe-z1 flow" ng-click="setCurrentTemplate(flow)">
       <div class="header">
         <h3 class="name">
-          {{flow.name}}consectetur adipiscing elit, sed do eiusmod tempor
+          {{flow.name}}
         </h3>
         <div class="actions">
           <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
@@ -31,7 +31,6 @@
       <div class="content">
         <p class="description">
           {{flow.description}}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
 
         <div class="tags">
@@ -42,17 +41,17 @@
       <div class="footer">
         <div class="info-group">
           <div class="info" ng-class="{liked: controller.liked(flow)}">
-            <i class="fa fa-lg fa-heart"></i> {{flow.liked_by.length}}1023
+            <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length}}
           </div>
 
           <div class="info">
-            <i class="fa fa-lg fa-user"></i> {{flow.download_count}}65535
+            <i class="fa fa-lg fa-user"></i> {{flow.resource.sharedBy.length}}
           </div>
         </div>
 
         <div class="info-group">
           <div class="info author">
-            <i class="fa fa-lg fa-user"></i> {{flow.author || flow.resource.owner.uuid}}
+            <i class="fa fa-lg fa-user"></i> {{flow.resource.owner.name || flow.resource.owner.uuid}}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state, AuthService, TemplateService, SHARED_TEMPLATES) ->
+angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state, AuthService, TemplateService) ->
   class BrowseFlowsController
     constructor: () ->
       AuthService

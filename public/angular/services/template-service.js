@@ -15,7 +15,9 @@ angular.module('octobluApp')
       name: data.name,
       public: data.public,
       tags: data.tags,
-      flow: data.flow
+      flow: data.flow,
+      likedBy: data.likedBy,
+      sharedBy: data.sharedBy
     };
     return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, template).then(function(response){
       return response.data;

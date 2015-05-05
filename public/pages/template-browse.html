@@ -60,9 +60,9 @@
         </div>
 
         <div class="directory__flow-footer">
-          <span class="directory__flow-meta directory__flow-meta--author">
+          <span ng-show="flow.resource.owner.name" class="directory__flow-meta directory__flow-meta--author">
             <i class="fa fa-user"></i>
-            {{flow.author || flow.resource.owner.uuid}}
+            {{flow.resource.owner.name}}
           </span>
 
           <div>
@@ -73,7 +73,7 @@
 
             <span class="directory__flow-meta directory__flow-meta--downloads">
                <i class="fa fa-user"></i>
-               {{flow.download_count}}
+               {{flow.sharedBy.length}}
             </span>
           </div>
         </div>
