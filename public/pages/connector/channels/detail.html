@@ -12,17 +12,14 @@
 
 <h2 class="text-center">Manage {{channel.name}}</h2>
 <br>
-<div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <div ng-style="{'background-image': 'url('+channel.logo+')'}" class="node-thumbnail"></div>
-  </div>
-</div>
 
-<br>
-<br>
 
 <div class="row">
   <div class="col-xs-12 col-md-offset-3 col-md-6 text-center">
+    <img src="{{channel.logo}}" class="device-logo">
+    <br>
+    <br>
+
     <h2>Deactivating this channel will disable any flows using this channel.</h2>
     <br>
 
