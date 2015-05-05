@@ -5,18 +5,6 @@
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i> Templates
       </a>
     </div>
-    <md-button class="md-icon-button" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length" aria-label="Copy Template Link">
-      <md-tooltip md-direction="bottom">Copy Template Link</md-tooltip>
-      <i class="fa fa-clipboard fa-lg"></i> Copy Link
-    </md-button>
-    <md-button class="md-icon-button" ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length" aria-label="Delete Template">
-      <md-tooltip md-direction="bottom">Delete Template</md-tooltip>
-      <i class="fa fa-trash fa-lg"></i> Delete Template
-    </md-button>
-    <md-button class="md-icon-button" ui-sref="material.browse" aria-label="Browse Templates">
-      <md-tooltip>Browse Templates</md-tooltip>
-      <i class="fa fa-share-alt-square fa-lg"></i> Browse
-    </md-button>
   </h2>
 </md-toolbar>
 
@@ -27,7 +15,7 @@
         <h3 class="name">
           {{flow.name}}ppppgpgpg
         </h3>
-        <div class="meta-items">
+        <div class="actions">
           <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
             <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
           </md-button>
@@ -52,7 +40,7 @@
       </div>
 
       <div class="footer">
-        <div class="meta-items">
+        <div class="info-group">
           <span class="info" ng-class="{liked: controller.liked(flow)}">
             <i class="fa fa-lg fa-heart"></i> {{flow.liked_by.length}}1023
           </span>
@@ -62,9 +50,11 @@
           </span>
         </div>
 
-        <span class="info">
-          <i class="fa fa-lg fa-user"></i> {{flow.author || flow.resource.owner.uuid}}
-        </span>
+        <div class="info-group">
+          <span class="info">
+            <i class="fa fa-lg fa-user"></i> {{flow.author || flow.resource.owner.uuid}}
+          </span>
+        </div>
       </div>
     </li>
   </ul>
