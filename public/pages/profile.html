@@ -34,7 +34,13 @@
           </md-toolbar>
 
           <div class="card-content">
-            <h1>{{currentUser.displayName || currentUser.email }} <br><small>{{currentUser.skynet.uuid}}</small></h1>
+            <h1>
+              {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}
+              <br>
+              <small>email: {{currentUser.userDevice.octoblu.email}}</small>
+              <br>
+              <small>UUID: {{currentUser.skynet.uuid}}</small>
+            </h1>
 
             <p class="help-block">
               To view your token, you must click <md-button md-no-ink ng-click="resetToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Reset Token</md-button> and it will be displayed one time only. Your token gives you full access to your account and connected devices, be sure to keep it secret.
