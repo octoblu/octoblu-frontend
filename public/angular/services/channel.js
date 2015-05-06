@@ -6,6 +6,9 @@ angular.module('octobluApp')
         var availablechannels = [];
 
         this.addLogoUrl = function(data) {
+            if(data && data.logo) {
+              return data;
+            }
             if (data && data.type) {
                 data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
             }

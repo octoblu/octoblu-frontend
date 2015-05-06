@@ -8,7 +8,18 @@
   </h2>
 </md-toolbar>
 
-<md-content class="templates-container">
+<div class="templates-loading-indicator" ng-show="isLoading">
+  <h1 class="text-center">
+    <i class="fa fa-spin fa-refresh"></i>
+  </h1>
+</div>
+
+<div class="templates-no-templates" ng-show="templates.length == 0">
+  <h1>You have no shared templates.</h1>
+  <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:50%;">
+</div>
+
+<md-content class="templates-container" ng-hide="isLoading">
   <ul class="flows">
     <li class="flow" ng-class="{'selected-flow': currentTemplate == flow }" ng-repeat="flow in templates | filter: {name:templateSearch}" ng-click="setCurrentTemplate(flow)">
       <div ng-show="currentTemplate != flow" ng-include="'/pages/flow-blueprint-list-item.html'">

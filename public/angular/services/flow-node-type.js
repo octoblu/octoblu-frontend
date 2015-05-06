@@ -25,6 +25,13 @@ angular.module('octobluApp')
   self.getFlowNodeTypes = function(cache) {
     return $http.get(OCTOBLU_API_URL + '/api/flow_node_types').then(function(res){
       return _.map(res.data, function(data){
+        if(data.logo){
+          return data;
+        }
+        if(data.defaults && data.defaults.logo){
+          data.logo = data.defaults.logo;
+          return data;
+        }
         if (data && data.type) {
           data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
         }

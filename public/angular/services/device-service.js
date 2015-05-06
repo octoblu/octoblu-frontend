@@ -229,13 +229,21 @@ angular.module('octobluApp')
             },
 
             addLogoUrl: function(data) {
-                if(data && data.type){
-                    var type = data.type.replace('octoblu:', 'device:');
-                    data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
-                } else {
-                    data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
-                }
+              if(data.logo){
                 return data;
+              }
+              var device = _.find(myDevices, { uuid: data.uuid });
+              if(device && device.logo){
+                data.logo = device.logo;
+                return data;
+              }
+              if(data && data.type){
+                  var type = data.type.replace('octoblu:', 'device:');
+                  data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
+              } else {
+                  data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
+              }
+              return data;
             },
 
             resetToken: function(uuid) {
