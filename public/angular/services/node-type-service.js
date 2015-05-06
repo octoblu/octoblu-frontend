@@ -16,7 +16,7 @@ angular.module('octobluApp')
 
   self.addLogo = function(node){
     var nodeCopy = _.clone(node);
-    nodeCopy.logo = OCTOBLU_ICON_URL + nodeCopy.type.replace(':', '/') + '.svg';
+    nodeCopy.logo = nodeCopy.logo || OCTOBLU_ICON_URL + nodeCopy.type.replace(':', '/') + '.svg';
     return nodeCopy;
   };
 
@@ -29,6 +29,12 @@ angular.module('octobluApp')
   self.getNodeTypeByType = function(type){
     return self.getNodeTypes().then(function(nodeTypes){
       return _.findWhere(nodeTypes, {type: type});
+    });
+  };
+
+  self.getNodeTypeByObject = function(node){
+    return self.getNodeTypes().then(function(nodeTypes){
+      return _.defaults(node, _.findWhere(nodeTypes, {type: node.type}));
     });
   };
 
