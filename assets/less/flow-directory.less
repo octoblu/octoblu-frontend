@@ -21,19 +21,19 @@
       margin-left: 16px;
     }
     @media @mobile, @tablet {
-      width: 100%;
+      .num-columns(1);
     }
 
     @media @desktop, @desktop-lg {
-      width: 50%;
+      .num-columns(2);
     }
 
     @media @desktop-xl {
-      width: (100/3) * 1%;
+      .num-columns(3);
     }
 
     @media @desktop-xxl {
-      width: 25%;
+      .num-columns(4);
     }
   }
 }
