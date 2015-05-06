@@ -1,18 +1,27 @@
 .templates-container {
   padding: 16px;
-
+  .flow-blueprint-list-item {
+    cursor: pointer;
+  }
   .flows {
     .flex-display;
     .flex-direction(column);
     .justify-content(flex-start);
-    .public {
-      background-color: green;
-    }
     padding: 0;
+
+    > li {
+      list-style: none;
+    }
+
   }
 
   .flow {
+    transition: all 0.3s ease-in-out 0s;
+    .md-whiteframe-z1;
     .flow-blueprint;
+    &.selected-flow {
+      .md-whiteframe-z2;
+    }
   }
 }
 

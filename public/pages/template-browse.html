@@ -49,10 +49,6 @@
               {{flow.name}}
             </h3>
             <div class="actions">
-              <md-button class="action md-icon-button" ng-click="controller.confirmDeleteTemplate(flow.uuid)" aria-label="Delete Template">
-                <md-tooltip>Delete</md-tooltip>
-                <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
-              </md-button>
               <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)" aria-label="Import Template">
                 <md-tooltip>Import</md-tooltip>
                 <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
@@ -75,7 +71,7 @@
           </div>
           <div class="footer">
             <div class="info-group">
-              <div class="info">
+              <div class="info" ng-click="controller.toggleLike(flow)" ng-class="{liked: controller.liked(flow)}">
                 <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length}}
               </div>
 

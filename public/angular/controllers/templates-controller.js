@@ -34,6 +34,19 @@ angular.module('octobluApp')
     });
   };
 
+  $scope.confirmMakePublic = function(template){
+    if(template.public === true){
+      return template.public = false;
+    };
+    var confirm = $mdDialog.confirm()
+      .content("Are you sure you want to make this template public?")
+      .ok("Okay")
+      .cancel("Cancel");
+    $mdDialog.show(confirm).then(function(){
+      template.public = true;
+    });
+  };
+
   $scope.importFlow = function(templateUuid) {
     $state.go('material.flow-import', {flowTemplateId: templateUuid});
   }
@@ -45,7 +58,6 @@ angular.module('octobluApp')
   $scope.setCurrentTemplate = function(template) {
     $scope.currentTemplate = template;
   };
-  
 
   $scope.toastTemplateUrl = function(url) {
     var message = 'Copied ' + url + ' to clipboard';

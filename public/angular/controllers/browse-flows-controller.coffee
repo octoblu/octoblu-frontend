@@ -12,7 +12,7 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
 
 
     importFlow: (flowId) =>
-      $state.go 'material.flow-import', {flowTemplateId: flowId}, {location: 'replace'}
+      $state.go 'material.flow-import', {flowTemplateId: flowId}
 
     liked: (flow) =>
       _.includes flow.liked_by, @userUuid

@@ -1,0 +1,41 @@
+<div class="flow-blueprint-list-item">
+  <div class="header">
+    <h3 class="name">
+      {{flow.name}}
+    </h3>
+    <div class="info-group">
+      <div class="info">
+          <i ng-show="!flow.public" class="fa fa-lg fa-lock"></i>
+          <i ng-show="flow.public" class="fa fa-lg fa-globe"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <p class="description">
+      {{flow.description || "No description available."}}
+    </p>
+
+    <div class="tags">
+      <a href="#" ng-repeat="tag in flow.tags" class="tag">{{tag}}</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="info-group">
+      <div class="info">
+        <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length || 0}}
+      </div>
+
+      <div class="info">
+        <i class="fa fa-lg fa-user"></i> {{flow.sharedBy.length || 0}}
+      </div>
+    </div>
+
+    <div class="info-group">
+      <div class="info author">
+        <i class="fa fa-lg fa-user"></i> {{flow.resource.owner.name || flow.resource.owner.uuid}}
+      </div>
+    </div>
+  </div>
+</div>

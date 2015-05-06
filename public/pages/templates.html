@@ -10,47 +10,11 @@
 
 <md-content class="templates-container">
   <ul class="flows">
-    <li ng-repeat="flow in templates | filter: {name:templateSearch}" class="md-whiteframe-z1 flow" ng-click="setCurrentTemplate(flow)">
-      <div class="header">
-        <h3 class="name">
-          {{flow.name}}
-        </h3>
-        <div class="info-group">
-          <div class="info">
-            <i class="fa fa-lg fa-globe" ng-show="flow.public"></i>
-          </div>
-        </div>
+    <li class="flow" ng-class="{'selected-flow': currentTemplate == flow }" ng-repeat="flow in templates | filter: {name:templateSearch}" ng-click="setCurrentTemplate(flow)">
+      <div ng-show="currentTemplate != flow" ng-include="'/pages/flow-blueprint-list-item.html'">
       </div>
 
-      <div class="content">
-        <p ng-if="flow.description" class="description">
-          {{flow.description}}
-        </p>
-        <p ng-hide="flow.description" class="description">
-          No description available.
-        </p>
-
-        <div class="tags">
-          <a href="#" ng-repeat="tag in flow.tags" class="tag">{{tag}}</a>
-        </div>
-      </div>
-
-      <div class="footer">
-        <div class="info-group">
-          <div class="info" ng-if="flow.likedBy">
-            <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length}}
-          </div>
-
-          <div class="info" ng-if="flow.sharedBy">
-            <i class="fa fa-lg fa-user"></i> {{flow.sharedBy.length}}
-          </div>
-        </div>
-
-        <div class="info-group">
-          <div class="info author">
-            <i class="fa fa-lg fa-user"></i> {{flow.resource.owner.name || flow.resource.owner.uuid}}
-          </div>
-        </div>
+      <div ng-show="currentTemplate == flow" ng-include="'/pages/flow-blueprint-editor.html'">
       </div>
     </li>
   </ul>
