@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.refreshTemplates = function(){
@@ -11,20 +11,14 @@ angular.module('octobluApp')
         template.tags = template.tags || [];
         return template;
       });
-      var currentTemplate = _.findWhere($scope.templates, { uuid : $stateParams.templateId })  || _.first($scope.templates);
-      $scope.setCurrentTemplate(currentTemplate);
 
-      if(currentTemplate) $scope.isLoading = false;
+      if(templates.length) $scope.isLoading = false;
 
-      if(!currentTemplate) {
+      if(!templates.length) {
         $scope.isLoading = true
         return;
       }
 
-      BillOfMaterialsService.generate(currentTemplate.flow)
-      .then(function(billOfMaterials){
-          $scope.billOfMaterials = billOfMaterials;
-        });
     });
   };
 
@@ -38,6 +32,14 @@ angular.module('octobluApp')
         $scope.refreshTemplates();
       });
     });
+  }
+
+  $scope.importFlow = function(templateUuid) {
+    $state.go('material.flow-import', {flowTemplateId: templateUuid});
+  }
+
+  $scope.togglePublic = function(template) {
+    return template.public = !template.public;
   }
 
   $scope.setCurrentTemplate = function(template) {

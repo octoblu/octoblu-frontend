@@ -16,21 +16,31 @@
           {{flow.name}}
         </h3>
         <div class="actions">
-          <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+          <md-button aria-label="Delete Template" class="action md-icon-button" ng-click="confirmDeleteTemplate(flow.uuid)">
+            <md-tooltip>Delete</md-tooltip>
             <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
           </md-button>
-          <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+          <md-button ng-click="togglePublic(flow)" ng-class="{public: flow.public}" aria-label="Make Template Public" class="action md-icon-button">
+            <md-tooltip>Public</md-tooltip>
+            <md-icon md-font-icon="fa fa-lg fa-globe"></md-icon>
+          </md-button>
+          <md-button aria-label="Import Template" class="action md-icon-button" ng-click="importFlow(flow.uuid)">
+            <md-tooltip>Import</md-tooltip>
             <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
           </md-button>
-          <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+          <md-button aria-label="Copy Template Link" class="action md-icon-button" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)">
+            <md-tooltip>Copy</md-tooltip>
             <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
           </md-button>
         </div>
       </div>
 
       <div class="content">
-        <p class="description">
+        <p ng-if="flow.description" class="description">
           {{flow.description}}
+        </p>
+        <p ng-hide="flow.description" class="description">
+          No description available.
         </p>
 
         <div class="tags">
