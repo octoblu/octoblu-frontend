@@ -1,20 +1,24 @@
-<md-card layout="column" class="flow-node-editor ng-hide" ng-show="flowNode.resourceType === 'flow-node'">
-  <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h1>Edit > {{flowNode.name || flowNode.class}}</h1>
-        <span flex></span>
-        <md-button ng-click="toggleHelp()" aria-label="Toggle Help"><i class="fa fa-lg fa-question"></i></md-button>
-        <md-button ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button>
-        <md-button ng-click="close()" aria-label="Close"><i class="fa fa-lg fa-close"></i></md-button>
+<div class="sidebar__pane-content">
+  <header class="sidebar__toolbar sidebar__toolbar--header">
+    <div class="md-toolbar-tools">
+      <h1>Edit > {{flowNode.name || flowNode.class}}</h1>
+      <span flex></span>
+      <md-button ng-click="toggleHelp()" aria-label="Toggle Help"><i class="fa fa-lg fa-question"></i></md-button>
+      <md-button ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button>
+    </div>
+  </header>
+
+  <main class="sidebar__pane-body">
+    <div class="flow-node-editor ng-hide" ng-show="flowNode.resourceType === 'flow-node'">
+      <div>
+        <form style="padding:20px;">
+          <p class="help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
+          </p>
+          <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
+          <br>
+          <md-switch ng-model="flowNode.debug">Debug</md-switch>
+        </form>
       </div>
-    </md-toolbar>
-    <md-content>
-      <form style="padding:20px;" layout="column">
-        <p class="help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
-        </p>
-        <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
-        <br>
-        <md-switch ng-model="flowNode.debug">Debug</md-switch>
-      </form>
-    </md-content>
-</md-card>
+    </div>
+  </main>
+</div>
