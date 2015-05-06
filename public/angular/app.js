@@ -300,7 +300,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
-      .state('material.nodewizard.addsubdevice.addGateblu', {
+      .state('material.nodewizard.addsubdevice.addgateblu', {
         url: '/add-gateblu',
         controller: 'AddSubdeviceAddGatebluController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'

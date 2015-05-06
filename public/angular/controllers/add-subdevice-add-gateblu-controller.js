@@ -14,6 +14,7 @@ angular.module('octobluApp')
           });
 
           $scope.newDevice.unclaimedDevices = unclaimedDevices;
+          $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
           $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
         });
 
@@ -28,8 +29,16 @@ angular.module('octobluApp')
           };
 
           if($scope.newDevice.selectedDevice) {
-            deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-            promise = deviceService.claimDevice(deviceOptions);
+            if ($scope.newDevice.selectedDevice.type === 'existing') {
+              deviceOptions.uuid = $scope.existingDevice.uuid;
+              deviceOptions.token = $scope.existingDevice.token;
+              deviceOptions.owner = currentUser.skynet.uuid;
+              deviceOptions.isChanged = true;
+              promise = deviceService.claimDevice(deviceOptions);
+            } else {
+              deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
+              promise = deviceService.claimDevice(deviceOptions);
+            }
           } else {
             promise = deviceService.registerDevice(deviceOptions);
           }

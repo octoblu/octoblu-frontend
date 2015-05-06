@@ -13,6 +13,7 @@ class FlowTutorialDirective
 
   cleanup: =>
     @tour?.cancel()
+    Shepherd.currentTour?.cancel()
 
   start: (steps) =>
     @tour?.cancel()
@@ -30,7 +31,7 @@ class FlowTutorialDirective
     return if @mutationWasOnlyShepherd mutations
     return unless @domReady()
 
-    @tour?.cancel()
+    @cleanup()
     @tour = new Shepherd.Tour defaults: classes: 'shepherd-theme-dark flow-tutorial-shepherd'
     Shepherd.currentTour = @tour
     @tour.addStep @currentStep.id, _.cloneDeep(@currentStep)

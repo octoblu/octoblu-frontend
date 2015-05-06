@@ -1,0 +1,44 @@
+.node-wizard-logo-container {
+  .flex-display;
+
+  justify-content: center;
+
+  img {
+    @media @mobile {
+      width: 75%;
+    }
+
+    @media @tablet, @desktop, @desktop-lg, @desktop-xl, @desktop-xxl {
+      width: 30%;
+    }
+  }
+}
+
+.node-wizard-choice-button-container {
+  .flex-display;
+  .flex-wrap(wrap);
+  justify-content: center;
+
+  margin: 16px 0;
+  padding: 0 8px;
+
+  .md-button {
+    .flex-grow(1);
+    margin: 0 8px;
+  }
+}
+
+.node-wizard-form {
+  .flex-display;
+  .flex-direction(column);
+
+  margin: 16px;
+
+  p.error-message {
+    color: rgb(244,67,54);
+  }
+}
+
+.node-wizard-padding {
+  height: 100px;
+}
