@@ -1,16 +1,16 @@
 <md-toolbar>
-    <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-        <div class="toolbar-header">
-            <a href class="menu-icon" ng-click="toggleNav()">
-                <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-            </a>
-                Browse Templates
-        </div>
-        <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
-          <md-tooltip>My Templates</md-tooltip>
-          <i class="fa fa-clipboard fa-lg"></i> My Templates
-        </md-button>
-    </h2>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div class="toolbar-header">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+      </a>
+      Browse Templates
+    </div>
+    <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
+      <md-tooltip>My Templates</md-tooltip>
+      <i class="fa fa-clipboard fa-lg"></i> My Templates
+    </md-button>
+  </h2>
 </md-toolbar>
 
 <md-content class="browse">
@@ -18,14 +18,14 @@
     <form class="directory__search-form">
       <input type="text" placeholder="Search..." ng-model="templateSearch" class="directory__search-input" autofocus>
       <button type="submit" class="directory__search-button">
-        <i class="fa fa-search"></i>
-        Search
+        <i class="fa fa-search"></i> Search
       </button>
     </form>
 
     <div class="directory__collections">
       <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--home">
-        <h1 class="directory__collection-name">Home <br> Automation</h1>
+        <h1 class="directory__collection-name">Home
+          <br> Automation</h1>
       </a>
 
       <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--robots">
@@ -41,40 +41,52 @@
       <h2 class="directory__header-text">Top Liked</h2>
     </div>
 
-    <ul class="unstyled-list directory__flows">
-      <li ng-repeat="flow in controller.flows | filter: {name:templateSearch}" class="md-whiteframe-z1 directory__flow">
-        <a ng-click="controller.importFlow(flow.uuid)" class="directory__flow-import-link">
-          <i class="fa fa-plus"></i>
-        </a>
+    <ul class="flows">
+      <li ng-repeat="flow in controller.flows | filter: {name:templateSearch}" class="flow-container" ng-click="setCurrentTemplate(flow)">
+        <div class="flow md-whiteframe-z1">
+          <div class="header">
+            <h3 class="name">
+              {{flow.name}}
+            </h3>
+            <div class="actions">
+              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+                <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
+              </md-button>
+              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+                <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
+              </md-button>
+              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+                <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
+              </md-button>
+            </div>
+          </div>
 
-        <h3 class="directory__flow-name">
-          <a ng-click="controller.importFlow(flow.uuid)" class="directory__flow-name-link">{{flow.name}}</a>
-        </h3>
+          <div class="content">
+            <p class="description">
+              {{flow.description}}
+            </p>
 
-        <p class="directory__flow-description">
-          {{flow.description}}
-        </p>
+            <div class="tags">
+              <a href="#" ng-repeat="tag in flow.tags" class="tag">{{tag}}</a>
+            </div>
+          </div>
 
-        <div class="directory__flow-tags">
-          <a href="#" ng-repeat="tag in flow.tags" class="directory__flow-tag">{{tag}}</a>
-        </div>
+          <div class="footer">
+            <div class="info-group">
+              <div class="info" ng-class="{liked: controller.liked(flow)}">
+                <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length}}
+              </div>
 
-        <div class="directory__flow-footer">
-          <span ng-show="flow.resource.owner.name" class="directory__flow-meta directory__flow-meta--author">
-            <i class="fa fa-user"></i>
-            {{flow.resource.owner.name}}
-          </span>
+              <div class="info">
+                <i class="fa fa-lg fa-user"></i> {{flow.sharedBy.length}}
+              </div>
+            </div>
 
-          <div>
-            <span ng-click="controller.toggleLike(flow)" ng-class="{liked: controller.liked(flow)}" class="directory__flow-meta directory__flow-meta--likes">
-               <i class="fa fa-heart"></i>
-               {{flow.liked_by.length}}
-            </span>
-
-            <span class="directory__flow-meta directory__flow-meta--downloads">
-               <i class="fa fa-user"></i>
-               {{flow.sharedBy.length}}
-            </span>
+            <div class="info-group">
+              <div class="info author">
+                <i class="fa fa-lg fa-user"></i> {{flow.resource.owner.name || flow.resource.owner.uuid}}
+              </div>
+            </div>
           </div>
         </div>
       </li>
