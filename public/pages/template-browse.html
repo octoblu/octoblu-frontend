@@ -49,13 +49,16 @@
               {{flow.name}}
             </h3>
             <div class="actions">
-              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+              <md-button class="action md-icon-button" ng-click="controller.confirmDeleteTemplate(flow.uuid)" aria-label="Delete Template">
+                <md-tooltip>Delete</md-tooltip>
                 <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
               </md-button>
-              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)" aria-label="Import Template">
+                <md-tooltip>Import</md-tooltip>
                 <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
               </md-button>
-              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)">
+              <md-button class="action md-icon-button" clip-click-fallback="dialogTemplateUrl(flow.url)" clip-copy="flow.url" clip-click="toastTemplateUrl(flow.url)" aria-label="Copy Template Link">
+                <md-tooltip>Copy</md-tooltip>
                 <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
               </md-button>
             </div>
