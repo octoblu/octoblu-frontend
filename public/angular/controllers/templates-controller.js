@@ -5,6 +5,7 @@ angular.module('octobluApp')
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.refreshTemplates = function(){
+    $scope.isLoading = true;
     TemplateService.getAllTemplates().then(function(templates) {
       $scope.templates = _.map(templates, function(template) {
         template.url = UrlService.withNewPath('/design/import/' + template.uuid);
@@ -12,13 +13,7 @@ angular.module('octobluApp')
         return template;
       });
 
-      if(templates.length) $scope.isLoading = false;
-
-      if(!templates.length) {
-        $scope.isLoading = true
-        return;
-      }
-
+      $scope.isLoading = false;
     });
   };
 
