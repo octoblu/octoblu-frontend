@@ -4,8 +4,8 @@ angular.module('octobluApp')
 .controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
+  $scope.isLoading = true;
   $scope.refreshTemplates = function(){
-    $scope.isLoading = true;
     TemplateService.getAllTemplates().then(function(templates) {
       $scope.templates = _.map(templates, function(template) {
         template.url = UrlService.withNewPath('/design/import/' + template.uuid);
