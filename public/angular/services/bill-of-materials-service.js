@@ -3,19 +3,23 @@ angular.module('octobluApp')
   'use strict';
   var self = this;
 
-  self.getTypes = function(flow) {
+  self.getNodes = function(flow) {
     var materialNodes = _.reject(flow.nodes, function(node){
       return node.type && node.type.indexOf('operation') === 0;
     });
 
-    return _.uniq( _.pluck(materialNodes, 'type') );
+    var nodes = _.map(materialNodes, function(node){
+      return _.pick(node, ['type', 'logo', 'name']);
+    })
+
+    return _.uniq(nodes);
 
   };
 
   self.generate = function(flow) {
-    var types = self.getTypes(flow);
-    return $q.all( _.map(types, NodeTypeService.getNodeTypeByType) );
+    var nodes = self.getNodes(flow);
+    return $q.all( _.map(nodes, NodeTypeService.getNodeTypeByObject) );
   }
 
-  return self; 
+  return self;
 });

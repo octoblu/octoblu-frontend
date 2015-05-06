@@ -230,6 +230,9 @@ angular.module('octobluApp')
         }
 
         var logoUrl = function(data) {
+          if (data && data.logo) {
+            return data.logo;
+          }
           if (data && data.type) {
             return OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
           }
