@@ -37,11 +37,11 @@
 
       <div class="footer">
         <div class="info-group">
-          <div class="info" ng-class="{liked: controller.liked(flow)}">
+          <div class="info" ng-if="flow.likedBy">
             <i class="fa fa-lg fa-heart"></i> {{flow.likedBy.length}}
           </div>
 
-          <div class="info">
+          <div class="info" ng-if="flow.sharedBy">
             <i class="fa fa-lg fa-user"></i> {{flow.sharedBy.length}}
           </div>
         </div>

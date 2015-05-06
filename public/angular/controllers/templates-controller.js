@@ -32,7 +32,7 @@ angular.module('octobluApp')
         $scope.refreshTemplates();
       });
     });
-  }
+  };
 
   $scope.importFlow = function(templateUuid) {
     $state.go('material.flow-import', {flowTemplateId: templateUuid});
@@ -45,6 +45,7 @@ angular.module('octobluApp')
   $scope.setCurrentTemplate = function(template) {
     $scope.currentTemplate = template;
   };
+  
 
   $scope.toastTemplateUrl = function(url) {
     var message = 'Copied ' + url + ' to clipboard';
@@ -68,7 +69,7 @@ angular.module('octobluApp')
 
   $scope.randomRobot = function(){
     return "/assets/images/robots/robot"+luckyRobotNumber+".png"
-  }
+  };
 
   var updateTemplate = _.debounce(immediateUpdateTemplate, 500);
 

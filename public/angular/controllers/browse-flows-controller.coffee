@@ -18,10 +18,10 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
       _.includes flow.liked_by, @userUuid
 
     toggleLike: (flow) =>
-      flow.liked_by =
+      flow.likedBy =
         if @liked(flow)
-          _.without(flow.liked_by, @userUuid)
+          _.without(flow.likedBy, @userUuid)
         else
-          _.union(flow.liked_by, [@userUuid])
+          _.union(flow.likedBy, [@userUuid])
 
   new BrowseFlowsController()
