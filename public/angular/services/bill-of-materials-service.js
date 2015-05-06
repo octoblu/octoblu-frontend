@@ -11,9 +11,7 @@ angular.module('octobluApp')
     var nodes = _.map(materialNodes, function(node){
       return _.pick(node, ['type', 'logo', 'name']);
     })
-
-    return _.uniq(nodes);
-
+    return _.uniq(nodes, 'type');
   };
 
   self.generate = function(flow) {
