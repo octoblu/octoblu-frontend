@@ -6,16 +6,18 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
         .then (user) =>
           @userUuid = user.resource.uuid
 
-      @templates = TemplateService.getPublicTemplates()
+      @refreshBlueprints()
+
+    refreshBlueprints: =>
+      TemplateService.getPublicTemplates()
         .then (templates) =>
           @flows = templates.data
-
 
     importFlow: (flowId) =>
       $state.go 'material.flow-import', {flowTemplateId: flowId}
 
     liked: (flow) =>
-      _.includes flow.liked_by, @userUuid
+      _.includes flow.likedBy, @userUuid
 
     toggleLike: (flow) =>
       flow.likedBy =
@@ -23,5 +25,10 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
           _.without(flow.likedBy, @userUuid)
         else
           _.union(flow.likedBy, [@userUuid])
+
+      @updateBlueprint(flow)
+
+    updateBlueprint: (newBlueprint) =>
+      TemplateService.update newBlueprint.uuid, newBlueprint
 
   new BrowseFlowsController()

@@ -4,11 +4,11 @@
       <a href class="menu-icon" ng-click="toggleNav()">
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
       </a>
-      Browse Templates
+      Shared Blueprints
     </div>
     <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
-      <md-tooltip>My Templates</md-tooltip>
-      <i class="fa fa-clipboard fa-lg"></i> My Templates
+      <md-tooltip>My Blueprints</md-tooltip>
+      <i class="fa fa-file-text fa-lg"></i> My Blueprints
     </md-button>
   </h2>
 </md-toolbar>
@@ -49,23 +49,25 @@
               {{flow.name}}
             </h3>
             <div class="actions">
-              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)" aria-label="Import Template">
-                <md-tooltip>Import</md-tooltip>
-                <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
-              </md-button>
               <md-button class="action md-icon-button" clip-click-fallback="dialogTemplateUrl(flow.url)" clip-copy="flow.url" clip-click="toastTemplateUrl(flow.url)" aria-label="Copy Template Link">
                 <md-tooltip>Copy</md-tooltip>
-                <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
+                <!-- <md-icon md-font-icon="fa fa-lg fa-clipboard"></md-icon> -->
+                Copy
+              </md-button>
+              <md-button class="action md-icon-button" ng-click="controller.importFlow(flow.uuid)" aria-label="Import Template">
+                <md-tooltip>Import</md-tooltip>
+                <!-- <md-icon md-font-icon="fa fa-lg fa-code-fork"></md-icon> -->
+                Import
               </md-button>
             </div>
           </div>
 
           <div class="content">
             <p class="description">
-              {{flow.description}}
+              {{flow.description || "No description available."}}
             </p>
 
-            <div class="tags">
+            <div ng-show="flow.tags" class="tags">
               <a href="#" ng-repeat="tag in flow.tags" class="tag">{{tag}}</a>
             </div>
           </div>
@@ -76,7 +78,7 @@
               </div>
 
               <div class="info">
-                <i class="fa fa-lg fa-user"></i> {{flow.sharedBy.length}}
+                <i class="fa fa-lg fa-cloud-download"></i> {{flow.sharedBy.length}}
               </div>
             </div>
 
