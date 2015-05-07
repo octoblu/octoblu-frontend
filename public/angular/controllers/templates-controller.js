@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, TemplateService, BillOfMaterialsService, UrlService, OCTOBLU_ICON_URL) {
+.controller('TemplatesController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, TemplateService, UrlService, OCTOBLU_ICON_URL) {
   var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.isLoading = true;
@@ -27,19 +27,6 @@ angular.module('octobluApp')
       TemplateService.deleteTemplate(id).then(function(){
         $scope.refreshTemplates();
       });
-    });
-  };
-
-  $scope.confirmMakePublic = function(template){
-    if(template.public === true){
-      return template.public = false;
-    };
-    var confirm = $mdDialog.confirm()
-      .content("Are you sure you want to make this template public?")
-      .ok("Okay")
-      .cancel("Cancel");
-    $mdDialog.show(confirm).then(function(){
-      template.public = true;
     });
   };
 
