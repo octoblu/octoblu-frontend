@@ -158,7 +158,7 @@
   .flex-wrap(wrap);
   .justify-content(space-between);
   margin-bottom: 35px;
-  padding: 0 16px;
+  padding-right: 16px;
 }
 .directory__collection {
 
@@ -166,25 +166,20 @@
 .directory__collection {
   .flex-display;
   .flex-direction(column);
+  .flex-wrap(wrap);
   .align-items(center);
-  /* .justify-content(center) */
-  ;
-  display: block;
+  .flex(1);
   padding: 25px;
-  width: 32%;
+  margin: 16px 0 16px 16px;
   height: 250px;
   border-radius: 2px;
   background: #f0f1f2;
   color: #fff;
   text-align: center;
+  min-width: 300px;
   &:hover {
     color: #fefefe;
     text-decoration: none;
-  }
-  @media @mobile,
-  @tablet {
-    width: 100%;
-    margin-bottom: 25px;
   }
 }
 .directory__collection-name {
@@ -192,7 +187,20 @@
   font-size: 32px;
 }
 .directory__collection--home {
-  background: #1c2431;
+  background: #34383F;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #34383F 0%, #000 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#34383F), color-stop(100%,#000));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #34383F 0%,#000 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #34383F 0%,#000 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #34383F 0%,#000 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #34383F 0%,#000 100%);
+  /* W3C */
 }
 .directory__collection--robots {
   background: #f1592a;
@@ -212,5 +220,18 @@
   /* W3C */
 }
 .directory__collection--work {
-  background: teal;
+  background: #008888;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #008888 0%, #006666 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#008888), color-stop(100%,#006666));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #008888 0%,#006666 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #008888 0%,#006666 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #008888 0%,#006666 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #008888 0%,#006666 100%);
+  /* W3C */
 }

@@ -1,15 +1,14 @@
-angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdToast, $state, AuthService, BluprintService) ->
+angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
   class SharedBluprintsController
     constructor: () ->
-      AuthService
-        .getCurrentUser()
-        .then (user) =>
-          @userUuid = user.resource.uuid
+      @collectionName = $stateParams.collection
+      AuthService.getCurrentUser().then (user) =>
+        @userUuid = user.resource.uuid
 
       @refreshBlueprints()
 
     refreshBlueprints: =>
-      BluprintService.getPublicBluprints()
+      BluprintService.getPublicBluprints(@collectionName)
         .then (response) =>
           @bluprints = response.data
 

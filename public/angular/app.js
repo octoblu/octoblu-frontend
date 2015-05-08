@@ -373,6 +373,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
+      .state('material.browsecollection', {
+        url: '/browse/:collection',
+        templateUrl: '/pages/shared-bluprints.html',
+        controller: 'SharedBluprintsController',
+        controllerAs: 'controller'
+      })
       .state('accept_terms', {
         url: '/accept_terms',
         templateUrl: '/pages/accept_terms.html',

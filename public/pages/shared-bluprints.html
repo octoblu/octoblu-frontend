@@ -6,10 +6,6 @@
       </a>
       Shared Blueprints
     </div>
-    <md-button class="md-icon-button" ui-sref="material.bluprints" aria-label="My Bluprints">
-      <md-tooltip>My Blueprints</md-tooltip>
-      <i class="fa fa-file-text fa-lg"></i> My Blueprints
-    </md-button>
   </h2>
 </md-toolbar>
 
@@ -22,17 +18,31 @@
       </button>
     </form>
 
-    <div class="directory__collections">
-      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--home">
+    <div class="directory__collections" ng-hide="controller.collectionName">
+      <a ui-sref="material.browsecollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
         <h1 class="directory__collection-name">Home
           <br> Automation</h1>
       </a>
 
-      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--robots">
+      <a ui-sref="material.browsecollection({collection: 'robots'})" class="md-whiteframe-z1 directory__collection directory__collection--robots">
         <h1 class="directory__collection-name">Robots</h1>
       </a>
 
-      <a href="#" class="md-whiteframe-z1 directory__collection directory__collection--work">
+      <a ui-sref="material.browsecollection({collection: 'work automation'})" class="md-whiteframe-z1 directory__collection directory__collection--work">
+        <h1 class="directory__collection-name">Work Automation</h1>
+      </a>
+    </div>
+
+    <div class="directory__collections" ng-if="controller.collectionName">
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--home" ng-show="controller.collectionName == 'home automation'">
+        <h1 class="directory__collection-name">Home Automation</h1>
+      </a>
+
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--robots" ng-show="controller.collectionName == 'robots'">
+        <h1 class="directory__collection-name">Robots</h1>
+      </a>
+
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--work" ng-show="controller.collectionName == 'work automation'">
         <h1 class="directory__collection-name">Work Automation</h1>
       </a>
     </div>
