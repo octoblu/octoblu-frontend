@@ -1,15 +1,15 @@
 angular.module('octobluApp')
-.controller('FlowImportController', function ( $state, $stateParams, $scope, TemplateService, BillOfMaterialsService) {
+.controller('FlowImportController', function ( $state, $stateParams, $scope, BluprintService, BillOfMaterialsService) {
 
-  TemplateService.getTemplate($stateParams.flowTemplateId).then(function(template){
-    $scope.template = template;
-    return BillOfMaterialsService.generate(template.flow);
+  BluprintService.getBluprint($stateParams.flowTemplateId).then(function(bluprint){
+    $scope.bluprint = bluprint;
+    return BillOfMaterialsService.generate(bluprint.flow);
   }).then(function(billOfMaterials){
     $scope.billOfMaterials = billOfMaterials;
   });
 
   $scope.import = function() {
-    TemplateService.importTemplate($stateParams.flowTemplateId).then(function(flow){
+    BluprintService.importBluprint($stateParams.flowTemplateId).then(function(flow){
       $scope.importing = true;
       _.delay(function(){
         $state.go('material.flow', {flowId: flow.flowId});

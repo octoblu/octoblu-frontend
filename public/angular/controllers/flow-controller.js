@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService, NotifyService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -349,9 +349,9 @@ angular.module('octobluApp')
     $scope.currentMouseY = null;
   };
 
-  $scope.createTemplate = function(flow) {
-    TemplateService.createTemplate({name: flow.name, flowId: flow.flowId}).then(function(template) {
-      $state.go('material.template', {templateId: template.uuid});
+  $scope.createBluprint = function(flow) {
+    BluprintService.createBluprint({name: flow.name, flowId: flow.flowId}).then(function(template) {
+      $state.go('material.bluprint', {templateId: template.uuid});
     });
   };
 

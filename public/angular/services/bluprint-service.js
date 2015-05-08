@@ -1,18 +1,18 @@
 angular.module('octobluApp')
-.service('TemplateService', function ($http, OCTOBLU_API_URL) {
+.service('BluprintService', function ($http, OCTOBLU_API_URL) {
   'use strict';
   var self;
   self = this;
 
-  self.createTemplate = function(template) {
-    return $http.post(OCTOBLU_API_URL + "/api/templates", template).then(function(response) {
+  self.createBluprint = function(bluprint) {
+    return $http.post(OCTOBLU_API_URL + "/api/templates", bluprint).then(function(response) {
       return response.data;
     });
   };
 
   self.update = function(uuid, data) {
-    var template = _.omit(data, ['_id', 'uuid', 'flow']);
-    return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, template).then(function(response){
+    var bluprint = _.omit(data, ['_id', 'uuid', 'flow']);
+    return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, bluprint).then(function(response){
       return response.data;
     });
   };
@@ -23,35 +23,29 @@ angular.module('octobluApp')
     });
   };
 
-  self.withUserUUID = function(uuid) {
-    return $http.get(OCTOBLU_API_URL + '/api/users/' + uuid + '/templates').then(function(response) {
-      return response.data;
-    });
-  };
-
-  self.getPublicTemplates = function(tags) {
+  self.getPublicBluprints = function(tags) {
     return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags}});
   };
 
-  self.getAllTemplates = function() {
+  self.getAllBluprints = function() {
     return $http.get(OCTOBLU_API_URL + '/api/templates').then(function(response) {
       return response.data;
     });
   };
 
-  self.getTemplate = function(id) {
+  self.getBluprint = function(id) {
     return $http.get(OCTOBLU_API_URL + '/api/templates/' + id).then(function(response){
       return response.data;
     });
   };
 
-  self.importTemplate = function(id) {
+  self.importBluprint = function(id) {
     return $http.post(OCTOBLU_API_URL + '/api/templates/' + id + '/flows').then(function(response) {
       return response.data;
     })
   }
 
-  self.deleteTemplate = function(id) {
+  self.deleteBluprint = function(id) {
     return $http.delete(OCTOBLU_API_URL + '/api/templates/' + id);
   };
 });
