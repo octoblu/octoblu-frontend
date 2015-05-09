@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('BluprintService', function ($http, OCTOBLU_API_URL) {
+.service('BluprintService', function ($http, OCTOBLU_API_URL, UrlService) {
   'use strict';
   var self;
   self = this;
@@ -19,23 +19,25 @@ angular.module('octobluApp')
 
   self.withFlowId = function(flowId) {
     return $http.get(OCTOBLU_API_URL + '/api/flows/' + flowId + '/templates').then(function(response) {
-      return response.data;
+      return self.addPropertiesToList(response.data);
     });
   };
 
   self.getPublicBluprints = function(tags) {
-    return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags}});
+    return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags}}).then(function(response){
+      return self.addPropertiesToList(response.data);
+    });
   };
 
   self.getAllBluprints = function() {
     return $http.get(OCTOBLU_API_URL + '/api/templates').then(function(response) {
-      return response.data;
+      return self.addPropertiesToList(response.data);
     });
   };
 
   self.getBluprint = function(id) {
     return $http.get(OCTOBLU_API_URL + '/api/templates/' + id).then(function(response){
-      return response.data;
+      return self.addProperties(response.data);
     });
   };
 
@@ -43,7 +45,18 @@ angular.module('octobluApp')
     return $http.post(OCTOBLU_API_URL + '/api/templates/' + id + '/flows').then(function(response) {
       return response.data;
     })
-  }
+  };
+
+  self.addPropertiesToList = function(bluprints) {
+    return _.map(bluprints, self.addProperties);
+  };
+
+  self.addProperties = function(bluprint) {
+    bluprint = _.clone(bluprint);
+    bluprint.url = UrlService.withNewPath('/design/import/' + bluprint.uuid);
+    bluprint.tags = bluprint.tags || [];
+    return bluprint;
+  };
 
   self.deleteBluprint = function(id) {
     return $http.delete(OCTOBLU_API_URL + '/api/templates/' + id);

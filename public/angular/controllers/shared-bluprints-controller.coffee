@@ -9,8 +9,8 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
 
     refreshBlueprints: =>
       BluprintService.getPublicBluprints(@collectionName)
-        .then (response) =>
-          @bluprints = response.data
+        .then (bluprints) =>
+          @bluprints = bluprints
 
     importBluprint: (bluprintId) =>
       $state.go 'material.flow-import', {flowTemplateId: bluprintId}

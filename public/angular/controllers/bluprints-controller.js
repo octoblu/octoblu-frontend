@@ -6,14 +6,8 @@ angular.module('octobluApp')
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){
-    BluprintService.getAllBluprints().then(function(bluprints) {
-      $scope.bluprints = _.map(bluprints, function(bluprint) {
-        bluprint = _.clone(bluprint);
-        bluprint.url = UrlService.withNewPath('/design/import/' + bluprint.uuid);
-        bluprint.tags = bluprint.tags || [];
-        return bluprint;
-      });
-
+    BluprintService.getAllBluprints().then(function(bluprints) {      
+      $scope.bluprints = bluprints;
       $scope.isLoading = false;
     });
   };
