@@ -4,20 +4,38 @@
 @twitter-color:  #36A9DA;
 @github-color:   #444444;
 
+.login-wrap {
+  .flex(1);
+  .flex-display();
+  .flex-direction(column);
+  .justify-content(center);
+}
+
 .login-container {
   .flex-display;
   .flex(1);
   .justify-content(center);
+
+  &.md-default-theme {
+    background: #F4F5F9;
+  }
 }
 
 .login-card {
-  width: 450px;
+  .flex();
+  .flex-direction(column);
+  .flex-display();
+  .justify-content(center);
+
+  box-sizing: border-box;
+  width: 420px;
+  margin-top: -100px;
 }
 
 .login-octoblu-logo {
-  height : 120px;
-  width : 120px;
-  margin: 75px auto 40px;
+  width : 275px;
+  height: auto;
+  margin: 0 auto 40px;
 }
 
 .md-button {
@@ -31,6 +49,10 @@
 
     span {
       text-transform: none;
+    }
+
+    .fa {
+      padding-right: 5px;
     }
   }
 
@@ -80,6 +102,6 @@
   }
 
   &.login-button-signup {
-    margin: 8px 8px 16px;
+    margin: 16px;
   }
 }
