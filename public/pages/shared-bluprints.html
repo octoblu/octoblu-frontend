@@ -52,7 +52,7 @@
     </div>
 
     <ul class="bluprints">
-      <li ng-repeat="bluprint in controller.bluprints | filter: {name:bluprintSearch}" class="flow-container">
+      <li ng-repeat="bluprint in controller.bluprints track by bluprint.uuid | filter: {name:bluprintSearch}" class="flow-container">
         <div class="flow md-whiteframe-z1">
           <div class="header">
             <h3 class="name">
