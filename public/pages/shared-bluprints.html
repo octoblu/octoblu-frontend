@@ -1,0 +1,101 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div class="toolbar-header">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+      </a>
+      Shared Blueprints
+    </div>
+  </h2>
+</md-toolbar>
+
+<md-content class="browse">
+  <div class="directory">
+    <form class="directory__search-form">
+      <input type="text" placeholder="Search..." ng-model="bluprintSearch" class="directory__search-input" autofocus>
+      <button type="submit" class="directory__search-button">
+        <i class="fa fa-search"></i> Search
+      </button>
+    </form>
+
+    <div class="directory__collections" ng-hide="controller.collectionName">
+      <a ui-sref="material.browsecollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
+        <h1 class="directory__collection-name">Home
+          <br> Automation</h1>
+      </a>
+
+      <a ui-sref="material.browsecollection({collection: 'robots'})" class="md-whiteframe-z1 directory__collection directory__collection--robots">
+        <h1 class="directory__collection-name">Robots</h1>
+      </a>
+
+      <a ui-sref="material.browsecollection({collection: 'work automation'})" class="md-whiteframe-z1 directory__collection directory__collection--work">
+        <h1 class="directory__collection-name">Work Automation</h1>
+      </a>
+    </div>
+
+    <div class="directory__collections" ng-if="controller.collectionName">
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--home" ng-show="controller.collectionName == 'home automation'">
+        <h1 class="directory__collection-name">Home Automation</h1>
+      </a>
+
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--robots" ng-show="controller.collectionName == 'robots'">
+        <h1 class="directory__collection-name">Robots</h1>
+      </a>
+
+      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--work" ng-show="controller.collectionName == 'work automation'">
+        <h1 class="directory__collection-name">Work Automation</h1>
+      </a>
+    </div>
+
+    <div class="directory__header">
+      <h2 class="directory__header-text">Top Liked</h2>
+    </div>
+
+    <ul class="bluprints">
+      <li ng-repeat="bluprint in controller.bluprints | filter: {name:bluprintSearch}" class="flow-container">
+        <div class="flow md-whiteframe-z1">
+          <div class="header">
+            <h3 class="name">
+              {{bluprint.name}}
+            </h3>
+            <div class="actions">
+              <md-button class="action md-icon-button" clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)" clip-copy="bluprint.url" clip-click="controller.toastBluprintUrl(bluprint.url)" aria-label="Copy Link">
+                Copy
+              </md-button>
+              <md-button class="action md-icon-button" ng-click="controller.importBluprint(bluprint.uuid)" aria-label="Import">
+                Import
+              </md-button>
+            </div>
+          </div>
+
+          <div class="content">
+            <p class="description">
+              {{bluprint.description || "No description available."}}
+            </p>
+
+            <div ng-show="bluprint.tags" class="tags">
+              <a href="#" ng-repeat="tag in bluprint.tags" class="tag">{{tag}}</a>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="info-group">
+              <div class="info" ng-click="controller.toggleLike(bluprint)" ng-class="{liked: controller.liked(bluprint)}">
+                <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length}}
+              </div>
+
+              <div class="info">
+                <i class="fa fa-lg fa-cloud-download"></i> {{bluprint.sharedBy.length}}
+              </div>
+            </div>
+
+            <div class="info-group">
+              <div class="info author">
+                <i class="fa fa-lg fa-user"></i> {{bluprint.ownerName}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</md-content>

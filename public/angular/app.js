@@ -357,20 +357,26 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           }
         }
       })
-      .state('material.templates', {
-        url: '/templates',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
+      .state('material.bluprints', {
+        url: '/bluprints',
+        templateUrl: '/pages/bluprints.html',
+        controller: 'BluprintsController'
       })
-      .state('material.template', {
-        url: '/templates/:templateId',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
+      .state('material.bluprint', {
+        url: '/bluprints/:bluprintId',
+        templateUrl: '/pages/bluprints.html',
+        controller: 'BluprintsController'
       })
       .state('material.browse', {
         url: '/browse',
-        templateUrl: '/pages/template-browse.html',
-        controller: 'BrowseFlowsController',
+        templateUrl: '/pages/shared-bluprints.html',
+        controller: 'SharedBluprintsController',
+        controllerAs: 'controller'
+      })
+      .state('material.browsecollection', {
+        url: '/browse/:collection',
+        templateUrl: '/pages/shared-bluprints.html',
+        controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
       .state('accept_terms', {

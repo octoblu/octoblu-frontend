@@ -8,3 +8,8 @@
 @desktop-lg:  ~"only screen and (min-width: 1129px) and (max-width: 1439px)";
 @desktop-xl:  ~"only screen and (min-width: 1440px) and (max-width: 1920px)";
 @desktop-xxl: ~"only screen and (min-width: 1921px)";
+
+
+.num-columns(@numCols: 1) {
+  width: (100/@numCols) * 1%;
+}

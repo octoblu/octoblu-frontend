@@ -1,0 +1,37 @@
+<md-toolbar class="bluprints-toolbar">
+  <div class="md-toolbar-tools">
+    <a href class="menu-icon" ng-click="toggleNav()">
+      <h3 class="page-heading">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i> Bluprints
+      </h3>
+    </a>
+
+    <md-input-container class="search md-icon-float">
+      <md-icon md-font-icon="fa fa-search"></md-icon>
+      <input ng-model="bluprintSearch">
+    </md-input-container>
+  </div>
+</md-toolbar>
+
+<div class="bluprint-loading-indicator" ng-show="isLoading">
+  <h1 class="text-center">
+    <i class="fa fa-spin fa-refresh"></i>
+  </h1>
+</div>
+
+<div class="bluprints-no-bluprints" ng-show="bluprints.length == 0">
+  <h1>You have no shared bluprints.</h1>
+  <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:50%;">
+</div>
+
+<md-content class="bluprints-container" ng-hide="isLoading">
+  <ul class="flows">
+    <li class="flow" ng-class="{'selected-bluprint': currentBluprint == bluprint }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}" ng-click="setcurrentBluprint(bluprint)">
+      <div ng-show="currentBluprint != bluprint" ng-include="'/pages/bluprint-list-item.html'">
+      </div>
+
+      <div ng-show="currentBluprint == bluprint" ng-include="'/pages/bluprint-editor.html'">
+      </div>
+    </li>
+  </ul>
+</md-content>

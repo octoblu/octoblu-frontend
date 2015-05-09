@@ -1,4 +1,4 @@
-SHARED_TEMPLATES =
+SHARED_BLUPRINTS =
   'E406E836-D97B-495D-834B-EBF1FA0AC497': {
     'name': 'SMS -> Weather'
     'id': 'fbc3a070-e91e-11e4-bd02-3515df578f32'
@@ -36,4 +36,4 @@ SHARED_TEMPLATES =
     'author': 'Octoblu'
   }
 
-angular.module('octobluApp').constant 'SHARED_TEMPLATES', SHARED_TEMPLATES
+angular.module('octobluApp').constant 'SHARED_BLUPRINTS', SHARED_BLUPRINTS
