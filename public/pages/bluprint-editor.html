@@ -1,6 +1,6 @@
 <div class="bluprint-editor">
   <div class="header">
-    <h3 class="name">{{flow.name}}</h3>
+    <h3 class="name">{{bluprint.name}}</h3>
     <div class="actions">
       <md-button class="action md-icon-button" ng-click="confirmdeleteBluprint(bluprint.uuid)" aria-label="Delete">
         <md-tooltip>Delete</md-tooltip>
@@ -39,13 +39,13 @@
 
   <div class="footer">
     <div class="info-group">
-      <div class="info">
-        <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length || 0}}
-      </div>
+    <!--   <div class="info">
+      <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length || 0}}
+    </div>
 
-      <div class="info">
-        <i class="fa fa-lg fa-user"></i> {{bluprint.sharedBy.length || 0}}
-      </div>
+    <div class="info">
+      <i class="fa fa-lg fa-user"></i> {{bluprint.sharedBy.length || 0}}
+    </div> -->
     </div>
 
     <div class="info-group">
