@@ -7,13 +7,6 @@ angular.module('octobluApp')
       return;
     }
 
-    if (oldNode && newNode && oldNode.id == newNode.id && oldNode.url != newNode.url) {
-      $scope.node.bodyParams = {};
-      $scope.node.queryParams = {};
-      $scope.node.urlParams = {};
-      $scope.node.headerParams = {};
-    }
-
     channelService.getById($scope.node.channelid).then(function(channel){
       var resources = _.filter(channel.application.resources, function(resource){
         if(resource.enabled === false){
@@ -64,6 +57,14 @@ angular.module('octobluApp')
     if(!$scope.selectedEndpoint){
       return;
     }
+
+    if ($scope.node.url !== $scope.selectedEndpoint.url) {
+      $scope.node.bodyParams = {};
+      $scope.node.queryParams = {};
+      $scope.node.urlParams = {};
+      $scope.node.headerParams = {};
+    }
+
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
     if ($scope.selectedEndpoint.bodyParam) {
