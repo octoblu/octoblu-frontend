@@ -15,8 +15,8 @@ angular.module('octobluApp')
       });
 
       resources.sort(function(a, b){
-        var aKey = a.displayName ? a.displayName : a.path; 
-        var bKey = b.displayName ? b.displayName : b.path; 
+        var aKey = a.displayName ? a.displayName : a.path;
+        var bKey = b.displayName ? b.displayName : b.path;
         if(aKey < bKey){
           return -1;
         }
@@ -58,6 +58,10 @@ angular.module('octobluApp')
     }
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
+    $scope.node.bodyParams = {};
+    $scope.node.queryParams = {};
+    $scope.node.urlParams = {};
+    $scope.node.headerParams = {};
     if ($scope.selectedEndpoint.bodyParam) {
       $scope.node.bodyParam = $scope.selectedEndpoint.bodyParam;
     }
