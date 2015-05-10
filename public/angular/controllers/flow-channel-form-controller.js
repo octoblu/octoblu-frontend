@@ -2,10 +2,18 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function(OCTOBLU_API_URL, $scope, channelService) {
   'use strict';
 
-  var selectResources = function() {
+  var selectResources = function(oldNode, newNode) {
     if (!$scope.node.channelid) {
       return;
     }
+
+    if (oldNode && newNode && oldNode.id == newNode.id && oldNode.url != newNode.url) {
+      $scope.node.bodyParams = {};
+      $scope.node.queryParams = {};
+      $scope.node.urlParams = {};
+      $scope.node.headerParams = {};
+    }
+
     channelService.getById($scope.node.channelid).then(function(channel){
       var resources = _.filter(channel.application.resources, function(resource){
         if(resource.enabled === false){
@@ -37,7 +45,6 @@ angular.module('octobluApp')
   var selectEndpoint = function(){
     var node, resources, selectedEndpoint;
 
-    console.log('selectEndpoint');
     node = $scope.node;
     resources = $scope.resources;
     selectedEndpoint = _.findWhere(resources, {url: node.url, httpMethod: node.method});
@@ -69,17 +76,7 @@ angular.module('octobluApp')
     $scope.headerParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'header');
   };
 
-  var clearParams = function($old, $new) {
-    if ($old && $new && $old != $new) {
-      $scope.node.bodyParams = {};
-      $scope.node.queryParams = {};
-      $scope.node.urlParams = {};
-      $scope.node.headerParams = {};
-    }
-  };
-
   $scope.$watch('node', selectResources);
   $scope.$watch('resources',   selectEndpoint);
   $scope.$watch('selectedEndpoint', updateNodeWithSelectedEndpoint);
-  $scope.$watch('node.url', clearParams);
 });
