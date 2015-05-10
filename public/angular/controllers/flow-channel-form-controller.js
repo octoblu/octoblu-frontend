@@ -37,6 +37,7 @@ angular.module('octobluApp')
   var selectEndpoint = function(){
     var node, resources, selectedEndpoint;
 
+    console.log('selectEndpoint');
     node = $scope.node;
     resources = $scope.resources;
     selectedEndpoint = _.findWhere(resources, {url: node.url, httpMethod: node.method});
@@ -58,10 +59,6 @@ angular.module('octobluApp')
     }
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
-    $scope.node.bodyParams = {};
-    $scope.node.queryParams = {};
-    $scope.node.urlParams = {};
-    $scope.node.headerParams = {};
     if ($scope.selectedEndpoint.bodyParam) {
       $scope.node.bodyParam = $scope.selectedEndpoint.bodyParam;
     }
@@ -72,7 +69,17 @@ angular.module('octobluApp')
     $scope.headerParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'header');
   };
 
+  var clearParams = function($old, $new) {
+    if ($old && $new && $old != $new) {
+      $scope.node.bodyParams = {};
+      $scope.node.queryParams = {};
+      $scope.node.urlParams = {};
+      $scope.node.headerParams = {};
+    }
+  };
+
   $scope.$watch('node', selectResources);
   $scope.$watch('resources',   selectEndpoint);
   $scope.$watch('selectedEndpoint', updateNodeWithSelectedEndpoint);
+  $scope.$watch('node.url', clearParams);
 });
