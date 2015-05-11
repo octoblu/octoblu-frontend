@@ -367,14 +367,14 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/bluprints.html',
         controller: 'BluprintsController'
       })
-      .state('material.browse', {
-        url: '/browse',
+      .state('material.discover', {
+        url: '/discover',
         templateUrl: '/pages/shared-bluprints.html',
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
-      .state('material.browsecollection', {
-        url: '/browse/:collection',
+      .state('material.discovercollection', {
+        url: '/discover/:collection',
         templateUrl: '/pages/shared-bluprints.html',
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'

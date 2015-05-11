@@ -19,40 +19,40 @@
     </form>
 
     <div class="directory__collections" ng-hide="controller.collectionName">
-      <a ui-sref="material.browsecollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
+      <a ui-sref="material.discovercollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
         <h1 class="directory__collection-name">Home
           <br> Automation</h1>
       </a>
 
-      <a ui-sref="material.browsecollection({collection: 'robots'})" class="md-whiteframe-z1 directory__collection directory__collection--robots">
+      <a ui-sref="material.discovercollection({collection: 'robots'})" class="md-whiteframe-z1 directory__collection directory__collection--robots">
         <h1 class="directory__collection-name">Robots</h1>
       </a>
 
-      <a ui-sref="material.browsecollection({collection: 'work automation'})" class="md-whiteframe-z1 directory__collection directory__collection--work">
+      <a ui-sref="material.discovercollection({collection: 'work automation'})" class="md-whiteframe-z1 directory__collection directory__collection--work">
         <h1 class="directory__collection-name">Work Automation</h1>
       </a>
     </div>
 
     <div class="directory__collections" ng-if="controller.collectionName">
-      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--home" ng-show="controller.collectionName == 'home automation'">
+      <a ui-sref="material.discover" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--home" ng-show="controller.collectionName == 'home automation'">
         <h1 class="directory__collection-name">Home Automation</h1>
       </a>
 
-      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--robots" ng-show="controller.collectionName == 'robots'">
+      <a ui-sref="material.discover" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--robots" ng-show="controller.collectionName == 'robots'">
         <h1 class="directory__collection-name">Robots</h1>
       </a>
 
-      <a ui-sref="material.browse" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--work" ng-show="controller.collectionName == 'work automation'">
+      <a ui-sref="material.discover" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--work" ng-show="controller.collectionName == 'work automation'">
         <h1 class="directory__collection-name">Work Automation</h1>
       </a>
     </div>
 
-    <div class="directory__header">
-      <h2 class="directory__header-text">Top Liked</h2>
-    </div>
+  <!--   <div class="directory__header">
+    <h2 class="directory__header-text">Top Liked</h2>
+  </div> -->
 
     <ul class="bluprints">
-      <li ng-repeat="bluprint in controller.bluprints track by bluprint.uuid | filter: {name:bluprintSearch}" class="flow-container">
+      <li ng-repeat="bluprint in controller.bluprints | orderBy: 'name' | filter: {name:bluprintSearch}" class="flow-container">
         <div class="flow md-whiteframe-z1">
           <div class="header">
             <h3 class="name">
