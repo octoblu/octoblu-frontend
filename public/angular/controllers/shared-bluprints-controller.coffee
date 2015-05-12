@@ -1,6 +1,8 @@
 angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
   class SharedBluprintsController
     constructor: () ->
+      @luckyRobotNumber = Math.round(1 + Math.random() * 9)
+      $scope.isLoading = true;
       @collectionName = $stateParams.collection
       AuthService.getCurrentUser().then (user) =>
         @userUuid = user.resource.uuid
@@ -11,6 +13,7 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       BluprintService.getPublicBluprints(@collectionName)
         .then (bluprints) =>
           @bluprints = bluprints
+          $scope.isLoading = false;
 
     importBluprint: (bluprintId) =>
       $state.go 'material.flow-import', {flowTemplateId: bluprintId}
@@ -38,5 +41,8 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
 
     updateBlueprint: (newBlueprint) =>
       BluprintService.update newBlueprint.uuid, newBlueprint
+
+    randomRobot: () =>
+      "/assets/images/robots/robot#{@luckyRobotNumber}.png"
 
   new SharedBluprintsController()

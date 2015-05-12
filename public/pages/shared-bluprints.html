@@ -51,6 +51,15 @@
     <h2 class="directory__header-text">Top Liked</h2>
   </div> -->
 
+    <div class="bluprint-loading-indicator" ng-show="isLoading">
+      <h1 class="text-center">
+        <i class="fa fa-spin fa-refresh"></i>
+      </h1>
+    </div>
+    <div class="bluprints-no-bluprints" ng-show="controller.bluprints.length===0">
+      <h1>There are no shared bluprints.</h1>
+      <img ng-src="{{controller.randomRobot()}}" style="max-height:30%;max-width:30%;">
+    </div>
     <ul class="bluprints">
       <li ng-repeat="bluprint in controller.bluprints | orderBy: 'name' | filter: {name:bluprintSearch}" class="flow-container">
         <div class="flow md-whiteframe-z1">
