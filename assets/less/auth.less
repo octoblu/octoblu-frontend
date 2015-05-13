@@ -9,44 +9,81 @@
 @github-button-color:   #444444;
 @signup-button-color:   transparent;
 
-
-.auth {
-  .flex-display;
-  .flex-direction(column);
-
+.centered {
   width: 100%;
   height: 100%;
+  display: table;
+}
+
+.centered-wrapper {
+  @media @tablet, @all-desktops {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.auth {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   background: @background-color;
+
+  -webkit-transition: all .8s ease-in-out;
+     -moz-transition: all .8s ease-in-out;
+      -ms-transition: all .8s ease-in-out;
+       -o-transition: all .8s ease-in-out;
+          transition: all .8s ease-in-out;
 }
 
 .auth__inner {
-  .flex(1 0 auto);
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+
+  @media @tablet, @all-desktops {
+    .centered;
+    margin-top: 0;
+  }
 }
 
 .auth__card {
-  width: 440px;
+  width: 100%;
   margin: 0 auto;
   padding: @card-padding @card-padding/2;
+
+  @media @tablet, @all-desktops {
+    max-width: 440px;
+  }
 }
 
 .auth__button(@background) {
-  border-radius: 3px;
-  margin: 0 @card-padding/2 @card-padding;
-  padding: 10px 6px;
+  &.md-button {
+    border-radius: 3px;
+    margin: 0 @card-padding/2 @card-padding;
+    padding: 8px 6px;
 
-  color: @text-color;
-  font-size: 1.2em;
-  text-decoration: none;
-  text-align: center;
-
-  background: @background;
-
-  &:hover {
     color: @text-color;
+    font-size: 1.2em;
     text-decoration: none;
+    text-align: center;
 
-    background: darken(@background, 10%);
+    background: @background;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: @text-color;
+      text-decoration: none;
+
+      background: darken(@background, 8%);
+    }
+
+    .fa {
+      margin-right: 2px;
+    }
   }
 }
 
@@ -73,15 +110,19 @@
 .auth__button--signup {
   .auth__button(@signup-button-color);
 
-  margin-bottom: 0;
+  &.md-button {
+    margin-bottom: 0;
 
-  color: #14568F;
-  font-size: 14px;
-  text-transform: uppercase;
-
-  &:hover {
     color: #14568F;
-    background: rgba(158,158,158,0.2);
+    font-size: 14px !important;
+    text-transform: uppercase;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: #14568F;
+      background: rgba(158,158,158,0.2);
+    }
   }
 }
 
@@ -93,9 +134,12 @@
 }
 
 .auth__footer {
-  .flex(none);
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
-  padding: 20px 0;
+  padding: 15px 0;
+  width: 100%;
 
   color: #444;
   text-align: center;
@@ -122,7 +166,11 @@
 }
 
 .auth__footer-links {
-  margin: 0 0 7px;
+  margin: 0 0 4px;
+
+  @media @mobile {
+    display: none;
+  }
 }
 
 .auth__footer-citrix-logo {

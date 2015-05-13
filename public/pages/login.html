@@ -1,43 +1,45 @@
 <div class="auth">
   <div class="auth__inner">
-    <div class="auth__card">
-      <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
+    <div class="centered-wrapper">
+      <div class="auth__card">
+        <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 
-      <div layout="row">
-        <a class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
-          <i class="fa fa-lg fa-envelope-o"></i>
-          Sign In with Email
-        </a>
-      </div>
+        <div layout="row">
+          <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
+            <i class="fa fa-lg fa-envelope-o"></i>
+            Sign In with Email
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <a class="auth__button--github" ng-href="{{controller.githubLoginUri}}" flex>
-          <i class="fa fa-lg fa-github-square"></i>
-           Github
-        </a>
+        <div layout="row">
+          <md-button class="auth__button--github" ng-href="{{controller.githubLoginUri}}" flex>
+            <i class="fa fa-lg fa-github-square"></i>
+             Github
+          </md-button>
 
-        <a class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" flex>
-          <i class="fa fa-lg fa-facebook-square"></i>
-           Facebook
-        </a>
-      </div>
+          <md-button class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" flex>
+            <i class="fa fa-lg fa-facebook-square"></i>
+             Facebook
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <a class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" flex>
-          <i class="fa fa-lg fa-twitter-square"></i>
-           Twitter
-        </a>
+        <div layout="row">
+          <md-button class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" flex>
+            <i class="fa fa-lg fa-twitter-square"></i>
+             Twitter
+          </md-button>
 
-        <a class="auth__button--google" ng-href="{{controller.googleLoginUri}}" flex>
-          <i class="fa fa-lg fa-google-plus-square"></i>
-           Google+
-        </a>
-      </div>
+          <md-button class="auth__button--google" ng-href="{{controller.googleLoginUri}}" flex>
+            <i class="fa fa-lg fa-google-plus-square"></i>
+             Google+
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <a class="auth__button--signup" ng-href="{{controller.signUpUri}}" flex>
-          Create an Account
-        </a>
+        <div layout="row">
+          <md-button class="auth__button--signup md-primary" ng-href="{{controller.signUpUri}}" flex>
+            Create an Account
+          </md-button>
+        </div>
       </div>
     </div>
   </div>
