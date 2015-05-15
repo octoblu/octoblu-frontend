@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="device-actions">
+    <div ng-hide='controller.ifDeviceIsFlow(controller.device.type)' class="device-actions">
       <md-button ng-click="controller.confirmDeleteDevice()" class="md-raised md-warn md-hue-2">Delete</md-button>
     </div>
   </div>

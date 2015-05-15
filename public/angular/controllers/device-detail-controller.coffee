@@ -66,6 +66,9 @@ class DeviceDetailController
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
 
+  ifDeviceIsFlow: (type) =>
+    type == 'device:flow'
+
   notifyDeviceUpdatedImmediate: =>
     @NotifyService.notify 'Changes Saved'
 
