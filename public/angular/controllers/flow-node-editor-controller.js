@@ -3,6 +3,7 @@ angular.module('octobluApp')
   'use strict';
 
   var setFlowNodeType = function() {
+    $scope.showHelp = false;
     if(!$scope.flowNode) {
       $scope.flowNodeType = null;
       return;
@@ -24,6 +25,7 @@ angular.module('octobluApp')
   $scope.toggleHelp = function(){
     $scope.showHelp = !$scope.showHelp;
   };
+
 
   $scope.deleteNode = function(){
     var activeFlow = FlowService.getActiveFlow();
