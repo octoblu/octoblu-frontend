@@ -28,10 +28,13 @@ class NewProfileController
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, smsID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
         ], (error) =>
-          @createTutorialFlow().then (flow) =>
+          @addDemoFlow().then (flow) =>
             @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
         @loading = false
+
+  addDemoFlow: =>
+    @FlowService.createDemoFlow name: 'Demo Flow'
 
   createTutorialFlow: =>
     emailID = '542ce2ad47a930b1280b0d05'
