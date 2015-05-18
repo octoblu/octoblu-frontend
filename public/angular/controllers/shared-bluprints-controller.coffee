@@ -39,6 +39,14 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       $mdDialog.show(alert).finally =>
         alert = undefined
 
+    searchByTag: (tag) =>
+      $scope.bluprintFilter =
+        if _.includes($scope.bluprintFilter, tag)
+          _.without($scope.bluprintFilter, tag)
+        else
+          _.union($scope.bluprintFilter, [tag])
+
+
     updateBlueprint: (newBlueprint) =>
       BluprintService.update newBlueprint.uuid, newBlueprint
 

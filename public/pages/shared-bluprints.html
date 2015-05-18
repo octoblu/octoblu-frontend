@@ -18,6 +18,10 @@
       </button>
     </form>
 
+    <div>
+      <a href ng-repeat="tag in bluprintFilter" class="directory__search-tags">{{tag}}<i ng-click="controller.searchByTag(tag)" class="fa fa-times"></i></a>
+    </div>
+
     <div class="directory__collections" ng-hide="controller.collectionName">
       <a ui-sref="material.discovercollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
         <h1 class="directory__collection-name">Home
@@ -83,7 +87,7 @@
             </p>
 
             <div ng-show="bluprint.tags" class="tags">
-              <a href="#" ng-repeat="tag in bluprint.tags" class="tag">{{tag}}</a>
+              <a href ng-repeat="tag in bluprint.tags" class="tag" ng-click="controller.searchByTag(tag)">{{tag}}</a>
             </div>
           </div>
           <div class="footer">
