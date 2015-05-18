@@ -19,12 +19,10 @@
   }
 
   function closeSettings(uuid, token){
-  	console.log('Closing', uuid, token);
   	global.location.href = rootUrl + "/static/auth-login-success.html?uuid=" + uuid + "&token=" + token;
   }
 
 	function closePebble(uuid, token){
-		console.log('closing pebble')
 		global.location.href = "pebblejs://close#" + encodeURIComponent(JSON.stringify({
 			uuid: uuid,
 			token: token
@@ -39,7 +37,6 @@
         $('#creds').attr('data-uuid', uuid);
         $('#creds').attr('data-token', token);
 				var pebble = getParam('closePebble')
-				console.log('close-pebble', pebble);
 				if(pebble === 'true' || pebble === true){
 					closePebble(uuid, token)
 				}
