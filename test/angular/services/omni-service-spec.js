@@ -12,6 +12,7 @@ describe('OmniService', function () {
       $provide.value('FlowNodeTypeService', fakeFlowNodeTypeService);
       $provide.value('NodeTypeService', fakeNodeTypeService);
       $provide.value('FlowService', fakeFlowService);
+      $provide.value('MESHBLU_HOST', 'https://whatever.com');
     });
 
     inject(function(OmniService, _$rootScope_, _$q_){
@@ -31,7 +32,7 @@ describe('OmniService', function () {
     describe('when FlowNodeTypeService and NodeTypeService respond with nothing', function () {
       beforeEach(function () {
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([]);
-        fakeNodeTypeService.getNodeTypes.resolve([]);
+        fakeNodeTypeService.getUnconfiguredNodeTypes.resolve([]);
       });
 
       it('should keep its promise with an empty thing', function (done) {
@@ -51,7 +52,7 @@ describe('OmniService', function () {
         flowNodeType = {type: 'flowNodeType', uuid: '1'};
         nodeType     = {type: 'nodeType', uuid: '2'};
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([flowNodeType]);
-        fakeNodeTypeService.getNodeTypes.resolve([nodeType]);
+        fakeNodeTypeService.getUnconfiguredNodeTypes.resolve([nodeType]);
       });
 
       it('should keep its promise a mashup of the two [flow]nodeTypes', function (done) {
@@ -76,7 +77,7 @@ describe('OmniService', function () {
     describe('when FlowNodeTypeService and NodeTypeService respond with nothing', function () {
       beforeEach(function () {
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([]);
-        fakeNodeTypeService.getNodeTypes.resolve([]);
+        fakeNodeTypeService.getUnconfiguredNodeTypes.resolve([]);
       });
 
       it('should keep its promise with the original nodes', function (done) {
@@ -107,12 +108,12 @@ describe('OmniService', function () {
 
   var FakeNodeTypeService = function(){
     var self = this;
-    self.getNodeTypes = function() {
+    self.getUnconfiguredNodeTypes = function() {
       var deferred = $q.defer();
-      self.getNodeTypes.resolve = deferred.resolve;
+      self.getUnconfiguredNodeTypes.resolve = deferred.resolve;
       return deferred.promise;
     };
-    self.getNodeTypes.resolve = function(){};
+    self.getUnconfiguredNodeTypes.resolve = function(){};
   };
 
 });

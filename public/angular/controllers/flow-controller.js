@@ -59,7 +59,7 @@ angular.module('octobluApp')
       $scope.flowNodeTypes = flowNodeTypes;
     });
 
-  NodeTypeService.getNodeTypes()
+  NodeTypeService.getUnconfiguredNodeTypes()
     .then(function (nodeTypes) {
       $scope.nodeTypes = nodeTypes;
     });

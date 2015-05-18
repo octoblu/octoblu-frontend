@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('NodeTypeService', function (OCTOBLU_API_URL, $http, $q, OCTOBLU_ICON_URL) {
+.service('NodeTypeService', function (NodeService, $http, $q, OCTOBLU_ICON_URL, OCTOBLU_API_URL) {
   'use strict';
 
   var self = this;
@@ -13,6 +13,23 @@ angular.module('octobluApp')
       return _.map(nodeTypes, self.addLogo);
     });
   };
+
+  self.getUnconfiguredNodeTypes = function() {
+    return self.getNodeTypes()
+      .then(self.removeConfiguredNodes);
+  };
+
+  self.removeConfiguredNodes = function(nodeTypes) {
+    return NodeService.getNodes()
+      .then(function(configuredNodes){
+        return _.filter(nodeTypes, function(nodeType){
+          if(nodeType.category !== 'channel') {
+            return true;
+          }
+          return ! _.findWhere(configuredNodes, { channelid:  nodeType.channelid});
+        });
+      });
+  }
 
   self.addLogo = function(node){
     var nodeCopy = _.clone(node);
