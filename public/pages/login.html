@@ -1,58 +1,60 @@
-<div class="login-wrap">
-  <md-content class="login-container">
-    <div class="login-card">
-      <img class="login-octoblu-logo" src="/assets/images/octoblu-color.png">
+<div class="auth">
+  <div class="auth__inner">
+    <div class="centered-wrapper">
+      <div class="auth__card">
+        <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 
-      <div layout="row">
-        <md-button class="login-button login-button-email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
-          <i class="fa fa-lg fa-envelope-o"></i>
-          Sign In with Email
-        </md-button>
-      </div>
+        <div layout="row">
+          <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
+            <i class="fa fa-lg fa-envelope-o"></i>
+            Sign In with Email
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <md-button class="login-button login-button-github" ng-href="{{controller.githubLoginUri}}" flex>
-          <i class="fa fa-lg fa-github-square"></i>
-           Github
-        </md-button>
+        <div layout="row">
+          <md-button class="auth__button--github" ng-href="{{controller.githubLoginUri}}" flex>
+            <i class="fa fa-lg fa-github-square"></i>
+             Github
+          </md-button>
 
-        <md-button class="login-button login-button-facebook" ng-href="{{controller.facebookLoginUri}}" flex>
-          <i class="fa fa-lg fa-facebook-square"></i>
-           Facebook
-        </md-button>
-      </div>
+          <md-button class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" flex>
+            <i class="fa fa-lg fa-facebook-square"></i>
+             Facebook
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <md-button class="login-button login-button-twitter" ng-href="{{controller.twitterLoginUri}}" flex>
-          <i class="fa fa-lg fa-twitter-square"></i>
-           Twitter
-        </md-button>
+        <div layout="row">
+          <md-button class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" flex>
+            <i class="fa fa-lg fa-twitter-square"></i>
+             Twitter
+          </md-button>
 
-        <md-button class="login-button login-button-google" ng-href="{{controller.googleLoginUri}}" flex>
-          <i class="fa fa-lg fa-google-plus-square"></i>
-           Google+
-        </md-button>
-      </div>
+          <md-button class="auth__button--google" ng-href="{{controller.googleLoginUri}}" flex>
+            <i class="fa fa-lg fa-google-plus-square"></i>
+             Google+
+          </md-button>
+        </div>
 
-      <div layout="row">
-        <md-button class="md-primary login-button-signup" ng-href="{{controller.signUpUri}}" flex>Create an Account</md-button>
+        <div layout="row">
+          <md-button class="auth__button--signup md-primary" ng-href="{{controller.signUpUri}}" flex>
+            Create an Account
+          </md-button>
+        </div>
       </div>
     </div>
-  </md-content>
+  </div>
 
-  <footer class="section auth-footer">
-    <div class="section__inner section__inner--footer">
-      <p class="auth-footer__links">
-        <a href="//blog.citrix.com/team/octoblu/" class="auth-footer__link">Blog</a> •
-        <a href="//developer.octoblu.com" class="auth-footer__link">Developers</a> •
-        <a href="//gateblu.octoblu.com/" class="auth-footer__link" title="Octoblu's IoT Gateway">Gateblu</a> •
-        <a href="mailto://info@octoblu.com" class="auth-footer__link">Contact Us</a> •
-        <a href="//app.octoblu.com/terms" class="auth-footer__link">Terms &amp; Conditions</a>
-      </p>
+  <footer class="auth__footer">
+    <p class="auth__footer-links">
+      <a href="//blog.citrix.com/team/octoblu/" class="auth__footer-link">Blog</a> •
+      <a href="//developer.octoblu.com" class="auth__footer-link">Developers</a> •
+      <a href="//gateblu.octoblu.com/" class="auth__footer-link" title="Octoblu's IoT Gateway">Gateblu</a> •
+      <a href="mailto://info@octoblu.com" class="auth__footer-link">Contact Us</a> •
+      <a href="//app.octoblu.com/terms" class="auth__footer-link">Terms &amp; Conditions</a>
+    </p>
 
-      <a href="https://www.citrix.com/" title="Octoblu, now part of Citrix">
-        <img src="/assets/images/citrix-logo.png" alt="Citrix" class="auth-footer__citrix-logo">
-      </a>
-    </div>
+    <a href="https://www.citrix.com/" class="auth__footer-link--citrix" title="Octoblu, now part of Citrix">
+      <img src="/assets/images/citrix-logo.png" alt="Citrix" class="auth__footer-citrix-logo">
+    </a>
   </footer>
 </div>

@@ -1,0 +1,180 @@
+@card-padding: 16px;
+
+@text-color:            #F0F0F0;
+@background-color:      #F4F5F9;
+@email-button-color:    #009688;
+@google-button-color:   #DE4D36;
+@facebook-button-color: #3C5F96;
+@twitter-button-color:  #36A9DA;
+@github-button-color:   #444444;
+@signup-button-color:   transparent;
+
+.centered {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.centered-wrapper {
+  @media @tablet, @all-desktops {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.auth {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  background: @background-color;
+
+  -webkit-transition: all .8s ease-in-out;
+     -moz-transition: all .8s ease-in-out;
+      -ms-transition: all .8s ease-in-out;
+       -o-transition: all .8s ease-in-out;
+          transition: all .8s ease-in-out;
+}
+
+.auth__inner {
+  margin-top: 25px;
+  display: block;
+  width: 100%;
+
+  @media @tablet, @all-desktops {
+    .centered;
+    margin-top: 0;
+  }
+}
+
+.auth__card {
+  width: 100%;
+  margin: 0 auto;
+  padding: @card-padding @card-padding/2;
+
+  @media @tablet, @all-desktops {
+    max-width: 440px;
+  }
+}
+
+.auth__button(@background) {
+  &.md-button {
+    border-radius: 3px;
+    margin: 0 @card-padding/2 @card-padding;
+    padding: 10px 6px;
+
+    color: @text-color;
+    font-size: 1.2em;
+    text-decoration: none;
+    text-align: center;
+
+    background: @background;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: @text-color;
+      text-decoration: none;
+
+      background: darken(@background, 8%);
+    }
+
+    .fa {
+      margin-right: 2px;
+    }
+  }
+}
+
+.auth__button--email {
+  .auth__button(@email-button-color);
+}
+
+.auth__button--github {
+  .auth__button(@github-button-color);
+}
+
+.auth__button--facebook {
+  .auth__button(@facebook-button-color);
+}
+
+.auth__button--twitter {
+  .auth__button(@twitter-button-color);
+}
+
+.auth__button--google {
+  .auth__button(@google-button-color);
+}
+
+.auth__button--signup {
+  .auth__button(@signup-button-color);
+
+  &.md-button {
+    margin-bottom: 0;
+
+    color: #14568F;
+    font-size: 14px !important;
+    text-transform: uppercase;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: #14568F;
+      background: rgba(158,158,158,0.2);
+    }
+  }
+}
+
+.auth__octoblu-logo {
+  display: block;
+  width : 250px;
+  height: 52px;
+  margin: 0 auto 25px;
+}
+
+.auth__footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  padding: 15px 0;
+  width: 100%;
+
+  color: #444;
+  text-align: center;
+}
+
+.auth__footer-link {
+  display: inline;
+  padding: 0 10px;
+  color: #444;
+
+  &--citrix {
+    display: block;
+    width: 70px;
+    height: 27px;
+    padding: 0;
+    margin: 0 auto;
+
+    text-decoration: underline;
+  }
+
+  &:hover {
+    color: #222;
+  }
+}
+
+.auth__footer-links {
+  margin: 0 0 4px;
+
+  @media @mobile {
+    display: none;
+  }
+}
+
+.auth__footer-citrix-logo {
+  display: block;
+  width: 70px;
+  margin: 0 auto;
+}
