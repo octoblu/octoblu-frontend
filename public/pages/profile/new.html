@@ -33,29 +33,25 @@
           </div>
         </md-input-container>
 
-        <md-input-container class="auth__form-row">
-          <md-checkbox class="auth__form-checkbox" name="optInEmail" ng-model="optInEmail">
-            May we send you email updates?
-          </md-checkbox>
-        </md-input-container>
+        <md-checkbox class="auth__form-checkbox" name="optInEmail" ng-model="optInEmail">
+          May we send you email updates?
+        </md-checkbox>
 
-        <md-input-container class="auth__form-row">
-          <md-checkbox class="auth__form-checkbox" required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
-            I agree to the Terms of Service
-          </md-checkbox>
-        </md-input-container>
+        <md-checkbox class="auth__form-checkbox" required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
+          I agree to the Terms of Service
+        </md-checkbox>
 
         <p class="auth__form-message--error error-text" ng-show="controller.errorMessage">{{controller.errorMessage}}</p>
 
         <div class="auth__form-row">
-          <md-button ng-disabled="controller.loading" class="md-primary md-raised auth__button--form">
+          <md-button ng-disabled="controller.loading" class="md-raised md-primary full__bleed auth__button">
             Get Started
           </md-button>
         </div>
 
       </form>
 
-      <md-button ui-sref="terms" md-no-ink class="md-primary auth__button--secondary" flex>View Terms of Service</md-button>
+      <md-button ui-sref="terms" class="full__bleed auth__button--secondary" flex>View Terms of Service</md-button>
 
     </div>
   </div>
