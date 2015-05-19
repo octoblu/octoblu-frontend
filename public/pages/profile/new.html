@@ -1,12 +1,12 @@
-<md-content layout="row" layout-align="center center">
-  <div class="profile-card" layout="column">
-    <img class="login-octoblu-logo-small" src="https://s3-us-west-2.amazonaws.com/octoblu-icons/device/gateblu.svg">
+<div class="auth">
+  <div class="auth__card">
+    <div class="auth__card-inner">
+      <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 
-    <h1 class="profile-header">Profile Information:</h1>
+      <form name="controller.newProfileForm" class="auth__form" ng-submit="controller.submit(firstName, lastName, email, optInEmail, agreeTermsOfService)" novalidate>
+        <h3 class="auth__form-header">Profile Information</h3>
 
-    <form name="controller.newProfileForm" class="user-form" ng-submit="controller.submit(firstName, lastName, email, optInEmail, agreeTermsOfService)" novalidate>
-      <div layout="row">
-        <md-input-container flex>
+        <md-input-container class="auth__form-row">
           <label>First Name</label>
           <input required autofocus name="firstName" ng-model="firstName">
           <div ng-messages="controller.newProfileForm.firstName.$error">
@@ -15,7 +15,7 @@
           </div>
         </md-input-container>
 
-        <md-input-container flex>
+        <md-input-container class="auth__form-row">
           <label>Last Name</label>
           <input required name="lastName" ng-model="lastName">
           <div ng-messages="controller.newProfileForm.lastName.$error">
@@ -23,10 +23,8 @@
             <div ng-message="email" ng-show="controller.newProfileForm.lastName.$error.email">Must be a valid email address.</div>
           </div>
         </md-input-container>
-      </div>
 
-      <div layout="row">
-        <md-input-container flex>
+        <md-input-container class="auth__form-row">
           <label>Email</label>
           <input required name="email" ng-model="email" type="email">
           <div ng-messages="controller.newProfileForm.email.$error">
@@ -34,27 +32,31 @@
             <div ng-message="email" ng-show="controller.newProfileForm.email.$error.email">Must be a valid email address.</div>
           </div>
         </md-input-container>
-      </div>
 
-      <div layout="row">
-        <md-checkbox name="optInEmail" ng-model="optInEmail">
-          May we send you email updates?
-        </md-checkbox>
-      </div>
+        <md-input-container class="auth__form-row">
+          <md-checkbox class="auth__form-checkbox" name="optInEmail" ng-model="optInEmail">
+            May we send you email updates?
+          </md-checkbox>
+        </md-input-container>
 
-      <div layout="row">
-        <md-checkbox required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
-          I agree to the Terms of Service
-        </md-checkbox>
-      </div>
+        <md-input-container class="auth__form-row">
+          <md-checkbox class="auth__form-checkbox" required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
+            I agree to the Terms of Service
+          </md-checkbox>
+        </md-input-container>
 
-      <div layout="row">
-        <md-button ng-disabled="controller.loading" class="md-primary md-raised profile-button-submit" flex>Get Started</md-button>
-      </div>
+        <p class="auth__form-message--error error-text" ng-show="controller.errorMessage">{{controller.errorMessage}}</p>
 
-    </form>
-    <div layout="row">
-      <md-button ui-sref="terms" md-no-ink class="md-primary profile-button-tos" flex>View Terms of Service</md-button>
+        <div class="auth__form-row">
+          <md-button ng-disabled="controller.loading" class="md-primary md-raised auth__button--form">
+            Get Started
+          </md-button>
+        </div>
+
+      </form>
+
+      <md-button ui-sref="terms" md-no-ink class="md-primary auth__button--secondary" flex>View Terms of Service</md-button>
+
     </div>
   </div>
-</md-content>
+</div>

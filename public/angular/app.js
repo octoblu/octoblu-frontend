@@ -406,7 +406,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-      .state('material.profile-new', {
+      .state('profile-new', {
         url: '/profile/new',
         controller: 'NewProfileController',
         controllerAs: 'controller',
@@ -498,9 +498,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       $intercom.update();
       if (!toState.unsecured) {
 
-        if(toState.name !== 'material.profile-new'){
+        if(toState.name !== 'profile-new'){
           IntercomUserService.updateIntercom().catch(function(error){
-            $state.go('material.profile-new');
+            $state.go('profile-new');
           });
         }
 

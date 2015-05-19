@@ -1,45 +1,38 @@
 <div class="auth">
-  <div class="auth__inner">
-    <div class="centered-wrapper">
-      <div class="auth__card">
-        <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
+  <div class="auth__card">
+    <div class="auth__card-inner">
+      <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 
-        <div layout="row">
-          <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" flex>
-            <i class="fa fa-lg fa-envelope-o"></i>
-            Sign In with Email
-          </md-button>
-        </div>
+      <div class="auth__form-row">
+        <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" >
+          <i class="fa fa-lg fa-envelope-o"></i> Sign In with Email
+        </md-button>
+      </div>
 
-        <div layout="row">
-          <md-button class="auth__button--github" ng-href="{{controller.githubLoginUri}}" flex>
-            <i class="fa fa-lg fa-github-square"></i>
-             Github
-          </md-button>
+      <div class="auth__form-row">
+        <md-button class="auth__button--github" ng-href="{{controller.githubLoginUri}}" >
+          <i class="fa fa-lg fa-github-square"></i> Github
+        </md-button>
 
-          <md-button class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" flex>
-            <i class="fa fa-lg fa-facebook-square"></i>
-             Facebook
-          </md-button>
-        </div>
+        <md-button class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" >
+          <i class="fa fa-lg fa-facebook-square"></i> Facebook
+        </md-button>
+      </div>
 
-        <div layout="row">
-          <md-button class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" flex>
-            <i class="fa fa-lg fa-twitter-square"></i>
-             Twitter
-          </md-button>
+      <div class="auth__form-row">
+        <md-button class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" >
+          <i class="fa fa-lg fa-twitter-square"></i> Twitter
+        </md-button>
 
-          <md-button class="auth__button--google" ng-href="{{controller.googleLoginUri}}" flex>
-            <i class="fa fa-lg fa-google-plus-square"></i>
-             Google+
-          </md-button>
-        </div>
+        <md-button class="auth__button--google" ng-href="{{controller.googleLoginUri}}" >
+          <i class="fa fa-lg fa-google-plus-square"></i> Google+
+        </md-button>
+      </div>
 
-        <div layout="row">
-          <md-button class="auth__button--signup md-primary" ng-href="{{controller.signUpUri}}" flex>
-            Create an Account
-          </md-button>
-        </div>
+      <div class="auth__form-row">
+        <md-button class="md-primary auth__button--secondary" ng-href="{{controller.signUpUri}}" >
+          Create an Account
+        </md-button>
       </div>
     </div>
   </div>
