@@ -1,7 +1,7 @@
 <div class="bluprint-editor">
   <div class="header">
-    <h3 class="name">{{bluprint.name}}</h3>
-    <div class="actions">
+    <h3 class="name clickable" ng-click="toggleBluprint(bluprint)">{{bluprint.name}}</h3>
+    <div class="actions"  ng-click="selectBluprint(bluprint)">
       <md-button class="action md-icon-button" ng-click="confirmdeleteBluprint(bluprint.uuid)" aria-label="Delete">
         <md-tooltip>Delete</md-tooltip>
         <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
@@ -19,7 +19,7 @@
       </md-switch>
     </div>
   </div>
-  <div  class="content">
+  <div  class="content" ng-mousedown="selectBluprint(bluprint)">
     <div class="properties-editor">
       <md-input-container class="name">
         <label>Name</label>

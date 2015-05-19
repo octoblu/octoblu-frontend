@@ -1,6 +1,6 @@
 <div class="bluprint-list-item">
   <div class="header">
-    <h3 class="name">
+    <h3 class="name clickable" ng-click="toggleBluprint(bluprint)">
       {{bluprint.name}}
     </h3>
     <div class="info-group">
@@ -15,7 +15,7 @@
       {{bluprint.description || "No description available."}}
     </p>
 
-    <div class="tags">
+    <div class="tags" ng-click="selectBluprint(bluprint)">
       <a href="#" ng-repeat="tag in bluprint.tags" class="tag">{{tag}}</a>
     </div>
   </div>
