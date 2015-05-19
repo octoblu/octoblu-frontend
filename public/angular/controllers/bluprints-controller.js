@@ -6,7 +6,7 @@ angular.module('octobluApp')
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){
-    BluprintService.getAllBluprints().then(function(bluprints) {      
+    BluprintService.getAllBluprints().then(function(bluprints) {
       $scope.bluprints = bluprints;
       $scope.isLoading = false;
     });
@@ -32,8 +32,18 @@ angular.module('octobluApp')
     return bluprint.public = !bluprint.public;
   }
 
-  $scope.setcurrentBluprint = function(bluprint) {
-    $scope.currentBluprint = bluprint;
+  $scope.selectBluprint = function(bluprint) {
+    $scope.selectedBluprint = bluprint;
+  }
+
+  $scope.toggleBluprint = function(bluprint) {
+    if (bluprint.expanded){
+      return bluprint.expanded = false;
+    }
+    else if (!bluprint.expanded){
+      $scope.selectedBluprint = bluprint;
+      return bluprint.expanded = true;
+    }
   };
 
   $scope.toastBluprintUrl = function(url) {
@@ -62,7 +72,7 @@ angular.module('octobluApp')
 
   var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
 
-  $scope.$watch('currentBluprint', updateBluprint, true);
+  $scope.$watch('selectedBluprint', updateBluprint, true);
 
   $scope.refreshBluprints();
 });

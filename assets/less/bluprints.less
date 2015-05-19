@@ -40,7 +40,9 @@
 .bluprints-container {
   padding: 16px;
   .bluprint-list-item {
-    cursor: pointer;
+    .clickable {
+      cursor: pointer;
+    }
   }
   .flows {
     .flex-display;
@@ -63,6 +65,9 @@
   }
 }
 .bluprint-editor {
+  .clickable {
+    cursor: pointer;
+  }
   .content {
     .flex-display;
     .flex-direction(row);
