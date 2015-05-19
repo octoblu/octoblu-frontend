@@ -32,10 +32,6 @@ angular.module('octobluApp')
     return bluprint.public = !bluprint.public;
   }
 
-  $scope.selectBluprint = function(bluprint) {
-    $scope.selectedBluprint = bluprint;
-  }
-
   $scope.toggleBluprint = function(bluprint) {
     if (bluprint.expanded){
       return bluprint.expanded = false;
@@ -58,11 +54,22 @@ angular.module('octobluApp')
     });
   };
 
+ $scope.toggleExpandedBluprints = function(selectedBluprint){
+   if(!selectedBluprint){
+     return;
+   }
+    _.each($scope.bluprints, function(bluprint){
+      if(selectedBluprint.uuid !== bluprint.uuid){
+        bluprint.expanded = false;
+      }
+    });
+ };
+
   var immediateUpdateBluprint = function(newBluprint, oldBluprint){
     if (!newBluprint || !oldBluprint) {
       return;
     }
-
+    $scope.toggleExpandedBluprints(newBluprint);
     BluprintService.update(newBluprint.uuid, newBluprint);
   };
 
@@ -70,9 +77,7 @@ angular.module('octobluApp')
     return "/assets/images/robots/robot"+luckyRobotNumber+".png"
   };
 
-  var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
-
-  $scope.$watch('selectedBluprint', updateBluprint, true);
+  $scope.$watch('selectedBluprint', immediateUpdateBluprint, true);
 
   $scope.refreshBluprints();
 });
