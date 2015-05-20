@@ -71,13 +71,20 @@ angular.module('octobluApp')
     }
     $scope.toggleExpandedBluprints(newBluprint);
     BluprintService.update(newBluprint.uuid, newBluprint);
+    console.log("Ping");
   };
 
   $scope.randomRobot = function(){
     return "/assets/images/robots/robot"+luckyRobotNumber+".png"
   };
 
-  $scope.$watch('selectedBluprint', immediateUpdateBluprint, true);
+  var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
+
+  var collapseBluprints = $scope.toggleExpandedBluprints;
+
+  $scope.$watch('selectedBluprint', collapseBluprints, true);
+
+  $scope.$watch('selectedBluprint', updateBluprint, true);
 
   $scope.refreshBluprints();
 });
