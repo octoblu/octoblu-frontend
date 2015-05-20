@@ -6,7 +6,7 @@ angular.module('octobluApp')
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){
-    BluprintService.getAllBluprints().then(function(bluprints) {      
+    BluprintService.getAllBluprints().then(function(bluprints) {
       $scope.bluprints = bluprints;
       $scope.isLoading = false;
     });
@@ -57,7 +57,8 @@ angular.module('octobluApp')
   };
 
   $scope.randomRobot = function(){
-    return "/assets/images/robots/robot"+luckyRobotNumber+".png"
+    return "//cdn.octoblu.com/robots/robot"+luckyRobotNumber+".png";
+    return "/assets/images/robots/robot"+luckyRobotNumber+".png";
   };
 
   var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
