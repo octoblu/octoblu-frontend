@@ -268,6 +268,7 @@ angular.module('octobluApp')
       e.preventDefault();
     }
     $scope.stopping = true;
+    $scope.needsToBeDeployed = true;
     FlowService.stop();
   };
 
