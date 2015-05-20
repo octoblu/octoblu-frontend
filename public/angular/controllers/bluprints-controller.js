@@ -71,7 +71,6 @@ angular.module('octobluApp')
     }
     $scope.toggleExpandedBluprints(newBluprint);
     BluprintService.update(newBluprint.uuid, newBluprint);
-    console.log("Ping");
   };
 
   $scope.randomRobot = function(){
