@@ -58,7 +58,6 @@ angular.module('octobluApp')
 
   $scope.randomRobot = function(){
     return "//cdn.octoblu.com/robots/robot"+luckyRobotNumber+".png";
-    return "/assets/images/robots/robot"+luckyRobotNumber+".png";
   };
 
   var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
