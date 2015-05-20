@@ -4,6 +4,7 @@ angular.module('octobluApp')
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
+  var lastDeployedHash;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -23,7 +24,7 @@ angular.module('octobluApp')
     _.delay(function() {
       deadManSwitch(skynetConnection, flowId);
     }, 60 * 1000)
-  }
+  };
 
   var setCookie = function(flowId) {
     $cookies.currentFlowId = flowId;
@@ -251,6 +252,8 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
+    lastDeployedHash = _.clone($scope.activeFlow.hash);
+    $scope.needsToBeDeployed = false;
     $scope.deploying = true;
     _.each($scope.activeFlow.nodes, function(node) {
       delete node.errorMessage;
@@ -381,9 +384,10 @@ angular.module('octobluApp')
     if (!oldHash) {
       return;
     }
-    if (!_.isEqual(newHash, oldHash)) {
-      FlowService.saveActiveFlow();
-    }
+    if (_.isEqual(newHash, oldHash)) { return }
+    $scope.needsToBeDeployed = lastDeployedHash !== newHash
+
+    FlowService.saveActiveFlow();
   };
 
   $scope.$watch('activeFlow', calculateFlowHash, true);
