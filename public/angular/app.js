@@ -95,6 +95,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           if (response.status === 403) {
             return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
+          if (response.status === 502) {
+            if($window.location.pathname !== '/error') {
+              return $window.location = '/error';
+            }
+          }
           return response;
         }
       };
@@ -110,6 +115,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/',
         templateUrl: '/pages/root.html',
         controller: 'RootController'
+      })
+      .state('material.error', {
+        url: '/error',
+        templateUrl: '/pages/error.html',
+        controller: 'ErrorController',
+        controllerAs: 'controller',
       })
       .state('material.analyze', {
         url: '/analyze',
