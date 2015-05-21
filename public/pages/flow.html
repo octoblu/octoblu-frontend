@@ -63,7 +63,7 @@
           <i class="fa fa-stop"></i>
         </md-button>
 
-        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying }" aria-label="Start">
+        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying, 'needs-to-be-deployed': needsToBeDeployed }" aria-label="Start">
           <md-tooltip>Start</md-tooltip>
           <i class="fa fa-play"></i>
         </md-button>

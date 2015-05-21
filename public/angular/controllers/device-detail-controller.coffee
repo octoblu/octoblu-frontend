@@ -13,7 +13,7 @@ class DeviceDetailController
     @ThingService = ThingService
     @form = ['*']
 
-    @saveDevice = _.throttle @saveDeviceNow, 100
+    @saveDevice = _.debounce @saveDeviceNow, 750
 
     deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
       @device = device
@@ -65,6 +65,8 @@ class DeviceDetailController
     return unless @device?
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
+    .then =>
+      @notifyDeviceUpdated()
 
   ifDeviceIsFlow: (type) =>
     type == 'device:flow'

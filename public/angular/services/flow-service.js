@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, skynetService) {
   'use strict';
   var self, activeFlow;
   self = this;
@@ -17,8 +17,15 @@ angular.module('octobluApp')
 
   self.saveFlow = function(flow) {
     flow.hash = self.hashFlow(flow);
-    return $http.put(OCTOBLU_API_URL + "/api/flows/" + flow.flowId, _.clone(flow));
+    return $http.put(OCTOBLU_API_URL + "/api/flows/" + flow.flowId, _.clone(flow)).then(function(response){
+      self.notifyFlowSaved();
+      return response;
+    });
   };
+
+  self.notifyFlowSaved = _.debounce(function(){
+    NotifyService.notify("Flow Saved");
+  }, 1000);
 
   self.selectNode = function(flowNode){
     activeFlow.selectedFlowNode = flowNode;
