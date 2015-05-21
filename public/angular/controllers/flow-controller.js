@@ -141,9 +141,13 @@ angular.module('octobluApp')
   });
 
   $scope.addFlow = function () {
-    return FlowService.createFlow().then(function(newFlow){
-      $state.go('material.flow', {flowId: newFlow.flowId});
-    });
+    return FlowService.createFlow()
+      .then(function(newFlow){
+        $state.go('material.flow', {flowId: newFlow.flowId});
+      })
+      .catch(function(error){
+        console.error(error);
+      });
   };
 
   $scope.getActiveFlow = function(){

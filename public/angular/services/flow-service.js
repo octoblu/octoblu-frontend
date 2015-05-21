@@ -122,7 +122,11 @@ angular.module('octobluApp')
 
   self.createFlow = function(flowAttributes) {
     return $http.post(OCTOBLU_API_URL + '/api/flows', flowAttributes).then(function(response) {
-      return new FlowModel(response.data);
+      var flow = response.data;
+      if(!flow || !flow.flowId){
+        return $q.reject(new Error('flow not created'));
+      }
+      return new FlowModel(flow);
     });
   };
 
