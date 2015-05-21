@@ -74,7 +74,7 @@ angular.module('octobluApp')
   };
 
   $scope.randomRobot = function(){
-    return "/assets/images/robots/robot"+luckyRobotNumber+".png"
+    return "//cdn.octoblu.com/robots/robot"+luckyRobotNumber+".png";
   };
 
   var updateBluprint = _.debounce(immediateUpdateBluprint, 500);

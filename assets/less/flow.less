@@ -23,6 +23,32 @@
   to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
 }
 
+@-webkit-keyframes notDeployedPulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(177, 198, 161, 0.5);
+  }
+  50% {
+      -webkit-box-shadow: 0 0 0 10px rgba(177, 198, 161, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(177, 198, 161, 0);
+  }
+}
+@keyframes notDeployedPulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(177, 198, 161, 0.5);
+    box-shadow: 0 0 0 0 rgba(177, 198, 161, 0.4);
+  }
+  50% {
+      -moz-box-shadow: 0 0 0 10px rgba(177, 198, 161, 0);
+      box-shadow: 0 0 0 10px rgba(177, 198, 161, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(177, 198, 161, 0);
+      box-shadow: 0 0 0 0 rgba(177, 198, 161, 0);
+  }
+}
+
 /*This needs to go in a general less file.*/
 .flow-font {
   font-size: 1.25em;
@@ -117,6 +143,20 @@ md-sidenav.md-sidenav-left {
       animation-name: startPulse;
       animation-duration: 2s;
       animation-iteration-count: infinite;
+    }
+
+    &.start-button.needs-to-be-deployed {
+      -webkit-animation-name: notDeployedPulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: notDeployedPulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+    }
+
+    &.start-button.needs-to-be-deployed:hover {
+      animation: none;
     }
 
     &.stop-button.stopping {

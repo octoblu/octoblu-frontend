@@ -1,12 +1,14 @@
 describe('FlowService', function () {
-  var sut, $httpBackend, fakeUUIDService;
+  var sut, $httpBackend, fakeUUIDService, fakeNotifyService;
 
   beforeEach(function () {
     module('octobluApp');
 
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
+      fakeNotifyService = {notify: function(){}};
       $provide.value('UUIDService', fakeUUIDService);
+      $provide.value('NotifyService', fakeNotifyService);
       $provide.value('$cookies', {});
       $provide.value('reservedProperties', []);
       $provide.value('$intercom', {boot: sinon.stub()});
