@@ -233,11 +233,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelTravisCIProController',
         templateUrl: '/pages/node-wizard/add-channel/travis-ci.html'
       })
-      .state('material.nodewizard.addchannel.google-places', {
-        url: '/google-places',
-        controller: 'addChannelGooglePlacesController',
-        templateUrl: '/pages/node-wizard/add-channel/google-places.html'
-      })
       .state('material.nodewizard.addchannel.littlebits', {
         url: '/littlebits',
         controller: 'addChannelLittlebitsController',
