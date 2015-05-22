@@ -37,22 +37,16 @@
           May we send you email updates?
         </md-checkbox>
 
-        <md-checkbox class="auth__form-checkbox" required name="agreeTermsOfService" ng-model="agreeTermsOfService" class="profile-tos-checkbox" ng-class="{'checkbox-error':!controller.newProfileForm.agreeTermsOfService.$valid}">
-          I agree to the Terms of Service
-        </md-checkbox>
+        <p class="auth__form-message--error" ng-show="controller.errorMessage">{{controller.errorMessage}}</p>
 
-        <p class="auth__form-message--error error-text" ng-show="controller.errorMessage">{{controller.errorMessage}}</p>
+        <p>Signing up signifies that you agree to our <a href="https://app.octoblu.com/terms">Terms of Service</a>.</p>
 
         <div class="auth__form-row">
           <md-button ng-disabled="controller.loading" class="md-raised md-primary full__bleed auth__button">
             Get Started
           </md-button>
         </div>
-
       </form>
-
-      <md-button ui-sref="terms" class="full__bleed auth__button--secondary">View Terms of Service</md-button>
-
     </div>
   </div>
 </div>
