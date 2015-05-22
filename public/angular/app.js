@@ -506,6 +506,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
 
         if(toState.name !== 'profile-new'){
           IntercomUserService.updateIntercom().catch(function(error){
+            if(error.message === 'meshblu connection error'){
+              return;
+            }
             $state.go('profile-new');
           });
         }
