@@ -1,3 +1,26 @@
+@-webkit-keyframes pulseTrigger {
+  0% {
+    stroke-width: 0;
+  }
+  50% {
+    stroke-width: 5px;
+  }
+  100% {
+    stroke-width: 0;
+  }
+}
+@keyframes pulseTrigger {
+  0% {
+    stroke-width: 0;
+  }
+  50% {
+    stroke-width: 5px;
+  }
+  100% {
+    stroke-width: 0;
+  }
+}
+
 .hide-animation {
   -webkit-animation: 0.5s fadeOut ease;
   -ms-animation: 0.5s fadeOut ease;
@@ -79,9 +102,16 @@
 .flow-node-button {
   fill: #aaa;
   shape-rendering : crispEdges;
-  stroke: #999;
+  stroke: #d0d0d0;
   stroke-width: 2;
   cursor: pointer;
+
+  -webkit-animation-name: pulseTrigger;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: pulseTrigger;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
 
   &:hover {
     fill: #ccc;
@@ -153,4 +183,3 @@
   cursor: grabbing;
   }
 }
-
