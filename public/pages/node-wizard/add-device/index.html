@@ -1,54 +1,45 @@
-<h2 class="text-center">Add {{nodeType.name}}</h2>
+<md-content class="node-wizard">
+  <h2 class="node-wizard__title">Add {{nodeType.name}}</h2>
 
-<br>
+  <img src="{{nodeType.logo}}" class="node-wizard__logo">
 
-<div class="add-node-title">
-  <img src="{{nodeType.logo}}" class="add-node-logo">
-</div>
+  <div class="node-wizard__body">
+    <md-select ng-model="newDevice.action" class="node-wizard__form-actions" required>
+      <md-option ng-value="'addUnclaimed'">Add an unclaimed device</md-option>
+      <md-option ng-value="'registerNew'">Register a new device</md-option>
+      <md-option ng-value="'claimExisting'">Claim an existing device</md-option>
+    </md-select>
 
-<br>
-<br>
+    <form ng-submit="addDevice()" class="node-wizard__form">
+      <md-input-container class="node-wizard__form-row">
+        <label>Name</label>
+        <input type="text" ng-model="newDevice.name" aria-label="Name" required>
+      </md-input-container>
 
-<div class="row">
-    <div class="col-xs-12 col-md-offset-3 col-md-6">
-        <form class="form" ng-submit="addDevice()">
-            <div class="form-group">
-                <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
-                        ng-options="device.label for device in newDevice.unclaimedDevices">
-                    <option value="">Add New</option>
-                </select>
-            </div>
-            <div ng-show="newDevice.selectedDevice.type === 'existing'">
-                <div class="form-group">
-                    <label class="control-label">UUID</label>
-                    <input type="text" ng-model="existingDevice.uuid" class="form-control input-lg">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Token</label>
-                    <input type="text" ng-model="existingDevice.token" class="form-control input-lg">
-                </div>
-            </div>
-            <div class="form-group" ng-class="{'has-error': errorMessage}">
-                <label for="name" class="control-label">Name</label>
-                <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name"
-                       placeholder="My {{nodeType.name}}" required>
+      <div class="node-wizard__form-row" ng-show="newDevice.action == 'addUnclaimed'">
+        <md-select placeholder="Unclaimed Devices" ng-model="newDevice.selectedDevice">
+          <md-option ng-value="device" ng-repeat="device in newDevice.unclaimedDevices" >{{device.label}}</md-option>
+        </md-select>
+      </div>
 
-                <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-            </div>
+      <section ng-show="newDevice.action == claimExisting" ng-hide="newDevice.action !== 'claimExisting'">
+        <md-input-container class="node-wizard__form-row">
+          <label>UUID</label>
+          <input type="text" aria-label="UUID" ng-model="existingDevice.uuid">
+        </md-input-container>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                    <i class="fa fa-plus"></i>
-                    Add
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+        <md-input-container class="node-wizard__form-row">
+          <label>Token</label>
+          <input type="password" aria-label="token" ng-model="existingDevice.token">
+        </md-input-container>
+      </section>
 
+      <p class="help-block node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+      <md-button class="md-primary md-raised node-wizard__button">
+        Add Device
+      </md-button>
+    </form>
+
+  </div>
+</md-content>
