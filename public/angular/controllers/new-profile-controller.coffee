@@ -8,7 +8,7 @@ class NewProfileController
     @userService    = userService
     @tutorial       = FLOW_TUTORIAL_1
 
-  submit: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
+  submit: (firstName, lastName, email, optInEmail) =>
     emailID = '542ce2ad47a930b1280b0d05'
     smsID   = '542c2f2eab1c05dde14544e0'
     @newProfileForm.firstName.$setTouched()

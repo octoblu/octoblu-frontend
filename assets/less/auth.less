@@ -70,6 +70,17 @@
   margin: 0 0 15px;
 }
 
+.auth__form-message {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth__form-message--error {
+  .auth__form-message;
+  
+  color: #f44336;
+}
+
 .auth__button(@background) {
   &.md-button {
     .flex(1);
@@ -156,7 +167,7 @@
 
 .auth__link {
   display: block;
-  
+
   color: @primary-button-color;
   text-align: right;
 }
