@@ -1,25 +1,17 @@
 <div class="sidebar__pane">
   <div class="sidebar__pane-content">
     <header class="sidebar__toolbar sidebar__toolbar--header">
-      <button class="sidebar__toolbar-button sidebar__toolbar-button--active" ng-click="toggleActiveTab('flows')" ng-class="{'active' : activeFlow.browserTab.name === 'flows'}" title="Flows">
-          <i class="fa fa-money fa-lg"></i>
-      </button>
+      <a class="sidebar__toolbar-button" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : activeFlow.browserTab.name === 'nodes'}" title="Nodes">
+        Nodes
+      </a>
 
-      <button class="sidebar__toolbar-button" ng-click="toggleActiveTab('operators')" ng-class="{'active' : activeFlow.browserTab.name === 'operators'}" title="Operator Nodes" >
-          <i class="fa fa-plug fa-lg"></i>
-      </button>
+      <a class="sidebar__toolbar-button sidebar__toolbar-button--active" ng-click="toggleActiveTab('flows')" ng-class="{'active' : activeFlow.browserTab.name === 'flows'}" title="Flows">
+        Flows
+      </a>
 
-      <button class="sidebar__toolbar-button" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : activeFlow.browserTab.name === 'nodes'}" title="Configured Nodes" >
-        <i class="fa fa-code-fork fa-lg"></i>
-      </button>
-
-      <button class="sidebar__toolbar-button" ng-click="toggleActiveTab('unconfigurednodes')" ng-class="{'active' : activeFlow.browserTab.name === 'unconfigurednodes'}" title="Available Nodes" >
-        <i class="fa fa-plus-circle fa-lg"></i>
-      </button>
-
-      <button class="sidebar__toolbar-button" ng-click="toggleActiveTab('debug')" ng-class="{'active' : activeFlow.browserTab.name === 'debug'}" title="Debug">
-        <i class="fa fa-bug fa-lg"></i>
-      </button>
+      <a class="sidebar__toolbar-button" ng-click="toggleActiveTab('debug')" ng-class="{'active' : activeFlow.browserTab.name === 'debug'}" title="Debug">
+        Debug
+      </a>
     </header>
 
     <main class="sidebar__pane-body">
