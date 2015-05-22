@@ -1,4 +1,4 @@
-<div class="templates" layout-fill layout="column">
+<div class="templates">
   <md-toolbar>
       <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
           <div flex layout="row">
@@ -23,7 +23,7 @@
   </md-toolbar>
   <div class="template-container">
     <md-content class="template-list-container">
-        <div ng-if="!templates.length" class="text-center">
+        <div ng-if="isLoading" class="text-center">
             <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:50%;">
             <h1 class="text-center">You have no shared templates.</h1>
         </div>
@@ -50,11 +50,11 @@
                           <h4>{{template.created | date: 'short'}}</h4>
                       </div>
                       <div class="template-button-container">
-                        <md-button class="md-icon-button" clip-click-fallback="dialogTemplateUrl(currentTemplate.url)" clip-copy="currentTemplate.url" clip-click="toastTemplateUrl(currentTemplate.url)" ng-if="templates.length"  aria-label="Copy Template Link">
+                        <md-button class="md-icon-button" clip-click-fallback="dialogTemplateUrl(template.url)" clip-copy="template.url" clip-click="toastTemplateUrl(template.url)" ng-if="templates.length"  aria-label="Copy Template Link">
                           <md-tooltip md-direction="bottom">Copy Template Link</md-tooltip>
                           <i class="fa fa-clipboard fa-lg"></i>
                         </md-button>
-                        <md-button class="md-icon-button" ng-click="confirmDeleteTemplate(currentTemplate.uuid)" ng-if="templates.length" aria-label="Delete Template">
+                        <md-button class="md-icon-button" ng-click="confirmDeleteTemplate(template.uuid)" ng-if="templates.length" aria-label="Delete Template">
                           <md-tooltip md-direction="bottom">Delete Template</md-tooltip>
                           <i class="fa fa-trash fa-lg"></i>
                         </md-button>

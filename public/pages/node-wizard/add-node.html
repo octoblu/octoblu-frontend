@@ -1,29 +1,26 @@
-<div flex layout-fill layout="row" layout-align="center" style="z-index: 3;">
-  <div layout-fill layout="column"  style="background: white; padding: 0 15px;">
+<div>
+  <br>
+  <br>
 
-    <br>
-    <br>
+  <form class="form" layout="row" layout-align="center">
+    <div class="form-group" flex="66">
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="nodeTypeSearch" autofocus>
+        <span class="input-group-addon">
+          <i class="fa fa-search"></i>
+        </span>
+      </div>
+    </div>
+  </form>
 
-    <form class="form" layout="row" layout-align="center">
-      <div class="form-group" flex="66">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="nodeTypeSearch" autofocus>
-          <span class="input-group-addon">
-            <i class="fa fa-search"></i>
-          </span>
+  <div class="connected-nodes">
+    <div class="connected-node" ng-repeat="node in nodeTypes | filter: {name:nodeTypeSearch} | orderBy: 'name'">
+      <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
+        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
+          <img ng-src="{{node.logo}}" width="100%" height="100%">
         </div>
-      </div>
-    </form>
-
-    <div class="connected-nodes">
-      <div class="connected-node" ng-repeat="node in nodeTypes | filter: {name:nodeTypeSearch} | orderBy: 'name'">
-        <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-          <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
-            <img ng-src="{{node.logo}}" width="100%" height="100%">
-          </div>
-          <div class="connected-node-name">{{node.name}}</div>
-        </a>
-      </div>
+        <div class="connected-node-name">{{node.name}}</div>
+      </a>
     </div>
   </div>
 </div>

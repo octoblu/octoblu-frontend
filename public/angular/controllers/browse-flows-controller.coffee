@@ -1,4 +1,4 @@
-angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state, AuthService, SHARED_TEMPLATES) ->
+angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state, AuthService, TemplateService, SHARED_TEMPLATES) ->
   class BrowseFlowsController
     constructor: () ->
       AuthService
@@ -6,7 +6,10 @@ angular.module('octobluApp').controller 'BrowseFlowsController', ($scope, $state
         .then (user) =>
           @userUuid = user.resource.uuid
 
-      @flows = SHARED_TEMPLATES
+      @templates = TemplateService.getPublicTemplates()
+        .then (templates) =>
+          @flows = templates.data
+
 
     importFlow: (flowId) =>
       $state.go 'material.flow-import', {flowTemplateId: flowId}, {location: 'replace'}

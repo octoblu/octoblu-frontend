@@ -34,6 +34,10 @@ angular.module('octobluApp')
     });
   };
 
+  self.getPublicTemplates = function(tags) {
+    return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags}});
+  };
+
   self.getAllTemplates = function() {
     return $http.get(OCTOBLU_API_URL + '/api/templates').then(function(response) {
       return response.data;

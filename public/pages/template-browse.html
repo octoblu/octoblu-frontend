@@ -1,11 +1,11 @@
-<div class="browse" layout-fill layout="column" flex>
+<md-content class="browse">
   <md-toolbar>
       <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-          <div flex layout="row">
+          <div class="toolbar-header">
               <a href class="menu-icon" ng-click="toggleNav()">
                   <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-                  Browse Templates
               </a>
+                  Browse Templates
           </div>
           <md-button class="md-icon-button" ui-sref="material.templates" aria-label="My Templates">
             <md-tooltip>My Templates</md-tooltip>
@@ -16,7 +16,7 @@
 
   <div class="directory">
     <form class="directory__search-form">
-      <input type="text" placeholder="Search..." class="directory__search-input" autofocus>
+      <input type="text" placeholder="Search..." ng-model="templateSearch" class="directory__search-input" autofocus>
       <button type="submit" class="directory__search-button">
         <i class="fa fa-search"></i>
         Search
@@ -42,13 +42,13 @@
     </div>
 
     <ul class="unstyled-list directory__flows">
-      <li ng-repeat="flow in controller.flows" class="md-whiteframe-z1 directory__flow">
-        <a ng-click="controller.importFlow(flow.id)" class="directory__flow-import-link">
+      <li ng-repeat="flow in controller.flows | filter: {name:templateSearch}" class="md-whiteframe-z1 directory__flow">
+        <a ng-click="controller.importFlow(flow.uuid)" class="directory__flow-import-link">
           <i class="fa fa-plus"></i>
         </a>
 
         <h3 class="directory__flow-name">
-          <a ng-click="controller.importFlow(flow.id)" class="directory__flow-name-link">{{flow.name}}</a>
+          <a ng-click="controller.importFlow(flow.uuid)" class="directory__flow-name-link">{{flow.name}}</a>
         </h3>
 
         <p class="directory__flow-description">
@@ -62,7 +62,7 @@
         <div class="directory__flow-footer">
           <span class="directory__flow-meta directory__flow-meta--author">
             <i class="fa fa-user"></i>
-            {{flow.author}}
+            {{flow.author || flow.resource.owner.uuid}}
           </span>
 
           <div>
@@ -72,7 +72,7 @@
             </span>
 
             <span class="directory__flow-meta directory__flow-meta--downloads">
-               <i class="fa fa-user-plus"></i>
+               <i class="fa fa-user"></i>
                {{flow.download_count}}
             </span>
           </div>
@@ -80,5 +80,4 @@
       </li>
     </ul>
   </div>
-
-</div>
+</md-content>
