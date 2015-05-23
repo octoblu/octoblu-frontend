@@ -4,5 +4,7 @@ angular.module('octobluApp')
     restrict: 'E',
     templateUrl: '/pages/collection-browser.html',
     replace: true,
-    transclude: true
+    transclude: true,
+    controller : 'CollectionBrowserController',
+    controllerAs : 'controller'
   }
