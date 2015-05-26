@@ -14,6 +14,9 @@ describe 'CollectionBrowserController', ->
     it 'should exist', ->
       expect(@sut.toggleActiveTab).to.exist
 
+    it 'should default active tab to nodes on initialization', ->
+      expect(@scope.tab.state).to.equal('nodes')
+
     describe 'when called with undefined or an empty string', ->
       beforeEach ->
         @sut.toggleActiveTab()

@@ -2,9 +2,14 @@ class CollectionBrowserController
   constructor: ($scope) ->
     @scope = $scope
     @scope.tab = {}
+    @toggleActiveTab 'nodes'
 
   toggleActiveTab: (tabState) =>
-    @scope.tab.state = tabState if tabState in ['nodes', 'flows', 'debug']
+    @scope.tab.state =
+      if tabState in ['nodes', 'flows', 'debug']
+        tabState
+      else
+        undefined
 
 
 
