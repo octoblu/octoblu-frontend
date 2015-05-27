@@ -5,6 +5,7 @@ class CollectionBrowserController
     @toggleActiveTab 'nodes'
 
   toggleActiveTab: (tabState) =>
+    console.log 'Toggle', tabState
     @scope.tab.state =
       if tabState in ['nodes', 'flows', 'debug']
         tabState

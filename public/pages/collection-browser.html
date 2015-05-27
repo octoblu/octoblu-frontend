@@ -15,9 +15,12 @@
     </header>
 
     <main class="sidebar__pane-body">
-      <node-collection ng-show="tab.state == 'nodes'" />
-      <flow-collection ng-show="tab.state == 'flows'" />
-      <flow-debug-browser ng-show="tab.state == 'debug'" />
+      <node-collection ng-show="tab.state == 'nodes'"></node-collection>
+      <flow-collection ng-show="tab.state == 'flows'"></flow-collection>
+      <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
+      <!--
+      <div ng-show="tab.state == 'nodes'">nodes</div>
+      -->
     </main>
 
     <footer class="sidebar__toolbar sidebar__toolbar--footer">
@@ -28,7 +31,6 @@
       <form action="" class="collection-browser__filter-form">
        <i class="fa fa-search fa-lg collection-browser__filter-icon"></i>
        <input class="collection-browser__filter-input" type="search" name="Filter" placeholder="Filter...">
-
       </form>
     </footer>
 

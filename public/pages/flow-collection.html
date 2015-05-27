@@ -1,36 +1,25 @@
-<div class="sidebar__pane">
-  <div class="sidebar__pane-content">
-    <header class="sidebar__toolbar sidebar__toolbar--header">
-      <a class="sidebar__toolbar-button" ng-click="toggleActiveTab('nodes')" ng-class="{'active' : tab.state === 'nodes'}" title="Nodes">
-        Nodes
-      </a>
+<div class="">
+  <md-grid-list class="node-grid-list"
+    md-cols-sm="2" md-cols-md="4"
+    md-cols-gt-md="6" md-cols-lg="8" md-cols-gt-lg="10"
+    md-row-height="1:1"
+    md-gutter="4px" md-gutter-gt-sm="2px">
 
-      <a class="sidebar__toolbar-button sidebar__toolbar-button--active" ng-click="toggleActiveTab('flows')" ng-class="{'active' : tab.state === 'flows'}" title="Flows">
-        Flows
-      </a>
+    <md-grid-tile
+      class="animated-popout"
+      md-rowspan="1"
+      md-colspan="1"
+      ng-repeat="flowNodeType in flowNodeTypes | filter: {type: 'device:flow'}"
+      ng-click="addFlowNodeType(flowNodeType)"
+      data-type="{{flowNodeType.type}}">
 
-      <a class="sidebar__toolbar-button" ng-click="toggleActiveTab('debug')" ng-class="{'active' : tab.state === 'debug'}" title="Debug">
-        Debug
-      </a>
-    </header>
+      <img class="node-grid-thumbnail"
+          src="{{flowNodeType.logo}}"
+          alt="{{flowNodeType.name || flowNodeType.type}}" />
 
-    <main class="sidebar__pane-body">
-      <node-collection ng-if="tab.state == 'nodes'" />
-      <flow-collection ng-if="tab.state == 'flows'" />
-      <flow-debug-browser ng-if="tab.state == 'debug'" />
-    </main>
-
-    <footer class="sidebar__toolbar sidebar__toolbar--footer">
-      <button class="sidebar__toolbar-button">
-        <i class="fa fa-th fa-lg"></i>
-      </button>
-
-      <form action="" class="collection-browser__filter-form">
-       <i class="fa fa-search fa-lg collection-browser__filter-icon"></i>
-       <input class="collection-browser__filter-input" type="search" name="Filter" placeholder="Filter...">
-
-      </form>
-    </footer>
-
-  </div>
+      <md-grid-tile-footer class="node-grid-title-footer">
+        <p class="node-label">{{flowNodeType.name || flowNodeType.type}}</p>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>
 </div>
