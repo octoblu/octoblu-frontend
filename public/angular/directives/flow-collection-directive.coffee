@@ -6,5 +6,5 @@ angular.module('octobluApp')
     replace: true,
     controller: 'FlowCollectionController',
     scope:
-      collection: "="
+      nodes: "="
   }
