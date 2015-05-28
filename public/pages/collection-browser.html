@@ -15,7 +15,21 @@
     </header>
 
     <main class="sidebar__pane-body">
-      <node-collection ng-show="tab.state == 'nodes'"></node-collection>
+      <div ng-show="tab.state == 'nodes'">
+        <md-tabs>
+          <md-tab label="Operators">
+            <flow-collection nodes="operatorNodes"></flow-collection>
+          </md-tab>
+
+          <md-tab label="Configured">
+            <flow-collection nodes="configuredNodes"></flow-collection>
+          </md-tab>
+
+          <md-tab label="Available">
+            <flow-collection nodes="nodeTypes"></flow-collection>
+          </md-tab>
+        </md-tabs>
+      </div>
       <flow-collection ng-show="tab.state == 'flows'" nodes="flowNodes"></flow-collection>
       <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
     </main>
