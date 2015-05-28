@@ -3,5 +3,8 @@ angular.module('octobluApp')
   {
     restrict: 'E',
     templateUrl: '/pages/flow-collection.html',
-    replace: true
+    replace: true,
+    controller: 'FlowCollectionController',
+    scope:
+      collection: "="
   }
