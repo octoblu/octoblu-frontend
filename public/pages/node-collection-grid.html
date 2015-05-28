@@ -1,0 +1,19 @@
+<md-grid-list ng-if="viewStyle == 'grid'"
+  class="node-grid-list"
+  md-cols="5"
+  md-row-height="1:1"
+  md-gutter="0">
+
+  <md-grid-tile
+    class="animated-popout"
+    md-rowspan="1"
+    md-colspan="1"
+    ng-repeat="flowNodeType in nodes"
+    ng-click="controller.addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}">
+
+    <img class="node-grid-thumbnail"
+        src="{{flowNodeType.logo}}"
+        alt="{{flowNodeType.name || flowNodeType.type}}" />
+  </md-grid-tile>
+</md-grid-list>

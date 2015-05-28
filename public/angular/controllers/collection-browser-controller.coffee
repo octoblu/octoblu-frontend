@@ -2,19 +2,19 @@ class CollectionBrowserController
   constructor: ($scope, FlowNodeTypeService) ->
     @scope = $scope
     @scope.tab = {}
-    @FlowNodeTypeService = FlowNodeTypeService
+
+    @scope.collectionViewStyle = 'grid'
     @toggleActiveTab 'nodes'
 
+    @FlowNodeTypeService = FlowNodeTypeService
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
         @scope.operatorNodes   = _.filter flowNodeTypes, category : 'operation'
         @scope.configuredNodes = _.filter flowNodeTypes, @flowNodeTypeIsConfiguredNode
         @scope.flowNodes       = _.filter flowNodeTypes, type: 'device:flow'
-
       .catch (error) =>
         console.error 'Error', error.message
         @scope.errorMessage = error.message
-
 
   toggleActiveTab: (tabState) =>
     @scope.tab.state =
@@ -22,6 +22,10 @@ class CollectionBrowserController
         tabState
       else
         undefined
+
+  setCollectionViewStyle: (viewStyle) =>
+    console.log 'collectionViewStyle', viewStyle
+    @scope.collectionViewStyle = viewStyle
 
   flowNodeTypeIsConfiguredNode: (node) =>
     node.category != 'operation' && node.type != 'device:flow'

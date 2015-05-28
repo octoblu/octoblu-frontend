@@ -18,30 +18,34 @@
       <div ng-show="tab.state == 'nodes'">
         <md-tabs>
           <md-tab label="Operators">
-            <flow-collection nodes="operatorNodes"></flow-collection>
+            <node-collection nodes="operatorNodes" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Configured">
-            <flow-collection nodes="configuredNodes"></flow-collection>
+            <node-collection nodes="configuredNodes" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Available">
-            <flow-collection nodes="nodeTypes"></flow-collection>
+            <node-collection nodes="nodeTypes" view-style="collectionViewStyle"></node-collection>
           </md-tab>
         </md-tabs>
       </div>
-      <flow-collection ng-show="tab.state == 'flows'" nodes="flowNodes"></flow-collection>
+
+      <node-collection ng-show="tab.state == 'flows'" nodes="flowNodes" view-style="collectionViewStyle"></node-collection>
       <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
     </main>
 
     <footer class="sidebar__toolbar sidebar__toolbar--footer">
-      <button class="sidebar__toolbar-button">
+      <button ng-if="collectionViewStyle == 'list'" ng-click="controller.setCollectionViewStyle('grid')" class="sidebar__toolbar-button">
         <i class="fa fa-th fa-lg"></i>
       </button>
+      <button ng-if="collectionViewStyle == 'grid'" ng-click="controller.setCollectionViewStyle('list')" class="sidebar__toolbar-button">
+        <i class="fa fa-th-list fa-lg"></i>
+      </button>
 
-      <form action="" class="flow-browser__filter-form">
-       <i class="fa fa-search fa-lg flow-browser__filter-icon"></i>
-       <input class="flow-browser__filter-input" type="search" name="Filter" placeholder="Filter...">
+      <form action="" class="collection-browser__filter-form">
+          <i class="fa fa-search fa-lg collection-browser__filter-icon"></i>
+        <input class="collection-browser__filter-input" type="search" name="Filter" placeholder="Filter...">
       </form>
     </footer>
   </div>
