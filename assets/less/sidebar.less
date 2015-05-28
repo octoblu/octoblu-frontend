@@ -49,6 +49,7 @@
   .flex-display;
   .justify-content(center);
 
+  height: 30px;
   border-bottom: 1px solid @sidebar-border-color;
 }
 
@@ -64,15 +65,31 @@
   padding-left: 10px;
   padding-right: 10px;
 
-  background: none;
+  color: rgba(0,0,0,0.54);
+  line-height: 30px;
+  text-decoration: none;
+  text-transform: uppercase;
 
+  background: none;
+  cursor: pointer;
+
+  &.active {
+    color: rgb(20,86,143);
+  }
 
   &:hover {
-    color: #08c;
+    color: rgb(20,86,143);
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+    text-decoration: none;
   }
 
   &:disabled {
     color: #AAA;
+    cursor: default;
   }
 }
 

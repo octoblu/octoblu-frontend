@@ -3,7 +3,7 @@ class CollectionBrowserController
     @scope = $scope
     @scope.tab = {}
 
-    @scope.collectionViewStyle = 'grid'
+    @scope.collectionViewStyle = 'list'
     @toggleActiveTab 'nodes'
 
     @FlowNodeTypeService = FlowNodeTypeService

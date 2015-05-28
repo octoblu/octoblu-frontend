@@ -5,7 +5,7 @@
         Nodes
       </a>
 
-      <a class="sidebar__toolbar-button sidebar__toolbar-button--active" ng-click="controller.toggleActiveTab('flows')" ng-class="{'active' : tab.state === 'flows'}" title="Flows">
+      <a class="sidebar__toolbar-button" ng-click="controller.toggleActiveTab('flows')" ng-class="{'active' : tab.state === 'flows'}" title="Flows">
         Flows
       </a>
 
@@ -37,7 +37,7 @@
 
     <footer class="sidebar__toolbar sidebar__toolbar--footer">
       <button ng-if="collectionViewStyle == 'list'" ng-click="controller.setCollectionViewStyle('grid')" class="sidebar__toolbar-button">
-        <i class="fa fa-th fa-lg"></i>
+        <i class="fa fa-th-large fa-lg"></i>
       </button>
       <button ng-if="collectionViewStyle == 'grid'" ng-click="controller.setCollectionViewStyle('list')" class="sidebar__toolbar-button">
         <i class="fa fa-th-list fa-lg"></i>
