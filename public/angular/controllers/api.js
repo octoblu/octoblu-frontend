@@ -1,26 +1,30 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('apiController', function ($scope, $stateParams, $modal, $state, channelService, userService, NotifyService) {
+.controller('apiController', function ($scope, $stateParams, $modal, $state, $mdDialog, channelService, userService, NotifyService) {
 
   channelService.getById($stateParams.id).then(function(channel){
     $scope.channel = channel;
   })
 
-  $scope.setDeactivate = function () {
-    var modalInstance = $modal.open({
+  $scope.setDeactivate = function (ev) {
+    $mdDialog.show({
+      parent: angular.element(document.querySelector('ui-view')),
       templateUrl: 'myModalContent.html',
-      controller: function ($scope, $modalInstance) {
+      targetEvent: ev,
+      controller: function($scope, $mdDialog) {
         $scope.ok = function () {
-          $modalInstance.close('ok');
+          $mdDialog.hide();
         };
         $scope.cancel = function () {
-          $modalInstance.dismiss('cancel');
+          $mdDialog.cancel();
         };
+        $scope.respond = function(response) {
+          $mdDialog.hide(response);
+        }
       }
-    });
-
-    modalInstance.result.then(function (response) {
+    })
+    .then(function (response) {
       if (response !== 'ok') {
         return;
       }

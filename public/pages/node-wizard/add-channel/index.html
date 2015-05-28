@@ -1,19 +1,5 @@
-<h2 class="text-center">Add {{nodeType.name}}</h2>
-
-<br>
-
-<div class="add-node-title">
-  <img src="{{nodeType.logo}}" class="add-node-logo">
-</div>
-
-<br>
-<br>
-
-<div ui-view>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
+<main class="node-wizard">
+  <h2 class="node-wizard__title">Add {{nodeType.name}}</h2>
+  <img src="{{nodeType.logo}}" alt="{{nodeType.name}}" class="node-wizard__logo">
+  <div ui-view class="node-wizard__body"></div>
+</main>

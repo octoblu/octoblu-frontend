@@ -95,6 +95,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           if (response.status === 403) {
             return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
+          if (response.status === 502) {
+            if($window.location.pathname !== '/error') {
+              return $window.location = '/error';
+            }
+          }
           return response;
         }
       };
@@ -110,6 +115,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/',
         templateUrl: '/pages/root.html',
         controller: 'RootController'
+      })
+      .state('material.error', {
+        url: '/error',
+        templateUrl: '/pages/error.html',
+        controller: 'ErrorController',
+        controllerAs: 'controller',
       })
       .state('material.analyze', {
         url: '/analyze',
@@ -233,11 +244,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelTravisCIProController',
         templateUrl: '/pages/node-wizard/add-channel/travis-ci.html'
       })
-      .state('material.nodewizard.addchannel.google-places', {
-        url: '/google-places',
-        controller: 'addChannelGooglePlacesController',
-        templateUrl: '/pages/node-wizard/add-channel/google-places.html'
-      })
       .state('material.nodewizard.addchannel.littlebits', {
         url: '/littlebits',
         controller: 'addChannelLittlebitsController',
@@ -300,7 +306,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
-      .state('material.nodewizard.addsubdevice.addGateblu', {
+      .state('material.nodewizard.addsubdevice.addgateblu', {
         url: '/add-gateblu',
         controller: 'AddSubdeviceAddGatebluController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
@@ -357,20 +363,26 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           }
         }
       })
-      .state('material.templates', {
-        url: '/templates',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
+      .state('material.bluprints', {
+        url: '/bluprints',
+        templateUrl: '/pages/bluprints.html',
+        controller: 'BluprintsController'
       })
-      .state('material.template', {
-        url: '/templates/:templateId',
-        templateUrl: '/pages/templates.html',
-        controller: 'TemplatesController'
+      .state('material.bluprint', {
+        url: '/bluprints/:bluprintId',
+        templateUrl: '/pages/bluprints.html',
+        controller: 'BluprintsController'
       })
-      .state('material.browse', {
-        url: '/browse',
-        templateUrl: '/pages/template-browse.html',
-        controller: 'BrowseFlowsController',
+      .state('material.discover', {
+        url: '/discover',
+        templateUrl: '/pages/shared-bluprints.html',
+        controller: 'SharedBluprintsController',
+        controllerAs: 'controller'
+      })
+      .state('material.discovercollection', {
+        url: '/discover/:collection',
+        templateUrl: '/pages/shared-bluprints.html',
+        controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
       .state('accept_terms', {
@@ -400,7 +412,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
-      .state('material.profile-new', {
+      .state('profile-new', {
         url: '/profile/new',
         controller: 'NewProfileController',
         controllerAs: 'controller',
@@ -492,9 +504,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       $intercom.update();
       if (!toState.unsecured) {
 
-        if(toState.name !== 'material.profile-new'){
+        if(toState.name !== 'profile-new'){
           IntercomUserService.updateIntercom().catch(function(error){
-            $state.go('material.profile-new');
+            if(error.message === 'meshblu connection error'){
+              return;
+            }
+            $state.go('profile-new');
           });
         }
 

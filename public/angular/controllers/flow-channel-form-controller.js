@@ -2,10 +2,11 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function(OCTOBLU_API_URL, $scope, channelService) {
   'use strict';
 
-  var selectResources = function() {
+  var selectResources = function(oldNode, newNode) {
     if (!$scope.node.channelid) {
       return;
     }
+
     channelService.getById($scope.node.channelid).then(function(channel){
       var resources = _.filter(channel.application.resources, function(resource){
         if(resource.enabled === false){
@@ -15,8 +16,8 @@ angular.module('octobluApp')
       });
 
       resources.sort(function(a, b){
-        var aKey = a.displayName ? a.displayName : a.path; 
-        var bKey = b.displayName ? b.displayName : b.path; 
+        var aKey = a.displayName ? a.displayName : a.path;
+        var bKey = b.displayName ? b.displayName : b.path;
         if(aKey < bKey){
           return -1;
         }
@@ -56,6 +57,14 @@ angular.module('octobluApp')
     if(!$scope.selectedEndpoint){
       return;
     }
+
+    if ($scope.node.url !== $scope.selectedEndpoint.url) {
+      $scope.node.bodyParams = {};
+      $scope.node.queryParams = {};
+      $scope.node.urlParams = {};
+      $scope.node.headerParams = {};
+    }
+
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
     if ($scope.selectedEndpoint.bodyParam) {

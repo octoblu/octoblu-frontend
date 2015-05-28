@@ -7,7 +7,7 @@ angular.module('octobluApp')
     GITHUB: 'https://github-oauth.octoblu.com/login'
   }
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
-  .constant 'MESHBLU_HOST', 'wss://meshblu.octoblu.com'
+  .constant 'MESHBLU_HOST', 'wss://app-meshblu.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
   .constant 'PROFILE_URI', '#'
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'

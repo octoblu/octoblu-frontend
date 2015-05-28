@@ -9,7 +9,11 @@ angular.module('octobluApp')
 
     self.fetch = function (omniItems) {
       flowNodes = omniItems;
-      return $q.all([self.getFlowNodeTypes(), NodeTypeService.getNodeTypes()]).then(function (results) {
+      return $q.all([
+        self.getFlowNodeTypes(),
+        NodeTypeService.getUnconfiguredNodeTypes()
+      ])
+      .then(function (results) {
         return _.union(omniItems, _.flatten(results, true));
       });
     };

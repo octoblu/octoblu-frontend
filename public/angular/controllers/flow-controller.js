@@ -1,9 +1,10 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, TemplateService, NotifyService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
+  var lastDeployedHash;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -23,7 +24,7 @@ angular.module('octobluApp')
     _.delay(function() {
       deadManSwitch(skynetConnection, flowId);
     }, 60 * 1000)
-  }
+  };
 
   var setCookie = function(flowId) {
     $cookies.currentFlowId = flowId;
@@ -59,7 +60,7 @@ angular.module('octobluApp')
       $scope.flowNodeTypes = flowNodeTypes;
     });
 
-  NodeTypeService.getNodeTypes()
+  NodeTypeService.getUnconfiguredNodeTypes()
     .then(function (nodeTypes) {
       $scope.nodeTypes = nodeTypes;
     });
@@ -140,9 +141,13 @@ angular.module('octobluApp')
   });
 
   $scope.addFlow = function () {
-    return FlowService.createFlow().then(function(newFlow){
-      $state.go('material.flow', {flowId: newFlow.flowId});
-    });
+    return FlowService.createFlow()
+      .then(function(newFlow){
+        $state.go('material.flow', {flowId: newFlow.flowId});
+      })
+      .catch(function(error){
+        console.error(error);
+      });
   };
 
   $scope.getActiveFlow = function(){
@@ -251,6 +256,8 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
+    lastDeployedHash = _.clone($scope.activeFlow.hash);
+    $scope.needsToBeDeployed = false;
     $scope.deploying = true;
     _.each($scope.activeFlow.nodes, function(node) {
       delete node.errorMessage;
@@ -265,6 +272,7 @@ angular.module('octobluApp')
       e.preventDefault();
     }
     $scope.stopping = true;
+    $scope.needsToBeDeployed = true;
     FlowService.stop();
   };
 
@@ -349,9 +357,9 @@ angular.module('octobluApp')
     $scope.currentMouseY = null;
   };
 
-  $scope.createTemplate = function(flow) {
-    TemplateService.createTemplate({name: flow.name, flowId: flow.flowId}).then(function(template) {
-      $state.go('material.template', {templateId: template.uuid});
+  $scope.createBluprint = function(flow) {
+    BluprintService.createBluprint({name: flow.name, flowId: flow.flowId}).then(function(template) {
+      $state.go('material.bluprint', {templateId: template.uuid});
     });
   };
 
@@ -381,9 +389,10 @@ angular.module('octobluApp')
     if (!oldHash) {
       return;
     }
-    if (!_.isEqual(newHash, oldHash)) {
-      FlowService.saveActiveFlow();
-    }
+    if (_.isEqual(newHash, oldHash)) { return }
+    $scope.needsToBeDeployed = lastDeployedHash !== newHash
+
+    FlowService.saveActiveFlow();
   };
 
   $scope.$watch('activeFlow', calculateFlowHash, true);

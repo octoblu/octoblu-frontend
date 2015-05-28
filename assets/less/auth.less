@@ -1,0 +1,214 @@
+@card-padding      : 16px;
+@card-border-radius: 3px;
+
+@text-color            : #F0F0F0;
+@background-color      : #F4F5F9;
+@email-button-color    : #009688;
+@google-button-color   : #DE4D36;
+@facebook-button-color : #3C5F96;
+@twitter-button-color  : #36A9DA;
+@github-button-color   : #444444;
+@primary-button-color  : #14568f;
+@secondary-button-color: transparent;
+
+.auth {
+  .flex-display;
+  .flex-direction(column);
+  .align-items(center);
+
+  width:100%;
+
+  background: @background-color;
+
+  -webkit-transition: all .8s ease-in-out;
+     -moz-transition: all .8s ease-in-out;
+      -ms-transition: all .8s ease-in-out;
+       -o-transition: all .8s ease-in-out;
+          transition: all .8s ease-in-out;
+}
+
+.auth__card {
+  .flex-grow(1);
+  .flex-shrink(0);
+  .flex-display;
+  .align-items(center);
+
+  width: 100%;
+  padding: @card-padding @card-padding/2;
+
+  @media @tablet, @all-desktops {
+    max-width: 440px;
+  }
+}
+
+.auth__card-inner {
+  width: 100%;
+}
+
+.auth__form {
+  border: 1px solid #E9E9E9;
+  border-radius: @card-border-radius;
+  margin-bottom: @card-padding;
+  padding: @card-padding;
+
+  background: #FFF;
+
+  &-header {
+    margin: 10px 0 16px;
+
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.auth__form-row {
+  .flex-display;
+}
+
+.auth__form-checkbox {
+  margin: 0 0 15px;
+}
+
+.auth__form-message {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth__form-message--error {
+  .auth__form-message;
+  
+  color: #f44336;
+}
+
+.auth__button(@background) {
+  &.md-button {
+    .flex(1);
+
+    border-radius: @card-border-radius;
+    display: block;
+    margin: 0 @card-padding/2 @card-padding;
+    padding: 10px 6px;
+    width: 100%;
+
+    color: @text-color;
+    font-size: 1.2em;
+    text-decoration: none;
+    text-align: center;
+
+    background: @background;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: @text-color;
+      text-decoration: none;
+
+      background: darken(@background, 8%);
+    }
+
+    .fa {
+      margin-right: 2px;
+    }
+  }
+
+  &.full__bleed {
+    margin: 0;
+  }
+}
+
+.auth__button {
+  .auth__button(@primary-button-color);
+}
+
+.auth__button--secondary {
+  .auth__button(@secondary-button-color);
+
+  &.md-button {
+    color: #14568F;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: #14568F;
+      background: rgba(158,158,158,0.2);
+    }
+  }
+}
+
+.auth__button--email {
+  .auth__button(@email-button-color);
+}
+
+.auth__button--github {
+  .auth__button(@github-button-color);
+}
+
+.auth__button--facebook {
+  .auth__button(@facebook-button-color);
+}
+
+.auth__button--twitter {
+  .auth__button(@twitter-button-color);
+}
+
+.auth__button--google {
+  .auth__button(@google-button-color);
+}
+
+.auth__octoblu-logo {
+  display: block;
+  width : 250px;
+  height: 52px;
+  margin: 0 auto 25px;
+}
+
+.auth__link {
+  display: block;
+
+  color: @primary-button-color;
+  text-align: right;
+}
+
+.auth__footer {
+  padding: 15px 0;
+
+  color: #444;
+  text-align: center;
+}
+
+.auth__footer-link {
+  display: inline;
+  padding: 0 10px;
+  color: #444;
+
+  &--citrix {
+    display: block;
+    width: 70px;
+    height: 27px;
+    padding: 0;
+    margin: 0 auto;
+
+    text-decoration: underline;
+  }
+
+  &:hover {
+    color: #222;
+  }
+}
+
+.auth__footer-links {
+  margin: 0 0 4px;
+
+  @media @mobile {
+    display: none;
+  }
+}
+
+.auth__footer-citrix-logo {
+  display: block;
+  width: 70px;
+  margin: 0 auto;
+}

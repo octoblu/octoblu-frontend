@@ -9,7 +9,7 @@ class ThingLogoCellController
   updateLogo: =>
     type = @row.type ? 'device:other'
     filePath = type.replace('octoblu:', 'device:').replace ':', '/'
-    @logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
+    @logo ?= "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
 
   updateTitle: =>
     @name = if _.isEmpty(@row.name) then @row.uuid else @row.name

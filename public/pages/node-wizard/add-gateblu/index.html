@@ -1,71 +1,52 @@
 <h2 class="text-center">Add {{nodeType.name}}</h2>
 
-<br>
-
-<div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" class="node-thumbnail"></div>
-  </div>
+<div class="node-wizard-logo-container">
+  <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
 </div>
 
-<br>
-<br>
-
-<div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-2 text-center">
-    <h3>
-      <a class="btn btn-primary btn-lg" href="http://gateblu.octoblu.com"><i class="fa fa-download"></i> Download Gateblu</a>
-    </h3>
-  </div>
-  <div class="col-xs-12 col-md-2 text-center">
-    <h3>
-      <a class="btn btn-success btn-lg" ng-click="downloaded = true"><i class="fa fa-check"></i> Already Downloaded!</a>
-    </h3>
-  </div>
+<div class="node-wizard-choice-button-container">
+  <md-button ng-href="http://gateblu.octoblu.com">
+    <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
+    Download Gateblu
+  </md-button>
+  <md-button class="md-primary md-raised" ng-click="downloaded = true">
+    <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
+    Already Downloaded
+  </md-button>
 </div>
 
-<br>
+<form class="node-wizard-form" ng-submit="addDevice()" ng-show="downloaded" name="deviceForm">
+  <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
+  ng-options="device.label for device in newDevice.unclaimedDevices">
+    <option value="">Add New</option>
+  </select>
 
-<div class="row" ng-show="downloaded">
-  <div class="col-xs-12 col-md-offset-3 col-md-6">
-      <form class="form" ng-submit="addDevice()">
-        <div class="form-group">
-          <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
-          ng-options="device.label for device in newDevice.unclaimedDevices">
-          <option value="">Add New</option>
-        </select>
-      </div>
-      <div ng-show="newDevice.selectedDevice.type === 'existing'">
-        <div class="form-group">
-          <label class="control-label">UUID</label>
-          <input type="text" ng-model="existingDevice.uuid" class="form-control input-lg">
-        </div>
-        <div class="form-group">
-          <label class="control-label">Token</label>
-          <input type="text" ng-model="existingDevice.token" class="form-control input-lg">
-        </div>
-      </div>
-      <div class="form-group" ng-class="{'has-error': errorMessage}">
-        <label for="name" class="control-label">Name</label>
-        <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name"
-        placeholder="My {{nodeType.name}}" required>
+  <md-input-container>
+    <label>Name</label>
+    <input ng-model="newDevice.name" name="name" required>
+    <div ng-messages="deviceForm.name.$error">
+      <div ng-message="required" ng-show="deviceForm.name.$error.required">This is required.</div>
+    </div>
+  </md-input-container>
 
-        <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-      </div>
+  <div ng-show="newDevice.selectedDevice.type === 'existing'">
+    <md-input-container>
+      <label>UUID</label>
+      <input ng-model="existingDevice.uuid">
+    </md-input-container>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-plus"></i>
-          Add
-        </button>
-      </div>
-    </form>
+    <md-input-container>
+      <label>Token</label>
+      <input ng-model="existingDevice.token">
+    </md-input-container>
   </div>
-</div>
 
+  <p class="error-message" ng-show="errorMessage">{{errorMessage}}</p>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+  <md-button type="submit" class="md-raised md-primary md-icon-button">
+    <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
+    Add
+  </md-button>
+</form>
+
+<div class="node-wizard-padding" ng-hide="downloaded"></div

@@ -1,0 +1,57 @@
+<div class="bluprint-editor">
+  <div class="header">
+    <h3 class="name clickable" ng-click="toggleBluprint(bluprint)">{{bluprint.name}}</h3>
+    <div class="actions">
+      <md-button class="action md-icon-button" ng-click="confirmdeleteBluprint(bluprint.uuid)" aria-label="Delete">
+        <md-tooltip>Delete</md-tooltip>
+        <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
+      </md-button>
+      <md-button class="action md-icon-button" ng-click="importBluprint(bluprint.uuid)" aria-label="Import">
+        <md-tooltip>Import</md-tooltip>
+        <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
+      </md-button>
+      <md-button class="action md-icon-button" clip-click-fallback="dialogBluprintUrl(bluprint.url)" clip-copy="bluprint.url" clip-click="toastBluprintUrl(bluprint.url)" aria-label="Copy Bluprint Link">
+        <md-tooltip>Copy</md-tooltip>
+        <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
+      </md-button>
+      <md-switch class="make-public" ng-model="bluprint.public" aria-label="Make Bluprint Public">
+          Public
+      </md-switch>
+    </div>
+  </div>
+  <div  class="content">
+    <div class="properties-editor">
+      <md-input-container class="name">
+        <label>Name</label>
+        <input required ng-model="bluprint.name">
+      </md-input-container>
+
+      <md-input-container class="description">
+        <label>Description</label>
+        <input ng-model="bluprint.description">
+      </md-input-container>
+
+      <div class="tags">
+        <a href="#" ng-repeat="tag in bluprint.tags" class="tag">{{tag}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="info-group">
+    <!--   <div class="info">
+      <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length || 0}}
+    </div>
+
+    <div class="info">
+      <i class="fa fa-lg fa-user"></i> {{bluprint.sharedBy.length || 0}}
+    </div> -->
+    </div>
+
+    <div class="info-group">
+      <div class="info author">
+        <i class="fa fa-lg fa-user"></i> {{bluprint.ownerName}}
+      </div>
+    </div>
+  </div>
+</div>

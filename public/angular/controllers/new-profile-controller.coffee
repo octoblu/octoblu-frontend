@@ -8,7 +8,7 @@ class NewProfileController
     @userService    = userService
     @tutorial       = FLOW_TUTORIAL_1
 
-  submit: (firstName, lastName, email, optInEmail, agreeTermsOfService) =>
+  submit: (firstName, lastName, email, optInEmail) =>
     emailID = '542ce2ad47a930b1280b0d05'
     smsID   = '542c2f2eab1c05dde14544e0'
     @newProfileForm.firstName.$setTouched()
@@ -28,10 +28,13 @@ class NewProfileController
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
           (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, smsID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
         ], (error) =>
-          @createTutorialFlow().then (flow) =>
+          @addDemoFlow().then (flow) =>
             @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
         @loading = false
+
+  addDemoFlow: =>
+    @FlowService.createDemoFlow name: 'Demo Flow'
 
   createTutorialFlow: =>
     emailID = '542ce2ad47a930b1280b0d05'

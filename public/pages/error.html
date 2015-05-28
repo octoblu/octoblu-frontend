@@ -1,0 +1,20 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
+    <div flex layout="row">
+      <a href class="menu-icon" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+      </a>
+    </div>
+  </h2>
+</md-toolbar>
+
+<md-content class="error-content">
+
+  <div class="error-card">
+    <img ng-src="{{controller.theSaddestOctopus()}}">
+    <h1>It's not you, it's me.</h1>
+    <h2>Our system is down.</h2>
+    <p class="info">Check our <a href="//status.octoblu.com">Octoblu Status</a> page for updates.</p>
+  </div>
+
+</md-content>

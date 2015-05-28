@@ -5,15 +5,16 @@ class IntercomUserService
     @q = $q
 
   updateIntercom: =>
-    @skynetPromise.then (connection) =>
-      deferred = @q.defer()
-
-      connection.whoami {}, (userDevice) =>
-        return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
-        @setupIntercom userDevice
-        deferred.resolve()
-
-      return deferred.promise
+    deferred = @q.defer()
+    @skynetPromise
+      .then (connection) =>
+        connection.whoami {}, (userDevice) =>
+          return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
+          @setupIntercom userDevice
+          deferred.resolve()
+      .catch (error) =>
+        deferred.reject(new Error('meshblu connection error'))
+    return deferred.promise
 
   setupIntercom: (userDevice) =>
     userInfo =
@@ -27,5 +28,3 @@ class IntercomUserService
 
 
 angular.module('octobluApp').service 'IntercomUserService', IntercomUserService
-
-
