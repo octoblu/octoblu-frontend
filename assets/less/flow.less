@@ -744,6 +744,22 @@ md-toolbar {
 .palette_port_output {
   left: 85px;
 }
+ul.flow-browser-debug {
+  list-style: none;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 100%;
+
+  li {
+    margin-top: 10px;
+
+    pre[class*="language-"] {
+      overflow: auto;
+      max-height: none;
+    }
+  }
+}
 
 .flow-browser {
   box-shadow: rgba(0, 0, 0, 0.298039) 3px 0 0 0;
