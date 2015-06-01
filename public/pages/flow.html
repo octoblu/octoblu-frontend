@@ -7,7 +7,7 @@
 
     <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search" omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
 
-    <div class="flow-top-bar-tool flow-top-bar-tool--omni-search">
+    <div class="flow-top-bar-tool flow-top-bar-tool--flow-search">
       <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
         <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
         <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
@@ -17,8 +17,8 @@
             <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
           </li>
         </ul>
-        <span class="input-group-btn flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
-          <button ng-click="toggleDropdown($event)">
+        <span class="input-group-addon flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
+          <button class="flow-search--button" ng-click="toggleDropdown($event)">
             <i class="fa fa-lg fa-angle-down input-addon"></i>
           </button>
         </span>
