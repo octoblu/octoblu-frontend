@@ -12,7 +12,6 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
     refreshBluprints: =>
       BluprintService.getPublicBluprints(@collectionName)
         .then (bluprints) =>
-          console.log bluprints
           @bluprints = bluprints
           $scope.isLoading = false;
 
