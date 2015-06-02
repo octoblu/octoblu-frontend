@@ -9,4 +9,5 @@ angular.module('octobluApp')
     scope:
       nodes: '='
       viewStyle: '='
+      filterQuery: '='
   }

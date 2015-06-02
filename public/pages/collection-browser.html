@@ -18,20 +18,21 @@
       <div ng-show="tab.state == 'nodes'">
         <md-tabs>
           <md-tab label="Operators">
-            <node-collection nodes="operatorNodes" view-style="collectionViewStyle"></node-collection>
+            <node-collection nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Configured">
-            <node-collection nodes="configuredNodes" view-style="collectionViewStyle"></node-collection>
+            <node-collection nodes="nodes.configured" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Available">
-            <node-collection nodes="nodeTypes" view-style="collectionViewStyle"></node-collection>
+            <node-collection nodes="nodes.available" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
         </md-tabs>
       </div>
 
-      <node-collection ng-show="tab.state == 'flows'" nodes="flowNodes" view-style="collectionViewStyle"></node-collection>
+      <node-collection ng-show="tab.state == 'flows'" nodes="flowNodes" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+
       <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
     </main>
 
@@ -45,7 +46,7 @@
 
       <form action="" class="sidebar__filter-form">
         <i class="fa fa-search fa-lg sidebar__filter-icon"></i>
-        <input class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
+        <input ng-model="filterQuery.name" class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
       </form>
     </footer>
   </div>

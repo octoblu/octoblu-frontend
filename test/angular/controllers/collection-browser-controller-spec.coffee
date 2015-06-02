@@ -1,6 +1,14 @@
 describe 'CollectionBrowserController', ->
   beforeEach ->
-    module 'octobluApp'
+    module 'octobluApp', ($provide) =>
+      $provide.value '$cookies', {}
+      $provide.value '$intercom', sinon.stub()
+      $provide.value '$intercomProvider', sinon.stub()
+      $provide.value 'reservedProperties', ['$$hashKey', '_id']
+      $provide.value 'OCTOBLU_ICON_URL', ''
+      $provide.value('MESHBLU_HOST', 'http://whatever.com');
+      $provide.value('MESHBLU_PORT', 1111)
+      return
 
     inject ($controller, $rootScope) =>
       @scope = $rootScope.$new()
@@ -29,6 +37,8 @@ describe 'CollectionBrowserController', ->
         @sut.toggleActiveTab('flows')
       it 'should set the scope.tab.state to flows', ->
         expect(@scope.tab.state).to.equal('flows')
+      it 'should set scope.filterQuery to empty string', ->
+        expect(@scope.filterQuery).to.equal('')
 
     describe 'when called with debug', ->
       beforeEach ->
@@ -41,6 +51,8 @@ describe 'CollectionBrowserController', ->
         @sut.toggleActiveTab('nodes')
       it 'should set the scope.tab.state to nodes', ->
         expect(@scope.tab.state).to.equal('nodes')
+      it 'should set scope.filterQuery to empty string', ->
+        expect(@scope.filterQuery).to.equal('')
 
     describe 'when called with any other value', ->
       beforeEach ->
