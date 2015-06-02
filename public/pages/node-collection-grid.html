@@ -15,5 +15,7 @@
     <img class="node-grid-thumbnail"
         src="{{flowNodeType.logo}}"
         alt="{{flowNodeType.name || flowNodeType.type}}" />
+
+    <md-tooltip md-delay="400" md-autohide="false">{{flowNodeType.name || flowNodeType.type}}</md-tooltip>
   </md-grid-tile>
 </md-grid-list>
