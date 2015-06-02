@@ -36,7 +36,18 @@
       <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
     </main>
 
-    <footer class="sidebar__toolbar sidebar__toolbar--footer">
+    <footer class="sidebar__toolbar sidebar__toolbar--footer" ng-show="tab.state == 'debug'">
+      <button ng-click="debugLines = []" class="sidebar__toolbar-button">
+        <i class="fa fa-ban fa-lg"></i>
+      </button>
+
+      <div class="sidebar__filter-form">
+        <i class="fa fa-search fa-lg sidebar__filter-icon"></i>
+        <input ng-model="filterQuery" class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
+      </div>
+    </footer>
+
+    <footer class="sidebar__toolbar sidebar__toolbar--footer" ng-hide="tab.state == 'debug'">
       <button ng-if="collectionViewStyle == 'list'" ng-click="controller.setCollectionViewStyle('grid')" class="sidebar__toolbar-button">
         <i class="fa fa-th-large fa-lg"></i>
       </button>
@@ -44,10 +55,10 @@
         <i class="fa fa-th-list fa-lg"></i>
       </button>
 
-      <form action="" class="sidebar__filter-form">
+      <div class="sidebar__filter-form">
         <i class="fa fa-search fa-lg sidebar__filter-icon"></i>
         <input ng-model="filterQuery.name" class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
-      </form>
+      </div>
     </footer>
   </div>
 </div>
