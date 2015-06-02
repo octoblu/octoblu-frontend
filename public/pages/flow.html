@@ -60,12 +60,30 @@
 </md-toolbar>
 
 <div class="design2 designer-container" tutorial>
-  <flow-editor flow="activeFlow"></flow-editor>
+  <flow-editor flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 
-  <div class="logo-toolbar">
-    <img src="/assets/images/octoblu.png" height="50px"/>
+  <img src="/assets/images/octoblu.png" class="designer__octoblu-logo"/>
+
+  <div class="designer__zoom-controls" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
+    <div class="designer__zoom-control-group">
+      <md-button class="designer__zoom-control-button" ng-click="center()">
+        <i class="fa fa-crosshairs fa-lg"></i>
+      </md-button>
+    </div>
+
+    <div class="designer__zoom-control-group">
+      <md-button class="designer__zoom-control-button" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+        <i class="fa fa-plus fa-lg"></i>
+      </md-button>
+
+      <hr class="designer__zoom-control-hr">
+
+      <md-button class="designer__zoom-control-button" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+        <i class="fa fa-minus fa-lg"></i>
+      </md-button>
+    </div>
+
   </div>
-
 
   <div class="sidebar">
     <flow-inspector flow="activeFlow"></flow-inspector>
@@ -73,39 +91,15 @@
   </div>
 </div>
 
-
-
 <style>
-  .container-fluid #intercom-container .intercom-launcher {
-    bottom: 155px;
-    right: 2px;
+  html body #intercom-container .intercom-launcher {
+    bottom: 20px;
+    right: 476px;
   }
 </style>
 
-  <!-- <div style="z-index: 0;" class="workspace-container" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
-  </div> -->
 
 <!--
-<div class="zoom-controls" flex layout="column" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
-  <button class="btn btn-default btn-sm" ng-click="center()">
-    <i class="fa fa-crosshairs fa-lg"></i>
-  </button>
-  <md-divider></md-divider>
-
-  <button class="btn btn-default btn-sm" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
-    <i class="fa fa-plus fa-lg"></i>
-  </button>
-  <button class="btn btn-default btn-sm" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
-    <i class="fa fa-minus fa-lg"></i>
-  </button>
-
-  <style>
-    html body #intercom-container .intercom-launcher {
-      bottom: 155px;
-      right: 2px;
-    }
-  </style>
-</div>
 <flow-browser flex debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
 <flow-node-editor flow-id="activeFlow.flowId" flow-node="activeFlow.selectedFlowNode"></flow-node-editor>
 <flow-node-setup  node-type="activeFlow.selectedFlowNode"></flow-node-setup>

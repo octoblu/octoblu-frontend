@@ -1,29 +1,5 @@
-
-
 .designer-container {
-  .flex;
-  .flex-display;
-  .flex-direction(row);
-}
-
-.flow-editor {
-  .flex(1);
-  .flex-display;
-}
-
-.flow-editor-workspace {
-  .flex(1);
-  width: auto;
-  height: auto;
-}
-
-.sidebar {
-  .flex(0);
-  .flex-display;
-}
-
-/* .designer-container {
-  .flex(1);
+  .flex(4);
   .flex-display;
   .flex-direction(row);
 }
@@ -31,15 +7,70 @@
 .flow-editor {
   .flex(4);
   .flex-display;
+}
 
-  svg {
-    .flex(1);
-    width: auto;
-    height: auto;
+.flow-editor-workspace {
+  .flex(1);
+
+  width: auto;
+  height: auto;
+}
+
+
+.designer__octoblu-logo {
+  position: fixed;
+  left: 6px;
+  bottom: 20px;
+
+  width: 197px;
+  height: 50px;
+
+  opacity: 0.5;
+}
+
+.designer__zoom-controls {
+  position: fixed;
+  right: 420px;
+  bottom: 20px;
+
+  transition: bottom 0.2s;
+}
+
+
+.designer__zoom-control-group {
+  .flex;
+  .flex-display;
+  .flex-direction(column);
+
+  border-radius: 2px;
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.5);
+  width: 36px;
+
+  background: white;
+  margin-top: 10px;
+}
+
+.designer__zoom-control-button {
+  &.md-button {
+    padding: 8px;
+
+    color: #737373;
+    font-size: 1em;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      outline: none;
+      color: #535353;
+      background: white;
+    }
   }
 }
 
-.sidebar {
-  .flex(1);
+
+.designer__zoom-control-hr {
+  border: none;
+  height: 1px;
+  margin: 0;
+
+  background: #DADADA;
 }
- */

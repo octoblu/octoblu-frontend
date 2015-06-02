@@ -243,16 +243,6 @@ md-toolbar {
   // }
 }
 
-.logo-toolbar {
-  position: fixed;
-  left: 20px;
-  bottom: 40px;
-
-  img {
-    opacity: 0.5;
-  }
-}
-
 [draggable] {
   .no-user-select;
   /* Required to make elements draggable in old WebKit */
@@ -864,23 +854,5 @@ ul.flow-browser-debug {
   &.selected {
     background-color: #03a9f4;
     color: white;
-  }
-}
-
-.zoom-controls {
-  background-color:white;
-  position: fixed;
-  right: 10px;
-  bottom: 0;
-  transition: bottom 0.2s;
-  margin-bottom:50px;
-  &.browser-maximized {
-    bottom: 40vh;
-  }
-  i {
-    font-size: 1.1em;
-  }
-  button:focus{
-    outline:none;
   }
 }
