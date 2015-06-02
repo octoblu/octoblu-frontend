@@ -7,11 +7,12 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       AuthService.getCurrentUser().then (user) =>
         @userUuid = user.resource.uuid
 
-      @refreshBlueprints()
+      @refreshBluprints()
 
-    refreshBlueprints: =>
+    refreshBluprints: =>
       BluprintService.getPublicBluprints(@collectionName)
         .then (bluprints) =>
+          console.log bluprints
           @bluprints = bluprints
           $scope.isLoading = false;
 
@@ -22,7 +23,12 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       _.includes bluprint.likedBy, @userUuid
 
     toggleLike: (bluprint) =>
-      BluprintService.like(@userUuid, bluprint);
+      if @liked(bluprint)
+        BluprintService.unlike @userUuid, bluprint
+      else
+        BluprintService.like @userUuid, bluprint
+
+      @refreshBluprints()
 
     toastBluprintUrl: (url) =>
       message = "Copied #{url} to clipboard"

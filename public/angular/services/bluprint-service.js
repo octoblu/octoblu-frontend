@@ -20,8 +20,14 @@ angular.module('octobluApp')
   self.like = function(userUuid, bluprint) {
     return $http.put(OCTOBLU_API_URL + '/api/templates/' + bluprint.uuid + '/like', {userUuid: userUuid}).then(function(response){
       return response.data;
-    })
-  }
+    });
+  };
+
+  self.unlike = function(userUuid, bluprint) {
+    return $http.delete(OCTOBLU_API_URL + '/api/templates/' + bluprint.uuid + '/unlike', {userUuid: userUuid}).then(function(response){
+      return response.data;
+    });
+  };
 
   self.withFlowId = function(flowId) {
     return $http.get(OCTOBLU_API_URL + '/api/flows/' + flowId + '/templates').then(function(response) {
