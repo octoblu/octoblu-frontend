@@ -70,6 +70,16 @@ angular.module('octobluApp')
     return bluprint;
   };
 
+  self.toggleLike = function(userUuid, bluprint) {
+    if(_.includes(bluprint.likedBy, userUuid)){
+      return self.unlike(userUuid, bluprint);
+    }
+    else{
+      return self.like(userUuid, bluprint);
+    }
+  };
+
+
   self.deleteBluprint = function(id) {
     return $http.delete(OCTOBLU_API_URL + '/api/templates/' + id);
   };

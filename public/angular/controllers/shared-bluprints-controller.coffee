@@ -22,12 +22,7 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       _.includes bluprint.likedBy, @userUuid
 
     toggleLike: (bluprint) =>
-      if @liked(bluprint)
-        BluprintService.unlike @userUuid, bluprint
-      else
-        BluprintService.like @userUuid, bluprint
-
-      @refreshBluprints()
+      BluprintService.toggleLike(@userUuid, bluprint).then => @refreshBluprints()
 
     toastBluprintUrl: (url) =>
       message = "Copied #{url} to clipboard"
