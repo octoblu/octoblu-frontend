@@ -1,0 +1,11 @@
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
+<div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+  <md-input-container>
+    <label>Value</label>
+    <input ng-model="flowNode.value" required>
+  </md-input-container>
+</div>
+<md-switch ng-model="flowNode.not">Not Null</md-switch>
