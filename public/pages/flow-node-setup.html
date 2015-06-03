@@ -1,20 +1,18 @@
-<md-card layout="column" class="flow-node-editor ng-hide" ng-show="nodeType.resourceType === 'node-type'">
-  <md-toolbar>
+<div class="sidebar__pane-content">
+  <header class="sidebar__toolbar sidebar__toolbar--header">
     <div class="md-toolbar-tools">
-      <h2><span>Setup Node</span></h2>
-      <span flex></span>
-      <md-button ng-click="close()" aria-label="Close">Close</md-button>
+      <h1>Setup Node</h1>
     </div>
-  </md-toolbar>
+  </header>
 
-  <md-content layout="column" layout-align="center">
-    <br>
-    <img height="100" ng-src="{{nodeType.logo}}">
-    <h3 class="text-center">This Node requires setup</h3>
-    <p class="text-center">
-      Click Setup to start configuring this node
-    </p>
-    <br>
-    <md-button ui-sref="material.nodewizard.add({nodeTypeId: nodeType._id})" class="md-raised md-primary">Setup</md-button>
-  </md-content>
-</md-card>
+  <main class="sidebar__pane-body">
+    <div class="sidebar__pane-form">
+      <img height="100" ng-src="{{nodeType.logo}}">
+      <h3 class="text-center">This Node requires setup</h3>
+      <p class="text-center">
+        Click Setup to start configuring this node
+      </p>
+      <md-button ui-sref="material.nodewizard.add({nodeTypeId: nodeType._id})" class="md-raised md-primary">Setup</md-button>
+    </div>
+  </main>
+</div>

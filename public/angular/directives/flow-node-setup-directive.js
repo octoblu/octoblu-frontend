@@ -4,6 +4,7 @@ angular.module('octobluApp')
     restrict: 'E',
     templateUrl: '/pages/flow-node-setup.html',
     controller: 'FlowNodeSetupController',
+    replace: true,
     scope: {
       nodeType: '='
     },

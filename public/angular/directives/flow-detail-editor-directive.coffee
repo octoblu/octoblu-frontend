@@ -5,8 +5,6 @@ angular.module('octobluApp')
     templateUrl: '/pages/flow-detail-editor.html',
     replace: true,
     transclude: true,
-    controller: 'FlowDetailEditorController',
-    controllerAs: 'controller',
     scope:
       flow: '='
   }
