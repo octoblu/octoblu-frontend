@@ -1,14 +1,12 @@
 <div class="sidebar__pane-content">
   <header class="sidebar__toolbar sidebar__toolbar--header">
     <div class="md-toolbar-tools">
-      <h1>Edit > {{flow.name}}</h1>
-      <span flex></span>
-      <md-button ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button>
+      <h1>{{flow.name}}</h1>
     </div>
   </header>
 
   <main class="sidebar__pane-body">
-    <form class="sidebar__pane-form">
+    <div class="sidebar__pane-form">
       <md-input-container>
         <label>Name</label>
         <input ng-model="flow.name">
@@ -18,9 +16,10 @@
         <label>Description</label>
         <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
       </md-input-container>
-    </form>
 
-    <md-button>View Source</md-button>
-    <md-button>Delete Flow</md-button>
+      <md-button>View Source</md-button>
+      <md-button  ng-click="deleteNode()">Delete Flow</md-button>
+    </div>
+
   </main>
 </div>

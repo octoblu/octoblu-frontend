@@ -1,6 +1,7 @@
-@sidebar-border-color: #E5E5E5;
+@sidebar-border-color  : #E5E5E5;
 @sidebar-toolbar-height: 30px;
-@sidebar-button-color: rgba(0,0,0,0.54);
+@sidebar-button-color  : rgba(0,0,0,0.54);
+@sidebar-body-padding  : 12px;
 
 .sidebar {
   .flex;
@@ -22,6 +23,7 @@
   .flex-direction(column);
 
   background: #FFF;
+  border-bottom: 1px solid @sidebar-border-color;
 }
 
 .sidebar__pane-content {
@@ -39,6 +41,14 @@
 
   overflow-y: auto;
   height: 0;
+
+  md-header {
+    height: auto;
+  }
+  md-tab {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .sidebar__toolbar {
@@ -47,6 +57,11 @@
   width: 100%;
   height: @sidebar-toolbar-height;
   color: #333;
+
+  .md-toolbar-tools {
+    padding-left: @sidebar-body-padding;
+    padding-right: @sidebar-body-padding;
+  }
 }
 
 .sidebar__toolbar--header {
@@ -110,7 +125,16 @@
 }
 
 .sidebar__pane-form {
-  padding: 16px;
+  padding: @sidebar-body-padding;
+
+  md-input-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  md-switch {
+    margin: 0;
+  }
 }
 
 
