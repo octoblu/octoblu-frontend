@@ -4,6 +4,8 @@ class CollectionBrowserController
     @scope.tab = {}
     @scope.nodes = {}
     @scope.collectionViewStyle = 'list'
+    @scope.viewSource = false
+
     @FlowNodeTypeService = FlowNodeTypeService
     @NodeTypeService = NodeTypeService
 
@@ -34,5 +36,9 @@ class CollectionBrowserController
 
   flowNodeTypeIsConfiguredNode: (node) =>
     node.category != 'operation' && node.type != 'device:flow'
+
+  toggleViewSource: =>
+    console.log 'ToggleViewSource'
+    @scope.viewSource = !@scope.viewSource
 
 angular.module('octobluApp').controller 'CollectionBrowserController', CollectionBrowserController

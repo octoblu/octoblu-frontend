@@ -81,10 +81,15 @@
   .flex-direction(row);
    */
   border-top: 1px solid @sidebar-border-color;
+
+  .sidebar__toolbar-button {
+    border-right: 1px solid @sidebar-border-color;
+  }
 }
 
 .sidebar__toolbar-button {
   border: none;
+
   padding: 0 10px;
 
   color: @sidebar-button-color;
@@ -179,8 +184,6 @@
   padding: 0 0 0 12px;
   margin: 0;
   height: @sidebar-toolbar-height;
-  border-left: 1px solid @sidebar-border-color;
-
 }
 
 .sidebar__filter-input {

@@ -165,6 +165,7 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
+    console.log('Delete Flow', flow);
     NotifyService.confirm({
       title: 'Delete Flow',
       content: 'Are you sure you want to delete ' + flow.name + '?'
@@ -401,5 +402,9 @@ angular.module('octobluApp')
   $scope.$on('update-active-flow-edit', function(event, newFlow){
     var flow = _.pick(newFlow, ['links', 'nodes', 'name']);
     $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
+  });
+
+  $scope.$on('delete-flow', function(event, flow) {
+    $scope.deleteFlow(flow);
   });
 });
