@@ -1,14 +1,15 @@
 @sidebar-border-color  : #E5E5E5;
-@sidebar-toolbar-height: 30px;
+@sidebar-toolbar-height: 36px;
 @sidebar-button-color  : rgba(0,0,0,0.54);
 @sidebar-body-padding  : 12px;
+@sidebar-header-color  : #3C3D3E;
 
 .sidebar {
   .flex;
   .flex-display;
   .flex-direction(column);
 
-  border-left: 1px solid @sidebar-border-color;
+  border-left: 1px solid #C5C5C5;
   min-width: 400px;
   width: 400px;
   margin-top: 64px;
@@ -24,7 +25,12 @@
   .flex-direction(column);
 
   background: #FFF;
-  border-bottom: 1px solid @sidebar-border-color;
+}
+
+.sidebar__pane-title {
+  color: @sidebar-header-color;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .sidebar__pane-content {
@@ -40,6 +46,7 @@
   .flex-display;
   .flex-direction(column);
 
+  background: #f9fbfc;
   overflow-y: auto;
   height: 0;
 
@@ -69,7 +76,9 @@
   .align-self(flex-start);
   .justify-content(center);
 
-  border-bottom: 1px solid @sidebar-border-color;
+  border: 1px solid #C5C5C5;
+  border-style: solid none;
+  background: white;
 
   .md-toolbar-tools {
     height: @sidebar-toolbar-height;
@@ -78,9 +87,6 @@
 
 .sidebar__toolbar--footer {
   .align-self(flex-end);
-  /*
-  .flex-direction(row);
-   */
   border-top: 1px solid @sidebar-border-color;
 
   .sidebar__toolbar-button {
@@ -90,10 +96,10 @@
 
 .sidebar__toolbar-button {
   border: none;
-
   padding: 0 10px;
 
   color: @sidebar-button-color;
+  font-weight: bold;
   line-height: @sidebar-toolbar-height;
   text-decoration: none;
   text-transform: uppercase;
@@ -102,11 +108,10 @@
   cursor: pointer;
 
   &.active {
-    color: rgb(20,86,143);
+    color: @sidebar-header-color;
   }
 
   &:hover {
-    color: rgb(20,86,143);
     text-decoration: none;
   }
 
