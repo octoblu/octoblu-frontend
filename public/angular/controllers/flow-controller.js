@@ -8,6 +8,7 @@ angular.module('octobluApp')
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
+  $scope.sidebarIsExpanded = true;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -361,6 +362,10 @@ angular.module('octobluApp')
     BluprintService.createBluprint({name: flow.name, flowId: flow.flowId}).then(function(template) {
       $state.go('material.bluprint', {templateId: template.uuid});
     });
+  };
+
+  $scope.toggleSidebarView = function() {
+    $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
   };
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {

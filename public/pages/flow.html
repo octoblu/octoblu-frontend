@@ -1,7 +1,7 @@
 
 <md-toolbar class="flow-top-bar">
   <div class="md-toolbar-tools">
-    <md-button ng-click="toggleNav()" class="menu-icon flow-top-bar-tool flow-top-bar-tool--menu-button">
+    <md-button ng-click="toggleNav()" class="menu-icon flow-top-bar-tool flow-top-bar-tool--menu-button" aria-label="Open Menu">
       <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
     </md-button>
 
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
+    <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls" >
       <md-button ng-click="deleteFlow(activeFlow)" data-action="delete-flow" aria-label="Delete Flow">
         <md-tooltip>Delete Flow</md-tooltip>
         <i class="fa fa-lg fa-trash"></i>
@@ -66,26 +66,29 @@
 
   <div class="designer__zoom-controls" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
     <div class="designer__zoom-control-group">
-      <md-button class="designer__zoom-control-button" ng-click="center()">
+      <md-button class="designer__zoom-control-button" ng-click="center()" aria-label="Center">
         <i class="fa fa-crosshairs fa-lg"></i>
       </md-button>
     </div>
 
     <div class="designer__zoom-control-group">
-      <md-button class="designer__zoom-control-button" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}">
+      <md-button class="designer__zoom-control-button" ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" aria-label="Zoom In">
         <i class="fa fa-plus fa-lg"></i>
       </md-button>
 
       <hr class="designer__zoom-control-hr">
 
-      <md-button class="designer__zoom-control-button" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}">
+      <md-button class="designer__zoom-control-button" ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" aria-label="Zoom Out">
         <i class="fa fa-minus fa-lg"></i>
       </md-button>
     </div>
 
   </div>
 
-  <div class="sidebar">
+  <md-button ng-click="toggleSidebarView()" alt="Toggle Sidebar" class="sidebar__toggle-button" aria-label="Toggle Sidebar">
+    <i ng-class="{'fa-caret-square-o-right': sidebarIsExpanded, 'fa-caret-square-o-left': !sidebarIsExpanded}" class="fa fa-lg" ></i>
+  </md-button>
+  <div ng-class="{'sidebar--is-expanded': sidebarIsExpanded}" class="sidebar">
     <flow-inspector flow="activeFlow"></flow-inspector>
     <collection-browser></collection-browser>
   </div>
