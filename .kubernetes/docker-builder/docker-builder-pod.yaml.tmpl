@@ -19,12 +19,12 @@ desiredState:
         env:
           - name: SKIP_CLEAN
             value: "true"
-          - name: TGZ_URL
-            value: $TGZ_URL
-          - name: GIT_BRANCH
-            value: $TRAVIS_BRANCH
+          - name: GIT_REPO
+            value: https://github.com/$TRAVIS_REPO_SLUG.git
           - name: GIT_TAG
             value: $TRAVIS_COMMIT
+          - name: GIT_BRANCH
+            value: $TRAVIS_BRANCH
           - name: IMAGE_NAME
             value: $TRAVIS_REPO_SLUG:$SHORT_COMMIT
           - name: USERNAME

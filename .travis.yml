@@ -4,86 +4,39 @@ cache:
   bundler: true
   directories:
   - node_modules
-  - public/lib
 node_js:
 - '0.10'
 env:
   global:
   - AWS_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
   - DOCKER_USERNAME=octoblu
-  - DEPLOY_APPLICATION_NAME=app-octoblu-frontend
+  - DEPLOY_APPLICATION_NAME=app-octoblu-sidebar
   - DEPLOY_REGION=us-west-2
   - DEPLOY_BUCKET=octoblu-deploy
   - DEPLOYMENT_GROUP=master
-  - DEPLOY_KEY=app-octoblu-frontend/app-octoblu-frontend-$TRAVIS_COMMIT.zip
-  - TGZ_URL=https://s3-us-west-2.amazonaws.com/deploy-octoblu-static/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz
-  - secure: YymURBsnETYUEJ/yTBXfA3hmInTsY/hm2W0rXtCDAOpQPlcNT08aksiGaJzzSXWnEUznOEd8FQhc6fLSTx3glZFOsyXt29FQHCG/8gdZG+IUx+7JqaWvv1cSe4vw1SqYSKbmzsL0udaLV5KMqQ92p11MDOBuBtNn3wIUTwN1AB4=
-  - secure: KihNBJIMr1WlgKXXysrdRYWiko1GiCxZJGODwfbfh6p8QXgxM1lA5m+7Z96/O+riHJo3O93Gwbljmx8sIW8SzYHBVpTKUTdUfdzn198sq9vxnZC5tc6+r0GA7X8UuGgrt/++OR3B3jlrqY7z0VCwyLR6F87ktZGFwNJ9e1R/3zE=
-  - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
+  - DEPLOY_KEY=app-octoblu-sidebar/app-octoblu-sidebar-$TRAVIS_COMMIT.zip
+  - secure: h4omi6/1pJ5k1MmsScRkH6jtiOIBSIbjc4a3ARqP9YVyeE48rdcthgpDpXaQzfON1sdKSSWv5qVxispbCIA5BabbgBWHIppw6pr5lWxwesm1UUjObShxMRPg6KudGAXTMe8t0v3aTVakxLA6E9Vq76QcmEADExCyfSB3Jli+AzA=
+  - secure: oQK9IeNQM6BInIOzTuK2aruuSGHx8kebOZOj+v/S/tsPRgatEuCOmY+PoUrm2KuSZDwp6Eh6ZE5M0URgQHg8EDWI7NWt6CwLSBnvN/0j/+UhdC0LGsWt4JPsFrQ9BEf8sVkItR/Lt28UVp7ngQ6ekiN0dAYVSYH1YTk1rYkrJ1I=
 after_success:
-- ".kubernetes/travis_after_success"
-- find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
-- mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -cf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar Dockerfile default.conf public
-- tar --append -f build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar public/lib/zeroclipboard/dist/ZeroClipboard.swf
-- gzip build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar
-- mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
-- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
-- for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done
-before_script:
-- if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
-  NODE_ENV=staging; fi
-- cp .npmrc ~/.npmrc
-- npm install
-- node_modules/.bin/bower install
-- node_modules/.bin/gulp
-- export NODE_ENV=test
+- .kubernetes/travis_after_success
 deploy:
 - provider: s3
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: &1
-    secure: S1f1Hx3/rncOz2Sh+iSl+ay6Y9x0bRADF6lbgL3NZimIeUMG/AaXN5ctwcNs2/t4PPdsVj+3Mr60pBMrGfh8COXktBnCDqOtNGWNT9i94j5HPP0LCDB6Aqm5OJCEuSE3v4zXIv7t8Vg3lIY3Q8jJP+alnMF1qye986ywQNPQynM=
+    secure: oSdjPu3KY/xWAFvbQF77+vRrOOUtMPp7mmDwnI8HIolNINctTdNoiWQ8Zl5qre4CXxu3q7V0vZdoDV4XuOF9EAExOfvUnY5HPFgSbmR0GvR1LxrPMzZ7Z4kGixI6eTRVgqYh2RR3nNebdTbXfIw/OiR5aGsiT+y7cHB4lI7Tt4o=
   local_dir: dpl_cd_upload
   skip_cleanup: true
   bucket: octoblu-deploy
   on:
-    branch: master
-- provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  bucket: app.octoblu.com
-  region: us-west-2
-  skip_cleanup: true
-  detect_encoding: true
-  cache_control: "max-age=31536000"
-  local-dir: dpl_cdn
-- provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  bucket: deploy-octoblu-static
-  region: us-west-2
-  skip_cleanup: true
-  local-dir: build
-- provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  bucket: deploy-octoblu-static
-  region: us-west-2
-  skip_cleanup: true
-  local-dir: dpl_static
+    branch: sidebar
 - provider: codedeploy
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
   bucket: octoblu-deploy
-  key: docker-builder/app-octoblu-frontend-$TRAVIS_COMMIT.zip
+  key: docker-builder/app-octoblu-sidebar-$TRAVIS_COMMIT.zip
   bundle_type: zip
   region: us-west-2
   application: docker-builder
-  deployment_group: app-octoblu-frontend
+  deployment_group: app-octoblu-sidebar
   on:
-    branch: master
-- provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
-  secret_access_key: *1
-  app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
-  on:
-    branch: master
+    branch: sidebar

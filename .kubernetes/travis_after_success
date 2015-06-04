@@ -6,11 +6,11 @@ export DOCKER_LABEL_NAME=`echo $TRAVIS_REPO_SLUG | sed 's/\//\./g'`
 
 REPLACE_REGEX='s;(\\*)(\$([a-zA-Z_][a-zA-Z_0-9]*)|\$\{([a-zA-Z_][a-zA-Z_0-9]*)\})?;substr($1,0,int(length($1)/2)).($2&&length($1)%2?$2:$ENV{$3||$4});eg'
 
-mkdir -p dpl_cd_upload/docker-builder dpl_cd_upload/app-octoblu-frontend
+mkdir -p dpl_cd_upload/docker-builder dpl_cd_upload/app-octoblu-sidebar
 perl -pe $REPLACE_REGEX .kubernetes/deploy/appspec.yml.tmpl > .kubernetes/deploy/appspec.yml
-perl -pe $REPLACE_REGEX .kubernetes/deploy/app-octoblu-frontend-blue-controller.yaml.tmpl > .kubernetes/deploy/app-octoblu-frontend-blue-controller.yaml
-perl -pe $REPLACE_REGEX .kubernetes/deploy/app-octoblu-frontend-green-controller.yaml.tmpl > .kubernetes/deploy/app-octoblu-frontend-green-controller.yaml
+perl -pe $REPLACE_REGEX .kubernetes/deploy/app-octoblu-sidebar-blue-controller.yaml.tmpl > .kubernetes/deploy/app-octoblu-sidebar-blue-controller.yaml
+perl -pe $REPLACE_REGEX .kubernetes/deploy/app-octoblu-sidebar-green-controller.yaml.tmpl > .kubernetes/deploy/app-octoblu-sidebar-green-controller.yaml
 perl -pe $REPLACE_REGEX .kubernetes/docker-builder/appspec.yml.tmpl > .kubernetes/docker-builder/appspec.yml
 perl -pe $REPLACE_REGEX .kubernetes/docker-builder/docker-builder-pod.yaml.tmpl > .kubernetes/docker-builder/docker-builder-pod.yaml
-zip -jr dpl_cd_upload/app-octoblu-frontend/app-octoblu-frontend-$TRAVIS_COMMIT.zip .kubernetes/deploy/*
-zip -jr dpl_cd_upload/docker-builder/app-octoblu-frontend-$TRAVIS_COMMIT.zip .kubernetes/docker-builder/*
+zip -jr dpl_cd_upload/app-octoblu-sidebar/app-octoblu-sidebar-$TRAVIS_COMMIT.zip .kubernetes/deploy/*
+zip -jr dpl_cd_upload/docker-builder/app-octoblu-sidebar-$TRAVIS_COMMIT.zip .kubernetes/docker-builder/*

@@ -2,5 +2,5 @@
 
 SCRIPT_DIR=`dirname $0`
 
-kubectl delete pods -l name=octoblu.app-octoblu-frontend
+kubectl delete pods -l name=octoblu.app-octoblu-sidebar
 kubectl create -f $SCRIPT_DIR/docker-builder-pod.yaml
