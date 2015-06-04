@@ -18,7 +18,22 @@ env:
   - secure: h4omi6/1pJ5k1MmsScRkH6jtiOIBSIbjc4a3ARqP9YVyeE48rdcthgpDpXaQzfON1sdKSSWv5qVxispbCIA5BabbgBWHIppw6pr5lWxwesm1UUjObShxMRPg6KudGAXTMe8t0v3aTVakxLA6E9Vq76QcmEADExCyfSB3Jli+AzA=
   - secure: oQK9IeNQM6BInIOzTuK2aruuSGHx8kebOZOj+v/S/tsPRgatEuCOmY+PoUrm2KuSZDwp6Eh6ZE5M0URgQHg8EDWI7NWt6CwLSBnvN/0j/+UhdC0LGsWt4JPsFrQ9BEf8sVkItR/Lt28UVp7ngQ6ekiN0dAYVSYH1YTk1rYkrJ1I=
 after_success:
-- .kubernetes/travis_after_success
+- ".kubernetes/travis_after_success"
+- find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
+- mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -cf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar Dockerfile default.conf public
+- tar --append -f build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar public/lib/zeroclipboard/dist/ZeroClipboard.swf
+- gzip build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar
+- mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
+- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
+- for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done
+before_script:
+- if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
+  NODE_ENV=staging; fi
+- cp .npmrc ~/.npmrc
+- npm install
+- node_modules/.bin/bower install
+- node_modules/.bin/gulp
+- export NODE_ENV=test
 deploy:
 - provider: s3
   access_key_id: AKIAIT4X4NDGM2WVL6VA
