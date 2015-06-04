@@ -1,0 +1,75 @@
+.flow-top-bar {
+  .flex-direction(row);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+.flow-top-bar-tool {
+  margin: 0 8px;
+
+  input {
+    border: none;
+    border-radius: 2px;
+
+    font-size: 0.85em;
+
+    &:focus {
+      border-color: #66afe9;
+      outline: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+
+  .input-group-addon {
+    border: none;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+}
+
+.flow-top-bar-tool--menu-button {
+  margin-left: -6px;
+  margin-right: 2px;
+
+  &.md-button {
+    font-size: 25px;
+  }
+}
+
+.flow-top-bar-tool--omni-search {
+  .flex(1);
+}
+
+.flow-top-bar-tool--flow-search {
+  .flex(1);
+
+  .input-group-addon {
+    padding: 0;
+  }
+}
+
+.flow-search--button {
+  border: none;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+
+  height: 34px;
+  padding: 6px 12px;
+  background: transparent;
+}
+
+.flow-top-bar-tool--controls {
+  min-width: 0;
+  margin: 0 0 0 2px;
+
+}
+
+
+.floating-omnibox {
+  margin: 0;
+}

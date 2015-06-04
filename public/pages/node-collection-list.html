@@ -1,0 +1,26 @@
+<md-list ng-if="viewStyle == 'list'">
+  <md-list-item ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
+    ng-click="controller.addFlowNodeType(flowNodeType)"
+    data-type="{{flowNodeType.type}}"
+    class="node-collection-item">
+
+    <img class="node-collection-thumbnail"
+        src="{{flowNodeType.logo}}"
+        alt="{{flowNodeType.name || flowNodeType.type}}"/>
+
+    <div class="node-collection-description">
+      <h3 class="node-collection-title">
+        {{flowNodeType.name || flowNodeType.type}}
+      </h3>
+
+      <p class="node-collection-text">
+        {{flowNodeType.helpText}}
+      </p>
+    </div>
+
+  </md-list-item>
+
+  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length">
+    No matches for "{{filterQuery.name}}"
+  </h3>
+</md-list>

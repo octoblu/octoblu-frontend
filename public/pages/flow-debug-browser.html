@@ -1,0 +1,14 @@
+<div>
+  <div ng-if="viewSource" class="full-height">
+    <pre>{{ activeFlow | json }}</pre>
+  </div>
+  <div ng-if="!viewSource">
+    <h5 ng-if="flow.selectedFlowNode.name">Selected Node: {{ flow.selectedFlowNode.name }}</h5>
+    <ul class="flow-browser-debug">
+      <li ng-repeat="debug in debugLines | filter : {$: flow.selectedFlowNode.id} | filter:filterQuery">
+      	<small>{{ debug.date | date: 'shortDate'}} {{ debug.date | date: 'mediumTime'}} - {{ debug.message.name }}</small>
+        <prism code="debug.message"></prism>
+      </li>
+    </ul>
+  </div>
+</div>

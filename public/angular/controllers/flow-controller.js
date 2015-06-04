@@ -402,4 +402,8 @@ angular.module('octobluApp')
     var flow = _.pick(newFlow, ['links', 'nodes', 'name']);
     $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
   });
+
+  $scope.$on('delete-flow', function(event, flow) {
+    $scope.deleteFlow(flow);
+  });
 });

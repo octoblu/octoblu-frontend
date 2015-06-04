@@ -1,0 +1,14 @@
+<div class="sidebar__pane">
+  <flow-node-editor
+    ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
+    flow-id="flow.flowId"
+    flow-node="flow.selectedFlowNode">
+  </flow-node-editor>
+
+  <flow-detail-editor
+    ng-if="!flow.selectedFlowNode"
+    flow="flow">
+  </flow-detail-editor>
+
+  <flow-node-setup ng-if="flow.selectedFlowNode.resourceType === 'node-type'" node-type="flow.selectedFlowNode"></flow-node-setup>
+</div>
