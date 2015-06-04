@@ -61,7 +61,7 @@ angular
       },
       {
         title: 'Contact via Chat',
-        link: 'https://gitter.im/octoblu/chat',
+        link: 'https://gitter.im/octoblu/help',
         summary: 'Chat with the Octoblu team.',
       },
       {

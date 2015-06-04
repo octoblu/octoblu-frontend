@@ -5,10 +5,6 @@ angular.module('octobluApp')
   NodeTypeService.getById($state.params.nodeTypeId).then(function(nodeType){
     var state = 'material.nodewizard.adddevice';
 
-    if(nodeType.type === 'device:gateblu'){
-      state = 'material.nodewizard.addgateblu';
-    }
-
     if(nodeType.category === 'channel'){
       state = 'material.nodewizard.addchannel.default-options';
     }
