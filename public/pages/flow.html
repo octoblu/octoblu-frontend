@@ -91,9 +91,6 @@
 
   </div>
 
-  <md-button ng-click="toggleSidebarView()" alt="Toggle Sidebar" class="sidebar__toggle-button" aria-label="Toggle Sidebar">
-    <i ng-class="{'fa-caret-square-o-right': sidebarIsExpanded, 'fa-caret-square-o-left': !sidebarIsExpanded}" class="fa fa-lg" ></i>
-  </md-button>
   <div ng-class="{'sidebar--is-expanded': sidebarIsExpanded}" class="sidebar">
     <flow-inspector flow="activeFlow"></flow-inspector>
     <collection-browser></collection-browser>
