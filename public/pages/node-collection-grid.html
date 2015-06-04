@@ -8,7 +8,7 @@
     class="animated-popout"
     md-rowspan="1"
     md-colspan="1"
-    ng-repeat="flowNodeType in nodes | filter: filterQuery"
+    ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
     ng-click="controller.addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}">
 
@@ -18,4 +18,9 @@
 
     <md-tooltip md-delay="400" md-autohide="false">{{flowNodeType.name || flowNodeType.type}}</md-tooltip>
   </md-grid-tile>
+
+  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length">
+    No matches for "{{filterQuery.name}}"
+  </h3>
+
 </md-grid-list>
