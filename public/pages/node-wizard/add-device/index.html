@@ -3,7 +3,18 @@
 
   <img src="{{nodeType.logo}}" class="node-wizard__logo">
 
-  <div class="node-wizard__body">
+  <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
+    <md-button ng-href="http://gateblu.octoblu.com">
+      <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
+      Download Gateblu
+    </md-button>
+    <md-button class="md-primary md-raised" ng-click="downloaded = true">
+      <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
+      Already Downloaded
+    </md-button>
+  </div>
+
+  <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
     <md-select ng-model="newDevice.action" class="node-wizard__form-actions" required>
       <md-option ng-value="'addUnclaimed'">Add an unclaimed device</md-option>
       <md-option ng-value="'registerNew'">Register a new device</md-option>

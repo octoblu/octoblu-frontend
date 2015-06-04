@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('AddSubdeviceAddGatebluController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
+    .controller('AddSubdeviceAddGatebluController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, NodeTypeService, skynetService, deviceService, AuthService) {
         $scope.newDevice = {};
 
         NodeTypeService.getNodeTypeByType('device:gateblu').then(function(nodeType){
@@ -27,26 +27,27 @@ angular.module('octobluApp')
             subtype: $scope.nodeType.skynet.subtype,
             name:    $scope.newDevice.name
           };
-
-          if($scope.newDevice.selectedDevice) {
-            if ($scope.newDevice.selectedDevice.type === 'existing') {
-              deviceOptions.uuid = $scope.existingDevice.uuid;
-              deviceOptions.token = $scope.existingDevice.token;
-              deviceOptions.owner = currentUser.skynet.uuid;
-              deviceOptions.isChanged = true;
-              promise = deviceService.claimDevice(deviceOptions);
+          AuthService.getCurrentUser().then(function(currentUser){
+            if($scope.newDevice.selectedDevice) {
+              if ($scope.newDevice.selectedDevice.type === 'existing') {
+                deviceOptions.uuid = $scope.existingDevice.uuid;
+                deviceOptions.token = $scope.existingDevice.token;
+                deviceOptions.owner = currentUser.skynet.uuid;
+                deviceOptions.isChanged = true;
+                promise = deviceService.claimDevice(deviceOptions);
+              } else {
+                deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
+                promise = deviceService.claimDevice(deviceOptions);
+              }
             } else {
-              deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-              promise = deviceService.claimDevice(deviceOptions);
+              promise = deviceService.registerDevice(deviceOptions);
             }
-          } else {
-            promise = deviceService.registerDevice(deviceOptions);
-          }
 
-          promise.then(function(device){
-            $state.go("material.nodewizard.addsubdevice.form", {gatebluId: device.uuid});
-          }, function(error){
-            $scope.errorMessage = error;
+            promise.then(function(device){
+              $state.go("material.nodewizard.addsubdevice.form", {gatebluId: device.uuid});
+            }, function(error){
+              $scope.errorMessage = error;
+            });
           });
         };
     });

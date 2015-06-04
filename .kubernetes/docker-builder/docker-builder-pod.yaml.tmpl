@@ -19,14 +19,14 @@ desiredState:
         env:
           - name: SKIP_CLEAN
             value: "true"
-          - name: GIT_REPO
-            value: https://github.com/$TRAVIS_REPO_SLUG.git
-          - name: GIT_TAG
-            value: $TRAVIS_COMMIT
+          - name: TGZ_URL
+            value: $TGZ_URL
           - name: GIT_BRANCH
             value: $TRAVIS_BRANCH
+          - name: GIT_TAG
+            value: $TRAVIS_COMMIT
           - name: IMAGE_NAME
-            value: app-octoblu-sidebar:$SHORT_COMMIT
+            value: $TRAVIS_REPO_SLUG:$SHORT_COMMIT
           - name: USERNAME
             value: $DOCKER_USERNAME
           - name: PASSWORD
