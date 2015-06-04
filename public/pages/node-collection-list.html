@@ -2,7 +2,11 @@
   <md-list-item ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
     ng-click="controller.addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}"
-    class="node-collection-item">
+    class="node-collection-item"
+    draggable="true"
+    effect-allowed="copy"
+    draggable-type="flow-node-type"
+    draggable-data="flowNodeType">
 
     <img class="node-collection-thumbnail"
         src="{{flowNodeType.logo}}"

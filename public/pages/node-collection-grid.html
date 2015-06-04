@@ -10,7 +10,11 @@
     md-colspan="1"
     ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
     ng-click="controller.addFlowNodeType(flowNodeType)"
-    data-type="{{flowNodeType.type}}">
+    data-type="{{flowNodeType.type}}"
+    draggable="true"
+    effect-allowed="copy"
+    draggable-type="flow-node-type"
+    draggable-data="flowNodeType">
 
     <img class="node-grid-thumbnail"
         src="{{flowNodeType.logo}}"

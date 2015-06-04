@@ -59,7 +59,13 @@
   </div>
 </md-toolbar>
 
-<div class="design2 designer-container" tutorial>
+<div class="design2 designer-container"
+  tutorial
+  drop="onDrop($data, $event)"
+  drop-effect="copy"
+  drop-accept="'json/custom-object'"
+  drag-over="onDragOver($event)"
+  drag-over-class="drag-over-accept">
   <flow-editor flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 
   <img src="/assets/images/octoblu.png" class="designer__octoblu-logo"/>

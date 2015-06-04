@@ -62,7 +62,8 @@
     "angular-schema-form": "~0.8.0",
     "xxhash": "*",
     "angular-material": "~0.8.3",
-    "ng-autofocus": "~0.0.1"
+    "ng-autofocus": "~0.0.1",
+    "angular-draganddrop": "~0.2.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
