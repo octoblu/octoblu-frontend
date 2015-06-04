@@ -5,10 +5,10 @@ DISTRIBUTION_DIR=`dirname $SCRIPT_DIR`
 
 export PATH=/usr/local/bin:$PATH
 
-BLUE_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-tags --load-balancer-name sidebar | jq '.TagDescriptions[0].Tags[] | select(.Key == "blue") | .Value | tonumber'`
-GREEN_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-tags --load-balancer-name sidebar | jq '.TagDescriptions[0].Tags[] | select(.Key == "green") | .Value | tonumber'`
+BLUE_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-tags --load-balancer-name app-octoblu-com | jq '.TagDescriptions[0].Tags[] | select(.Key == "blue") | .Value | tonumber'`
+GREEN_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-tags --load-balancer-name app-octoblu-com | jq '.TagDescriptions[0].Tags[] | select(.Key == "green") | .Value | tonumber'`
 
-OLD_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-load-balancers --load-balancer-name sidebar | jq '.LoadBalancerDescriptions[0].ListenerDescriptions[0].Listener.InstancePort'`
+OLD_PORT=`AWS_DEFAULT_REGION=us-west-2 aws elb describe-load-balancers --load-balancer-name app-octoblu-com | jq '.LoadBalancerDescriptions[0].ListenerDescriptions[0].Listener.InstancePort'`
 
 NEW_COLOR=blue
 NEW_PORT=${BLUE_PORT}
@@ -20,33 +20,25 @@ fi
 export BLUE_PORT GREEN_PORT OLD_PORT NEW_COLOR NEW_PORT
 
 REPLACE_REGEX='s;(\\*)(\$([a-zA-Z_][a-zA-Z_0-9]*)|\$\{([a-zA-Z_][a-zA-Z_0-9]*)\})?;substr($1,0,int(length($1)/2)).($2&&length($1)%2?$2:$ENV{$3||$4});eg'
-perl -pe $REPLACE_REGEX $SCRIPT_DIR/app-octoblu-sidebar-blue-service.yaml.tmpl > $SCRIPT_DIR/app-octoblu-sidebar-blue-service.yaml
-perl -pe $REPLACE_REGEX $SCRIPT_DIR/app-octoblu-sidebar-green-service.yaml.tmpl > $SCRIPT_DIR/app-octoblu-sidebar-green-service.yaml
+perl -pe $REPLACE_REGEX $SCRIPT_DIR/app-octoblu-frontend-blue-service.yaml.tmpl > $SCRIPT_DIR/app-octoblu-frontend-blue-service.yaml
+perl -pe $REPLACE_REGEX $SCRIPT_DIR/app-octoblu-frontend-green-service.yaml.tmpl > $SCRIPT_DIR/app-octoblu-frontend-green-service.yaml
 
-kubectl delete -f $SCRIPT_DIR/app-octoblu-sidebar-${NEW_COLOR}-service.yaml
-kubectl create -f $SCRIPT_DIR/app-octoblu-sidebar-${NEW_COLOR}-service.yaml
+kubectl stop -f $SCRIPT_DIR/app-octoblu-frontend-${NEW_COLOR}-service.yaml
+kubectl delete -f $SCRIPT_DIR/app-octoblu-frontend-${NEW_COLOR}-service.yaml
+kubectl create -f $SCRIPT_DIR/app-octoblu-frontend-${NEW_COLOR}-service.yaml
 
-kubectl stop rc -lname=app-octoblu-sidebar-${NEW_COLOR}
-kubectl delete rc -lname=app-octoblu-sidebar-${NEW_COLOR}
-kubectl delete pods -lname=app-octoblu-sidebar-${NEW_COLOR}
-kubectl create -f $SCRIPT_DIR/app-octoblu-sidebar-${NEW_COLOR}-controller.yaml
+kubectl stop rc -lname=app-octoblu-frontend-${NEW_COLOR}
+kubectl delete rc -lname=app-octoblu-frontend-${NEW_COLOR}
+kubectl stop pods -lname=app-octoblu-frontend-${NEW_COLOR}
+kubectl delete pods -lname=app-octoblu-frontend-${NEW_COLOR}
+kubectl create -f $SCRIPT_DIR/app-octoblu-frontend-${NEW_COLOR}-controller.yaml
 
-x=0
-while [ "$x" -lt 20 -a -z "$KUBE_STATUS" ]; do
-   x=$((x+1))
-   sleep 10
-   echo "Checking kubectl status, attempt ${x}..."
-   KUBE_STATUS=`kubectl get pod -o json -lname=app-octoblu-sidebar-${NEW_COLOR} | jq ".items[].currentState.info[\"app-octoblu-sidebar-${NEW_COLOR}\"].ready" | uniq | grep true`
-done
 
-if [ -z "$KUBE_STATUS" ]; then
-  echo "app-octoblu-sidebar-${NEW_COLOR} is not ready, giving up."
-  exit 1
-fi
+sleep 30
 
-AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name sidebar --load-balancer-ports 80
-AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name sidebar --load-balancer-ports 443
-AWS_DEFAULT_REGION=us-west-2 aws elb create-load-balancer-listeners --load-balancer-name sidebar --listeners Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=${NEW_PORT}
-AWS_DEFAULT_REGION=us-west-2 aws elb create-load-balancer-listeners --load-balancer-name sidebar --listeners Protocol=HTTPS,LoadBalancerPort=443,InstanceProtocol=HTTP,InstancePort=${NEW_PORT},SSLCertificateId=arn:aws:iam::822069890720:server-certificate/startinter.octoblu.com
+AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name app-octoblu-com --load-balancer-ports 80
+AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name app-octoblu-com --load-balancer-ports 443
+AWS_DEFAULT_REGION=us-west-2 aws elb create-load-balancer-listeners --load-balancer-name app-octoblu-com --listeners Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=${NEW_PORT}
+AWS_DEFAULT_REGION=us-west-2 aws elb create-load-balancer-listeners --load-balancer-name app-octoblu-com --listeners Protocol=HTTPS,LoadBalancerPort=443,InstanceProtocol=HTTP,InstancePort=${NEW_PORT},SSLCertificateId=arn:aws:iam::822069890720:server-certificate/appinter.octoblu.com
 
-AWS_DEFAULT_REGION=us-west-2 aws elb configure-health-check --load-balancer-name sidebar --health-check Target=HTTP:${NEW_PORT}/healthcheck,Interval=30,Timeout=5,UnhealthyThreshold=2,HealthyThreshold=2
+AWS_DEFAULT_REGION=us-west-2 aws elb configure-health-check --load-balancer-name app-octoblu-com --health-check Target=HTTP:${NEW_PORT}/healthcheck,Interval=30,Timeout=5,UnhealthyThreshold=2,HealthyThreshold=2

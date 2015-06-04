@@ -21,12 +21,12 @@ desiredState:
             value: "true"
           - name: TGZ_URL
             value: $TGZ_URL
-          - name: GIT_TAG
-            value: $TRAVIS_COMMIT
           - name: GIT_BRANCH
             value: $TRAVIS_BRANCH
+          - name: GIT_TAG
+            value: $TRAVIS_COMMIT
           - name: IMAGE_NAME
-            value: octoblu/app-octoblu-sidebar:$SHORT_COMMIT
+            value: $TRAVIS_REPO_SLUG:$SHORT_COMMIT
           - name: USERNAME
             value: $DOCKER_USERNAME
           - name: PASSWORD
