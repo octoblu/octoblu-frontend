@@ -1,8 +1,9 @@
 angular.module('octobluApp')
-.controller('FlowNodeEditorController', function ($scope, FlowService, FlowEditorService, FlowNodeTypeService) {
+.controller('FlowNodeEditorController', function ($timeout, $scope, FlowService, FlowEditorService, FlowNodeTypeService) {
   'use strict';
 
   var setFlowNodeType = function() {
+    $scope.showFlowNodeEditor = false;
     $scope.showHelp = false;
     if(!$scope.flowNode) {
       $scope.flowNodeType = null;
@@ -11,11 +12,15 @@ angular.module('octobluApp')
 
     FlowNodeTypeService.getFlowNodeType($scope.flowNode.type).then(function(flowNodeType){
       $scope.flowNodeType = flowNodeType;
+      $timeout(function(){
+        $scope.showFlowNodeEditor = true;
+      }, 200);
     });
 
     FlowNodeTypeService.getOtherMatchingFlowNodeTypes($scope.flowNode.type).then(function(otherMatchingFlowNodeTypes){
       $scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes;
     });
+
   };
 
   $scope.close = function(){
