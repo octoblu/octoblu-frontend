@@ -165,7 +165,6 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
-    console.log('Delete Flow', flow);
     NotifyService.confirm({
       title: 'Delete Flow',
       content: 'Are you sure you want to delete ' + flow.name + '?'
