@@ -188,16 +188,12 @@ angular.module('octobluApp')
   };
 
   $scope.onDrop = function (data, event) {
-    // Get custom object data.
-    var customObjectData = data['json/flow-node-type']; // {foo: 'bar'}
+    var flowNodeType = data['json/flow-node-type'];
 
-    // Get other attached data.
-    var uriList = data['text/uri-list']; // http://mywebsite.com/..
-    $scope.$emit('flow-node-type-selected', customObjectData);
-  };
+    flowNodeType.x = (event.clientX - $scope.activeFlow.zoomX) / $scope.activeFlow.zoomScale;
+    flowNodeType.y = (event.clientY - $scope.activeFlow.zoomY) / $scope.activeFlow.zoomScale;
 
-  // Drag over handler.
-  $scope.onDragOver = function (event) {
+    $scope.$emit('flow-node-type-selected', flowNodeType);
   };
 
   $scope.copySelection = function (e) {
