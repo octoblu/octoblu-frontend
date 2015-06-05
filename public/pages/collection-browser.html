@@ -1,0 +1,68 @@
+<div class="sidebar__pane">
+  <div class="sidebar__pane-content">
+    <header class="sidebar__toolbar sidebar__toolbar--header">
+      <a class="sidebar__toolbar-button" ng-click="controller.toggleActiveTab('nodes')" ng-class="{'active' : tab.state === 'nodes'}" title="Nodes">
+        Nodes
+      </a>
+
+      <a class="sidebar__toolbar-button" ng-click="controller.toggleActiveTab('flows')" ng-class="{'active' : tab.state === 'flows'}" title="Flows">
+        Flows
+      </a>
+
+      <a class="sidebar__toolbar-button" ng-click="controller.toggleActiveTab('debug')" ng-class="{'active' : tab.state === 'debug'}" title="Debug">
+        Debug
+      </a>
+    </header>
+
+    <main class="sidebar__pane-body">
+      <div ng-show="tab.state == 'nodes'">
+        <md-tabs md-center-tabs>
+          <md-tab label="Operators">
+            <node-collection nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+          </md-tab>
+
+          <md-tab label="Configured">
+            <node-collection nodes="nodes.configured" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+          </md-tab>
+
+          <md-tab label="Available">
+            <node-collection nodes="nodes.available" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+          </md-tab>
+        </md-tabs>
+      </div>
+
+      <node-collection ng-show="tab.state == 'flows'" nodes="flowNodes" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+
+      <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
+    </main>
+
+    <footer class="sidebar__toolbar sidebar__toolbar--footer" ng-show="tab.state == 'debug'">
+      <button ng-click="debugLines = []" class="sidebar__toolbar-button">
+        <i class="fa fa-ban fa-lg"></i>
+      </button>
+
+      <button ng-click="controller.toggleViewSource()" class="sidebar__toolbar-button">
+        <i class="fa fa-code fa-lg"></i>
+      </button>
+
+      <div class="sidebar__filter-form">
+        <i class="fa fa-search fa-lg sidebar__filter-icon"></i>
+        <input ng-model="filterQuery" class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
+      </div>
+    </footer>
+
+    <footer class="sidebar__toolbar sidebar__toolbar--footer" ng-hide="tab.state == 'debug'">
+      <button ng-if="collectionViewStyle == 'list'" ng-click="controller.setCollectionViewStyle('grid')" class="sidebar__toolbar-button">
+        <i class="fa fa-th-large fa-lg"></i>
+      </button>
+      <button ng-if="collectionViewStyle == 'grid'" ng-click="controller.setCollectionViewStyle('list')" class="sidebar__toolbar-button">
+        <i class="fa fa-th-list fa-lg"></i>
+      </button>
+
+      <div class="sidebar__filter-form">
+        <i class="fa fa-search fa-lg sidebar__filter-icon"></i>
+        <input ng-model="filterQuery.name" class="sidebar__filter-input" type="search" name="Filter" placeholder="Filter...">
+      </div>
+    </footer>
+  </div>
+</div>

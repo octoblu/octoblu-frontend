@@ -78,15 +78,7 @@
 }
 
 .flow-top-bar {
-  position: fixed;
-  top: 0;
-}
-
-.flow-top-bar {
   .flow-name.dropdown {
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.275);
-
     .dropdown-menu {
       overflow-y: scroll;
       width: 100%;
@@ -249,16 +241,6 @@ md-toolbar {
   //     align-items: flex-start;
   //   }
   // }
-}
-
-.logo-toolbar {
-  position: fixed;
-  left: 20px;
-  bottom: 40px;
-
-  img {
-    opacity: 0.5;
-  }
 }
 
 [draggable] {
@@ -744,6 +726,31 @@ md-toolbar {
 .palette_port_output {
   left: 85px;
 }
+ul.flow-browser-debug {
+  list-style: none;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 100%;
+
+  li {
+    margin-top: 10px;
+
+    pre[class*="language-"] {
+      overflow: auto;
+      max-height: none;
+    }
+  }
+}
+
+.flow-browser-debug-no-debug-data {
+  padding: 0 12px;
+  width: 100%;
+
+  line-height: 1.5;
+  color: #8b8b8b;
+  text-align: center;
+}
 
 .flow-browser {
   box-shadow: rgba(0, 0, 0, 0.298039) 3px 0 0 0;
@@ -856,23 +863,5 @@ md-toolbar {
   &.selected {
     background-color: #03a9f4;
     color: white;
-  }
-}
-
-.zoom-controls {
-  background-color:white;
-  position: fixed;
-  right: 10px;
-  bottom: 0;
-  transition: bottom 0.2s;
-  margin-bottom:50px;
-  &.browser-maximized {
-    bottom: 40vh;
-  }
-  i {
-    font-size: 1.1em;
-  }
-  button:focus{
-    outline:none;
   }
 }

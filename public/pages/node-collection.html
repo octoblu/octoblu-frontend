@@ -1,0 +1,9 @@
+<div class="node-collection">
+  <ng-include src=" '/pages/node-collection-list.html' "
+    ng-if="viewStyle == 'list'"
+    class="node-collection-list"></ng-include>
+
+  <ng-include src=" '/pages/node-collection-grid.html' "
+    ng-if="viewStyle == 'grid'"
+    class="node-collection-list node-collection-list--grid"></ng-include>
+</div>

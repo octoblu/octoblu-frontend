@@ -25,9 +25,11 @@ gulp.task('bower:concat', ['bower'], function(){
 
 gulp.task('less:compile', function(){
   return gulp.src('./assets/less/manifest.less')
-    .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(less())
+    .pipe(less().on('error', function(err){
+      console.error(err);
+      this.emit('end');
+    }))
     .pipe(concat('styles.css'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));

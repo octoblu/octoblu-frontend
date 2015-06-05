@@ -8,6 +8,7 @@ angular.module('octobluApp')
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
+  $scope.sidebarIsExpanded = true;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -186,7 +187,14 @@ angular.module('octobluApp')
     debouncedToggle();
   };
 
+  $scope.onDrop = function (data, event) {
+    var flowNodeType = data['json/flow-node-type'];
 
+    flowNodeType.x = (event.clientX - $scope.activeFlow.zoomX) / $scope.activeFlow.zoomScale;
+    flowNodeType.y = (event.clientY - $scope.activeFlow.zoomY) / $scope.activeFlow.zoomScale;
+
+    $scope.$emit('flow-node-type-selected', flowNodeType);
+  };
 
   $scope.copySelection = function (e) {
     if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
@@ -363,6 +371,10 @@ angular.module('octobluApp')
     });
   };
 
+  $scope.toggleSidebarView = function() {
+    $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
+  };
+
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
     if(!newFlow){
       return;
@@ -401,5 +413,9 @@ angular.module('octobluApp')
   $scope.$on('update-active-flow-edit', function(event, newFlow){
     var flow = _.pick(newFlow, ['links', 'nodes', 'name']);
     $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
+  });
+
+  $scope.$on('delete-flow', function(event, flow) {
+    $scope.deleteFlow(flow);
   });
 });

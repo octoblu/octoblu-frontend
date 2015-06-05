@@ -1,0 +1,21 @@
+<div class="sidebar__pane-content">
+  <header class="sidebar__toolbar sidebar__toolbar--header">
+    <div class="md-toolbar-tools">
+      <h1 class="sidebar__pane-title">Flow Inspector</h1>
+    </div>
+  </header>
+
+  <main class="sidebar__pane-body">
+    <div class="sidebar__pane-form">
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="flow.name">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
+      </md-input-container>
+    </div>
+  </main>
+</div>

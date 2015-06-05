@@ -1,0 +1,47 @@
+.node-collection {
+}
+
+.node-collection-item {
+  .flex-display;
+  .flex-direction(row);
+  .align-items(flex-start);
+
+  border-bottom: 1px solid #EDEDED;
+  padding: 12px;
+
+  cursor: pointer;
+
+  &:hover {
+    background: white;
+  }
+}
+
+.node-collection-thumbnail {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.node-collection-description {
+  .flex(1);
+
+  margin-left: 15px;
+}
+
+.node-collection-title {
+  margin: 0 0 8px;
+}
+
+.node-collection-text {
+  margin: 0;
+  line-height: 1.4;
+}
+
+
+.node-collection-no-matches {
+  margin-top: 20px;
+  width: 100%;
+
+  color: #8b8b8b;
+  text-align: center;
+}
