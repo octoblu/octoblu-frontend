@@ -23,8 +23,8 @@
     <md-tooltip md-delay="400" md-autohide="false">{{flowNodeType.name || flowNodeType.type}}</md-tooltip>
   </md-grid-tile>
 
-  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length">
+  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length && filterQuery.name.length">
     No matches for "{{filterQuery.name}}"
   </h3>
-
+  
 </md-grid-list>
