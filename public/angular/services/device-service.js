@@ -35,8 +35,7 @@ angular.module('octobluApp')
             }
 
             skynetPromise.then(function (skynetConnection) {
-                skynetConnection.unsubscribe({uuid: device.uuid, token: device.token});
-                skynetConnection.subscribe({uuid: device.uuid, token: device.token});
+              return skynetConnection.subscribe({uuid: device.uuid, token: device.token});
             });
         };
 
