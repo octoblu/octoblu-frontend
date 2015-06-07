@@ -3,6 +3,10 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
     constructor: () ->
       @luckyRobotNumber = Math.round(1 + Math.random() * 9)
       $scope.isLoading = true;
+      $scope.sortMethods =
+        '-likedBy.length': 'Top Liked'
+        'name': 'Alphabetical (A->Z)'
+        '-name': 'Alphabetical (Z->A)'
       @collectionName = $stateParams.collection
       AuthService.getCurrentUser().then (user) =>
         @userUuid = user.resource.uuid
