@@ -22,7 +22,7 @@
       <a href ng-repeat="tag in bluprintFilter" class="directory__search-tags">{{tag}}<i ng-click="controller.searchByTag(tag)" class="fa fa-times"></i></a>
     </div>
 
-    <!-- <div class="directory__collections" ng-hide="controller.collectionName">
+    <div class="directory__collections" ng-hide="controller.collectionName">
       <a ui-sref="material.discovercollection({collection: 'home automation'})" class="md-whiteframe-z1 directory__collection directory__collection--home">
         <h1 class="directory__collection-name">Home
           <br> Automation</h1>
@@ -49,13 +49,13 @@
       <a ui-sref="material.discover" class="directory__collection__header md-whiteframe-z1 directory__collection directory__collection--work" ng-show="controller.collectionName == 'work automation'">
         <h1 class="directory__collection-name">Work Automation</h1>
       </a>
-    </div> -->
+    </div> 
     <div class="directory__header">
       <h2 class="directory__header-text">{{sortMethods[sortMethod]}}</h2>
       <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
         <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
-        <md-option ng-value="'name'">Alphabetical (A -> Z)</md-option>
-        <md-option ng-value="'-name'">Alphabetical (Z -> A)</md-option>
+        <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
+        <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
       </md-select>
     </div>
     <div class="bluprint-loading-indicator" ng-show="isLoading">

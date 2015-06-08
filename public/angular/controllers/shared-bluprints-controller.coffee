@@ -5,8 +5,8 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       $scope.isLoading = true;
       $scope.sortMethods =
         '-likedBy.length': 'Top Liked'
-        'name': 'Alphabetical (A->Z)'
-        '-name': 'Alphabetical (Z->A)'
+        'name': 'Alphabetical (ascending)'
+        '-name': 'Alphabetical (descending)'
       @collectionName = $stateParams.collection
       AuthService.getCurrentUser().then (user) =>
         @userUuid = user.resource.uuid
