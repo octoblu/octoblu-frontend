@@ -337,8 +337,8 @@ angular.module('octobluApp')
 
   $scope.center = function () {
     $scope.activeFlow.zoomScale = 1;
-    $scope.activeFlow.zoomX = 0;
-    $scope.activeFlow.zoomY = 100;
+    $scope.activeFlow.zoomX = -200;
+    $scope.activeFlow.zoomY = 0;
 
   };
 
