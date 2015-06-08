@@ -27,10 +27,6 @@ angular.module('octobluApp')
     $scope.flowNode = null;
   };
 
-  $scope.toggleHelp = function(){
-    $scope.showHelp = !$scope.showHelp;
-  };
-
 
   $scope.deleteNode = function(){
     var activeFlow = FlowService.getActiveFlow();
