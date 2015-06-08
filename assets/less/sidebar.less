@@ -1,7 +1,8 @@
-@sidebar-border-color  : #E5E5E5;
-@sidebar-toolbar-height: 36px;
-@sidebar-button-color  : rgba(0,0,0,0.4);
 @sidebar-body-padding  : 12px;
+@sidebar-toolbar-height: 36px;
+@sidebar-width         : 400px;
+@sidebar-border-color  : #C5C5C5;
+@sidebar-button-color  : rgba(0,0,0,0.4);
 @sidebar-header-color  : #3C3D3E;
 
 .sidebar {
@@ -9,9 +10,9 @@
   .flex-display;
   .flex-direction(column);
 
-  border-left: 1px solid #C5C5C5;
+  border-left: 1px solid @sidebar-border-color;
   margin-top: 64px;
-  width: 0;
+  width: @sidebar-width;
 
   background: #FFF;
   opacity: 0;
@@ -22,7 +23,7 @@
 }
 
 .sidebar--is-expanded {
-  width: 400px;
+  width: @sidebar-width;
   opacity: 1;
 }
 
@@ -47,29 +48,43 @@
   .justify-content(space-between);
 }
 
-
 .sidebar__pane-body {
   .flex(1);
   .flex-display;
   .flex-direction(column);
 
-  background: #f9fbfc;
+  background: #F9FBFC;
   overflow-y: auto;
-  height: 0;
+  height: 0; /* resolves weird flexbox issue */
 
   md-header {
     height: auto;
   }
+
   md-tab {
     padding-top: 10px;
     padding-bottom: 10px;
+
+  }
+}
+
+.sidebar__pane-form {
+  padding: @sidebar-body-padding;
+
+  md-input-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  md-switch {
+    margin: 0;
   }
 }
 
 .sidebar__toggle-button {
   position: absolute;
   top: 50%;
-  right: 400px;
+  right: @sidebar-width;
 
   height: 50px;
   width: 50px;
@@ -82,6 +97,7 @@
 
   width: 100%;
   height: @sidebar-toolbar-height;
+
   color: #333;
 
   .md-toolbar-tools {
@@ -94,7 +110,7 @@
   .align-self(flex-start);
   .justify-content(center);
 
-  border: 1px solid #C5C5C5;
+  border: 1px solid @sidebar-border-color;
   border-style: solid none;
   background: white;
 
@@ -105,6 +121,7 @@
 
 .sidebar__toolbar--footer {
   .align-self(flex-end);
+
   border-top: 1px solid @sidebar-border-color;
 
   .sidebar__toolbar-button {
@@ -154,52 +171,6 @@
   }
 }
 
-.sidebar__pane-form {
-  padding: @sidebar-body-padding;
-
-  md-input-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  md-switch {
-    margin: 0;
-  }
-}
-
-
-
-.collection-browser__filter-form {
-  .flex(1);
-  .flex-display();
-
-  position: relative;
-
-  height: 48px;
-  padding: 7px 10px 7px 0;
-}
-
-.collection-browser__filter-input {
-  .flex(1);
-
-  border: 1px solid #e5e5e5;
-  border-radius: 2px;
-  height: 32px;
-  padding: 0 10px 0 34px;
-
-  background: #FFF;
-}
-
-.collection-browser__filter-icon {
-  position: absolute;
-  top: 17px;
-  left: 10px;
-}
-
-
-
-
-
 .sidebar__filter-form {
   .flex(1);
   .flex-display();
@@ -226,7 +197,6 @@
   top: -1px;
   left: 9px;
 
-
   &.fa {
     color: @sidebar-button-color;
     font-size: 14px;
@@ -239,6 +209,7 @@
   .flex-display;
   .flex-direction(column);
   .justify-content(center);
+
   padding: @sidebar-body-padding;
 }
 
