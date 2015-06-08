@@ -1,12 +1,11 @@
 
 class NewProfileController
-  constructor: ($cookies, $state, FlowService, ProfileService, userService, FLOW_TUTORIAL_1) ->
+  constructor: ($cookies, $state, FlowService, ProfileService, userService) ->
     @cookies        = $cookies
     @state          = $state
     @FlowService    = FlowService
     @ProfileService = ProfileService
     @userService    = userService
-    @tutorial       = FLOW_TUTORIAL_1
 
   submit: (firstName, lastName, email, optInEmail) =>
     emailID = '542ce2ad47a930b1280b0d05'
@@ -35,15 +34,6 @@ class NewProfileController
 
   addDemoFlow: =>
     @FlowService.createDemoFlow name: 'Demo Flow'
-
-  createTutorialFlow: =>
-    emailID = '542ce2ad47a930b1280b0d05'
-    flowAttributes =
-      tutorial: @tutorial
-      name: 'Tutorial Flow'
-      nodes: []
-
-    @FlowService.createFlow flowAttributes
 
   emailRequiredError: =>
     return true if @newProfileForm.email.$error.required && @newProfileForm.email.$touched
