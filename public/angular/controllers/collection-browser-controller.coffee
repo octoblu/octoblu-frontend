@@ -38,7 +38,6 @@ class CollectionBrowserController
     node.category != 'operation' && node.type != 'device:flow'
 
   toggleViewSource: =>
-    console.log 'ToggleViewSource'
     @scope.viewSource = !@scope.viewSource
 
 angular.module('octobluApp').controller 'CollectionBrowserController', CollectionBrowserController
