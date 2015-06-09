@@ -1,16 +1,48 @@
 'use strict';
 angular.module('octobluApp')
     .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
-        var myDevices, skynetPromise, subscribeToDevice;
+        var myDevices, skynetPromise, subscribeToDevice, getMyDevices, myDevicesPromise;
 
         myDevices = [];
         skynetPromise = skynetService.getSkynetConnection();
+        getMyDevices = function(){
+          return skynetPromise.then(function(skynetConnection){
+            var defer = $q.defer();
+            skynetConnection.mydevices({}, function (result) {
+                var devices = _.cloneDeep(result.devices);
+                devices = _.map(devices, addDevice);
+                devices = _.map(devices, addLogoUrl);
+                myDevices = devices;
+                defer.resolve(myDevices);
+            });
+            return defer.promise;
+          });
+        };
+        myDevicesPromise = getMyDevices();
 
         function addDevice(device) {
-            myDevices.push(device);
             skynetPromise.then(function (skynetConnection) {
                 skynetConnection.subscribe({uuid: device.uuid, types: ['received', 'broadcast']});
             });
+            return device;
+        }
+
+        function addLogoUrl(data){
+          if(data.logo){
+            return data;
+          }
+          var device = _.find(myDevices, { uuid: data.uuid });
+          if(device && device.logo){
+            data.logo = device.logo;
+            return data;
+          }
+          if(data && data.type){
+              var type = data.type.replace('octoblu:', 'device:');
+              data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
+          } else {
+              data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
+          }
+          return data;
         }
 
         skynetPromise.then(function (skynetConnection) {
@@ -53,20 +85,15 @@ angular.module('octobluApp')
                 myDevices.push(device);
             },
             getDevices: function (force) {
-                return skynetPromise.then(function(skynetConnection){
-                    if (myDevices.length && !force) {
-                        return myDevices;
-                    }
-                    var defer = $q.defer();
-                    skynetConnection.mydevices({}, function (result) {
-                        myDevices.length = 0;
-                        _.each(result.devices, addDevice);
-                        defer.resolve(myDevices);
-                    });
-                    return defer.promise;
-                }).then(function(devices){
-                    return _.map(devices, service.addLogoUrl);
-                });
+              if (myDevices.length && !force) {
+                return $q.when(myDevices);
+              }
+              if (force) {
+                return getMyDevices();
+              }
+              return myDevicesPromise.then(function(devices){
+                return devices;
+              });
             },
 
             getSharedDevices: function (force) {
@@ -227,23 +254,7 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
-            addLogoUrl: function(data) {
-              if(data.logo){
-                return data;
-              }
-              var device = _.find(myDevices, { uuid: data.uuid });
-              if(device && device.logo){
-                data.logo = device.logo;
-                return data;
-              }
-              if(data && data.type){
-                  var type = data.type.replace('octoblu:', 'device:');
-                  data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
-              } else {
-                  data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
-              }
-              return data;
-            },
+            addLogoUrl: addLogoUrl,
 
             resetToken: function(uuid) {
                 var defer = $q.defer();
