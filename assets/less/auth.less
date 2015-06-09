@@ -3,6 +3,7 @@
 
 @text-color            : #F0F0F0;
 @background-color      : #F4F5F9;
+@citrix-button-color   : #000000;
 @email-button-color    : #009688;
 @google-button-color   : #DE4D36;
 @facebook-button-color : #3C5F96;
@@ -77,7 +78,7 @@
 
 .auth__form-message--error {
   .auth__form-message;
-  
+
   color: #f44336;
 }
 
@@ -138,24 +139,29 @@
   }
 }
 
-.auth__button--email {
-  .auth__button(@email-button-color);
+
+.auth__button--citrix {
+  .auth__button(@citrix-button-color);
 }
 
-.auth__button--github {
-  .auth__button(@github-button-color);
+.auth__button--email {
+  .auth__button(@email-button-color);
 }
 
 .auth__button--facebook {
   .auth__button(@facebook-button-color);
 }
 
-.auth__button--twitter {
-  .auth__button(@twitter-button-color);
+.auth__button--github {
+  .auth__button(@github-button-color);
 }
 
 .auth__button--google {
   .auth__button(@google-button-color);
+}
+
+.auth__button--twitter {
+  .auth__button(@twitter-button-color);
 }
 
 .auth__octoblu-logo {
