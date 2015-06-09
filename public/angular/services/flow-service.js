@@ -6,7 +6,7 @@ angular.module('octobluApp')
   var previousHashableFlow;
 
   self.hashFlow = function(flow) {
-    var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'tutorial']);
+    var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
   };
 

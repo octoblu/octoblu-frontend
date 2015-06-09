@@ -2,21 +2,21 @@
 angular.module('octobluApp')
 .factory('FlowModel', function (UUIDService) {
   return function (options) {
-    var flowId, name, nodes, hash, links, token, zoomScale, zoomX, zoomY;
+    var flowId, name, description, nodes, hash, links, token, zoomScale, zoomX, zoomY;
     options = options || {};
 
-    flowId = options.flowId || UUIDService.v1();
-    token = options.token;
-    name  = options.name;
-    hash  = options.hash;
-    nodes = options.nodes || [];
-    links = options.links || [];
-    zoomScale = options.zoomScale || 1;
-    zoomX = options.zoomX || 0;
-    zoomY = options.zoomY || 0;
+    flowId      = options.flowId || UUIDService.v1();
+    token       = options.token;
+    name        = options.name;
+    description = options.description;
+    hash        = options.hash;
+    nodes       = options.nodes || [];
+    links       = options.links || [];
+    zoomScale   = options.zoomScale || 1;
+    zoomX       = options.zoomX || 0;
+    zoomY       = options.zoomY || 0;
 
     var FlowModel = {
-      tutorial: options.tutorial,
       getFlowId: function(){
         return flowId;
       },
@@ -35,6 +35,14 @@ angular.module('octobluApp')
 
       setName : function(newName){
         name = newName;
+      },
+
+      getDescription: function(){
+        return description;
+      },
+
+      setDescription : function(newDescription){
+        description = newDescription;
       },
 
       setHash: function(newHash) {
@@ -124,6 +132,8 @@ angular.module('octobluApp')
     FlowModel.__defineSetter__('hash', FlowModel.setHash);
     FlowModel.__defineGetter__('name', FlowModel.getName);
     FlowModel.__defineSetter__('name', FlowModel.setName);
+    FlowModel.__defineGetter__('description', FlowModel.getDescription);
+    FlowModel.__defineSetter__('description', FlowModel.setDescription);
 
     FlowModel.__defineGetter__('nodes', function () {
       return FlowModel.getNodes();

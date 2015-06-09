@@ -411,7 +411,7 @@ angular.module('octobluApp')
   $scope.$watch('activeFlow.hash', compareFlowHash);
 
   $scope.$on('update-active-flow-edit', function(event, newFlow){
-    var flow = _.pick(newFlow, ['links', 'nodes', 'name']);
+    var flow = _.pick(newFlow, ['links', 'nodes', 'name', 'description']);
     $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
   });
 
