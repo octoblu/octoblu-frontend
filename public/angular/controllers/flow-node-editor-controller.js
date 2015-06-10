@@ -21,6 +21,8 @@ angular.module('octobluApp')
       $scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes;
     });
 
+    console.log('flowNode[key:val]', $scope.flowNode.composeKeys, $scope.flowNode.composeValues);
+
   };
 
   $scope.close = function(){
