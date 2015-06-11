@@ -3,6 +3,8 @@ angular.module('octobluApp')
 
   if ($scope.composeValues && $scope.composeKeys) {
     $scope.data = _.zipObject($scope.composeKeys, $scope.composeValues);
+    delete $scope.composeKeys;
+    delete $scope.composeValues;
   }
 
   $scope.keyValues = _.pairs($scope.data);
