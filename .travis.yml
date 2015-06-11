@@ -9,7 +9,7 @@ node_js:
 - '0.10'
 env:
   global:
-  - AWS_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
+  - AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
   - DOCKER_USERNAME=octoblu
   - DEPLOY_APPLICATION_NAME=app-octoblu-frontend
   - DEPLOY_REGION=us-west-2
@@ -20,8 +20,9 @@ env:
   - secure: YymURBsnETYUEJ/yTBXfA3hmInTsY/hm2W0rXtCDAOpQPlcNT08aksiGaJzzSXWnEUznOEd8FQhc6fLSTx3glZFOsyXt29FQHCG/8gdZG+IUx+7JqaWvv1cSe4vw1SqYSKbmzsL0udaLV5KMqQ92p11MDOBuBtNn3wIUTwN1AB4=
   - secure: KihNBJIMr1WlgKXXysrdRYWiko1GiCxZJGODwfbfh6p8QXgxM1lA5m+7Z96/O+riHJo3O93Gwbljmx8sIW8SzYHBVpTKUTdUfdzn198sq9vxnZC5tc6+r0GA7X8UuGgrt/++OR3B3jlrqY7z0VCwyLR6F87ktZGFwNJ9e1R/3zE=
   - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
+  - secure: bhquGCd/hTB7XZKgaG6EzCBxXKvKDhI6xrNLf4brTgY5IyDuuSgt+bCt9vK4lDrxCgLewB9RuYBWmutnkyy2AEo6s6f5iT8HMthogfZBQmiZygzFM5PR/ubmUvQYqtSCVSz8t/p2DmAOdiGWwg/u9ZiLNZV3H+3v2OCdYLRBbvQ=
 after_success:
-- ".kubernetes/travis_after_success"
+- .kubernetes/travis_after_success
 - find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
 - mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -cf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar Dockerfile default.conf public
 - tar --append -f build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar public/lib/zeroclipboard/dist/ZeroClipboard.swf
@@ -39,39 +40,39 @@ before_script:
 - export NODE_ENV=test
 deploy:
 - provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: &1
-    secure: S1f1Hx3/rncOz2Sh+iSl+ay6Y9x0bRADF6lbgL3NZimIeUMG/AaXN5ctwcNs2/t4PPdsVj+3Mr60pBMrGfh8COXktBnCDqOtNGWNT9i94j5HPP0LCDB6Aqm5OJCEuSE3v4zXIv7t8Vg3lIY3Q8jJP+alnMF1qye986ywQNPQynM=
+    secure: "ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE="
   local_dir: dpl_cd_upload
   skip_cleanup: true
   bucket: octoblu-deploy
   on:
     branch: master
 - provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   bucket: app.octoblu.com
   region: us-west-2
   skip_cleanup: true
   detect_encoding: true
-  cache_control: "max-age=31536000"
+  cache_control: max-age=31536000
   local-dir: dpl_cdn
 - provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   bucket: deploy-octoblu-static
   region: us-west-2
   skip_cleanup: true
   local-dir: build
 - provider: s3
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   bucket: deploy-octoblu-static
   region: us-west-2
   skip_cleanup: true
   local-dir: dpl_static
 - provider: codedeploy
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   bucket: octoblu-deploy
   key: docker-builder/app-octoblu-frontend-$TRAVIS_COMMIT.zip
@@ -82,7 +83,7 @@ deploy:
   on:
     branch: master
 - provider: opsworks
-  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
   on:
