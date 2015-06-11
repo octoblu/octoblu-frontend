@@ -6,7 +6,9 @@ angular.module('octobluApp')
     templateUrl: '/pages/compose.html',
     replace: true,
     scope: {
-      data: '='
+      data: '=',
+      composeValues: '=',
+      composeKeys: '='
     }
   };
 });

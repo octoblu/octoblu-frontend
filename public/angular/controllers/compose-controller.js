@@ -1,6 +1,10 @@
 angular.module('octobluApp')
 .controller('ComposeController', function($scope) {
 
+  if ($scope.composeValues && $scope.composeKeys) {
+    $scope.data = _.zipObject($scope.composeKeys, $scope.composeValues);
+  }
+
   $scope.keyValues = _.pairs($scope.data);
 
   $scope.$watch('keyValues', function(keyValues) {
