@@ -68,6 +68,7 @@
   }
 }
 
+
 .sidebar__pane-form {
   md-input-container {
     padding-left: 0;
@@ -221,33 +222,124 @@
 }
 
 
-.sidebar__pane__section {
+.sidebar__section {
   padding: @sidebar-body-padding;
 }
 
-.sidebar__pane__section-header {
+.sidebar__section-header {
   .flex-display;
   .flex(1);
   .flex-direction(row);
   .justify-content(space-between);
 }
 
+.sidebar__section-title {
+  margin: 0;
 
-.sidebar__pane-node-list {
-  .flex-display;
-  .flex(1);
-  .flex-direction(row);
-  .justify-content(space-around);
+  color: @sidebar-header-color;
+  font-size: 13px;
+  line-height: 17px;
 }
 
-.sidebar__pane-node-thumbnail {
-  margin-right: 10px;
-  width: 25px;
-  height: 25px;
+.sidebar__button {
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  color: @sidebar-button-color;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 17px;
+  text-transform: uppercase;
 }
+
+.sidebar__section-toggle-btn {
+  &:extend(.sidebar__button);
+
+  display: none;
+
+  .sidebar__section-header:hover & {
+    display: block;
+  }
+}
+
+.sidebar__section-body {
+  margin-top: 10px;
+}
+
+md-divider.sidebar__section-divider {
+  border-color: #EDEDED;
+}
+
 
 .truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.sidebar__alert {
+  margin-top: 25px;
+  padding: 0 12px;
+  width: 100%;
+
+  color: #8b8b8b;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sidebar__alert-title {
+  margin: 0 0 10px;
+
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.sidebar__alert-body {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.sidebar__alert-icon {
+    max-width: 40%;
+    max-height: 40%;
+}
+
+
+
+.nodes-in-flow {
+  .flex-display;
+  .flex(1);
+  .flex-direction(column);
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nodes-in-flow__item {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .justify-content(space-between);
+  .align-items(center);
+}
+
+.node-in-flow__button {
+  .align-items(center);
+
+  padding: 5px 0;
+
+  img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.node-in-flow__button--delete {
+  .align-items(center);
 }

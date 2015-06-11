@@ -2,7 +2,7 @@
 
 angular.module('octobluApp')
 .controller('BluprintsController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, BluprintService, UrlService, OCTOBLU_ICON_URL) {
-  var luckyRobotNumber = Math.round(1 + (Math.random() * 9));
+  var luckyRobotNumber = Math.floor(1 + (Math.random() * 9));
   $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){

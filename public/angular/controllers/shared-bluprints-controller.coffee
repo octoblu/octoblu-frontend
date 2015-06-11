@@ -1,7 +1,7 @@
 angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
   class SharedBluprintsController
     constructor: () ->
-      @luckyRobotNumber = Math.round(1 + Math.random() * 9)
+      @luckyRobotNumber = Math.floor(1 + Math.random() * 9)
       $scope.isLoading = true;
       $scope.sortMethods =
         '-likedBy.length': 'Top Liked'

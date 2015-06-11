@@ -380,6 +380,7 @@ angular.module('octobluApp')
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
   };
 
+
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
     if(!newFlow){
       return;
