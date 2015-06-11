@@ -137,6 +137,11 @@ angular.module('octobluApp')
     $scope.$apply();
   });
 
+  $scope.$on('flow-node-delete', function(e, node){
+    $scope.activeFlow.selectedFlowNode = node;
+    $scope.deleteSelection(e);
+  })
+
   $scope.$on('flow-node-type-selected', function(event, flowNodeType){
     $scope.omniSearch = flowNodeType;
   });

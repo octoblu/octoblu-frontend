@@ -69,8 +69,6 @@
 }
 
 .sidebar__pane-form {
-  padding: @sidebar-body-padding;
-
   md-input-container {
     padding-left: 0;
     padding-right: 0;
@@ -220,4 +218,36 @@
   justify-content: center;
 
   color: @sidebar-button-color;
+}
+
+
+.sidebar__pane__section {
+  padding: @sidebar-body-padding;
+}
+
+.sidebar__pane__section-header {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .justify-content(space-between);
+}
+
+
+.sidebar__pane-node-list {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .justify-content(space-around);
+}
+
+.sidebar__pane-node-thumbnail {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
