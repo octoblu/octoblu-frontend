@@ -5,7 +5,7 @@
     </div>
   </header>
 
-  <main class="sidebar__pane-body">
+  <main class="sidebar__pane-body" ng-class="{'flexing-it': !hideInfo}">
     <div class="sidebar__section sidebar__pane-form">
       <div class="sidebar__section-header">
         <h5 class="sidebar__section-title">Flow Information</h5>
@@ -29,7 +29,7 @@
 
     <md-divider class="sidebar__section-divider"></md-divider>
 
-    <div class="sidebar__section">
+    <div class="sidebar__section sidebar__section-nodes">
       <div class="sidebar__section-header">
         <h5 class="sidebar__section-title">Nodes In Flow</h5>
         <button ng-click="showNodes = !showNodes" ng-class="{'sidebar__section-toggle-btn': showNodes}" class="sidebar__button" aria-label="Show/Hide Node List">
