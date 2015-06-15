@@ -4,8 +4,14 @@
       <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 
       <div class="auth__form-row">
+        <md-button class="auth__button--citrix" ng-href="{{controller.citrixLoginUri}}" >
+          Sign in with Citrix
+        </md-button>
+      </div>
+
+      <div class="auth__form-row">
         <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" >
-          <i class="fa fa-lg fa-envelope-o"></i> Sign In with Email
+          <i class="fa fa-lg fa-envelope-o"></i> Email
         </md-button>
       </div>
 
@@ -28,6 +34,7 @@
           <i class="fa fa-lg fa-google-plus-square"></i> Google+
         </md-button>
       </div>
+
 
       <div class="auth__form-row">
         <md-button class="md-primary auth__button--secondary" ng-href="{{controller.signUpUri}}" >

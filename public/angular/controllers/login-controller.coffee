@@ -11,6 +11,7 @@ class LoginController
     loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session?#{callbackParams}"
 
     @emailPasswordLoginUri = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '?' + loginParams
+    @citrixLoginUri        = AUTHENTICATOR_URIS.CITRIX + '?' + loginParams
     @facebookLoginUri      = AUTHENTICATOR_URIS.FACEBOOK + '?' + loginParams
     @githubLoginUri        = AUTHENTICATOR_URIS.GITHUB + '?' + loginParams
     @googleLoginUri        = AUTHENTICATOR_URIS.GOOGLE + '?' + loginParams

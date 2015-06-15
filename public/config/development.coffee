@@ -4,6 +4,7 @@ angular.module('octobluApp')
     GOOGLE: "http://#{window.location.hostname}:8888"
     FACEBOOK: "http://#{window.location.hostname}:8888"
     TWITTER: "http://#{window.location.hostname}:8888"
+    CITRIX: "http://#{window.location.hostname}:8888"
     GITHUB: "http://#{window.location.hostname}:8888"
   }
   .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:9000"
