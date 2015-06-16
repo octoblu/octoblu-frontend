@@ -5,43 +5,46 @@
 
       <div class="auth__form-row">
         <md-button class="auth__button--citrix" ng-href="{{controller.citrixLoginUri}}" >
-          Sign in with Citrix
+          Log in with Citrix
         </md-button>
       </div>
 
       <div class="auth__form-row">
-        <md-button class="auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" >
+      </div>
+
+      <strong class="auth__form-divider">
+        or
+      </strong>
+
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--email" ng-href="{{controller.emailPasswordLoginUri}}" >
           <i class="fa fa-lg fa-envelope-o"></i> Email
         </md-button>
       </div>
 
-      <div class="auth__form-row">
-        <md-button class="auth__button--github" ng-href="{{controller.githubLoginUri}}" >
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--github" ng-href="{{controller.githubLoginUri}}" >
           <i class="fa fa-lg fa-github-square"></i> Github
         </md-button>
 
-        <md-button class="auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" >
+        <md-button class="auth__button--social auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" >
           <i class="fa fa-lg fa-facebook-square"></i> Facebook
         </md-button>
       </div>
 
-      <div class="auth__form-row">
-        <md-button class="auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" >
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" >
           <i class="fa fa-lg fa-twitter-square"></i> Twitter
         </md-button>
 
-        <md-button class="auth__button--google" ng-href="{{controller.googleLoginUri}}" >
+        <md-button class="auth__button--social auth__button--google" ng-href="{{controller.googleLoginUri}}" >
           <i class="fa fa-lg fa-google-plus-square"></i> Google+
         </md-button>
       </div>
 
-
-      <div class="auth__form-row">
-        <md-button class="md-primary auth__button--secondary" ng-href="{{controller.signUpUri}}" >
-          Create an Account
-        </md-button>
-      </div>
+      <p class="auth__form-suffix">Don't have an account? <a href="{{controller.signUpUri}}">Sign up</a></p>
     </div>
+
   </div>
 
   <footer class="auth__footer">
