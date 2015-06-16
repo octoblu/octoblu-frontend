@@ -16,6 +16,7 @@ describe 'LoginController', ->
           EMAIL_PASSWORD: 'https://login.to.the.grid'
           GOOGLE: 'https://login.to.the.google'
           TWITTER: 'https://login.to.the.twitter'
+          CITRIX: 'https://login.to.the.citrix'
           GITHUB: 'https://login.to.the.github'
           FACEBOOK: 'https://login.to.the.facebook'
 
@@ -33,6 +34,10 @@ describe 'LoginController', ->
   describe 'twitterLoginUri', ->
     it 'should have one', ->
       expect(@sut.twitterLoginUri).to.equal "https://login.to.the.twitter?callback=#{@callbackUrl}"
+
+  describe 'citrixLoginUri', ->
+    it 'should have one', ->
+      expect(@sut.citrixLoginUri).to.equal "https://login.to.the.citrix?callback=#{@callbackUrl}"
 
   describe 'githubLoginUri', ->
     it 'should have one', ->
