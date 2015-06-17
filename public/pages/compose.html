@@ -1,4 +1,34 @@
-<div>
+<div class="compose">
+  <table class="compose__table" ng-show="keyValues.length">
+    <thead class="compose__table-head">
+      <tr class="compose__table-row compose__table-row--head">
+        <th class="compose__table-cell"></th>
+        <th class="compose__table-cell compose__table-cell--value">Value</th>
+        <th class="compose__table-cell compose__table-cell--value">Key</th>
+        <th class="compose__table-cell"></th>
+      </tr>
+    </thead>
+    <tbody class="compose__table-body">
+      <tr ng-repeat="keyValue in keyValues" class="compose__table-row">
+        <td class="compose__table-cell">{{$index + 1}}.</td>
+        <td class="compose__table-cell compose__table-cell--value">
+          <input required label="Value" ng-model="keyValue[1]" autofocus>
+        </td>
+        <td class="compose__table-cell compose__table-cell--value">
+          <input required label="Key" ng-model="keyValue[0]">
+        </td>
+        <td class="compose__table-cell">
+          <md-button class="md-button" ng-click="deleteKeyValue(keyValue)" aria-label="Delete Key">
+            <i class="fa fa-minus"></i>
+          </md-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <md-button ng-click="addKeyValue()" class="compose__add-key-btn md-primary" aria-label="Add Key">Add Key &amp; Value Pair</md-button>
+
+  <!--
   <md-list>
     <md-item ng-repeat="keyValue in keyValues">
       <md-item-content>
@@ -20,5 +50,5 @@
       </md-item-content>
     </md-item>
   </md-list>
-  <md-button ng-click="addKeyValue()" class="md-primary" aria-label="Add Key">Add Key</md-button>
+  -->
 </div>

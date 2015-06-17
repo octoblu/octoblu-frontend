@@ -1,6 +1,5 @@
 angular.module('octobluApp')
 .controller('ComposeController', function($scope) {
-
   if ($scope.composeValues && $scope.composeKeys) {
     $scope.data = _.zipObject($scope.composeKeys, $scope.composeValues);
     delete $scope.composeKeys;
@@ -10,7 +9,6 @@ angular.module('octobluApp')
   $scope.keyValues = _.pairs($scope.data);
 
   $scope.$watch('keyValues', function(keyValues) {
-
     if(!keyValues) {
       return;
     }
@@ -23,11 +21,12 @@ angular.module('octobluApp')
   };
 
   $scope.deleteKeyValue = function(keyValue) {
-      $scope.keyValues = _.without($scope.keyValues, keyValue);
+    $scope.keyValues = _.without($scope.keyValues, keyValue);
   };
 
   function updateComposeNode(keyValues) {
     var newComposeNode = {};
+
     _.each(keyValues, function(keyValue){
       var key = keyValue[0], value = keyValue[1];
 
