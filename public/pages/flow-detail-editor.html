@@ -5,17 +5,60 @@
     </div>
   </header>
 
-  <main class="sidebar__pane-body">
-    <div class="sidebar__pane-form">
-      <md-input-container>
-        <label>Name</label>
-        <input ng-model="flow.name">
-      </md-input-container>
+  <main class="sidebar__pane-body" ng-class="{'sidebar-section-expanded': !hideInfo}">
+    <div class="sidebar__section sidebar__pane-form">
+      <div class="sidebar__section-header">
+        <h5 class="sidebar__section-title">Flow Information</h5>
+        <button ng-click="hideInfo = !hideInfo" ng-class="{'sidebar__section-toggle-btn': !hideInfo}" class="sidebar__button" aria-label="Show/Hide Flow Information">
+          <span ng-hide="hideInfo">Hide</span>
+          <span ng-hide="!hideInfo">Show</span>
+        </button>
+      </div>
+      <div class="sidebar__section-body" ng-hide="hideInfo">
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="flow.name">
+        </md-input-container>
 
-      <md-input-container>
-        <label>Description</label>
-        <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
-      </md-input-container>
+        <md-input-container>
+          <label>Description</label>
+          <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
+        </md-input-container>
+      </div>
     </div>
+
+    <md-divider class="sidebar__section-divider"></md-divider>
+
+    <div class="sidebar__section sidebar__section-nodes">
+      <div class="sidebar__section-header">
+        <h5 class="sidebar__section-title">Nodes In Flow</h5>
+        <button ng-click="showNodes = !showNodes" ng-class="{'sidebar__section-toggle-btn': showNodes}" class="sidebar__button" aria-label="Show/Hide Node List">
+          <span ng-show="showNodes">Hide</span>
+          <span ng-show="!showNodes">Show</span>
+        </button>
+      </div>
+
+      <div ng-show="showNodes" class="sidebar__section-body">
+        <div ng-show="!flow.nodes.length" class="sidebar__alert">
+          <h1 class="sidebar__alert-title">You have no nodes in your flow.</h1>
+          <img ng-src="{{controller.randomRobot()}}" class="sidebar__alert-icon">
+        </div>
+
+        <ul class="nodes-in-flow">
+          <li ng-repeat="node in flow.nodes | orderBy: 'name'" ng-mouseenter="showDelete=!showDelete" ng-mouseleave="showDelete=!showDelete" class="nodes-in-flow__item">
+            <button ng-click="$emit('flow-node-type-selected', node);" class="sidebar__button node-in-flow__button">
+              <img src="{{node.logo}}" alt="{{node.class || node.type}}" class="sidebar__pane-node-thumbnail"/>
+              <span class="truncate">{{node.name}}</span>
+            </button>
+
+            <button ng-click="$emit('flow-node-delete', node);" ng-show="showDelete" aria-label="Delete Node" class="sidebar__button node-in-flow__button--delete">
+              <i class="fa fa-trash fa-lg"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <md-divider ng-hide="showNodes" class="sidebar__section-divider"></md-divider>
   </main>
 </div>

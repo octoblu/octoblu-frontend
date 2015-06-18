@@ -2,6 +2,7 @@ angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
     EMAIL_PASSWORD: 'https://login-staging.octoblu.com'
     GOOGLE: 'https://google-oauth-staging.octoblu.com/login'
+    CITRIX: 'https://citrix-oauth-staging.octoblu.com/login'
     FACEBOOK: 'https://facebook-oauth-staging.octoblu.com/login'
     TWITTER: 'https://twitter-oauth-staging.octoblu.com/login'
     GITHUB: 'https://github-oauth-staging.octoblu.com/login'

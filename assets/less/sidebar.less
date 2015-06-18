@@ -39,6 +39,8 @@
   color: @sidebar-header-color;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
+  width: 100%;
 }
 
 .sidebar__pane-content {
@@ -50,7 +52,6 @@
 
 .sidebar__pane-body {
   .flex(1);
-  .flex-display;
   .flex-direction(column);
 
   background: #F9FBFC;
@@ -68,9 +69,8 @@
   }
 }
 
-.sidebar__pane-form {
-  padding: @sidebar-body-padding;
 
+.sidebar__pane-form {
   md-input-container {
     padding-left: 0;
     padding-right: 0;
@@ -220,4 +220,137 @@
   justify-content: center;
 
   color: @sidebar-button-color;
+}
+
+
+.sidebar__section {
+  padding: @sidebar-body-padding;
+}
+
+.sidebar__section-header {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .justify-content(space-between);
+}
+
+.sidebar__section-title {
+  margin: 0;
+
+  color: @sidebar-header-color;
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.sidebar__button {
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  color: @sidebar-button-color;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 17px;
+  text-transform: uppercase;
+}
+
+.sidebar__section-toggle-btn {
+  &:extend(.sidebar__button);
+
+  display: none;
+
+  .sidebar__section-header:hover & {
+    display: block;
+  }
+}
+
+.sidebar__section-body {
+  margin-top: 10px;
+}
+
+md-divider.sidebar__section-divider {
+  border-color: #EDEDED;
+}
+
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.sidebar__alert {
+  margin-top: 25px;
+  padding: 0 12px;
+  width: 100%;
+
+  color: #8b8b8b;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sidebar__alert-title {
+  margin: 0 0 10px;
+
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.sidebar__alert-body {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.sidebar__alert-icon {
+    max-width: 40%;
+    max-height: 40%;
+}
+
+
+
+.nodes-in-flow {
+  .flex-display;
+  .flex(1);
+  .flex-direction(column);
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nodes-in-flow__item {
+  .flex-display;
+  .flex(1);
+  .flex-direction(row);
+  .justify-content(space-between);
+  .align-items(center);
+}
+
+.node-in-flow__button {
+  .align-items(center);
+
+  padding: 5px 0;
+
+  img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.node-in-flow__button--delete {
+  .align-items(center);
+}
+
+.sidebar-section-expanded {
+  .sidebar__section {
+    .flex(1);
+  }
+
+  .sidebar__section-nodes {
+    overflow: auto;
+  }
 }

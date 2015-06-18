@@ -1,16 +1,18 @@
 @card-padding      : 16px;
 @card-border-radius: 3px;
 
-@text-color            : #F0F0F0;
-@background-color      : #F4F5F9;
-@citrix-button-color   : #000000;
-@email-button-color    : #009688;
-@google-button-color   : #DE4D36;
-@facebook-button-color : #3C5F96;
-@twitter-button-color  : #36A9DA;
-@github-button-color   : #444444;
-@primary-button-color  : #14568f;
-@secondary-button-color: transparent;
+@text-color               : #F0F0F0;
+@background-color         : #F4F5F9;
+@citrix-button-color      : #14568f;
+@email-button-color       : #009688;
+@google-button-color      : #DE4D36;
+@facebook-button-color    : #3C5F96;
+@twitter-button-color     : #36A9DA;
+@github-button-color      : #444444;
+@primary-button-color     : #14568f;
+@social-button-color      : #505050;
+@social-button-background : #F0f0f0;
+@secondary-button-color   : transparent;
 
 .auth {
   .flex-display;
@@ -52,7 +54,7 @@
   margin-bottom: @card-padding;
   padding: @card-padding;
 
-  background: #FFF;
+  background: #FFFFFF;
 
   &-header {
     margin: 10px 0 16px;
@@ -139,6 +141,19 @@
   }
 }
 
+.auth__button--social {
+  .auth__button(@social-button-background);
+
+  &.md-button {
+    color: @social-button-color;
+
+    &:hover,
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: darken(@social-button-color, 8%);
+    }
+  }
+}
 
 .auth__button--citrix {
   .auth__button(@citrix-button-color);
@@ -168,7 +183,7 @@
   display: block;
   width : 250px;
   height: 52px;
-  margin: 0 auto 25px;
+  margin: 0 auto 40px;
 }
 
 .auth__link {
@@ -217,4 +232,49 @@
   display: block;
   width: 70px;
   margin: 0 auto;
+}
+
+.auth__form-divider {
+  position: relative;
+
+  display: block;
+  margin: 0 @card-padding/2 @card-padding;
+
+  text-align: center;
+  z-index: 1;
+
+  &:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 40px;
+    height: 10px;
+    margin: -5px 0 0 -20px;
+
+    background: @background-color;
+
+    content: '';
+    z-index: -1;
+  }
+
+  &:after {
+    position: absolute;
+    top: 49%;
+
+    border-bottom: 1px solid #DBDBDB;
+    display: block;
+    width: 100%;
+
+    content: '';
+    z-index: -2;
+  }
+}
+
+
+.auth__form-suffix {
+  margin-top: 10px;
+
+  font-size: 15px;
+  text-align: center;
 }

@@ -1,0 +1,54 @@
+<div class="compose">
+  <table class="compose__table" ng-show="keyValues.length">
+    <thead class="compose__table-head">
+      <tr class="compose__table-row compose__table-row--head">
+        <th class="compose__table-cell"></th>
+        <th class="compose__table-cell compose__table-cell--value">Value</th>
+        <th class="compose__table-cell compose__table-cell--value">Key</th>
+        <th class="compose__table-cell"></th>
+      </tr>
+    </thead>
+    <tbody class="compose__table-body">
+      <tr ng-repeat="keyValue in keyValues" class="compose__table-row">
+        <td class="compose__table-cell">{{$index + 1}}.</td>
+        <td class="compose__table-cell compose__table-cell--value">
+          <input required label="Value" ng-model="keyValue[1]" autofocus>
+        </td>
+        <td class="compose__table-cell compose__table-cell--value">
+          <input required label="Key" ng-model="keyValue[0]">
+        </td>
+        <td class="compose__table-cell">
+          <md-button class="md-button" ng-click="deleteKeyValue(keyValue)" aria-label="Delete Key">
+            <i class="fa fa-minus"></i>
+          </md-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <md-button ng-click="addKeyValue()" class="compose__add-key-btn md-primary" aria-label="Add Key">Add Key &amp; Value Pair</md-button>
+
+  <!--
+  <md-list>
+    <md-item ng-repeat="keyValue in keyValues">
+      <md-item-content>
+        <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+          <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
+          <md-input-container>
+            <label>Value</label>
+            <input required label="Value" ng-model="keyValue[1]">
+          </md-input-container>
+          <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
+          <md-input-container>
+            <label>Key</label>
+            <input required label="Key" ng-model="keyValue[0]">
+          </md-input-container>
+          <md-button class="md-fab" ng-click="deleteKeyValue(keyValue)">
+              <i class="fa fa-minus"></i>
+          </md-button>
+        </div>
+      </md-item-content>
+    </md-item>
+  </md-list>
+  -->
+</div>

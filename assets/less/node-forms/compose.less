@@ -1,0 +1,77 @@
+.compose {
+  margin-bottom: 16px;
+}
+
+.compose__table {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.compose__table-row {
+  border-bottom: 1px solid #EDEDED;
+
+  &:nth-child(odd) {
+    background: #FFF;
+  }
+
+  .compose__table-head & {
+    background: transparent;
+  }
+}
+
+.compose__table-row--head {
+}
+
+
+.compose__table-cell {
+  border-right: 1px solid #EDEDED;
+  padding: 0 6px;
+
+  &:last-child {
+    border: none;
+  }
+
+  .compose__table-row--head & {
+    border: none;
+    color: rgba(0,0,0,0.54);
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .md-button {
+    width: 100%;
+  }
+
+  .md-button.md-default-theme:not([disabled]):hover,
+  .md-button.md-default-theme:not([disabled]):focus {
+    background: transparent;
+  }
+}
+
+.compose__table-cell--value {
+  .compose__table-body & {
+    width: 40%;
+    padding: 0;
+  }
+
+  input {
+    background: transparent;
+    padding: 6px;
+    border: none;
+
+    &:focus {
+      box-shadow: 0 0 5px #7CC7DD;
+    }
+  }
+}
+
+.compose__add-key-btn {
+  text-align: center;
+}
+
+.compose__add-key-btn {
+  border: 1px solid rgba(158,158,158,0.2);
+  width: 100%;
+
+  text-align: center;
+}
