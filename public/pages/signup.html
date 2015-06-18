@@ -1,0 +1,54 @@
+<div class="auth">
+  <div class="auth__card">
+    <div class="auth__card-inner">
+      <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
+
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--email" ng-href="{{controller.signUpUri}}" >
+          Sign Up With Email
+        </md-button>
+      </div>
+
+      <strong class="auth__form-divider">
+        or
+      </strong>
+
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--github" ng-href="{{controller.githubLoginUri}}" >
+          <i class="fa fa-lg fa-github-square"></i> Github
+        </md-button>
+
+        <md-button class="auth__button--social auth__button--facebook" ng-href="{{controller.facebookLoginUri}}" >
+          <i class="fa fa-lg fa-facebook-square"></i> Facebook
+        </md-button>
+      </div>
+
+      <div class="auth__form-row auth__form-row--social">
+        <md-button class="auth__button--social auth__button--twitter" ng-href="{{controller.twitterLoginUri}}" >
+          <i class="fa fa-lg fa-twitter-square"></i> Twitter
+        </md-button>
+
+        <md-button class="auth__button--social auth__button--google" ng-href="{{controller.googleLoginUri}}" >
+          <i class="fa fa-lg fa-google-plus-square"></i> Google+
+        </md-button>
+      </div>
+
+      <p class="auth__form-suffix">Already have an account? <a ui-sref="login">Log in here!</a></p>
+    </div>
+
+  </div>
+
+  <footer class="auth__footer">
+    <p class="auth__footer-links">
+      <a href="//blog.citrix.com/team/octoblu/" class="auth__footer-link">Blog</a> •
+      <a href="//developer.octoblu.com" class="auth__footer-link">Developers</a> •
+      <a href="//gateblu.octoblu.com/" class="auth__footer-link" title="Octoblu's IoT Gateway">Gateblu</a> •
+      <a href="mailto://info@octoblu.com" class="auth__footer-link">Contact Us</a> •
+      <a href="//app.octoblu.com/terms" class="auth__footer-link">Terms &amp; Conditions</a>
+    </p>
+
+    <a href="https://www.citrix.com/" class="auth__footer-link--citrix" title="Octoblu, now part of Citrix">
+      <img src="/assets/images/citrix-logo.png" alt="Citrix" class="auth__footer-citrix-logo">
+    </a>
+  </footer>
+</div>

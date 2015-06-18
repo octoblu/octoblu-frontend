@@ -469,6 +469,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/signup',
         templateUrl: '/pages/signup.html',
         controller: 'SignupController',
+        controllerAs: 'controller',
         unsecured: true
       })
       .state('reset', {
