@@ -342,11 +342,34 @@ angular.module('octobluApp')
 
   $scope.center = function () {
     $scope.activeFlow.zoomScale = 1;
-    $scope.activeFlow.zoomX = -200;
-    $scope.activeFlow.zoomY = 0;
 
+    var scale = {
+      maxX: Number.NEGATIVE_INFINITY,
+      minX: Number.POSITIVE_INFINITY,
+      maxY: Number.NEGATIVE_INFINITY,
+      minY: Number.POSITIVE_INFINITY,
+      parentHeight: document.getElementsByClassName('flow-editor')[0].offsetHeight,
+      parentWidth: document.getElementsByClassName('flow-editor')[0].offsetWidth
+    };
+
+    _.each( $scope.activeFlow.getNodes(), function(node) {
+      if (node.x > scale.maxX) {
+        scale.maxX = node.x
+      }
+      if (node.x < scale.minX) {
+        scale.minX = node.x
+      }
+      if (node.y > scale.maxY) {
+        scale.maxY = node.y
+      }
+      if (node.y < scale.minY) {
+        scale.minY = node.y
+      }
+    });
+
+    $scope.activeFlow.zoomX = (scale.parentWidth - (scale.minX + scale.maxX))/2;
+    $scope.activeFlow.zoomY = (scale.parentHeight - (scale.minY + scale.maxY))/2;
   };
-
 
   $scope.immediateSave = function (e) {
     if (e) {
