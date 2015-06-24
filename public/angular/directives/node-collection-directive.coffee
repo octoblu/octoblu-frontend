@@ -7,6 +7,7 @@ angular.module('octobluApp')
     controller: 'NodeCollectionController'
     controllerAs: 'controller'
     scope:
+      flow: '='
       nodes: '='
       viewStyle: '='
       filterQuery: '='

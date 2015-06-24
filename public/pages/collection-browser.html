@@ -18,20 +18,20 @@
       <div ng-show="tab.state == 'nodes'">
         <md-tabs md-center-tabs>
           <md-tab label="Operators">
-            <node-collection nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+            <node-collection flow="flow" nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Configured">
-            <node-collection nodes="nodes.configured" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+            <node-collection flow="flow" nodes="nodes.configured" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
 
           <md-tab label="Available">
-            <node-collection nodes="nodes.available" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+            <node-collection flow="flow" nodes="nodes.available" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>
         </md-tabs>
       </div>
 
-      <node-collection ng-show="tab.state == 'flows'" nodes="flowNodes" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
+      <node-collection ng-show="tab.state == 'flows'" flow="flow" nodes="flowNodes" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
 
       <flow-debug-browser ng-show="tab.state == 'debug'"></flow-debug-browser>
     </main>
