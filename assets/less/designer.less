@@ -33,7 +33,12 @@
   right: 420px;
   bottom: 20px;
 
-  transition: bottom 0.2s;
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.designer__zoom-controls-closed {
+  right: 20px;
 }
 
 
@@ -73,4 +78,28 @@
   margin: 0;
 
   background: #DADADA;
+}
+
+.sidebar__expand-button {
+  top: 50%;
+  right: 400px;
+
+  margin-top: 13px;
+  padding: 0px 10px;
+
+  background-color: #E7E7E7;
+  border: 1px solid #c5c5c5;
+  border-right: none;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  position: fixed;
+
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.sidebar__expand-button--closed {
+  right: 0;
 }
