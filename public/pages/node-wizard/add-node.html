@@ -1,116 +1,33 @@
-<div>
-
-  <div class="connected-nodes--filter">
-    <form class="connected-nodes-form">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="nodeTypeSearch" autofocus>
-          <span class="input-group-addon">
-            <i class="fa fa-search"></i>
-          </span>
-        </div>
+<div class="interior__wrapper">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="tabs">
+        <a ng-click="filterNodeTypes = ''" class="tab-link">All</a>
+        <a ng-click="filterNodeTypes = 'channel'" class="tab-link">Channels</a>
+        <a ng-click="filterNodeTypes = 'device'" class="tab-link">Devices</a>
+        <a ng-click="filterNodeTypes = 'microblu'" class="tab-link">Microblu</a>
+        <a ng-click="filterNodeTypes = 'microblu'" class="tab-link">Configured</a>
       </div>
-    </form>
 
-    <div class="connected-nodes--filter-type">
-      <md-select ng-model="filterNodeTypes" placeholder="Filter Nodes" class="node-wizard__form-actions">
-        <md-option ng-value="''">None</md-option>
-        <md-option ng-value="'channel'">Channels</md-option>
-        <md-option ng-value="'device'">Devices</md-option>
-        <md-option ng-value="'microblu'">MicroBlu</md-option>
-      </md-select>
+      <div class="lookup">
+        <i class="lookup__icon fa fa-search fa-lg"></i>
+        <input ng-model="nodeTypeSearch" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
+      </div>
+      <!--
+      <div class="filter">
+        <label for="filter" class="filter__label">Filter:</label>
+        <md-select ng-model="" class="filter__select">
+          <md-option ng-value="''">None</md-option>
+          <md-option ng-value="''">Configured</md-option>
+          <md-option ng-value="''">Unconfigured</md-option>
+        </md-select>
+      </div>
+      -->
+
     </div>
+  </header>
 
-    <div class="connected-nodes--filter-sort">
-      <md-select ng-model="sortNodeMethod" placeholder="Sort Nodes" class="node-wizard__form-actions">
-        <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
-        <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
-      </md-select>
-    </div>
-
-    <div class="connected-nodes--filter-view">
-      <md-button ng-click="showHelp = !showHelp" aria-label="Toggle Help View">
-        <i ng-show="showHelp" class="fa fa-th-large fa-2x"></i>
-        <i ng-show="!showHelp" class="fa fa-th-list fa-2x"></i>
-      </md-button>
-    </div>
-  </div>
-
-  <div class="lookup">
-    <i class="lookup__icon fa fa-search fa-lg"></i>
-    <input placeholder="Filter Nodes..." type="search" class="lookup__input">
-  </div>
-
-  <div class="filter">
-    <label for="filter" class="filter__label">Filter:</label>
-    <md-select ng-model="filterNodeTypes" placeholder="Filter Nodes" class="filter__select">
-      <md-option ng-value="''">None</md-option>
-      <md-option ng-value="'channel'">Channels</md-option>
-      <md-option ng-value="'device'">Devices</md-option>
-      <md-option ng-value="'microblu'">MicroBlu</md-option>
-    </md-select>
-  </div>
-
-  <md-tabs>
-    <md-tab label="All">
-      <md-content class="connected-nodes">
-        <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:''} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
-          <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-            <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
-              <img ng-src="{{node.logo}}" width="100%" height="100%">
-            </div>
-            <div class="connected-node-name">{{node.name}}</div>
-          </a>
-          <p ng-show="showHelp">{{node.helpText}}</p>
-        </div>
-      </md-content>
-    </md-tab>
-
-    <md-tab label="Channels">
-      <md-content class="connected-nodes">
-        <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:'channel'} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
-          <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-            <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
-              <img ng-src="{{node.logo}}" width="100%" height="100%">
-            </div>
-            <div class="connected-node-name">{{node.name}}</div>
-          </a>
-          <p ng-show="showHelp">{{node.helpText}}</p>
-        </div>
-      </md-content>
-    </md-tab>
-
-    <md-tab label="Devices">
-      <md-content class="connected-nodes">
-        <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:'device'} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
-          <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-            <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
-              <img ng-src="{{node.logo}}" width="100%" height="100%">
-            </div>
-            <div class="connected-node-name">{{node.name}}</div>
-          </a>
-          <p ng-show="showHelp">{{node.helpText}}</p>
-        </div>
-      </md-content>
-    </md-tab>
-
-    <md-tab label="Microblu">
-      <md-content class="connected-nodes">
-        <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:'microblu'} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
-          <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-            <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
-              <img ng-src="{{node.logo}}" width="100%" height="100%">
-            </div>
-            <div class="connected-node-name">{{node.name}}</div>
-          </a>
-          <p ng-show="showHelp">{{node.helpText}}</p>
-        </div>
-      </md-content>
-    </md-tab>
-  </md-tabs>
-
-  <!--
-  <div class="connected-nodes">
+  <div class="connected-nodes interior">
     <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:filterNodeTypes} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
       <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
         <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
@@ -121,6 +38,4 @@
       <p ng-show="showHelp">{{node.helpText}}</p>
     </div>
   </div>
-  -->
-
 </div>
