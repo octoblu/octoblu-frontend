@@ -106,17 +106,19 @@
   stroke-width: 2;
   cursor: pointer;
 
+  &:hover {
+    fill: #ccc;
+    stroke: #aaa;
+  }
+}
+
+.flow-online .flow-node-button {
   -webkit-animation-name: pulseTrigger;
   -webkit-animation-duration: 1.5s;
   -webkit-animation-iteration-count: infinite;
   animation-name: pulseTrigger;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
-
-  &:hover {
-    fill: #ccc;
-    stroke: #aaa;
-  }
 }
 
 .flow-node-editor-help-block {
