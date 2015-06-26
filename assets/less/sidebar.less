@@ -37,10 +37,11 @@
 
 .sidebar__pane-title {
   color: @sidebar-header-color;
-  font-weight: bold;
+  font-weight: bold !important;
   text-transform: uppercase;
   text-align: center;
   width: 100%;
+  font-size: 14px !important;
 }
 
 .sidebar__pane-content {
@@ -68,7 +69,6 @@
 
   }
 }
-
 
 .sidebar__pane-form {
   md-input-container {
@@ -190,6 +190,10 @@
   border: none;
   height: @sidebar-toolbar-height;
   line-height: @sidebar-toolbar-height;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .sidebar__filter-icon {
@@ -250,7 +254,7 @@
   background: transparent;
   color: @sidebar-button-color;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: none;
   line-height: 17px;
   text-transform: uppercase;
 }
@@ -272,7 +276,6 @@
 md-divider.sidebar__section-divider {
   border-color: #EDEDED;
 }
-
 
 .truncate {
   white-space: nowrap;
@@ -353,4 +356,16 @@ md-divider.sidebar__section-divider {
   .sidebar__section-nodes {
     overflow: auto;
   }
+}
+
+.sidebar__setup-button {
+  margin: auto auto;
+  width: 100%;
+}
+
+.sidebar__setup-title {
+  margin: 10px 0 15px;
+
+  font-size: 1.17em;
+  font-weight: bold;
 }
