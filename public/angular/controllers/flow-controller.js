@@ -400,8 +400,15 @@ angular.module('octobluApp')
     });
   };
 
+  var unselectSelectedFlowNode = function() {
+    $scope.activeFlow.selectedFlowNode = null;
+  }
+
   $scope.toggleSidebarView = function() {
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
+    if(!$scope.sidebarIsExpanded){
+        _.delay(unselectSelectedFlowNode, 500);
+    }
   };
 
 
@@ -437,8 +444,17 @@ angular.module('octobluApp')
     FlowService.saveActiveFlow();
   };
 
+  var expandSidebarIfNodeType = function(nodeType) {
+    if(!nodeType) return;
+    if(nodeType.resourceType === 'node-type') {
+      return $scope.sidebarIsExpanded = true;
+    }
+  }
+
   $scope.$watch('activeFlow', calculateFlowHash, true);
   $scope.$watch('activeFlow.hash', compareFlowHash);
+
+  $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType)
 
   $scope.$on('update-active-flow-edit', function(event, newFlow){
     var flow = _.pick(newFlow, ['links', 'nodes', 'name', 'description']);
