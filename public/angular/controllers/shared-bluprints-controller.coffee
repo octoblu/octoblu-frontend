@@ -3,6 +3,7 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
     constructor: () ->
       @luckyRobotNumber = Math.floor(1 + Math.random() * 9)
       $scope.isLoading = true;
+      $scope.sortMethod = '-likedBy.length'
       $scope.sortMethods =
         '-likedBy.length': 'Top Liked'
         'name': 'Alphabetical (ascending)'

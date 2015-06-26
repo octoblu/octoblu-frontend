@@ -13,3 +13,18 @@
     <input ng-model="flowNode.key" required>
   </md-input-container>
 </div>
+
+<md-input-container>
+  <label>Minimum Count</label>
+  <input type="number" ng-model="flowNode.min">
+  <div ng-messages="{info:true}">
+    <div ng-message="info">Collection won't emit until value greater than min.</div>
+  </div>
+</md-input-container>
+<md-input-container>
+  <label>Maximum Count</label>
+  <input type="number" ng-model="flowNode.max">
+  <div ng-messages="{info:true}">
+    <div ng-message="info">Collection will clear after maximun count. 0 is Infinite.</div>
+  </div>
+</md-input-container>

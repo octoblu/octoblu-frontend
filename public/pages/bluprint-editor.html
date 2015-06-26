@@ -30,27 +30,13 @@
         <label>Description</label>
         <input ng-model="bluprint.description">
       </md-input-container>
-
-      <div class="tags">
-        <a href="#" ng-repeat="tag in bluprint.tags" class="tag">{{tag}}</a>
-      </div>
     </div>
   </div>
 
   <div class="footer">
     <div class="info-group">
-    <!--   <div class="info">
-      <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length || 0}}
-    </div>
-
-    <div class="info">
-      <i class="fa fa-lg fa-user"></i> {{bluprint.sharedBy.length || 0}}
-    </div> -->
-    </div>
-
-    <div class="info-group">
       <div class="info author">
-        <i class="fa fa-lg fa-user"></i> {{bluprint.ownerName}}
+        AUTHOR: {{bluprint.ownerName}}
       </div>
     </div>
   </div>

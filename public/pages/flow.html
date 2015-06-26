@@ -1,4 +1,3 @@
-
 <md-toolbar class="flow-top-bar">
   <div class="md-toolbar-tools">
     <md-button ng-click="toggleNav()" class="menu-icon flow-top-bar-tool flow-top-bar-tool--menu-button" aria-label="Open Menu">
@@ -67,11 +66,11 @@
   drag-over="onDragOver($event)"
   drag-over-class="drag-over-accept">
 
-  <flow-editor flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
+  <flow-editor ng-class="{'flow-online' : deviceOnline }" flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 
   <img src="/assets/images/octoblu.png" class="designer__octoblu-logo"/>
 
-  <div class="designer__zoom-controls" ng-class="{'browser-maximized' : activeFlow.browserMaximized}">
+  <div class="designer__zoom-controls" ng-class="{'designer__zoom-controls-closed' : !sidebarIsExpanded}">
     <div class="designer__zoom-control-group">
       <md-button class="designer__zoom-control-button" ng-click="center()" aria-label="Center">
         <i class="fa fa-crosshairs fa-lg"></i>
@@ -89,18 +88,30 @@
         <i class="fa fa-minus fa-lg"></i>
       </md-button>
     </div>
-
   </div>
-
+  <button class="sidebar__expand-button sidebar__toolbar-button" ng-class="{'sidebar__expand-button--closed': !sidebarIsExpanded}" ng-click="sidebarIsExpanded = !sidebarIsExpanded">
+    <i ng-show="!sidebarIsExpanded" class="fa fa-chevron-left"></i>
+    <i ng-show="sidebarIsExpanded" class="fa fa-chevron-right"></i>
+  </button>
   <div ng-class="{'sidebar--is-expanded': sidebarIsExpanded}" class="sidebar">
     <flow-inspector flow="activeFlow"></flow-inspector>
     <collection-browser flow="activeFlow"></collection-browser>
   </div>
 </div>
 
-<style>
+<style ng-if="sidebarIsExpanded">
   html body #intercom-container .intercom-launcher {
     bottom: 20px;
     right: 476px;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+  }
+</style>
+<style ng-if="!sidebarIsExpanded">
+  html body #intercom-container .intercom-launcher {
+    bottom: 20px;
+    right: 76px;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s;
   }
 </style>
