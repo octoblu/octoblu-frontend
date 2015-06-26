@@ -1,3 +1,7 @@
+.bluprint-action-icon {
+  color: #3D4048;
+}
+
 .bluprints-toolbar {
   .align-items(center);
 
@@ -8,7 +12,8 @@
     .flex(1);
 
     md-icon {
-      margin-left: 10px;
+      margin: 5px 10px 0;
+      font-size: 17px;
     }
 
     .md-input {
@@ -16,6 +21,10 @@
       border: none;
       margin-left: 40px;
     }
+  }
+
+  .bluprint-header {
+    font-size: 1.37em;
   }
 }
 
@@ -39,7 +48,7 @@
 
 .bluprints-container {
   padding: 16px;
-  .bluprint-list-item {
+  .t-item {
     .clickable {
       cursor: pointer;
     }
@@ -53,6 +62,12 @@
     > li {
       list-style: none;
     }
+
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    outline: none;
+  }
 
   }
 
@@ -207,7 +222,6 @@
 
   h3 {
     margin-top: 24px;
-
   }
   h4 {
     margin-right: 15px;
