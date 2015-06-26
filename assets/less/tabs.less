@@ -3,7 +3,7 @@
 .tab-link {
   display: inline-block;
 
-  border-bottom: 3px solid #F9FBFC;
+  border-bottom: 2px solid #F9FBFC;
   padding: 10px 20px;
 
   cursor: pointer;
@@ -11,11 +11,16 @@
   text-transform: uppercase;
 
   &:hover {
-    border-color: red;
     text-decoration: none;
   }
 
   &:focus {
     outline: none;
+  }
+
+  &.is-selected {
+    border-color: #4CAF50;
+    text-decoration: none;
+    cursor: default;
   }
 }
