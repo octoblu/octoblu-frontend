@@ -2,24 +2,22 @@
   <header class="interior__header">
     <div class="interior">
       <div class="tabs">
-        <a ng-click="filterNodeTypes = ''" ng-class="{'is-selected': !filterNodeTypes}" class="tab-link">All</a>
-        <a ng-click="filterNodeTypes = 'channel'" ng-class="{'is-selected': filterNodeTypes == 'channel'}" class="tab-link">Channels</a>
-        <a ng-click="filterNodeTypes = 'device'" ng-class="{'is-selected': filterNodeTypes == 'device'}" class="tab-link">Devices</a>
-        <a ng-click="filterNodeTypes = 'microblu'" ng-class="{'is-selected': filterNodeTypes == 'microblu'}" class="tab-link">Microblu</a>
-        <a ng-click="filterNodeTypes = 'configured'" ng-class="{'is-selected': filterNodeTypes == 'configured'}" class="tab-link">Configured</a>
+        <a ng-click="activeTab = 'all'" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ng-click="activeTab = 'channels'" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ng-click="activeTab = 'devices'" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ng-click="activeTab = 'configured'" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">Configured</a>
       </div>
 
       <div class="lookup">
         <i class="lookup__icon fa fa-search fa-lg"></i>
-        <input ng-model="nodeTypeSearch" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
+        <input ng-model="nodeNameSearch" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
       </div>
     </div>
   </header>
 
-  <random-robot title='No matching nodes for "{{nodeTypeSearch}}"' ng-hide="filteredNodeTypes.length || filterNodeTypes == 'configured'"></random-robot>
 
   <div class="connected-nodes interior">
-    <div ng-if="filterNodeTypes != 'configured'" ng-repeat="node in filteredNodeTypes = (nodeTypes | filter: {category:filterNodeTypes} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod)" class="connected-node">
+    <div ng-if="filterNodeTypes != 'configured'" ng-repeat="node in filteredNodeTypes = (nodeCollection | filter: categoryFilter | filter: {name:nodeNameSearch}  | orderBy: 'name')" class="connected-node">
       <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
         <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
           <img ng-src="{{node.logo}}" width="100%" height="100%">
@@ -27,16 +25,11 @@
         <div class="connected-node-name">{{node.name}}</div>
       </a>
     </div>
+  </div>
 
-    <random-robot title='No matching nodes for "{{nodeTypeSearch}}"' ng-hide="filteredConfiguredNodes.length || filterNodeTypes != 'configured'"></random-robot>
-    <div ng-if="filterNodeTypes == 'configured'" ng-repeat="node in filteredConfiguredNodes = (configuredNodes | filter: {name:nodeTypeSearch} | filter: filterFlows | orderBy: 'name')" class="connected-node">
-      <a href ng-href="{{nextStepUrl(node)}}" class="">
-        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: !node.online}">
-          <img ng-src="{{node.logo}}" width="100%" height="100%">
-        </div>
-        <div class="connected-node-name">{{node.name}}</div>
-      </a>
-    </div>
+  <random-robot title='No matching nodes for "{{nodeNameSearch}}"' ng-show="nodeNameSearch.length && !filteredNodeTypes.length"></random-robot>
 
+  <div class="blu-loading" ng-show="loadingNodes">
+    <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
   </div>
 </div>
