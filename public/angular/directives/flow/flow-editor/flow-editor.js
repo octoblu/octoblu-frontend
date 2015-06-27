@@ -1,6 +1,6 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions) {
-
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions, $interval) {
+    var VIEWBOX_X = 0, VIEWBOX_Y=0, VIEWBOX_WIDTH=1000, VIEWBOX_HEIGHT=1000;
     return {
       restrict: 'E',
       controller: 'FlowEditorController',
@@ -13,8 +13,73 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        var renderScope = d3
-          .select(element.find('.flow-editor-render-area')[0]);
+        var svgElement = element.find('svg')[0];
+        var renderScope = d3.select(element.find('.flow-editor-render-area')[0]);
+        setupDragBehavior(svgElement);
+
+        $scope.$watch("flow.zoomScale", function(newZoomScale, oldZoomScale){
+          if(!newZoomScale) {
+            return;
+          }
+          updateZoomScale(newZoomScale);
+        });
+
+        function updateZoomScale(newZoomScale) {
+          console.log('vx', VIEWBOX_X);
+          console.log('vy', VIEWBOX_Y);
+          var w = VIEWBOX_WIDTH  / newZoomScale;
+          var h = VIEWBOX_HEIGHT / newZoomScale;
+          var x = (VIEWBOX_X) +  (w/4);
+          var y = VIEWBOX_Y + (h/4);
+          updateViewBox(x,y,w,h);
+        }
+
+        function updateViewBox(x,y,w,h) {
+            svgElement.setAttribute('viewBox', [x, y, w, h].join(' '));
+        }
+
+        function getSvgCoords(x, y, svg) {
+          console.log('real coords', x, y);
+          var transformPoint = svg.createSVGPoint();
+          transformPoint.x = x;
+          transformPoint.y = y;
+          transformPoint = transformPoint.matrixTransform(svg.getScreenCTM().inverse());
+          console.log('svg coords', transformPoint.x, transformPoint.y);
+          return {x: transformPoint.x, y: transformPoint.y};
+        }
+
+        function setupDragBehavior(dragElement) {
+          dragElement.addEventListener('dragstart', function(event){
+            var startViewboxX = VIEWBOX_X;
+            var startViewboxY = VIEWBOX_Y;
+            var originalX = event.clientX;
+            var originalY = event.clientY;
+            event.preventDefault();
+            console.log('dragstart');
+
+            function dragging(event){
+              var startPos    = getSvgCoords(originalX, originalY, dragElement);
+              var currentPos  = getSvgCoords(event.clientX, event.clientY, dragElement);
+              var differenceX = currentPos.x - startPos.x;
+              var differenceY = currentPos.y - startPos.y;
+              console.log('mousemove', differenceX, differenceY);
+              console.log(event);
+              VIEWBOX_X = (startViewboxX - differenceX);
+              VIEWBOX_Y = startViewboxY - differenceY;
+              updateZoomScale($scope.flow.zoomScale);
+            }
+
+            function dropped(event) {
+              console.log('mouseup');
+              console.log(event);
+              dragElement.removeEventListener('mousemove', dragging);
+              dragElement.removeEventListener('mouseup', dropped);
+            }
+
+            dragElement.addEventListener('mousemove', dragging);
+            dragElement.addEventListener('mouseup', dropped);
+          });
+        }
 
         var flowRenderer = new FlowRenderer(renderScope, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
@@ -119,19 +184,19 @@ angular.module('octobluApp')
           //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 
-        element.on(
-          'dragover',
-          function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          });
-
-        element.on(
-          'dragenter',
-          function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          });
+        // element.on(
+        //   'dragover',
+        //   function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //   });
+        //
+        // element.on(
+        //   'dragenter',
+        //   function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //   });
       }
     };
   });

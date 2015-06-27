@@ -146,7 +146,7 @@ angular.module('octobluApp')
       scale = flow.zoomScale;
       x     = flow.zoomX || 0;
       y     = flow.zoomY || 0;
-      renderScope.attr("transform", "translate(" + x + "," + y + ") scale(" + scale + ")");
+      // renderScope.attr("transform", "translate(" + x + "," + y + ") scale(" + scale + ")");
     }
 
     function renderBackground() {
