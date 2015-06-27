@@ -64,55 +64,63 @@ body {
 .process-row {
   font-size: 16px;
   .md-button{
-  border: 0;
-  width: 35px;
+    border: 0;
+    width: 35px;
 
-  &.stop-button {
-    color: #AA2200;
-  }
-
-  &.btn-stopped {
-    color: #AA2200;
-
-    &:not([disabled]):hover,
-    &:not([disabled]):focus {
+    &.stop-button {
       color: #AA2200;
-      background-color: rgba(204,34,0, 0.2);
     }
-  }
 
-  &.start-button {
-    color: #008800;
-  }
+    &.btn-stopped {
+      color: #AA2200;
 
-  &.btn-playing {
-    color: #008800;
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: #AA2200;
+        background-color: rgba(204,34,0, 0.2);
+      }
+    }
 
-    &:not([disabled]):hover,
-    &:not([disabled]):focus {
+    &.start-button {
       color: #008800;
-      background-color: rgba(0,170,0,0.2);
     }
-  }
 
-  &.start-button.deploying {
-    -webkit-animation-name: startPulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: startPulse;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-  }
+    &.btn-playing {
+      color: #008800;
 
-  &.stop-button.stopping {
-    -webkit-animation-name: stopPulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: stopPulse;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: #008800;
+        background-color: rgba(0,170,0,0.2);
+      }
+    }
+
+    &.start-button.deploying {
+      -webkit-animation-name: startPulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: startPulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    &.stop-button.stopping {
+      -webkit-animation-name: stopPulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: stopPulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
   }
 }
+
+.process-row-text {
+  font-size: 18px;
+}
+
+.process-row-space {
+  padding: 16px 0px;
 }
 
 .container-fluid #intercom-container .intercom-launcher {
