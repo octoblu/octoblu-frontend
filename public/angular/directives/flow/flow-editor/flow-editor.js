@@ -25,11 +25,9 @@ angular.module('octobluApp')
         });
 
         function updateZoomScale(newZoomScale) {
-          console.log('vx', VIEWBOX_X);
-          console.log('vy', VIEWBOX_Y);
-          var w = VIEWBOX_WIDTH  / newZoomScale;
+          var w = VIEWBOX_WIDTH / newZoomScale;
           var h = VIEWBOX_HEIGHT / newZoomScale;
-          var x = (VIEWBOX_X) +  (w/4);
+          var x = VIEWBOX_X +  (w/4);
           var y = VIEWBOX_Y + (h/4);
           updateViewBox(x,y,w,h);
         }
@@ -39,12 +37,10 @@ angular.module('octobluApp')
         }
 
         function getSvgCoords(x, y, svg) {
-          console.log('real coords', x, y);
           var transformPoint = svg.createSVGPoint();
           transformPoint.x = x;
           transformPoint.y = y;
           transformPoint = transformPoint.matrixTransform(svg.getScreenCTM().inverse());
-          console.log('svg coords', transformPoint.x, transformPoint.y);
           return {x: transformPoint.x, y: transformPoint.y};
         }
 
@@ -55,23 +51,18 @@ angular.module('octobluApp')
             var originalX = event.clientX;
             var originalY = event.clientY;
             event.preventDefault();
-            console.log('dragstart');
 
             function dragging(event){
               var startPos    = getSvgCoords(originalX, originalY, dragElement);
               var currentPos  = getSvgCoords(event.clientX, event.clientY, dragElement);
               var differenceX = currentPos.x - startPos.x;
               var differenceY = currentPos.y - startPos.y;
-              console.log('mousemove', differenceX, differenceY);
-              console.log(event);
               VIEWBOX_X = (startViewboxX - differenceX);
               VIEWBOX_Y = startViewboxY - differenceY;
               updateZoomScale($scope.flow.zoomScale);
             }
 
             function dropped(event) {
-              console.log('mouseup');
-              console.log(event);
               dragElement.removeEventListener('mousemove', dragging);
               dragElement.removeEventListener('mouseup', dropped);
             }
