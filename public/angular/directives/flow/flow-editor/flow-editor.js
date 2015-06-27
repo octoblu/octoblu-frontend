@@ -27,8 +27,8 @@ angular.module('octobluApp')
         function updateZoomScale(newZoomScale) {
           var w = VIEWBOX_WIDTH / newZoomScale;
           var h = VIEWBOX_HEIGHT / newZoomScale;
-          var x = VIEWBOX_X +  (w/4);
-          var y = VIEWBOX_Y + (h/4);
+          var x = VIEWBOX_X -  ((w - VIEWBOX_WIDTH)/2);
+          var y = VIEWBOX_Y -  ((h- VIEWBOX_HEIGHT)/2);
           updateViewBox(x,y,w,h);
         }
 
