@@ -89,6 +89,16 @@ angular.module('octobluApp')
       });
     };
 
+    function renderIsOnline(node, nodeElement) {
+      deviceService.getDeviceByUUID(node.uuid)
+        .then(function(device){
+          if(!device){
+            return;
+          }
+          nodeElement.classed('faded', !device.online);
+        });
+    }
+
     return {
       render: function (renderScope, node, flow) {
 
@@ -188,6 +198,9 @@ angular.module('octobluApp')
         }
 
         var logoUrl = function(data) {
+          if (data && data.logo) {
+            return data.logo;
+          }
           if (data && data.type) {
             return OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
           }
@@ -213,6 +226,8 @@ angular.module('octobluApp')
           .attr('width', FlowNodeDimensions.width)
           .attr('height', nodeHeight)
           .attr("xlink:href",logoUrl(node));
+
+        renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
           nodeElement
