@@ -208,6 +208,8 @@ angular.module('octobluApp')
           .attr({'id': 'node-' + node.id})
           .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
+        snap.select(".flow-editor-render-area").append(nodeElement);
+
         nodeElement.append(
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
@@ -226,20 +228,10 @@ angular.module('octobluApp')
         }
 
         if (node.type === 'operation:trigger') {
-          var buttonElement = snap.select('#node-button-' + node.id);
-          if (!buttonElement) {
-            nodeElement.append(
-              snap.rect(-30,
-                        (FlowNodeDimensions.minHeight / 2) - 15,
-                        30,30,2,2)
-                .attr({'id':'node-button-' + node.id})
-                .toggleClass('flow-node-button', true));
-          }
-          /*
-          buttonElement
-            .attr({'x': node.x - (FlowNodeDimensions.width / 2) + 5})
-            .attr({'y': node.y + (FlowNodeDimensions.minHeight / 2) - 15});
-            */
+          nodeElement.append(
+            snap.rect(-30,(FlowNodeDimensions.minHeight/2)-15,30,30,2,2)
+              .attr({'id':'node-button-' + node.id})
+              .toggleClass('flow-node-button', true));
         }
 
         var label = node.name || node.class || '';
