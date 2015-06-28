@@ -95,12 +95,13 @@ angular.module('octobluApp')
           if(!device){
             return;
           }
-          nodeElement.classed('faded', !device.online);
+          nodeElement.toggleClass('faded', !device.online);
         });
     }
 
     return {
-      render: function (renderScope, node, flow) {
+
+      render: function (snap, renderScope, node, flow) {
 
         function renderPort(nodeElement, className, x, y, index, sourcePortType) {
           var portElement = nodeElement
@@ -110,8 +111,8 @@ angular.module('octobluApp')
             .attr('width', FlowNodeDimensions.portWidth)
             .attr('height', FlowNodeDimensions.portHeight)
             .attr('data-port-number', index)
-            .classed('flow-node-port', true)
-            .classed(className, true);
+            .toggleClass('flow-node-port', true)
+            .toggleClass(className, true);
 
           addDragBehavior(portElement, index, sourcePortType);
         }
@@ -206,21 +207,45 @@ angular.module('octobluApp')
           }
         };
 
-        var nodeElement = renderScope
-          .append('g')
-          .classed('flow-node', true)
-          .classed('flow-node-' + node.class, true)
-          .classed('selected', (node === flow.selectedFlowNode))
-          .attr('id', 'node-' + node.id)
-          .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
+        var nodeElement = snap.group()
+          .toggleClass('flow-node', true)
+          .toggleClass('flow-node-' + node.class, true)
+          .toggleClass('selected', (node === flow.selectedFlowNode))
+          .attr({'id': 'node-' + node.id})
+          .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
         nodeElement
-          .append('rect')
-          .attr('width', FlowNodeDimensions.width)
-          .attr('height', nodeHeight)
-          .attr('rx', 6)
-          .attr('ry', 6);
+          .append(snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
+        snap.attr(
+          {
+            'shape-rendering': 'auto',
+            'color-rendering': 'optimizeQuality',
+            'image-rendering': 'optimizeQuality',
+            'text-rendering' : 'optimizeLegibility'
+          }
+        );
+
+        Snap.load(logoUrl(node), function(f) {
+          if (!f) { return; }
+          /*
+          f.attr({
+            'width' : FlowNodeDimensions.width,
+            'height': nodeHeight
+          });*/
+          console.log('selectAll:',f.selectAll("svg"));
+          var svg = f.select("svg").attr({
+            'width' : FlowNodeDimensions.width,
+            'height': nodeHeight,
+            'shape-rendering': 'auto',
+            'color-rendering': 'optimizeQuality',
+            'image-rendering': 'optimizeQuality',
+            'text-rendering' : 'optimizeLegibility'
+          });
+          nodeElement.append(svg);
+          //console.log("wow loaded!",g);
+        });
+/*
         nodeElement
           .append("svg:image")
           .attr('width', FlowNodeDimensions.width)
@@ -228,7 +253,8 @@ angular.module('octobluApp')
           .attr("xlink:href",logoUrl(node));
 
         renderIsOnline(node, nodeElement);
-
+*/
+/*
         if(node.needsConfiguration){
           nodeElement
             .append("svg:image")
@@ -236,11 +262,12 @@ angular.module('octobluApp')
             .attr('height', nodeHeight)
             .attr("xlink:href", OCTOBLU_ICON_URL + "socket.svg");
         }
-
+*/
         if (node.errorMessage) {
-          nodeElement.classed('error', true);
+          nodeElement.toggleClass('error', true);
         }
 
+        /*
         if (node.type === 'operation:trigger') {
           var buttonElement = renderScope.select('#node-button-' + node.id);
           if (!buttonElement[0][0]) {
@@ -251,26 +278,27 @@ angular.module('octobluApp')
               .attr('height', 30)
               .attr('rx', 2)
               .attr('ry', 2)
-              .classed('flow-node-button', true);
+              .toggleClass('flow-node-button', true);
           }
           buttonElement
             .attr('x', node.x - (FlowNodeDimensions.width / 2) + 5)
             .attr('y', node.y + (FlowNodeDimensions.minHeight / 2) - 15);
         }
-
+*/
         var label = node.name || node.class || '';
         var lines = label.split("\n");
+/*
         _.each(lines, function(line, i){
           nodeElement
             .append('text')
-            .classed('flow-node-label', true)
+            .toggleClass('flow-node-label', true)
             .attr('y', nodeHeight + 10 + (i * 15))
             .attr('x', FlowNodeDimensions.width / 2)
             .attr('text-anchor', 'middle')
             .attr('alignment-baseline', 'central')
             .text(line);
         });
-
+*/
         var remainingSpace =
           nodeHeight - (node.input * FlowNodeDimensions.portHeight);
 
@@ -280,7 +308,7 @@ angular.module('octobluApp')
         node.outputLocations = [];
 
         _.times(node.input, function (index) {
-          renderPort(nodeElement, 'flow-node-input-port', -(FlowNodeDimensions.portWidth / 2), startPos, index, 'input');
+          //renderPort(nodeElement, 'flow-node-input-port', -(FlowNodeDimensions.portWidth / 2), startPos, index, 'input');
           node.inputLocations.push(startPos);
           startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
         });
@@ -291,7 +319,7 @@ angular.module('octobluApp')
         var spaceBetweenPorts = remainingSpace / (node.output + 1);
         var startPos = spaceBetweenPorts;
         _.times(node.output, function (index) {
-          renderPort(nodeElement, 'flow-node-output-port', FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2), startPos, index, 'output');
+          //renderPort(nodeElement, 'flow-node-output-port', FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2), startPos, index, 'output');
           node.outputLocations.push(startPos);
           startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
         });

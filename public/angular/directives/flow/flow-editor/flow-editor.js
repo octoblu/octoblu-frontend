@@ -14,7 +14,6 @@ angular.module('octobluApp')
 
       link: function ($scope, element) {
         var svgElement = element.find('svg')[0];
-        var renderScope = d3.select(element.find('.flow-editor-render-area')[0]);
         setupDragBehavior(svgElement);
 
         $scope.$watch("flow.zoomScale", function(newZoomScale, oldZoomScale){
@@ -72,7 +71,7 @@ angular.module('octobluApp')
           });
         }
 
-        var flowRenderer = new FlowRenderer(renderScope, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
+        var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {

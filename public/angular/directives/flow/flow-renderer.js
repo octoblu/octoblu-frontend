@@ -1,6 +1,11 @@
 angular.module('octobluApp')
 .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
-  return function (renderScope, options) {
+
+  return function (element, options) {
+    var snap = Snap(".flow-editor-workspace");
+    console.log("flow-renderer snap:",snap);
+
+    var renderScope = d3.select(element.find('.flow-editor-render-area')[0]);
     var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
     var readonly = options && options.readonly;
     var displayOnly = options && options.displayOnly;
@@ -25,11 +30,13 @@ angular.module('octobluApp')
         d3.event.stopPropagation();
         dispatch.nodeSelected(node);
       };
+      /*
       nodeElement.on('click', nodeClicked);
       nodeElement.on('dblclick', function(){
         d3.event.preventDefault();
         d3.event.stopPropagation();
       });
+      */
     }
 
     function addButtonClickBehavior(nodeElement, node) {
@@ -88,7 +95,7 @@ angular.module('octobluApp')
         })
         .on('dragend', function () {});
 
-      draggedElement.call(dragBehavior);
+      //draggedElement.call(dragBehavior);
     }
 
     function addZoomBehaviour(flow){
@@ -118,7 +125,7 @@ angular.module('octobluApp')
       renderScope.selectAll('.flow-node').remove();
       renderScope.selectAll('.flow-node-button').remove();
       _.each(flow.nodes, function (node) {
-        var nodeElement = FlowNodeRenderer.render(renderScope, node, flow);
+        var nodeElement = FlowNodeRenderer.render(snap, renderScope, node, flow);
         if(readonly){
           return;
         }
