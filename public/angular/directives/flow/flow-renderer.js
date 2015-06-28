@@ -131,17 +131,17 @@ angular.module('octobluApp')
     }
 
     function renderNodes(flow) {
-      renderScope.selectAll('.flow-node').remove();
-      renderScope.selectAll('.flow-node-button').remove();
+      snap.selectAll('.flow-node').remove();
+      //snap.selectAll('.flow-node-button').remove();
       _.each(flow.nodes, function (node) {
         var nodeElement = FlowNodeRenderer.render(snap, renderScope, node, flow);
         if(readonly){
           return;
         }
-        addDragBehavior(nodeElement, node, flow);
-        addNodeClickBehavior(nodeElement, node, flow);
-        var button = renderScope.select('#node-button-' + node.id);
-        addButtonClickBehavior(button, node);
+        //addDragBehavior(nodeElement, node, flow);
+        //addNodeClickBehavior(nodeElement, node, flow);
+        //var button = renderScope.select('#node-button-' + node.id);
+        //addButtonClickBehavior(button, node);
       });
     }
 

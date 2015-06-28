@@ -228,14 +228,18 @@ angular.module('octobluApp')
         if (node.type === 'operation:trigger') {
           var buttonElement = snap.select('#node-button-' + node.id);
           if (!buttonElement) {
-            buttonElement = snap
-              .append(snap.rect(0,0,30,30,2,2)
+            nodeElement.append(
+              snap.rect(-30,
+                        (FlowNodeDimensions.minHeight / 2) - 15,
+                        30,30,2,2)
                 .attr({'id':'node-button-' + node.id})
                 .toggleClass('flow-node-button', true));
           }
+          /*
           buttonElement
             .attr({'x': node.x - (FlowNodeDimensions.width / 2) + 5})
             .attr({'y': node.y + (FlowNodeDimensions.minHeight / 2) - 15});
+            */
         }
 
         var label = node.name || node.class || '';
