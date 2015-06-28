@@ -214,37 +214,11 @@ angular.module('octobluApp')
           .attr({'id': 'node-' + node.id})
           .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
-        nodeElement
-          .append(snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
+        nodeElement.append(
+          snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
-        snap.attr(
-          {
-            'shape-rendering': 'auto',
-            'color-rendering': 'optimizeQuality',
-            'image-rendering': 'optimizeQuality',
-            'text-rendering' : 'optimizeLegibility'
-          }
-        );
-
-        Snap.load(logoUrl(node), function(f) {
-          if (!f) { return; }
-          /*
-          f.attr({
-            'width' : FlowNodeDimensions.width,
-            'height': nodeHeight
-          });*/
-          console.log('selectAll:',f.selectAll("svg"));
-          var svg = f.select("svg").attr({
-            'width' : FlowNodeDimensions.width,
-            'height': nodeHeight,
-            'shape-rendering': 'auto',
-            'color-rendering': 'optimizeQuality',
-            'image-rendering': 'optimizeQuality',
-            'text-rendering' : 'optimizeLegibility'
-          });
-          nodeElement.append(svg);
-          //console.log("wow loaded!",g);
-        });
+        nodeElement.append(
+          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight));
 /*
         nodeElement
           .append("svg:image")
