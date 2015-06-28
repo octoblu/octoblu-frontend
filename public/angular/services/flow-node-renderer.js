@@ -7,6 +7,8 @@ angular.module('octobluApp')
   })
   .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes, OCTOBLU_ICON_URL) {
 
+    var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
+
     function getNodeHeight(node) {
       return FlowNodeDimensions.minHeight;
     }
@@ -53,28 +55,24 @@ angular.module('octobluApp')
       if(!node){
         return;
       }
-
       if(inputPortRightSideX(node) < xCoordinate){
         return;
       }
-
       return {id: node.id, port: 0};
     };
 
     var findOutputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
+
       if(!node){
         return;
       }
-
-
       if(xCoordinate < inputPortLeftSideX(node)){
         return;
       }
-
       return {id: node.id, port: 0};
     };
-
+/*
     function wrapLines(text) {
       var text = d3.select(this),
           lines = text.text().split(/\n+/),
@@ -88,7 +86,7 @@ angular.module('octobluApp')
         text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(line);
       });
     };
-
+*/
     function renderIsOnline(node, nodeElement) {
       deviceService.getDeviceByUUID(node.uuid)
         .then(function(device){
@@ -105,16 +103,13 @@ angular.module('octobluApp')
 
         function renderPort(nodeElement, className, x, y, index, sourcePortType) {
           var portElement = nodeElement
-            .append('rect')
-            .attr('x', x)
-            .attr('y', y)
-            .attr('width', FlowNodeDimensions.portWidth)
-            .attr('height', FlowNodeDimensions.portHeight)
-            .attr('data-port-number', index)
-            .toggleClass('flow-node-port', true)
-            .toggleClass(className, true);
+            .append(
+              snap.rect(x,y,FlowNodeDimensions.portWidth,FlowNodeDimensions.portHeight)
+              .attr({'data-port-number': index})
+              .toggleClass('flow-node-port', true)
+              .toggleClass(className, true));
 
-          addDragBehavior(portElement, index, sourcePortType);
+          //addDragBehavior(portElement, index, sourcePortType);
         }
 
         function addDragBehavior(portElement, sourcePortNumber, sourcePortType) {
@@ -193,7 +188,6 @@ angular.module('octobluApp')
           var zoomX = flow.zoomX / flow.zoomScale;
           var zoomY = flow.zoomY / flow.zoomScale;
 
-
           node.x = width - zoomX;
           node.y = height - zoomY;
         }
@@ -219,60 +213,44 @@ angular.module('octobluApp')
 
         nodeElement.append(
           snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight));
-/*
-        nodeElement
-          .append("svg:image")
-          .attr('width', FlowNodeDimensions.width)
-          .attr('height', nodeHeight)
-          .attr("xlink:href",logoUrl(node));
 
         renderIsOnline(node, nodeElement);
-*/
-/*
+
         if(node.needsConfiguration){
-          nodeElement
-            .append("svg:image")
-            .attr('width', FlowNodeDimensions.width)
-            .attr('height', nodeHeight)
-            .attr("xlink:href", OCTOBLU_ICON_URL + "socket.svg");
+          nodeElement.append(
+            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight));
         }
-*/
+
         if (node.errorMessage) {
           nodeElement.toggleClass('error', true);
         }
 
-        /*
         if (node.type === 'operation:trigger') {
-          var buttonElement = renderScope.select('#node-button-' + node.id);
-          if (!buttonElement[0][0]) {
-            buttonElement = renderScope
-              .append('rect')
-              .attr('id', 'node-button-' + node.id)
-              .attr('width', 30)
-              .attr('height', 30)
-              .attr('rx', 2)
-              .attr('ry', 2)
-              .toggleClass('flow-node-button', true);
+          var buttonElement = snap.select('#node-button-' + node.id);
+          if (!buttonElement) {
+            buttonElement = snap
+              .append(snap.rect(0,0,30,30,2,2)
+                .attr({'id':'node-button-' + node.id})
+                .toggleClass('flow-node-button', true));
           }
           buttonElement
-            .attr('x', node.x - (FlowNodeDimensions.width / 2) + 5)
-            .attr('y', node.y + (FlowNodeDimensions.minHeight / 2) - 15);
+            .attr({'x': node.x - (FlowNodeDimensions.width / 2) + 5})
+            .attr({'y': node.y + (FlowNodeDimensions.minHeight / 2) - 15});
         }
-*/
+
         var label = node.name || node.class || '';
         var lines = label.split("\n");
-/*
+
         _.each(lines, function(line, i){
           nodeElement
-            .append('text')
+            .append(snap.text(0,0,line)
             .toggleClass('flow-node-label', true)
-            .attr('y', nodeHeight + 10 + (i * 15))
-            .attr('x', FlowNodeDimensions.width / 2)
-            .attr('text-anchor', 'middle')
-            .attr('alignment-baseline', 'central')
-            .text(line);
+            .attr({'y': nodeHeight + 10 + (i * 15)})
+            .attr({'x': FlowNodeDimensions.width / 2})
+            .attr({'text-anchor': 'middle'})
+            .attr({'alignment-baseline': 'central'}));
         });
-*/
+
         var remainingSpace =
           nodeHeight - (node.input * FlowNodeDimensions.portHeight);
 
@@ -282,7 +260,7 @@ angular.module('octobluApp')
         node.outputLocations = [];
 
         _.times(node.input, function (index) {
-          //renderPort(nodeElement, 'flow-node-input-port', -(FlowNodeDimensions.portWidth / 2), startPos, index, 'input');
+          renderPort(nodeElement, 'flow-node-input-port', -(FlowNodeDimensions.portWidth / 2), startPos, index, 'input');
           node.inputLocations.push(startPos);
           startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
         });
@@ -293,7 +271,7 @@ angular.module('octobluApp')
         var spaceBetweenPorts = remainingSpace / (node.output + 1);
         var startPos = spaceBetweenPorts;
         _.times(node.output, function (index) {
-          //renderPort(nodeElement, 'flow-node-output-port', FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2), startPos, index, 'output');
+          renderPort(nodeElement, 'flow-node-output-port', FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2), startPos, index, 'output');
           node.outputLocations.push(startPos);
           startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
         });

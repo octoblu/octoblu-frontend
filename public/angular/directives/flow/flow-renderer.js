@@ -3,6 +3,7 @@ angular.module('octobluApp')
 
   return function (element, options) {
     var snap = Snap(".flow-editor-workspace");
+    /*
     snap.attr(
       {
         'shape-rendering': 'auto',
@@ -11,6 +12,7 @@ angular.module('octobluApp')
         'text-rendering' : 'optimizeLegibility'
       }
     );
+*/
 
     var renderScope = d3.select(element.find('.flow-editor-render-area')[0]);
     var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
