@@ -131,9 +131,9 @@ angular.module('octobluApp')
     function renderLinks(flow) {
       renderScope.selectAll('.flow-link').remove();
       _.each(flow.links, function (link) {
-        var linkElement = FlowLinkRenderer.render(renderScope, link, flow);
+        var linkElement = FlowLinkRenderer.render(snap, link, flow);
         if (linkElement && !readonly) {
-          addLinkClickBehavior(linkElement, link, flow);
+          //addLinkClickBehavior(linkElement, link, flow);
         }
       });
     }
@@ -202,8 +202,8 @@ angular.module('octobluApp')
         if (!displayOnly) {
           addZoomBehaviour(flow);
         }
-        renderNodes(flow);
         renderLinks(flow);
+        renderNodes(flow);
         zoom(flow);
       },
       renderGrid: renderBackground,

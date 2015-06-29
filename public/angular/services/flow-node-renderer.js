@@ -116,7 +116,7 @@ angular.module('octobluApp')
 
           portElement.drag(
             function (dx,dy,ex,ey,event) {
-              console.log("port onMove", arguments);
+              //console.log("port onMove", arguments);
               if(!event){return};
 
               event.stopPropagation();
@@ -128,18 +128,22 @@ angular.module('octobluApp')
                 y: node.y + bbox.y + bbox.h/2
               };
               var to = snap.transformCoords(ex,ey);
-              
-              LinkRenderer.render(renderScope, from, to);
+              if (sourcePortType == 'output') {
+                LinkRenderer.render(snap, from, to);
+              }
+              if (sourcePortType == 'input') {
+                LinkRenderer.render(snap, to, from);
+              }
             },
             function (x,y,event) {
-              console.log("port onDragStart:", arguments);
+              //console.log("port onDragStart:", arguments);
               if(!event){return};
 
               event.stopPropagation();
               event.preventDefault();
             },
             function (event) {
-              console.log("port onDragEnd", arguments);
+              //console.log("port onDragEnd", arguments);
               if(!event){return};
 
               var x, y, point, rectangle, portRect, clientX, clientY;
@@ -165,7 +169,7 @@ angular.module('octobluApp')
               }
 
               if (sourcePortType == 'input') {
-                var outputPort = findOutputPortByCoordinate(x, y, flow.nodes);
+                var outputPort = findOutputPortByCoordinate(target.x, target.y, flow.nodes);
                 if(outputPort){
                   if (node.id != outputPort.id) {
                     flow.links.push({from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber});
@@ -208,7 +212,7 @@ angular.module('octobluApp')
           .attr({'id': 'node-' + node.id})
           .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
-        snap.select(".flow-editor-render-area").append(nodeElement);
+        snap.select("g").append(nodeElement);
 
         nodeElement.append(
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));

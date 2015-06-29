@@ -1,44 +1,36 @@
 angular.module('octobluApp')
   .service('LinkRenderer', function (FlowNodeDimensions) {
 
-    var renderLine = d3.svg.line()
-      .x(function (coordinate) {
-        return coordinate.x;
-      })
-      .y(function (coordinate) {
-        return coordinate.y;
-      })
-      .interpolate('basis');
-
-
     function linkPath(from, to) {
 
-      var fromCoordinateCurveStart = {
+      var fromCurve = {
         x: from.x + FlowNodeDimensions.minHeight,
         y: from.y
       };
 
-      var toCoordinate = {
-        x: to.x,
+      var toCurve = {
+        x: to.x - FlowNodeDimensions.minHeight,
         y: to.y
       };
 
-      var toCoordinateCurveStart = {
-        x: toCoordinate.x - FlowNodeDimensions.minHeight,
-        y: toCoordinate.y
-      };
-
-      return renderLine([from, fromCoordinateCurveStart,
-        toCoordinateCurveStart, to]);
+      return "M"+from.x+" "+from.y+
+        " C "+fromCurve.x+" "+fromCurve.y +", "+
+          toCurve.x+" "+toCurve.y+", "+
+          to.x+" "+to.y;
     }
 
     return {
-      render: function (renderScope, from, to) {
-        return renderScope
-          .append('path')
-          .classed('flow-link', true)
-          .classed('flow-potential-link', true)
-          .attr('d', linkPath(from, to));
+      render: function (snap, from, to) {
+        var path = linkPath(from, to)
+        if (!path){
+          return;
+        }
+        var link = snap.path(path)
+                .toggleClass('flow-link', true)
+                .toggleClass('flow-potential-link', true);
+
+        snap.select("g").append(link);
+        return link;
       }
     };
   });

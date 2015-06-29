@@ -2,15 +2,6 @@ angular.module('octobluApp')
   .service('FlowLinkRenderer', function (FlowNodeDimensions) {
     var _this = this;
 
-    var renderLine = d3.svg.line()
-      .x(function (coordinate) {
-        return coordinate.x;
-      })
-      .y(function (coordinate) {
-        return coordinate.y;
-      })
-      .interpolate('basis');
-
     function getNodePortLocation(portStr, locations) {
       if (!portStr) {
         portStr = 0;
@@ -31,39 +22,43 @@ angular.module('octobluApp')
 
       var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
 
-      var fromCoordinate = {
+      var from = {
         x: sourceNode.x + FlowNodeDimensions.width,
         y: sourceNode.y + sourcePortLocation + (FlowNodeDimensions.portHeight / 2)
       };
 
-      var fromCoordinateCurveStart = {
-        x: fromCoordinate.x + FlowNodeDimensions.minHeight,
-        y: fromCoordinate.y
+      var fromCurve = {
+        x: from.x + FlowNodeDimensions.minHeight,
+        y: from.y
       };
 
       var targetPortLocation = getNodePortLocation(link.toPort, targetNode.inputLocations);
-      var toCoordinate = {
+      var to = {
         x: targetNode.x,
         y: targetNode.y + targetPortLocation + (FlowNodeDimensions.portHeight / 2)
       };
 
-      var toCoordinateCurveStart = {
-        x: toCoordinate.x - FlowNodeDimensions.minHeight,
-        y: toCoordinate.y
+      var toCurve = {
+        x: to.x - FlowNodeDimensions.minHeight,
+        y: to.y
       };
-      return renderLine([fromCoordinate, fromCoordinateCurveStart,
-        toCoordinateCurveStart, toCoordinate]);
+      return "M"+from.x+" "+from.y+
+        " C "+fromCurve.x+" "+fromCurve.y +", "+
+          toCurve.x+" "+toCurve.y+", "+
+          to.x+" "+to.y;
     };
 
-    _this.render = function (renderScope, link, flow) {
+    _this.render = function (snap, link, flow) {
       var path = linkPath(link, flow.nodes)
       if (!path){
         return;
       }
-      return renderScope.append('path')
-                        .classed('flow-link', true)
-                        .classed('selected', (link === flow.selectedLink))
-                        .attr('d', path);
+      var link = snap.path(path)
+              .toggleClass('flow-link', true)
+              .toggleClass('selected', (link === flow.selectedLink));
+
+      snap.select(".flow-editor-render-area").append(link);
+      return link;
     };
 
     return _this;
