@@ -99,7 +99,7 @@ angular.module('octobluApp')
 
     return {
 
-      render: function (snap, renderScope, node, flow) {
+      render: function (snap, node, flow) {
 
         function renderPort(nodeElement, className, x, y, index, sourcePortType) {
           var portElement =
