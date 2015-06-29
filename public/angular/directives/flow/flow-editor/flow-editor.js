@@ -172,8 +172,11 @@ angular.module('octobluApp')
             delete modFlow.zoomX;
             delete modFlow.zoomY;
             delete modFlow.zoomScale;
+            delete modFlow.selectedLink;
+            delete modFlow.selectedFlowNode;
             delete modFlow.$$hashKey;
             delete modFlow.hash;
+
             var flowDiff = _.pick(modFlow,function(value,key){
               return !_.isEqual(value,oldFlow[key]);
             });
@@ -188,8 +191,7 @@ angular.module('octobluApp')
           flowRenderer.render(newFlow);
         }
 
-        var throttledRender = _.throttle(render,30);
-        $scope.$watch('flow', throttledRender, true);
+        $scope.$watch('flow', render, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
