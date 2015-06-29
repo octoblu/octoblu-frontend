@@ -102,58 +102,60 @@ angular.module('octobluApp')
       render: function (snap, renderScope, node, flow) {
 
         function renderPort(nodeElement, className, x, y, index, sourcePortType) {
-          var portElement = nodeElement
-            .append(
-              snap.rect(x,y,FlowNodeDimensions.portWidth,FlowNodeDimensions.portHeight)
+          var portElement =
+            snap.rect(x,y,FlowNodeDimensions.portWidth,FlowNodeDimensions.portHeight)
               .attr({'data-port-number': index})
               .toggleClass('flow-node-port', true)
-              .toggleClass(className, true));
-
-          //addDragBehavior(portElement, index, sourcePortType);
+              .toggleClass(className, true);
+          nodeElement.append(portElement);
+          addDragBehavior(portElement, index, sourcePortType);
         }
 
         function addDragBehavior(portElement, sourcePortNumber, sourcePortType) {
-          var dragBehavior = d3.behavior.drag()
-            .on('dragstart', function () {
-              if(!d3.event){return};
-              d3.event.sourceEvent.stopPropagation();
-              d3.event.sourceEvent.preventDefault();
-            })
-            .on('drag', function () {
-              d3.event.sourceEvent.stopPropagation();
-              d3.event.sourceEvent.preventDefault();
-              renderScope.selectAll('.flow-potential-link').remove();
-              var from = {
-                x: node.x + ( parseFloat(portElement.attr('x')) +
-                  (portElement.attr('height') / 2)),
-                y: node.y + ( parseFloat(portElement.attr('y')) +
-                  (portElement.attr('width') / 2))
-              };
-              var to = {
-                x: (node.x + d3.event.x),
-                y: (node.y + d3.event.y)
-              };
+          var bbox = portElement.getBBox();
 
+          portElement.drag(
+            function (dx,dy,ex,ey,event) {
+              console.log("port onMove", arguments);
+              if(!event){return};
+
+              event.stopPropagation();
+              event.preventDefault();
+              snap.selectAll('.flow-potential-link').remove();
+
+              var from = {
+                x: node.x + bbox.x + bbox.w/2,
+                y: node.y + bbox.y + bbox.h/2
+              };
+              var to = snap.transformCoords(ex,ey);
+              
               LinkRenderer.render(renderScope, from, to);
-            })
-            .on('dragend', function () {
+            },
+            function (x,y,event) {
+              console.log("port onDragStart:", arguments);
+              if(!event){return};
+
+              event.stopPropagation();
+              event.preventDefault();
+            },
+            function (event) {
+              console.log("port onDragEnd", arguments);
+              if(!event){return};
+
               var x, y, point, rectangle, portRect, clientX, clientY;
 
-              if (d3.event.sourceEvent.changedTouches) {
-                clientX = d3.event.sourceEvent.changedTouches[0].clientX;
-                clientY = d3.event.sourceEvent.changedTouches[0].clientY;
+              if (event.changedTouches) {
+                clientX = event.changedTouches[0].clientX;
+                clientY = event.changedTouches[0].clientY;
               } else {
-                clientX = d3.event.sourceEvent.clientX;
-                clientY = d3.event.sourceEvent.clientY;
+                clientX = event.clientX;
+                clientY = event.clientY;
               }
 
-              x = clientX / flow.zoomScale;
-              x = x - (flow.zoomX / flow.zoomScale);
-              y = clientY / flow.zoomScale;
-              y = y - (flow.zoomY / flow.zoomScale);
+              var target = snap.transformCoords(clientX,clientY);
 
               if (sourcePortType == 'output') {
-                var inputPort = findInputPortByCoordinate(x, y, flow.nodes);
+                var inputPort = findInputPortByCoordinate(target.x, target.y, flow.nodes);
                 if(inputPort){
                   if (node.id != inputPort.id) {
                     flow.links.push({from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port});
@@ -172,10 +174,8 @@ angular.module('octobluApp')
                 }
               }
 
-              renderScope.selectAll('.flow-potential-link').remove();
+              snap.selectAll('.flow-potential-link').remove();
             });
-
-          portElement.call(dragBehavior);
         }
 
         var nodeHeight = getNodeHeight(node);
