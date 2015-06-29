@@ -162,19 +162,20 @@ angular.module('octobluApp')
 
         flowRenderer.renderGrid();
 
-        $scope.$watch('flow', function (newFlow, oldFlow) {
+        function render(newFlow, oldFlow) {
           if (!newFlow) {
             return;
           }
 
           if (oldFlow) {
-            delete oldFlow.zoomX;
-            delete oldFlow.zoomY;
-            delete oldFlow.zoomScale;
-            delete oldFlow.$$hashKey;
-            delete oldFlow.hash;
-            var flowDiff = _.pick(oldFlow,function(value,key){
-              return !_.isEqual(value,newFlow[key]);
+            var modFlow = _.clone(newFlow);
+            delete modFlow.zoomX;
+            delete modFlow.zoomY;
+            delete modFlow.zoomScale;
+            delete modFlow.$$hashKey;
+            delete modFlow.hash;
+            var flowDiff = _.pick(modFlow,function(value,key){
+              return !_.isEqual(value,oldFlow[key]);
             });
             if (_.size(flowDiff)==0) {
               //console.log('aborting, no diff!');
@@ -185,7 +186,10 @@ angular.module('octobluApp')
 
           //console.log(newFlow);
           flowRenderer.render(newFlow);
-        }, true);
+        }
+
+        var throttledRender = _.throttle(render,30);
+        $scope.$watch('flow', throttledRender, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
