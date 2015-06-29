@@ -14,11 +14,21 @@ angular.module('octobluApp')
   $scope.nextStepUrl = function (node) {
     var sref = 'material.' + node.category;
     var params = {};
-    if (node.category === 'device' || node.category === 'microblu') {
-      params.uuid = node.uuid;
-    } else if (node.category === 'channel') {
-      params.id = node.channelid;
+
+    //If node is configured, go to device detail page
+    if (node.uuid) {
+      if (node.category === 'device' || node.category === 'microblu') {
+        params.uuid = node.uuid;
+      } else if (node.category === 'channel') {
+        params.id = node.channelid;
+      }
     }
+    //Go to add node page if not configured
+    else {
+      sref = 'material.nodewizard.add'
+      params.nodeTypeId = node._id
+    }
+
     return $state.href(sref, params);
   };
 

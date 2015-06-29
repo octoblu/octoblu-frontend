@@ -18,8 +18,8 @@
 
   <div class="connected-nodes interior">
     <div ng-if="filterNodeTypes != 'configured'" ng-repeat="node in filteredNodeTypes = (nodeCollection | filter: categoryFilter | filter: {name:nodeNameSearch}  | orderBy: 'name')" class="connected-node">
-      <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
+      <a href="{{nextStepUrl(node)}}">
+        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: (!node.online && node.uuid)}">
           <img ng-src="{{node.logo}}" width="100%" height="100%">
         </div>
         <div class="connected-node-name">{{node.name}}</div>
