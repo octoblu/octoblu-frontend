@@ -14,9 +14,9 @@ angular.module('octobluApp')
       };
 
       return "M"+from.x+" "+from.y+
-        " C "+fromCurve.x+" "+fromCurve.y +", "+
-          toCurve.x+" "+toCurve.y+", "+
-          to.x+" "+to.y;
+             "C"+fromCurve.x+" "+fromCurve.y +","+
+              toCurve.x+" "+toCurve.y+","+
+              to.x+" "+to.y;
     }
 
     return {
@@ -32,5 +32,5 @@ angular.module('octobluApp')
         snap.select("g").append(link);
         return link;
       }
-    };
+    }
   });
