@@ -1,51 +1,35 @@
-<div>
-  <br>
-  <br>
+<div class="interior__wrapper">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="tabs">
+        <a ng-click="activeTab = 'all'" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ng-click="activeTab = 'channels'" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ng-click="activeTab = 'devices'" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ng-click="activeTab = 'configured'" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">Configured</a>
+      </div>
 
-  <div class="connected-nodes--filter">
-  <form class="connected-nodes-form">
-    <div class="form-group">
-      <div class="input-group">
-        <input type="text" class="form-control" ng-model="nodeTypeSearch" autofocus>
-        <span class="input-group-addon">
-          <i class="fa fa-search"></i>
-        </span>
+      <div class="lookup">
+        <i class="lookup__icon fa fa-search fa-lg"></i>
+        <input ng-model="nodeNameSearch" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
       </div>
     </div>
-  </form>
-
-    <div class="connected-nodes--filter-type">
-      <md-select ng-model="filterNodeTypes" placeholder="Filter Nodes" class="node-wizard__form-actions">
-        <md-option ng-value="''">None</md-option>
-        <md-option ng-value="'channel'">Channels</md-option>
-        <md-option ng-value="'device'">Devices</md-option>
-        <md-option ng-value="'microblu'">MicroBlu</md-option>
-      </md-select>
-    </div>
-    <div class="connected-nodes--filter-sort">
-      <md-select ng-model="sortNodeMethod" placeholder="Sort Nodes" class="node-wizard__form-actions">
-        <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
-        <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
-      </md-select>
-    </div>
-    <div class="connected-nodes--filter-view">
-      <md-button ng-click="showHelp = !showHelp" aria-label="Toggle Help View">
-        <i ng-show="showHelp" class="fa fa-th-large fa-2x"></i>
-        <i ng-show="!showHelp" class="fa fa-th-list fa-2x"></i>
-      </md-button>
-    </div>
-  </div>
+  </header>
 
 
-  <div class="connected-nodes">
-    <div class="connected-node" ng-class="{'connected-node-expanded': showHelp}" ng-repeat="node in nodeTypes | filter: {category:filterNodeTypes} | filter: {name:nodeTypeSearch}  | orderBy: sortNodeMethod">
-      <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
+  <div class="connected-nodes interior">
+    <div ng-repeat="node in filteredNodeTypes = (nodeCollection | filter: categoryFilter | filter: {name:nodeNameSearch}  | orderBy: 'name')" class="connected-node">
+      <a href="{{nextStepUrl(node)}}">
+        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: (!node.online && node.uuid)}">
           <img ng-src="{{node.logo}}" width="100%" height="100%">
         </div>
         <div class="connected-node-name">{{node.name}}</div>
       </a>
-      <p ng-show="showHelp">{{node.helpText}}</p>
     </div>
+  </div>
+
+  <random-robot title='No matching nodes for "{{nodeNameSearch}}"' ng-show="nodeNameSearch.length && !filteredNodeTypes.length"></random-robot>
+
+  <div class="blu-loading" ng-show="loadingNodes">
+    <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
   </div>
 </div>

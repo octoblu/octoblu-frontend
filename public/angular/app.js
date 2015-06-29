@@ -153,6 +153,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'nodeWizardController',
         templateUrl: '/pages/node-wizard/index.html'
       })
+      .state('material.nodewizard.addnode', {
+        url: '',
+        controller: 'addNodeController',
+        templateUrl: '/pages/node-wizard/add-node.html'
+      })
       .state('material.nodewizard.add', {
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
@@ -162,11 +167,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/add-device/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
-      .state('material.nodewizard.addnode', {
-        url: '',
-        controller: 'addNodeController',
-        templateUrl: '/pages/node-wizard/add-node.html'
       })
       .state('material.nodewizard.addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
