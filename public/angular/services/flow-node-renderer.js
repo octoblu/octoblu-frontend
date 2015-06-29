@@ -118,7 +118,6 @@ angular.module('octobluApp')
             function (dx,dy,ex,ey,event) {
               //console.log("port onMove", arguments);
               if(!event){return};
-
               event.stopPropagation();
               event.preventDefault();
               snap.selectAll('.flow-potential-link').remove();
@@ -128,24 +127,22 @@ angular.module('octobluApp')
                 y: node.y + bbox.y + bbox.h/2
               };
               var to = snap.transformCoords(ex,ey);
+
               if (sourcePortType == 'output') {
                 LinkRenderer.render(snap, from, to);
-              }
-              if (sourcePortType == 'input') {
+              } else {
                 LinkRenderer.render(snap, to, from);
               }
             },
             function (x,y,event) {
               //console.log("port onDragStart:", arguments);
               if(!event){return};
-
               event.stopPropagation();
               event.preventDefault();
             },
             function (event) {
               //console.log("port onDragEnd", arguments);
               if(!event){return};
-
               var x, y, point, rectangle, portRect, clientX, clientY;
 
               if (event.changedTouches) {
@@ -157,25 +154,28 @@ angular.module('octobluApp')
               }
 
               var target = snap.transformCoords(clientX,clientY);
+              var newLink = undefined;
 
               if (sourcePortType == 'output') {
                 var inputPort = findInputPortByCoordinate(target.x, target.y, flow.nodes);
-                if(inputPort){
-                  if (node.id != inputPort.id) {
-                    flow.links.push({from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port});
-                    return;
-                  }
+                if(inputPort && node.id != inputPort.id) {
+                  newLink = {from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port};
                 }
               }
 
               if (sourcePortType == 'input') {
                 var outputPort = findOutputPortByCoordinate(target.x, target.y, flow.nodes);
-                if(outputPort){
-                  if (node.id != outputPort.id) {
-                    flow.links.push({from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber});
-                    return;
-                  }
+                if(outputPort && node.id != outputPort.id) {
+                  newLink = {from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber};
                 }
+              }
+
+              // Check if our link already exists, if not add
+              // and return earlier to avoid removing potential link
+              if (newLink && !_.find(flow.links,newLink)) {
+                flow.links.push(newLink);
+                console.log("newLink:",newLink);
+                return;
               }
 
               snap.selectAll('.flow-potential-link').remove();
