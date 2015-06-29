@@ -34,14 +34,28 @@ angular.module('octobluApp')
       if (!event || event.defaultPrevented) {
         return;
       }
-      _.each(snap.selectAll(".selected"),function(selected){
-        selected.toggleClass('selected',false);
-      });
+      unselectAll();
       dispatch.nodeSelected(null);
       dispatch.linkSelected(null);
     });
 
-    function addSelectClickBehavior(nodeElement, node, flow, selectCallback) {
+    function unselectAll() {
+      _.each(snap.selectAll(".selected"),function(selected){
+        selected.toggleClass('selected',false);
+      });
+    }
+
+    function selectCB(nodeElement, callback) {
+      return function(node) {
+        unselectAll();
+        nodeElement.toggleClass('selected',true);
+        callback(node);
+      }
+    }
+
+    function addClickBehavior(nodeElement, node, callback) {
+      if (!nodeElement) { return; }
+
       nodeElement.click(function (event) {
         //console.log("selectClicked!");
         if (!event || event.defaultPrevented) {
@@ -49,32 +63,10 @@ angular.module('octobluApp')
         }
         event.preventDefault();
         event.stopPropagation();
-        _.each(snap.selectAll(".selected"),function(selected){
-          selected.toggleClass('selected',false);
-        });
-        nodeElement.toggleClass('selected',true);
-        selectCallback(node);
+        callback(node);
       });
-      nodeElement.dblclick(function(event){
-        event.preventDefault();
-        event.stopPropagation();
-      });
-    }
 
-    function addButtonClickBehavior(nodeElement, node, buttonCallback) {
-      if (!nodeElement || node.type !== 'operation:trigger') {
-        return;
-      }
-      nodeElement.click(function(event) {
-        //console.log("buttonClicked!");
-        if (!event || event.defaultPrevented) {
-          return;
-        }
-        event.preventDefault();
-        event.stopPropagation();
-        buttonCallback(node);
-      });
-      nodeElement.dblclick(function(event) {
+      nodeElement.dblclick(function(event){
         event.preventDefault();
         event.stopPropagation();
       });
@@ -116,7 +108,7 @@ angular.module('octobluApp')
       _.each(flow.links, function (link) {
         var linkElement = FlowLinkRenderer.render(snap, link, flow);
         if (linkElement && !readonly) {
-          addSelectClickBehavior(linkElement, link, flow, dispatch.linkSelected);
+          addClickBehavior(linkElement, link, selectCB(linkElement, dispatch.linkSelected));
         }
       });
     }
@@ -129,8 +121,8 @@ angular.module('octobluApp')
           return;
         }
         //addDragBehavior(nodeElement, node, flow);
-        addSelectClickBehavior(nodeElement, node, flow, dispatch.nodeSelected);
-        addButtonClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
+        addClickBehavior(nodeElement, node, selectCB(nodeElement, dispatch.nodeSelected));
+        addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
       });
     }
 
