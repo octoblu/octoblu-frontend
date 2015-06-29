@@ -61,12 +61,14 @@ angular.module('octobluApp')
               updateZoomScale($scope.flow.zoomScale);
             }
 
+            var throttleDragging = _.throttle(dragging,30);
+
             function dropped(event) {
-              dragElement.removeEventListener('mousemove', dragging);
+              dragElement.removeEventListener('mousemove', throttleDragging);
               dragElement.removeEventListener('mouseup', dropped);
             }
 
-            dragElement.addEventListener('mousemove', dragging);
+            dragElement.addEventListener('mousemove', throttleDragging);
             dragElement.addEventListener('mouseup', dropped);
           });
         }
@@ -164,19 +166,21 @@ angular.module('octobluApp')
           if (!newFlow) {
             return;
           }
-          
-          var modFlow = oldFlow;
+
           if (oldFlow) {
-            modFlow = _.cloneDeep(newFlow);
-            delete modFlow.zoomX;
-            delete modFlow.zoomY;
-            delete modFlow.zoomScale;
             delete oldFlow.zoomX;
             delete oldFlow.zoomY;
             delete oldFlow.zoomScale;
-          }
-          if (_.isEqual(modFlow, oldFlow)) {
-            return;
+            delete oldFlow.$$hashKey;
+            delete oldFlow.hash;
+            var flowDiff = _.pick(oldFlow,function(value,key){
+              return !_.isEqual(value,newFlow[key]);
+            });
+            if (_.size(flowDiff)==0) {
+              //console.log('aborting, no diff!');
+              return;
+            }
+            console.log('flow diff:',flowDiff);
           }
 
           //console.log(newFlow);
