@@ -164,8 +164,23 @@ angular.module('octobluApp')
           if (!newFlow) {
             return;
           }
+          
+          var modFlow = oldFlow;
+          if (oldFlow) {
+            modFlow = _.cloneDeep(newFlow);
+            delete modFlow.zoomX;
+            delete modFlow.zoomY;
+            delete modFlow.zoomScale;
+            delete oldFlow.zoomX;
+            delete oldFlow.zoomY;
+            delete oldFlow.zoomScale;
+          }
+          if (_.isEqual(modFlow, oldFlow)) {
+            return;
+          }
 
-            flowRenderer.render(newFlow);
+          //console.log(newFlow);
+          flowRenderer.render(newFlow);
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){

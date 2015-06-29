@@ -3,6 +3,14 @@ angular.module('octobluApp')
 
   return function (element, options) {
     var snap = Snap(".flow-editor-workspace");
+    snap.transformCoords = function(x, y){
+      var transformPoint = this.node.createSVGPoint();
+      transformPoint.x = x;
+      transformPoint.y = y;
+      transformPoint = transformPoint.matrixTransform(this.node.getScreenCTM().inverse());
+      return {x: transformPoint.x, y: transformPoint.y};
+    };
+
     /*
     snap.attr(
       {
@@ -131,9 +139,7 @@ angular.module('octobluApp')
     }
 
     function renderNodes(flow) {
-      console.log("callingRenderNodes!");
       snap.selectAll('.flow-node').remove();
-      //snap.selectAll('.flow-node-button').remove();
       _.each(flow.nodes, function (node) {
         var nodeElement = FlowNodeRenderer.render(snap, renderScope, node, flow);
         if(readonly){
@@ -182,8 +188,6 @@ angular.module('octobluApp')
         .attr('y', topEdge);
     }
 
-    var lastFlow = {};
-
     return {
 
       centerOnSelectedFlowNode: function(flow){
@@ -194,20 +198,7 @@ angular.module('octobluApp')
         flow.zoomY = -flow.selectedFlowNode.y + height;
       },
       render: function (flow) {
-
-        // Create a copy and check for changes that don't involve
-        // zoomX, zoomY, zoomScale... we don't care about those
-        // there is probably a better way
-        var newFlow = _.cloneDeep(flow);
-        delete newFlow.zoomX;
-        delete newFlow.zoomY;
-        delete newFlow.zoomScale;
-        if (_.isEqual(newFlow, lastFlow)) {
-          return;
-        }
-        lastFlow = newFlow;
-
-        // Adding zoom behavior deals with changes in flow.zoom*
+        console.log("rendering!");
         if (!displayOnly) {
           addZoomBehaviour(flow);
         }
