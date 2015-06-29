@@ -11,8 +11,17 @@
 
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:nth-child(odd):hover {
     background: white;
+  }
+
+  &:nth-child(odd) {
+    background: #F5F8FA;
+  }
+
+  button {
+    background: transparent !important;
   }
 }
 
