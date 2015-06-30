@@ -1,10 +1,10 @@
 angular.module('octobluApp')
-.controller('addNodeController', function(OCTOBLU_API_URL, OCTOBLU_ICON_URL, $scope, $state, NodeTypeService, NodeService) {
+.controller('addNodeController', function(OCTOBLU_API_URL, OCTOBLU_ICON_URL, $scope, $state, $stateParams, NodeTypeService, NodeService) {
   'use strict';
 
   $scope.nodeCollection = [];
   $scope.loadingNodes = true;
-  $scope.activeTab = 'all'
+  $scope.activeTab = $stateParams.tab || 'all'
 
   NodeTypeService.getNodeTypes().then(function(nodeTypes){
     $scope.nodeTypes = nodeTypes;

@@ -2,10 +2,10 @@
   <header class="interior__header">
     <div class="interior">
       <div class="tabs">
-        <a ng-click="activeTab = 'all'" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
-        <a ng-click="activeTab = 'channels'" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
-        <a ng-click="activeTab = 'devices'" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
-        <a ng-click="activeTab = 'configured'" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">My Nodes</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'all'})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'channels'})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'devices'})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'configured'})" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">My Nodes</a>
       </div>
 
       <div class="lookup">
