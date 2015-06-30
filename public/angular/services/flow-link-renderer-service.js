@@ -51,11 +51,14 @@ angular.module('octobluApp')
         if (!path){
           return;
         }
+        //console.log('renderLink:',link);
         var link = snap.path(path)
                 .toggleClass('flow-link', true)
-                .toggleClass('selected', (link === flow.selectedLink));
+                .toggleClass('selected', (link === flow.selectedLink))
+                .toggleClass('flow-link-to-'+link.to,true)
+                .toggleClass('flow-link-from-'+link.from,true);
 
-        snap.select("g").append(link);
+        snap.select(".flow-link-area").append(link);
         return link;
       }
     }

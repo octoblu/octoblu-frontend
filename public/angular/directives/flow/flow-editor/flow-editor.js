@@ -1,6 +1,5 @@
 angular.module('octobluApp')
   .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions, $interval) {
-    var VIEWBOX_X = 0, VIEWBOX_Y=0, VIEWBOX_WIDTH=1000, VIEWBOX_HEIGHT=1000;
     return {
       restrict: 'E',
       controller: 'FlowEditorController',
@@ -13,67 +12,14 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        var svgElement = element.find('svg')[0];
-        setupDragBehavior(svgElement);
-
+        var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
+        
         $scope.$watch("flow.zoomScale", function(newZoomScale, oldZoomScale){
           if(!newZoomScale) {
             return;
           }
-          updateZoomScale(newZoomScale);
+          flowRenderer.updateZoomScale(newZoomScale);
         });
-
-        function updateZoomScale(newZoomScale) {
-          var w = VIEWBOX_WIDTH / newZoomScale;
-          var h = VIEWBOX_HEIGHT / newZoomScale;
-          var x = VIEWBOX_X -  ((w - VIEWBOX_WIDTH)/2);
-          var y = VIEWBOX_Y -  ((h- VIEWBOX_HEIGHT)/2);
-          updateViewBox(x,y,w,h);
-        }
-
-        function updateViewBox(x,y,w,h) {
-            svgElement.setAttribute('viewBox', [x, y, w, h].join(' '));
-        }
-
-        function getSvgCoords(x, y, svg) {
-          var transformPoint = svg.createSVGPoint();
-          transformPoint.x = x;
-          transformPoint.y = y;
-          transformPoint = transformPoint.matrixTransform(svg.getScreenCTM().inverse());
-          return {x: transformPoint.x, y: transformPoint.y};
-        }
-
-        function setupDragBehavior(dragElement) {
-          dragElement.addEventListener('dragstart', function(event){
-            var startViewboxX = VIEWBOX_X;
-            var startViewboxY = VIEWBOX_Y;
-            var originalX = event.clientX;
-            var originalY = event.clientY;
-            event.preventDefault();
-
-            function dragging(event){
-              var startPos    = getSvgCoords(originalX, originalY, dragElement);
-              var currentPos  = getSvgCoords(event.clientX, event.clientY, dragElement);
-              var differenceX = currentPos.x - startPos.x;
-              var differenceY = currentPos.y - startPos.y;
-              VIEWBOX_X = (startViewboxX - differenceX);
-              VIEWBOX_Y = startViewboxY - differenceY;
-              updateZoomScale($scope.flow.zoomScale);
-            }
-
-            var throttleDragging = _.throttle(dragging,30);
-
-            function dropped(event) {
-              dragElement.removeEventListener('mousemove', throttleDragging);
-              dragElement.removeEventListener('mouseup', dropped);
-            }
-
-            dragElement.addEventListener('mousemove', throttleDragging);
-            dragElement.addEventListener('mouseup', dropped);
-          });
-        }
-
-        var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {

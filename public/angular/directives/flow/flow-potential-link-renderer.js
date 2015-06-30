@@ -27,9 +27,10 @@ angular.module('octobluApp')
         }
         var link = snap.path(path)
                 .toggleClass('flow-link', true)
+                .toggleClass('selected', true)
                 .toggleClass('flow-potential-link', true);
 
-        snap.select("g").append(link);
+        snap.select(".flow-link-area").append(link);
         return link;
       }
     }
