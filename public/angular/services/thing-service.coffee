@@ -22,6 +22,17 @@ class ThingService
     .error (body, status, headers, config) ->
       return callback new Error()
 
+  addMessageFormSchemaFromUrl: (data, callback) =>
+    data.messageFormSchema ?= ['*']
+    return callback null, _.clone data unless data.messageFormSchemaUrl?
+
+    @http.get(data.messageFormSchemaUrl)
+    .success (body, status, headers, config) ->
+      data.messageFormSchema = body
+      return callback null, data
+    .error (body, status, headers, config) ->
+      return callback new Error()
+
   calculateTheEverything: (device, peers) =>
     uuid: '*'
     name: 'Everything'
@@ -113,7 +124,8 @@ class ThingService
         things = _.map things, @addLogo
 
         async.map things, @addMessageSchemaFromUrl, (error, things) =>
-          deferred.resolve things
+          async.map things, @addMessageFormSchemaFromUrl, (error, things) =>
+            deferred.resolve things
 
     deferred.promise
 
