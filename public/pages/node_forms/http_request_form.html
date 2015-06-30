@@ -8,6 +8,30 @@
   <input  id="url" ng-model="flowNode.url" placeholder="http://example.com" required>
 </md-input-container>
 
+<h3>Query</h3>
+<md-list>
+  <md-item ng-repeat="key in flowNode.queryKeys track by $index">
+    <md-item-content>
+      <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
+        <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
+        <md-input-container required>
+          <label>Value</label>
+          <input ng-model="flowNode.queryValues[$index]">
+        </md-input-container>
+        <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
+        <md-input-container required>
+          <label>Key</label>
+          <input ng-model="flowNode.queryKeys[$index]">
+        </md-input-container>
+        <md-button class="md-fab" ng-click="flowNode.queryKeys.splice($index, 1);flowNode.bodyValues.splice($index, 1)">
+          <i class="fa fa-minus"></i>
+        </md-button>
+      </div>
+    </md-item-content>
+  </md-item>
+</md-list>
+<md-button ng-click="flowNode.queryKeys.push('')" class="md-primary" aria-label="Add Key">Add Key</md-button>
+
 <h3>Headers</h3>
 <md-list>
   <md-item ng-repeat="key in flowNode.headerKeys track by $index">
