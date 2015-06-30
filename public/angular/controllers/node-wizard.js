@@ -2,8 +2,6 @@
 
 angular.module('octobluApp')
 .controller('nodeWizardController', function($scope, $state, NodeService, OCTOBLU_ICON_URL) {
-  console.log('Node Wizard Controller');
-
   NodeService.getNodes().then(function(nodes){
     nodes = _.map(nodes, addLogoUrl);
     $scope.loading = false;

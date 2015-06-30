@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
+    .service('deviceService', function ($q, $rootScope, $http, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
         var myDevices, skynetPromise, subscribeToDevice, getMyDevices, myDevicesPromise;
 
         myDevices = [];
@@ -12,8 +12,13 @@ angular.module('octobluApp')
                 var devices = _.cloneDeep(result.devices);
                 devices = _.map(devices, addDevice);
                 devices = _.map(devices, addLogoUrl);
-                myDevices = devices;
-                defer.resolve(myDevices);
+                async.map(devices, addMessageSchemaFromUrl, function(error, devices) {
+                  if (error) {
+                    return defer.reject(error);
+                  }
+                  myDevices = devices;
+                  defer.resolve(myDevices);
+                });
             });
             return defer.promise;
           });
@@ -31,10 +36,12 @@ angular.module('octobluApp')
           if(data.logo){
             return data;
           }
-          var device = _.find(myDevices, { uuid: data.uuid });
-          if(device && device.logo){
-            data.logo = device.logo;
-            return data;
+          if (myDevices && myDevices.length) {
+            var device = _.find(myDevices, { uuid: data.uuid });
+            if(device && device.logo){
+              data.logo = device.logo;
+              return data;
+            }
           }
           if(data && data.type){
               var type = data.type.replace('octoblu:', 'device:');
@@ -43,6 +50,35 @@ angular.module('octobluApp')
               data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
           }
           return data;
+        }
+
+        function loadMessageSchemaFromUrl(url, callback) {
+          $http.get(url).success(function(data, status, headers, config){
+            return callback(null, data);
+          })
+          .error(function(data, status, headers, config){
+            return callback(new Error());
+          });
+        }
+
+        function addMessageSchemaFromUrl(data, callback){
+          if(data.messageSchema){
+            return callback(null, data);
+          }
+          if(!data.messageSchemaUrl){
+            return callback(null, data);
+          }
+          if (myDevices && myDevices.length) {
+            var device = _.find(myDevices, { uuid: data.uuid });
+            if(device && device.messageSchema){
+              data.messageSchema = device.messageSchema;
+              return callback(null, data);
+            }
+          }
+          loadMessageSchemaFromUrl(data.messageSchemaUrl, function(error, messageSchema){
+            data.messageSchema = messageSchema;
+            return callback(null, data);
+          });
         }
 
         skynetPromise.then(function (skynetConnection) {
@@ -85,7 +121,7 @@ angular.module('octobluApp')
                 myDevices.push(device);
             },
             getDevices: function (force) {
-              if (myDevices.length && !force) {
+              if (myDevices && myDevices.length && !force) {
                 return $q.when(myDevices);
               }
               if (force) {
@@ -159,7 +195,6 @@ angular.module('octobluApp')
 
                 return skynetPromise.then(function(skynetConnection){
                     var defer = $q.defer();
-
                  skynetConnection.claimdevice(deviceOptions, function(result){
                         if(result.error) {
                             return defer.reject(result.error);
@@ -223,13 +258,15 @@ angular.module('octobluApp')
                     return service.getUnclaimedDevices();
                 }
 
-                return service.getUnclaimedNodes().then(function(devices){
-                    return _.where(devices, {type: nodeType});
+                var query = {type: nodeType};
+                return service.getUnclaimedNodes(query).then(function(devices){
+                    return _.where(devices, query);
                 });
             },
 
             getUnclaimedDevices: function () {
-                return service.getUnclaimedNodes().then(function (devices) {
+                var query = {type: {$ne: 'gateway'}};
+                return service.getUnclaimedNodes(query).then(function (devices) {
                     return _.filter(devices, function(device){
                         return (device.type !== 'gateway');
                     });
@@ -237,17 +274,21 @@ angular.module('octobluApp')
             },
 
             getUnclaimedGateways: function () {
-                return service.getUnclaimedNodes().then(function (devices) {
-                    return _.where(devices, {type: 'gateway'});
+                var query = {type: 'gateway'};
+                return service.getUnclaimedNodes(query).then(function (devices) {
+                    return _.where(devices, query);
                 });
             },
 
-            getUnclaimedNodes: function() {
+            getUnclaimedNodes: function(query) {
+                query = query || {online: true};
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.unclaimeddevices({}, function (result) {
-                        defer.resolve(_.where(result.devices, {online: true}));
+                    skynetConnection.unclaimeddevices(query, function (result) {
+                        var devices = _.where(result.devices, query);
+                        devices = _.map(devices, addLogoUrl);
+                        defer.resolve(devices);
                     });
                 });
 

@@ -1,12 +1,13 @@
 angular.module('octobluApp')
-.controller('DeviceMessageFormController', function(OCTOBLU_API_URL, $scope, deviceService) {
+.controller('DeviceMessageFormController', function(OCTOBLU_API_URL, $scope, ThingService) {
   'use strict';
 
   $scope.schema = {};
 
   var getDevice = function(){
-    deviceService.getDeviceByUUID($scope.uuid, true).then(function(device){
-      $scope.device = device;
+    $scope.device = null;
+    ThingService.getThings().then(function(devices){
+      $scope.device = _.findWhere(devices, {uuid: $scope.uuid});
     });
   };
 

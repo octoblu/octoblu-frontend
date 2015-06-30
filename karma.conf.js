@@ -15,6 +15,7 @@ module.exports = function(config) {
     files: [
         "lib/angular/angular.js",
         "lib/lodash/lodash.js",
+        "lib/async/lib/async.js",
         "lib/d3/d3.js",
         "lib/angular-ui-router/release/angular-ui-router.js",
         "lib/angular-mocks/angular-mocks.js",

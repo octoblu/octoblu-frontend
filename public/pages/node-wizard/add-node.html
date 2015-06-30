@@ -2,10 +2,10 @@
   <header class="interior__header">
     <div class="interior">
       <div class="tabs">
-        <a ng-click="activeTab = 'all'" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
-        <a ng-click="activeTab = 'channels'" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
-        <a ng-click="activeTab = 'devices'" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
-        <a ng-click="activeTab = 'configured'" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">Configured</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'all'})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'channels'})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'devices'})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ui-sref="material.nodewizard.addnode({tab:'configured'})" ng-class="{'is-selected': activeTab == 'configured'}" class="tab-link">My Nodes</a>
       </div>
 
       <div class="lookup">
@@ -17,12 +17,12 @@
 
 
   <div class="connected-nodes interior">
-    <div ng-if="filterNodeTypes != 'configured'" ng-repeat="node in filteredNodeTypes = (nodeCollection | filter: categoryFilter | filter: {name:nodeNameSearch}  | orderBy: 'name')" class="connected-node">
-      <a ui-sref="material.nodewizard.add({nodeTypeId: node._id})">
-        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout">
+    <div ng-repeat="node in filteredNodeTypes = (nodeCollection | filter: categoryFilter | filter: {name:nodeNameSearch}  | orderBy: 'name')" class="connected-node">
+      <a href="{{nextStepUrl(node)}}">
+        <div title="{{node.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: (!node.online && node.uuid)}">
           <img ng-src="{{node.logo}}" width="100%" height="100%">
         </div>
-        <div class="connected-node-name">{{node.name}}</div>
+        <div class="connected-node-name truncate">{{node.name}}</div>
       </a>
     </div>
   </div>

@@ -13,7 +13,6 @@ angular.module('octobluApp')
       state = 'material.nodewizard.addsubdevice.selectgateblu';
     }
 
-
     $state.go(state, {nodeTypeId : $state.params.nodeTypeId}, {location: 'replace'});
   });
 });

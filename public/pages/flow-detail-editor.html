@@ -48,7 +48,7 @@
           <li ng-repeat="node in flow.nodes | orderBy: 'name' track by node.id" ng-mouseenter="showDelete=!showDelete" ng-mouseleave="showDelete=!showDelete" class="nodes-in-flow__item">
             <button ng-click="$emit('flow-node-type-selected', node);" class="sidebar__button node-in-flow__button">
               <img src="{{node.logo}}" alt="{{node.class || node.type}}" class="sidebar__pane-node-thumbnail"/>
-              <span class="truncate">{{node.name}}</span>
+              <span class="node-in-flow__node--name truncate">{{node.name}}</span>
             </button>
 
             <button ng-click="$emit('flow-node-delete', node);" ng-show="showDelete" aria-label="Delete Node" class="sidebar__button node-in-flow__button--delete">
