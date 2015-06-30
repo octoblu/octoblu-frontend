@@ -6,7 +6,8 @@ angular.module('octobluApp')
     if($state.is('material.design') || $state.is('material.flow')){
       return false;
     }
-    return $mdMedia('gt-lg');
+    return false;
+    // return $mdMedia('gt-lg');
   };
 
   $scope.toggleNav = function() {
