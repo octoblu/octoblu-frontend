@@ -124,14 +124,14 @@ angular.module('octobluApp')
 
               var from = {
                 x: node.x + bbox.x + bbox.w/2,
-                y: node.y + bbox.y + bbox.h/2
+                y: node.y + bbox.y + bbox.h/2,
               };
               var to = snap.transformCoords(ex,ey);
 
               if (sourcePortType == 'output') {
                 LinkRenderer.render(snap, from, to);
               } else {
-                LinkRenderer.render(snap, to, from);
+                LinkRenderer.render(snap, to, to);
               }
             },
             function (x,y,event) {
@@ -186,7 +186,9 @@ angular.module('octobluApp')
         node.inputLocations = [];
         node.outputLocations = [];
 
-        if (!node.x) {
+        if (!node.x || isNaN(node.x) ||
+            !node.y || isNaN(node.y)) {
+          console.log("initializing node location!");
           var width = ($(window).width()/flow.zoomScale)/2;
           var height = ($(window).height()/flow.zoomScale)/2;
           var zoomX = flow.zoomX / flow.zoomScale;
@@ -218,7 +220,8 @@ angular.module('octobluApp')
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
         nodeElement.append(
-          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight));
+          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
+            .attr({'preserveAspectRatio':'xMaxYMax'}));
 
         renderIsOnline(node, nodeElement);
 

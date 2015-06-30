@@ -78,14 +78,21 @@ angular.module('octobluApp')
     }
 
     function addDragBehavior(draggedElement, node, flow) {
-      var diffInfo = {x:0,y:0,pass:false,toLinks:[],fromLinks:[]};
+      var moveInfo;
       var MIN_DIFF = 5;
       function minDiff(event) {
-        if (diffInfo.pass) { return true; }
-        var dX = Math.abs(diffInfo.x-event.clientX);
-        var dY = Math.abs(diffInfo.y-event.clientY);
-        return diffInfo.pass = (dX>MIN_DIFF || dY>MIN_DIFF);
+        if (!moveInfo) { return false; }
+        if (moveInfo.pass) { return true; }
+        var dX = Math.abs(moveInfo.origX-event.clientX);
+        var dY = Math.abs(moveInfo.origY-event.clientY);
+        return moveInfo.pass = (dX>MIN_DIFF || dY>MIN_DIFF);
       }
+
+      var throttleNodeDrag = _.throttle(
+        function(x,y) {
+          renderTemporaryLinks(node,flow,moveInfo,{x:x,y:y});
+          draggedElement.attr({"transform":"translate("+x+","+y+")"});
+        },30);
 
       draggedElement.drag(
         function (dx,dy,ex,ey,event) {
@@ -97,19 +104,19 @@ angular.module('octobluApp')
           var to = snap.transformCoords(event.clientX,event.clientY);
           var newX = to.x - (FlowNodeDimensions.width / 2);
           var newY = to.y - (FlowNodeDimensions.minHeight / 2);
-          draggedElement.attr({"transform": "translate(" + newX + "," + newY + ")"});
-          renderTemporaryLinks(node,flow,diffInfo,newX,newY);
+          throttleNodeDrag(newX,newY);
         },
         function (x,y,event) {
           //console.log("renderer onDragStart:", arguments);
           if(!event){return};
           event.stopPropagation();
           event.preventDefault();
-          diffInfo.x = event.clientX;
-          diffInfo.y = event.clientY;
-          diffInfo.pass = false;
-          diffInfo.toLinks   = _.where(flow.links,{to:node.id});
-          diffInfo.fromLinks = _.where(flow.links,{from:node.id});
+          moveInfo = {
+            origX: event.clientX,
+            origY: event.clientY,
+            toLinks  : _.where(flow.links,{to:node.id}),
+            fromLinks: _.where(flow.links,{from:node.id})
+          };
           dispatch.nodeSelected(node);
           select(draggedElement);
         },
@@ -123,8 +130,8 @@ angular.module('octobluApp')
           var to = snap.transformCoords(event.clientX,event.clientY);
           node.x = to.x - (FlowNodeDimensions.width / 2);
           node.y = to.y - (FlowNodeDimensions.minHeight / 2);
-          draggedElement.attr({"transform": "translate(" + node.x + "," + node.y + ")"});
-          renderTemporaryLinks(node,flow,diffInfo);
+          renderTemporaryLinks(node,flow,moveInfo);
+          draggedElement.attr({"transform":"translate("+node.x+","+node.y+")"});
         });
     }
 
@@ -157,7 +164,7 @@ angular.module('octobluApp')
       });
     }
 
-    function renderTemporaryLinks(node,flow,info,x,y) {
+    function renderTemporaryLinks(node,flow,info,pos) {
       snap.selectAll('.flow-link-to-'+node.id).remove();
       snap.selectAll('.flow-link-from-'+node.id).remove();
       var processLinks = function(links, loc) {
@@ -165,8 +172,8 @@ angular.module('octobluApp')
           var linkElement = FlowLinkRenderer.render(snap, link, flow, loc);
         });
       };
-      processLinks(info.toLinks,{to:{x:x,y:y}});
-      processLinks(info.fromLinks,{from:{x:x,y:y}});
+      processLinks(info.toLinks,{to:pos});
+      processLinks(info.fromLinks,{from:pos});
     }
 
     function renderNodes(flow) {
@@ -334,6 +341,7 @@ angular.module('octobluApp')
         flow.zoomY = -flow.selectedFlowNode.y + height;
       },
       render: function(flow) {
+        // WARNING: don't add listeners here!
         console.log("rendering!");
         context.flow = flow;
         renderLinks(flow);
