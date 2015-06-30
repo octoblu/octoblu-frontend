@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "required": true,
+        "default": "notify"
+      },
+      "message": {
+        "type": "string",
+        "required": true
+      }
+    }
+}
