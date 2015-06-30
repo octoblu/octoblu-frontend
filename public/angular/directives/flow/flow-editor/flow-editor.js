@@ -13,7 +13,7 @@ angular.module('octobluApp')
 
       link: function ($scope, element) {
         var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
-        
+
         $scope.$watch("flow.zoomScale", function(newZoomScale, oldZoomScale){
           if(!newZoomScale) {
             return;
@@ -107,9 +107,16 @@ angular.module('octobluApp')
         });
 
         flowRenderer.renderGrid();
+        //render($scope.flow);
 
-        function render(newFlow, oldFlow) {
-          if (!newFlow) {
+        $scope.$watch('flow', function(newFlow, oldFlow) {
+
+          console.log('checking render...');
+
+          if (!newFlow || !(newFlow.nodes || newFlow.links)) {
+            if (newFlow) {
+              console.log('no flow info...?',newFlow.nodes,newFlow.links,newFlow);
+            }
             return;
           }
 
@@ -135,9 +142,7 @@ angular.module('octobluApp')
 
           //console.log(newFlow);
           flowRenderer.render(newFlow);
-        }
-
-        $scope.$watch('flow', render, true);
+        }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }

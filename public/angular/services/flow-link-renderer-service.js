@@ -11,7 +11,7 @@ angular.module('octobluApp')
       return locations[parseInt(portStr)] || 0;
     }
 
-    function linkPath(link, flowNodes) {
+    function linkPath(link, flowNodes, loc) {
       var sourceNode = _.findWhere(flowNodes, {id: link.from}),
         targetNode   = _.findWhere(flowNodes, {id: link.to});
 
@@ -21,8 +21,9 @@ angular.module('octobluApp')
 
       var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
       var from = {
-        x: sourceNode.x + FlowNodeDimensions.width,
-        y: sourceNode.y + sourcePortLocation + (FlowNodeDimensions.portHeight / 2)
+        x: ((loc && loc.from && loc.from.x) || sourceNode.x) + FlowNodeDimensions.width,
+        y: ((loc && loc.from && loc.from.y) || sourceNode.y) +
+            sourcePortLocation + (FlowNodeDimensions.portHeight / 2)
       };
       var fromCurve = {
         x: from.x + FlowNodeDimensions.minHeight,
@@ -31,8 +32,9 @@ angular.module('octobluApp')
 
       var targetPortLocation = getNodePortLocation(link.toPort, targetNode.inputLocations);
       var to = {
-        x: targetNode.x,
-        y: targetNode.y + targetPortLocation + (FlowNodeDimensions.portHeight / 2)
+        x: ((loc && loc.to && loc.to.x) || targetNode.x),
+        y: ((loc && loc.to && loc.to.y) || targetNode.y) +
+            targetPortLocation + (FlowNodeDimensions.portHeight / 2)
       };
       var toCurve = {
         x: to.x - FlowNodeDimensions.minHeight,
@@ -46,17 +48,17 @@ angular.module('octobluApp')
     }
 
     return {
-      render: function (snap, link, flow) {
-        var path = linkPath(link, flow.nodes)
+      render: function (snap, link, flow, loc) {
+        var path = linkPath(link, flow.nodes, loc)
         if (!path){
           return;
         }
         //console.log('renderLink:',link);
         var link = snap.path(path)
                 .toggleClass('flow-link', true)
-                .toggleClass('selected', (link === flow.selectedLink))
                 .toggleClass('flow-link-to-'+link.to,true)
-                .toggleClass('flow-link-from-'+link.from,true);
+                .toggleClass('flow-link-from-'+link.from,true)
+                .toggleClass('selected', (link === flow.selectedLink));
 
         snap.select(".flow-link-area").append(link);
         return link;
