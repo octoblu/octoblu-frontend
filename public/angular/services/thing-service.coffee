@@ -1,7 +1,8 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL, $http) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
+    @http = $http
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
   addLogo: (data) =>
@@ -10,6 +11,16 @@ class ThingService
     filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
+
+  addMessageSchemaFromUrl: (data, callback) =>
+    return callback null, _.clone data unless data.messageSchemaUrl?
+
+    @http.get(data.messageSchemaUrl)
+    .success (body, status, headers, config) ->
+      data.messageSchema = body
+      return callback null, data
+    .error (body, status, headers, config) ->
+      return callback new Error()
 
   calculateTheEverything: (device, peers) =>
     uuid: '*'
@@ -89,7 +100,8 @@ class ThingService
 
         things = _.map things, @addLogo
 
-        deferred.resolve things
+        async.map things, @addMessageSchemaFromUrl, (error, things) =>
+          deferred.resolve things
 
     deferred.promise
 

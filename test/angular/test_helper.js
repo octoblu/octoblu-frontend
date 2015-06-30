@@ -9,6 +9,8 @@ window.meshblu = {
 
 beforeEach(function () {
   module('octobluApp', function($provide) {
+    $provide.value('$mdToast', {});
+    $provide.value('$mdDialog', {});
     $provide.constant('OCTOBLU_API_URL', '');
     $provide.constant('OCTOBLU_ICON_URL', '');
   });
