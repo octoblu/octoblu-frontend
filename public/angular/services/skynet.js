@@ -2,7 +2,6 @@
 angular.module('octobluApp')
     .service('skynetService', function ($q, $rootScope, $cookies, AuthService, MESHBLU_HOST, MESHBLU_PORT, NotifyService) {
         var user, defer = $q.defer(), skynetPromise = defer.promise;
-
         var conn = meshblu.createConnection({
             server: MESHBLU_HOST,
             port: MESHBLU_PORT,

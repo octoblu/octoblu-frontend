@@ -195,7 +195,6 @@ angular.module('octobluApp')
 
                 return skynetPromise.then(function(skynetConnection){
                     var defer = $q.defer();
-
                  skynetConnection.claimdevice(deviceOptions, function(result){
                         if(result.error) {
                             return defer.reject(result.error);
@@ -259,13 +258,15 @@ angular.module('octobluApp')
                     return service.getUnclaimedDevices();
                 }
 
-                return service.getUnclaimedNodes().then(function(devices){
-                    return _.where(devices, {type: nodeType});
+                var query = {type: nodeType};
+                return service.getUnclaimedNodes(query).then(function(devices){
+                    return _.where(devices, query);
                 });
             },
 
             getUnclaimedDevices: function () {
-                return service.getUnclaimedNodes().then(function (devices) {
+                var query = {type: {$ne: 'gateway'}};
+                return service.getUnclaimedNodes(query).then(function (devices) {
                     return _.filter(devices, function(device){
                         return (device.type !== 'gateway');
                     });
@@ -273,17 +274,21 @@ angular.module('octobluApp')
             },
 
             getUnclaimedGateways: function () {
-                return service.getUnclaimedNodes().then(function (devices) {
-                    return _.where(devices, {type: 'gateway'});
+                var query = {type: 'gateway'};
+                return service.getUnclaimedNodes(query).then(function (devices) {
+                    return _.where(devices, query);
                 });
             },
 
-            getUnclaimedNodes: function() {
+            getUnclaimedNodes: function(query) {
+                query = query || {online: true};
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.unclaimeddevices({}, function (result) {
-                        defer.resolve(_.where(result.devices, {online: true}));
+                    skynetConnection.unclaimeddevices(query, function (result) {
+                        var devices = _.where(result.devices, query);
+                        devices = _.map(devices, addLogoUrl);
+                        defer.resolve(devices);
                     });
                 });
 
