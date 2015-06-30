@@ -229,6 +229,42 @@ describe 'ThingService', ->
       it 'should resolve with the token', ->
         expect(@result).to.equal 'sweet'
 
+  describe '->getThing', ->
+    beforeEach ->
+      @skynet.devices = sinon.stub()
+
+    describe 'when devices yields a device', ->
+      beforeEach ->
+        device = uuid: 'me', name: 'Its Me', type: 'device:me'
+        @skynet.devices.yields devices: [device]
+        storeResults = (@result) =>
+        _.defer => @rootScope.$digest()
+        @sut.getThing(uuid: 'me', token: 'no you').then storeResults
+
+      it 'should resolve its promise with that device', ->
+        expect(@result.uuid).to.deep.equal 'me'
+        expect(@result.name).to.deep.equal 'Its Me'
+
+      it 'should call devices with the uuid and token', ->
+        expect(@skynet.devices).to.have.been.calledWith uuid: 'me', token: 'no you'
+
+      it 'should add the logo to me', ->
+        expect(@result.logo).to.equal 's3/device/me.svg'
+
+    describe 'when devices yields some device', ->
+      beforeEach ->
+        devices = [{uuid: 'cool', name: 'Its Cee', type: 'device:cool-beans'}]
+        @skynet.devices.yields devices: devices
+        storeResults = (@result) =>
+        _.defer => @rootScope.$digest()
+        @sut.getThing(uuid: 'cool', token: 'yeah').then storeResults
+
+      it 'should call devices with the uuid and token', ->
+        expect(@skynet.devices).to.have.been.calledWith uuid: 'cool', token: 'yeah'
+
+      it 'should add the logo to me', ->
+        expect(@result.logo).to.equal 's3/device/cool-beans.svg'
+
   describe '->getThings', ->
     beforeEach ->
       @skynet.mydevices = sinon.stub()

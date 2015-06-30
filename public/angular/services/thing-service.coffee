@@ -89,6 +89,18 @@ class ThingService
 
     deferred.promise
 
+  getThing: (query={}) =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+      connection.devices query, (result={}) =>
+        return deferred.reject error if result.error?
+        thing = _.first result.devices
+        thing = @addLogo thing
+        deferred.resolve thing
+
+    deferred.promise
+
   getThings: =>
     deferred = @q.defer()
 

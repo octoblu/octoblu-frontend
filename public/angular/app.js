@@ -163,6 +163,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'AddNodeWizardController',
         templateUrl: '/pages/node-wizard/add.html'
       })
+      .state('material.nodewizard.claim', {
+        url: '/claim/:uuid',
+        controller: 'ClaimNodeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/claim.html'
+      })
       .state('material.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',
         controller: 'addDeviceController',
