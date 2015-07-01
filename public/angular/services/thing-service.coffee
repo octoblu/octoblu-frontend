@@ -129,6 +129,14 @@ class ThingService
 
     deferred.promise
 
+  revokeToken: (uuid, token) =>
+    deferred = @q.defer()
+    @skynetPromise.then (connection) =>
+        connection.revokeToken uuid, token, (result) =>
+          return deferred.reject new Error('Failed to revokeToken') unless result?
+          deferred.resolve {}
+    deferred.promise
+
   updateDevice: (device={}) =>
     deferred = @q.defer()
 

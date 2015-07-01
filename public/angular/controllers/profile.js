@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService, ThingService) {
 
   AuthService.getCurrentUser().then(function(user){
     $scope.currentUser = user;
@@ -9,13 +9,16 @@ angular.module('octobluApp')
 
   $scope.tokens = [];
 
-  skynetService.getSkynetConnection().then(function (skynetConnection) {
-    skynetConnection.whoami({}, function(data) {
-      $scope.device = data;
-      $scope.tokens = data.tokens || [];
-      $scope.$digest();
+  var refreshDevice = function(){
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.whoami({}, function(data) {
+        $scope.device = data;
+        $scope.tokens = data.tokens || [];
+        $scope.$digest();
+      });
     });
-  });
+  };
+  refreshDevice();
 
   $scope.confirmDeleteToken = function(token){
     NotifyService.confirm({
@@ -30,6 +33,19 @@ angular.module('octobluApp')
     $scope.device.tokens = _.without($scope.tokens, token);
     $scope.tokens = $scope.device.tokens;
     deviceService.updateDevice($scope.device);
+  };
+
+  $scope.generateSessionToken = function() {
+    ThingService.generateSessionToken($scope.device).then(function(token){
+      var alertOptions = {
+        title: 'New Session Token',
+        content: token,
+        ok: 'Dismiss'
+      };
+
+      $mdDialog.show($mdDialog.alert(alertOptions).clickOutsideToClose(false));
+      refreshDevice();
+    });
   };
 
   $scope.resetToken = function(){
