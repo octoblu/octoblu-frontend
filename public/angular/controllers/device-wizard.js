@@ -30,12 +30,12 @@ angular.module('octobluApp')
                 }).then(function (result) {
                     return deviceService.getDevices(true);
                 }).then(function(){
-                    $state.go('material.nodes', {}, {reload : true});
+                    $state.go('material.configure', {}, {reload : true});
                 }, function (error) {
                     if (error) {
                         console.log(error);
                     }
-                    $state.go('material.nodes');
+                    $state.go('material.configure');
                 });
         };
 
