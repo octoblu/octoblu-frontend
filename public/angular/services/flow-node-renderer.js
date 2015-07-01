@@ -131,7 +131,7 @@ angular.module('octobluApp')
               if (sourcePortType == 'output') {
                 LinkRenderer.render(snap, from, to);
               } else {
-                LinkRenderer.render(snap, to, to);
+                LinkRenderer.render(snap, to, from);
               }
             },
             function (x,y,event) {

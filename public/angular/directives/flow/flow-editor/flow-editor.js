@@ -26,17 +26,16 @@ angular.module('octobluApp')
             if (message.topic !== 'pulse') {
               return;
             }
-            var element = d3.select('#node-' + message.payload.node + ' > image');
-            element.transition()
-              .attr('width', FlowNodeDimensions.width * 1.2)
-              .attr('height', FlowNodeDimensions.minHeight * 1.2)
-              .duration(250);
-
-            element.transition()
-              .delay(250)
-              .attr('width', FlowNodeDimensions.width)
-              .attr('height', FlowNodeDimensions.minHeight)
-              .duration(250);
+            var element = Snap.select('#node-' + message.payload.node + ' > image');
+            element.animate({
+              width :FlowNodeDimensions.width * 1.2,
+              height:FlowNodeDimensions.minHeight * 1.2
+            },250, mina.backin, function() {
+              element.animate({
+                width :FlowNodeDimensions.width,
+                height:FlowNodeDimensions.minHeight
+              },250);
+            });
           });
         });
 
