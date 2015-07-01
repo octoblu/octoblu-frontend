@@ -77,7 +77,7 @@ angular.module('octobluApp')
       });
     }
 
-    function addDragBehavior(draggedElement, node, flow) {
+    function addDragBehavior(dragGroup, dragItem, node, flow) {
       var moveInfo;
       var MIN_DIFF = 5;
       function minDiff(event) {
@@ -91,10 +91,10 @@ angular.module('octobluApp')
       var throttleNodeDrag = _.throttle(
         function(x,y) {
           renderTemporaryLinks(node,flow,moveInfo,{x:x,y:y});
-          draggedElement.attr({"transform":"translate("+x+","+y+")"});
+          dragGroup.attr({"transform":"translate("+x+","+y+")"});
         },30);
 
-      draggedElement.drag(
+      dragItem.drag(
         function (dx,dy,ex,ey,event) {
           //console.log("renderer onMove", arguments);
           if(!event){return};
@@ -118,7 +118,7 @@ angular.module('octobluApp')
             fromLinks: _.where(flow.links,{from:node.id})
           };
           dispatch.nodeSelected(node);
-          select(draggedElement);
+          select(dragGroup);
         },
         function (event) {
           //console.log("renderer onDragEnd", arguments);
@@ -131,7 +131,7 @@ angular.module('octobluApp')
           node.x = to.x - (FlowNodeDimensions.width / 2);
           node.y = to.y - (FlowNodeDimensions.minHeight / 2);
           renderTemporaryLinks(node,flow,moveInfo);
-          draggedElement.attr({"transform":"translate("+node.x+","+node.y+")"});
+          dragGroup.attr({"transform":"translate("+node.x+","+node.y+")"});
         });
     }
 
@@ -183,8 +183,9 @@ angular.module('octobluApp')
         if(readonly){
           return;
         }
-        addDragBehavior(nodeElement, node, flow);
-        addClickBehavior(nodeElement, node);
+        var nodeImage = nodeElement.select("image");
+        addDragBehavior(nodeElement, nodeImage, node, flow);
+        addClickBehavior(nodeImage, node);
         addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
       });
     }
