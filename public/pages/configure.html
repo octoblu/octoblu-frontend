@@ -2,7 +2,7 @@
   <h2 class="md-toolbar-tools page-heading">
     <a href class="menu-icon" ng-click="toggleNav()">
       <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-      Configured
+      Configure
     </a>
   </h2>
 </md-toolbar>
@@ -17,34 +17,21 @@
         <a ui-sref="material.configure({tab:'flows'})" ng-class="{'is-selected': activeTab == 'flows'}" class="tab-link">Flows</a>
       </div>
 
-
       <div class="interior__header-actions">
         <div class="lookup">
           <i class="lookup__icon fa fa-search fa-lg"></i>
           <input ng-model="deviceNameFilter" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
         </div>
 
-        <a ui-sref="material.nodewizard.addnode" class="button">
-          Add
+        <div class="interior__header-separator"></div>
+
+        <a ui-sref="material.nodewizard.addnode" class="button interior__header-action">
+          Connect Nodes
         </a>
       </div>
     </div>
   </header>
 
-  <device-collection devices="{devices}" category-filter="{category-filter}" name-filter="{name-filter}">
+  <device-collection devices="devices" category-filter="categoryFilter" name-filter="{{deviceNameFilter}}" loading="loading">
   </device-collection>
-  
-  <div class="connected-nodes interior">
-    <div ng-repeat="device in filteredDevices = (devices | filter: categoryFilter | filter: {name:deviceNameFilter}  | orderBy: 'name')" class="connected-node">
-      <a href="{{nextStepUrl(device)}}">
-        <div title="{{device.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: (!device.online && device.uuid)}">
-          <img ng-src="{{device.logo}}" width="100%" height="100%">
-        </div>
-        <div class="connected-node-name truncate">{{device.name}}</div>
-      </a>
-    </div>
-  </div>
-
-
-
 </md-content>

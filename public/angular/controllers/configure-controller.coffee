@@ -3,32 +3,31 @@ class ConfigureController
     @scope = $scope
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
-    activeTab = $stateParams.tab || 'all'
+    @scope.activeTab = $stateParams.tab || 'all'
+    @scope.loading = true
 
     NodeService.getNodes().then (devices) =>
-      devices = _.map devices, @addLogoUrl
       @scope.loading = false
       @scope.devices = devices
 
-  addLogoUrl: (device) =>
-    return device if device.logo
-    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
+    @scope.$watch 'activeTab', (newTab) =>
+      @setNodesForTab newTab
 
-    type = device.type.replace 'octoblu:', 'device:'
-    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
+  filterChannels: (node) =>
+    node.category == 'channel'
 
-    device
+  filterFlows: (node) =>
+    node.type == 'device:flow'
 
-  nextStepUrl: (device) =>
-    sref = "material.#{device.category}"
-    params = {}
+  filterDevicesAndMicroblu: (node) =>
+    return false if node.type == 'device:flow'
+    node.category == 'device' || node.category == 'microblu'
 
-    if device.category == 'device' || device.category == 'microblu'
-      params.uuid = device.uuid
-    else if device.category == 'channel'
-      params.id = device.channelid
-
-    $state.href sref, params
+  setNodesForTab: (tab) =>
+    @scope.categoryFilter = null if (tab == 'all')
+    @scope.categoryFilter = @filterChannels if (tab == 'channels')
+    @scope.categoryFilter = @filterDevicesAndMicroblu if (tab == 'devices')
+    @scope.categoryFilter = @filterFlows if (tab == 'flows')
 
 
 angular.module('octobluApp').controller 'ConfigureController', ConfigureController

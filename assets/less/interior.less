@@ -20,3 +20,38 @@
     .justify-content(space-between);
   }
 }
+
+.interior__header-actions {
+  .flex;
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-between);
+  .align-items(center);
+}
+
+.interior__header-action {
+  border-radius: 2px;
+  padding: 6px 25px;
+
+  background-color: #14568f;
+  color: white;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    background: darken(#14568f, 5%);
+    color: white;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+
+.interior__header-separator {
+  margin: 0 20px;
+  padding: 5px 0;
+  height: 30px;
+  width: 1px;
+
+  background: #EDEDED;
+}
