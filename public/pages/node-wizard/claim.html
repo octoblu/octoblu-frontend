@@ -5,18 +5,19 @@
 
   <div class="node-wizard__body">
 
-    <form ng-submit="controller.claimDevice()" class="node-wizard__form">
+    <p class="help-block" ng-if="controller.errorMessage">{{controller.errorMessage}}</p>
+
+    <form ng-if="!controller.loading" ng-submit="controller.iWantToClaimTheDevice()" class="node-wizard__form">
       <md-input-container class="node-wizard__form-row">
         <label>Name</label>
         <input type="text" ng-model="controller.deviceName" aria-label="Name" required>
       </md-input-container>
-
-      <p class="help-block node-wizard__form-row" ng-if="errorMessage">{{controller.errorMessage}}</p>
 
       <md-button class="md-primary md-raised node-wizard__button">
         Claim
       </md-button>
     </form>
 
+    <da-loading loading="controller.loading"></da-loading>
   </div>
 </md-content>
