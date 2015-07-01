@@ -30,11 +30,11 @@ angular.module('octobluApp')
             element.animate({
               width :FlowNodeDimensions.width * 1.2,
               height:FlowNodeDimensions.minHeight * 1.2
-            },250, mina.backin, function() {
+            }, 250, mina.easeout, function() {
               element.animate({
                 width :FlowNodeDimensions.width,
                 height:FlowNodeDimensions.minHeight
-              },250);
+              }, 250, mina.easein);
             });
           });
         });
