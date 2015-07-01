@@ -8,17 +8,20 @@ angular.module('octobluApp')
       scope: {
         flow: '=',
         readonly: '=',
-        displayOnly: '='
+        displayOnly: '=',
+        renderViewBox: '='
       },
 
       link: function ($scope, element) {
         var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
-        $scope.$watch("flow.zoomScale", function(newZoomScale, oldZoomScale){
-          if(!newZoomScale) {
-            return;
-          }
-          flowRenderer.updateZoomScale(newZoomScale);
+        $scope.$on('centerViewBox', function(){
+          console.log('centerViewBox');
+          flowRenderer.centerViewBox();
+        });
+
+        $scope.$on("updateZoomScale", function(){
+          flowRenderer.updateZoomScale($scope.flow.zoomScale);
         });
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
@@ -120,15 +123,7 @@ angular.module('octobluApp')
           }
 
           if (oldFlow) {
-            var modFlow = _.clone(newFlow);
-            delete modFlow.zoomX;
-            delete modFlow.zoomY;
-            delete modFlow.zoomScale;
-            delete modFlow.selectedLink;
-            delete modFlow.selectedFlowNode;
-            delete modFlow.$$hashKey;
-            delete modFlow.hash;
-
+            var modFlow = {nodes:newFlow.nodes,links:newFlow.links};
             var flowDiff = _.pick(modFlow,function(value,key){
               return !_.isEqual(value,oldFlow[key]);
             });
@@ -145,7 +140,6 @@ angular.module('octobluApp')
 
         $scope.$watch('flow.selectedFlowNode', function(){
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
-
           //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 

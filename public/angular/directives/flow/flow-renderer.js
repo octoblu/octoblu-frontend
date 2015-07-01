@@ -1,6 +1,14 @@
 angular.module('octobluApp')
 .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
-  var VIEWBOX_X = 0, VIEWBOX_Y=0, VIEWBOX_WIDTH=1000, VIEWBOX_HEIGHT=1000;
+  var
+    VIEWBOX_X=0,
+    VIEWBOX_Y=0,
+    VIEWBOX_W=1000,
+    VIEWBOX_H=1000,
+    viewBoxX = VIEWBOX_X,
+    viewBoxY = VIEWBOX_Y,
+    viewBoxW = VIEWBOX_W,
+    viewBoxH = VIEWBOX_H;
 
   return function (element, options) {
     var snap = Snap(".flow-editor-workspace");
@@ -270,10 +278,15 @@ angular.module('octobluApp')
         if(!event){return};
         event.stopPropagation();
         event.preventDefault();
-        var scaleChange = 1-(event.deltaY/event.screenY);
+        var scaleChange = 1+(event.deltaY/event.screenY);
         //console.log('wheel:', direction, event.deltaY, scaleChange, event);
-        context.flow.zoomScale *= scaleChange;
-        updateZoomScale(context.flow.zoomScale);
+        var newW = viewBoxW * scaleChange;
+        var newH = viewBoxH * scaleChange;
+        var newX = viewBoxX - (newW - viewBoxW)/2;
+        var newY = viewBoxY - (newH - viewBoxH)/2;
+
+        updateViewBox(newX,newY,newW,newH);
+        context.flow.zoomScale = VIEWBOX_W/newW;
       });
     }
     snap.node.addEventListener('scroll', function(event) {
@@ -281,24 +294,50 @@ angular.module('octobluApp')
     });
 
     function updateViewBox(x,y,w,h) {
-        snap.attr({'viewBox': [x, y, w, h].join(' ')});
+      console.log('setting viewbox to',x,y,w,h);
+      viewBoxX = x;
+      viewBoxY = y;
+      viewBoxW = w;
+      viewBoxH = h;
+      snap.attr({'viewBox': [x,y,w,h].join(' ')});
+    }
+
+    function getViewBox() {
+      var vBox = snap.attr('viewBox');
+      console.log(vBox);
+      viewBoxX = vBox.x;
+      viewBoxY = vBox.y;
+      viewBoxW = vBox.w;
+      viewBoxH = vBox.h;
     }
 
     function updateZoomScale(scale) {
+      console.log("setting scale to ",scale);
       scale = scale || 1;
-      var w = VIEWBOX_WIDTH  / scale;
-      var h = VIEWBOX_HEIGHT / scale;
-      var x = VIEWBOX_X - (w - VIEWBOX_WIDTH)/2;
-      var y = VIEWBOX_Y - (h - VIEWBOX_HEIGHT)/2;
+      getViewBox();
+      var w = VIEWBOX_W / scale;
+      var h = VIEWBOX_H / scale;
+      var x = viewBoxX - (w-viewBoxW)/2;
+      var y = viewBoxY - (h-viewBoxH)/2;
       updateViewBox(x,y,w,h);
+    }
+
+    function centerViewBox() {
+      var vb = snap.select('.flow-editor-render-area').getBBox();
+      var x = vb.x - 50;
+      var y = vb.y - 50;
+      var w = vb.width + 200;
+      var h = vb.height + 200;
+      updateViewBox(x,y,w,h);
+      context.flow.zoomScale = VIEWBOX_W / w;
     }
 
     function addPanBehavior(dragElement, context) {
       dragElement.addEventListener('dragstart', function(event){
         event.preventDefault();
 
-        var startViewboxX = VIEWBOX_X;
-        var startViewboxY = VIEWBOX_Y;
+        var startViewboxX = viewBoxX;
+        var startViewboxY = viewBoxY;
         var originalX = event.clientX;
         var originalY = event.clientY;
 
@@ -309,9 +348,9 @@ angular.module('octobluApp')
           var currentPos  = snap.transformCoords(event.clientX, event.clientY);
           var differenceX = currentPos.x - startPos.x;
           var differenceY = currentPos.y - startPos.y;
-          VIEWBOX_X = startViewboxX - differenceX;
-          VIEWBOX_Y = startViewboxY - differenceY;
-          updateZoomScale(context.flow.zoomScale);
+          var newX = startViewboxX - differenceX;
+          var newY = startViewboxY - differenceY;
+          updateViewBox(newX, newY, viewBoxW, viewBoxH);
         }
 
         var throttleDragging = _.throttle(dragging,30);
@@ -343,8 +382,13 @@ angular.module('octobluApp')
       },
       render: function(flow) {
         // WARNING: don't add listeners here!
+        if (!flow) { return; }
         console.log("rendering!");
         context.flow = flow;
+        if (!snap.attr('viewBox')){
+          updateViewBox(VIEWBOX_X,VIEWBOX_Y,VIEWBOX_H,VIEWBOX_W);
+          flow.zoomScale = 1;
+        }
         renderLinks(flow);
         renderNodes(flow);
         //zoom(flow);
@@ -353,7 +397,9 @@ angular.module('octobluApp')
       on: function(event, callback) {
         return dispatch.on(event, callback);
       },
-      updateZoomScale: updateZoomScale
+      updateViewBox: updateViewBox,
+      updateZoomScale: updateZoomScale,
+      centerViewBox: centerViewBox
     };
   };
 });

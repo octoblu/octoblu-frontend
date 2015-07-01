@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
+.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -327,49 +327,26 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow.zoomScale + 0.25 <= 2) {
-      $scope.activeFlow.zoomScale += 0.25;
+    $scope.activeFlow.zoomScale *= 1.25;
+    if ($scope.activeFlow.zoomScale > 8) {
+      $scope.activeFlow.zoomScale = 8;
     }
+    $scope.$broadcast('updateZoomScale',$scope.activeFlow.zoomScale);
   };
 
   $scope.zoomOut = function (e) {
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow.zoomScale - 0.25 >= 0.25) {
-      $scope.activeFlow.zoomScale -= 0.25;
+    $scope.activeFlow.zoomScale /= 1.25;
+    if ($scope.activeFlow.zoomScale < 0.01) {
+      $scope.activeFlow.zoomScale = 0.01;
     }
+    $scope.$broadcast('updateZoomScale',$scope.activeFlow.zoomScale);
   };
 
   $scope.center = function () {
-    $scope.activeFlow.zoomScale = 1;
-
-    var scale = {
-      maxX: Number.NEGATIVE_INFINITY,
-      minX: Number.POSITIVE_INFINITY,
-      maxY: Number.NEGATIVE_INFINITY,
-      minY: Number.POSITIVE_INFINITY,
-      parentHeight: document.getElementsByClassName('flow-editor')[0].offsetHeight,
-      parentWidth: document.getElementsByClassName('flow-editor')[0].offsetWidth
-    };
-
-    _.each( $scope.activeFlow.getNodes(), function(node) {
-      if (node.x > scale.maxX) {
-        scale.maxX = node.x
-      }
-      if (node.x < scale.minX) {
-        scale.minX = node.x
-      }
-      if (node.y > scale.maxY) {
-        scale.maxY = node.y
-      }
-      if (node.y < scale.minY) {
-        scale.minY = node.y
-      }
-    });
-
-    $scope.activeFlow.zoomX = (scale.parentWidth - (scale.minX + scale.maxX))/2;
-    $scope.activeFlow.zoomY = (scale.parentHeight - (scale.minY + scale.maxY))/2;
+    $scope.$broadcast('centerViewBox');
   };
 
   $scope.immediateSave = function (e) {
