@@ -302,19 +302,9 @@ angular.module('octobluApp')
       snap.attr({'viewBox': [x,y,w,h].join(' ')});
     }
 
-    function getViewBox() {
-      var vBox = snap.attr('viewBox');
-      console.log(vBox);
-      viewBoxX = vBox.x;
-      viewBoxY = vBox.y;
-      viewBoxW = vBox.w;
-      viewBoxH = vBox.h;
-    }
-
     function updateZoomScale(scale) {
       console.log("setting scale to ",scale);
       scale = scale || 1;
-      getViewBox();
       var w = VIEWBOX_W / scale;
       var h = VIEWBOX_H / scale;
       var x = viewBoxX - (w-viewBoxW)/2;
@@ -324,12 +314,12 @@ angular.module('octobluApp')
 
     function centerViewBox() {
       var vb = snap.select('.flow-editor-render-area').getBBox();
-      var x = vb.x - 50;
-      var y = vb.y - 50;
-      var w = vb.width + 200;
-      var h = vb.height + 200;
-      updateViewBox(x,y,w,h);
-      context.flow.zoomScale = VIEWBOX_W / w;
+      VIEWBOX_X = vb.x - 50;
+      VIEWBOX_Y = vb.y - 50;
+      VIEWBOX_W = vb.width + 200;
+      VIEWBOX_H = vb.height + 200;
+      updateViewBox(VIEWBOX_X,VIEWBOX_Y,VIEWBOX_W,VIEWBOX_H);
+      context.flow.zoomScale = 1;
     }
 
     function addPanBehavior(dragElement, context) {
