@@ -46,6 +46,20 @@ if [ -z "$KUBE_STATUS" ]; then
   exit 1
 fi
 
+x=0
+while [ "$x" -lt 40 -a -z "$HEALTHCHECK_STATUS" ]; do
+   x=$((x+1))
+   sleep 5
+   echo "Checking healthcheck status, attempt ${x}..."
+   HEALTHCHECK_STATUS=$(curl -I http://172.20.0.10:${NEW_PORT}/healthcheck | head -n 1 | awk '{print $2}' | grep '200')
+done
+
+if [ -z "$HEALTHCHECK_STATUS" ]; then
+  echo "app-octoblu-frontend-${NEW_COLOR} is not ready, giving up."
+  exit 1
+fi
+
+
 AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name app-octoblu-com --load-balancer-ports 80
 AWS_DEFAULT_REGION=us-west-2 aws elb delete-load-balancer-listeners --load-balancer-name app-octoblu-com --load-balancer-ports 443
 AWS_DEFAULT_REGION=us-west-2 aws elb create-load-balancer-listeners --load-balancer-name app-octoblu-com --listeners Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=${NEW_PORT}
