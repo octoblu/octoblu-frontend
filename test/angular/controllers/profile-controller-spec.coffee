@@ -39,6 +39,7 @@ describe 'profileController', ->
         deviceService: null
         $mdDialog: null
         skynetService: @fakeSkynetService
+        ThingService: null
       })
 
   describe 'resetToken', ->
@@ -111,4 +112,3 @@ describe 'profileController', ->
    #        @scope.resetToken()
    #        @scope.$digest()
    #        expect(@NotifyService.alert).to.not.have.been.called
-
