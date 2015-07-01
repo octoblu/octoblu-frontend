@@ -45,7 +45,7 @@ class DeviceDetailController
       .then =>
         @ThingService.deleteThing(@device)
       .then =>
-        @state.go 'material.nodewizard.addnode'
+        @state.go "material.nodewizard.addnode", tab: 'configured'
 
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (token) =>
