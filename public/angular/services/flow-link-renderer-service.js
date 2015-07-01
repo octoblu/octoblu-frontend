@@ -25,13 +25,13 @@ angular.module('octobluApp')
         from = _.clone(loc.from);
       } else {
         if (!sourceNode) { return; }
-        from = _.clone(sourceNode);
+        from = {x:sourceNode.x, y:sourceNode.y};
       }
       if (loc && loc.to) {
         to = _.clone(loc.to);
       } else {
         if (!targetNode) { return; }
-        to = _.clone(targetNode);
+        to = {x:targetNode.x, y:targetNode.y};
       }
 
       if (!sourceNode) {
@@ -41,7 +41,7 @@ angular.module('octobluApp')
         targetNode = {};
       }
 
-      if (!from.noPort) {
+      if (!from.exact) {
         var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
         from.x += FlowNodeDimensions.width;
         from.y += sourcePortLocation + (FlowNodeDimensions.portHeight / 2);
@@ -51,7 +51,7 @@ angular.module('octobluApp')
         y: from.y
       };
 
-      if (!to.noPort) {
+      if (!to.exact) {
         var targetPortLocation = getNodePortLocation(link.toPort, targetNode.inputLocations);
         to.y += targetPortLocation + (FlowNodeDimensions.portHeight / 2);
       }
