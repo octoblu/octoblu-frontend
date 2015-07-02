@@ -305,11 +305,12 @@ describe 'ThingService', ->
       describe 'when called with a uuid and token', ->
         beforeEach ->
           _.defer => @rootScope.$digest()
-          @sut.revokeToken('some-uuid', 'some-token').catch =>
-            @promiseRejected = true
+          @sut.revokeToken uuid: 'some-uuid', token: 'some-token'
+            .catch =>
+              @promiseRejected = true
 
         it 'should call skynet.revokeToken with the uuid and token', ->
-          expect(@skynet.revokeToken).to.have.been.calledWith 'some-uuid', 'some-token'
+          expect(@skynet.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
 
         it 'should reject the promise', ->
           expect(@promiseRejected).to.be.true
@@ -321,11 +322,12 @@ describe 'ThingService', ->
       describe 'when called with a uuid and token', ->
         beforeEach ->
           _.defer => @rootScope.$digest()
-          @sut.revokeToken('some-uuid', 'some-token').then =>
-            @promiseResolved = true
+          @sut.revokeToken uuid: 'some-uuid', token: 'some-token'
+            .then =>
+              @promiseResolved = true
 
         it 'should call skynet.revokeToken with the uuid and token', ->
-          expect(@skynet.revokeToken).to.have.been.calledWith 'some-uuid', 'some-token'
+          expect(@skynet.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
 
         it 'should resolve the promise', ->
           expect(@promiseResolved).to.be.true

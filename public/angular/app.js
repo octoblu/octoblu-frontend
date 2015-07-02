@@ -164,7 +164,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/add.html'
       })
       .state('material.nodewizard.claim', {
-        url: '/claim/:uuid',
+        url: '/claim/:uuid/:token',
         controller: 'ClaimNodeController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/claim.html'

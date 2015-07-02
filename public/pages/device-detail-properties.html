@@ -1,6 +1,6 @@
 <md-input-container>
   <label>name</label>
-  <input ng-model="controller.device.name">
+  <input ng-model="controller.device.name" ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
 </md-input-container>
 
-<form sf-schema="controller.optionsSchema" sf-form="controller.form" sf-model="controller.options"></form>
+<form sf-schema="controller.optionsSchema" sf-form="controller.form" sf-model="controller.options" sf-options="{formDefaults: {ngModelOptions: {updateOn: 'default blur', debounce: {default: 3000, blur: 0}}}}"></form>

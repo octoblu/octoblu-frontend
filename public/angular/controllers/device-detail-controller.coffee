@@ -13,8 +13,6 @@ class DeviceDetailController
     @ThingService = ThingService
     @form = ['*']
 
-    @saveDevice = _.debounce @saveDeviceNow, 750
-
     deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
       @device = device
       @options = @device.options
@@ -61,7 +59,7 @@ class DeviceDetailController
     return unless @device?
     @state.go 'material.deviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
 
-  saveDeviceNow: =>
+  saveDevice: =>
     return unless @device?
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
