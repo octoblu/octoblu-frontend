@@ -13,7 +13,12 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        var flowRenderer = new FlowRenderer(element, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
+        var snap = Snap(".flow-editor-workspace");
+        var renderContext = {flow:$scope.flow};
+
+
+        var flowRenderer = new FlowRenderer(snap, renderContext,
+          {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
         $scope.$on('centerViewBox', function(){
           console.log('centerViewBox');
@@ -29,6 +34,7 @@ angular.module('octobluApp')
             if (message.topic !== 'pulse') {
               return;
             }
+            console.log('pulse!');
             var element = Snap.select('#node-' + message.payload.node + ' > image');
             element.animate({
               width :FlowNodeDimensions.width * 1.2,
@@ -133,7 +139,7 @@ angular.module('octobluApp')
             }
             console.log('flow diff:',flowDiff);
           }
-
+          renderContext.flow = $scope.flow;
           //console.log(newFlow);
           flowRenderer.render(newFlow);
         }, true);

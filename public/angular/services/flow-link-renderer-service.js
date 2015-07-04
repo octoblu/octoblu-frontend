@@ -67,23 +67,32 @@ angular.module('octobluApp')
     }
 
     return {
-      render: function (snap, link, flow, loc, classes) {
+      render: function (snap, link, flow, loc, snapLink, classes) {
         var path = linkPath(link, flow.nodes, loc);
         if (!path){
           return;
         }
         //console.log('renderLink:',link);
-        var snapLink = snap.path(path)
-          .toggleClass('flow-link', true)
-          .toggleClass('selected', (link === flow.selectedLink));
-
-        if (link) {
-          snapLink.toggleClass('flow-link-to-'+link.to,true)
-          snapLink.toggleClass('flow-link-from-'+link.from,true)
+        if (!snapLink) {
+          snapLink = snap.path(path);
+        } else {
+          snapLink.attr({d:path});
         }
 
-        _.each(classes,function(classs){
-          snapLink.toggleClass(classs,true);
+        snapLink.toggleClass('flow-link', true)
+        snapLink.toggleClass('selected', (link === flow.selectedLink));
+
+        if (link && link.to) {
+          snapLink.toggleClass('flow-link-to-'+link.to,true)
+        }
+        if (link && link.from) {
+          snapLink.toggleClass('flow-link-from-'+link.from,true)
+        }
+        if (link && link.from && link.to) {
+          snapLink.attr({id:'link-from-'+link.from+'-to-'+link.to});
+        }
+        _.each(classes,function(claz){
+          snapLink.addClass(claz);
         });
 
         snap.select(".flow-link-area").append(snapLink);

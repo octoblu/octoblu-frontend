@@ -1,17 +1,35 @@
 angular.module('octobluApp')
 .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
   var
-    VIEWBOX_X=0,
-    VIEWBOX_Y=0,
-    VIEWBOX_W=1000,
-    VIEWBOX_H=1000,
-    viewBoxX = VIEWBOX_X,
-    viewBoxY = VIEWBOX_Y,
-    viewBoxW = VIEWBOX_W,
-    viewBoxH = VIEWBOX_H;
+    VIEWBOX_DEFAULT_X=0,
+    VIEWBOX_DEFAULT_Y=0,
+    VIEWBOX_DEFAULT_W=1000,
+    VIEWBOX_DEFAULT_H=1000;
 
-  return function (element, options) {
-    var snap = Snap(".flow-editor-workspace");
+  var objDiff = function(newObj, oldObj) {
+    var modObj = _.clone(newObj);
+    if (!oldObj) return modObj;
+    var objDiff = _.pick(modObj,function(value,key){
+      return !_.isEqual(value,oldObj[key]);
+    });
+    return objDiff;
+  }
+
+  return function (snap, context, options) {
+    var
+      vbOrigX = VIEWBOX_DEFAULT_X,
+      vbOrigY = VIEWBOX_DEFAULT_Y,
+      vbOrigW = VIEWBOX_DEFAULT_W,
+      vbOrigH = VIEWBOX_DEFAULT_H,
+      viewBoxX = vbOrigX,
+      viewBoxY = vbOrigY,
+      viewBoxW = vbOrigW,
+      viewBoxH = vbOrigH;
+
+    var nodeMap, linkMap;
+    var lastNodes, lastLinks;
+
+    //var snap = Snap(".flow-editor-workspace");
     snap.transformCoords = function(x, y){
       var transformPoint = this.node.createSVGPoint();
       transformPoint.x = x;
@@ -98,7 +116,7 @@ angular.module('octobluApp')
 
       var throttleNodeDrag = _.throttle(
         function(x,y) {
-          renderTemporaryLinks(node,flow,moveInfo,{x:x,y:y});
+          updateLinks(node.id,moveInfo,{x:x,y:y});
           dragGroup.attr({"transform":"translate("+x+","+y+")"});
         },30);
 
@@ -127,6 +145,11 @@ angular.module('octobluApp')
           };
           dispatch.nodeSelected(node);
           select(dragGroup);
+          setTimeout(function(){
+            console.log('inTimeout!');
+            node.x = 0;
+            node.y = 0;
+          },1000);
         },
         function (event) {
           //console.log("renderer onDragEnd", arguments);
@@ -138,86 +161,88 @@ angular.module('octobluApp')
           var to = snap.transformCoords(event.clientX,event.clientY);
           node.x = to.x - (FlowNodeDimensions.width / 2);
           node.y = to.y - (FlowNodeDimensions.minHeight / 2);
-          renderTemporaryLinks(node,flow,moveInfo);
+          updateLinks(node.id,moveInfo,{x:node.x,y:node.y});
           dragGroup.attr({"transform":"translate("+node.x+","+node.y+")"});
         });
     }
 
-    function addZoomBehaviour(){
-/*
-      var zoomBehavior = d3.behavior.zoom()
-        .scaleExtent([0.25, 2])
-        .on('zoom', function(){
-          updateFlowZoomLevel(flow);
-        }).on('zoomstart', function(){
-          snap.select("g").toggleClass('grabby-hand', true);
-        }).on('zoomend', function(){
-          snap.select("g").toggleClass('grabby-hand', false);
-        });
-        */
-      //renderScope.call(zoomBehavior);
-    }
-
     if (!displayOnly) {
-      addZoomBehaviour();
+      //addZoomBehaviour();
     }
 
-    function renderLinks(flow) {
-      snap.selectAll('.flow-link').remove();
-      _.each(flow.links, function (link) {
-        var linkElement = FlowLinkRenderer.render(snap, link, flow);
-        if (linkElement && !readonly) {
-          addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+    // function renderLinks(flow) {
+    //   snap.selectAll('.flow-link').remove();
+    //   _.each(flow.links, function (link) {
+    //     var linkElement = FlowLinkRenderer.render(snap, link, flow);
+    //     if (linkElement && !readonly) {
+    //       addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+    //     }
+    //   });
+    // }
+
+    function renderLinks(newLinksDiff, oldLinksDiff) {
+      _.each(newLinksDiff, function (link, linkId) {
+        if (!oldLinksDiff[linkId]) {
+          snap.selectAll('#link-'+linkId).remove();
+          var linkElement = FlowLinkRenderer.render(snap, link, context.flow);
+          if (linkElement && !readonly) {
+            addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+          }
+        }
+      });
+      _.each(oldLinksDiff, function (link, linkId) {
+        if (!newLinksDiff[linkId]) {
+          snap.selectAll('#link-'+linkId).remove();
         }
       });
     }
 
-    function renderTemporaryLinks(node,flow,info,pos) {
-      snap.selectAll('.flow-link-to-'+node.id).remove();
-      snap.selectAll('.flow-link-from-'+node.id).remove();
+    function updateLinks(nodeId,info,pos) {
+      snap.selectAll('.flow-link-to-'+nodeId).remove();
+      snap.selectAll('.flow-link-from-'+nodeId).remove();
       var processLinks = function(links, loc) {
         _.each(links, function (link) {
-          var linkElement = FlowLinkRenderer.render(snap, link, flow, loc);
+          var linkElement = FlowLinkRenderer.render(snap, link, context.flow, loc);
+          if (linkElement && !readonly) {
+            addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+          }
         });
       };
-      processLinks(info.toLinks,{to:pos});
-      processLinks(info.fromLinks,{from:pos});
+      info = info || {};
+      var toLinks = info.toLinks || _.where(context.flow.links,{to:nodeId});
+      var fromLinks = info.fromLinks || _.where(context.flow.links,{from:nodeId});
+      processLinks(toLinks,{to:pos});
+      processLinks(fromLinks,{from:pos});
     }
 
-    function renderNodes(flow) {
-      snap.selectAll('.flow-node').remove();
-      _.each(flow.nodes, function (node) {
-        var nodeElement = FlowNodeRenderer.render(snap, node, flow);
-        if(readonly){
-          return;
+    function renderNodes(newNodesDiff, oldNodesDiff) {
+      //snap.selectAll('.flow-node').remove();
+      _.each(newNodesDiff, function (node) {
+        if (!oldNodesDiff[node.id]) {
+          var nodeElement = FlowNodeRenderer.render(snap, node, context.flow);
+          if(readonly){
+            return;
+          }
+          var nodeImage = nodeElement.select("image");
+          addDragBehavior(nodeElement, nodeImage, node, context.flow);
+          addClickBehavior(nodeImage, node);
+          addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
+        } else {
+          console.log('translating...');
+          updateLinks(node.id);
+          snap.select('#node-'+node.id).attr({"transform":"translate("+node.x+","+node.y+")"});
         }
-        var nodeImage = nodeElement.select("image");
-        addDragBehavior(nodeElement, nodeImage, node, flow);
-        addClickBehavior(nodeImage, node);
-        addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
+      });
+      _.each(oldNodesDiff, function (node) {
+        if (!newNodesDiff[node.id]) {
+          console.log('removing...',snap.selectAll('#flow-node-'+node.id));
+          snap.selectAll('#node-'+node.id).remove();
+          snap.selectAll('.flow-link-to-'+node.id).remove();
+          snap.selectAll('.flow-link-from-'+node.id).remove();
+        }
       });
     }
-/*
-    function updateFlowZoomLevel(flow) {
-      flow.zoomScale  *= d3.event.scale;
-      flow.zoomX  += (d3.event.translate[0] * flow.zoomScale);
-      flow.zoomY  += (d3.event.translate[1] * flow.zoomScale);
 
-      var scale, x, y;
-      scale = flow.zoomScale;
-      x     = flow.zoomX || 0;
-      y     = flow.zoomY || 0;
-      //dispatch.flowChanged(flow);
-    }
-
-    function zoom(flow) {
-      var scale, x, y;
-      scale = flow.zoomScale;
-      x     = flow.zoomX || 0;
-      y     = flow.zoomY || 0;
-      // renderScope.attr("transform", "translate(" + x + "," + y + ") scale(" + scale + ")");
-    }
-*/
     function renderBackground() {
       var width =  5000000;
       var height = 5000000;
@@ -225,16 +250,7 @@ angular.module('octobluApp')
       var rightEdge = 0 + (width / 2);
       var topEdge   = 0 - (height / 2);
       var bottomEdge   = 0 + (height / 2);
-/*
-      snap.selectAll('.flow-background-overlay').remove();
-      snap.select("g").append(snap.rect()
-        .attr('class', 'overlay')
-        .attr('width', width)
-        .attr('height', height)
-        .attr('x', leftEdge)
-        .attr('y', topEdge)
-        .toggleClass('flow-background-overlay', true));
-        */
+
     }
 
     function Dispatch() {
@@ -286,7 +302,7 @@ angular.module('octobluApp')
         var newY = viewBoxY - (newH - viewBoxH)/2;
 
         updateViewBox(newX,newY,newW,newH);
-        context.flow.zoomScale = VIEWBOX_W/newW;
+        context.flow.zoomScale = vbOrigW/newW;
       });
     }
     snap.node.addEventListener('scroll', function(event) {
@@ -294,7 +310,7 @@ angular.module('octobluApp')
     });
 
     function updateViewBox(x,y,w,h) {
-      console.log('setting viewbox to',x,y,w,h);
+      //console.log('setting viewbox to',x,y,w,h);
       viewBoxX = x;
       viewBoxY = y;
       viewBoxW = w;
@@ -305,8 +321,8 @@ angular.module('octobluApp')
     function updateZoomScale(scale) {
       console.log("setting scale to ",scale);
       scale = scale || 1;
-      var w = VIEWBOX_W / scale;
-      var h = VIEWBOX_H / scale;
+      var w = vbOrigW / scale;
+      var h = vbOrigH / scale;
       var x = viewBoxX - (w-viewBoxW)/2;
       var y = viewBoxY - (h-viewBoxH)/2;
       updateViewBox(x,y,w,h);
@@ -314,11 +330,11 @@ angular.module('octobluApp')
 
     function centerViewBox() {
       var vb = snap.select('.flow-editor-render-area').getBBox();
-      VIEWBOX_X = vb.x - 50;
-      VIEWBOX_Y = vb.y - 50;
-      VIEWBOX_W = vb.width + 200;
-      VIEWBOX_H = vb.height + 200;
-      updateViewBox(VIEWBOX_X,VIEWBOX_Y,VIEWBOX_W,VIEWBOX_H);
+      vbOrigX = vb.x - 50;
+      vbOrigY = vb.y - 50;
+      vbOrigW = vb.width + 200;
+      vbOrigH = vb.height + 200;
+      updateViewBox(vbOrigX,vbOrigY,vbOrigW,vbOrigH);
       context.flow.zoomScale = 1;
     }
 
@@ -356,7 +372,7 @@ angular.module('octobluApp')
       });
     }
 
-    var context = {flow:{}};
+    //var context = {flow:{}};
 
     addPanBehavior(snap.node,context);
     addZoomBehavior(snap.node,context);
@@ -370,17 +386,38 @@ angular.module('octobluApp')
         flow.zoomX = -flow.selectedFlowNode.x + width;
         flow.zoomY = -flow.selectedFlowNode.y + height;
       },
-      render: function(flow) {
+      render: function() {
         // WARNING: don't add listeners here!
-        if (!flow) { return; }
+        if (!context.flow) { return; }
         console.log("rendering!");
-        context.flow = flow;
+        //context.flow = flow;
         if (!snap.attr('viewBox')){
-          updateViewBox(VIEWBOX_X,VIEWBOX_Y,VIEWBOX_H,VIEWBOX_W);
-          flow.zoomScale = 1;
+          updateViewBox(vbOrigX,vbOrigY,vbOrigH,vbOrigW);
+          context.flow.zoomScale = 1;
         }
-        renderLinks(flow);
-        renderNodes(flow);
+        var newNodeMap = _.indexBy(context.flow.nodes,'id');
+        var newLinkMap = _.indexBy(context.flow.links,function(link){
+          return 'from-'+link.from + "-to-" + link.to;
+        });
+
+        var newNodesDiff = objDiff(newNodeMap,lastNodes);
+        var newLinksDiff = objDiff(newLinkMap,lastLinks);
+        var oldNodesDiff = objDiff(lastNodes,newNodeMap);
+        var oldLinksDiff = objDiff(lastLinks,newLinkMap);
+        console.log('newNodesDiff:',newNodesDiff);
+        console.log('newLinksDiff:',newLinksDiff);
+        console.log('oldNodesDiff:',oldNodesDiff);
+        console.log('oldLinksDiff:',oldLinksDiff);
+        lastNodes = _.cloneDeep(newNodeMap);
+        lastLinks = _.cloneDeep(newLinkMap);
+        nodeMap = newNodeMap;
+        linkMap = newLinkMap;
+
+
+        //renderLinks(context.flow);
+        renderLinks(newLinksDiff,oldLinksDiff);
+        renderNodes(newNodesDiff,oldNodesDiff);
+        //renderNodes(context.flow);
         //zoom(flow);
       },
       renderGrid: renderBackground,
