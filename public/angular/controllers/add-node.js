@@ -22,6 +22,10 @@ angular.module('octobluApp')
     return node
   }
 
+  var filterAll = function(node) {
+    return true;
+  }
+
   var filterChannels = function(node) {
     return (node.category === 'channel');
   }
@@ -39,7 +43,7 @@ angular.module('octobluApp')
   });
 
   var setNodesForTab = function(tab) {
-    if (tab === 'all') $scope.categoryFilter = null;
+    if (tab === 'all') $scope.categoryFilter = filterAll;
     if (tab === 'channels') $scope.categoryFilter = filterChannels;
     if (tab === 'devices') $scope.categoryFilter = filterDevicesAndMicroblu;
   };

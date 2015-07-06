@@ -147,11 +147,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design',
         controller: 'DesignerController'
       })
-      // .state('material.configure', {
-      //   url: '/nodes',
-      //   controller: 'NodeController',
-      //   templateUrl: '/pages/connector/nodes/index.html'
-      // })
       .state('material.configure', {
         url: '/configure?tab',
         controller: 'ConfigureController',
