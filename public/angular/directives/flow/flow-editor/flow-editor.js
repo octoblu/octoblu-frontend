@@ -156,7 +156,14 @@ angular.module('octobluApp')
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
+          _.each(snap.selectAll(".selected"),function(selected){
+            selected.toggleClass('selected',false);
+          });
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
+          var nodeElement = snap.select("#node-"+$scope.flow.selectedFlowNode.id);
+          if (nodeElement) {
+            nodeElement.toggleClass('selected',true);
+          }
           //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 

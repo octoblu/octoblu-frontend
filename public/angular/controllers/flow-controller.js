@@ -193,15 +193,6 @@ angular.module('octobluApp')
     debouncedToggle();
   };
 
-  $scope.onDrop = function (data, event) {
-    var flowNodeType = data['json/flow-node-type'];
-
-    flowNodeType.x = (event.clientX - $scope.activeFlow.zoomX) / $scope.activeFlow.zoomScale;
-    flowNodeType.y = (event.clientY - $scope.activeFlow.zoomY) / $scope.activeFlow.zoomScale;
-
-    $scope.$emit('flow-node-type-selected', flowNodeType);
-  };
-
   $scope.copySelection = function (e) {
     if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
