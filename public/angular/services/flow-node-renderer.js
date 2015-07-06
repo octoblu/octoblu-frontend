@@ -211,6 +211,8 @@ angular.module('octobluApp')
           nodeElement = snap.group();
           renderGroup = renderGroup || snap.select(".flow-render-area");
           renderGroup.append(nodeElement);
+        } else {
+          nodeElement.selectAll("*").remove();
         }
 
         nodeElement
@@ -221,18 +223,16 @@ angular.module('octobluApp')
           .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
         nodeElement.append(
-          snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6).attr({'id':'select-'+node.id}));
+          snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
         nodeElement.append(
-          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
-            .attr({'id':'img-'+node.id, preserveAspectRatio:'xMaxYMax'}));
+          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight));
 
         renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
           nodeElement.append(
-            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight)
-              .attr({'id':'socket-'+node.id}));
+            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight));
         }
 
         if (node.errorMessage) {
@@ -253,7 +253,6 @@ angular.module('octobluApp')
           nodeElement
             .append(snap.text(0,0,line)
             .addClass('flow-node-label')
-            .attr({'id':'label-'+node.id})
             .attr({'y': nodeHeight + 10 + (i * 15)})
             .attr({'x': FlowNodeDimensions.width / 2})
             .attr({'text-anchor': 'middle'})

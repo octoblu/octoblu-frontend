@@ -3,12 +3,11 @@ angular.module('octobluApp')
   'use strict';
 
   $scope.addNode = function(flowNodeType, x, y){
-    var flowNode;
-
-    flowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
-    flowNode.x = x / $scope.flow.zoomScale;
-    flowNode.y = y / $scope.flow.zoomScale;
-
+    var flowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
+    console.log('snap:',$scope.snap);
+    var newLoc = $scope.snap.transformCoords(x,y);
+    flowNode.x = newLoc.x;
+    flowNode.y = newLoc.y;
     $scope.flow.nodes.push(flowNode);
   };
 });

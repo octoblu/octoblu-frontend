@@ -31,14 +31,6 @@ angular.module('octobluApp')
     var nodeElements = {}, linkElements = {};
 
     //var snap = Snap(".flow-editor-workspace");
-    snap.transformCoords = function(x, y){
-      var transformPoint = this.node.createSVGPoint();
-      transformPoint.x = x;
-      transformPoint.y = y;
-      transformPoint = transformPoint.matrixTransform(this.node.getScreenCTM().inverse());
-      return {x: transformPoint.x, y: transformPoint.y};
-    };
-
     // snap.attr(
     //   {
     //     'shape-rendering': 'auto',
@@ -223,25 +215,21 @@ angular.module('octobluApp')
     function renderNodes(newNodesDiff, oldNodesDiff) {
       //snap.selectAll('.flow-node').remove();
       _.each(newNodesDiff, function (node) {
-        if (!oldNodesDiff[node.id]) {
-          var nodeElement = FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
-          if (!nodeElement) {
-            return;
-          }
-          nodeElements[node.id] = nodeElement;
-          if(readonly){
-            return;
-          }
-          var nodeImage = nodeElement.select("image");
-          addDragBehavior(nodeElement, nodeImage, node, context.flow);
-          addClickBehavior(nodeImage, node);
-          addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
-        } else {
-          console.log('translating...');
+        if (oldNodesDiff[node.id]) {
           updateLinks(node.id);
-          FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
-          //snap.select('#node-'+node.id).attr({"transform":"translate("+node.x+","+node.y+")"});
         }
+        var nodeElement = FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
+        if (!nodeElement) {
+          return;
+        }
+        nodeElements[node.id] = nodeElement;
+        if(readonly){
+          return;
+        }
+        var nodeImage = nodeElement.select("image");
+        addDragBehavior(nodeElement, nodeImage, node, context.flow);
+        addClickBehavior(nodeImage, node);
+        addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
       });
       _.each(oldNodesDiff, function (node) {
         if (!newNodesDiff[node.id]) {
@@ -255,13 +243,13 @@ angular.module('octobluApp')
     }
 
     function renderBackground() {
-      var width =  5000000;
-      var height = 5000000;
-      var leftEdge = 0 - (width / 2);
-      var rightEdge = 0 + (width / 2);
-      var topEdge   = 0 - (height / 2);
-      var bottomEdge   = 0 + (height / 2);
-
+      // var width =  5000000;
+      // var height = 5000000;
+      // var leftEdge = 0 - (width / 2);
+      // var rightEdge = 0 + (width / 2);
+      // var topEdge   = 0 - (height / 2);
+      // var bottomEdge   = 0 + (height / 2);
+      snap.attr({'fill':'rgb(243, 246, 247)'});
     }
 
     function Dispatch() {

@@ -1,5 +1,17 @@
 angular.module('octobluApp')
   .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions, $interval) {
+    function getSnap() {
+      var snap = Snap(".flow-editor-workspace");
+      snap.transformCoords = function(x, y){
+        var transformPoint = this.node.createSVGPoint();
+        transformPoint.x = x;
+        transformPoint.y = y;
+        transformPoint = transformPoint.matrixTransform(this.node.getScreenCTM().inverse());
+        return {x: transformPoint.x, y: transformPoint.y};
+      };
+      return snap;
+    };
+
     return {
       restrict: 'E',
       controller: 'FlowEditorController',
@@ -13,10 +25,9 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        var snap = Snap(".flow-editor-workspace");
+        var snap = getSnap();
+        $scope.snap = snap;
         var renderContext = {flow:$scope.flow};
-
-
         var flowRenderer = new FlowRenderer(snap, renderContext,
           {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
@@ -149,19 +160,19 @@ angular.module('octobluApp')
           //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 
-        // element.on(
-        //   'dragover',
-        //   function (e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //   });
-        //
-        // element.on(
-        //   'dragenter',
-        //   function (e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //   });
+        element.on(
+          'dragover',
+          function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+
+        element.on(
+          'dragenter',
+          function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
       }
     };
   });
