@@ -13,16 +13,20 @@
       <i class="fa fa-bars fa-2x"></i>
     </md-button>
 
-    <md-content>
-      <a class="navbar-item" href ng-click="closeNav()" ui-sref="material.nodewizard.addnode" layout="row" layout-align="start center">
+    <md-content class="navigation">
+      <a href ng-click="closeNav()" ui-sref="material.nodewizard.addnode" layout="row" layout-align="start center">
         <i class="fa fa-plug fa-lg"></i>
-        <span>Nodes</span>
+        <span>Connect</span>
       </a>
       <a class="navbar-item" href ng-click="closeNav()" ui-sref="material.design" layout="row" layout-align="start center">
         <i class="fa fa-edit fa-lg"></i>
         <span>Design</span>
       </a>
-      <a class="navbar-item" href ng-click="closeNav()" ui-sref="material.process" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.configure" layout="row" layout-align="start center">
+        <i class="fa fa-puzzle-piece fa-lg"></i>
+        <span>Configure</span>
+      </a>
+      <a href ng-click="closeNav()" ui-sref="material.process" layout="row" layout-align="start center">
         <i class="fa fa-tasks fa-lg"></i>
         <span>Process</span>
       </a>
@@ -38,10 +42,6 @@
         <i class="fa fa-file-text fa-lg"></i>
         <span>Bluprints</span>
       </a>
-      <a class="navbar-item" href ng-click="closeNav()" ui-sref="material.resources" layout="row" layout-align="start center">
-        <i class="fa fa-book fa-lg"></i>
-        <span>Resources</span>
-      </a>
 
       <md-divider></md-divider>
 
@@ -49,7 +49,11 @@
         <i class="fa fa-user fa-lg"></i>
         <span>Profile</span>
       </a>
-      <a class="navbar-item" href ng-click="logout()" layout="row" layout-align="start center">
+      <a href ng-click="closeNav()" ui-sref="material.resources" layout="row" layout-align="start center">
+        <i class="fa fa-book fa-lg"></i>
+        <span>Learn</span>
+      </a>
+      <a href ng-click="logout()" layout="row" layout-align="start center">
         <i class="fa fa-sign-out fa-lg"></i>
         <span>Sign out</span>
       </a>

@@ -1,7 +1,8 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL, $http) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
+    @http = $http
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
   addLogo: (data) =>
@@ -10,6 +11,27 @@ class ThingService
     filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
+
+  addMessageSchemaFromUrl: (data, callback) =>
+    return callback null, _.clone data unless data.messageSchemaUrl?
+
+    @http.get(data.messageSchemaUrl)
+    .success (body, status, headers, config) ->
+      data.messageSchema = body
+      return callback null, data
+    .error (body, status, headers, config) ->
+      return callback new Error()
+
+  addMessageFormSchemaFromUrl: (data, callback) =>
+    data.messageFormSchema ?= ['*']
+    return callback null, _.clone data unless data.messageFormSchemaUrl?
+
+    @http.get(data.messageFormSchemaUrl)
+    .success (body, status, headers, config) ->
+      data.messageFormSchema = body
+      return callback null, data
+    .error (body, status, headers, config) ->
+      return callback new Error()
 
   calculateTheEverything: (device, peers) =>
     uuid: '*'
@@ -78,6 +100,18 @@ class ThingService
 
     deferred.promise
 
+  getThing: (query={}) =>
+    deferred = @q.defer()
+
+    @skynetPromise.then (connection) =>
+      connection.devices query, (result={}) =>
+        return deferred.reject error if result.error?
+        thing = _.first result.devices
+        thing = @addLogo thing
+        deferred.resolve thing
+
+    deferred.promise
+
   getThings: =>
     deferred = @q.defer()
 
@@ -89,8 +123,18 @@ class ThingService
 
         things = _.map things, @addLogo
 
-        deferred.resolve things
+        async.map things, @addMessageSchemaFromUrl, (error, things) =>
+          async.map things, @addMessageFormSchemaFromUrl, (error, things) =>
+            deferred.resolve things
 
+    deferred.promise
+
+  revokeToken: (uuid, token) =>
+    deferred = @q.defer()
+    @skynetPromise.then (connection) =>
+        connection.revokeToken uuid, token, (result) =>
+          return deferred.reject new Error('Failed to revokeToken') unless result?
+          deferred.resolve {}
     deferred.promise
 
   updateDevice: (device={}) =>

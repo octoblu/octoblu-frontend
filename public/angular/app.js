@@ -147,6 +147,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design',
         controller: 'DesignerController'
       })
+      .state('material.configure', {
+        url: '/configure?tab',
+        controller: 'ConfigureController',
+        templateUrl: '/pages/configure.html'
+      })
       .state('material.nodewizard', {
         url: '/node-wizard',
         abstract: true,
@@ -154,7 +159,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/index.html'
       })
       .state('material.nodewizard.addnode', {
-        url: '',
+        url: '?tab',
         controller: 'addNodeController',
         templateUrl: '/pages/node-wizard/add-node.html'
       })
@@ -162,6 +167,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
         templateUrl: '/pages/node-wizard/add.html'
+      })
+      .state('material.nodewizard.claim', {
+        url: '/claim/:uuid',
+        controller: 'ClaimNodeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/claim.html'
       })
       .state('material.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',
@@ -330,11 +341,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
-      })
-      .state('material.nodes', {
-        url: '/connect',
-        controller: 'NodeController',
-        templateUrl: '/pages/connector/nodes/index.html'
       })
       .state('material.process', {
         url: '/process',

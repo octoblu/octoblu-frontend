@@ -12,8 +12,8 @@
     font-size: 1.5em;
   }
 
-  .navbar-item {
-    outline: none;
+  md-sidenav.md-locked-open {
+    min-width: 250px;
   }
 
   .flow-image-but-really-the-flow {
@@ -39,4 +39,10 @@
 .md-button {
   min-width: 0;
   margin:0;
+
+.navigation a {
+  text-decoration: none;
+  &:hover {
+    color: darken(rgba(0, 0, 0, 0.87), 10%);
+  }
 }

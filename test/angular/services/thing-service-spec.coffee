@@ -179,9 +179,6 @@ describe 'ThingService', ->
           receive: false
         }
 
-
-
-
   describe '->deleteThing', ->
     describe 'when called with a device', ->
       beforeEach ->
@@ -229,6 +226,42 @@ describe 'ThingService', ->
       it 'should resolve with the token', ->
         expect(@result).to.equal 'sweet'
 
+  describe '->getThing', ->
+    beforeEach ->
+      @skynet.devices = sinon.stub()
+
+    describe 'when devices yields a device', ->
+      beforeEach ->
+        device = uuid: 'me', name: 'Its Me', type: 'device:me'
+        @skynet.devices.yields devices: [device]
+        storeResults = (@result) =>
+        _.defer => @rootScope.$digest()
+        @sut.getThing(uuid: 'me', token: 'no you').then storeResults
+
+      it 'should resolve its promise with that device', ->
+        expect(@result.uuid).to.deep.equal 'me'
+        expect(@result.name).to.deep.equal 'Its Me'
+
+      it 'should call devices with the uuid and token', ->
+        expect(@skynet.devices).to.have.been.calledWith uuid: 'me', token: 'no you'
+
+      it 'should add the logo to me', ->
+        expect(@result.logo).to.equal 's3/device/me.svg'
+
+    describe 'when devices yields some device', ->
+      beforeEach ->
+        devices = [{uuid: 'cool', name: 'Its Cee', type: 'device:cool-beans'}]
+        @skynet.devices.yields devices: devices
+        storeResults = (@result) =>
+        _.defer => @rootScope.$digest()
+        @sut.getThing(uuid: 'cool', token: 'yeah').then storeResults
+
+      it 'should call devices with the uuid and token', ->
+        expect(@skynet.devices).to.have.been.calledWith uuid: 'cool', token: 'yeah'
+
+      it 'should add the logo to me', ->
+        expect(@result.logo).to.equal 's3/device/cool-beans.svg'
+
   describe '->getThings', ->
     beforeEach ->
       @skynet.mydevices = sinon.stub()
@@ -263,6 +296,39 @@ describe 'ThingService', ->
       it 'should add the logo to me', ->
         [a, b, c] = @results
         expect(c.logo).to.equal 's3/device/cool-beans.svg'
+
+  describe '->revokeToken', ->
+    describe 'when skynet.revokeToken yields null', ->
+      beforeEach ->
+        @skynet.revokeToken = sinon.stub().yields null
+
+      describe 'when called with a uuid and token', ->
+        beforeEach ->
+          _.defer => @rootScope.$digest()
+          @sut.revokeToken('some-uuid', 'some-token').catch =>
+            @promiseRejected = true
+
+        it 'should call skynet.revokeToken with the uuid and token', ->
+          expect(@skynet.revokeToken).to.have.been.calledWith 'some-uuid', 'some-token'
+
+        it 'should reject the promise', ->
+          expect(@promiseRejected).to.be.true
+
+    describe 'when skynet.revokeToken yields a uuid', ->
+      beforeEach ->
+        @skynet.revokeToken = sinon.stub().yields uuid: 'some-uuid'
+
+      describe 'when called with a uuid and token', ->
+        beforeEach ->
+          _.defer => @rootScope.$digest()
+          @sut.revokeToken('some-uuid', 'some-token').then =>
+            @promiseResolved = true
+
+        it 'should call skynet.revokeToken with the uuid and token', ->
+          expect(@skynet.revokeToken).to.have.been.calledWith 'some-uuid', 'some-token'
+
+        it 'should resolve the promise', ->
+          expect(@promiseResolved).to.be.true
 
   describe '->updateDeviceWithPermissionRows', ->
     describe 'when skynet.updateDevice yields immediatly', ->

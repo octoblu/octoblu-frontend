@@ -45,7 +45,7 @@ class DeviceDetailController
       .then =>
         @ThingService.deleteThing(@device)
       .then =>
-        @state.go 'material.nodes'
+        @state.go "material.configure"
 
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (token) =>

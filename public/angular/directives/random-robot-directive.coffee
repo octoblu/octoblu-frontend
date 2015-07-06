@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.directive 'randomRobot',  ($window) ->
+.directive 'randomRobot', ->
   {
     restrict: 'E',
     templateUrl: '/pages/random-robot.html',

@@ -1,0 +1,41 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools page-heading">
+    <a href class="menu-icon" ng-click="toggleNav()">
+      <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+      Configure
+    </a>
+  </h2>
+</md-toolbar>
+
+<md-content class="interior__wrapper">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="tabs">
+        <a ui-sref="material.configure({tab:'all'})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ui-sref="material.configure({tab:'channels'})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ui-sref="material.configure({tab:'devices'})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ui-sref="material.configure({tab:'flows'})" ng-class="{'is-selected': activeTab == 'flows'}" class="tab-link">Flows</a>
+      </div>
+
+      <div class="interior__header-actions">
+        <div class="lookup">
+          <i class="lookup__icon fa fa-search fa-lg"></i>
+          <input ng-model="deviceNameFilter" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
+        </div>
+
+        <div class="interior__header-separator"></div>
+
+        <a ui-sref="material.nodewizard.addnode" class="button interior__header-action">
+          Connect Nodes
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <device-collection devices="devices"
+                     category-filter="categoryFilter"
+                     name-filter="{{deviceNameFilter}}"
+                     loading="loading"
+                     active-tab="activeTab">
+  </device-collection>
+</md-content>

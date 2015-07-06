@@ -1,8 +1,7 @@
 'use strict';
 angular.module('octobluApp')
-    .service('skynetService', function ($q, $rootScope, $cookies, AuthService, MESHBLU_HOST, MESHBLU_PORT) {
+    .service('skynetService', function ($q, $rootScope, $cookies, AuthService, MESHBLU_HOST, MESHBLU_PORT, NotifyService) {
         var user, defer = $q.defer(), skynetPromise = defer.promise;
-
         var conn = meshblu.createConnection({
             server: MESHBLU_HOST,
             port: MESHBLU_PORT,
@@ -15,11 +14,15 @@ angular.module('octobluApp')
             defer.resolve(conn);
         });
 
-        conn.on('notReady', function (error) {
-            if (error && $cookies.meshblu_auth_uuid === error.uuid) {
-                console.log('Skynet Error during connect', error);
-                defer.reject(error);
-            }
+        conn.on('notReady', function (message) {
+          console.log('notReady', message);
+          if (message && message.error) {
+            NotifyService.notify(message.error.message);
+            return defer.reject(new Error(message.error.message));
+          }
+
+          NotifyService.notify('Unable to connect to Meshblu');
+          return defer.reject(new Error('Unable to connect to Meshblu'));
         });
 
         skynetPromise.then(function (skynetConnection) {
