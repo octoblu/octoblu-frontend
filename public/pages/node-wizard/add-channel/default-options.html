@@ -1,4 +1,4 @@
-<form class="node-wizard__body" ng-submit="saveDefaultParams()">
+<form ng-if="!isLoadingOptions" class="node-wizard__body" ng-submit="saveDefaultParams()">
 	<h2>Channel Configuration</h2>
   <param-input ng-model="channelDefaultParams" param-definitions="channel.defaultParams"></param-input>
   <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
@@ -6,3 +6,4 @@
       Save Configuration
   </md-button>
 </form>
+<da-loading loading="isLoadingOptions"></da-loading>
