@@ -5,6 +5,7 @@ angular.module('octobluApp')
   $scope.devices = [];
   $scope.loading = true;
   $scope.activeTab = $stateParams.tab || 'all'
+  $scope.nodeNameSearch = $stateParams.q || ''
 
   NodeTypeService.getNodeTypes().then(function(devices){
     $scope.devices = devices;

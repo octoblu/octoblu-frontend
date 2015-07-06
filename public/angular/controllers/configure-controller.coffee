@@ -4,6 +4,7 @@ class ConfigureController
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
     @scope.activeTab = $stateParams.tab || 'all'
+    @scope.deviceNameFilter = $stateParams.q || ''
     @scope.loading = true
 
     NodeService.getNodes().then (devices) =>
