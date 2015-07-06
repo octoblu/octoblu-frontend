@@ -226,13 +226,15 @@ angular.module('octobluApp')
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
         nodeElement.append(
-          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight));
+          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
+            .attr({'preserveAspectRatio':'xMaxYMax'}));
 
         renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
           nodeElement.append(
-            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight));
+            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight)
+              .attr({'preserveAspectRatio':'xMaxYMax'}));
         }
 
         if (node.errorMessage) {
