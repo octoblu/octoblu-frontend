@@ -3,7 +3,6 @@ class DeviceCollectionController
     @scope = $scope
     @state = $state
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
-    console.log(@scope)
 
   logoUrl: (device) =>
     return device.logo if device.logo
