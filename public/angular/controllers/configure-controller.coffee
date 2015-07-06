@@ -10,7 +10,7 @@ class ConfigureController
       @scope.loading = false
       @scope.devices = devices
 
-    @scope.$watch 'activeTab', (newTab) =>
+    @scope.$watch 'activeTab', (newTab) =>      
       @setNodesForTab newTab
 
   filterChannels: (node) =>

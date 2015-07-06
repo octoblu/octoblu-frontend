@@ -6,11 +6,11 @@ angular.module('octobluApp')
     replace: true
     transclude: true
     controller: 'DeviceCollectionController'
-    controllerAs: 'controller'
     scope: {
       devices: '='
       categoryFilter: '='
       loading: '='
       nameFilter: '@'
+      activeTab: '='
     }
   }
