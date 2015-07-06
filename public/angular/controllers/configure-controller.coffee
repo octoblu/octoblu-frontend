@@ -13,6 +13,9 @@ class ConfigureController
     @scope.$watch 'activeTab', (newTab) =>      
       @setNodesForTab newTab
 
+  filterAll: (node) =>
+    true
+
   filterChannels: (node) =>
     node.category == 'channel'
 
@@ -24,7 +27,7 @@ class ConfigureController
     node.category == 'device' || node.category == 'microblu'
 
   setNodesForTab: (tab) =>
-    @scope.categoryFilter = null if (tab == 'all')
+    @scope.categoryFilter = @filterAll if (tab == 'all')
     @scope.categoryFilter = @filterChannels if (tab == 'channels')
     @scope.categoryFilter = @filterDevicesAndMicroblu if (tab == 'devices')
     @scope.categoryFilter = @filterFlows if (tab == 'flows')
