@@ -99,64 +99,81 @@ angular.module('octobluApp')
     function addDragBehavior(dragGroup, dragItem, node, flow) {
       var moveInfo;
       var MIN_DIFF = 5;
+
       function minDiff(event) {
         if (!moveInfo) { return false; }
         if (moveInfo.pass) { return true; }
-        var dX = Math.abs(moveInfo.origX-event.clientX);
-        var dY = Math.abs(moveInfo.origY-event.clientY);
+        var clientX = event.clientX || event.touches[0].clientX;
+        var clientY = event.clientY || event.touches[0].clientY;
+        var dX = Math.abs(moveInfo.origX-clientX);
+        var dY = Math.abs(moveInfo.origY-clientY);
         return moveInfo.pass = (dX>MIN_DIFF || dY>MIN_DIFF);
       }
 
-      var throttleNodeDrag = _.throttle(
-        function(x,y) {
-          updateLinks(node.id,moveInfo,{x:x,y:y});
-          dragGroup.attr({"transform":"translate("+x+","+y+")"});
-        },30);
+      function onMove(dx,dy,ex,ey,event) {
+        console.log("renderer onMove", arguments);
+        if(!event){return};
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        if (!minDiff(event)){return;}
+        var clientX = event.clientX || event.touches[0].clientX;
+        var clientY = event.clientY || event.touches[0].clientY;
+        var to = snap.transformCoords(clientX,clientY);
+        console.log(clientX,clientY, to);
 
-      dragItem.drag(
-        function (dx,dy,ex,ey,event) {
-          //console.log("renderer onMove", arguments);
-          if(!event){return};
-          event.stopPropagation();
-          event.preventDefault();
-          if (!minDiff(event)){return;}
-          var to = snap.transformCoords(event.clientX,event.clientY);
-          var newX = to.x - (FlowNodeDimensions.width / 2);
-          var newY = to.y - (FlowNodeDimensions.minHeight / 2);
-          throttleNodeDrag(newX,newY);
-        },
-        function (x,y,event) {
-          //console.log("renderer onDragStart:", arguments);
-          if(!event){return};
-          event.stopPropagation();
-          event.preventDefault();
-          moveInfo = {
-            origX: event.clientX,
-            origY: event.clientY,
-            toLinks  : _.where(flow.links,{to:node.id}),
-            fromLinks: _.where(flow.links,{from:node.id})
-          };
-          dispatch.nodeSelected(node);
-          select(dragGroup);
-          // setTimeout(function(){
-          //   console.log('inTimeout!');
-          //   node.x = 0;
-          //   node.y = 0;
-          // },1000);
-        },
-        function (event) {
-          //console.log("renderer onDragEnd", arguments);
-          if(!event){return};
-          if(!minDiff(event)){return;}
-          event.stopPropagation();
-          event.preventDefault();
-          //console.log("saving node change...");
-          var to = snap.transformCoords(event.clientX,event.clientY);
-          node.x = to.x - (FlowNodeDimensions.width / 2);
-          node.y = to.y - (FlowNodeDimensions.minHeight / 2);
-          updateLinks(node.id,moveInfo,{x:node.x,y:node.y});
-          dragGroup.attr({"transform":"translate("+node.x+","+node.y+")"});
-        });
+        var newX = to.x - (FlowNodeDimensions.width / 2);
+        var newY = to.y - (FlowNodeDimensions.minHeight / 2);
+        updateLinks(node.id,moveInfo,{x:newX,y:newY});
+        dragGroup.attr({"transform":"translate("+newX+","+newY+")"});
+      };
+
+      function onTouchMove(event) {
+        onMove(undefined,undefined,undefined,undefined,event);
+      };
+
+      function onDragStart(x,y,event) {
+        console.log("renderer onDragStart:", arguments);
+        if(!event){return};
+        event.stopPropagation();
+        event.preventDefault();
+        var clientX = event.clientX || event.touches[0].clientX;
+        var clientY = event.clientY || event.touches[0].clientY;
+        moveInfo = {
+          origX: clientX,
+          origY: clientY,
+          toLinks  : _.where(flow.links,{to:node.id}),
+          fromLinks: _.where(flow.links,{from:node.id})
+        };
+        dispatch.nodeSelected(node);
+        select(dragGroup);
+        // setTimeout(function(){
+        //   console.log('inTimeout!');
+        //   node.x = 0;
+        //   node.y = 0;
+        // },1000);
+      };
+
+      function onDragEnd(event) {
+        console.log("renderer onDragEnd", arguments);
+        if(!event){return};
+        if(!minDiff(event)){return;}
+        event.stopPropagation();
+        event.preventDefault();
+        //console.log("saving node change...");
+        var clientX = event.clientX || event.changedTouches[0].clientX;
+        var clientY = event.clientY || event.changedTouches[0].clientY;
+        var to = snap.transformCoords(clientX,clientY);
+        node.x = to.x - (FlowNodeDimensions.width / 2);
+        node.y = to.y - (FlowNodeDimensions.minHeight / 2);
+        updateLinks(node.id,moveInfo,{x:node.x,y:node.y});
+        dragGroup.attr({"transform":"translate("+node.x+","+node.y+")"});
+      };
+
+      dragItem.drag(onMove,onDragStart,onDragEnd);
+      dragItem.touchstart(onDragStart);
+      dragItem.touchmove(onTouchMove);
+      dragItem.touchend(onDragEnd);
     }
 
     if (!displayOnly) {
@@ -268,16 +285,6 @@ angular.module('octobluApp')
       }
     })();
 
-    snap.touchstart(function() {
-      console.log('touchStart:',arguments);
-    });
-    snap.touchmove(function() {
-      console.log('touchMove:',arguments);
-    });
-    snap.touchend(function() {
-      console.log('touchEnd:',arguments);
-    });
-
     function addZoomBehavior(nodeElement, context) {
       nodeElement.addEventListener('mousewheel', function(event) {
         if(!event){return};
@@ -340,19 +347,28 @@ angular.module('octobluApp')
     }
 
     function addPanBehavior(dragElement, context) {
-      dragElement.addEventListener('dragstart', function(event){
-        event.preventDefault();
-
+      function dragStart(event){
+        console.log(event.defaultPrevented);
+        console.log('dragStart:',event);
+        console.log(event.defaultPrevented);
+        if (event.defaultPrevented) {
+          console.log('defaultPrevented!');
+          return;
+        }
+        //event.preventDefault();
         var startViewboxX = viewBoxX;
         var startViewboxY = viewBoxY;
-        var originalX = event.clientX;
-        var originalY = event.clientY;
+        var originalX = event.clientX || event.touches[0].clientX;
+        var originalY = event.clientY || event.touches[0].clientY;
 
         snap.toggleClass('grabby-hand',true);
 
         function dragging(event){
+          console.log('dragging:',event);
+          var newX = event.clientX || event.touches[0].clientX;
+          var newY = event.clientY || event.touches[0].clientY;
           var startPos    = snap.transformCoords(originalX, originalY);
-          var currentPos  = snap.transformCoords(event.clientX, event.clientY);
+          var currentPos  = snap.transformCoords(newX,newY);
           var differenceX = currentPos.x - startPos.x;
           var differenceY = currentPos.y - startPos.y;
           var newX = startViewboxX - differenceX;
@@ -360,17 +376,32 @@ angular.module('octobluApp')
           updateViewBox(newX, newY, viewBoxW, viewBoxH);
         }
 
-        var throttleDragging = _.throttle(dragging,30);
-
         function dropped(event) {
           dragElement.removeEventListener('mousemove', dragging);
           dragElement.removeEventListener('mouseup', dropped);
+          snap.untouchmove(dragging);
+          snap.untouchend(dropped);
           snap.toggleClass('grabby-hand',false);
         }
 
         dragElement.addEventListener('mousemove', dragging);
         dragElement.addEventListener('mouseup', dropped);
-      });
+        snap.touchmove(dragging);
+        snap.touchend(dropped);
+      };
+
+      dragElement.addEventListener('dragstart', dragStart);
+      snap.touchstart(dragStart)
+    // snap.touchstart(function() {
+    //   console.log('touchStart:',arguments);
+    // });
+    // snap.touchmove(function() {
+    //   console.log('touchMove:',arguments);
+    // });
+    // snap.touchend(function() {
+    //   console.log('touchEnd:',arguments);
+    // });
+
     }
 
     //var context = {flow:{}};
