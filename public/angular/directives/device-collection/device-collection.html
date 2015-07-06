@@ -13,12 +13,10 @@
   <random-robot title='No matching nodes for "{{nameFilter}}"' ng-show="nameFilter.length && !filteredDevices.length"></random-robot>
   <random-robot title='No matching nodes for {{activeTab}}' ng-show="!nameFilter && !filteredDevices.length">
     <div>
-      <p>Want to add some now?</p>
-      <span>
-        <a ui-sref="material.nodewizard.addnode" class="button interior__header-action">
-        Connect More Nodes
+      <p>Whoa, looks like you don't have any {{activeTab}} configured!</p>
+      <a ui-sref="material.nodewizard.addnode" class="button interior__error-action">
+        Configure {{activeTab}}
       </a>
-      </span>
     </div>
 
   </random-robot>
