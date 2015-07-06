@@ -242,16 +242,6 @@ angular.module('octobluApp')
       });
     }
 
-    function renderBackground() {
-      // var width =  5000000;
-      // var height = 5000000;
-      // var leftEdge = 0 - (width / 2);
-      // var rightEdge = 0 + (width / 2);
-      // var topEdge   = 0 - (height / 2);
-      // var bottomEdge   = 0 + (height / 2);
-      snap.attr({'fill':'rgb(243, 246, 247)'});
-    }
-
     function Dispatch() {
       var patch = {
         on: function(name, callback) {
@@ -428,7 +418,6 @@ angular.module('octobluApp')
         renderNodes(newNodesDiff,oldNodesDiff);
       },
 
-      renderGrid: renderBackground,
       on: function(event, callback) {
         return dispatch.on(event, callback);
       },

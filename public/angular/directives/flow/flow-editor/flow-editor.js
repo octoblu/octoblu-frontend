@@ -125,9 +125,6 @@ angular.module('octobluApp')
           });
         });
 
-        flowRenderer.renderGrid();
-        //render($scope.flow);
-
         $scope.$watch('flow', function(newFlow, oldFlow) {
 
           console.log('checking render...');
