@@ -1,12 +1,6 @@
 angular.module('octobluApp')
   .service('FlowLinkRenderer', function (FlowNodeDimensions) {
 
-    function getNodePortLocation(portStr, locations) {
-      if (!portStr) { portStr = 0; }
-      if (!locations) { return 0; }
-      return locations[parseInt(portStr)] || 0;
-    }
-
     function linkPath(link, flowNodes, loc) {
       var sourceNode, targetNode;
       var from, fromCurve, toCurve, to;
@@ -42,9 +36,8 @@ angular.module('octobluApp')
       }
 
       if (!from.exact) {
-        var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
         from.x += FlowNodeDimensions.width;
-        from.y += sourcePortLocation + (FlowNodeDimensions.portHeight / 2);
+        from.y += FlowNodeDimensions.minHeight/2;
       }
       var fromCurve = {
         x: from.x + FlowNodeDimensions.minHeight,
@@ -52,8 +45,7 @@ angular.module('octobluApp')
       };
 
       if (!to.exact) {
-        var targetPortLocation = getNodePortLocation(link.toPort, targetNode.inputLocations);
-        to.y += targetPortLocation + (FlowNodeDimensions.portHeight / 2);
+        to.y += FlowNodeDimensions.minHeight/2;
       }
       var toCurve = {
         x: to.x - FlowNodeDimensions.minHeight,
@@ -66,7 +58,13 @@ angular.module('octobluApp')
               to.x+" "+to.y;
     }
 
+    function getLinkId(link) {
+      return "link-from-"+link.from+"-to-"+link.to;
+    }
+
     return {
+      getLinkId: getLinkId,
+
       render: function (snap, link, flow, loc, snapLink, classes) {
         var path = linkPath(link, flow.nodes, loc);
         if (!path){
@@ -75,27 +73,27 @@ angular.module('octobluApp')
         //console.log('renderLink:',link);
         if (!snapLink) {
           snapLink = snap.path(path);
+          snap.select(".flow-link-area").append(snapLink);
         } else {
           snapLink.attr({d:path});
         }
 
-        snapLink.toggleClass('flow-link', true)
+        snapLink.addClass('flow-link');
         snapLink.toggleClass('selected', (link === flow.selectedLink));
 
         if (link && link.to) {
-          snapLink.toggleClass('flow-link-to-'+link.to,true)
+          snapLink.addClass('flow-link-to-'+link.to);
         }
         if (link && link.from) {
-          snapLink.toggleClass('flow-link-from-'+link.from,true)
+          snapLink.addClass('flow-link-from-'+link.from);
         }
         if (link && link.from && link.to) {
-          snapLink.attr({id:'link-from-'+link.from+'-to-'+link.to});
+          snapLink.attr({id:getLinkId(link)});
         }
         _.each(classes,function(claz){
           snapLink.addClass(claz);
         });
 
-        snap.select(".flow-link-area").append(snapLink);
         return snapLink;
       }
     }

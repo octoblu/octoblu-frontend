@@ -28,6 +28,7 @@ angular.module('octobluApp')
 
     var nodeMap, linkMap;
     var lastNodes, lastLinks;
+    var nodeElements = {}, linkElements = {};
 
     //var snap = Snap(".flow-editor-workspace");
     snap.transformCoords = function(x, y){
@@ -145,11 +146,11 @@ angular.module('octobluApp')
           };
           dispatch.nodeSelected(node);
           select(dragGroup);
-          setTimeout(function(){
-            console.log('inTimeout!');
-            node.x = 0;
-            node.y = 0;
-          },1000);
+          // setTimeout(function(){
+          //   console.log('inTimeout!');
+          //   node.x = 0;
+          //   node.y = 0;
+          // },1000);
         },
         function (event) {
           //console.log("renderer onDragEnd", arguments);
@@ -179,32 +180,36 @@ angular.module('octobluApp')
     //     }
     //   });
     // }
-
     function renderLinks(newLinksDiff, oldLinksDiff) {
       _.each(newLinksDiff, function (link, linkId) {
         if (!oldLinksDiff[linkId]) {
-          snap.selectAll('#link-'+linkId).remove();
+          snap.selectAll('#'+linkId).remove();
           var linkElement = FlowLinkRenderer.render(snap, link, context.flow);
-          if (linkElement && !readonly) {
-            addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+          if (linkElement) {
+            linkElements[linkElement.attr('id')] = linkElement;
+            if (!readonly){
+              addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+            }
+          } else {
+            console.log('unable to create link:',link);
+            context.flow.links = _.without(context.flow.links,link);
           }
         }
       });
       _.each(oldLinksDiff, function (link, linkId) {
         if (!newLinksDiff[linkId]) {
-          snap.selectAll('#link-'+linkId).remove();
+          delete linkElements[linkId];
+          snap.selectAll('#'+linkId).remove();
         }
       });
     }
 
     function updateLinks(nodeId,info,pos) {
-      snap.selectAll('.flow-link-to-'+nodeId).remove();
-      snap.selectAll('.flow-link-from-'+nodeId).remove();
       var processLinks = function(links, loc) {
         _.each(links, function (link) {
-          var linkElement = FlowLinkRenderer.render(snap, link, context.flow, loc);
-          if (linkElement && !readonly) {
-            addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+          var linkElement = linkElements[FlowLinkRenderer.getLinkId(link)];
+          if (linkElement) {
+            FlowLinkRenderer.render(snap, link, context.flow, loc, linkElement);
           }
         });
       };
@@ -219,7 +224,11 @@ angular.module('octobluApp')
       //snap.selectAll('.flow-node').remove();
       _.each(newNodesDiff, function (node) {
         if (!oldNodesDiff[node.id]) {
-          var nodeElement = FlowNodeRenderer.render(snap, node, context.flow);
+          var nodeElement = FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
+          if (!nodeElement) {
+            return;
+          }
+          nodeElements[node.id] = nodeElement;
           if(readonly){
             return;
           }
@@ -230,12 +239,14 @@ angular.module('octobluApp')
         } else {
           console.log('translating...');
           updateLinks(node.id);
-          snap.select('#node-'+node.id).attr({"transform":"translate("+node.x+","+node.y+")"});
+          FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
+          //snap.select('#node-'+node.id).attr({"transform":"translate("+node.x+","+node.y+")"});
         }
       });
       _.each(oldNodesDiff, function (node) {
         if (!newNodesDiff[node.id]) {
           console.log('removing...',snap.selectAll('#flow-node-'+node.id));
+          delete nodeElements[node.id];
           snap.selectAll('#node-'+node.id).remove();
           snap.selectAll('.flow-link-to-'+node.id).remove();
           snap.selectAll('.flow-link-from-'+node.id).remove();
@@ -267,9 +278,9 @@ angular.module('octobluApp')
     var dispatch = Dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
 
     (function () {
-      var editorArea = snap.select('.flow-editor-render-area');
+      var editorArea = snap.select('.flow-render-area');
       if (!editorArea) {
-        editorArea = snap.group().toggleClass('flow-editor-render-area', true);
+        editorArea = snap.group().toggleClass('flow-render-area', true);
         snap.append(editorArea);
       }
       var linkArea = snap.select('.flow-link-area');
@@ -329,11 +340,23 @@ angular.module('octobluApp')
     }
 
     function centerViewBox() {
-      var vb = snap.select('.flow-editor-render-area').getBBox();
-      vbOrigX = vb.x - 50;
-      vbOrigY = vb.y - 50;
-      vbOrigW = vb.width + 200;
-      vbOrigH = vb.height + 200;
+      var vb = snap.select('.flow-render-area').getBBox();
+      vbOrigX = vb.x;
+      vbOrigY = vb.y;
+      vbOrigW = vb.width;
+      vbOrigH = vb.height;
+      updateViewBox(vbOrigX,vbOrigY,vbOrigW,vbOrigH);
+      var orig   = snap.transformCoords(0,0);
+      var borderLT = snap.transformCoords(30,20);
+      var borderRB = snap.transformCoords(100,100);
+      var deltaL = borderLT.x - orig.x;
+      var deltaT = borderLT.y - orig.y;
+      var deltaR = borderRB.x - orig.x;
+      var deltaB = borderRB.y - orig.y;
+      vbOrigX -= deltaL;
+      vbOrigY -= deltaT;
+      vbOrigW += deltaL + deltaR;
+      vbOrigH += deltaT + deltaB;
       updateViewBox(vbOrigX,vbOrigY,vbOrigW,vbOrigH);
       context.flow.zoomScale = 1;
     }
@@ -362,12 +385,12 @@ angular.module('octobluApp')
         var throttleDragging = _.throttle(dragging,30);
 
         function dropped(event) {
-          dragElement.removeEventListener('mousemove', throttleDragging);
+          dragElement.removeEventListener('mousemove', dragging);
           dragElement.removeEventListener('mouseup', dropped);
           snap.toggleClass('grabby-hand',false);
         }
 
-        dragElement.addEventListener('mousemove', throttleDragging);
+        dragElement.addEventListener('mousemove', dragging);
         dragElement.addEventListener('mouseup', dropped);
       });
     }
@@ -395,31 +418,28 @@ angular.module('octobluApp')
           updateViewBox(vbOrigX,vbOrigY,vbOrigH,vbOrigW);
           context.flow.zoomScale = 1;
         }
-        var newNodeMap = _.indexBy(context.flow.nodes,'id');
+
         var newLinkMap = _.indexBy(context.flow.links,function(link){
-          return 'from-'+link.from + "-to-" + link.to;
+          return FlowLinkRenderer.getLinkId(link);
         });
-
-        var newNodesDiff = objDiff(newNodeMap,lastNodes);
         var newLinksDiff = objDiff(newLinkMap,lastLinks);
-        var oldNodesDiff = objDiff(lastNodes,newNodeMap);
         var oldLinksDiff = objDiff(lastLinks,newLinkMap);
-        console.log('newNodesDiff:',newNodesDiff);
         console.log('newLinksDiff:',newLinksDiff);
-        console.log('oldNodesDiff:',oldNodesDiff);
         console.log('oldLinksDiff:',oldLinksDiff);
-        lastNodes = _.cloneDeep(newNodeMap);
         lastLinks = _.cloneDeep(newLinkMap);
-        nodeMap = newNodeMap;
         linkMap = newLinkMap;
-
-
-        //renderLinks(context.flow);
         renderLinks(newLinksDiff,oldLinksDiff);
+
+        var newNodeMap = _.indexBy(context.flow.nodes,'id');
+        var newNodesDiff = objDiff(newNodeMap,lastNodes);
+        var oldNodesDiff = objDiff(lastNodes,newNodeMap);
+        console.log('newNodesDiff:',newNodesDiff);
+        console.log('oldNodesDiff:',oldNodesDiff);
+        lastNodes = _.cloneDeep(newNodeMap);
+        nodeMap = newNodeMap;
         renderNodes(newNodesDiff,oldNodesDiff);
-        //renderNodes(context.flow);
-        //zoom(flow);
       },
+
       renderGrid: renderBackground,
       on: function(event, callback) {
         return dispatch.on(event, callback);
