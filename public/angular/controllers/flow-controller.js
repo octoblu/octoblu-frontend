@@ -374,11 +374,10 @@ angular.module('octobluApp')
 
   $scope.toggleSidebarView = function() {
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
-    if(!$scope.sidebarIsExpanded){
-        _.delay(unselectSelectedFlowNode, 500);
+    if (!$scope.sidebarIsExpanded) {
+      _.delay(unselectSelectedFlowNode, 500);
     }
   };
-
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
     if(!newFlow){

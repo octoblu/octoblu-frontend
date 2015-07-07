@@ -115,68 +115,87 @@ angular.module('octobluApp')
           var bbox = portElement.getBBox();
           var linkElement;
 
-          portElement.drag(
-            function (dx,dy,ex,ey,event) {
-              //console.log("port onMove", arguments);
-              if(!event){return};
-              event.stopPropagation();
-              event.preventDefault();
-              //snap.selectAll('.flow-potential-link').remove();
-              var to = snap.transformCoords(ex,ey);
-              if (sourcePortType == 'output') {
-                linkElement = LinkRenderer.render(snap, null, to, {from:node.id}, [node], linkElement);
-              } else {
-                linkElement = LinkRenderer.render(snap, to, null, {to:node.id}, [node], linkElement);
+          function onMove(dx,dy,ex,ey,event) {
+            //console.log("port onMove", arguments);
+            if(!event){return};
+            event.stopPropagation();
+            event.preventDefault();
+            //snap.selectAll('.flow-potential-link').remove();
+            var to = snap.transformCoords(ex,ey);
+            if (sourcePortType == 'output') {
+              linkElement = LinkRenderer.render(snap, null, to, {from:node.id}, [node], linkElement);
+            } else {
+              linkElement = LinkRenderer.render(snap, to, null, {to:node.id}, [node], linkElement);
+            }
+          };
+
+          function onTouchMove(event) {
+            onMove(
+              undefined, undefined,
+              event.changedTouches[0].clientX,
+              event.changedTouches[0].clientY,
+              event
+            );
+          };
+
+          function onDragStart(x,y,event) {
+            //console.log("port onDragStart:", arguments);
+            if(!event){return};
+            event.stopPropagation();
+            event.preventDefault();
+            linkElement = undefined;
+          };
+
+          function onTouchStart(event) {
+            onDragStart(undefined,undefined,event);
+          };
+
+          function onDragEnd(event) {
+            console.log("port onDragEnd", arguments);
+            if(!event){return};
+            var x, y, point, rectangle, portRect, clientX, clientY;
+
+            if (event.changedTouches) {
+              clientX = event.changedTouches[0].clientX;
+              clientY = event.changedTouches[0].clientY;
+            } else {
+              clientX = event.clientX;
+              clientY = event.clientY;
+            }
+
+            var target = snap.transformCoords(clientX,clientY);
+            var newLink = undefined;
+
+            if (sourcePortType == 'output') {
+              var inputPort = findInputPortByCoordinate(target.x, target.y, context.flow.nodes);
+              if(inputPort && node.id != inputPort.id) {
+                newLink = {from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port};
               }
-            },
-            function (x,y,event) {
-              //console.log("port onDragStart:", arguments);
-              if(!event){return};
-              event.stopPropagation();
-              event.preventDefault();
-              linkElement = undefined;
-            },
-            function (event) {
-              //console.log("port onDragEnd", arguments);
-              if(!event){return};
-              var x, y, point, rectangle, portRect, clientX, clientY;
+            }
 
-              if (event.changedTouches) {
-                clientX = event.changedTouches[0].clientX;
-                clientY = event.changedTouches[0].clientY;
-              } else {
-                clientX = event.clientX;
-                clientY = event.clientY;
+            if (sourcePortType == 'input') {
+              var outputPort = findOutputPortByCoordinate(target.x, target.y, context.flow.nodes);
+              if(outputPort && node.id != outputPort.id) {
+                newLink = {from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber};
               }
+            }
 
-              var target = snap.transformCoords(clientX,clientY);
-              var newLink = undefined;
+            // Check if our link already exists, if not add
+            // and return earlier to avoid removing potential link
+            if (newLink && !_.find(context.flow.links,newLink)) {
+              context.flow.links.push(newLink);
+              linkElement = LinkRenderer.render(snap, null, null, newLink, context.flow.nodes, linkElement);
+              console.log("newLink:",newLink);
+              return;
+            }
 
-              if (sourcePortType == 'output') {
-                var inputPort = findInputPortByCoordinate(target.x, target.y, context.flow.nodes);
-                if(inputPort && node.id != inputPort.id) {
-                  newLink = {from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port};
-                }
-              }
+            snap.selectAll('.flow-potential-link').remove();
+          };
 
-              if (sourcePortType == 'input') {
-                var outputPort = findOutputPortByCoordinate(target.x, target.y, context.flow.nodes);
-                if(outputPort && node.id != outputPort.id) {
-                  newLink = {from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber};
-                }
-              }
-
-              // Check if our link already exists, if not add
-              // and return earlier to avoid removing potential link
-              if (newLink && !_.find(context.flow.links,newLink)) {
-                context.flow.links.push(newLink);
-                linkElement = LinkRenderer.render(snap, null, null, newLink, context.flow.nodes, linkElement);
-                console.log("newLink:",newLink);
-                return;
-              }
-
-              snap.selectAll('.flow-potential-link').remove();
-            });
+          portElement.drag(onMove,onDragStart,onDragEnd);
+          portElement.touchstart(onTouchStart);
+          portElement.touchmove(onTouchMove);
+          portElement.touchend(onDragEnd);
         }
 
         var nodeHeight = getNodeHeight(node);
@@ -185,14 +204,19 @@ angular.module('octobluApp')
 
         if (node.x === undefined || node.x === null || isNaN(node.x) ||
             node.y === undefined || node.y === null || isNaN(node.y)) {
-          console.log("initializing node location!");
-          var width = ($(window).width()/context.flow.zoomScale)/2;
-          var height = ($(window).height()/context.flow.zoomScale)/2;
-          var zoomX = context.flow.zoomX / context.flow.zoomScale;
-          var zoomY = context.flow.zoomY / context.flow.zoomScale;
+          //console.log("initializing node location!");
+          var vbox = snap.attr('viewBox');
+          //console.log('Bbox!',JSON.stringify(vbox,null,2));
+          //var width = ($(window).width()/context.flow.zoomScale)/2;
+          //var height = ($(window).height()/context.flow.zoomScale)/2;
+          //var zoomX = context.flow.zoomX / context.flow.zoomScale;
+          //var zoomY = context.flow.zoomY / context.flow.zoomScale;
 
-          node.x = width - zoomX;
-          node.y = height - zoomY;
+          //node.x = width - zoomX;
+          //node.y = height - zoomY;
+          node.x = vbox.x + vbox.w/2;
+          node.y = vbox.y + vbox.h/2;
+
         }
 
         var logoUrl = function(data) {

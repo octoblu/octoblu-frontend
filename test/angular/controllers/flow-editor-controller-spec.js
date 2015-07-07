@@ -1,5 +1,5 @@
 describe('FlowEditorController', function () {
-  var sut, scope, fakeFlowNodeTypeService;
+  var sut, scope, FlowNodeDimensions;
 
   beforeEach(function () {
     module('octobluApp');
@@ -8,10 +8,13 @@ describe('FlowEditorController', function () {
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
       scope = $rootScope.$new();
       scope.flow = {nodes: [], zoomScale: 1};
+      scope.snap = { transformCoords: function(x,y){
+        return {x:x,y:y};
+      }};
 
       sut = $controller('FlowEditorController', {
         $scope: scope,
-        FlowNodeTypeService: fakeFlowNodeTypeService
+        FlowNodeDimensions: {width:50,minHeight:50}
       });
     });
   });
@@ -56,4 +59,3 @@ describe('FlowEditorController', function () {
     return _this;
   }
 });
-

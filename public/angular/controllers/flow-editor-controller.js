@@ -1,9 +1,8 @@
 angular.module('octobluApp')
-.controller('FlowEditorController', function(OCTOBLU_API_URL, $scope, FlowNodeTypeService, FlowNodeDimensions){
+.controller('FlowEditorController', function(OCTOBLU_API_URL, $scope, FlowNodeDimensions){
   'use strict';
 
   $scope.addNode = function(data, event){
-    console.log('snapiestest!',$scope.snap);
     var flowNodeType = data['json/flow-node-type'];
     var newLoc = $scope.snap.transformCoords(event.clientX,event.clientY);
     flowNodeType.x = newLoc.x - (FlowNodeDimensions.width / 2);
