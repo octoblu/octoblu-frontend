@@ -14,10 +14,11 @@ angular.module('octobluApp')
   });
 
   $scope.$watch('nodeNameSearch', function(nodeNameSearch) {
-
+    nodeNameSearch = nodeNameSearch || '';
     var filteredDevices = _.filter(devices, function(device){
       var name = (device.name || '').toLowerCase();
-      return _.contains(name, nodeNameSearch);
+      var search = nodeNameSearch.toLowerCase();
+      return _.contains(name, search);
     });
 
     updateDevicesByCategory(filteredDevices);
@@ -36,7 +37,7 @@ angular.module('octobluApp')
     } else {
       $scope.noDevices = false;
     }
-    $scope.devicesByCategory = _.groupBy(devices, 'category');
+    $scope.devicesByCategory = _.groupBy(devices, 'categories');
   };
 
 });
