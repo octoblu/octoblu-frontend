@@ -1,6 +1,6 @@
 <div class="interior device-collection">
   <header class="device-collection__header">
-    <h4 class="device-collection__header-label">{{category | uppercase}}</h4>
+    <h2 ng-hide="category == 'undefined'">{{category | uppercase}}</h2>
   </header>
 
   <div class="device-collection__list">
@@ -16,10 +16,4 @@
       <div class="device-collection__item-name truncate">{{device.name}}</div>
     </a>
   </div>
-
-  <!-- <random-robot
-    title='No matching nodes for "{{nameFilter}}"'
-    ng-show="nameFilter.length && !filteredDevices.length && !loading">
-  </random-robot> -->
-
 </div>
