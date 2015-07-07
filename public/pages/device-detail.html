@@ -58,11 +58,11 @@
     </div>
   </div>
 
-  <md-tabs md-selected="controller.activeTabIndex">
-    <md-tab label="Properties" md-on-select="controller.onTabSelection('properties')">
+  <md-tabs>
+    <md-tab label="Properties">
       <div ng-include="'/pages/device-detail-properties.html'"></div>
     </md-tab>
-    <md-tab label="Permissions" md-on-select="controller.onTabSelection('permissions')">
+    <md-tab label="Permissions">
       <div ng-include="'/pages/device-detail-permissions.html'"></div>
     </md-tab>
   </md-tabs>
