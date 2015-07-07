@@ -21,11 +21,13 @@ class ConfigureController
       @updateDevicesByCategory(filteredDevices)
 
   updateDevicesByCategory: (devices) =>
-    if devices.length
-      @scope.noDevices = false
     if !devices.length
       @scope.noDevices = true
-    @scope.devicesByCategory = _.groupBy devices, 'categories'
+    if devices.length
+      @scope.noDevices = false
+    @scope.devicesByCategory = _.groupBy devices, (device) =>
+      return "Flows" if device.type == 'device:flow'
+      device.nodeType.categories;
 
 
 angular.module('octobluApp').controller 'ConfigureController', ConfigureController
