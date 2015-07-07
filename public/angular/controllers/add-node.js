@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addNodeController', function(OCTOBLU_API_URL, OCTOBLU_ICON_URL, $scope, $state, $stateParams, NodeTypeService) {
+.controller('addNodeController', function($scope, NodeTypeService) {
   'use strict';
 
   $scope.devices = [];
@@ -8,6 +8,17 @@ angular.module('octobluApp')
 
   NodeTypeService.getNodeTypes().then(function(devices){
     $scope.devices = devices;
+    $scope.categories = {};
+
+    _.map($scope.deviceCategories, function(category){
+      $scope.categories[category] = {};
+      $scope.categories[category].devices = [];
+      $scope.categories[category].label = category;
+      $scope.categories[category].devices = _.filter(devices, function(device) {
+        return device.category === category;
+      });
+    });
+
     $scope.loading = false;
   });
 
@@ -16,5 +27,5 @@ angular.module('octobluApp')
       return node.resource.online;
     }
     return true;
-  }
+  };
 });

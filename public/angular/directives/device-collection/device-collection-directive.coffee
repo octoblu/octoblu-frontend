@@ -10,6 +10,6 @@ angular.module('octobluApp')
       devices: '='
       loading: '='
       nameFilter: '@'
-      categories: '='
+      category: '='
     }
   }

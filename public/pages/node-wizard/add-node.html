@@ -7,7 +7,6 @@
           <input ng-model="nodeNameSearch" placeholder="Filter Nodes..." type="search" class="lookup__input" autofocus>
         </div>
 
-
         <div class="interior__header-separator"></div>
 
         <a ui-sref="material.configure" class="button interior__header-action">
@@ -17,7 +16,9 @@
     </div>
   </header>
 
-  <device-collection devices="devices" categories="deviceCategories" name-filter="{{nodeNameSearch}}" loading="loading">
-  </device-collection>
+  <div ng-repeat="category in categories">
+    <device-collection devices="category.devices" category="category.label" name-filter="{{nodeNameSearch}}" loading="loading">
+    </device-collection>
+  </div>
 
 </div>

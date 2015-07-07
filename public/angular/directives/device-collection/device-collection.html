@@ -1,31 +1,29 @@
-<div>
+<div class="interior device-collection">
   <div class="blu-loading" ng-show="loading">
     <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
   </div>
 
-  <div ng-repeat="category in categories" class="interior device-collection" ng-show="filteredDevices.length">
-    <header class="device-collection__header">
-      <h2>{{category}}</h2>
-    </header>
+  <header class="device-collection__header">
+    <h2>{{category}}</h2>
+  </header>
 
-    <div class="device-collection__list">
-      <a ng-repeat="device in filteredDevices = (devices | filter: { category: category } | filter: { name: nameFilter } | orderBy: 'name')"
-        href="{{controller.nextStepUrl(device)}}"
-        class="device-collection__item">
+  <div class="device-collection__list">
+    <a ng-repeat="device in filteredDevices = (devices | filter: { name: nameFilter } | filter: {category: category} | orderBy: 'name')"
+      href="{{controller.nextStepUrl(device)}}"
+      class="device-collection__item">
 
-        <img ng-src="{{controller.logoUrl(device)}}"
-          class="device-collection__item-thumbnail animated-popout"
-          ng-class="{faded: (!device.online && device.uuid)}"
-          title="{{device.name}}">
+      <img ng-src="{{controller.logoUrl(device)}}"
+        class="device-collection__item-thumbnail animated-popout"
+        ng-class="{faded: (!device.online && device.uuid)}"
+        title="{{device.name}}">
 
-        <div class="device-collection__item-name truncate">{{device.name}}</div>
-      </a>
-    </div>
+      <div class="device-collection__item-name truncate">{{device.name}}</div>
+    </a>
   </div>
 
   <random-robot
     title='No matching nodes for "{{nameFilter}}"'
     ng-show="nameFilter.length && !filteredDevices.length && !loading">
   </random-robot>
-  
+
 </div>
