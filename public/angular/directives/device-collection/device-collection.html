@@ -1,28 +1,31 @@
 <div>
-  <div class="connected-nodes interior">
-    <div ng-repeat="device in filteredDevices = (devices | filter: categoryFilter | filter: { name: nameFilter } | orderBy: 'name')" class="connected-node">
-      <a href="{{controller.nextStepUrl(device)}}">
-        <div title="{{device.name}}" class="connected-node-thumbnail animated-popout" ng-class="{faded: (!device.online && device.uuid)}">
-          <img ng-src="{{controller.logoUrl(device)}}" width="100%" height="100%">
-        </div>
-        <div class="connected-node-name truncate">{{device.name}}</div>
-      </a>
-    </div>
-  </div>
-
   <div class="blu-loading" ng-show="loading">
     <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
   </div>
 
-  <div ng-hide="loading">
-    <random-robot title='No matching nodes for "{{nameFilter}}"' ng-show="nameFilter.length && !filteredDevices.length"></random-robot>
+  <div ng-repeat="category in categories" class="interior device-collection" ng-show="filteredDevices.length">
+    <header class="device-collection__header">
+      <h2>{{category}}</h2>
+    </header>
 
-    <random-robot ng-show="!nameFilter && !filteredDevices.length">
-      <p>Whoa, looks like you don't have any {{activeTab}} configured!</p>
-      <a ui-sref="material.nodewizard.addnode" class="button blu-bordered-button">
-        Configure {{activeTab}}
+    <div class="device-collection__list">
+      <a ng-repeat="device in filteredDevices = (devices | filter: { category: category } | filter: { name: nameFilter } | orderBy: 'name')"
+        href="{{controller.nextStepUrl(device)}}"
+        class="device-collection__item">
+
+        <img ng-src="{{controller.logoUrl(device)}}"
+          class="device-collection__item-thumbnail animated-popout"
+          ng-class="{faded: (!device.online && device.uuid)}"
+          title="{{device.name}}">
+
+        <div class="device-collection__item-name truncate">{{device.name}}</div>
       </a>
-    </random-robot>
+    </div>
   </div>
 
+  <random-robot
+    title='No matching nodes for "{{nameFilter}}"'
+    ng-show="nameFilter.length && !filteredDevices.length && !loading">
+  </random-robot>
+  
 </div>

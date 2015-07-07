@@ -1,29 +1,23 @@
 <div class="interior__wrapper">
   <header class="interior__header">
     <div class="interior">
-      <div class="tabs">
-        <a ui-sref="material.nodewizard.addnode({tab:'all', q:nodeNameSearch})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
-        <a ui-sref="material.nodewizard.addnode({tab:'channels', q:nodeNameSearch})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
-        <a ui-sref="material.nodewizard.addnode({tab:'devices', q:nodeNameSearch})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
-      </div>
-
       <div class="interior__header-actions">
         <div class="lookup">
           <i class="lookup__icon fa fa-search fa-lg"></i>
-          <input ng-model="nodeNameSearch" placeholder="Filter Nodes..." type="search" class="lookup__input" value="nodeNameSearch" autofocus>
+          <input ng-model="nodeNameSearch" placeholder="Filter Nodes..." type="search" class="lookup__input" autofocus>
         </div>
 
 
         <div class="interior__header-separator"></div>
 
         <a ui-sref="material.configure" class="button interior__header-action">
-          Configured Nodes
+          My Devices
         </a>
       </div>
     </div>
   </header>
 
-  <device-collection devices="devices" category-filter="categoryFilter" name-filter="{{nodeNameSearch}}" loading="loading">
+  <device-collection devices="devices" categories="deviceCategories" name-filter="{{nodeNameSearch}}" loading="loading">
   </device-collection>
 
 </div>

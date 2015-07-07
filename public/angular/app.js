@@ -148,7 +148,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'DesignerController'
       })
       .state('material.configure', {
-        url: '/configure?tab&q',
+        url: '/configure',
         controller: 'ConfigureController',
         templateUrl: '/pages/configure.html'
       })
@@ -159,7 +159,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/index.html'
       })
       .state('material.nodewizard.addnode', {
-        url: '?tab&q',
+        url: '',
         controller: 'addNodeController',
         templateUrl: '/pages/node-wizard/add-node.html'
       })
