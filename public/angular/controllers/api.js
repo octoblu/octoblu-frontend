@@ -33,7 +33,7 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         channelService.getActiveChannels(true);
         channelService.getAvailableChannels(true);
-        _.defer($state.go, 'material.nodewizard.addnode');
+        _.defer($state.go, 'material.configure');
         NotifyService.notify('Channel deleted');
       });
     });

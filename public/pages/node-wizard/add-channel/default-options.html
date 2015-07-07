@@ -1,11 +1,9 @@
-<form class="node-wizard__form" ng-submit="saveDefaultParams()">
-	<h4>Channel Configuration</h4>
+<form ng-if="!isLoadingOptions" class="node-wizard__body" ng-submit="saveDefaultParams()">
+	<h2>Channel Configuration</h2>
   <param-input ng-model="channelDefaultParams" param-definitions="channel.defaultParams"></param-input>
   <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">
+  <md-button class="md-raised md-primary node-wizard__button">
       Save Configuration
-    </button>
-  </div>
+  </md-button>
 </form>
+<da-loading loading="isLoadingOptions"></da-loading>

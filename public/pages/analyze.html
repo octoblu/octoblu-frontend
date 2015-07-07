@@ -1,7 +1,7 @@
 <md-toolbar>
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-    <div flex layout="row">
-      <a href class="menu-icon" ng-click="toggleNav()">
+    <div class="toolbar-header" flex layout="row">
+      <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
         Analyze
       </a>
@@ -28,7 +28,7 @@
           <h2 class="md-toolbar-tools">Topics</h2>
       </md-toolbar>
       <div flex ng-show="!loadingTopicData && topicData.data.length === 0" layout="row" layout-sm="column" layout-align="center center">
-        <h3>No Data Yet. Try starting a flow.</h3>
+        <h3 class="no-data-body">No Data Yet. Try starting a flow.</h3>
       </div>
       <canvas ng-if="!loadingTopicData" class="chart chart-pie" data="topicData.data" labels="topicData.labels" legend="true" click="onClickPieSlice"></canvas>
       <div flex ng-show="loadingTopicData" layout="row" layout-sm="column" layout-align="center center">

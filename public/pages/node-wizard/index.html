@@ -1,10 +1,12 @@
 <md-toolbar>
-  <h2 class="md-toolbar-tools page-heading">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-      Nodes
-    </a>
-  </h2>
+  <div class="toolbar-tools">
+    <h2 class="md-toolbar-tools page-heading">
+      <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
+        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+        Connect
+      </a>
+    </h2>
+  </div>
 </md-toolbar>
 
 <md-content ui-view>

@@ -25,6 +25,8 @@ angular.module('octobluApp')
     'wink'                   : 'material.nodewizard.addchannel.wink'
   };
 
+	$scope.isLoadingOptions = true;
+
   $scope.channelDefaultParams = {};
 
   $scope.saveDefaultParams = function(){
@@ -47,10 +49,13 @@ angular.module('octobluApp')
 
   	if($scope.existingChannel){
   		auth_strategy = 'existing';
+			$scope.isLoadingOptions = false;
   	}else{
 	  	if(!$scope.channel) return;
   		auth_strategy = $scope.channel.auth_strategy;
+			$scope.isLoadingOptions = false;
   	}
+
 
 		$state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: 'replace'});
   };
@@ -82,6 +87,8 @@ angular.module('octobluApp')
               $scope.goToNextStep();
             }
   				}
+
+					$scope.isLoadingOptions = false;
   			});
 	  });
 });

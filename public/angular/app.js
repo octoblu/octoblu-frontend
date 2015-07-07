@@ -147,6 +147,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design',
         controller: 'DesignerController'
       })
+      .state('material.configure', {
+        url: '/configure?tab&q',
+        controller: 'ConfigureController',
+        templateUrl: '/pages/configure.html'
+      })
       .state('material.nodewizard', {
         url: '/node-wizard',
         abstract: true,
@@ -154,7 +159,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/index.html'
       })
       .state('material.nodewizard.addnode', {
-        url: '?tab',
+        url: '?tab&q',
         controller: 'addNodeController',
         templateUrl: '/pages/node-wizard/add-node.html'
       })
@@ -336,11 +341,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController'
-      })
-      .state('material.nodes', {
-        url: '/connect',
-        controller: 'NodeController',
-        templateUrl: '/pages/connector/nodes/index.html'
       })
       .state('material.process', {
         url: '/process',

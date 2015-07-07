@@ -16,7 +16,7 @@
 
     <main class="sidebar__pane-body">
       <div ng-show="tab.state == 'nodes'">
-        <md-tabs md-center-tabs>
+        <md-tabs md-dynamic-height>
           <md-tab label="Operators">
             <node-collection flow="activeFlow" nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
           </md-tab>

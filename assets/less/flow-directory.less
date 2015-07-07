@@ -20,6 +20,12 @@
       .flow-blueprint;
       margin-left: 16px;
     }
+
+    .name {
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
     @media @mobile, @tablet {
       .num-columns(1);
     }
@@ -44,7 +50,12 @@
 }
 .directory__header-text {
   .flex(1);
+
+  margin: 0.83em 0;
+
+  font-size: 1.5em;
   font-weight: normal;
+  line-height: 2;
 }
 .directory__flows {
   .flex-display;
@@ -126,6 +137,7 @@
   margin-right: 0;
 }
 .directory__search-form {
+  outline: none;
   .flex-display;
   .flex-direction(row);
   .justify-content(space-between);
@@ -133,6 +145,7 @@
   margin-bottom: 35px;
 }
 .directory__search-input {
+  outline: inherit;
   border: 1px solid #dedede;
   padding: 13px 26px;
   width: 100%;
@@ -140,13 +153,14 @@
   line-height: 24px;
 }
 .directory__search-button {
+  outline: inherit;
   border: 1px solid #dedede;
   border-left: none;
   padding: 0 25px;
   background: #f6f6f6;
   color: #b8b8b8;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 500;
   &:hover {
 
   }
