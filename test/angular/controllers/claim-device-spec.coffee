@@ -1,36 +1,37 @@
 describe 'ClaimNodeController', ->
   beforeEach ->
-    @fakeSkynetService = {}
-    @fakeSkynetConnection =
-      mydevices: sinon.spy()
-      unclaimeddevices: sinon.stub()
-      on: sinon.spy()
-    module 'octobluApp', ($provide) =>
-      $provide.value 'skynetService', @fakeSkynetService
-      $provide.value 'reservedProperties', ['$$hashKey', '_id']
-      return
+    module 'octobluApp'
 
     inject ($controller, $rootScope, $q) =>
       @q = $q
       @rootScope = $rootScope
-      @deviceService =
-        claimDevice: sinon.stub()
-        getUnclaimedNodes: sinon.stub()
       @stateParams = {}
+      @ThingService =
+        getThing: sinon.stub()
+        revokeToken: sinon.stub()
+        updateDevice: sinon.stub()
       @state =
         go: sinon.spy()
+      @cookies = {}
       @scope = $rootScope.$new()
-      @fakeSkynetService.getSkynetConnection = sinon.stub().returns @q.when @fakeSkynetConnection
+      @controllerParams =
+        $scope: @scope
+        $stateParams: @stateParams
+        $state: @state
+        $q: @q
+        $cookies: @cookies
+        ThingService: @ThingService
+
       @controller = $controller
 
   describe '->constructor', ->
     describe 'when called getDevice is successful', ->
       beforeEach (done) ->
         @stateParams.uuid = 'working'
-        @deviceService.getUnclaimedNodes.returns @q.when [uuid: 'working']
-        params = $scope: @scope, $stateParams: @stateParams, $state: @state, $q: @q, deviceService: @deviceService
+        @stateParams.token = 'token'
+        @ThingService.getThing.returns @q.when uuid: 'working'
         _.defer => @rootScope.$digest()
-        @sut = @controller 'ClaimNodeController', params
+        @sut = @controller 'ClaimNodeController', @controllerParams
         _.delay done, 100
 
       it 'should set the device on the controller', ->
@@ -38,11 +39,11 @@ describe 'ClaimNodeController', ->
 
     describe 'when called getDevice is failed', ->
       beforeEach (done) ->
-        @stateParams.uuid = 'invalid device'
-        @deviceService.getUnclaimedNodes.returns @q.reject 'invalid device'
-        params = $scope: @scope, $stateParams: @stateParams, $state: @state, $q: @q, deviceService: @deviceService
+        @stateParams.uuid = 'invalid uuid'
+        @stateParams.token = 'invalid token'
+        @ThingService.getThing.returns @q.reject 'invalid device'
         _.defer => @rootScope.$digest()
-        @sut = @controller 'ClaimNodeController', params
+        @sut = @controller 'ClaimNodeController', @controllerParams
         _.delay done, 100
 
       it 'should set the device on the controller', ->
@@ -50,9 +51,8 @@ describe 'ClaimNodeController', ->
 
     describe 'when called there is no uuid', ->
       beforeEach (done) ->
-        params = $scope: @scope, $stateParams: @stateParams, $state: @state, $q: @q, deviceService: @deviceService
         _.defer => @rootScope.$digest()
-        @sut = @controller 'ClaimNodeController', params
+        @sut = @controller 'ClaimNodeController', @controllerParams
         _.delay done, 100
 
       it 'should set the device on the controller', ->
@@ -60,21 +60,19 @@ describe 'ClaimNodeController', ->
 
   describe '->getDevice', ->
     beforeEach ->
-      params = $scope: @scope, $stateParams: @stateParams, $state: @state, $q: @q, deviceService: @deviceService
-      @sut = @controller 'ClaimNodeController', params
+      @sut = @controller 'ClaimNodeController', @controllerParams
 
     describe 'when called', ->
       beforeEach (done) ->
         @stateParams.uuid = 'holla'
-        devices = [
-          {uuid: 'holla', type: 'sweet'}
-        ]
-        @deviceService.getUnclaimedNodes.returns @q.when devices
+        @stateParams.token = 'wolla'
+        device = uuid: 'holla', type: 'sweet'
+        @ThingService.getThing.returns @q.when device
         _.defer => @rootScope.$digest()
         @sut.getDevice().then (@device) => done()
 
       it 'should call getThing with the uuid', ->
-        expect(@deviceService.getUnclaimedNodes).to.have.been.calledWith uuid: 'holla'
+        expect(@ThingService.getThing).to.have.been.calledWith uuid: 'holla', token: 'wolla'
 
       it 'should resolve a device', ->
         expect(@device).to.deep.equal uuid: 'holla', type: 'sweet'
@@ -82,85 +80,145 @@ describe 'ClaimNodeController', ->
     describe 'when called with a different device', ->
       beforeEach (done) ->
         @stateParams.uuid = 'molla'
-        devices = [
-          {uuid: 'molla', type: 'mweet'}
-        ]
-        @deviceService.getUnclaimedNodes.returns @q.when devices
+        @stateParams.token = 'tolla'
+        device = uuid: 'molla', type: 'mweet'
+        @ThingService.getThing.returns @q.when device
         _.defer => @rootScope.$digest()
         @sut.getDevice().then (@device) => done()
 
       it 'should call getThing with the uuid', ->
-        expect(@deviceService.getUnclaimedNodes).to.have.been.calledWith uuid: 'molla'
+        expect(@ThingService.getThing).to.have.been.calledWith uuid: 'molla', token: 'tolla'
 
       it 'should resolve a device', ->
         expect(@device).to.deep.equal uuid: 'molla', type: 'mweet'
 
-    describe 'when called without a uuid or token', ->
+    describe 'when called without a uuid', ->
       beforeEach (done) ->
         _.defer => @rootScope.$digest()
         @sut.getDevice().catch (@error) => done()
 
-      it 'should call getThing with the uuid', ->
-        expect(@deviceService.getUnclaimedNodes).to.not.have.been.called
+      it 'should not call updateDevice', ->
+        expect(@ThingService.updateDevice).to.not.have.been.called
 
       it 'should resolve a device', ->
         expect(@error).to.deep.equal 'Unable to retrieve device, missing uuid'
+
+    describe 'when called without a token', ->
+      beforeEach (done) ->
+        _.defer => @rootScope.$digest()
+        @stateParams.uuid = 'sweet-bacon'
+        @sut.getDevice().catch (@error) => done()
+
+      it 'should not call updateDevice', ->
+        expect(@ThingService.updateDevice).to.not.have.been.called
+
+      it 'should resolve a device', ->
+        expect(@error).to.deep.equal 'Unable to retrieve device, missing token'
 
     describe 'when called with invalid uuid or token', ->
       beforeEach (done) ->
         @stateParams.uuid = 'tolla'
         @stateParams.token = 'lolla'
-        @deviceService.getUnclaimedNodes.returns @q.reject 'Invalid device'
-        _.defer => @rootScope.$digest()
+        @ThingService.getThing.returns @q.reject 'Invalid device'
         _.defer => @rootScope.$digest()
         @sut.getDevice().catch (@error) => done()
 
       it 'should call getThing with the uuid', ->
-        expect(@deviceService.getUnclaimedNodes).to.have.been.calledWith uuid: 'tolla'
+        expect(@ThingService.getThing).to.have.been.calledWith uuid: 'tolla', token: 'lolla'
 
       it 'should resolve a device', ->
         expect(@error).to.deep.equal 'Invalid device'
 
   describe '->claimDevice', ->
     beforeEach ->
-      params = $scope: @scope, $stateParams: @stateParams, $state: @state, $q: @q, deviceService: @deviceService
-      @sut = @controller 'ClaimNodeController', params
+      @ThingService.revokeToken.returns @q.when {}
+      @sut = @controller 'ClaimNodeController', @controllerParams
 
     describe 'when called', ->
       beforeEach (done) ->
         @sut.device = {}
         @sut.deviceName = 'mokka'
+        @cookies.meshblu_auth_uuid = 'user-holla'
         @stateParams.uuid = 'holla'
-        @deviceService.claimDevice.returns @q.when null
+        @stateParams.token = 'jolla'
+        @ThingService.updateDevice.returns @q.when null
         _.defer => @rootScope.$digest()
+        @sut.device = {}
         @sut.claimDevice().then (@device) => done()
 
-      it 'should call claimDevice with the uuid', ->
-        expect(@deviceService.claimDevice).to.have.been.calledWith uuid: 'holla', name: 'mokka'
+      it 'should call claimDevice with the new device properties', ->
+        device =
+          uuid: 'holla'
+          token: 'jolla'
+          name: 'mokka'
+          owner: 'user-holla'
+          discoverWhitelist: [
+            'user-holla'
+          ]
+          configureWhitelist: [
+            'user-holla'
+          ]
+          sendWhitelist: [
+            'user-holla'
+          ]
+          receiveWhitelist: [
+            'user-holla'
+          ]
+        expect(@ThingService.updateDevice).to.have.been.calledWith device
 
-      it 'should resolve a device', ->
-        expect(@device).to.deep.equal uuid: 'holla', name: 'mokka'
+      it 'should call ThingService.revokeToken with uuid and token', ->
+        expect(@ThingService.revokeToken).to.have.been.calledWith uuid: 'holla', token: 'jolla'
 
-      it 'should call go state', ->
-        expect(@state.go).to.have.been.called
-
-    describe 'when called with a different device', ->
+    describe 'when called and the device already has a whitelist', ->
       beforeEach (done) ->
         @sut.device = {}
-        @sut.deviceName = 'kokka'
-        @stateParams.uuid = 'molla'
-        @deviceService.claimDevice.returns @q.when null
+        @sut.deviceName = 'mokka'
+        @sut.device =
+          discoverWhitelist: [
+            'other-holla'
+          ]
+          configureWhitelist: [
+            'other-holla'
+          ]
+          sendWhitelist: [
+            'other-holla'
+          ]
+          receiveWhitelist: [
+            'other-holla'
+          ]
+        @cookies.meshblu_auth_uuid = 'user-holla'
+        @stateParams.uuid = 'holla'
+        @stateParams.token = 'jolla'
+        @ThingService.updateDevice.returns @q.when null
         _.defer => @rootScope.$digest()
         @sut.claimDevice().then (@device) => done()
 
-      it 'should call claimDevice with the uuid', ->
-        expect(@deviceService.claimDevice).to.have.been.calledWith uuid: 'molla', name: 'kokka'
+      it 'should call claimDevice with the new device properties', ->
+        device =
+          uuid: 'holla'
+          token: 'jolla'
+          name: 'mokka'
+          owner: 'user-holla'
+          discoverWhitelist: [
+            'user-holla'
+            'other-holla'
+          ]
+          configureWhitelist: [
+            'user-holla'
+            'other-holla'
+          ]
+          sendWhitelist: [
+            'user-holla'
+            'other-holla'
+          ]
+          receiveWhitelist: [
+            'user-holla'
+            'other-holla'
+          ]
+        expect(@ThingService.updateDevice).to.have.been.calledWith device
 
-      it 'should resolve a device', ->
-        expect(@device).to.deep.equal uuid: 'molla', name: 'kokka'
-
-      it 'should call go state', ->
-        expect(@state.go).to.have.been.called
+      it 'should call ThingService.revokeToken with uuid and token', ->
+        expect(@ThingService.revokeToken).to.have.been.calledWith uuid: 'holla', token: 'jolla'
 
     describe 'when called without a uuid or token', ->
       beforeEach (done) ->
@@ -168,7 +226,7 @@ describe 'ClaimNodeController', ->
         @sut.claimDevice().catch (@error) => done()
 
       it 'should call claimDevice with the uuid', ->
-        expect(@deviceService.claimDevice).to.not.have.been.called
+        expect(@ThingService.updateDevice).to.not.have.been.called
 
       it 'should resolve a device', ->
         expect(@error).to.deep.equal 'Unable to claim device, missing uuid'
@@ -179,13 +237,12 @@ describe 'ClaimNodeController', ->
         @sut.deviceName = 'pokka'
         @stateParams.uuid = 'molla'
         @stateParams.token = 'lolla'
-        @deviceService.claimDevice.returns @q.reject 'Invalid device'
-        _.defer => @rootScope.$digest()
+        @ThingService.updateDevice.returns @q.reject 'Invalid device'
         _.defer => @rootScope.$digest()
         @sut.claimDevice().catch (@error) => done()
 
       it 'should call claimDevice with the uuid', ->
-        expect(@deviceService.claimDevice).to.have.been.calledWith uuid: 'molla', name: 'pokka'
+        expect(@ThingService.updateDevice.firstCall.args[0].uuid).to.deep.equal 'molla'
 
       it 'should resolve a device', ->
         expect(@error).to.deep.equal 'Invalid device'
