@@ -8,7 +8,9 @@ class ConfigureController
 
     NodeService.getNodes().then (newDevices) =>
       @scope.loading = false
+      console.log "BEFORE", newDevices
       devices = newDevices
+      console.log "AFTER", devices
       @updateDevicesByCategory devices
 
     @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>
@@ -23,7 +25,7 @@ class ConfigureController
       @scope.noDevices = false
     if !devices.length
       @scope.noDevices = true
-    @scope.devicesByCategory = _.groupBy devices, 'category'
+    @scope.devicesByCategory = _.groupBy devices, 'categories'
 
 
 angular.module('octobluApp').controller 'ConfigureController', ConfigureController

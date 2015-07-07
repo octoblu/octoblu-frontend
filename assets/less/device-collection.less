@@ -2,15 +2,26 @@
   .flex-display;
   .flex-direction(column);
   .flex-wrap(wrap);
+
+  border-bottom: 1px solid #F4F4F4;
+  margin: 25px 0;
 }
 
 .device-collection__header {
+}
+
+.device-collection__header-label {
+  display: block;
+
+  font-weight: bold;
+  text-align: center;
 }
 
 .device-collection__list {
   .flex-display;
   .flex-direction(row);
   .flex-wrap(wrap);
+  // .justify-content(space-between);
 }
 
 .device-collection__item {
@@ -22,10 +33,6 @@
 
   &:hover {
     text-decoration: none;
-
-    .connected-node-name {
-      color: #555;
-    }
   }
 }
 
@@ -40,8 +47,12 @@
   text-align: center;
   color: #757575;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: normal;
   text-transform: uppercase;
+
+  .device-collection__item:hover & {
+    color: #444;
+  }
 
   &.truncate {
     width: 135px;
