@@ -8,7 +8,9 @@ class ConfigureController
 
     NodeService.getNodes().then (newDevices) =>
       @scope.loading = false
+      console.log "BEFORE", newDevices
       devices = newDevices
+      console.log "AFTER", devices
       @updateDevicesByCategory devices
 
     @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>

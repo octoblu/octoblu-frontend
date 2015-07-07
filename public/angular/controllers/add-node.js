@@ -9,6 +9,7 @@ angular.module('octobluApp')
 
   NodeTypeService.getNodeTypes().then(function(newDevices) {
     devices = newDevices;
+
     $scope.loading = false;
     updateDevicesByCategory(devices);
   });
