@@ -1,6 +1,9 @@
 <div class="interior device-collection">
   <header class="device-collection__header">
-    <h2 ng-hide="category == 'undefined'">{{category | uppercase}}</h2>
+    <h4 ng-hide="category == 'undefined'" class="device-collection__header-label">
+      {{category | uppercase}}
+    </h4>
+    <hr class="device-collection__header-divider">
   </header>
 
   <div class="device-collection__list">

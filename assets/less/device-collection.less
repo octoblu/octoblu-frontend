@@ -3,18 +3,32 @@
   .flex-direction(column);
   .flex-wrap(wrap);
 
-  border-bottom: 1px solid #F4F4F4;
   margin: 25px 0;
 }
 
 .device-collection__header {
+  position: relative;
 }
 
 .device-collection__header-label {
-  display: block;
+  position: relative;
 
+  display: inline-block;
+  padding-right: 10px;
+
+  background: #FFF;
   font-weight: bold;
-  text-align: center;
+  z-index: 2;
+}
+
+.device-collection__header-divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  margin: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .device-collection__list {
@@ -22,6 +36,7 @@
   .flex-direction(row);
   .flex-wrap(wrap);
   // .justify-content(space-between);
+
 }
 
 .device-collection__item {
