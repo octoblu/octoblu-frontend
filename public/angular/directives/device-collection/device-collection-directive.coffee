@@ -8,8 +8,6 @@ angular.module('octobluApp')
     controllerAs: 'controller'
     scope: {
       devices: '='
-      loading: '='
-      nameFilter: '@'
       category: '='
     }
   }

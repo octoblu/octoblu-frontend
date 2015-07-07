@@ -1,14 +1,10 @@
 <div class="interior device-collection">
-  <div class="blu-loading" ng-show="loading">
-    <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
-  </div>
-
   <header class="device-collection__header">
-    <h2>{{category}}</h2>
+    <h2>{{category | uppercase}}</h2>
   </header>
 
   <div class="device-collection__list">
-    <a ng-repeat="device in filteredDevices = (devices | filter: { name: nameFilter } | filter: {category: category} | orderBy: 'name')"
+    <a ng-repeat="device in filteredDevices = (devices | orderBy: 'name')"
       href="{{controller.nextStepUrl(device)}}"
       class="device-collection__item">
 
@@ -21,9 +17,9 @@
     </a>
   </div>
 
-  <random-robot
+  <!-- <random-robot
     title='No matching nodes for "{{nameFilter}}"'
     ng-show="nameFilter.length && !filteredDevices.length && !loading">
-  </random-robot>
+  </random-robot> -->
 
 </div>

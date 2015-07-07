@@ -1,25 +1,26 @@
 angular.module('octobluApp')
 .controller('addNodeController', function($scope, NodeTypeService) {
   'use strict';
+  var devices = [];
+  $scope.devicesByCategory = {};
 
-  $scope.devices = [];
-  $scope.deviceCategories = ["device", "channel", "microblu"];
   $scope.loading = true;
+  $scope.noDevices = false;
 
-  NodeTypeService.getNodeTypes().then(function(devices){
-    $scope.devices = devices;
-    $scope.categories = {};
+  NodeTypeService.getNodeTypes().then(function(newDevices) {
+    devices = newDevices;
+    $scope.loading = false;
+    updateDevicesByCategory(devices);
+  });
 
-    _.map($scope.deviceCategories, function(category){
-      $scope.categories[category] = {};
-      $scope.categories[category].devices = [];
-      $scope.categories[category].label = category;
-      $scope.categories[category].devices = _.filter(devices, function(device) {
-        return device.category === category;
-      });
+  $scope.$watch('nodeNameSearch', function(nodeNameSearch) {
+
+    var filteredDevices = _.filter(devices, function(device){
+      var name = (device.name || '').toLowerCase();
+      return _.contains(name, nodeNameSearch);
     });
 
-    $scope.loading = false;
+    updateDevicesByCategory(filteredDevices);
   });
 
   $scope.isAvailable = function (node) {
@@ -28,4 +29,14 @@ angular.module('octobluApp')
     }
     return true;
   };
+
+  var updateDevicesByCategory = function(devices) {
+    if(!devices.length) {
+      $scope.noDevices = true;
+    } else {
+      $scope.noDevices = false;
+    }
+    $scope.devicesByCategory = _.groupBy(devices, 'category');
+  };
+
 });
