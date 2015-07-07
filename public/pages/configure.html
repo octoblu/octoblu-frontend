@@ -7,20 +7,20 @@
   </h2>
 </md-toolbar>
 
-<md-content class="interior__wrapper">
+<md-content class="interior__wrapper" autoscroll="false">
   <header class="interior__header">
     <div class="interior">
       <div class="tabs">
-        <a ui-sref="material.configure({tab:'all'})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
-        <a ui-sref="material.configure({tab:'channels'})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
-        <a ui-sref="material.configure({tab:'devices'})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
-        <a ui-sref="material.configure({tab:'flows'})" ng-class="{'is-selected': activeTab == 'flows'}" class="tab-link">Flows</a>
+        <a ui-sref="material.configure({tab:'all', q:deviceNameFilter})" ng-class="{'is-selected': activeTab == 'all'}" class="tab-link">All</a>
+        <a ui-sref="material.configure({tab:'channels', q:deviceNameFilter})" ng-class="{'is-selected': activeTab == 'channels'}" class="tab-link">Channels</a>
+        <a ui-sref="material.configure({tab:'devices', q:deviceNameFilter})" ng-class="{'is-selected': activeTab == 'devices'}" class="tab-link">Devices</a>
+        <a ui-sref="material.configure({tab:'flows', q:deviceNameFilter})" ng-class="{'is-selected': activeTab == 'flows'}" class="tab-link">Flows</a>
       </div>
 
       <div class="interior__header-actions">
         <div class="lookup">
           <i class="lookup__icon fa fa-search fa-lg"></i>
-          <input ng-model="deviceNameFilter" placeholder="Filter Nodes..." type="search" class="lookup__input"  autofocus>
+          <input ng-model="deviceNameFilter" placeholder="Filter Nodes..." type="search" class="lookup__input" value="deviceNameFilter" autofocus>
         </div>
 
         <div class="interior__header-separator"></div>
