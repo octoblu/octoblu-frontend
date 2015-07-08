@@ -2,7 +2,7 @@
   <h2 class="md-toolbar-tools page-heading">
     <a href class="menu-icon" ng-click="toggleNav()">
       <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-      Configure
+      My Things
     </a>
   </h2>
 </md-toolbar>
@@ -13,13 +13,13 @@
       <div class="interior__header-actions">
         <div class="lookup">
           <i class="lookup__icon fa fa-search fa-lg"></i>
-          <input ng-model="deviceNameFilter" placeholder="Filter Nodes..." type="search" class="lookup__input" autofocus>
+          <input ng-model="deviceNameFilter" placeholder="Filter Things..." type="search" class="lookup__input" autofocus>
         </div>
 
         <div class="interior__header-separator"></div>
 
         <a ui-sref="material.nodewizard.addnode" class="button interior__header-action">
-          Add More Pods? Devices? Things? Connectors?
+          Browse Things
         </a>
       </div>
     </div>
@@ -29,7 +29,7 @@
   <div class="blu-loading" ng-show="loading">
     <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
   </div>
-  <random-robot title='No Devices Found for "{{deviceNameFilter}}"' ng-show="noDevices && !loading"></random-robot>
+  <random-robot title='No Things Found for "{{deviceNameFilter}}"' ng-show="noDevices && !loading"></random-robot>
   <div ng-repeat="(category, devices) in devicesByCategory">
     <device-collection devices="devices" category="category">
     </device-collection>
