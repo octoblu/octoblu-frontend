@@ -1,14 +1,8 @@
 
 class DeviceDetailController
-  @TABS:
-    properties: 0
-    permissions: 1
-
   constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
     @scope = $scope
-    @state = $state
-    @activeTabIndex = DeviceDetailController.TABS[$stateParams.tab]
     @NotifyService = NotifyService
     @ThingService = ThingService
     @form = ['*']
@@ -54,10 +48,6 @@ class DeviceDetailController
       }
 
       @mdDialog.show @mdDialog.alert(alertOptions).clickOutsideToClose(false)
-
-  onTabSelection: (tabName) =>
-    return unless @device?
-    @state.go 'material.deviceTab', {uuid: @device.uuid, tab: tabName}, notify: false
 
   saveDevice: =>
     return unless @device?
