@@ -1,7 +1,7 @@
 <div class="sidebar__pane-content">
   <header class="sidebar__toolbar sidebar__toolbar--header">
     <div class="md-toolbar-tools">
-      <h1 class="sidebar__pane-title">Flow Inspector</h1>
+      <div class="sidebar__pane-title">Flow Inspector</div>
     </div>
   </header>
 
@@ -47,7 +47,7 @@
         <ul class="nodes-in-flow">
           <li ng-repeat="node in flow.nodes | orderBy: 'name' track by node.id" ng-mouseenter="showDelete=!showDelete" ng-mouseleave="showDelete=!showDelete" class="nodes-in-flow__item">
             <button ng-click="$emit('flow-node-type-selected', node);" class="sidebar__button node-in-flow__button">
-              <img src="{{node.logo}}" alt="{{node.class || node.type}}" class="sidebar__pane-node-thumbnail"/>
+              <img ng-src="{{node.logo}}" alt="{{node.class || node.type}}" class="sidebar__pane-node-thumbnail"/>
               <span class="node-in-flow__node--name truncate">{{node.name}}</span>
             </button>
 

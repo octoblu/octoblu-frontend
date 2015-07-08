@@ -1,7 +1,7 @@
 <md-toolbar>
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
     <div flex layout="row">
-      <a href class="menu-icon" ng-click="toggleNav()">
+      <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
         Device
       </a>
@@ -58,11 +58,11 @@
     </div>
   </div>
 
-  <md-tabs md-selected="controller.activeTabIndex">
-    <md-tab label="Properties" md-on-select="controller.onTabSelection('properties')">
+  <md-tabs md-dynamic-height>
+    <md-tab label="Properties">
       <div ng-include="'/pages/device-detail-properties.html'"></div>
     </md-tab>
-    <md-tab label="Permissions" md-on-select="controller.onTabSelection('permissions')">
+    <md-tab label="Permissions">
       <div ng-include="'/pages/device-detail-permissions.html'"></div>
     </md-tab>
   </md-tabs>

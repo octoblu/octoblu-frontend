@@ -4,15 +4,15 @@
     <div class="actions">
       <md-button class="action md-icon-button" ng-click="confirmdeleteBluprint(bluprint.uuid)" aria-label="Delete">
         <md-tooltip>Delete</md-tooltip>
-        <md-icon md-font-icon="fa fa-lg fa-trash"></md-icon>
+        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-trash"></md-icon>
       </md-button>
       <md-button class="action md-icon-button" ng-click="importBluprint(bluprint.uuid)" aria-label="Import">
         <md-tooltip>Import</md-tooltip>
-        <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
+        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-plus"></md-icon>
       </md-button>
       <md-button class="action md-icon-button" clip-click-fallback="dialogBluprintUrl(bluprint.url)" clip-copy="bluprint.url" clip-click="toastBluprintUrl(bluprint.url)" aria-label="Copy Bluprint Link">
         <md-tooltip>Copy</md-tooltip>
-        <md-icon md-font-icon="fa fa-lg fa-copy"></md-icon>
+        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-copy"></md-icon>
       </md-button>
       <md-switch class="make-public" ng-model="bluprint.public" aria-label="Make Bluprint Public">
           Public

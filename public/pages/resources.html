@@ -1,7 +1,7 @@
 <md-toolbar>
   <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
     <div flex layout="row">
-      <a href class="menu-icon" ng-click="toggleNav()">
+      <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
         Resources
       </a>
@@ -13,7 +13,7 @@
   <md-list class="resource__list">
     <md-item ng-repeat="resource in resources">
       <md-item-content class="resource">
-        <div class="md-tile-content">
+        <div class="md-tile-content resource__body">
           <h3 class="resource__title">
             <a href="{{resource.link}}">
               {{resource.title}}

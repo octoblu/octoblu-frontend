@@ -60,7 +60,7 @@
     "MutationObservers": "Polymer/MutationObservers#~0.4.2",
     "angular-schema-form": "~0.8.0",
     "xxhash": "*",
-    "angular-material": "~0.8.3",
+    "angular-material": "~0.10.0",
     "ng-autofocus": "~0.0.1",
     "angular-draganddrop": "~0.2.1"
   },

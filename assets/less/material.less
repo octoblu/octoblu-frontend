@@ -9,7 +9,15 @@
   }
 
   .page-heading {
-    font-size: 1.5em;
+    font-size: 27px;
+  }
+
+  .navbar-item {
+    .flex-display;
+    .flex-direction(row);
+    .justify-content(flex-start);
+    .align-items(center);
+    outline: none;
   }
 
   md-sidenav.md-locked-open {
@@ -35,9 +43,19 @@
     }
   }
 }
+
+.md-button {
+  min-width: 0;
+  margin:0;
+}
+
 .navigation a {
   text-decoration: none;
   &:hover {
-    color: darken(rgba(0, 0, 0, 0.87), 10%);
+    font-weight: bold;
   }
+}
+
+.margin {
+  margin-left: -6px;
 }

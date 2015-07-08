@@ -11,8 +11,17 @@
 
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:nth-child(odd):hover {
     background: white;
+  }
+
+  &:nth-child(odd) {
+    background: #F5F8FA;
+  }
+
+  button {
+    background: transparent !important;
   }
 }
 
@@ -30,6 +39,8 @@
 
 .node-collection-title {
   margin: 0 0 8px;
+  font-size: 1.17em;
+  font-weight: bold;
 }
 
 .node-collection-text {
@@ -37,11 +48,14 @@
   line-height: 1.4;
 }
 
-
 .node-collection-no-matches {
   margin-top: 20px;
   width: 100%;
 
   color: #8b8b8b;
   text-align: center;
+}
+
+.node-collection-container{
+  padding-top: 0;
 }
