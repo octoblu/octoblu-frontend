@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
+.controller('FlowController', function ( $timeout, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -9,6 +9,7 @@ angular.module('octobluApp')
   $scope.debugLines = [];
   $scope.deviceOnline = false;
   $scope.sidebarIsExpanded = true;
+  $scope.deployProgress = 0;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -39,9 +40,35 @@ angular.module('octobluApp')
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.online = status;
-    $scope.deploying = false;
-    $scope.stopping = false;
+    setDeployProgress(0);
   };
+
+  var setDeployProgress = function(progress, delay){
+    delay = delay || 0;
+    $timeout(function(){
+      $scope.deployProgress = Math.round(progress * 100);
+    }, delay);
+  };
+
+  FlowService.onStep(function(step){
+    if(step === 0){
+      setDeployProgress(0);
+      return;
+    }
+    if(step > 0){
+      setDeployProgress(step / 6);
+      if(step === 6){
+        setDeployProgress(0, 50);
+      }
+    }
+    if(step < 0){
+      step = Math.abs(step);
+      setDeployProgress(step / 4);
+      if(step === 4){
+        setDeployProgress(0, 50);
+      }
+    }
+  });
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
     skynetConnection.mydevices({}, function(result){
