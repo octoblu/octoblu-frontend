@@ -52,7 +52,7 @@ angular.module('octobluApp')
     var findInputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
 
-      if(!node){
+      if(!node || !node.id){
         return;
       }
       if(inputPortRightSideX(node) < xCoordinate){
@@ -64,7 +64,7 @@ angular.module('octobluApp')
     var findOutputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
 
-      if(!node){
+      if(!node || !node.id){
         return;
       }
       if(xCoordinate < inputPortLeftSideX(node)){
