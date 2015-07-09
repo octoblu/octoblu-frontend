@@ -7,4 +7,6 @@ angular.module('octobluApp')
     transclude: true,
     controller : 'CollectionBrowserController',
     controllerAs : 'controller',
+    scope:
+      flow: '='
   }
