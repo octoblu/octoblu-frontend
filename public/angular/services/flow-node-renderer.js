@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes, OCTOBLU_ICON_URL) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, CoordinatesService, IconCodes, OCTOBLU_ICON_URL) {
 
     var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
 
@@ -121,7 +121,7 @@ angular.module('octobluApp')
             event.stopPropagation();
             event.preventDefault();
             //snap.selectAll('.flow-potential-link').remove();
-            var to = snap.transformCoords(ex,ey);
+            var to = CoordinatesService.transform(snap.node,ex,ey);
             if (sourcePortType == 'output') {
               linkElement = LinkRenderer.render(snap, null, to, {from:node.id}, [node], linkElement);
             } else {
@@ -163,7 +163,7 @@ angular.module('octobluApp')
               clientY = event.clientY;
             }
 
-            var target = snap.transformCoords(clientX,clientY);
+            var target = CoordinatesService.transform(snap.node, clientX,clientY);
             var newLink = undefined;
 
             if (sourcePortType == 'output') {

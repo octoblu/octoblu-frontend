@@ -1,20 +1,9 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions, $interval) {
-    function getSnap() {
-      var snap = Snap(".flow-editor-workspace");
-      snap.transformCoords = function(x, y){
-        var transformPoint = this.node.createSVGPoint();
-        transformPoint.x = x;
-        transformPoint.y = y;
-        transformPoint = transformPoint.matrixTransform(this.node.getScreenCTM().inverse());
-        return {x: transformPoint.x, y: transformPoint.y};
-      };
-      return snap;
-    };
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, CoordinatesService, FlowNodeDimensions, $interval) {
+    'use strict';
 
     return {
       restrict: 'E',
-      controller: 'FlowEditorController',
       templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
@@ -25,8 +14,7 @@ angular.module('octobluApp')
       },
 
       link: function ($scope, element) {
-        var snap = getSnap();
-        $scope.snap = snap;
+        var snap = Snap(element.find(".flow-editor-workspace")[0]);
         var renderContext = {flow:$scope.flow};
         var flowRenderer = new FlowRenderer(snap, renderContext,
           {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
@@ -125,6 +113,14 @@ angular.module('octobluApp')
           });
         });
 
+        $scope.addNode = function(data, event){
+          var flowNodeType = data['json/flow-node-type'];
+          var newLoc = CoordinatesService.transform(snap.node, event.clientX, event.clientY);
+          flowNodeType.x = newLoc.x - (FlowNodeDimensions.width / 2);
+          flowNodeType.y = newLoc.y - (FlowNodeDimensions.minHeight / 2);
+          $scope.$emit('flow-node-type-selected', flowNodeType);
+        };
+
         $scope.$watch('flow', function(newFlow, oldFlow) {
 
           console.log('checking render...');
@@ -141,15 +137,17 @@ angular.module('octobluApp')
             var flowDiff = _.pick(modFlow,function(value,key){
               return !_.isEqual(value,oldFlow[key]);
             });
-            if (_.size(flowDiff)==0) {
+
+            if (_.size(flowDiff) === 0) {
               //console.log('aborting, no diff!');
               return;
             }
             console.log('flow diff:',flowDiff);
           }
+
           renderContext.flow = $scope.flow;
           //console.log(newFlow);
-          flowRenderer.render(newFlow);
+          flowRenderer.render();
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
