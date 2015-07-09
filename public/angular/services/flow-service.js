@@ -15,6 +15,7 @@ angular.module('octobluApp')
 
   self.triggerStep = function(newStep){
     step = newStep;
+    self.step = newStep;
     _.each(_onStepCallbacks, function(callback){
       callback(newStep);
     });
@@ -89,15 +90,6 @@ angular.module('octobluApp')
   };
 
   self.listenForFlowChanges = function(){
-    deviceService.onDeviceChange(function(device){
-      if(!device || device.type !== 'octoblu:flow'){
-        return;
-      }
-      if(activeFlow.flowId !== device.uuid){
-        return;
-      }
-      self.updatedFlow(device);
-    })
     deviceService.onDeviceMessage(function(message){
       if(!message || message.topic !== 'step-change'){
         return;
@@ -113,20 +105,6 @@ angular.module('octobluApp')
   };
 
   self.listenForFlowChanges();
-
-  self.updatedFlow = function(device){
-    if(step === (self.MAX_START_STEPS - 1)){
-      if(device.online){
-        self.triggerStep(++step);
-      }
-    }
-    if(step === (self.MAX_STOP_STEPS + 1)){
-      if(!device.online){
-        self.triggerStep(--step);
-      }
-    }
-    lastUpdatedFlowDevice = device;
-  };
 
   self.processFlows = function(flows){
     return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
