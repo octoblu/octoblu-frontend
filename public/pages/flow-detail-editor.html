@@ -40,8 +40,7 @@
 
       <div ng-show="showNodes" class="sidebar__section-body">
         <div ng-show="!flow.nodes.length" class="sidebar__alert">
-          <h1 class="sidebar__alert-title">You have no nodes in your flow.</h1>
-          <img ng-src="{{controller.randomRobot()}}" class="sidebar__alert-icon">
+          <random-robot title="You have no nodes in your flow."></random-robot>
         </div>
 
         <ul class="nodes-in-flow">
