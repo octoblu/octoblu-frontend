@@ -1,5 +1,5 @@
 @sidebar-body-padding  : 12px;
-@sidebar-toolbar-height: 36px;
+@sidebar-toolbar-height: 34px;
 @sidebar-width         : 400px;
 @sidebar-border-color  : #C5C5C5;
 @sidebar-button-color  : rgba(0,0,0,0.4);
@@ -49,6 +49,25 @@
   .flex-display;
   .flex-direction(column);
   .justify-content(space-between);
+}
+
+.sidebar__pane-section--collapse-btn {
+  outline: none;
+  position: fixed;
+  right: 10px;
+  padding-top: 7px;
+}
+
+.sidebar__pane-section--collapse {
+  .flex(0);
+
+  .sidebar__toolbar--header {
+    border-bottom: 0px;
+  }
+
+  footer {
+    border-bottom: 1px solid @sidebar-border-color
+  }
 }
 
 .sidebar__pane-body {

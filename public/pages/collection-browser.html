@@ -1,4 +1,8 @@
-<div class="sidebar__pane">
+<div class="sidebar__pane" ng-class="{'sidebar__pane-section--collapse': hideSection}">
+  <span class="sidebar__pane-section--collapse-btn" ng-click="hideSection = !hideSection">
+    <i class="fa fa-chevron-down" ng-show="hideSection"></i>
+    <i class="fa fa-chevron-up" ng-show="!hideSection"></i>
+  </span>
   <div class="sidebar__pane-content">
     <header class="sidebar__toolbar sidebar__toolbar--header">
       <a class="sidebar__toolbar-button" ng-click="controller.toggleActiveTab('nodes')" ng-class="{'active' : tab.state === 'nodes'}" title="Nodes">
