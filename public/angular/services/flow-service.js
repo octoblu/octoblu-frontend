@@ -1,9 +1,24 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, skynetService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService) {
   'use strict';
-  var self, activeFlow;
+  var self, activeFlow, step = 0, lastUpdatedFlowDevice;
   self = this;
   var previousHashableFlow;
+  var _onStepCallbacks = [];
+
+  self.MAX_START_STEPS = 6;
+  self.MAX_STOP_STEPS = 4;
+
+  self.onStep = function(callback){
+    _onStepCallbacks.push(callback)
+  };
+
+  self.triggerStep = function(newStep){
+    step = newStep;
+    _.each(_onStepCallbacks, function(callback){
+      callback(newStep);
+    });
+  };
 
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
@@ -38,6 +53,7 @@ angular.module('octobluApp')
   };
 
   self.setActiveFlow = function(flow){
+    self.triggerStep(0);
     activeFlow = flow;
   };
 
@@ -50,6 +66,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
+    self.triggerStep(1);
 
     $http.post(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
@@ -59,6 +76,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
+    self.triggerStep(-1);
     return $http.delete(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
 
@@ -68,6 +86,46 @@ angular.module('octobluApp')
       flow = activeFlow;
     }
     return $http.put(OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance');
+  };
+
+  self.listenForFlowChanges = function(){
+    deviceService.onDeviceChange(function(device){
+      if(!device || device.type !== 'octoblu:flow'){
+        return;
+      }
+      if(activeFlow.flowId !== device.uuid){
+        return;
+      }
+      self.updatedFlow(device);
+    })
+    deviceService.onDeviceMessage(function(message){
+      if(!message || message.topic !== 'step-change'){
+        return;
+      }
+      if(activeFlow.flowId !== _.first(message.devices)){
+        return;
+      }
+      if(!message.payload){
+        return;
+      }
+      self.triggerStep(message.payload.step || 0);
+    })
+  };
+
+  self.listenForFlowChanges();
+
+  self.updatedFlow = function(device){
+    if(step === (self.MAX_START_STEPS - 1)){
+      if(device.online){
+        self.triggerStep(++step);
+      }
+    }
+    if(step === (self.MAX_STOP_STEPS + 1)){
+      if(!device.online){
+        self.triggerStep(--step);
+      }
+    }
+    lastUpdatedFlowDevice = device;
   };
 
   self.processFlows = function(flows){
