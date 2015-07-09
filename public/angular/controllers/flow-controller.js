@@ -362,7 +362,6 @@ angular.module('octobluApp')
     if ($scope.activeFlow.zoomScale > 8) {
       $scope.activeFlow.zoomScale = 8;
     }
-    $scope.$broadcast('updateZoomScale',$scope.activeFlow.zoomScale);
   };
 
   $scope.zoomOut = function (e) {
@@ -373,7 +372,6 @@ angular.module('octobluApp')
     if ($scope.activeFlow.zoomScale < 0.01) {
       $scope.activeFlow.zoomScale = 0.01;
     }
-    $scope.$broadcast('updateZoomScale',$scope.activeFlow.zoomScale);
   };
 
   $scope.center = function () {

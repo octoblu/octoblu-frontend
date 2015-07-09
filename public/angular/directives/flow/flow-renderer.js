@@ -65,7 +65,7 @@ angular.module('octobluApp')
       if (!nodeElement) { return; }
 
       nodeElement.click(function (event) {
-        //console.log("selectClicked!");
+        console.log("selectClicked!");
         if (!event || event.defaultPrevented) {
           //console.log("selectClicked aborted");
           return;

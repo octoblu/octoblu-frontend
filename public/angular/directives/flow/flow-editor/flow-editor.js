@@ -19,15 +19,6 @@ angular.module('octobluApp')
         var flowRenderer = new FlowRenderer(snap, renderContext,
           {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
-        $scope.$on('centerViewBox', function(){
-          console.log('centerViewBox');
-          flowRenderer.centerViewBox();
-        });
-
-        $scope.$on("updateZoomScale", function(){
-          flowRenderer.updateZoomScale($scope.flow.zoomScale);
-        });
-
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
             if (message.topic !== 'pulse') {
@@ -160,6 +151,15 @@ angular.module('octobluApp')
             nodeElement.toggleClass('selected',true);
           }
           //flowRenderer.centerOnSelectedFlowNode($scope.flow);
+        });
+
+        $scope.$watch("flow.zoomScale", function(zoomScale){
+          flowRenderer.updateZoomScale(zoomScale);
+        });
+
+        $scope.$on('centerViewBox', function(){
+          //console.log('centerViewBox');
+          flowRenderer.centerViewBox();
         });
 
         element.on(
