@@ -1,10 +1,11 @@
 angular.module('octobluApp')
-.directive 'flowInspector',  ($window) ->
+.directive 'flowSidebar', ->
   {
     restrict: 'E',
-    templateUrl: '/pages/flow-inspector.html',
+    templateUrl: '/pages/sidebar.html',
     replace: true,
     transclude: true,
     scope:
       flow: '='
+      expandedState: '='
   }

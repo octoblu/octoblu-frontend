@@ -93,10 +93,7 @@
     <i ng-show="!sidebarIsExpanded" class="fa fa-chevron-left"></i>
     <i ng-show="sidebarIsExpanded" class="fa fa-chevron-right"></i>
   </button>
-  <div ng-class="{'sidebar--is-expanded': sidebarIsExpanded}" class="sidebar">
-    <flow-inspector flow="activeFlow"></flow-inspector>
-    <collection-browser flow="activeFlow"></collection-browser>
-  </div>
+  <flow-sidebar expanded-state="sidebarIsExpanded" flow="activeFlow"></flow-sidebar>
 </div>
 
 <style ng-if="sidebarIsExpanded">
