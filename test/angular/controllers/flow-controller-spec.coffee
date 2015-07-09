@@ -150,6 +150,8 @@ describe 'FlowController', ->
 
     setActiveFlow: =>
 
+    onStep: =>
+
     hashFlow: (flow) =>
       return 1
 
