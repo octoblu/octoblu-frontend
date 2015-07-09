@@ -1,14 +1,16 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
   var lastDeployedHash;
+  var progressId;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
   $scope.sidebarIsExpanded = true;
+  $scope.deployProgress = 0;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -39,9 +41,47 @@ angular.module('octobluApp')
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.online = status;
-    $scope.deploying = false;
-    $scope.stopping = false;
+    if((FlowService.step > 2 && status) || (FlowService.step < 0 && !status)){
+      setDeployProgress(0, true);
+    }
   };
+
+  var setDeployProgress = function(progress, startNow){
+    var cancel = function(){
+      $interval.cancel(progressId);
+      progressId = null;
+    };
+    var setProgress = function(progress){
+      $scope.deployProgress = Math.round(progress * 100);
+    }
+    cancel();
+    if(startNow){
+      $timeout(function(){
+        setProgress(progress);
+      }, 0);
+      if(!progress) return;
+    }
+    progressId = $interval(function(){
+      setProgress(progress);
+      progress += 0.01;
+      if(progress >= 1) cancel();
+    }, 500);
+  };
+
+  FlowService.onStep(function(step){
+    if(!step){
+      setDeployProgress(0, true);
+      return;
+    }
+    var calculate = function(step, max){
+      setDeployProgress(step / max, step === (max - 1));
+    };
+    if(step > 0){
+      calculate(step, FlowService.MAX_START_STEPS);
+    }else{
+      calculate(Math.abs(step), FlowService.MAX_STOP_STEPS);
+    }
+  });
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
     skynetConnection.mydevices({}, function(result){
