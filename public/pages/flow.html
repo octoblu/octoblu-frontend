@@ -45,14 +45,14 @@
         <i class="fa fa-mail-forward fa-lg"></i>
       </md-button>
 
-      <span ng-if="deployProgress !== 0">
+      <span ng-if="false || deployProgress !== 0">
         <md-button aria-label="Progress" style="width: 75px;">
           <md-tooltip>Progress</md-tooltip>
           {{deployProgress}}%
         </md-button>
         <md-progress-linear class="md-accent" md-mode="buffer" value="{{deployProgress}}"></md-progress-linear>
       </span>
-      <span ng-if="deployProgress === 0">
+      <span ng-if="true || deployProgress === 0">
         <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false}" aria-label="Stop">
           <md-tooltip>Stop</md-tooltip>
           <i class="fa fa-stop"></i>
