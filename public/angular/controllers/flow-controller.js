@@ -41,7 +41,6 @@ angular.module('octobluApp')
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.online = status;
-    console.log(FlowService.step, status);
     if((FlowService.step > 2 && status) || (FlowService.step < 0 && !status)){
       setDeployProgress(0, true);
     }
