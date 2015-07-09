@@ -6,13 +6,15 @@ angular.module('octobluApp')
   var previousHashableFlow;
   var _onStepCallbacks = [];
 
+  self.MAX_START_STEPS = 6;
+  self.MAX_STOP_STEPS = 4;
+
   self.onStep = function(callback){
     _onStepCallbacks.push(callback)
   };
 
   self.triggerStep = function(newStep){
     step = newStep;
-    console.log('step', step);
     _.each(_onStepCallbacks, function(callback){
       callback(newStep);
     });
@@ -106,21 +108,21 @@ angular.module('octobluApp')
       if(!message.payload){
         return;
       }
-      self.triggerStep(message.payload.step);
+      self.triggerStep(message.payload.step || 0);
     })
   };
 
   self.listenForFlowChanges();
 
   self.updatedFlow = function(device){
-    if(step === 5){
+    if(step === (self.MAX_START_STEPS - 1)){
       if(device.online){
-        self.triggerStep(6);
+        self.triggerStep(++step);
       }
     }
-    if(step === -3){
+    if(step === (self.MAX_STOP_STEPS + 1)){
       if(!device.online){
-        self.triggerStep(-4);
+        self.triggerStep(--step);
       }
     }
     lastUpdatedFlowDevice = device;

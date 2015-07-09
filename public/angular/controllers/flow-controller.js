@@ -1,10 +1,11 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $timeout, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
   var lastDeployedHash;
+  var progressId;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -40,33 +41,46 @@ angular.module('octobluApp')
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.online = status;
-    setDeployProgress(0);
+    setDeployProgress(0, true);
   };
 
-  var setDeployProgress = function(progress, delay){
-    delay = delay || 0;
-    $timeout(function(){
+  var setDeployProgress = function(progress, startNow){
+    var cancel = function(){
+      $interval.cancel(progressId);
+      progressId = null;
+    };
+    var setProgress = function(progress){
       $scope.deployProgress = Math.round(progress * 100);
-    }, delay);
+    }
+    cancel();
+    if(startNow){
+      $timeout(function(){
+        setProgress(progress);
+      }, 0);
+      if(!progress) return;
+    }
+    progressId = $interval(function(){
+      setProgress(progress);
+      progress += 0.01;
+      if(progress >= 1) cancel();
+    }, 500);
   };
 
   FlowService.onStep(function(step){
-    if(step === 0){
-      setDeployProgress(0);
+    if(!step){
+      setDeployProgress(0, true);
       return;
     }
+    var calculate = function(step, max){
+      if(step >= max){
+        return FlowService.triggerStep(0);
+      }
+      setDeployProgress(step / max, step === (max - 1));
+    };
     if(step > 0){
-      setDeployProgress(step / 6);
-      if(step === 6){
-        setDeployProgress(0, 50);
-      }
-    }
-    if(step < 0){
-      step = Math.abs(step);
-      setDeployProgress(step / 4);
-      if(step === 4){
-        setDeployProgress(0, 50);
-      }
+      calculate(step, FlowService.MAX_START_STEPS);
+    }else{
+      calculate(Math.abs(step), FlowService.MAX_STOP_STEPS);
     }
   });
 
