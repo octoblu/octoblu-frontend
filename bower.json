@@ -58,12 +58,12 @@
     "angular-chart.js": "~0.3.19",
     "angulartics": "~0.17.2",
     "MutationObservers": "Polymer/MutationObservers#~0.4.2",
-    "angular-schema-form": "~0.8.0",
     "xxhash": "*",
     "angular-material": "~0.10.0",
     "ng-autofocus": "~0.0.1",
     "angular-draganddrop": "~0.2.1",
-    "snap.svg": "~0.4.1"
+    "snap.svg": "~0.4.1",
+    "angular-schema-form": "0.8.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
