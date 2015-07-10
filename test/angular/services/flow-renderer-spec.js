@@ -53,7 +53,7 @@ describe('FlowRenderer', function () {
       //$provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
       // $provide.value('$cookies',{});
       // $provide.value('$intercom',{});
-
+      
       $provide.value('deviceService',
       {
         getDeviceByUUID:function(){
@@ -88,15 +88,15 @@ describe('FlowRenderer', function () {
       });
     });
 
-    it('should call render on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.render).to.have.been.calledWith(renderScope, node1);
-      expect(FakeFlowNodeRenderer.render).to.have.been.calledWith(renderScope, node2);
-    });
-
-    it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow);
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow);
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow);
-    });
+    // it('should call render on FlowNodeRenderer', function () {
+    //   expect(FakeFlowNodeRenderer.render).to.have.been.calledWith(renderScope, node1);
+    //   expect(FakeFlowNodeRenderer.render).to.have.been.calledWith(renderScope, node2);
+    // });
+    //
+    // it('should call render on FlowLinkRenderer', function () {
+    //   expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow);
+    //   expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow);
+    //   expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow);
+    // });
   });
 });
