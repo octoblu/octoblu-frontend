@@ -315,6 +315,10 @@ angular.module('octobluApp')
     }
 
     function centerViewBox() {
+      if(!context.flow || !context.flow.nodes || !context.flow.nodes.length) {
+        return;
+      }
+
       var vb = snap.select('.flow-render-area').getBBox();
       vbOrigX = vb.x;
       vbOrigY = vb.y;

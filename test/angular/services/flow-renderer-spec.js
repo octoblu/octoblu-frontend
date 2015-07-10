@@ -1,6 +1,5 @@
 describe('FlowRenderer', function () {
   var sut, flow, FakeFlowNodeRenderer, FakeFlowLinkRenderer, FakeDispatch;
-  //var renderScope = d3.select('.foo');
   var renderScope = new Snap();
   renderScope.group().addClass('flow-render-area')
     .group().addClass('flow-link-area');
@@ -53,7 +52,7 @@ describe('FlowRenderer', function () {
       //$provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
       // $provide.value('$cookies',{});
       // $provide.value('$intercom',{});
-      
+
       $provide.value('deviceService',
       {
         getDeviceByUUID:function(){

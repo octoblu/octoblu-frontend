@@ -21,15 +21,22 @@ angular.module('octobluApp')
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
+
             if (message.topic !== 'pulse') {
               return;
             }
-            var element = Snap.select('#node-' + message.payload.node + ' > image');
-            element.animate({
+
+            var nodeToPulse = Snap.select('#node-' + message.payload.node + ' > image');
+
+            if(!nodeToPulse) {
+              return;
+            }
+
+            nodeToPulse.animate({
               width :FlowNodeDimensions.width * 1.2,
               height:FlowNodeDimensions.minHeight * 1.2
             }, 250, mina.easeout, function() {
-              element.animate({
+              nodeToPulse.animate({
                 width :FlowNodeDimensions.width,
                 height:FlowNodeDimensions.minHeight
               }, 250, mina.easein);
