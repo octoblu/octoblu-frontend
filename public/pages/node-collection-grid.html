@@ -1,3 +1,37 @@
+<div class="node-collection">
+
+  <header class="blu-bordered-header" ng-show="category">
+    <h4 class="blu-bordered-header-label">
+      {{category}}
+    </h4>
+    <hr class="blu-bordered-header-divider">
+  </header>
+
+
+  <div class="node-collection__items node-collection__items--grid">
+    <a
+      ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
+      ng-click="controller.addFlowNodeType(flowNodeType)"
+      data-type="{{flowNodeType.type}}"
+      draggable="true"
+      effect-allowed="copy"
+      draggable-type="flow-node-type"
+      draggable-data="flowNodeType"
+      class="node-collection__item"
+      title="{{flowNodeType.name || flowNodeType.type}}">
+
+      <img
+        ng-src="{{flowNodeType.logo}}"
+        class="node-collection__item-thumbnail animated-popout"
+        alt="{{flowNodeType.name || flowNodeType.type}}" />
+
+      <!-- <div class="node-collection__item-name">{{flowNodeType.name || flowNodeType.type}}</div> -->
+    </a>
+  </div>
+</div>
+
+
+<!--
 <md-grid-list ng-if="viewStyle == 'grid'"
   class="node-grid-list"
   md-cols="5"
@@ -28,3 +62,4 @@
   </h3>
 
 </md-grid-list>
+-->
