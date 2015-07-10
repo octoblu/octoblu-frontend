@@ -255,10 +255,10 @@ md-toolbar {
 }
 
 .center-children {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  .flex-display;
+  .flex-direction(column);
+  .justify-content(center);
+  .align-items(center);
 }
 
 .edit-panel {
@@ -356,9 +356,8 @@ md-toolbar {
 
   /* ---------- Layout ---------- */
   .main-container {
-    display: flex;
-    flex-direction: row;
-    height: 80vh;
+    .flex-display;
+    .flex-direction(row);    
     margin: 0;
   }
 

@@ -1,39 +1,39 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions) {
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, CoordinatesService, FlowNodeDimensions, $interval) {
+    'use strict';
 
     return {
       restrict: 'E',
-      controller: 'FlowEditorController',
       templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
         flow: '=',
         readonly: '=',
-        displayOnly: '='
+        displayOnly: '=',
+        renderViewBox: '='
       },
 
       link: function ($scope, element) {
-        var renderScope = d3
-          .select(element.find('.flow-editor-render-area')[0]);
-
-        var flowRenderer = new FlowRenderer(renderScope, {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
+        var snap = Snap(element.find(".flow-editor-workspace")[0]);
+        var renderContext = {flow:$scope.flow};
+        var flowRenderer = new FlowRenderer(snap, renderContext,
+          {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
             if (message.topic !== 'pulse') {
               return;
             }
-            var element = d3.select('#node-' + message.payload.node + ' > image');
-            element.transition()
-              .attr('width', FlowNodeDimensions.width * 1.2)
-              .attr('height', FlowNodeDimensions.minHeight * 1.2)
-              .duration(250);
-
-            element.transition()
-              .delay(250)
-              .attr('width', FlowNodeDimensions.width)
-              .attr('height', FlowNodeDimensions.minHeight)
-              .duration(250);
+            var element = Snap.select('#node-' + message.payload.node + ' > image');
+            element.animate({
+              width :FlowNodeDimensions.width * 1.2,
+              height:FlowNodeDimensions.minHeight * 1.2
+            }, 250, mina.easeout, function() {
+              element.animate({
+                width :FlowNodeDimensions.width,
+                height:FlowNodeDimensions.minHeight
+              }, 250, mina.easein);
+            });
           });
         });
 
@@ -103,20 +103,53 @@ angular.module('octobluApp')
           });
         });
 
-        flowRenderer.renderGrid();
+        $scope.addNode = function(data, event){
+          var flowNodeType = data['json/flow-node-type'];
+          var newLoc = CoordinatesService.transform(snap.node, event.clientX, event.clientY);
+          flowNodeType.x = newLoc.x - (FlowNodeDimensions.width / 2);
+          flowNodeType.y = newLoc.y - (FlowNodeDimensions.minHeight / 2);
+          $scope.$emit('flow-node-type-selected', flowNodeType);
+        };
 
-        $scope.$watch('flow', function (newFlow, oldFlow) {
-          if (!newFlow) {
+        $scope.$watch('flow', function(newFlow, oldFlow) {
+          if (!newFlow || !(newFlow.nodes || newFlow.links)) {
+            if (newFlow) {
+              console.log('no flow info...?',newFlow.nodes,newFlow.links,newFlow);
+            }
             return;
           }
 
-            flowRenderer.render(newFlow);
+          if (oldFlow) {
+            var modFlow = {nodes:newFlow.nodes,links:newFlow.links};
+            var flowDiff = _.pick(modFlow,function(value,key){
+              return !_.isEqual(value,oldFlow[key]);
+            });
+            if (_.size(flowDiff) === 0) {
+              return;
+            }
+          }
+
+          renderContext.flow = $scope.flow;
+          flowRenderer.render();
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
+          _.each(snap.selectAll(".selected"),function(selected){
+            selected.toggleClass('selected',false);
+          });
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
+          var nodeElement = snap.select("#node-"+$scope.flow.selectedFlowNode.id);
+          if (nodeElement) {
+            nodeElement.toggleClass('selected',true);
+          }
+        });
 
-          //flowRenderer.centerOnSelectedFlowNode($scope.flow);
+        $scope.$watch("flow.zoomScale", function(zoomScale){
+          flowRenderer.updateZoomScale(zoomScale);
+        });
+
+        $scope.$on('centerViewBox', function(){
+          flowRenderer.centerViewBox();
         });
 
         element.on(

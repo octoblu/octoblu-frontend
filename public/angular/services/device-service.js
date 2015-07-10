@@ -1,8 +1,10 @@
 'use strict';
 angular.module('octobluApp')
     .service('deviceService', function ($q, $rootScope, $http, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
-        var myDevices, skynetPromise, subscribeToDevice, getMyDevices, myDevicesPromise;
+        var myDevices, skynetPromise, _onDeviceChangeCallbacks, _onDeviceMessageCallbacks, subscribeToDevice, getMyDevices, myDevicesPromise;
 
+        _onDeviceChangeCallbacks = [];
+        _onDeviceMessageCallbacks = [];
         myDevices = [];
         skynetPromise = skynetService.getSkynetConnection();
         getMyDevices = function(){
@@ -27,7 +29,9 @@ angular.module('octobluApp')
 
         function addDevice(device) {
             skynetPromise.then(function (skynetConnection) {
+              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
                 skynetConnection.subscribe({uuid: device.uuid, types: ['received', 'broadcast']});
+              }
             });
             return device;
         }
@@ -83,6 +87,10 @@ angular.module('octobluApp')
 
         skynetPromise.then(function (skynetConnection) {
             skynetConnection.on('message', function (message) {
+                _.each(_onDeviceMessageCallbacks, function(callback){
+                  callback(message);
+                });
+
                 $rootScope.$broadcast('skynet:message:' + message.fromUuid, message);
                 if (message.payload && _.has(message.payload, 'online')) {
                     var device = _.findWhere(myDevices, {uuid: message.fromUuid});
@@ -103,16 +111,29 @@ angular.module('octobluApp')
             }
 
             skynetPromise.then(function (skynetConnection) {
-              return skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
+                skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+              }
             });
         };
 
         var service = {
+            onDeviceChange: function(onDeviceChangeCallback){
+              _onDeviceChangeCallbacks.push(onDeviceChangeCallback);
+            },
+
+            onDeviceMessage: function(onDeviceMessageCallback){
+              _onDeviceMessageCallbacks.push(onDeviceMessageCallback);
+            },
+
             addOrUpdateDevice: function(device){
-                if (device.type === 'octoblu:flow') {
-                    return;
-                }
+                _.each(_onDeviceChangeCallbacks, function(callback){
+                  callback(device);
+                });
                 subscribeToDevice(device);
+                if (device.type === 'octoblu:flow') {
+                  return;
+                }
                 var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
                 if(existingDevice) {
                     _.extend(existingDevice, device);

@@ -1,3 +1,7 @@
+md-toast {
+  z-index: 9999;
+}
+
 .materialize {
   .flex-display;
   .flex(1);
@@ -28,7 +32,6 @@
     background-color: lightgrey;
     transition: 1s all;
     .flow-editor {
-      min-height:100vh;
       flex-shrink: 0;
       -webkit-flex-shrink: 0;
     }
@@ -58,4 +61,9 @@
 
 .margin {
   margin-left: -6px;
+}
+
+//Doing this because Material Design v0.10.0 makes somethings with an ng-click are force 'fixed' by something odd, causing them all to have an outline.
+:focus {
+  outline: none;
 }

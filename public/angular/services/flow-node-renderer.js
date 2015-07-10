@@ -5,24 +5,12 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, IconCodes, OCTOBLU_ICON_URL) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, LinkRenderer, CoordinatesService, IconCodes, OCTOBLU_ICON_URL) {
+
+    var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
 
     function getNodeHeight(node) {
-      var inputPorts = node.input || 0;
-      var outputPorts = node.output || 0;
-      var numPorts = inputPorts > outputPorts ? inputPorts : outputPorts;
-
-      var nodeHeight = FlowNodeDimensions.minHeight;
-      var totalPortHeight = ((numPorts) * FlowNodeDimensions.portHeight);
-      var totalPortSpacing = ((numPorts + 1) * FlowNodeDimensions.portHeight) / 2;
-
-      totalPortHeight += totalPortSpacing;
-
-      if (totalPortHeight > nodeHeight) {
-        return totalPortHeight;
-      }
-
-      return nodeHeight;
+      return FlowNodeDimensions.minHeight;
     }
 
     var pointInsideRectangle = function(point, rectangle){
@@ -64,61 +52,25 @@ angular.module('octobluApp')
     var findInputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
 
-      if(!node){
+      if(!node || !node.id){
         return;
       }
-
       if(inputPortRightSideX(node) < xCoordinate){
         return;
       }
-
-      var port = _.findIndex(node.inputLocations, function(inputLocation){
-        var offsetInputLocation = inputLocation + node.y;
-        return offsetInputLocation <= yCoordinate && yCoordinate <= (offsetInputLocation + FlowNodeDimensions.portHeight);
-      });
-
-      if (port == -1) {
-        return;
-      }
-
-      return {id: node.id, port: port};
+      return {id: node.id, port: 0};
     };
 
     var findOutputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
-      if(!node){
+
+      if(!node || !node.id){
         return;
       }
-
-
       if(xCoordinate < inputPortLeftSideX(node)){
         return;
       }
-
-      var port = _.findIndex(node.outputLocations, function(outputLocation){
-        var offsetOutputLocation = outputLocation + node.y;
-        return offsetOutputLocation <= yCoordinate && yCoordinate <= (offsetOutputLocation + FlowNodeDimensions.portHeight);
-      });
-
-      if (port == -1) {
-        return;
-      }
-
-      return {id: node.id, port: port};
-    };
-
-    function wrapLines(text) {
-      var text = d3.select(this),
-          lines = text.text().split(/\n+/),
-          lineNumber = 0,
-          lineHeight = 1.1, // ems
-          y = text.attr("y"),
-          dy = parseFloat(text.attr("dy")),
-          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-
-      _.each(lines, function(line){
-        text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(line);
-      });
+      return {id: node.id, port: 0};
     };
 
     function renderIsOnline(node, nodeElement) {
@@ -127,106 +79,116 @@ angular.module('octobluApp')
           if(!device){
             return;
           }
-          nodeElement.classed('faded', !device.online);
+          nodeElement.toggleClass('faded', !device.online);
         });
     }
 
     return {
-      render: function (renderScope, node, flow) {
 
-        function renderPort(nodeElement, className, x, y, index, sourcePortType) {
-          var portElement = nodeElement
-            .append('rect')
-            .attr('x', x)
-            .attr('y', y)
-            .attr('width', FlowNodeDimensions.portWidth)
-            .attr('height', FlowNodeDimensions.portHeight)
-            .attr('data-port-number', index)
-            .classed('flow-node-port', true)
-            .classed(className, true);
+      render: function (snap, node, context, nodeElement, renderGroup) {
 
-          addDragBehavior(portElement, index, sourcePortType);
+        function renderPort(nodeElement, node, className, x, y, index, sourcePortType) {
+          var portElement =
+            snap.rect(x,y,FlowNodeDimensions.portWidth,FlowNodeDimensions.portHeight)
+              .attr({'data-port-number': index})
+              .toggleClass('flow-node-port', true)
+              .toggleClass(className, true);
+          nodeElement.append(portElement);
+          addDragBehavior(node, portElement, index, sourcePortType);
         }
 
-        function addDragBehavior(portElement, sourcePortNumber, sourcePortType) {
-          var dragBehavior = d3.behavior.drag()
-            .on('dragstart', function () {
-              if(!d3.event){return};
-              d3.event.sourceEvent.stopPropagation();
-              d3.event.sourceEvent.preventDefault();
-            })
-            .on('drag', function () {
-              d3.event.sourceEvent.stopPropagation();
-              d3.event.sourceEvent.preventDefault();
-              renderScope.selectAll('.flow-potential-link').remove();
-              var from = {
-                x: node.x + ( parseFloat(portElement.attr('x')) +
-                  (portElement.attr('height') / 2)),
-                y: node.y + ( parseFloat(portElement.attr('y')) +
-                  (portElement.attr('width') / 2))
-              };
-              var to = {
-                x: (node.x + d3.event.x),
-                y: (node.y + d3.event.y)
-              };
+        function addDragBehavior(node, portElement, sourcePortNumber, sourcePortType) {
+          var bbox = portElement.getBBox();
+          var linkElement;
 
-              LinkRenderer.render(renderScope, from, to);
-            })
-            .on('dragend', function () {
-              var x, y, point, rectangle, portRect, clientX, clientY;
+          function onMove(dx,dy,ex,ey,event) {
+            if(!event){return};
+            event.stopPropagation();
+            event.preventDefault();
+            //snap.selectAll('.flow-potential-link').remove();
+            var to = CoordinatesService.transform(snap.node,ex,ey);
+            if (sourcePortType == 'output') {
+              linkElement = LinkRenderer.render(snap, null, to, {from:node.id}, [node], linkElement);
+            } else {
+              linkElement = LinkRenderer.render(snap, to, null, {to:node.id}, [node], linkElement);
+            }
+          };
 
-              if (d3.event.sourceEvent.changedTouches) {
-                clientX = d3.event.sourceEvent.changedTouches[0].clientX;
-                clientY = d3.event.sourceEvent.changedTouches[0].clientY;
-              } else {
-                clientX = d3.event.sourceEvent.clientX;
-                clientY = d3.event.sourceEvent.clientY;
+          function onTouchMove(event) {
+            onMove(
+              undefined, undefined,
+              event.changedTouches[0].clientX,
+              event.changedTouches[0].clientY,
+              event
+            );
+          };
+
+          function onDragStart(x,y,event) {
+            if(!event){return};
+            event.stopPropagation();
+            event.preventDefault();
+            linkElement = undefined;
+          };
+
+          function onTouchStart(event) {
+            onDragStart(undefined,undefined,event);
+          };
+
+          function onDragEnd(event) {
+            if(!event){return};
+            var x, y, point, rectangle, portRect, clientX, clientY;
+
+            if (event.changedTouches) {
+              clientX = event.changedTouches[0].clientX;
+              clientY = event.changedTouches[0].clientY;
+            } else {
+              clientX = event.clientX;
+              clientY = event.clientY;
+            }
+
+            var target = CoordinatesService.transform(snap.node, clientX,clientY);
+            var newLink = undefined;
+
+            if (sourcePortType == 'output') {
+              var inputPort = findInputPortByCoordinate(target.x, target.y, context.flow.nodes);
+              if(inputPort && node.id != inputPort.id) {
+                newLink = {from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port};
               }
+            }
 
-              x = clientX / flow.zoomScale;
-              x = x - (flow.zoomX / flow.zoomScale);
-              y = clientY / flow.zoomScale;
-              y = y - (flow.zoomY / flow.zoomScale);
-
-              if (sourcePortType == 'output') {
-                var inputPort = findInputPortByCoordinate(x, y, flow.nodes);
-                if(inputPort){
-                  if (node.id != inputPort.id) {
-                    flow.links.push({from: node.id, fromPort: sourcePortNumber, to: inputPort.id, toPort: inputPort.port});
-                    return;
-                  }
-                }
+            if (sourcePortType == 'input') {
+              var outputPort = findOutputPortByCoordinate(target.x, target.y, context.flow.nodes);
+              if(outputPort && node.id != outputPort.id) {
+                newLink = {from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber};
               }
+            }
 
-              if (sourcePortType == 'input') {
-                var outputPort = findOutputPortByCoordinate(x, y, flow.nodes);
-                if(outputPort){
-                  if (node.id != outputPort.id) {
-                    flow.links.push({from: outputPort.id, fromPort: outputPort.port, to: node.id, toPort: sourcePortNumber});
-                    return;
-                  }
-                }
-              }
+            // Check if our link already exists, if not add
+            // and return earlier to avoid removing potential link
+            if (newLink && !_.find(context.flow.links,newLink)) {
+              context.flow.links.push(newLink);
+              linkElement = LinkRenderer.render(snap, null, null, newLink, context.flow.nodes, linkElement);
+              return;
+            }
 
-              renderScope.selectAll('.flow-potential-link').remove();
-            });
+            snap.selectAll('.flow-potential-link').remove();
+          };
 
-          portElement.call(dragBehavior);
+          portElement.drag(onMove,onDragStart,onDragEnd);
+          portElement.touchstart(onTouchStart);
+          portElement.touchmove(onTouchMove);
+          portElement.touchend(onDragEnd);
         }
 
         var nodeHeight = getNodeHeight(node);
         node.inputLocations = [];
         node.outputLocations = [];
 
-        if (!node.x) {
-          var width = ($(window).width()/flow.zoomScale)/2;
-          var height = ($(window).height()/flow.zoomScale)/2;
-          var zoomX = flow.zoomX / flow.zoomScale;
-          var zoomY = flow.zoomY / flow.zoomScale;
-
-
-          node.x = width - zoomX;
-          node.y = height - zoomY;
+        if (node.x === undefined || node.x === null || isNaN(node.x) ||
+            node.y === undefined || node.y === null || isNaN(node.y)) {
+          var vbox = snap.attr('viewBox');
+          node.x = vbox.x + vbox.w/2;
+          node.y = vbox.y + vbox.h/2;
         }
 
         var logoUrl = function(data) {
@@ -238,95 +200,74 @@ angular.module('octobluApp')
           }
         };
 
-        var nodeElement = renderScope
-          .append('g')
-          .classed('flow-node', true)
-          .classed('flow-node-' + node.class, true)
-          .classed('selected', (node === flow.selectedFlowNode))
-          .attr('id', 'node-' + node.id)
-          .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
+        var newRender = false;
+
+        if (!nodeElement) {
+          newRender = true;
+          nodeElement = snap.group();
+          renderGroup = renderGroup || snap.select(".flow-render-area");
+          renderGroup.append(nodeElement);
+        } else {
+          nodeElement.selectAll("*").remove();
+        }
 
         nodeElement
-          .append('rect')
-          .attr('width', FlowNodeDimensions.width)
-          .attr('height', nodeHeight)
-          .attr('rx', 6)
-          .attr('ry', 6);
+          .addClass('flow-node')
+          .addClass('flow-node-' + node.class)
+          .toggleClass('selected', (node === context.flow.selectedFlowNode))
+          .attr({'id': 'node-' + node.id})
+          .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 
-        nodeElement
-          .append("svg:image")
-          .attr('width', FlowNodeDimensions.width)
-          .attr('height', nodeHeight)
-          .attr("xlink:href",logoUrl(node));
+        nodeElement.append(
+          snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
+
+        nodeElement.append(
+          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
+            .attr({'preserveAspectRatio':'xMaxYMax'}));
 
         renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
-          nodeElement
-            .append("svg:image")
-            .attr('width', FlowNodeDimensions.width)
-            .attr('height', nodeHeight)
-            .attr("xlink:href", OCTOBLU_ICON_URL + "socket.svg");
+          nodeElement.append(
+            snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight)
+              .attr({'preserveAspectRatio':'xMaxYMax'}));
         }
 
         if (node.errorMessage) {
-          nodeElement.classed('error', true);
+          nodeElement.toggleClass('error', true);
         }
 
         if (node.type === 'operation:trigger') {
-          var buttonElement = renderScope.select('#node-button-' + node.id);
-          if (!buttonElement[0][0]) {
-            buttonElement = renderScope
-              .append('rect')
-              .attr('id', 'node-button-' + node.id)
-              .attr('width', 30)
-              .attr('height', 30)
-              .attr('rx', 2)
-              .attr('ry', 2)
-              .classed('flow-node-button', true);
-          }
-          buttonElement
-            .attr('x', node.x - (FlowNodeDimensions.width / 2) + 5)
-            .attr('y', node.y + (FlowNodeDimensions.minHeight / 2) - 15);
+          nodeElement.append(
+            snap.rect(-35,(FlowNodeDimensions.minHeight/2)-15,30,30,2,2)
+              .attr({'id':'node-button-' + node.id})
+              .toggleClass('flow-node-button', true));
         }
 
         var label = node.name || node.class || '';
         var lines = label.split("\n");
+
         _.each(lines, function(line, i){
           nodeElement
-            .append('text')
-            .classed('flow-node-label', true)
-            .attr('y', nodeHeight + 10 + (i * 15))
-            .attr('x', FlowNodeDimensions.width / 2)
-            .attr('text-anchor', 'middle')
-            .attr('alignment-baseline', 'central')
-            .text(line);
+            .append(snap.text(0,0,line)
+            .addClass('flow-node-label')
+            .attr({'y': nodeHeight + 10 + (i * 15)})
+            .attr({'x': FlowNodeDimensions.width / 2})
+            .attr({'text-anchor': 'middle'})
+            .attr({'alignment-baseline': 'central'}));
         });
 
-        var remainingSpace =
-          nodeHeight - (node.input * FlowNodeDimensions.portHeight);
+        if (node.input>0) {
+          var startY = (nodeHeight - FlowNodeDimensions.portHeight)/2;
+          var startX = -(FlowNodeDimensions.portWidth / 2);
+          renderPort(nodeElement, node, 'flow-node-input-port', startX, startY, 0, 'input');
+        }
 
-        var spaceBetweenPorts = remainingSpace / (node.input + 1) ;
-        var startPos = spaceBetweenPorts;
-        node.inputLocations = [];
-        node.outputLocations = [];
-
-        _.times(node.input, function (index) {
-          renderPort(nodeElement, 'flow-node-input-port', -(FlowNodeDimensions.portWidth / 2), startPos, index, 'input');
-          node.inputLocations.push(startPos);
-          startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
-        });
-
-        var remainingSpace =
-          nodeHeight - (node.output * FlowNodeDimensions.portHeight);
-
-        var spaceBetweenPorts = remainingSpace / (node.output + 1);
-        var startPos = spaceBetweenPorts;
-        _.times(node.output, function (index) {
-          renderPort(nodeElement, 'flow-node-output-port', FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2), startPos, index, 'output');
-          node.outputLocations.push(startPos);
-          startPos += spaceBetweenPorts + FlowNodeDimensions.portHeight;
-        });
+        if (node.output>0){
+          var startY = (nodeHeight - FlowNodeDimensions.portHeight)/2;
+          var startX = FlowNodeDimensions.width - (FlowNodeDimensions.portWidth / 2);
+          renderPort(nodeElement, node, 'flow-node-output-port', startX, startY, 0, 'output');
+        }
 
         return nodeElement;
       },
@@ -334,4 +275,5 @@ angular.module('octobluApp')
       findOutputPortByCoordinate : findOutputPortByCoordinate,
       pointInsideRectangle: pointInsideRectangle
     };
-  });
+  }
+);

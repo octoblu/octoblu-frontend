@@ -3,26 +3,30 @@ describe('LinkRenderer', function () {
 
   beforeEach(function () {
     module('octobluApp');
-    renderScope = d3.select('body').append('svg');
+    //renderScope = d3.select('body').append('svg');
+    renderScope = new Snap();
+    renderScope.group().addClass('flow-render-area')
+      .group().addClass('flow-link-area');
+    renderScope.attr({viewBox:"0 0 10000 10000"});
   });
 
   afterEach(function () {
-    renderScope.remove();
+    renderScope.selectAll('*').remove();
   });
 
   describe('A link positioned on an input', function () {
     var renderLine;
 
     function getPathEndpoints(path) {
-      var pathSteps = path.split(/[a-zA-Z]/g);
-      var startCoords = pathSteps[1].split(',');
+      var pathSteps = path.split(/[a-z,A-Z]/g);
+      var startCoords = pathSteps[1].split(' ');
       var coordinates = [];
       coordinates.push({
         x: parseFloat(startCoords[0]),
         y: parseFloat(startCoords[1])
       });
       var endCoords =
-        pathSteps[pathSteps.length - 1].split(',');
+        pathSteps[pathSteps.length - 1].split(' ');
       coordinates.push({
         x: parseFloat(endCoords[0]),
         y: parseFloat(endCoords[1])
@@ -51,7 +55,7 @@ describe('LinkRenderer', function () {
         {x: 2, y: 5},
         {x: 1, y: 7}
       );
-      var link = $(renderScope.selectAll('.flow-link')[0]);
+      var link = renderScope.selectAll('.flow-link')[0];
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
       expect(pathCoordinates[0].x).to.equal(2);

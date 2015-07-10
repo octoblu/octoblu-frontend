@@ -1,6 +1,11 @@
 describe('FlowRenderer', function () {
   var sut, flow, FakeFlowNodeRenderer, FakeFlowLinkRenderer, FakeDispatch;
-  var renderScope = d3.select('.foo');
+  //var renderScope = d3.select('.foo');
+  var renderScope = new Snap();
+  renderScope.group().addClass('flow-render-area')
+    .group().addClass('flow-link-area');
+  renderScope.attr({viewBox:"0 0 10000 10000"});
+  var context = {flow:{}};
 
   beforeEach(function () {
     module('octobluApp', function ($provide) {
@@ -27,7 +32,7 @@ describe('FlowRenderer', function () {
         on: sinon.spy()
       };
 
-      $provide.value('FlowNodeRenderer', FakeFlowNodeRenderer);
+      //$provide.value('FlowNodeRenderer', FakeFlowNodeRenderer);
 
       var FakeLinkElement = {
         call: sinon.spy(),
@@ -39,16 +44,32 @@ describe('FlowRenderer', function () {
 
       FakeFlowLinkRenderer = {
         render: linkRenderStub,
+        getLinkId: function(link) {
+          return 'link-from-'+link.from+"-to-"+link.to;
+        },
         on: sinon.spy()
       };
 
-      $provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
+      //$provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
+      // $provide.value('$cookies',{});
+      // $provide.value('$intercom',{});
 
+      $provide.value('deviceService',
+      {
+        getDeviceByUUID:function(){
+          return{then:function() {}}
+        }
+      });
     });
+    inject(function(_FlowNodeRenderer_) {
+      FlowNodeRenderer = _FlowNodeRenderer_;
+    });
+
   });
 
+
   afterEach(function(){
-    d3.dispatch.restore();
+    //d3.dispatch.restore();
   });
 
   describe('when flow has two nodes', function() {
@@ -62,7 +83,7 @@ describe('FlowRenderer', function () {
       link3 = {to: '1'};
       inject(function (_FlowRenderer_) {
         flow = {nodes: [node1, node2], links: [link1, link2, link3]};
-        sut = new _FlowRenderer_(renderScope);
+        sut = new _FlowRenderer_(renderScope, {flow:flow});
         sut.render(flow);
       });
     });

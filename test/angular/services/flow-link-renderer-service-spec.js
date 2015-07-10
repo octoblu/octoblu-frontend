@@ -3,7 +3,8 @@ describe('FlowLinkRenderer', function () {
 
   beforeEach(function () {
     module('octobluApp');
-    renderScope = d3.select('body').append('svg');
+    renderScope = new Snap();
+    renderScope.group().addClass('flow-link-area');
   });
 
   afterEach(function () {
@@ -20,7 +21,7 @@ describe('FlowLinkRenderer', function () {
     it('should render a link', function () {
       var flow = {nodes: [{id: '1'} ]};
       sut.render(renderScope, {from: '1', to: '1'}, flow);
-      expect(renderScope.selectAll('.flow-link').data().length).to.equal(1);
+      expect(renderScope.selectAll('.flow-link').length).to.equal(1);
     });
   });
 
@@ -28,20 +29,19 @@ describe('FlowLinkRenderer', function () {
     var renderLine;
 
     function getPathEndpoints(path) {
-      var pathSteps = path.split(/[a-zA-Z]/g);
-      var startCoords = pathSteps[1].split(',');
+      var pathSteps = path.split(/[a-z,A-Z]/g);
+      var startCoords = pathSteps[1].split(' ');
       var coordinates = [];
       coordinates.push({
         x: parseFloat(startCoords[0].trim()),
         y: parseFloat(startCoords[1].trim())
       });
       var endCoords =
-        pathSteps[pathSteps.length - 1].split(',');
+        pathSteps[pathSteps.length - 1].split(' ');
       coordinates.push({
         x: parseFloat(endCoords[0].trim()),
         y: parseFloat(endCoords[1].trim())
       });
-
       return coordinates;
     }
 
@@ -65,11 +65,11 @@ describe('FlowLinkRenderer', function () {
         {id: '1', x: 0, y: 0, inputLocations: [15], outputLocations: [15]}
       ]};
       sut.render(renderScope, {from: '1', to: '1', fromPort: '0'}, flow);
-      var link = $(renderScope.selectAll('.flow-link')[0]);
+      var link = renderScope.selectAll('.flow-link')[0];
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(22.5);
-      expect(pathCoordinates[1].y).to.equal(22.5);
+      expect(pathCoordinates[0].y).to.equal(35);
+      expect(pathCoordinates[1].y).to.equal(35);
     });
 
     it('should render a link from the correct port when 2 nodes', function () {
@@ -79,11 +79,11 @@ describe('FlowLinkRenderer', function () {
       ]};
 
       sut.render(renderScope, {from: '1', to: '2', fromPort: '0', toPort: '1'}, flow);
-      var link = $(renderScope.selectAll('.flow-link')[0]);
+      var link = renderScope.selectAll('.flow-link')[0];
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(22.5);
-      expect(pathCoordinates[1].y).to.equal(37.5);
+      expect(pathCoordinates[0].y).to.equal(35);
+      expect(pathCoordinates[1].y).to.equal(35);
     });
 
     it('should render a link from the correct port when 2 nodes are not at 0,0', function () {
@@ -93,11 +93,11 @@ describe('FlowLinkRenderer', function () {
       ]};
 
       sut.render(renderScope, {from: '1', to: '2', fromPort: '0', toPort: '1'}, flow);
-      var link = $(renderScope.selectAll('.flow-link')[0]);
+      var link = renderScope.selectAll('.flow-link')[0];
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(122.5);
-      expect(pathCoordinates[1].y).to.equal(237.5);
+      expect(pathCoordinates[0].y).to.equal(135);
+      expect(pathCoordinates[1].y).to.equal(235);
     });
   });
 });

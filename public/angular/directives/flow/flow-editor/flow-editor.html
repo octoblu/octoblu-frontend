@@ -1,4 +1,4 @@
-<div class="flow-editor" ui-on-drop="addNode($data, $event.originalEvent.offsetX, $event.originalEvent.offsetY)">
+<div draggable="true" class="flow-editor" drop="addNode($data, $event)">
   <svg class="flow-editor-workspace" xmlns="http://www.w3.org/2000/svg" version="1.1"  pointer-events="all">
     <defs>
       <pattern id="small-blue-grid" width="8" height="8" patternUnits="userSpaceOnUse">
@@ -16,6 +16,6 @@
         <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#FF0000" stroke-width="0.5"/>
       </pattern>
     </defs>
-    <g class="flow-editor-render-area" fill="rgb(243, 246, 247)"></g>
+    <g class="flow-render-area"></g>
   </svg>
 </div>

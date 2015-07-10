@@ -1,12 +1,19 @@
+body {
+  overflow:hidden;
+}
+
 .designer-container {
+  max-height: 100%;
   .flex(4);
   .flex-display;
   .flex-direction(row);
 }
 
 .flow-editor {
+  z-index: 1;
   .flex(4);
   .flex-display;
+  background-color: rgb(243, 246, 247);
 }
 
 .flow-editor-workspace {
@@ -18,6 +25,7 @@
 
 
 .designer__octoblu-logo {
+  z-index:100;
   position: fixed;
   left: 6px;
   bottom: 20px;
@@ -29,6 +37,7 @@
 }
 
 .designer__zoom-controls {
+  z-index:100;
   position: fixed;
   right: 420px;
   bottom: 20px;
@@ -79,6 +88,7 @@
 }
 
 .sidebar__expand-button {
+  z-index:100;
   top: 40%;
   right: 400px;
 

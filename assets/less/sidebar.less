@@ -11,7 +11,7 @@
   .flex-direction(column);
 
   border-left: 1px solid @sidebar-border-color;
-  margin-top: 64px;
+  //margin-top: 64px;
   width: 0;
 
   background: #FFF;
@@ -238,9 +238,9 @@
 
 .sidebar__loading-icon {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flex-display;
+  .align-items(center);
+  .justify-content(center);
   margin: 60px 0;
 
   color: @sidebar-button-color;
@@ -278,6 +278,7 @@
   font-weight: none;
   line-height: 17px;
   text-transform: uppercase;
+  outline: none;
 }
 
 .sidebar__section-toggle-btn {

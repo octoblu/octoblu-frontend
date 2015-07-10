@@ -1,14 +1,16 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
   var lastDeployedHash;
+  var progressId;
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
   $scope.sidebarIsExpanded = true;
+  $scope.deployProgress = 0;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -16,7 +18,9 @@ angular.module('octobluApp')
   });
 
   var subscribeToFlow = function(skynetConnection, flowId){
-    skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
+    if (!_.findWhere(skynetConnection.subscriptions, {uuid: flowId})) {
+      skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
+    }
     deadManSwitch(skynetConnection, flowId);
   };
 
@@ -39,9 +43,47 @@ angular.module('octobluApp')
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
     $scope.online = status;
-    $scope.deploying = false;
-    $scope.stopping = false;
+    if((FlowService.step > 2 && status) || (FlowService.step < 0 && !status)){
+      setDeployProgress(0, true);
+    }
   };
+
+  var setDeployProgress = function(progress, startNow){
+    var cancel = function(){
+      $interval.cancel(progressId);
+      progressId = null;
+    };
+    var setProgress = function(progress){
+      $scope.deployProgress = Math.round(progress * 100);
+    }
+    cancel();
+    if(startNow){
+      $timeout(function(){
+        setProgress(progress);
+      }, 0);
+      if(!progress) return;
+    }
+    progressId = $interval(function(){
+      setProgress(progress);
+      progress += 0.01;
+      if(progress >= 1) cancel();
+    }, 500);
+  };
+
+  FlowService.onStep(function(step){
+    if(!step){
+      setDeployProgress(0, true);
+      return;
+    }
+    var calculate = function(step, max){
+      setDeployProgress(step / max, step === (max - 1));
+    };
+    if(step > 0){
+      calculate(step, FlowService.MAX_START_STEPS);
+    }else{
+      calculate(Math.abs(step), FlowService.MAX_STOP_STEPS);
+    }
+  });
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
     skynetConnection.mydevices({}, function(result){
@@ -193,15 +235,6 @@ angular.module('octobluApp')
     debouncedToggle();
   };
 
-  $scope.onDrop = function (data, event) {
-    var flowNodeType = data['json/flow-node-type'];
-
-    flowNodeType.x = (event.clientX - $scope.activeFlow.zoomX) / $scope.activeFlow.zoomScale;
-    flowNodeType.y = (event.clientY - $scope.activeFlow.zoomY) / $scope.activeFlow.zoomScale;
-
-    $scope.$emit('flow-node-type-selected', flowNodeType);
-  };
-
   $scope.copySelection = function (e) {
     if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
@@ -327,8 +360,9 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow.zoomScale + 0.25 <= 2) {
-      $scope.activeFlow.zoomScale += 0.25;
+    $scope.activeFlow.zoomScale *= 1.25;
+    if ($scope.activeFlow.zoomScale > 8) {
+      $scope.activeFlow.zoomScale = 8;
     }
   };
 
@@ -336,40 +370,14 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow.zoomScale - 0.25 >= 0.25) {
-      $scope.activeFlow.zoomScale -= 0.25;
+    $scope.activeFlow.zoomScale /= 1.25;
+    if ($scope.activeFlow.zoomScale < 0.01) {
+      $scope.activeFlow.zoomScale = 0.01;
     }
   };
 
   $scope.center = function () {
-    $scope.activeFlow.zoomScale = 1;
-
-    var scale = {
-      maxX: Number.NEGATIVE_INFINITY,
-      minX: Number.POSITIVE_INFINITY,
-      maxY: Number.NEGATIVE_INFINITY,
-      minY: Number.POSITIVE_INFINITY,
-      parentHeight: document.getElementsByClassName('flow-editor')[0].offsetHeight,
-      parentWidth: document.getElementsByClassName('flow-editor')[0].offsetWidth
-    };
-
-    _.each( $scope.activeFlow.getNodes(), function(node) {
-      if (node.x > scale.maxX) {
-        scale.maxX = node.x
-      }
-      if (node.x < scale.minX) {
-        scale.minX = node.x
-      }
-      if (node.y > scale.maxY) {
-        scale.maxY = node.y
-      }
-      if (node.y < scale.minY) {
-        scale.minY = node.y
-      }
-    });
-
-    $scope.activeFlow.zoomX = (scale.parentWidth - (scale.minX + scale.maxX))/2;
-    $scope.activeFlow.zoomY = (scale.parentHeight - (scale.minY + scale.maxY))/2;
+    $scope.$broadcast('centerViewBox');
   };
 
   $scope.immediateSave = function (e) {
@@ -406,11 +414,10 @@ angular.module('octobluApp')
 
   $scope.toggleSidebarView = function() {
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
-    if(!$scope.sidebarIsExpanded){
-        _.delay(unselectSelectedFlowNode, 500);
+    if (!$scope.sidebarIsExpanded) {
+      _.delay(unselectSelectedFlowNode, 500);
     }
   };
-
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
     if(!newFlow){

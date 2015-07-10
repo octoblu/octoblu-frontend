@@ -45,26 +45,29 @@
         <i class="fa fa-mail-forward fa-lg"></i>
       </md-button>
 
-      <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false, stopping: stopping }" aria-label="Stop">
-        <md-tooltip>Stop</md-tooltip>
-        <i class="fa fa-stop"></i>
-      </md-button>
+      <span ng-if="deployProgress !== 0">
+        <md-button aria-label="Progress" style="width: 75px;">
+          <md-tooltip>Progress</md-tooltip>
+          {{deployProgress}}%
+        </md-button>
+        <md-progress-linear class="md-accent" md-mode="buffer" value="{{deployProgress}}"></md-progress-linear>
+      </span>
+      <span ng-if="deployProgress === 0">
+        <md-button ng-click="stop()" class="stop-button" ng-class="{ 'btn-stopped': deviceOnline === false}" aria-label="Stop">
+          <md-tooltip>Stop</md-tooltip>
+          <i class="fa fa-stop"></i>
+        </md-button>
 
-      <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, deploying: deploying, 'needs-to-be-deployed': needsToBeDeployed }" aria-label="Start">
-        <md-tooltip>Start</md-tooltip>
-        <i class="fa fa-play"></i>
-      </md-button>
+        <md-button ng-click="start()" class="start-button" ng-class="{ 'btn-playing': deviceOnline, 'needs-to-be-deployed': needsToBeDeployed }" aria-label="Start">
+          <md-tooltip>Start</md-tooltip>
+          <i class="fa fa-play"></i>
+        </md-button>
+      </span>
     </div>
   </div>
 </md-toolbar>
 
-<div class="design2 designer-container"
-  tutorial
-  drop="onDrop($data, $event)"
-  drop-effect="copy"
-  drop-accept="'json/custom-object'"
-  drag-over="onDragOver($event)"
-  drag-over-class="drag-over-accept">
+<div class="design2 designer-container">
 
   <flow-editor ng-class="{'flow-online' : deviceOnline }" flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 

@@ -1,10 +1,12 @@
 describe('FlowNodeRenderer', function () {
-  var sut, renderScope, FlowNodeDimensions, skynetService;
+  var sut, renderScope, FlowNodeDimensions, skynetService, FlowLinkRenderer;
 
   var nodeType = {
     width: 80,
     height: 70
   };
+
+  var context = {flow:{}};
 
   beforeEach(function () {
     module('octobluApp', function($provide){
@@ -16,11 +18,21 @@ describe('FlowNodeRenderer', function () {
       $provide.constant('MESHBLU_PORT', '');
       $provide.constant('OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/');
     });
-    renderScope = d3.select('body').append('svg');
+
+    inject(function(_FlowLinkRenderer_) {
+      FlowLinkRenderer = _FlowLinkRenderer_;
+    });
+
+    //renderScope = d3.select('body').append('svg');
+    renderScope = new Snap();
+    renderScope.group().addClass('flow-render-area')
+      .group().addClass('flow-link-area');
+    renderScope.attr({viewBox:"0 0 10000 10000"});
   });
 
   afterEach(function () {
-    renderScope.remove();
+    renderScope.selectAll("*").remove();
+    context = {flow:{}};
   });
 
   describe('a node', function () {
@@ -64,16 +76,6 @@ describe('FlowNodeRenderer', function () {
             var node = {id: '1', x: 0, y: 0, inputLocations: [15,30] };
             var match = {id: '1', port: 0};
             var port = sut.findInputPortByCoordinate(2,16,[node]);
-            expect(port.port).to.equal(match.port)
-            expect(port).to.deep.equal(match);
-          });
-        });
-
-        describe('when the x and y coordinates are in the second port', function () {
-          it('should return a match', function(){
-            var node = {id: '1', x: 0, y: 0, inputLocations: [15,30] };
-            var match = {id: '1', port: 1};
-            var port = sut.findInputPortByCoordinate(2,31,[node]);
             expect(port.port).to.equal(match.port)
             expect(port).to.deep.equal(match);
           });
@@ -175,16 +177,6 @@ describe('FlowNodeRenderer', function () {
           });
         });
 
-        describe('when the x and y coordinates are in the second port', function () {
-          it('should return a match', function(){
-            var node = {id: '1', x: 0, y: 0, outputLocations: [15,30] };
-            var match = {id: '1', port: 1};
-            var port = sut.findOutputPortByCoordinate(FlowNodeDimensions.width + 2,31,[node]);
-            expect(port.port).to.equal(match.port)
-            expect(port).to.deep.equal(match);
-          });
-        });
-
         describe('when the node is offset by 100 pixels to the right', function () {
           describe('when the x and y coordinates are in port 0', function () {
             var node;
@@ -257,29 +249,29 @@ describe('FlowNodeRenderer', function () {
     });
 
     it('should render a node', function () {
-      sut.render(renderScope, {id: '1'}, {});
-      expect(renderScope.selectAll('.flow-node').data().length).to.equal(1);
+      sut.render(renderScope, {id: '1'}, context);
+      expect(renderScope.selectAll('.flow-node').length).to.equal(1);
     });
 
     it('should render ports on nodes that have them', function () {
-      sut.render(renderScope, {id: '1', input: 1}, {});
-      expect(renderScope.selectAll('.flow-node-port').data().length).to.equal(1);
+      sut.render(renderScope, {id: '1', input: 1}, context);
+      expect(renderScope.selectAll('.flow-node-port').length).to.equal(1);
     });
 
     it('should render two ports', function(){
-      sut.render(renderScope, {id: '1', input: 1, output: 1}, {});
-      expect(renderScope.selectAll('.flow-node-port').data().length).to.equal(2);
+      sut.render(renderScope, {id: '1', input: 1, output: 1}, context);
+      expect(renderScope.selectAll('.flow-node-port').length).to.equal(2);
     });
 
     it('should render an input port and an output port', function(){
-      sut.render(renderScope, {id: '1', input: 1, output: 1}, {});
-      expect(renderScope.selectAll('.flow-node-input-port').data().length).to.equal(1);
-      expect(renderScope.selectAll('.flow-node-output-port').data().length).to.equal(1);
+      sut.render(renderScope, {id: '1', input: 1, output: 1}, context);
+      expect(renderScope.selectAll('.flow-node-input-port').length).to.equal(1);
+      expect(renderScope.selectAll('.flow-node-output-port').length).to.equal(1);
     });
 
     it('should place the input port centered on the left', function(){
-      sut.render(renderScope, {id: '1', input: 1}, {});
-      var port = renderScope.selectAll('.flow-node-input-port');
+      sut.render(renderScope, {id: '1', input: 1}, context);
+      var port = renderScope.selectAll('.flow-node-input-port')[0];
       expect(port.attr('x')).to.equal('-7.5');
       expect(port.attr('y')).to.equal('27.5');
       expect(port.attr('width')).to.equal('15');
@@ -287,64 +279,12 @@ describe('FlowNodeRenderer', function () {
     });
 
     it('should place the output port on the right', function(){
-      sut.render(renderScope, {id: '1', output: 1}, {});
-      var port = renderScope.selectAll('.flow-node-output-port');
+      sut.render(renderScope, {id: '1', output: 1}, context);
+      var port = renderScope.selectAll('.flow-node-output-port')[0];
       expect(port.attr('x')).to.equal((nodeType.width - 7.5) + '');
       expect(port.attr('y')).to.equal(((nodeType.height /2)- 7.5) + '');
       expect(port.attr('width')).to.equal('15');
       expect(port.attr('height')).to.equal('15');
-    });
-
-    it('should place 2 input ports evenly spaced on the left', function(){
-      var node = {id: '1', input: 2};
-      sut.render(renderScope, node, {});
-      var ports = renderScope.selectAll('.flow-node-input-port')[0];
-
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(13);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(42);
-      expect(Math.round(node.inputLocations[0])).to.equal(13);
-      expect(Math.round(node.inputLocations[1])).to.equal(42);
-    });
-
-    it('should place 3 input ports evenly spaced on the left', function(){
-      var node = {id: '1', input: 3};
-      sut.render(renderScope, node, {});
-      var ports = renderScope.selectAll('.flow-node-input-port')[0];
-      var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(nodeElement.attr('height')).to.equal('75');
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(8);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(30);
-      expect(Math.round($(ports[2]).attr('y'))).to.equal(53);
-      expect(Math.round(node.inputLocations[0])).to.equal(8);
-      expect(Math.round(node.inputLocations[1])).to.equal(30);
-      expect(Math.round(node.inputLocations[2])).to.equal(53);
-
-    });
-
-    it('should place 3 output ports evenly spaced on the left', function(){
-      var node = {id: '1', output: 3, name: ''};
-      sut.render(renderScope, node, {});
-      var ports = renderScope.selectAll('.flow-node-output-port')[0];
-      var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(nodeElement.attr('height')).to.equal('75');
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(8);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(30);
-      expect(Math.round($(ports[2]).attr('y'))).to.equal(53);
-      expect(Math.round(node.outputLocations[0])).to.equal(8);
-      expect(Math.round(node.outputLocations[1])).to.equal(30);
-      expect(Math.round(node.outputLocations[2])).to.equal(53);
-    });
-
-    it('should place 4 input ports evenly spaced on the left', function(){
-      sut.render(renderScope, {id: '1', input: 4, name: ''}, {});
-      var node = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(node.attr('height')).to.equal('97.5');
-    });
-
-    it('should place 5 output ports evenly spaced on the left', function(){
-      sut.render(renderScope, {id: '1', output: 5, name: ''}, {});
-      var node = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(node.attr('height')).to.equal('120');
     });
   });
 });
