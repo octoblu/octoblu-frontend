@@ -20,8 +20,35 @@
     </header>
 
     <main class="sidebar__pane-body">
-      <node-collection flow="flow" nodes="nodes.configured" filter-query="filterQuery" view-style="collectionViewStyle" ng-show="tab.state == 'things'"></node-collection>
-      <!-- <node-collection flow="flow" nodes="nodes.available" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection> -->
+      <div ng-show="tab.state == 'things'">
+        <header class="blu-bordered-header" ng-hide="filterQuery">
+          <h4 class="blu-bordered-header-label">
+            Connected Things
+          </h4>
+          <hr class="blu-bordered-header-divider">
+        </header>
+
+        <node-collection
+          flow="flow"
+          nodes="nodes.configured"
+          filter-query="filterQuery"
+          view-style="collectionViewStyle">
+        </node-collection>
+
+        <header class="blu-bordered-header" ng-hide="filterQuery">
+          <h4 class="blu-bordered-header-label">
+            Available Things
+          </h4>
+          <hr class="blu-bordered-header-divider">
+        </header>
+
+        <node-collection
+          flow="flow"
+          nodes="nodes.available"
+          filter-query="filterQuery"
+          view-style="collectionViewStyle">
+        </node-collection>
+      </div>
 
       <node-collection ng-show="tab.state == 'tools'" flow="flow" nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
 
