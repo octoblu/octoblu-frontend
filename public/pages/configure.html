@@ -10,18 +10,23 @@
 <md-content class="interior__wrapper" autoscroll="false">
   <header class="interior__header">
     <div class="interior">
-      <h2>Connected Things</h2>
+      <div class="tabs">
+        <a ui-sref="material.nodewizard.addnode" class="tab-link">Things</a>
+        <a ui-sref="material.configure" class="tab-link is-selected">Connected Things</a>
+      </div>
+
       <div class="interior__header-actions">
         <div class="lookup">
           <i class="lookup__icon fa fa-search fa-lg"></i>
           <input ng-model="deviceNameFilter" placeholder="Filter Things..." type="search" class="lookup__input" autofocus>
         </div>
-
+        <!--
         <div class="interior__header-separator"></div>
 
         <a ui-sref="material.nodewizard.addnode" class="button interior__header-action">
           Add More Things
         </a>
+        -->
       </div>
     </div>
   </header>
