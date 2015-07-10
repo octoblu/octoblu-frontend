@@ -16,6 +16,7 @@ angular.module('octobluApp')
   };
 
   return function (snap, context, options) {
+    var mouseEventTarget = $(snap.node).parent()[0];
     var
       vbOrigX = VIEWBOX_DEFAULT_X,
       vbOrigY = VIEWBOX_DEFAULT_Y,
@@ -65,9 +66,7 @@ angular.module('octobluApp')
       if (!nodeElement) { return; }
 
       nodeElement.click(function (event) {
-        console.log("selectClicked!");
         if (!event || event.defaultPrevented) {
-          //console.log("selectClicked aborted");
           return;
         }
         event.preventDefault();
@@ -80,7 +79,6 @@ angular.module('octobluApp')
       var touchStartPos;
 
       nodeElement.touchstart(function(event) {
-        //console.log('touched!');
         if (!event) {return;}
         event.preventDefault();
         event.stopPropagation();
@@ -98,7 +96,6 @@ angular.module('octobluApp')
         var dX = Math.abs(touchStartPos.clientX - endPos.clientX);
         var dY = Math.abs(touchStartPos.clientY - endPos.clientY);
         if (dX==0 && dY==0 && callback) {
-          //console.log('click callback!');
           callback(node);
         }
       });
@@ -110,14 +107,14 @@ angular.module('octobluApp')
     }
 
     function getClientPos(event) {
+      if (_.isNumber(event.clientX) && _.isNumber(event.clientY)) {
+        return event;
+      }
       var touches = event.touches;
       if (!touches || !touches.length) {
         touches = event.changedTouches;
       }
-      return {
-        clientX: event.clientX || touches[0].clientX,
-        clientY: event.clientY || touches[0].clientY
-      };
+      return touches[0];
     }
 
     function addDragBehavior(dragGroup, dragItem, node, flow) {
@@ -137,11 +134,10 @@ angular.module('octobluApp')
       }
 
       function onMove(dx,dy,ex,ey,event) {
-        //console.log("renderer onMove", arguments);
         if(!event){return};
         event.stopPropagation();
         event.preventDefault();
-        if (!minDiff(event)){console.log('return early!'); return;}
+        if (!minDiff(event)){return;}
         var to = CoordinatesService.transform(snap.node, moveInfo.clientX, moveInfo.clientY);
         var newX = to.x - (FlowNodeDimensions.width / 2);
         var newY = to.y - (FlowNodeDimensions.minHeight / 2);
@@ -154,7 +150,6 @@ angular.module('octobluApp')
       };
 
       function onDragStart(x,y,event) {
-        //console.log("renderer onDragStart:", arguments);
         if(!event){return};
         event.stopPropagation();
         event.preventDefault();
@@ -167,11 +162,6 @@ angular.module('octobluApp')
         };
         dispatch.nodeSelected(node);
         select(dragGroup);
-        // setTimeout(function(){
-        //   console.log('inTimeout!');
-        //   node.x = 0;
-        //   node.y = 0;
-        // },1000);
       };
 
       function onTouchStart(event) {
@@ -179,7 +169,6 @@ angular.module('octobluApp')
       };
 
       function onDragEnd(event) {
-        //console.log("renderer onDragEnd", arguments);
         if(!event){return};
         if(!minDiff(event)){return;}
         event.stopPropagation();
@@ -197,19 +186,6 @@ angular.module('octobluApp')
       dragItem.touchend(onDragEnd);
     }
 
-    if (!displayOnly) {
-      //addZoomBehaviour();
-    }
-
-    // function renderLinks(flow) {
-    //   snap.selectAll('.flow-link').remove();
-    //   _.each(flow.links, function (link) {
-    //     var linkElement = FlowLinkRenderer.render(snap, link, flow);
-    //     if (linkElement && !readonly) {
-    //       addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
-    //     }
-    //   });
-    // }
     function renderLinks(newLinksDiff, oldLinksDiff) {
       _.each(newLinksDiff, function (link, linkId) {
         if (!oldLinksDiff[linkId]) {
@@ -271,7 +247,6 @@ angular.module('octobluApp')
       });
       _.each(oldNodesDiff, function (node) {
         if (!newNodesDiff[node.id]) {
-          //console.log('removing...',snap.selectAll('#flow-node-'+node.id));
           delete nodeElements[node.id];
           snap.selectAll('#node-'+node.id).remove();
           snap.selectAll('.flow-link-to-'+node.id).remove();
@@ -307,12 +282,11 @@ angular.module('octobluApp')
     })();
 
     function addZoomBehavior(nodeElement, context) {
-      nodeElement.addEventListener('mousewheel', function(event) {
+      nodeElement.addEventListener('wheel', function(event) {
         if(!event){return};
         event.stopPropagation();
         event.preventDefault();
         var scaleChange = 1+(event.deltaY/event.screenY);
-        //console.log('wheel:', direction, event.deltaY, scaleChange, event);
         var newW = viewBoxW * scaleChange;
         var newH = viewBoxH * scaleChange;
         var newX = viewBoxX - (newW - viewBoxW)/2;
@@ -322,12 +296,8 @@ angular.module('octobluApp')
         context.flow.zoomScale = vbOrigW/newW;
       });
     }
-    snap.node.addEventListener('scroll', function(event) {
-      console.log('scroll:',event);
-    });
 
     function updateViewBox(x,y,w,h) {
-      //console.log('setting viewbox to',x,y,w,h);
       viewBoxX = x;
       viewBoxY = y;
       viewBoxW = w;
@@ -336,7 +306,6 @@ angular.module('octobluApp')
     }
 
     function updateZoomScale(scale) {
-      //console.log("setting scale to ",scale);
       scale = scale || 1;
       var w = vbOrigW / scale;
       var h = vbOrigH / scale;
@@ -369,7 +338,6 @@ angular.module('octobluApp')
 
     function addPanBehavior(dragElement, context) {
       function dragStart(event) {
-        console.log('svg dragStart!',arguments);
         if (!event) {return;}
         event.stopPropagation();
         event.preventDefault();
@@ -381,7 +349,6 @@ angular.module('octobluApp')
         snap.addClass('grabby-hand');
 
         function dragging(event) {
-          console.log('svg dragging!',arguments);
           var newPos = getClientPos(event);
           var startPos = CoordinatesService.transform(snap.node, original.clientX, original.clientY);
           var currentPos = CoordinatesService.transform(snap.node, newPos.clientX, newPos.clientY);
@@ -410,8 +377,8 @@ angular.module('octobluApp')
       snap.touchstart(dragStart);
     }
 
-    addPanBehavior(snap.node, context);
-    addZoomBehavior(snap.node, context);
+    addPanBehavior(mouseEventTarget, context);
+    addZoomBehavior(mouseEventTarget, context);
     addClickBehavior(snap, undefined, backgroundClicked);
 
     return {
@@ -419,7 +386,6 @@ angular.module('octobluApp')
       render: function() {
         // WARNING: don't add listeners here!
         if (!context.flow) { return; }
-        console.log("rendering!");
         //context.flow = flow;
         if (!snap.attr('viewBox')){
           updateViewBox(vbOrigX,vbOrigY,vbOrigH,vbOrigW);
@@ -431,8 +397,6 @@ angular.module('octobluApp')
         });
         var newLinksDiff = objDiff(newLinkMap,lastLinks);
         var oldLinksDiff = objDiff(lastLinks,newLinkMap);
-        // console.log('newLinksDiff:',newLinksDiff);
-        // console.log('oldLinksDiff:',oldLinksDiff);
         lastLinks = _.cloneDeep(newLinkMap);
         linkMap = newLinkMap;
         renderLinks(newLinksDiff,oldLinksDiff);
@@ -440,8 +404,6 @@ angular.module('octobluApp')
         var newNodeMap = _.indexBy(context.flow.nodes,'id');
         var newNodesDiff = objDiff(newNodeMap,lastNodes);
         var oldNodesDiff = objDiff(lastNodes,newNodeMap);
-        // console.log('newNodesDiff:',newNodesDiff);
-        // console.log('oldNodesDiff:',oldNodesDiff);
         lastNodes = _.cloneDeep(newNodeMap);
         nodeMap = newNodeMap;
         renderNodes(newNodesDiff,oldNodesDiff);

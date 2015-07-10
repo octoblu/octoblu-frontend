@@ -72,21 +72,7 @@ angular.module('octobluApp')
       }
       return {id: node.id, port: 0};
     };
-/*
-    function wrapLines(text) {
-      var text = d3.select(this),
-          lines = text.text().split(/\n+/),
-          lineNumber = 0,
-          lineHeight = 1.1, // ems
-          y = text.attr("y"),
-          dy = parseFloat(text.attr("dy")),
-          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
 
-      _.each(lines, function(line){
-        text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(line);
-      });
-    };
-*/
     function renderIsOnline(node, nodeElement) {
       deviceService.getDeviceByUUID(node.uuid)
         .then(function(device){
@@ -116,7 +102,6 @@ angular.module('octobluApp')
           var linkElement;
 
           function onMove(dx,dy,ex,ey,event) {
-            //console.log("port onMove", arguments);
             if(!event){return};
             event.stopPropagation();
             event.preventDefault();
@@ -139,7 +124,6 @@ angular.module('octobluApp')
           };
 
           function onDragStart(x,y,event) {
-            //console.log("port onDragStart:", arguments);
             if(!event){return};
             event.stopPropagation();
             event.preventDefault();
@@ -151,7 +135,6 @@ angular.module('octobluApp')
           };
 
           function onDragEnd(event) {
-            console.log("port onDragEnd", arguments);
             if(!event){return};
             var x, y, point, rectangle, portRect, clientX, clientY;
 
@@ -185,7 +168,6 @@ angular.module('octobluApp')
             if (newLink && !_.find(context.flow.links,newLink)) {
               context.flow.links.push(newLink);
               linkElement = LinkRenderer.render(snap, null, null, newLink, context.flow.nodes, linkElement);
-              console.log("newLink:",newLink);
               return;
             }
 
@@ -204,19 +186,9 @@ angular.module('octobluApp')
 
         if (node.x === undefined || node.x === null || isNaN(node.x) ||
             node.y === undefined || node.y === null || isNaN(node.y)) {
-          //console.log("initializing node location!");
           var vbox = snap.attr('viewBox');
-          //console.log('Bbox!',JSON.stringify(vbox,null,2));
-          //var width = ($(window).width()/context.flow.zoomScale)/2;
-          //var height = ($(window).height()/context.flow.zoomScale)/2;
-          //var zoomX = context.flow.zoomX / context.flow.zoomScale;
-          //var zoomY = context.flow.zoomY / context.flow.zoomScale;
-
-          //node.x = width - zoomX;
-          //node.y = height - zoomY;
           node.x = vbox.x + vbox.w/2;
           node.y = vbox.y + vbox.h/2;
-
         }
 
         var logoUrl = function(data) {

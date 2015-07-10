@@ -70,7 +70,6 @@ angular.module('octobluApp')
         if (!path){
           return;
         }
-        //console.log('renderLink:',link);
         if (!snapLink) {
           snapLink = snap.path(path);
           snap.select(".flow-link-area").append(snapLink);

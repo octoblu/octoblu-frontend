@@ -24,7 +24,6 @@ angular.module('octobluApp')
             if (message.topic !== 'pulse') {
               return;
             }
-            console.log('pulse!');
             var element = Snap.select('#node-' + message.payload.node + ' > image');
             element.animate({
               width :FlowNodeDimensions.width * 1.2,
@@ -113,9 +112,6 @@ angular.module('octobluApp')
         };
 
         $scope.$watch('flow', function(newFlow, oldFlow) {
-
-          console.log('checking render...');
-
           if (!newFlow || !(newFlow.nodes || newFlow.links)) {
             if (newFlow) {
               console.log('no flow info...?',newFlow.nodes,newFlow.links,newFlow);
@@ -128,16 +124,12 @@ angular.module('octobluApp')
             var flowDiff = _.pick(modFlow,function(value,key){
               return !_.isEqual(value,oldFlow[key]);
             });
-
             if (_.size(flowDiff) === 0) {
-              //console.log('aborting, no diff!');
               return;
             }
-            console.log('flow diff:',flowDiff);
           }
 
           renderContext.flow = $scope.flow;
-          //console.log(newFlow);
           flowRenderer.render();
         }, true);
 
@@ -150,7 +142,6 @@ angular.module('octobluApp')
           if (nodeElement) {
             nodeElement.toggleClass('selected',true);
           }
-          //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 
         $scope.$watch("flow.zoomScale", function(zoomScale){
@@ -158,7 +149,6 @@ angular.module('octobluApp')
         });
 
         $scope.$on('centerViewBox', function(){
-          //console.log('centerViewBox');
           flowRenderer.centerViewBox();
         });
 

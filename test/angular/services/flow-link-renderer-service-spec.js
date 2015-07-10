@@ -3,7 +3,6 @@ describe('FlowLinkRenderer', function () {
 
   beforeEach(function () {
     module('octobluApp');
-    //renderScope = d3.select('body').append('svg');
     renderScope = new Snap();
     renderScope.group().addClass('flow-link-area');
   });
@@ -22,7 +21,6 @@ describe('FlowLinkRenderer', function () {
     it('should render a link', function () {
       var flow = {nodes: [{id: '1'} ]};
       sut.render(renderScope, {from: '1', to: '1'}, flow);
-      //console.log(JSON.stringify(renderScope.selectAll('.flow-link'),null,2));
       expect(renderScope.selectAll('.flow-link').length).to.equal(1);
     });
   });
