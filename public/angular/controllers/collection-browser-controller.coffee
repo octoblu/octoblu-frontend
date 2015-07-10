@@ -5,6 +5,7 @@ class CollectionBrowserController
     @scope.nodes = {}
     @scope.collectionViewStyle = 'list'
     @scope.viewSource = false
+    @scope.loading = true
 
     @FlowNodeTypeService = FlowNodeTypeService
     @NodeTypeService = NodeTypeService
@@ -22,12 +23,13 @@ class CollectionBrowserController
 
     @NodeTypeService.getUnconfiguredNodeTypes()
       .then (nodeTypes) =>
-        $scope.nodes.available = nodeTypes
+        @scope.loading = false
+        @scope.nodes.available = _.groupBy nodeTypes, 'categories'
 
   toggleActiveTab: (tabState) =>
     if tabState in ['things', 'tools', 'debug']
       @scope.tab.state = tabState
-      @scope.filterQuery = ''
+      @scope.filterQuery = '' if tabState == 'debug'
     else
       @scope.tab.state = undefined
 

@@ -21,11 +21,10 @@
         {{flowNodeType.helpText}}
       </p>
     </div>
-
+  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length && filterQuery">
+    No matches for "{{filterQuery}}"
+  </h3>
   </div>
 
-  <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length && filterQuery.name.length">
-    No matches for "{{filterQuery.name}}"
-  </h3>
 
 </md-list>

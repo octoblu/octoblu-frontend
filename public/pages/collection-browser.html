@@ -20,7 +20,10 @@
     </header>
 
     <main class="sidebar__pane-body">
-      <div ng-show="tab.state == 'things'">
+      <div class="blu-loading" ng-show="loading">
+        <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
+      </div>
+      <div ng-show="tab.state == 'things' && !loading">
         <header class="blu-bordered-header" ng-hide="filterQuery">
           <h4 class="blu-bordered-header-label">
             Connected Things
@@ -35,19 +38,21 @@
           view-style="collectionViewStyle">
         </node-collection>
 
-        <header class="blu-bordered-header" ng-hide="filterQuery">
-          <h4 class="blu-bordered-header-label">
-            Available Things
-          </h4>
-          <hr class="blu-bordered-header-divider">
-        </header>
+        <div ng-repeat="(category, things) in nodes.available">
+          <header class="blu-bordered-header" ng-if="!filterQuery">
+            <h4 class="blu-bordered-header-label">
+              {{category}}
+            </h4>
+            <hr class="blu-bordered-header-divider">
+          </header>
 
-        <node-collection
-          flow="flow"
-          nodes="nodes.available"
-          filter-query="filterQuery"
-          view-style="collectionViewStyle">
-        </node-collection>
+          <node-collection
+            flow="flow"
+            nodes="things"
+            filter-query="filterQuery"
+            view-style="collectionViewStyle">
+          </node-collection>
+        </div>
 
         <header class="blu-bordered-header" ng-hide="filterQuery">
           <h4 class="blu-bordered-header-label">
