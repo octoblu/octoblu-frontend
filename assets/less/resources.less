@@ -2,7 +2,6 @@
   .flex-display;
   .flex(1);
   .align-content(center);
-
 }
 
 .resource__list {
@@ -21,5 +20,31 @@
 }
 
 .resource__body {
-  margin: 0 15px 20px;
+  margin: 0 15px 15px;
+}
+
+.resource__collection-container {
+  position: relative;
+}
+
+.resource__collection-header {
+  position: relative;
+
+  display: inline-block;
+  padding: 0px 10px;
+
+  background: #FFF;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.resource__collection-divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  margin: 0;
+  width: 100%;
+  z-index: 1;
 }
