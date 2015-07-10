@@ -29,7 +29,9 @@ angular.module('octobluApp')
 
         function addDevice(device) {
             skynetPromise.then(function (skynetConnection) {
+              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
                 skynetConnection.subscribe({uuid: device.uuid, types: ['received', 'broadcast']});
+              }
             });
             return device;
         }
@@ -109,7 +111,9 @@ angular.module('octobluApp')
             }
 
             skynetPromise.then(function (skynetConnection) {
-              return skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
+                skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+              }
             });
         };
 
