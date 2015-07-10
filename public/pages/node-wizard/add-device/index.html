@@ -16,9 +16,9 @@
 
   <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
     <md-select ng-model="newDevice.action" class="node-wizard__form-actions" required>
-      <md-option ng-value="'addUnclaimed'">Add an unclaimed device</md-option>
-      <md-option ng-value="'registerNew'">Register a new device</md-option>
-      <md-option ng-value="'claimExisting'">Claim an existing device</md-option>
+      <md-option ng-value="'addUnclaimed'">Add an unclaimed thing</md-option>
+      <md-option ng-value="'registerNew'">Register a new thing</md-option>
+      <md-option ng-value="'claimExisting'">Claim an existing thing</md-option>
     </md-select>
 
     <form ng-submit="addDevice()" class="node-wizard__form">
@@ -48,7 +48,7 @@
       <p class="help-block node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
 
       <md-button class="md-primary md-raised node-wizard__button">
-        Add Device
+        Add Thing
       </md-button>
     </form>
 

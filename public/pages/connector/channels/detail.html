@@ -2,7 +2,7 @@
   <h2 class="md-toolbar-tools page-heading">
     <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
       <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-      Channel
+      Thing
     </a>
 
   </h2>
@@ -12,15 +12,15 @@
   <h2 class="node-wizard__header">Manage {{channel.name}}</h2>
   <img src="{{channel.logo}}" alt="{{channel.name}}" class="node-wizard__logo">
   <p class="node-wizard__copy">
-    Deactivating this channel will disable any flows using this channel.
+    Deactivating this thing will disable any flows using this thing.
   </p>
-  <md-button ng-click="setDeactivate($event)" class="md-raised md-hue-2 md-warn node-wizard__button">Deactivate Channel</md-button>
+  <md-button ng-click="setDeactivate($event)" class="md-raised md-hue-2 md-warn node-wizard__button">Deactivate Thing</md-button>
 </main>
 
 <script type="text/ng-template" id="myModalContent.html">
   <md-dialog aria-label="Delete Channel" class="node-wizard__dialog">
     <div class="node-wizard__dialog-body">
-      <p>Are you sure want to deactivate this channel?</p>
+      <p>Are you sure want to deactivate this thing?</p>
     </div>
 
     <div class="md-actions node-wizard__dialog-actions">
