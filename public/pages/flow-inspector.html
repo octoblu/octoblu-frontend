@@ -1,7 +1,7 @@
 <div class="sidebar__pane" ng-class="{'sidebar__pane-section--collapse': hideSection}">
   <span class="sidebar__pane-section--collapse-btn" ng-click="hideSection = !hideSection">
-    <i class="fa fa-chevron-down" ng-show="hideSection"></i>
-    <i class="fa fa-chevron-up" ng-show="!hideSection"></i>
+    <i class="fa fa-plus" ng-show="hideSection"></i>
+    <i class="fa fa-minus" ng-show="!hideSection"></i>
   </span>
   <flow-node-editor
     ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"

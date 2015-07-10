@@ -1,7 +1,7 @@
 <div class="sidebar__pane" ng-class="{'sidebar__pane-section--collapse': hideSection}">
   <span class="sidebar__pane-section--collapse-btn" ng-click="hideSection = !hideSection">
-    <i class="fa fa-chevron-down" ng-show="hideSection"></i>
-    <i class="fa fa-chevron-up" ng-show="!hideSection"></i>
+    <i class="fa fa-plus" ng-show="hideSection"></i>
+    <i class="fa fa-minus" ng-show="!hideSection"></i>
   </span>
 
   <div class="sidebar__pane-content">
@@ -48,6 +48,20 @@
           filter-query="filterQuery"
           view-style="collectionViewStyle">
         </node-collection>
+
+        <header class="blu-bordered-header" ng-hide="filterQuery">
+          <h4 class="blu-bordered-header-label">
+            Flows
+          </h4>
+          <hr class="blu-bordered-header-divider">
+        </header>
+
+        <node-collection
+          flow="flow"
+          nodes="flowNodes"
+          filter-query="filterQuery"
+          view-style="collectionViewStyle">
+        </node-collection>
       </div>
 
       <node-collection ng-show="tab.state == 'tools'" flow="flow" nodes="nodes.operators" filter-query="filterQuery" view-style="collectionViewStyle"></node-collection>
@@ -57,7 +71,7 @@
 
     <footer class="sidebar__toolbar sidebar__toolbar--footer">
       <span ng-show="tab.state == 'debug'">
-        <button ng-click="debugLines = []" class="sidebar__toolbar-button">
+        <button ng-click="debug = []" class="sidebar__toolbar-button">
           <i class="fa fa-ban fa-lg"></i>
         </button>
 

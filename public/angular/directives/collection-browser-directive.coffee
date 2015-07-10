@@ -9,4 +9,5 @@ angular.module('octobluApp')
     controllerAs : 'controller',
     scope:
       flow: '='
+      debug: '='
   }
