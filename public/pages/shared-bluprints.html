@@ -37,7 +37,7 @@
     </div>
     <ul class="bluprints">
       <li ng-repeat="bluprint in controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch}" class="flow-container">
-        <div class="flow md-whiteframe-z1">
+        <div class="flow">
           <div class="header">
             <h3 class="name">
               {{bluprint.name}}
