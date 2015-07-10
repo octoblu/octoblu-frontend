@@ -32,27 +32,25 @@ describe 'CollectionBrowserController', ->
         expect(@scope.tab).to.exist
         expect(@scope.tab.active).to.not.exist
 
-    describe 'when called with toold', ->
+    describe 'when called with tools', ->
       beforeEach ->
         @sut.toggleActiveTab('tools')
       it 'should set the scope.tab.state to tools', ->
         expect(@scope.tab.state).to.equal('tools')
-      it 'should set scope.filterQuery to empty string', ->
-        expect(@scope.filterQuery).to.equal('')
 
     describe 'when called with debug', ->
       beforeEach ->
         @sut.toggleActiveTab('debug')
       it 'should set the scope.tab.state to debug', ->
         expect(@scope.tab.state).to.equal('debug')
+      it 'should set scope.filterQuery to empty string', ->
+        expect(@scope.filterQuery).to.equal('')
 
     describe 'when called with things', ->
       beforeEach ->
         @sut.toggleActiveTab('things')
       it 'should set the scope.tab.state to things', ->
         expect(@scope.tab.state).to.equal('things')
-      it 'should set scope.filterQuery to empty string', ->
-        expect(@scope.filterQuery).to.equal('')
 
     describe 'when called with any other value', ->
       beforeEach ->
