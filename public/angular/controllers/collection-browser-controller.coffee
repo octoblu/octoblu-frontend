@@ -9,7 +9,7 @@ class CollectionBrowserController
     @FlowNodeTypeService = FlowNodeTypeService
     @NodeTypeService = NodeTypeService
 
-    @toggleActiveTab 'nodes'
+    @toggleActiveTab 'things'
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
@@ -25,7 +25,7 @@ class CollectionBrowserController
         $scope.nodes.available = nodeTypes
 
   toggleActiveTab: (tabState) =>
-    if tabState in ['nodes', 'flows', 'debug']
+    if tabState in ['things', 'tools', 'debug']
       @scope.tab.state = tabState
       @scope.filterQuery = ''
     else

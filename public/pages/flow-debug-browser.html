@@ -1,6 +1,6 @@
 <div>
   <div ng-if="viewSource" class="full-height">
-    <pre>{{ activeFlow | json }}</pre>
+    <pre>{{ flow | json }}</pre>
   </div>
   <div ng-if="!viewSource">
     <h5 ng-if="flow.selectedFlowNode.name">Selected Node: {{ flow.selectedFlowNode.name }}</h5>

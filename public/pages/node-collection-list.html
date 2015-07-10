@@ -1,5 +1,5 @@
 <md-list ng-if="viewStyle == 'list'" class="node-collection-container">
-  <md-list-item ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
+  <div ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
     ng-click="controller.addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}"
     class="node-collection-item"
@@ -22,7 +22,7 @@
       </p>
     </div>
 
-  </md-list-item>
+  </div>
 
   <h3 class="node-collection-no-matches" ng-show="!filteredNodes.length && filterQuery.name.length">
     No matches for "{{filterQuery.name}}"

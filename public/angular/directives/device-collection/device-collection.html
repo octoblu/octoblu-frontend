@@ -1,12 +1,13 @@
 <div class="interior device-collection">
-  <header class="device-collection__header">
-    <h4 ng-hide="category == 'undefined'" class="device-collection__header-label">
+  <header class="device-collection__header" ng-show="category">
+    <h4 class="device-collection__header-label">
       {{category | uppercase}}
     </h4>
     <hr class="device-collection__header-divider">
   </header>
 
-  <div class="device-collection__list">
+
+  <div class="device-collection__items device-collection__items--grid">
     <a ng-repeat="device in filteredDevices = (devices | orderBy: 'name')"
       href="{{controller.nextStepUrl(device)}}"
       class="device-collection__item">

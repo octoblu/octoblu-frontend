@@ -31,13 +31,19 @@
   z-index: 1;
 }
 
-.device-collection__list {
+.device-collection__items {
   .flex-display;
-  .flex-direction(row);
   .flex-wrap(wrap);
-  // .justify-content(space-between);
-
 }
+
+.device-collection__items--grid {
+  .flex-direction(row);
+}
+
+.device-collection__items--list {
+  .flex-direction(column);
+}
+
 
 .device-collection__item {
   .flex-display;
@@ -48,6 +54,12 @@
 
   &:hover {
     text-decoration: none;
+  }
+
+  .device-collection__items--list & {
+    .flex-direction(row);
+    .align-items(flex-start);
+    background: oldlace;
   }
 }
 
