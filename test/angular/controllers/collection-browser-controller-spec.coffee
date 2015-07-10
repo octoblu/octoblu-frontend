@@ -22,8 +22,8 @@ describe 'CollectionBrowserController', ->
     it 'should exist', ->
       expect(@sut.toggleActiveTab).to.exist
 
-    it 'should default active tab to nodes on initialization', ->
-      expect(@scope.tab.state).to.equal('nodes')
+    it 'should default active tab to things on initialization', ->
+      expect(@scope.tab.state).to.equal('things')
 
     describe 'when called with undefined or an empty string', ->
       beforeEach ->
@@ -32,11 +32,11 @@ describe 'CollectionBrowserController', ->
         expect(@scope.tab).to.exist
         expect(@scope.tab.active).to.not.exist
 
-    describe 'when called with flows', ->
+    describe 'when called with toold', ->
       beforeEach ->
-        @sut.toggleActiveTab('flows')
-      it 'should set the scope.tab.state to flows', ->
-        expect(@scope.tab.state).to.equal('flows')
+        @sut.toggleActiveTab('tools')
+      it 'should set the scope.tab.state to tools', ->
+        expect(@scope.tab.state).to.equal('tools')
       it 'should set scope.filterQuery to empty string', ->
         expect(@scope.filterQuery).to.equal('')
 
@@ -46,11 +46,11 @@ describe 'CollectionBrowserController', ->
       it 'should set the scope.tab.state to debug', ->
         expect(@scope.tab.state).to.equal('debug')
 
-    describe 'when called with nodes', ->
+    describe 'when called with things', ->
       beforeEach ->
-        @sut.toggleActiveTab('nodes')
-      it 'should set the scope.tab.state to nodes', ->
-        expect(@scope.tab.state).to.equal('nodes')
+        @sut.toggleActiveTab('things')
+      it 'should set the scope.tab.state to things', ->
+        expect(@scope.tab.state).to.equal('things')
       it 'should set scope.filterQuery to empty string', ->
         expect(@scope.filterQuery).to.equal('')
 
