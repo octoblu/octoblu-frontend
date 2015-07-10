@@ -9,7 +9,7 @@ class CollectionBrowserController
     @FlowNodeTypeService = FlowNodeTypeService
     @NodeTypeService = NodeTypeService
 
-    @toggleActiveTab 'debug'
+    @toggleActiveTab 'things'
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
