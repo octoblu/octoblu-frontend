@@ -1,0 +1,21 @@
+<span>
+  <md-button ng-show="device.stopping" class="spin-button" aria-label="Stopping">
+    <md-tooltip>Stopping...</md-tooltip>
+    <i class="fa fa-spin fa-refresh"></i>
+  </md-button>
+
+  <md-button ng-hide="device.stopping" ng-click="controller.stop()" class="stop-button" ng-class="{ 'btn-stopped': device.online === false}" aria-label="Stop">
+    <md-tooltip>Stop</md-tooltip>
+    <i class="fa fa-stop"></i>
+  </md-button>
+
+  <md-button ng-show="device.deploying" class="spin-button" aria-label="Deploying">
+    <md-tooltip>Deploying...</md-tooltip>
+    <i class="fa fa-spin fa-refresh"></i>
+  </md-button>
+
+  <md-button ng-hide="device.deploying" ng-click="controller.start()" class="start-button" ng-class="{ 'btn-playing': device.online, 'needs-to-be-deployed': needsToBeDeployed }" aria-label="Start">
+    <md-tooltip>Start</md-tooltip>
+    <i class="fa fa-play"></i>
+  </md-button>
+</span>

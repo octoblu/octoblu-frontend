@@ -8,6 +8,7 @@ var gulp         = require('gulp'),
   webserver      = require('gulp-webserver'),
   coffee         = require('gulp-coffee'),
   clean          = require('gulp-clean'),
+  cors           = require('cors'),
   _              = require('lodash');
 
 gulp.task('bower', function() {
@@ -75,6 +76,7 @@ gulp.task('static', function(){
     directoryListing: false,
     open: false,
     fallback: 'index.html',
+    middleware: [cors()],
     proxies: [{
       source: '/api',
       target: 'http://localhost:8081/api'

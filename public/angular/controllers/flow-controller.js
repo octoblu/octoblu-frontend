@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, ThingService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -131,6 +131,14 @@ angular.module('octobluApp')
       subscribeToFlow(skynetConnection, $stateParams.flowId);
       checkDeviceStatus(skynetConnection, $stateParams.flowId);
 
+      skynetConnection.on('config', function(data){
+        if(data.uuid !== $stateParams.flowId) {
+          return;
+        }
+
+        $scope.flowDevice = data;
+      });
+
       skynetConnection.on('message', function (message) {
         if(message.fromUuid !== $stateParams.flowId) {
           return;
@@ -207,6 +215,9 @@ angular.module('octobluApp')
     $scope.activeFlow = flow;
     setCookie(flow.flowId);
     FlowService.setActiveFlow($scope.activeFlow);
+    ThingService.getThing({uuid: flow.flowId}).then(function(device){
+      $scope.flowDevice = device;
+    });
   };
 
   $scope.isActiveFlow = function (flow) {
@@ -299,31 +310,6 @@ angular.module('octobluApp')
     return redoBuffer.length > 0;
   }
 
-  $scope.immediateStart = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    lastDeployedHash = _.clone($scope.activeFlow.hash);
-    $scope.needsToBeDeployed = false;
-    $scope.deploying = true;
-    _.each($scope.activeFlow.nodes, function(node) {
-      delete node.errorMessage;
-    });
-    FlowService.start();
-  };
-
-  $scope.start = _.throttle($scope.immediateStart, 5000);
-
-  $scope.immediateStop = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    $scope.stopping = true;
-    $scope.needsToBeDeployed = true;
-    FlowService.stop();
-  };
-
-  $scope.stop = _.throttle($scope.immediateStop, 5000);
 
   $scope.deleteSelection = function (e) {
     if (e) {

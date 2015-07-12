@@ -8,7 +8,7 @@ angular.module('octobluApp')
     GITHUB: "http://#{window.location.hostname}:8888"
   }
   .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:9000"
-  .constant 'MESHBLU_HOST', "ws://#{window.location.hostname}"
+  .constant 'MESHBLU_HOST', "#{window.location.hostname}"
   .constant 'MESHBLU_PORT', '3000'
   .constant 'PROFILE_URI', "http://#{window.location.hostname}:8888/profile"
   # .constant 'OCTOBLU_ICON_URL', 'http://octoblu-icons.s3.amazonaws.com/'
