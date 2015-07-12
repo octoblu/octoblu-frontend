@@ -177,18 +177,20 @@ angular.module('octobluApp')
       function panmove(event) {
         if (shouldAbort(event,enabled)) return;
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
+        if (!tmpNode) return;
         moveNode(event,tmpNode);
       }
 
       function panend(event) {
         if (shouldAbort(event,enabled)) return;
+        enableFlowBehavior();
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
+        if (!tmpNode) return;
         var lastNode = lastNodes[node.id];
         moveNode(event,tmpNode);
         node.x = lastNode.x = tmpNode.x;
         node.y = lastNode.y = tmpNode.y;
         dispatch.flowChanged();
-        enableFlowBehavior();
       }
 
       function pancancel(event) {
@@ -245,6 +247,7 @@ angular.module('octobluApp')
         if (shouldAbort(event,enabled)) return;
         lastEvent = event;
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
+        if (!tmpNode) return;
 
         var to = CoordinatesService.transform(snap.node,event.center.x,event.center.y);
         if (isInputPort) {
@@ -258,9 +261,10 @@ angular.module('octobluApp')
 
       function panend(event) {
         if (shouldAbort(event,enabled)) return;
-        var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
         enableFlowBehavior();
         delete nodeMoveDispatch[node.id];
+        var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
+        if (!tmpNode) return;
 
         var target = CoordinatesService.transform(snap.node, event.center.x, event.center.y);
         var newLink = undefined;
@@ -512,10 +516,9 @@ angular.module('octobluApp')
     function renderNodes(newNodesDiff, oldNodesDiff) {
       _.each(newNodesDiff, function (node) {
         if (oldNodesDiff[node.id]) {
-          updateLinks(node.id);
+          updateLinks(node.id, {flow:context.flow});
         }
-        snap.selectAll('#node-'+node.id).remove();
-        var nodeElement = FlowNodeRenderer.render(snap, node, context);
+        var nodeElement = FlowNodeRenderer.render(snap, node, context, nodeElements[node.id]);
         if (!nodeElement) {
           return;
         }
