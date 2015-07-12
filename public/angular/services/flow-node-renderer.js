@@ -13,6 +13,10 @@ angular.module('octobluApp')
       return FlowNodeDimensions.minHeight;
     }
 
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     var pointInsideRectangle = function(point, rectangle){
       var leftMatch, rightMatch, topMatch, bottomMatch;
       leftMatch   = point[0] > rectangle[0];
@@ -69,8 +73,8 @@ angular.module('octobluApp')
 
         if (!_.isNumber(node.x) || !_.isNumber(node.y)) {
           var vbox = snap.attr('viewBox');
-          node.x = vbox.x + vbox.w/2;
-          node.y = vbox.y + vbox.h/2;
+          node.x = getRandomInt(vbox.x, vbox.x+vbox.w-FlowNodeDimensions.width);
+          node.y = getRandomInt(vbox.y, vbox.y+vbox.h-FlowNodeDimensions.minHeight);
         }
 
         var logoUrl = function(data) {

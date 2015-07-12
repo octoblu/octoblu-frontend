@@ -16,7 +16,8 @@ angular.module('octobluApp')
   };
 
   return function (snap, context, options) {
-    var hammerSnap = new Hammer(snap.node);
+    var snapParent = $(snap.node).parent()[0];
+    var hammerSnap = new Hammer(snapParent);
 
     var
       vbOrigX = VIEWBOX_DEFAULT_X,
@@ -92,41 +93,41 @@ angular.module('octobluApp')
     }
 
     function centerViewBox() {
-      if(!context.flow || !context.flow.nodes || !context.flow.nodes.length) {
+      if(!context.flow ||
+         !context.flow.nodes ||
+         !context.flow.nodes.length) {
         return;
       }
-
       var vb = snap.select('.flow-render-area').getBBox();
-      vbOrigX = vb.x;
-      vbOrigY = vb.y;
-      vbOrigW = vb.width;
-      vbOrigH = vb.height;
-      updateViewBox(vbOrigX,vbOrigY,vbOrigW,vbOrigH);
-      var orig   = CoordinatesService.transform(snap.node, 0,0);
-      var borderLT = CoordinatesService.transform(snap.node, 30,20);
-      var borderRB = CoordinatesService.transform(snap.node, 100,100);
-      var deltaL = borderLT.x - orig.x;
-      var deltaT = borderLT.y - orig.y;
-      var deltaR = borderRB.x - orig.x;
-      var deltaB = borderRB.y - orig.y;
-      vbOrigX -= deltaL;
-      vbOrigY -= deltaT;
-      vbOrigW += deltaL + deltaR;
-      vbOrigH += deltaT + deltaB;
-      updateViewBox(vbOrigX,vbOrigY,vbOrigW,vbOrigH);
-      context.flow.zoomScale = 1;
+      viewBoxX = vbOrigX = vb.x;
+      viewBoxY = vbOrigY = vb.y;
+      viewBoxW = vbOrigW = vb.width;
+      viewBoxH = vbOrigH = vb.height;
+      context.flow.zoomScale = 0.75;
+      updateZoomScale(context.flow.zoomScale);
       flowMultiTouchCounter = 0;
     }
 
-    function addClickBehavior(nodeElement, node, callback) {
-      if (!nodeElement) return;
-      var hammer = new Hammer(nodeElement.node);
+    function shouldAbort(event,enabled) {
+      if (!enabled) return true;
+      if (!event) return true;
+      if (event.srcEvent) {
+        event.srcEvent.stopPropagation();
+        event.srcEvent.preventDefault();
+      } else {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      return false;
+    }
+
+    function addClickBehavior(element, node, callback) {
+      if (!element) return;
+      var hammer = new Hammer(element);
       var enabled;
 
       function tap(event){
-        if (!enabled) return;
-        event.srcEvent.preventDefault();
-        event.srcEvent.stopPropagation();
+        if (shouldAbort(event,enabled)) return;
         if (callback) {
           callback(node);
         }
@@ -155,54 +156,43 @@ angular.module('octobluApp')
       var moveInfo;
 
       function panstart(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         disableFlowBehavior();
         moveInfo = { flow : tmpFlow };
         dispatch.nodeSelected(node);
         select(dragGroup);
       }
 
-      function panmove(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
-
+      function moveNode(event,tmpNode) {
         var to = CoordinatesService.transform(snap.node, event.center.x, event.center.y);
-        var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
         tmpNode.x = to.x - (FlowNodeDimensions.width / 2);
         tmpNode.y = to.y - (FlowNodeDimensions.minHeight / 2);
-        updateLinks(node.id,moveInfo,{x:tmpNode.x,y:tmpNode.y});
+        updateLinks(tmpNode.id, moveInfo, {x:tmpNode.x,y:tmpNode.y});
         dragGroup.attr({"transform":"translate("+tmpNode.x+","+tmpNode.y+")"});
-        if (nodeMoveDispatch[node.id]) {
-          nodeMoveDispatch[node.id]();
+        if (nodeMoveDispatch[tmpNode.id]) {
+          nodeMoveDispatch[tmpNode.id]();
         }
+      }
+
+      function panmove(event) {
+        if (shouldAbort(event,enabled)) return;
+        var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
+        moveNode(event,tmpNode);
       }
 
       function panend(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
-        enableFlowBehavior();
-
-        var to = CoordinatesService.transform(snap.node, event.center.x, event.center.y);
+        if (shouldAbort(event,enabled)) return;
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
-        node.x = tmpNode.x = to.x - (FlowNodeDimensions.width / 2);
-        node.y = tmpNode.y = to.y - (FlowNodeDimensions.minHeight / 2);
-        lastNodes[node.id] = _.cloneDeep(node);
-        updateLinks(node.id,moveInfo,{x:node.x,y:node.y});
-        dragGroup.attr({"transform":"translate("+node.x+","+node.y+")"});
-        if (nodeMoveDispatch[node.id]) {
-          nodeMoveDispatch[node.id]();
-        }
+        var lastNode = lastNodes[node.id];
+        moveNode(event,tmpNode);
+        node.x = lastNode.x = tmpNode.x;
+        node.y = lastNode.y = tmpNode.y;
         dispatch.flowChanged();
+        enableFlowBehavior();
       }
 
       function pancancel(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         enableFlowBehavior();
       }
 
@@ -244,9 +234,7 @@ angular.module('octobluApp')
       }
 
       function panstart(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         disableFlowBehavior();
         linkElement = undefined;
         lastEvent = event;
@@ -254,9 +242,7 @@ angular.module('octobluApp')
       }
 
       function panmove(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         lastEvent = event;
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
 
@@ -271,9 +257,7 @@ angular.module('octobluApp')
       }
 
       function panend(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         var tmpNode = _.find(tmpFlow.nodes, {id:node.id});
         enableFlowBehavior();
         delete nodeMoveDispatch[node.id];
@@ -300,7 +284,7 @@ angular.module('octobluApp')
           context.flow.links.push(newLink);
           linkElement = LinkRenderer.render(snap, null, null, newLink, tmpFlow.nodes, linkElement);
           linkElement.removeClass('flow-potential-link-'+node.id);
-          addClickBehavior(linkElement, newLink, selectCallback(linkElement, dispatch.linkSelected));
+          addClickBehavior(linkElement.node, newLink, selectCallback(linkElement, dispatch.linkSelected));
           var linkId = FlowLinkRenderer.getLinkId(newLink);
           lastLinks[linkId] = newLink;
           linkElements[linkId] = linkElement;
@@ -312,9 +296,7 @@ angular.module('octobluApp')
       }
 
       function pancancel(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         enableFlowBehavior();
         snap.selectAll('.flow-potential-link-'+node.id).remove();
       }
@@ -348,10 +330,7 @@ angular.module('octobluApp')
       var original;
 
       function panstart(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
-
+        if (shouldAbort(event,enabled)) return;
         startViewboxX = viewBoxX;
         startViewboxY = viewBoxY;
         original = event;
@@ -359,10 +338,7 @@ angular.module('octobluApp')
       }
 
       function panmove(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
-
+        if (shouldAbort(event,enabled)) return;
         var startPos = CoordinatesService.transform(snap.node, original.center.x, original.center.y);
         var currentPos = CoordinatesService.transform(snap.node, event.center.x, event.center.y);
         var differenceX = currentPos.x - startPos.x;
@@ -373,9 +349,7 @@ angular.module('octobluApp')
       }
 
       function panend(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         snap.removeClass('grabby-hand');
       }
 
@@ -420,9 +394,7 @@ angular.module('octobluApp')
       }
 
       function pinchmove(event) {
-        if (!enabled) return;
-        event.srcEvent.stopPropagation();
-        event.srcEvent.preventDefault();
+        if (shouldAbort(event,enabled)) return;
         zoom(1/event.scale);
       }
 
@@ -431,10 +403,8 @@ angular.module('octobluApp')
         zoomStart();
       }
 
-      snap.node.addEventListener('wheel', function(event) {
-        if (!enabled) return;
-        event.stopPropagation();
-        event.preventDefault();
+      snapParent.addEventListener('wheel', function(event) {
+        if (shouldAbort(event,enabled)) return;
         zoomStart();
         zoom( 1+(event.deltaY/event.screenY) );
       });
@@ -477,7 +447,7 @@ angular.module('octobluApp')
     if (!readonly) {
       flowBehavior.pan = addFlowPanBehavior();
       flowBehavior.zoom = addFlowZoomBehavior();
-      flowBehavior.click = addClickBehavior(snap, undefined, backgroundClicked);
+      flowBehavior.click = addClickBehavior(snapParent, undefined, backgroundClicked);
     }
 
     var flowMultiTouchCounter = 0;
@@ -505,7 +475,7 @@ angular.module('octobluApp')
           if (linkElement) {
             linkElements[linkElement.attr('id')] = linkElement;
             if (!readonly){
-              addClickBehavior(linkElement, link, selectCallback(linkElement, dispatch.linkSelected));
+              addClickBehavior(linkElement.node, link, selectCallback(linkElement, dispatch.linkSelected));
             }
           } else {
             console.log('unable to create link:',link);
@@ -523,7 +493,7 @@ angular.module('octobluApp')
 
     function updateLinks(nodeId,info,pos) {
       info = info || {};
-      var flow = info.flow || context.flow;
+      var flow = info.flow || tmpFlow || context.flow;
       var toLinks = info.toLinks || _.where(flow.links,{to:nodeId});
       var fromLinks = info.fromLinks || _.where(flow.links,{from:nodeId});
       var processLinks = function(links, loc) {
@@ -553,8 +523,13 @@ angular.module('octobluApp')
           return;
         }
         var nodeImage = nodeElement.select("image:last-of-type");
-        addClickBehavior(nodeImage, node, selectCallback(nodeElement, dispatch.nodeSelected));
-        addClickBehavior(snap.select('#node-button-'+node.id), node, dispatch.nodeButtonClicked);
+        var nodeButton = snap.select('#node-button-'+node.id);
+        if (nodeImage){
+          addClickBehavior(nodeImage.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
+        }
+        if (nodeButton){
+          addClickBehavior(nodeButton.node, node, dispatch.nodeButtonClicked);
+        }
         addNodeDragBehavior(nodeElement, nodeImage, node, context.flow, tmpFlow);
         _.each(nodeElement.selectAll('.flow-node-port'), function(portElement){
           addPortDragBehavior(node, portElement, tmpFlow);
@@ -574,8 +549,6 @@ angular.module('octobluApp')
 
       render: function() {
         if (!context.flow) { return; }
-        tmpFlow.nodes = _.cloneDeep(context.flow.nodes);
-        tmpFlow.links = _.cloneDeep(context.flow.links);
 
         if (!snap.attr('viewBox')){
           updateViewBox(vbOrigX,vbOrigY,vbOrigH,vbOrigW);
@@ -598,7 +571,17 @@ angular.module('octobluApp')
         nodeMap = newNodeMap;
         renderNodes(newNodesDiff,oldNodesDiff);
 
-        if (firstView && _.size(newLinksDiff)!==0) {
+        if (_.size(newNodesDiff) !== 0 ||
+            _.size(oldNodesDiff) !== 0) {
+          tmpFlow.nodes = _.cloneDeep(context.flow.nodes);
+        }
+
+        if (_.size(newLinksDiff) !== 0 ||
+            _.size(oldLinksDiff) !== 0) {
+          tmpFlow.links = _.cloneDeep(context.flow.links);
+        }
+
+        if (firstView) {
           if (readonly) {
             context.flow.selectedFlowNode = undefined;
             context.flow.selectedLink = undefined;

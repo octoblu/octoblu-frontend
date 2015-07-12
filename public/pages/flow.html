@@ -54,7 +54,7 @@
 
   <flow-editor ng-class="{'flow-online' : deviceOnline }" flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 
-  <img src="/assets/images/octoblu.png" class="designer__octoblu-logo"/>
+  <img src="/assets/images/octoblu.png" class="designer__octoblu-logo" onmousedown="return false" />
 
   <div class="designer__zoom-controls" ng-class="{'designer__zoom-controls-closed' : !sidebarIsExpanded}">
     <div class="designer__zoom-control-group">
