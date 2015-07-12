@@ -410,3 +410,34 @@ md-divider.sidebar__section-divider {
 .sidebar__pane-node--delete {
   top: 35px;
 }
+
+
+.sidebar__expand-button {
+  z-index:1;
+  top: 40%;
+  right: 400px;
+
+  height: 40px;
+  margin-top: 13px;
+  padding: 0px 13px;
+
+  color: #737373;
+  background-color: white;
+
+  border: 1px solid #c5c5c5;
+  border-right: none;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+
+  position: fixed;
+
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.sidebar__expand-button--closed {
+  right: 0;
+}
