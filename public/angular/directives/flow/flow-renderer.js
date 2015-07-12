@@ -280,6 +280,7 @@ angular.module('octobluApp')
         }
 
         if (newLink && !_.find(tmpFlow.links,newLink)) {
+          tmpFlow.links = tmpFlow.links || [];
           tmpFlow.links.push(newLink);
           context.flow.links.push(newLink);
           linkElement = LinkRenderer.render(snap, null, null, newLink, tmpFlow.nodes, linkElement);
