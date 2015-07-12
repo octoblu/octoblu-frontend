@@ -63,7 +63,8 @@
     "ng-autofocus": "~0.0.1",
     "angular-draganddrop": "~0.2.1",
     "snap.svg": "~0.4.1",
-    "angular-schema-form": "0.8.1"
+    "angular-schema-form": "0.8.1",
+    "hammer.js": "~2.0.4"
   },
   "devDependencies": {
     "chai": "~1.9.1",

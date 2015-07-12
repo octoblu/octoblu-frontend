@@ -10,7 +10,6 @@ body {
 }
 
 .flow-editor {
-  z-index: 1;
   .flex(4);
   .flex-display;
   background-color: rgb(243, 246, 247);
@@ -25,7 +24,6 @@ body {
 
 
 .designer__octoblu-logo {
-  z-index:100;
   position: fixed;
   left: 6px;
   bottom: 20px;
@@ -37,7 +35,6 @@ body {
 }
 
 .designer__zoom-controls {
-  z-index: 1;
   position: fixed;
   right: 420px;
   bottom: 20px;
@@ -85,4 +82,33 @@ body {
   margin: 0;
 
   background: #DADADA;
+}
+
+.sidebar__expand-button {
+  top: 40%;
+  right: 400px;
+
+  height: 40px;
+  margin-top: 13px;
+  padding: 0px 13px;
+
+  color: #737373;
+  background-color: white;
+
+  border: 1px solid #c5c5c5;
+  border-right: none;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+
+  position: fixed;
+
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.sidebar__expand-button--closed {
+  right: 0;
 }

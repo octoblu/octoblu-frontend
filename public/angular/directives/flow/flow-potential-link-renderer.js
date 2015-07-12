@@ -10,8 +10,8 @@ angular.module('octobluApp')
       render: function (snap, from, to, link, nodes, snapLink, classes) {
         return FlowLinkRenderer.render(
           snap, link, {nodes:nodes},
-          {from:exact(from), to:exact(to)}, snapLink,
-          ['flow-potential-link'].concat(classes));
+          {from:exact(from), to:exact(to)},
+          snapLink, classes);
       }
     }
   }
