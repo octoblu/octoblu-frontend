@@ -267,14 +267,14 @@ angular.module('octobluApp')
 
         if (isInputPort) {
           var outputNode = FlowNodeRenderer.findNodeByCoordinates(target.x, target.y, tmpFlow.nodes);
-          if(outputNode && tmpNode.id != outputNode.id) {
+          if(outputNode && outputNode.output && tmpNode.id != outputNode.id) {
             newLink = {from: outputNode.id, fromPort: 0, to: tmpNode.id, toPort: 0};
           }
         }
 
         if (isOutputPort) {
           var inputNode = FlowNodeRenderer.findNodeByCoordinates(target.x, target.y, tmpFlow.nodes);
-          if(inputNode && tmpNode.id != inputNode.id) {
+          if(inputNode && inputNode.input && tmpNode.id != inputNode.id) {
             newLink = {from: tmpNode.id, fromPort: 0, to: inputNode.id, toPort: 0};
           }
         }
