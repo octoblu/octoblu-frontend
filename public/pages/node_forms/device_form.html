@@ -3,19 +3,19 @@
   <input ng-model="flowNode.name">
 </md-input-container>
 
-<md-switch ng-true-value="false" ng-false-value="true" ng-model="flowNode.useStaticMessage">Forward Message</md-switch>
+<div>
+  <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
+</div>
 
 <md-input-container>
   <label>Filter by Topic</label>
   <input ng-model="flowNode.filterTopic">
 </md-input-container>
 
-<div ng-hide="node.useStaticMessage === false">
-  <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
-</div>
-
 <br>
 <h4>Available Things</h4>
 
 <device-picker model="flowNode" devices="otherMatchingFlowNodeTypes">
 </device-picker>
+
+<md-switch ng-true-value="false" ng-false-value="true" ng-model="flowNode.useStaticMessage">Use Incoming Message</md-switch>
