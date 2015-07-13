@@ -251,12 +251,13 @@ angular.module('octobluApp')
 
         var to = CoordinatesService.transform(snap.node,event.center.x,event.center.y);
         if (isInputPort) {
-          linkElement = LinkRenderer.render(snap, to, null, {to:tmpNode.id}, [tmpNode], linkElement);
+          linkElement = LinkRenderer.render(snap, to, null, {to:tmpNode.id}, [tmpNode], linkElement,
+            ['flow-potential-link-input-'+node.id]);
         }
         if (isOutputPort) {
-          linkElement = LinkRenderer.render(snap, null, to, {from:tmpNode.id}, [tmpNode], linkElement);
+          linkElement = LinkRenderer.render(snap, null, to, {from:tmpNode.id}, [tmpNode], linkElement,
+            ['flow-potential-link-output-'+node.id]);
         }
-        linkElement.addClass('flow-potential-link-'+node.id);
       }
 
       function panend(event) {
@@ -288,7 +289,8 @@ angular.module('octobluApp')
           tmpFlow.links.push(newLink);
           context.flow.links.push(newLink);
           linkElement = LinkRenderer.render(snap, null, null, newLink, tmpFlow.nodes, linkElement);
-          linkElement.removeClass('flow-potential-link-'+node.id);
+          linkElement.removeClass('flow-potential-link-input-'+node.id);
+          linkElement.removeClass('flow-potential-link-output-'+node.id);
           addClickBehavior(linkElement.node, newLink, selectCallback(linkElement, dispatch.linkSelected));
           var linkId = FlowLinkRenderer.getLinkId(newLink);
           lastLinks[linkId] = newLink;
@@ -297,13 +299,23 @@ angular.module('octobluApp')
           return;
         }
 
-        snap.selectAll('.flow-potential-link-'+node.id).remove();
+        if (isInputPort)  {
+          snap.selectAll('.flow-potential-link-input-'+node.id).remove();
+        }
+        if (isOutputPort)  {
+          snap.selectAll('.flow-potential-link-output-'+node.id).remove();
+        }
       }
 
       function pancancel(event) {
         if (shouldAbort(event,enabled)) return;
         enableFlowBehavior();
-        snap.selectAll('.flow-potential-link-'+node.id).remove();
+        if (isInputPort)  {
+          snap.selectAll('.flow-potential-link-input-'+node.id).remove();
+        }
+        if (isOutputPort)  {
+          snap.selectAll('.flow-potential-link-output-'+node.id).remove();
+        }
       }
 
       hammer.get('pan').set({threshold:5});
