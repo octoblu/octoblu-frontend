@@ -10,7 +10,9 @@
       <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
         <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
         <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
-          <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
+          <li class="text-center" data-toggle="dropdown" ng-click="addFlow()">
+            <a class="dropdown-new-flow"><i class="fa fa-plus"></i> CREATE A NEW FLOW</a>
+          </li>
           <li role="presentation"  class="divider"></li>
           <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
             <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
