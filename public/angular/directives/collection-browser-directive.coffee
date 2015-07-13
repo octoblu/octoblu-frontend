@@ -2,7 +2,7 @@ angular.module('octobluApp')
 .directive 'collectionBrowser',  ($window) ->
   {
     restrict: 'E',
-    templateUrl: '/pages/collection-browser.html',
+    templateUrl: '/pages/utility-inspector.html',
     replace: true,
     transclude: true,
     controller : 'CollectionBrowserController',

@@ -1,0 +1,67 @@
+.Sidebar-pane {
+  .flex-display();
+  .flex-direction(column);
+}
+
+.Sidebar-pane-header {
+  .flex-display;
+  .flex-shrink(0);
+  .justify-content(space-between);
+
+  border-bottom: 1px solid @sidebar-border-color;
+
+  background: #FFF;
+  color: #333;
+}
+
+.Sidebar-pane-body {
+  .flex-display();
+  .flex-direction(column);
+
+  .Sidebar-pane--is-collapsed & {
+    display: none;
+  }
+}
+
+.Sidebar-pane-content {
+  overflow: auto;
+}
+
+.Sidebar-pane-footer {
+  .flex-shrink(0);
+  .flex-display();
+  .flex-direction(row);
+  .align-items(center);
+
+  border: 1px solid @sidebar-border-color;
+  border-style: solid none;
+
+  background: #FFF;
+}
+
+.Sidebar-pane-footer-actions {
+  .flex-display();
+}
+
+.Sidebar-pane-footer-action {
+  .flex-display();
+  border-right: 1px solid @sidebar-border-color;
+}
+
+.Sidebar-pane-lookup {
+  .flex(1);
+  .flex-display();
+
+  input {
+    .flex(1);
+    width: 100%;
+    background: #FFF;
+    border: none;
+  }
+}
+
+.Sidebar-pane-collapse-button {
+  .sidebar__toolbar-button;
+}
+
+.Sidebar-filter-form {}

@@ -1,0 +1,141 @@
+<div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': togglePane}">
+
+  <header class="Sidebar-pane-header">
+    <div class="tabs">
+      <a
+        ng-click="controller.toggleActiveTab('things')"
+        class="sidebar__toolbar-button tab-link"
+        ng-class="{'is-selected' : tab.state === 'things'}" title="Things">
+        Things
+      </a>
+
+      <a
+        ng-click="controller.toggleActiveTab('tools')"
+        class="sidebar__toolbar-button tab-link"
+        ng-class="{'is-selected' : tab.state === 'tools'}" title="Tools">
+        Tools
+      </a>
+
+      <a
+        ng-click="controller.toggleActiveTab('debug')"
+        class="sidebar__toolbar-button tab-link"
+        ng-class="{'is-selected' : tab.state === 'debug'}" title="Debug">
+        Debug
+      </a>
+    </div>
+
+
+    <button class="Sidebar-pane-collapse-button" ng-click="togglePane = !togglePane">
+      <i class="fa fa-plus" ng-show="togglePane"></i>
+      <i class="fa fa-minus" ng-show="!togglePane"></i>
+    </button>
+  </header>
+
+  <main class="Sidebar-pane-body">
+    <div ng-show="loading" class="blu-loading Sidebar-pane-content">
+      <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
+    </div>
+
+    <div ng-show="tab.state == 'things' && !loading" class="Sidebar-pane-content">
+      <header class="blu-bordered-header" ng-hide="filterQuery">
+        <h4 class="blu-bordered-header-label">
+          Connected Things
+        </h4>
+        <hr class="blu-bordered-header-divider">
+      </header>
+
+      <node-collection
+        flow="flow"
+        nodes="nodes.configured"
+        filter-query="filterQuery"
+        view-style="collectionViewStyle">
+      </node-collection>
+
+      <div ng-repeat="(category, things) in nodes.available">
+        <header class="blu-bordered-header" ng-if="!filterQuery">
+          <h4 class="blu-bordered-header-label">
+            {{category}}
+          </h4>
+          <hr class="blu-bordered-header-divider">
+        </header>
+
+        <node-collection
+          flow="flow"
+          nodes="things"
+          filter-query="filterQuery"
+          view-style="collectionViewStyle">
+        </node-collection>
+      </div>
+
+      <header class="blu-bordered-header" ng-hide="filterQuery">
+        <h4 class="blu-bordered-header-label">
+          Flows
+        </h4>
+        <hr class="blu-bordered-header-divider">
+      </header>
+
+      <node-collection
+        flow="flow"
+        nodes="flowNodes"
+        filter-query="filterQuery"
+        view-style="collectionViewStyle">
+      </node-collection>
+    </div>
+
+    <node-collection
+      ng-show="tab.state == 'tools'"
+      flow="flow"
+      nodes="nodes.operators"
+      filter-query="filterQuery"
+      view-style="collectionViewStyle"
+      class="Sidebar-pane-content">
+    </node-collection>
+
+    <flow-debug-browser
+      ng-show="tab.state == 'debug'"
+      class="Sidebar-pane-content">
+    </flow-debug-browser>
+
+    <footer class="Sidebar-pane-footer">
+      <span ng-show="tab.state == 'debug'" class="Sidebar-pane-footer-actions">
+        <button
+          ng-click="debug = []"
+          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          <i class="fa fa-ban fa-lg"></i>
+        </button>
+
+        <button
+          ng-click="controller.toggleViewSource()"
+          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          <i class="fa fa-code fa-lg"></i>
+        </button>
+      </span>
+
+      <span ng-hide="tab.state == 'debug'" class="Sidebar-pane-footer-actions">
+        <button
+          ng-if="collectionViewStyle == 'list'"
+          ng-click="controller.setCollectionViewStyle('grid')"
+          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          <i class="fa fa-th-large fa-lg"></i>
+        </button>
+
+        <button
+          ng-if="collectionViewStyle == 'grid'"
+          ng-click="controller.setCollectionViewStyle('list')"
+          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          <i class="fa fa-th-list fa-lg"></i>
+        </button>
+      </span>
+
+      <div class="lookup  Sidebar-pane-lookup">
+        <i class="lookup__icon fa fa-search fa-lg"></i>
+        <input
+          ng-model="filterQuery"
+          placeholder="Filter {{tab.state}}..."
+          type="search"
+          class="lookup__input">
+      </div>
+    </footer>
+  </main>
+
+</div>
