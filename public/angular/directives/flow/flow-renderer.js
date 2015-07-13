@@ -198,7 +198,8 @@ angular.module('octobluApp')
         enableFlowBehavior();
       }
 
-      hammer.get('pan').set({threshold:5});
+      hammer.get('pan').set({threshold:5, direction: Hammer.DIRECTION_ALL});
+
       function enable(){
         hammer.on('panstart', panstart);
         hammer.on('panmove', panmove);
@@ -318,7 +319,7 @@ angular.module('octobluApp')
         }
       }
 
-      hammer.get('pan').set({threshold:5});
+      hammer.get('pan').set({threshold:5, direction: Hammer.DIRECTION_ALL});
 
       function enable(){
         hammer.on('panstart', panstart);
@@ -370,7 +371,7 @@ angular.module('octobluApp')
         snap.removeClass('grabby-hand');
       }
 
-      hammerSnap.get('pan').set({threshold:5});
+      hammerSnap.get('pan').set({threshold:5, direction: Hammer.DIRECTION_ALL});
 
       function enable(){
         snap.removeClass('grabby-hand');
