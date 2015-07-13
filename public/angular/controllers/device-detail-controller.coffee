@@ -9,6 +9,8 @@ class DeviceDetailController
 
     deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
       @device = device
+      @readOnlyName = @deviceIsFlow()
+      @hideDelete = @deviceIsFlow()
       @options = @device.options
       @optionsSchema = @device.optionsSchema
 
@@ -25,6 +27,9 @@ class DeviceDetailController
     @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
 
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
+
+  deviceIsFlow: =>
+    @device.type == 'octoblu:flow' || @device.type == 'device:flow'
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -55,9 +60,6 @@ class DeviceDetailController
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
     .then =>
       @notifyDeviceUpdated()
-
-  ifDeviceIsFlow: (type) =>
-    type == 'device:flow'
 
   notifyDeviceUpdatedImmediate: =>
     @NotifyService.notify 'Changes Saved'
