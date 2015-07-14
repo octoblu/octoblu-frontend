@@ -37,13 +37,13 @@
       </div>
     </div>
 
-    <h3 class="node-collection-no-matches" ng-show="noThings && !loading">
-      No matches for "{{thingNameFilter}}"
-    </h3>
 
     <div ng-show="tab.state == 'things' && !loading" class="Sidebar-pane-content">
+      <h3 class="node-collection-no-matches" ng-show="noThings && !loading">
+        No matches for "{{thingNameFilter}}"
+      </h3>
       <div ng-repeat="(category, things) in thingsByCategory">
-        <header class="blu-bordered-header" ng-if="!thingNameFilter">
+        <header class="blu-bordered-header">
           <h4 class="blu-bordered-header-label">
             {{category}}
           </h4>
@@ -59,10 +59,11 @@
     </div>
 
     <node-collection
-      ng-show="tab.state == 'tools'"
       flow="flow"
-      nodes="nodes.operators"
+      nodes="tools"
+      name-filter="thingNameFilter"
       view-style="collectionViewStyle"
+      ng-show="tab.state == 'tools'"
       class="Sidebar-pane-content">
     </node-collection>
 

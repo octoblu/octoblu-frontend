@@ -10,7 +10,7 @@
 
   <div class="node-collection__items node-collection__items--grid">
     <a
-      ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
+      ng-repeat="flowNodeType in filteredNodes = (nodes | filter: nameFilter)"
       ng-click="controller.addFlowNodeType(flowNodeType)"
       data-type="{{flowNodeType.type}}"
       draggable="true"

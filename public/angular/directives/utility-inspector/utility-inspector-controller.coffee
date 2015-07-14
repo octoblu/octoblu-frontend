@@ -14,10 +14,15 @@ class UtilityInspectorController
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
+        flows           = _.filter flowNodeTypes, type: 'device:flow'
+        connectedThings = _.filter flowNodeTypes, @flowNodeTypeIsConfiguredNode
+
+        @scope.things = _.union(@scope.things, connectedThings, flows)
+        @scope.tools  = _.filter flowNodeTypes, category: 'operation'
 
     @NodeTypeService.getUnconfiguredNodeTypes().then (nodeTypes) =>
+      @scope.things = _.union(@scope.things, nodeTypes)
       @scope.loading = false
-      @scope.things =  nodeTypes
 
     @scope.$watch 'thingNameFilter', (thingNameFilter) =>
       thingNameFilter = thingNameFilter || '';
@@ -31,15 +36,11 @@ class UtilityInspectorController
     @scope.$watch 'things', @updateThingsByCategory
 
   updateThingsByCategory: (things) =>
-    console.log 'updateThingsByCategory:things', things
-    
     @scope.noThings = !things.length
     @scope.thingsByCategory = _.groupBy things, (thing) =>
       return "Flows" if thing.type == "device:flow"
+      return "Connected" if !thing.categories?
       thing.categories
-
-    console.log 'updateThingsByCategory:thingsByCategory', @scope.thingsByCategory
-
 
   setCollectionViewStyle: (viewStyle) =>
     @scope.collectionViewStyle = viewStyle

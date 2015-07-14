@@ -10,5 +10,5 @@ angular.module('octobluApp')
       flow: '='
       nodes: '='
       viewStyle: '='
-      filterQuery: '='
+      nameFilter: '='
   }

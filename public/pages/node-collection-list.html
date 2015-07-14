@@ -1,5 +1,5 @@
 <md-list ng-if="viewStyle == 'list'" class="node-collection-container">
-  <div ng-repeat="flowNodeType in filteredNodes = (nodes | filter: filterQuery)"
+  <div ng-repeat="flowNodeType in filteredNodes = (nodes | filter: nameFilter)"
     ng-click="controller.addFlowNodeType(flowNodeType)"
     data-type="{{flowNodeType.type}}"
     class="node-collection-item"
