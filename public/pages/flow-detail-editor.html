@@ -1,5 +1,5 @@
 <div class="Sidebar-pane-content">
-  <div class="sidebar__section sidebar__pane-form">
+  <div class="sidebar__section Sidebar-pane-form">
     <div class="sidebar__section-header">
       <h5 class="sidebar__section-title">Flow Information</h5>
       <button ng-click="hideInfo = !hideInfo" ng-class="{'sidebar__section-toggle-btn': !hideInfo}" class="sidebar__button" aria-label="Show/Hide Flow Information">
@@ -40,7 +40,7 @@
       <ul class="nodes-in-flow">
         <li ng-repeat="node in flow.nodes | orderBy: 'name' track by node.id" ng-mouseenter="showDelete=!showDelete" ng-mouseleave="showDelete=!showDelete" class="nodes-in-flow__item">
           <button ng-click="$emit('flow-node-type-selected', node);" class="sidebar__button node-in-flow__button">
-            <img ng-src="{{node.logo}}" alt="{{node.class || node.type}}" class="sidebar__pane-node-thumbnail"/>
+            <img ng-src="{{node.logo}}" alt="{{node.class || node.type}}" class="Sidebar-pane-node-thumbnail"/>
             <span class="node-in-flow__node--name truncate">{{node.name}}</span>
           </button>
 

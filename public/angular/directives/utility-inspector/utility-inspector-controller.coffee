@@ -1,4 +1,4 @@
-class CollectionBrowserController
+class UtilityInspectorController
   constructor: ($scope, FlowNodeTypeService, NodeTypeService) ->
     @scope = $scope
     @scope.tab = {}
@@ -42,4 +42,4 @@ class CollectionBrowserController
   toggleViewSource: =>
     @scope.viewSource = !@scope.viewSource
 
-angular.module('octobluApp').controller 'CollectionBrowserController', CollectionBrowserController
+angular.module('octobluApp').controller 'UtilityInspectorController', UtilityInspectorController

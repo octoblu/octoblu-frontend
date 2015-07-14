@@ -1,4 +1,4 @@
-describe 'CollectionBrowserController', ->
+describe 'UtilityInspectorController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
@@ -13,7 +13,7 @@ describe 'CollectionBrowserController', ->
     inject ($controller, $rootScope) =>
       @scope = $rootScope.$new()
       @rootScope = $rootScope
-      @sut = $controller 'CollectionBrowserController',
+      @sut = $controller 'UtilityInspectorController',
         $scope : @scope
 
   describe '->toggleActiveTab', ->

@@ -1,11 +1,11 @@
 angular.module('octobluApp')
-.directive 'collectionBrowser',  ($window) ->
+.directive 'utilityInspector',  ($window) ->
   {
     restrict: 'E',
-    templateUrl: '/pages/utility-inspector.html',
+    templateUrl: '/angular/directives/utility-inspector/utility-inspector.html',
     replace: true,
     transclude: true,
-    controller : 'CollectionBrowserController',
+    controller : 'UtilityInspectorController',
     controllerAs : 'controller',
     scope:
       flow: '='
