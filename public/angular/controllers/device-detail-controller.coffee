@@ -3,6 +3,7 @@ class DeviceDetailController
   constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
     @scope = $scope
+    @state = $state
     @NotifyService = NotifyService
     @ThingService = ThingService
     @form = ['*']

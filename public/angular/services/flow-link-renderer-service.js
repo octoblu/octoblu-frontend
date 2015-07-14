@@ -1,15 +1,15 @@
 angular.module('octobluApp')
   .service('FlowLinkRenderer', function (FlowNodeDimensions) {
 
-    function linkPath(link, flowNodes, loc) {
+    function linkPath(link, nodeMap, loc) {
       var sourceNode, targetNode;
       var from, fromCurve, toCurve, to;
 
-      if (link && link.from) {
-        sourceNode = _.findWhere(flowNodes, {id: link.from});
+      if (link && link.from && nodeMap) {
+        sourceNode = nodeMap[link.from];
       }
-      if (link && link.to) {
-        targetNode = _.findWhere(flowNodes, {id: link.to});
+      if (link && link.to && nodeMap) {
+        targetNode = nodeMap[link.to];
       }
       if (!link) {
         link = {};
@@ -59,26 +59,26 @@ angular.module('octobluApp')
     }
 
     function getLinkId(link) {
+      if (!_.isObject(link)) return;
       return "link-from-"+link.from+"-to-"+link.to;
     }
 
     return {
       getLinkId: getLinkId,
 
-      render: function (snap, link, flow, loc, snapLink, classes) {
-        var path = linkPath(link, flow.nodes, loc);
+      render: function (snap, link, flowMap, loc, snapLink, classes) {
+        var path = linkPath(link, flowMap, loc);
         if (!path){
           return;
         }
         if (!snapLink) {
           snapLink = snap.path(path);
-          snap.select(".flow-link-area").append(snapLink);
         } else {
           snapLink.attr({d:path});
         }
 
+        snap.select(".flow-link-area").append(snapLink);
         snapLink.addClass('flow-link');
-        snapLink.toggleClass('selected', (link === flow.selectedLink));
 
         if (link && link.to) {
           snapLink.addClass('flow-link-to-'+link.to);

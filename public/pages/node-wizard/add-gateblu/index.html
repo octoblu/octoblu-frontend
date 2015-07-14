@@ -4,15 +4,17 @@
   <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
 </div>
 
-<div class="node-wizard-choice-button-container">
-  <md-button ng-href="http://gateblu.octoblu.com">
-    <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
-    Download Gateblu
-  </md-button>
-  <md-button class="md-primary md-raised" ng-click="downloaded = true">
-    <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
-    Already Downloaded
-  </md-button>
+<div class="node-wizard">
+  <div class="node-wizard-choice-button-container">
+    <md-button ng-href="http://gateblu.octoblu.com">
+      <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
+      Download Gateblu
+    </md-button>
+    <md-button class="md-primary md-raised" ng-click="downloaded = true">
+      <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
+      Already Downloaded
+    </md-button>
+  </div>
 </div>
 
 <form class="node-wizard-form" ng-submit="addDevice()" ng-show="downloaded" name="deviceForm">
