@@ -4,21 +4,21 @@
     <div class="tabs">
       <a
         ng-click="controller.toggleActiveTab('things')"
-        class="sidebar__toolbar-button tab-link"
+        class="Sidebar-toolbar-button tab-link"
         ng-class="{'is-selected' : tab.state === 'things'}" title="Things">
         Things
       </a>
 
       <a
         ng-click="controller.toggleActiveTab('tools')"
-        class="sidebar__toolbar-button tab-link"
+        class="Sidebar-toolbar-button tab-link"
         ng-class="{'is-selected' : tab.state === 'tools'}" title="Tools">
         Tools
       </a>
 
       <a
         ng-click="controller.toggleActiveTab('debug')"
-        class="sidebar__toolbar-button tab-link"
+        class="Sidebar-toolbar-button tab-link"
         ng-class="{'is-selected' : tab.state === 'debug'}" title="Debug">
         Debug
       </a>
@@ -100,13 +100,13 @@
       <span ng-show="tab.state == 'debug'" class="Sidebar-pane-footer-actions">
         <button
           ng-click="debug = []"
-          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          class="Sidebar-toolbar-button Sidebar-pane-footer-action">
           <i class="fa fa-ban fa-lg"></i>
         </button>
 
         <button
           ng-click="controller.toggleViewSource()"
-          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          class="Sidebar-toolbar-button Sidebar-pane-footer-action">
           <i class="fa fa-code fa-lg"></i>
         </button>
       </span>
@@ -115,14 +115,14 @@
         <button
           ng-if="collectionViewStyle == 'list'"
           ng-click="controller.setCollectionViewStyle('grid')"
-          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          class="Sidebar-toolbar-button Sidebar-pane-footer-action">
           <i class="fa fa-th-large fa-lg"></i>
         </button>
 
         <button
           ng-if="collectionViewStyle == 'grid'"
           ng-click="controller.setCollectionViewStyle('list')"
-          class="sidebar__toolbar-button Sidebar-pane-footer-action">
+          class="Sidebar-toolbar-button Sidebar-pane-footer-action">
           <i class="fa fa-th-list fa-lg"></i>
         </button>
       </span>

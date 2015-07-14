@@ -1,7 +1,7 @@
 <div class="Sidebar-pane-content">
   <!-- <md-button class="Sidebar-pane-node--delete" ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button> -->
-  <div ng-hide="showFlowNodeEditor" class="sidebar__loading-icon"><i class="fa fa-spinner fa-4x fa-spin"></i></div>
-  <div class="sidebar__section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+  <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon"><i class="fa fa-spinner fa-4x fa-spin"></i></div>
+  <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
     <div class="Sidebar-pane-form">
       <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
       </div>
