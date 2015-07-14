@@ -75,16 +75,29 @@
 
 .node-wizard-logo-container {
   .flex-display;
-
   .justify-content(center);
 
   img {
-    @media @mobile {
+    margin: 20px;
+
+    @media @mobile, @tablet {
+      max-height: 200px;
       width: 75%;
     }
 
-    @media @tablet, @desktop, @desktop-lg, @desktop-xl, @desktop-xxl {
+    @media @desktop, @desktop-lg {
+      max-height: 250px;
       width: 30%;
+    }
+
+    @media @desktop-xl, @desktop-xxl {
+      max-height: 400px;
+      width: 30%;
+    }
+
+    @media @desktop-xxl {
+      max-height: 500px;
+      width: 15%;
     }
   }
 }
@@ -116,4 +129,51 @@
 
 .node-wizard-padding {
   height: 100px;
+}
+
+.node-wizard-gateblu-explanation {
+  .flex-display();
+  .flex-direction(column);
+  .align-items(center);
+
+  p {
+    .flex(1);
+    text-align: center;
+    font-size: 1.3em;
+    max-width: 750px;
+  }
+}
+
+.gateblu-select {
+  .flex-display();
+  .flex-direction(column);
+  .justify-content(center);
+  padding-bottom: 20px;
+
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .device-collection__items {
+    .justify-content(center);
+  }
+
+  .device-collection__item-thumbnail {
+    height: 250px;
+    width: 250px;
+  }
+
+}
+
+.gateblu-download {
+  .flex-display();
+  .flex-direction(column);
+  .align-items(center);
+  padding-top: 20px;
+
+  p {
+    font-size: 1.3em;
+  }
 }

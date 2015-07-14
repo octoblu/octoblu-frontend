@@ -16,7 +16,7 @@ class DeviceCollectionController
     sref = "material.#{device.category}"
     params = {}
 
-    return @state.href('material.nodewizard.add', nodeTypeId: device._id)unless device.uuid
+    return @state.href('material.nodewizard.add', nodeTypeId: device._id) unless device.uuid
     if device.category == 'device' || device.category == 'microblu'
       params.uuid = device.uuid
     if device.category == 'channel'

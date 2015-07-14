@@ -4,51 +4,7 @@
   <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
 </div>
 
-<div class="node-wizard">
-  <div class="node-wizard-choice-button-container">
-    <md-button ng-href="http://gateblu.octoblu.com">
-      <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
-      Download Gateblu
-    </md-button>
-    <md-button class="md-primary md-raised" ng-click="downloaded = true">
-      <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
-      Already Downloaded
-    </md-button>
-  </div>
-</div>
-
-<form class="node-wizard-form" ng-submit="addDevice()" ng-show="downloaded" name="deviceForm">
-  <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
-  ng-options="device.label for device in newDevice.unclaimedDevices">
-    <option value="">Add New</option>
-  </select>
-
-  <md-input-container>
-    <label>Name</label>
-    <input ng-model="newDevice.name" name="name" required>
-    <div ng-messages="deviceForm.name.$error">
-      <div ng-message="required" ng-show="deviceForm.name.$error.required">This is required.</div>
-    </div>
-  </md-input-container>
-
-  <div ng-show="newDevice.selectedDevice.type === 'existing'">
-    <md-input-container>
-      <label>UUID</label>
-      <input ng-model="existingDevice.uuid">
-    </md-input-container>
-
-    <md-input-container>
-      <label>Token</label>
-      <input ng-model="existingDevice.token">
-    </md-input-container>
-  </div>
-
-  <p class="error-message" ng-show="errorMessage">{{errorMessage}}</p>
-
-  <md-button type="submit" class="md-raised md-primary md-icon-button">
-    <md-icon md-font-icon="fa fa-lg fa-plus"></md-icon>
-    Add
-  </md-button>
-</form>
-
-<div class="node-wizard-padding" ng-hide="downloaded"></div
+<p>
+  This Thing requires a Gateblu to function.
+  Gateblu allows you to connect local smart devices that do not directly connect to the internet to Octoblu.
+</p>
