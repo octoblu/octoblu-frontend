@@ -3,7 +3,7 @@ class ConfigureController
     @scope = $scope
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @scope.loading = true
-    @scope.noDevices = false
+    @scope.noThings = false
     devices = []
 
     NodeService.getNodes().then (newDevices) =>
@@ -22,9 +22,9 @@ class ConfigureController
 
   updateDevicesByCategory: (devices) =>
     if !devices.length
-      @scope.noDevices = true
+      @scope.noThings = true
     if devices.length
-      @scope.noDevices = false
+      @scope.noThings = false
     @scope.devicesByCategory = _.groupBy devices, (device) =>
       return "Flows" if device.type == 'device:flow'
       return "Other" unless device.nodeType.categories?
