@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, ThingService) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, ThingService, CoordinatesService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -328,11 +328,15 @@ angular.module('octobluApp')
     }
     if ($scope.activeFlow && $scope.copiedNode) {
       var node = JSON.parse($scope.copiedNode);
-      if ($scope.currentMouseX) {
-        node.x = $scope.currentMouseX;
-      }
-      if ($scope.currentMouseY) {
-        node.y = $scope.currentMouseY;
+      delete node.x;
+      delete node.y;
+      if (_.isNumber($scope.currentMouseX) && _.isNumber($scope.currentMouseY)) {
+        var svgElement = $(".flow-editor-workspace")[0];
+        if (svgElement) {
+          var loc = CoordinatesService.transform(svgElement, $scope.currentMouseX, $scope.currentMouseY);
+          node.x = loc.x - FlowNodeDimensions.width/2;
+          node.y = loc.y - FlowNodeDimensions.minHeight/2;
+        }
       }
       $scope.activeFlow.addNode(node);
     }
@@ -378,8 +382,8 @@ angular.module('octobluApp')
     if (!$scope.activeFlow) {
       return;
     }
-    $scope.currentMouseX = e.offsetX / $scope.activeFlow.zoomScale;
-    $scope.currentMouseY = e.offsetY / $scope.activeFlow.zoomScale;
+    $scope.currentMouseX = e.clientX;
+    $scope.currentMouseY = e.clientY;
   };
 
   $scope.clearMousePosition = function () {
