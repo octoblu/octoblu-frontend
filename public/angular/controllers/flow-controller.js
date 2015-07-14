@@ -9,7 +9,6 @@ angular.module('octobluApp')
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
-  $scope.sidebarIsExpanded = true;
   $scope.deployProgress = 0;
 
   $scope.flowSelectorHeight = $($window).height() - 100;

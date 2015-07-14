@@ -1,21 +1,12 @@
-<div class="sidebar__pane-content">
-  <header class="sidebar__toolbar sidebar__toolbar--header">
-    <div class="md-toolbar-tools">
-      <div class="sidebar__pane-title">Node Inspector</div>
-      <span flex></span>
-      <md-button class="sidebar__pane-node--delete" ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button>
-    </div>
-  </header>
-
-  <main class="sidebar__pane-body">
-    <div ng-hide="showFlowNodeEditor" class="sidebar__loading-icon"><i class="fa fa-spinner fa-4x fa-spin"></i></div>
-    <div class="sidebar__section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
-      <div class="sidebar__pane-form">
-        <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
-        </div>
-        <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
-        <md-switch ng-model="flowNode.debug">Debug</md-switch>
+<div class="Sidebar-pane-content">
+  <!-- <md-button class="sidebar__pane-node--delete" ng-click="deleteNode()" aria-label="Delete"><i class="fa fa-lg fa-trash"></i></md-button> -->
+  <div ng-hide="showFlowNodeEditor" class="sidebar__loading-icon"><i class="fa fa-spinner fa-4x fa-spin"></i></div>
+  <div class="sidebar__section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+    <div class="sidebar__pane-form">
+      <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
       </div>
+      <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
+      <md-switch ng-model="flowNode.debug">Debug</md-switch>
     </div>
-  </main>
+  </div>
 </div>

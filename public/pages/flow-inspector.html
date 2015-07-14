@@ -1,18 +1,42 @@
-<div class="sidebar__pane" ng-class="{'sidebar__pane-section--collapse': hideSection}">
-  <span class="sidebar__pane-section--collapse-btn" ng-click="hideSection = !hideSection">
-    <i class="fa fa-plus" ng-show="hideSection"></i>
-    <i class="fa fa-minus" ng-show="!hideSection"></i>
-  </span>
-  <flow-node-editor
-    ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
-    flow-id="flow.flowId"
-    flow-node="flow.selectedFlowNode">
-  </flow-node-editor>
+<div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': hideSection}">
+  <header class="Sidebar-pane-header">
+    <h2
+      ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
+      class="Sidebar-pane-header-title">
+      Thing Inspector
+    </h2>
 
-  <flow-detail-editor
-    ng-if="!flow.selectedFlowNode"
-    flow="flow">
-  </flow-detail-editor>
+    <h2
+      ng-if="!flow.selectedFlowNode"
+      class="Sidebar-pane-header-title">
+      Flow Inspector
+    </h2>
 
-  <flow-node-setup ng-if="flow.selectedFlowNode.resourceType === 'node-type'" node-type="flow.selectedFlowNode"></flow-node-setup>
+    <h2
+      ng-if="flow.selectedFlowNode.resourceType === 'node-type'"
+      class="Sidebar-pane-header-title">
+      Setup Thing
+    </h2>
+
+    <button ng-click="hideSection = !hideSection" class="Sidebar-pane-collapse-button">
+    <i class="fa" ng-class="{'fa-plus': hideSection, 'fa-minus': !hideSection}"></i>
+    </button>
+  </header>
+
+  <main class="Sidebar-pane-body">
+    <flow-node-editor
+      ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
+      flow-id="flow.flowId"
+      flow-node="flow.selectedFlowNode">
+    </flow-node-editor>
+
+    <!-- Flow Inspector -->
+    <flow-detail-editor
+      ng-if="!flow.selectedFlowNode"
+      flow="flow">
+    </flow-detail-editor>
+
+    <!-- Setup -->
+    <flow-node-setup ng-if="flow.selectedFlowNode.resourceType === 'node-type'" node-type="flow.selectedFlowNode"></flow-node-setup>
+  </main>
 </div>

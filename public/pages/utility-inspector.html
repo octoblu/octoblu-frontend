@@ -26,16 +26,16 @@
 
 
     <button class="Sidebar-pane-collapse-button" ng-click="togglePane = !togglePane">
-      <i class="fa fa-plus" ng-show="togglePane"></i>
-      <i class="fa fa-minus" ng-show="!togglePane"></i>
+      <i class="fa" ng-class="{'fa-plus': togglePane, 'fa-minus': !togglePane}"></i>
     </button>
   </header>
 
   <main class="Sidebar-pane-body">
-    <div ng-show="loading" class="blu-loading Sidebar-pane-content">
-      <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
+    <div ng-show="loading" class="Sidebar-pane-content">
+      <div class="blu-loading">
+        <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
+      </div>
     </div>
-
     <div ng-show="tab.state == 'things' && !loading" class="Sidebar-pane-content">
       <header class="blu-bordered-header" ng-hide="filterQuery">
         <h4 class="blu-bordered-header-label">
