@@ -7,6 +7,17 @@
 
   </h2>
 </md-toolbar>
+<md-content class="interior__wrapper" autoscroll="false">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="breadcrumbs">
+        <a ui-sref="material.configure" class="breadcrumb-link">Connected Things</a>
+        <i class="fa fa-angle-double-right fa-lg"></i>
+        <span class="breadcrumb-link current">Manage {{channel.name}}</span>
+      </div>
+    </div>
+  </header>
+</md-content>
 
 <main class="node-wizard">
   <h2 class="node-wizard__header">Manage {{channel.name}}</h2>
