@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, CoordinatesService, IconCodes, OCTOBLU_ICON_URL) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, IconCodes, OCTOBLU_ICON_URL) {
 
     var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
 
@@ -47,7 +47,7 @@ angular.module('octobluApp')
 
     return {
 
-      render: function (snap, node, context, nodeElement, renderGroup) {
+      render: function (snap, node, nodeElement, renderGroup) {
 
         function renderPort(nodeElement, node, className, x, y) {
           var portElement =
@@ -97,7 +97,6 @@ angular.module('octobluApp')
         nodeElement
           .addClass('flow-node')
           .addClass('flow-node-' + node.class)
-          .toggleClass('selected', (node === context.flow.selectedFlowNode))
           .attr({'id': 'node-' + node.id})
           .attr({'transform': 'translate(' + node.x + ',' + node.y + ')'});
 

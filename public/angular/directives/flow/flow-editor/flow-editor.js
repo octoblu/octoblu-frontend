@@ -15,9 +15,7 @@ angular.module('octobluApp')
 
       link: function ($scope, element) {
         var snap = Snap(element.find(".flow-editor-workspace")[0]);
-        var renderContext = {flow:$scope.flow};
-        var flowRenderer = new FlowRenderer(snap, renderContext,
-          {readonly: $scope.readonly, displayOnly: $scope.displayOnly});
+        var flowRenderer = new FlowRenderer(snap, {readonly: ($scope.readonly||$scope.displayOnly)});
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
@@ -136,8 +134,7 @@ angular.module('octobluApp')
             }
           }
 
-          renderContext.flow = $scope.flow;
-          flowRenderer.render();
+          flowRenderer.render($scope.flow);
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
