@@ -27,6 +27,7 @@ class ConfigureController
       @scope.noDevices = false
     @scope.devicesByCategory = _.groupBy devices, (device) =>
       return "Flows" if device.type == 'device:flow'
+      return "Other" unless device.nodeType.categories?
       device.nodeType.categories;
 
 

@@ -1,6 +1,9 @@
-<md-input-container>
+<md-input-container ng-hide="controller.readOnlyName">
   <label>name</label>
   <input ng-model="controller.device.name" ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
 </md-input-container>
-
+<div ng-show="controller.readOnlyName">
+  <h5>Name</h5>
+  <h4>{{controller.device.name}}</h4>
+</div>
 <form sf-schema="controller.optionsSchema" sf-form="controller.form" sf-model="controller.options" sf-options="{formDefaults: {ngModelOptions: {updateOn: 'default blur', debounce: {default: 3000, blur: 0}}}}"></form>
