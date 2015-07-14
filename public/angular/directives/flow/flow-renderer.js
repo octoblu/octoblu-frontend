@@ -162,7 +162,9 @@ angular.module('octobluApp')
         disableFlowBehavior();
         dispatch.nodeSelected(node);
         select(dragGroup);
-        dragNodeMap[node.id] = _.cloneDeep(tmpNodeMap[node.id]);
+        var tmpNode = tmpNodeMap[node.id];
+        if (!tmpNode) return;
+        dragNodeMap[node.id] = {id:tmpNode.id, x:tmpNode.x, y:tmpNode.y};
       }
 
       function moveNode(event,node) {
@@ -533,6 +535,7 @@ angular.module('octobluApp')
           renderLink(link,linkId,loc);
         });
       };
+
       processLinks(toLinks,{to:pos});
       processLinks(fromLinks,{from:pos});
     }
@@ -552,19 +555,23 @@ angular.module('octobluApp')
         if(readonly){
           return;
         }
+
         var nodeImage = nodeElement.select("image:last-of-type");
-        var nodeButton = snap.select('#node-button-'+node.id);
         if (nodeImage){
           addClickBehavior(nodeImage.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
+          addNodeDragBehavior(nodeElement, nodeImage, node);
         }
+
+        var nodeButton = snap.select('#node-button-'+node.id);
         if (nodeButton){
           addClickBehavior(nodeButton.node, node, dispatch.nodeButtonClicked);
         }
-        addNodeDragBehavior(nodeElement, nodeImage, node);
+
         _.each(nodeElement.selectAll('.flow-node-port'), function(portElement){
           addPortDragBehavior(node, portElement);
         });
       });
+
       _.each(oldNodesDiff, function (node) {
         if (!newNodesDiff[node.id]) {
           delete nodeElements[node.id];
@@ -617,6 +624,7 @@ angular.module('octobluApp')
       on: function(event, callback) {
         return dispatch[event] = callback;
       },
+
       updateViewBox: updateViewBox,
       updateZoomScale: updateZoomScale,
       centerViewBox: centerViewBox
