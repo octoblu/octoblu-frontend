@@ -281,21 +281,26 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow && $scope.copiedNode) {
-      var node = JSON.parse($scope.copiedNode);
-      delete node.x;
-      delete node.y;
-      if (_.isNumber($scope.currentMouseX) && _.isNumber($scope.currentMouseY)) {
-        var svgElement = $(".flow-editor-workspace")[0];
-        if (svgElement) {
-          var loc = CoordinatesService.transform(svgElement, $scope.currentMouseX, $scope.currentMouseY);
-          node.x = loc.x - FlowNodeDimensions.width/2;
-          node.y = loc.y - FlowNodeDimensions.minHeight/2;
-        }
-      }
-      node.id = UUIDService.v1();
-      $scope.activeFlow.nodes.push(node);
+
+    if (!$scope.activeFlow || !$scope.copiedNode) {
+      return;
     }
+
+    var node = JSON.parse($scope.copiedNode);
+    delete node.x;
+    delete node.y;
+
+    if (_.isNumber($scope.currentMouseX) && _.isNumber($scope.currentMouseY)) {
+      var svgElement = $(".flow-editor-workspace")[0];
+      if (svgElement) {
+        var loc = CoordinatesService.transform(svgElement, $scope.currentMouseX, $scope.currentMouseY);
+        node.x = loc.x - FlowNodeDimensions.width/2;
+        node.y = loc.y - FlowNodeDimensions.minHeight/2;
+      }
+    }
+
+    node.id = UUIDService.v1();
+    $scope.activeFlow.nodes.push(node);
 
     $scope.activeFlow.selectedFlowNode = null;
     $scope.activeFlow.selectedLink = null;
