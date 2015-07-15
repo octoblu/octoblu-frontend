@@ -1,4 +1,4 @@
-<div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': togglePane}">
+<div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': paneCollapsed}">
 
   <header class="Sidebar-pane-header">
     <div class="tabs">
@@ -25,8 +25,8 @@
     </div>
 
 
-    <button class="Sidebar-pane-collapse-button" ng-click="togglePane = !togglePane">
-      <i class="fa" ng-class="{'fa-plus': togglePane, 'fa-minus': !togglePane}"></i>
+    <button class="Sidebar-pane-collapse-button" ng-click="paneCollapsed = !paneCollapsed">
+      <i class="fa" ng-class="{'fa-plus': paneCollapsed, 'fa-minus': !paneCollapsed}"></i>
     </button>
   </header>
 
@@ -39,7 +39,7 @@
 
 
     <div ng-show="tab.state == 'things' && !loading" class="Sidebar-pane-content">
-      <h3 class="node-collection-no-matches" ng-show="noThings && !loading">
+      <h3 class="node-collection-no-matches" ng-show="noThings">
         No matches for "{{thingNameFilter}}"
       </h3>
       <div ng-repeat="(category, things) in thingsByCategory">

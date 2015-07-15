@@ -6,11 +6,11 @@ class UtilityInspectorController
     @scope.collectionViewStyle = 'list'
     @scope.viewSource = false
     @scope.loading = true
-
-    @FlowNodeTypeService = FlowNodeTypeService
-    @NodeTypeService     = NodeTypeService
+    @scope.paneCollapsed = false;
 
     @toggleActiveTab 'things'
+    @FlowNodeTypeService = FlowNodeTypeService
+    @NodeTypeService     = NodeTypeService
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
@@ -52,9 +52,10 @@ class UtilityInspectorController
     @scope.viewSource = !@scope.viewSource
 
   toggleActiveTab: (tabState) =>
+    @scope.thingNameFilter = ''
     if tabState in ['things', 'tools', 'debug']
+      @scope.paneCollapsed = false
       @scope.tab.state = tabState
-      @scope.thingNameFilter = '' if tabState == 'debug'
     else
       @scope.tab.state = undefined
 
