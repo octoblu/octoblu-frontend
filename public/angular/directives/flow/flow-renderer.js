@@ -193,9 +193,11 @@ angular.module('octobluApp')
         }
       }
 
+      var throttledMoveNode = _.throttle(moveNode,40);
+
       function panmove(event) {
         if (shouldAbort(event,enabled)) return;
-        moveNode(event,dragNodeMap[node.id]);
+        throttledMoveNode(event,dragNodeMap[node.id]);
       }
 
       function panend(event) {
@@ -548,9 +550,10 @@ angular.module('octobluApp')
     }
 
     function renderNodes(newNodesDiff, oldNodesDiff) {
+      var nodeMap = _.merge({},tmpNodeMap,dragNodeMap);
       _.each(newNodesDiff, function (node) {
         if (oldNodesDiff[node.id] || toLinkMap[node.id] || fromLinkMap[node.id]) {
-          renderNodeLinks(node.id,null,tmpNodeMap);
+          renderNodeLinks(node.id,null,nodeMap);
         }
         var nodeElement = FlowNodeRenderer.render(snap, node, nodeElements[node.id]);
         if (!nodeElement) {
