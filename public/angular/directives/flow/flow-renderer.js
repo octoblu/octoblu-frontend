@@ -30,6 +30,7 @@ angular.module('octobluApp')
       viewBoxH = vbOrigH;
 
     var dragNodeMap = {};
+    var flowNodeMap, flowLinkMap;
     var tmpNodeMap, tmpLinkMap;
     var toLinkMap, fromLinkMap;
 
@@ -54,15 +55,15 @@ angular.module('octobluApp')
       });
     }
 
-    function select(nodeElement) {
+    function select(snapElement) {
       unselectAll();
-      nodeElement.toggleClass('selected',true);
+      snapElement.toggleClass('selected',true);
     }
 
-    function selectCallback(nodeElement, callback) {
-      return function(node) {
-        select(nodeElement);
-        callback(node);
+    function selectCallback(snapElement, callback) {
+      return function(data) {
+        select(snapElement);
+        callback(data);
       }
     }
 
@@ -124,7 +125,7 @@ angular.module('octobluApp')
       return false;
     }
 
-    function addClickBehavior(element, node, callback) {
+    function addClickBehavior(element, data, callback) {
       if (!element) return;
       var hammer = new Hammer(element);
       var enabled;
@@ -132,7 +133,7 @@ angular.module('octobluApp')
       function tap(event){
         if (shouldAbort(event,enabled)) return;
         if (callback) {
-          callback(node);
+          callback(data);
         }
       }
 
@@ -194,8 +195,8 @@ angular.module('octobluApp')
         var tmpNode = tmpNodeMap[node.id];
         if (!tmpNode) return;
         moveNode(event,tmpNode);
-        node.x = tmpNode.x;
-        node.y = tmpNode.y;
+        flowNodeMap[node.id].x = tmpNode.x;
+        flowNodeMap[node.id].y = tmpNode.y;
         dispatch.flowChanged();
       }
 
@@ -511,10 +512,10 @@ angular.module('octobluApp')
       });
     }
 
-    function renderLink(link,linkId,loc) {
+    function renderLink(link, linkId, loc, nodeMap) {
       snap.selectAll('#'+linkId).remove();
       var linkElement = linkElements[linkId] =
-        FlowLinkRenderer.render(snap, link, _.merge({},tmpNodeMap,dragNodeMap), loc, linkElements[linkId]);
+        FlowLinkRenderer.render(snap, link, nodeMap, loc, linkElements[linkId]);
       if (!linkElement) {
         console.log('unable to create link:',link);
         //flow.links = _.without(flow.links,link);
@@ -526,13 +527,14 @@ angular.module('octobluApp')
       }
     }
 
-    function renderNodeLinks(nodeId,pos) {
+    function renderNodeLinks(nodeId, pos, nodeMap) {
+      nodeMap = nodeMap || _.merge({},tmpNodeMap,dragNodeMap);
       var toLinks = toLinkMap[nodeId];
       var fromLinks = fromLinkMap[nodeId];
       var processLinks = function(links, loc) {
         _.each(links, function (link) {
           var linkId = FlowLinkRenderer.getLinkId(link);
-          renderLink(link,linkId,loc);
+          renderLink(link, linkId, loc, nodeMap);
         });
       };
 
@@ -543,7 +545,7 @@ angular.module('octobluApp')
     function renderNodes(newNodesDiff, oldNodesDiff) {
       _.each(newNodesDiff, function (node) {
         if (oldNodesDiff[node.id] || toLinkMap[node.id] || fromLinkMap[node.id]) {
-          renderNodeLinks(node.id);
+          renderNodeLinks(node.id,null,tmpNodeMap);
         }
         var nodeElement = FlowNodeRenderer.render(snap, node, nodeElements[node.id]);
         if (!nodeElement) {
@@ -593,20 +595,20 @@ angular.module('octobluApp')
           flow.zoomScale = 1;
         }
 
-        var newLinkMap = _.indexBy(flow.links,function(link){
+        flowLinkMap = _.indexBy(flow.links,function(link){
           return FlowLinkRenderer.getLinkId(link);
         });
         toLinkMap = _.groupBy(flow.links,'to');
         fromLinkMap = _.groupBy(flow.links,'from');
 
-        var newLinksDiff = objDiff(newLinkMap,tmpLinkMap);
-        var oldLinksDiff = objDiff(tmpLinkMap,newLinkMap);
-        tmpLinkMap = _.cloneDeep(newLinkMap);
+        var newLinksDiff = objDiff(flowLinkMap,tmpLinkMap);
+        var oldLinksDiff = objDiff(tmpLinkMap,flowLinkMap);
+        tmpLinkMap = _.cloneDeep(flowLinkMap);
 
-        var newNodeMap = _.indexBy(flow.nodes,'id');
-        var newNodesDiff = objDiff(newNodeMap,tmpNodeMap);
-        var oldNodesDiff = objDiff(tmpNodeMap,newNodeMap);
-        tmpNodeMap = _.cloneDeep(newNodeMap);
+        flowNodeMap = _.indexBy(flow.nodes,'id');
+        var newNodesDiff = objDiff(flowNodeMap,tmpNodeMap);
+        var oldNodesDiff = objDiff(tmpNodeMap,flowNodeMap);
+        tmpNodeMap = _.cloneDeep(flowNodeMap);
 
         deleteOldLinks(newLinksDiff,oldLinksDiff);
         renderNodes(newNodesDiff,oldNodesDiff);
@@ -622,7 +624,16 @@ angular.module('octobluApp')
       },
 
       on: function(event, callback) {
-        return dispatch[event] = callback;
+        return dispatch[event] = function(data) {
+          var dataRef;
+          if (data && event.startsWith("node")) {
+            dataRef = flowNodeMap[data.id];
+          }
+          if (data && event.startsWith("link")) {
+            dataRef = flowLinkMap[FlowLinkRenderer.getLinkId(data)];
+          }
+          return callback( dataRef || data );
+        }
       },
 
       updateViewBox: updateViewBox,
