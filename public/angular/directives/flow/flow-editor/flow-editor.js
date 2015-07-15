@@ -131,8 +131,12 @@ angular.module('octobluApp')
           }
         });
 
-        $scope.$watch("flow.zoomScale", function(zoomScale){
-          flowRenderer.updateZoomScale(zoomScale);
+        $scope.$on('zoomIn', function(){
+          flowRenderer.zoomIn();
+        });
+
+        $scope.$on('zoomOut', function(){
+          flowRenderer.zoomOut();
         });
 
         $scope.$on('centerViewBox', function(){

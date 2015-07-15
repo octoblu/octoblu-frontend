@@ -29,6 +29,8 @@ angular.module('octobluApp')
       viewBoxW = vbOrigW,
       viewBoxH = vbOrigH;
 
+    var zoomScale = 1;
+
     var dragNodeMap = {};
     var flowNodeMap, flowLinkMap;
     var tmpNodeMap, tmpLinkMap;
@@ -87,12 +89,21 @@ angular.module('octobluApp')
     }
 
     function updateZoomScale(scale) {
-      scale = scale || 1;
+      if (!scale) return;
+      zoomScale = scale;
       var w = vbOrigW / scale;
       var h = vbOrigH / scale;
       var x = viewBoxX - (w-viewBoxW)/2;
       var y = viewBoxY - (h-viewBoxH)/2;
       updateViewBox(x,y,w,h);
+    }
+
+    function zoomIn() {
+        updateZoomScale(zoomScale*1.2);
+    }
+
+    function zoomOut() {
+        updateZoomScale(zoomScale/1.2);
     }
 
     function centerViewBox() {
@@ -107,8 +118,7 @@ angular.module('octobluApp')
       viewBoxW = vbOrigW = vb.width;
       viewBoxH = vbOrigH = vb.height;
       var n = flow.nodes.length;
-      flow.zoomScale = n/(n+1) - 0.2;
-      updateZoomScale(flow.zoomScale);
+      updateZoomScale(n/(n+1) - 0.2);
       flowMultiTouchCounter = 0;
     }
 
@@ -421,12 +431,7 @@ angular.module('octobluApp')
       }
 
       function zoom(scaleChange) {
-        var newW = origViewBoxW * scaleChange;
-        var newH = origViewBoxH * scaleChange;
-        var newX = viewBoxX - (newW - viewBoxW)/2;
-        var newY = viewBoxY - (newH - viewBoxH)/2;
-        updateViewBox(newX,newY,newW,newH);
-        flow.zoomScale = vbOrigW/newW;
+        updateZoomScale(zoomScale * scaleChange);
       }
 
       function pinchmove(event) {
@@ -591,8 +596,7 @@ angular.module('octobluApp')
         flow = newFlow;
 
         if (!snap.attr('viewBox')){
-          updateViewBox(vbOrigX,vbOrigY,vbOrigH,vbOrigW);
-          flow.zoomScale = 1;
+          updateZoomScale(1);
         }
 
         flowLinkMap = _.indexBy(flow.links,function(link){
@@ -638,6 +642,8 @@ angular.module('octobluApp')
 
       updateViewBox: updateViewBox,
       updateZoomScale: updateZoomScale,
+      zoomIn: zoomIn,
+      zoomOut: zoomOut,
       centerViewBox: centerViewBox
     };
   };

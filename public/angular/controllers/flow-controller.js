@@ -302,23 +302,11 @@ angular.module('octobluApp')
   };
 
   $scope.zoomIn = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    $scope.activeFlow.zoomScale *= 1.25;
-    if ($scope.activeFlow.zoomScale > 8) {
-      $scope.activeFlow.zoomScale = 8;
-    }
+    $scope.$broadcast('zoomIn');
   };
 
   $scope.zoomOut = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    $scope.activeFlow.zoomScale /= 1.25;
-    if ($scope.activeFlow.zoomScale < 0.01) {
-      $scope.activeFlow.zoomScale = 0.01;
-    }
+    $scope.$broadcast('zoomOut');
   };
 
   $scope.center = function () {
