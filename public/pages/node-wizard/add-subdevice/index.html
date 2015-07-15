@@ -13,7 +13,14 @@
 <h2 class="text-center">Add a {{nodeType.name}}</h2>
 
 <div class="node-wizard-logo-container">
-  <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
+  <img ng-src="{{nodeType.logo}}">
+</div>
+
+<div class="node-wizard-gateblu-explanation">
+  <p>
+    This Thing requires a Gateblu to function.
+    Gateblu allows you to connect local smart devices that do not directly connect to the internet to Octoblu.
+  </p>
 </div>
 
 <ui-view></ui-view>

@@ -24,8 +24,12 @@ md-toast {
     outline: none;
   }
 
-  md-sidenav.md-locked-open {
+  md-sidenav.md-locked-open,
+  md-sidenav.md-sidenav-left {
+    width: 250px;
     min-width: 250px;
+    max-width: 250px;
+    z-index: 101;
   }
 
   .flow-image-but-really-the-flow {
@@ -53,9 +57,22 @@ md-toast {
 }
 
 .navigation a {
+  padding: 12px 24px !important;
+
+  color: #3B3B3B !important;
+  font-size: 15px !important;
+  font-weight: bold;
   text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+
   &:hover {
     font-weight: bold;
+    background-color: #F7F7F7;
+  }
+
+  span {
+    font-size: 15px;
+    margin-left: 8px !important;
   }
 }
 
