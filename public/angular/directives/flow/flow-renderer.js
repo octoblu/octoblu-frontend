@@ -10,7 +10,7 @@ angular.module('octobluApp')
     var modObj = _.clone(newObj);
     if (!oldObj) return modObj;
     var objDiff = _.pick(modObj,function(value,key){
-      return !_.isEqual(value,oldObj[key]);
+      return !( _.isEqual(value,oldObj[key]) && (value === oldObj[key]));
     });
     return objDiff;
   };
@@ -609,6 +609,9 @@ angular.module('octobluApp')
         var newNodesDiff = objDiff(flowNodeMap,tmpNodeMap);
         var oldNodesDiff = objDiff(tmpNodeMap,flowNodeMap);
         tmpNodeMap = _.cloneDeep(flowNodeMap);
+
+        console.log('number of flow nodes:', flow.nodes.length);
+        console.log('diffs:', newNodesDiff, oldNodesDiff);
 
         deleteOldLinks(newLinksDiff,oldLinksDiff);
         renderNodes(newNodesDiff,oldNodesDiff);

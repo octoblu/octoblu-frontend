@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, ThingService, CoordinatesService) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -41,48 +41,7 @@ angular.module('octobluApp')
   var setDeviceStatus = function(status) {
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
-    $scope.online = status;
-    if((FlowService.step > 2 && status) || (FlowService.step < 0 && !status)){
-      setDeployProgress(0, true);
-    }
   };
-
-  var setDeployProgress = function(progress, startNow){
-    var cancel = function(){
-      $interval.cancel(progressId);
-      progressId = null;
-    };
-    var setProgress = function(progress){
-      $scope.deployProgress = Math.round(progress * 100);
-    }
-    cancel();
-    if(startNow){
-      $timeout(function(){
-        setProgress(progress);
-      }, 0);
-      if(!progress) return;
-    }
-    progressId = $interval(function(){
-      setProgress(progress);
-      progress += 0.01;
-      if(progress >= 1) cancel();
-    }, 500);
-  };
-
-  FlowService.onStep(function(step){
-    if(!step){
-      setDeployProgress(0, true);
-      return;
-    }
-    var calculate = function(step, max){
-      setDeployProgress(step / max, step === (max - 1));
-    };
-    if(step > 0){
-      calculate(step, FlowService.MAX_START_STEPS);
-    }else{
-      calculate(Math.abs(step), FlowService.MAX_STOP_STEPS);
-    }
-  });
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
     skynetConnection.mydevices({}, function(result){
@@ -257,7 +216,9 @@ angular.module('octobluApp')
     }
     if ($scope.activeFlow) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
+      console.log('nodes before cut:', $scope.activeFlow.nodes);
       _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
+      console.log('nodes after cut:', $scope.activeFlow.nodes);
     }
 
     if ($scope.activeFlow) {
@@ -283,7 +244,7 @@ angular.module('octobluApp')
     FlowService.setActiveFlow(oldFlow);
 
     $scope.activeFlow = oldFlow;
-  }
+  };
 
   $scope.redoEdit = function(e) {
     if(e) {
@@ -338,7 +299,8 @@ angular.module('octobluApp')
           node.y = loc.y - FlowNodeDimensions.minHeight/2;
         }
       }
-      $scope.activeFlow.addNode(node);
+      node.id = UUIDService.v1();
+      $scope.activeFlow.nodes.push(node);
     }
 
     $scope.activeFlow.selectedFlowNode = null;
@@ -450,14 +412,6 @@ angular.module('octobluApp')
   $scope.$watch('activeFlow', calculateFlowHash, true);
   $scope.$watch('activeFlow.hash', compareFlowHash);
 
-  $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType)
+  $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
 
-  $scope.$on('update-active-flow-edit', function(event, newFlow){
-    var flow = _.pick(newFlow, ['links', 'nodes', 'name', 'description']);
-    $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
-  });
-
-  $scope.$on('delete-flow', function(event, flow) {
-    $scope.deleteFlow(flow);
-  });
 });
