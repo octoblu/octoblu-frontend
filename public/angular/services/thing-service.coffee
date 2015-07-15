@@ -33,6 +33,15 @@ class ThingService
     .error (body, status, headers, config) ->
       return callback new Error()
 
+  addUuidToWhitelists: (uuid, device={}) =>
+    thing = {}
+    thing.owner = uuid
+    thing.discoverWhitelist  = _.union [uuid], device.discoverWhitelist ? []
+    thing.configureWhitelist = _.union [uuid], device.configureWhitelist ? []
+    thing.sendWhitelist      = _.union [uuid], device.sendWhitelist ? []
+    thing.receiveWhitelist   = _.union [uuid], device.receiveWhitelist ? []
+    thing
+
   calculateTheEverything: (device, peers) =>
     uuid: '*'
     name: 'Everything'
@@ -40,6 +49,18 @@ class ThingService
     configure: !device.configureWhitelist?
     send:      !device.sendWhitelist?
     receive:   !device.receiveWhitelist?
+
+  claimThing: (query, user, params)=>
+    return @q.reject 'Unable to claim device, missing uuid'  unless query?.uuid?
+    return @q.reject 'Unable to claim device, missing token' unless query?.token?
+
+    @getThing(query).then (thing) =>
+      thing = @addUuidToWhitelists user.uuid, thing
+      thing.name =  params.name
+      thing.uuid =  query.uuid
+      thing.token = query.token
+
+      @updateDevice(thing)
 
   combineDeviceWithPeers: (device, peers) =>
     return unless device? && peers?
@@ -105,7 +126,7 @@ class ThingService
 
     @skynetPromise.then (connection) =>
       connection.devices query, (result={}) =>
-        return deferred.reject error if result.error?
+        return deferred.reject result.error if result.error?
         thing = _.first result.devices
         thing = @addLogo thing
         deferred.resolve thing
@@ -141,7 +162,7 @@ class ThingService
     deferred = @q.defer()
 
     @skynetPromise.then (connection) =>
-      connection.update device, =>
+      connection.update device, (response) =>
         deferred.resolve()
 
     deferred.promise

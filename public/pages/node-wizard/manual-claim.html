@@ -1,0 +1,39 @@
+<md-content class="node-wizard">
+  <h2 class="node-wizard__title">Claim Thing</h2>
+
+  <div class="node-wizard__body">
+    <p class="claim-error-block" ng-if="controller.errorMessage">{{controller.errorMessage}}</p>
+
+    <form ng-submit="controller.claimThing()" name="controller.claimDeviceForm" class="node-wizard__form">
+      <md-input-container class="node-wizard__form-row">
+        <label>Name</label>
+        <input type="text" ng-model="controller.deviceName" name="name" aria-label="Name" required>
+        <div ng-messages="controller.claimDeviceForm.name.$error">
+          <div ng-message="required" ng-show="controller.nameRequiredError()">Required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="node-wizard__form-row">
+        <label>Uuid</label>
+        <input type="text" ng-model="controller.query.uuid" name="uuid" aria-label="Uuid" required>
+        <div ng-messages="controller.claimDeviceForm.uuid.$error">
+          <div ng-message="required" ng-show="controller.uuidRequiredError()">Required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="node-wizard__form-row">
+        <label>Token</label>
+        <input type="text" ng-model="controller.query.token" name="token" aria-label="Token" required>
+        <div ng-messages="controller.claimDeviceForm.token.$error">
+          <div ng-message="required" ng-show="controller.tokenRequiredError()">Required.</div>
+        </div>
+      </md-input-container>
+
+      <md-button class="md-primary md-raised node-wizard__button">
+        Claim
+      </md-button>
+    </form>
+
+    <da-loading loading="controller.loading"></da-loading>
+  </div>
+</md-content>

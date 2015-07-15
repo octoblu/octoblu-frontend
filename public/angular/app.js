@@ -174,6 +174,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/claim.html'
       })
+      .state('material.nodewizard.manualclaim', {
+        url: '/claim',
+        controller: 'ManualClaimNodeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/manual-claim.html'
+      })
       .state('material.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',
         controller: 'addDeviceController',
@@ -358,16 +364,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'DeviceDetailController',
         controllerAs: 'controller',
         templateUrl: '/pages/device-detail.html'
-      })
-      .state('material.microblu', {
-        url: '/device/:uuid',
-        controller: 'DeviceDetailController',
-        templateUrl: '/pages/connector/devices/detail/index.html',
-        resolve: {
-          device: function(deviceService, $stateParams){
-                return deviceService.getDeviceByUUID($stateParams.uuid);
-          }
-        }
       })
       .state('material.bluprints', {
         url: '/bluprints',
