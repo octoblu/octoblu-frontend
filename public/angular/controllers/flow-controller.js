@@ -214,19 +214,13 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow) {
-      $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
-      console.log('nodes before cut:', $scope.activeFlow.nodes);
-      _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
-      console.log('nodes after cut:', $scope.activeFlow.nodes);
+
+    if (!$scope.activeFlow) {
+      return;
     }
 
-    if ($scope.activeFlow) {
-      _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
-    }
-
-    $scope.activeFlow.selectedFlowNode = null;
-    $scope.activeFlow.selectedLink = null;
+    $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
+    FlowEditorService.deleteSelection($scope.activeFlow);
   };
 
   $scope.undoEdit = function(e) {

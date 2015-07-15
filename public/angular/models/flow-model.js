@@ -2,7 +2,6 @@
 angular.module('octobluApp')
 .factory('FlowModel', function (UUIDService) {
   return function (options) {
-    var flowId, name, description, nodes, hash, links, token, zoomScale, zoomX, zoomY;
     options = options || {};
     return {
       flowId      : options.flowId || UUIDService.v1(),
@@ -14,5 +13,4 @@ angular.module('octobluApp')
       links       : options.links || []
     }
   };
-
 });

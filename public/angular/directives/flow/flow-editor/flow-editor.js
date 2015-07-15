@@ -72,7 +72,6 @@ angular.module('octobluApp')
         });
 
         flowRenderer.on('nodeSelected', function (flowNode) {
-          console.log('nodeSelected:',flowNode);
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
 
@@ -118,8 +117,7 @@ angular.module('octobluApp')
         };
 
         $scope.$watch('flow', function(newFlow, oldFlow) {
-          console.log('editor watch', newFlow, oldFlow);
-          flowRenderer.render(FlowService.getActiveFlow());
+          flowRenderer.render(newFlow);
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
