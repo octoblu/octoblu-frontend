@@ -6,7 +6,8 @@ angular.module('octobluApp')
 
   var CACHE_TIMEOUT = 3000;
   var cacheTimeStamp;
-  var requestPromise;
+  var resolvedPromise;
+  var pendingPromise;
 
   self.createFlowNode = function(flowNodeType){
     var defaults = _.cloneDeep(flowNodeType.defaults);
@@ -29,18 +30,11 @@ angular.module('octobluApp')
   self.getFlowNodeTypes = function(cache) {
     var now = (new Date).getTime();
 
-    if (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT) {
-      cacheTimeStamp = now;
-      requestPromise = undefined;
-    }
-
-    if (requestPromise) {
-      return requestPromise;
-    }
-
-    requestPromise = $http.get(OCTOBLU_API_URL + '/api/flow_node_types')
+    if (!pendingPromise && (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT)) {
+      pendingPromise = $http.get(OCTOBLU_API_URL + '/api/flow_node_types')
       .then(function(res) {
-        return _.map(res.data, function(data){
+        console.log('got flow_node_types!');
+        var result = _.map(res.data, function(data){
           if(data.logo){
             return data;
           }
@@ -53,9 +47,17 @@ angular.module('octobluApp')
           }
           return data;
         });
-    });
+        cacheTimeStamp = (new Date).getTime();
+        resolvedPromise = pendingPromise;
+        pendingPromise = undefined;
+        return result;
+      }, function(reason) {
+        pendingPromise = undefined;
+        console.error(reason);
+      });
+    }
 
-    return requestPromise;
+    return resolvedPromise || pendingPromise;
   };
 
   self.getOtherMatchingFlowNodeTypes = function(type){

@@ -5,29 +5,29 @@ angular.module('octobluApp')
 
     var CACHE_TIMEOUT = 3000;
     var cacheTimeStamp;
-    var requestPromise;
+    var resolvedPromise;
+    var pendingPromise;
 
     self.getNodes = function (options) {
       options = options || {};
       var now = (new Date).getTime();
 
-      if (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT) {
-        cacheTimeStamp = now;
-        requestPromise = undefined;
-      }
-
-      if (requestPromise) {
-        return requestPromise;
-      }
-
-      requestPromise = $http.get(OCTOBLU_API_URL + '/api/nodes', options)
+      if (!pendingPromise && (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT)) {
+        pendingPromise = $http.get(OCTOBLU_API_URL + '/api/nodes', options)
         .then(function (results) {
           deviceService.clearCache();
           _.each(results.data, deviceService.addOrUpdateDevice);
-          return deviceService.getDevices();
+          var result = deviceService.getDevices();
+          cacheTimeStamp = (new Date).getTime();
+          resolvedPromise = pendingPromise;
+          pendingPromise = undefined;
+          return result;
+        }, function(reason) {
+          pendingPromise = undefined;
+          console.error(reason);
         });
-      return requestPromise;
-    };
-
+      };
+      return resolvedPromise || pendingPromise;
+    }
     return self;
   });
