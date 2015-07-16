@@ -43,8 +43,8 @@ describe 'UtilityInspectorController', ->
         @sut.toggleActiveTab('debug')
       it 'should set the scope.tab.state to debug', ->
         expect(@scope.tab.state).to.equal('debug')
-      it 'should set scope.filterQuery to empty string', ->
-        expect(@scope.filterQuery).to.equal('')
+      it 'should set scope.thingNameFilter to empty string', ->
+        expect(@scope.thingNameFilter).to.equal('')
 
     describe 'when called with things', ->
       beforeEach ->
