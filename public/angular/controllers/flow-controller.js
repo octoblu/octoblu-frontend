@@ -205,7 +205,9 @@ angular.module('octobluApp')
   };
 
   $scope.copySelection = function (e) {
-    if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
+    if ($scope.activeFlow &&
+        $scope.activeFlow.selectedFlowNode &&
+        $scope.activeFlow.selectedFlowNode.id) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
     }
   };
@@ -228,15 +230,12 @@ angular.module('octobluApp')
       e.preventDefault();
     }
 
-    if(!undoBuffer.length) {
-     return;
-    }
+    var oldFlow = undoBuffer.pop();
+    if (!oldFlow) return;
 
-    redoBuffer.push($scope.activeFlow);
-    var oldFlow =  undoBuffer.pop();
     undid = true;
+    redoBuffer.push($scope.activeFlow);
     FlowService.setActiveFlow(oldFlow);
-
     $scope.activeFlow = oldFlow;
   };
 
@@ -245,13 +244,11 @@ angular.module('octobluApp')
       e.preventDefault();
     }
 
-    if(!redoBuffer.length) {
-      return;
-    }
-
-    undoBuffer.push($scope.activeFlow);
     var oldFlow = redoBuffer.pop();
+    if (!oldFlow) return;
+
     undid = true;
+    undoBuffer.push($scope.activeFlow);
     $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
   }
