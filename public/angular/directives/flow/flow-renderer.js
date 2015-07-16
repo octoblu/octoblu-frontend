@@ -631,16 +631,20 @@ angular.module('octobluApp')
       },
 
       on: function(event, callback) {
-        return dispatch[event] = function(data) {
-          var dataRef;
-          if (data && _.startsWith(event,"node")) {
-            dataRef = flowNodeMap[data.id];
-          }
-          if (data && _.startsWith(event,"link")) {
-            dataRef = flowLinkMap[FlowLinkRenderer.getLinkId(data)];
-          }
-          return callback( dataRef || data );
+        if (event === 'nodeSelected' ||
+            event === 'nodeButtonClicked') {
+          return dispatch[event] = function(data) {
+            return callback( data ? flowNodeMap[data.id] : null );
+          };
         }
+        if (event === 'linkSelected') {
+          return dispatch[event] = function(data) {
+            return callback( data ? flowLinkMap[FlowLinkRenderer.getLinkId(data)] : null );
+          };
+        }
+        return dispatch[event] = function(data) {
+          return callback(data);
+        };
       },
 
       updateViewBox: updateViewBox,
