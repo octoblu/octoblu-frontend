@@ -72,6 +72,7 @@ angular.module('octobluApp')
         });
 
         flowRenderer.on('nodeSelected', function (flowNode) {
+          if (!$scope.flow) return;
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
 
