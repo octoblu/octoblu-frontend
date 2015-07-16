@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, ThingService, CoordinatesService) {
+.controller('FlowController', function ( $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -41,48 +41,7 @@ angular.module('octobluApp')
   var setDeviceStatus = function(status) {
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
-    $scope.online = status;
-    if((FlowService.step > 2 && status) || (FlowService.step < 0 && !status)){
-      setDeployProgress(0, true);
-    }
   };
-
-  var setDeployProgress = function(progress, startNow){
-    var cancel = function(){
-      $interval.cancel(progressId);
-      progressId = null;
-    };
-    var setProgress = function(progress){
-      $scope.deployProgress = Math.round(progress * 100);
-    }
-    cancel();
-    if(startNow){
-      $timeout(function(){
-        setProgress(progress);
-      }, 0);
-      if(!progress) return;
-    }
-    progressId = $interval(function(){
-      setProgress(progress);
-      progress += 0.01;
-      if(progress >= 1) cancel();
-    }, 500);
-  };
-
-  FlowService.onStep(function(step){
-    if(!step){
-      setDeployProgress(0, true);
-      return;
-    }
-    var calculate = function(step, max){
-      setDeployProgress(step / max, step === (max - 1));
-    };
-    if(step > 0){
-      calculate(step, FlowService.MAX_START_STEPS);
-    }else{
-      calculate(Math.abs(step), FlowService.MAX_STOP_STEPS);
-    }
-  });
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
     skynetConnection.mydevices({}, function(result){
@@ -246,7 +205,9 @@ angular.module('octobluApp')
   };
 
   $scope.copySelection = function (e) {
-    if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
+    if ($scope.activeFlow &&
+        $scope.activeFlow.selectedFlowNode &&
+        $scope.activeFlow.selectedFlowNode.id) {
       $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
     }
   };
@@ -255,17 +216,13 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow) {
-      $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
-      _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
+
+    if (!$scope.activeFlow) {
+      return;
     }
 
-    if ($scope.activeFlow) {
-      _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
-    }
-
-    $scope.activeFlow.selectedFlowNode = null;
-    $scope.activeFlow.selectedLink = null;
+    $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
+    FlowEditorService.deleteSelection($scope.activeFlow);
   };
 
   $scope.undoEdit = function(e) {
@@ -273,30 +230,25 @@ angular.module('octobluApp')
       e.preventDefault();
     }
 
-    if(!undoBuffer.length) {
-     return;
-    }
+    var oldFlow = undoBuffer.pop();
+    if (!oldFlow) return;
 
-    redoBuffer.push($scope.activeFlow);
-    var oldFlow =  undoBuffer.pop();
     undid = true;
+    redoBuffer.push($scope.activeFlow);
     FlowService.setActiveFlow(oldFlow);
-
     $scope.activeFlow = oldFlow;
-  }
+  };
 
   $scope.redoEdit = function(e) {
     if(e) {
       e.preventDefault();
     }
 
-    if(!redoBuffer.length) {
-      return;
-    }
-
-    undoBuffer.push($scope.activeFlow);
     var oldFlow = redoBuffer.pop();
+    if (!oldFlow) return;
+
     undid = true;
+    undoBuffer.push($scope.activeFlow);
     $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
   }
@@ -326,43 +278,37 @@ angular.module('octobluApp')
     if (e) {
       e.preventDefault();
     }
-    if ($scope.activeFlow && $scope.copiedNode) {
-      var node = JSON.parse($scope.copiedNode);
-      delete node.x;
-      delete node.y;
-      if (_.isNumber($scope.currentMouseX) && _.isNumber($scope.currentMouseY)) {
-        var svgElement = $(".flow-editor-workspace")[0];
-        if (svgElement) {
-          var loc = CoordinatesService.transform(svgElement, $scope.currentMouseX, $scope.currentMouseY);
-          node.x = loc.x - FlowNodeDimensions.width/2;
-          node.y = loc.y - FlowNodeDimensions.minHeight/2;
-        }
-      }
-      $scope.activeFlow.addNode(node);
+
+    if (!$scope.activeFlow || !$scope.copiedNode) {
+      return;
     }
+
+    var node = JSON.parse($scope.copiedNode);
+    delete node.x;
+    delete node.y;
+
+    if (_.isNumber($scope.currentMouseX) && _.isNumber($scope.currentMouseY)) {
+      var svgElement = $(".flow-editor-workspace")[0];
+      if (svgElement) {
+        var loc = CoordinatesService.transform(svgElement, $scope.currentMouseX, $scope.currentMouseY);
+        node.x = loc.x - FlowNodeDimensions.width/2;
+        node.y = loc.y - FlowNodeDimensions.minHeight/2;
+      }
+    }
+
+    node.id = UUIDService.v1();
+    $scope.activeFlow.nodes.push(node);
 
     $scope.activeFlow.selectedFlowNode = null;
     $scope.activeFlow.selectedLink = null;
   };
 
   $scope.zoomIn = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    $scope.activeFlow.zoomScale *= 1.25;
-    if ($scope.activeFlow.zoomScale > 8) {
-      $scope.activeFlow.zoomScale = 8;
-    }
+    $scope.$broadcast('zoomIn');
   };
 
   $scope.zoomOut = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    $scope.activeFlow.zoomScale /= 1.25;
-    if ($scope.activeFlow.zoomScale < 0.01) {
-      $scope.activeFlow.zoomScale = 0.01;
-    }
+    $scope.$broadcast('zoomOut');
   };
 
   $scope.center = function () {
@@ -450,14 +396,6 @@ angular.module('octobluApp')
   $scope.$watch('activeFlow', calculateFlowHash, true);
   $scope.$watch('activeFlow.hash', compareFlowHash);
 
-  $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType)
+  $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
 
-  $scope.$on('update-active-flow-edit', function(event, newFlow){
-    var flow = _.pick(newFlow, ['links', 'nodes', 'name', 'description']);
-    $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
-  });
-
-  $scope.$on('delete-flow', function(event, flow) {
-    $scope.deleteFlow(flow);
-  });
 });

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, CoordinatesService, FlowNodeDimensions, $interval) {
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, CoordinatesService, FlowNodeDimensions, $interval, FlowService) {
     'use strict';
 
     return {
@@ -72,6 +72,7 @@ angular.module('octobluApp')
         });
 
         flowRenderer.on('nodeSelected', function (flowNode) {
+          if (!$scope.flow) return;
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
 
@@ -117,24 +118,7 @@ angular.module('octobluApp')
         };
 
         $scope.$watch('flow', function(newFlow, oldFlow) {
-          if (!newFlow || !(newFlow.nodes || newFlow.links)) {
-            if (newFlow) {
-              console.log('no flow info...?',newFlow.nodes,newFlow.links,newFlow);
-            }
-            return;
-          }
-
-          if (oldFlow) {
-            var modFlow = {nodes:newFlow.nodes,links:newFlow.links};
-            var flowDiff = _.pick(modFlow,function(value,key){
-              return !_.isEqual(value,oldFlow[key]);
-            });
-            if (_.size(flowDiff) === 0) {
-              return;
-            }
-          }
-
-          flowRenderer.render($scope.flow);
+          flowRenderer.render(newFlow);
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){
@@ -148,8 +132,12 @@ angular.module('octobluApp')
           }
         });
 
-        $scope.$watch("flow.zoomScale", function(zoomScale){
-          flowRenderer.updateZoomScale(zoomScale);
+        $scope.$on('zoomIn', function(){
+          flowRenderer.zoomIn();
+        });
+
+        $scope.$on('zoomOut', function(){
+          flowRenderer.zoomOut();
         });
 
         $scope.$on('centerViewBox', function(){

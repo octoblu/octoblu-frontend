@@ -1,30 +1,26 @@
-<div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <h2 class="text-center">To Gateblu:</h2>
+<div class="gateblu-select" ng-if="gateblus.length">
+  <h2>Select Gateblu</h2>
+
+  <div class="gateblu-list">
+    <div class="device-collection__items device-collection__items--grid">
+      <a ng-repeat="gateblu in gateblus | orderBy: 'name'"
+        ui-sref="material.nodewizard.addsubdevice.form({gatebluId: gateblu.uuid})"
+        class="device-collection__item">
+
+        <img ng-src="{{gateblu.logo}}"
+          class="device-collection__item-thumbnail animated-popout"
+          ng-class="{faded: (!device.online && device.uuid)}"
+          title="{{device.name}}">
+
+        <div class="device-collection__item-name truncate">{{gateblu.name}}</div>
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="row row-centered">
-  <div ng-repeat="gateblu in gateblus | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
-    <h4 class="text-center">
-      <a href ui-sref="material.nodewizard.addsubdevice.form({gatebluId: gateblu.uuid})" class="">
-        <div title="{{gateblu.name}}" class="spiral-thumbnail animated-popout"></div>
-        <strong class="muted-link">{{gateblu.name}}</strong>
-      </a>
-    </h4>
-  </div>
-  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
-    <h4 class="text-center">
-      <a href ui-sref="material.nodewizard.addsubdevice.addgateblu" class="">
-        <div title="{{gateblu.name}}" class="ghost-thumbnail animated-popout">
-          <div>
-            <i class="fa fa-2x fa-plus"></i>
-            <br>
-            Add Gateblu
-          </div>
-        </div>
-        <br>
-      </a>
-    </h4>
-  </div>
+<div class="gateblu-download">
+  <p>
+    Haven't setup a Gateblu yet? <br>
+  </p>
+  <md-button href="http://gateblu.octoblu.com" class="md-primary md-raised">Download Gateblu</md-button>
 </div>

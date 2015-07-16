@@ -8,7 +8,7 @@ class DeviceDetailController
     @ThingService = ThingService
     @form = ['*']
 
-    deviceService.getDeviceByUUID($stateParams.uuid).then (device) =>
+    deviceService.getDeviceByUUID($stateParams.uuid, true).then (device) =>
       @device = device
       @readOnlyName = @deviceIsFlow()
       @hideDelete = @deviceIsFlow()
