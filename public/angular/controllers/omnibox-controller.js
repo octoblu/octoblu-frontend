@@ -7,10 +7,16 @@ angular.module('octobluApp')
     });
   };
 
+  $scope.omniboxFocus = false;
   $scope.$watchCollection('flowNodes', fetchFlowNodes);
 
   $scope.selectItem = function(item) {
     OmniService.selectItem(item);
+  };
+
+  $scope.focus = function(e) {
+    e.preventDefault();
+    $scope.omniboxFocus = true;
   };
 
   $scope.getOmniboxItemTemplate = function(item) {
