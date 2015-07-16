@@ -42,7 +42,7 @@
       <h3 class="node-collection-no-matches" ng-show="noThings">
         No matches for "{{thingNameFilter}}"
       </h3>
-      <div ng-repeat="(category, things) in thingsByCategory">
+      <div ng-repeat="category in categories">
         <header class="blu-bordered-header">
           <h4 class="blu-bordered-header-label">
             {{category}}
@@ -52,7 +52,7 @@
 
         <node-collection
           flow="flow"
-          nodes="things"
+          nodes="thingsByCategory[category]"
           view-style="collectionViewStyle">
         </node-collection>
       </div>

@@ -42,6 +42,10 @@ class UtilityInspectorController
       return "Connected" if !thing.categories?
       thing.categories
 
+    @scope.categories = _.sortBy(_.keys @scope.thingsByCategory)
+    (_.pull @scope.categories, 'Connected').unshift 'Connected' if @scope.thingsByCategory['Connected']
+    (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.thingsByCategory['Flows']
+
   setCollectionViewStyle: (viewStyle) =>
     @scope.collectionViewStyle = viewStyle
 
