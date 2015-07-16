@@ -6,7 +6,7 @@ class ThingService
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
   addLogo: (data) =>
-    return _.clone data unless data.type?
+    return _.clone data unless data?.type?
 
     filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
