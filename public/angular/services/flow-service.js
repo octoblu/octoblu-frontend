@@ -12,7 +12,7 @@ angular.module('octobluApp')
 
   self.saveActiveFlow = function () {
     if(!activeFlow){return;}
-    self.saveFlow(activeFlow);
+    return self.saveFlow(activeFlow);
   };
 
   self.saveFlow = function(flow) {
@@ -23,9 +23,11 @@ angular.module('octobluApp')
     });
   };
 
-  self.notifyFlowSaved = _.debounce(function(){
+  self.immediateNotifyFlowSaved = function(){
     NotifyService.notify("Flow Saved");
-  }, 3000);
+  };
+  
+  self.notifyFlowSaved = _.debounce(self.immediateNotifyFlowSaved, 3000);
 
   self.selectNode = function(flowNode){
     activeFlow.selectedFlowNode = flowNode;

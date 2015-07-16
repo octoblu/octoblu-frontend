@@ -15,7 +15,10 @@ class FlowDeployButtonController
     _.each @scope.flow.nodes, (node) =>
       delete node.errorMessage
 
-    @FlowService.start @scope.flow
+    @FlowService.saveActiveFlow()
+      .then =>
+        @FlowService.immediateNotifyFlowSaved()
+        @FlowService.start @scope.flow
 
   immediateStop: (e) =>
     e?.preventDefault()
