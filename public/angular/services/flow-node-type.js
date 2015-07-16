@@ -33,7 +33,6 @@ angular.module('octobluApp')
     if (!pendingPromise && (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT)) {
       pendingPromise = $http.get(OCTOBLU_API_URL + '/api/flow_node_types')
       .then(function(res) {
-        console.log('got flow_node_types!');
         var result = _.map(res.data, function(data){
           if(data.logo){
             return data;
