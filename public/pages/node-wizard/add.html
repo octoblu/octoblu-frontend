@@ -1,0 +1,26 @@
+<md-content class="interior__wrapper" autoscroll="false">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="breadcrumbs">
+        <a ui-sref="material.nodewizard.addnode" class="breadcrumb-link">Things</a>
+        <i class="fa fa-angle-double-right fa-lg"></i>
+        <span class="breadcrumb-link current">Connect {{nodeType.name}}</span>
+      </div>
+    </div>
+  </header>
+</md-content>
+<md-content class="interior__wrapper">
+  <div class="node-wizard__wrapper">
+    <div class="node-wizard-logo-container">
+      <img src="{{nodeType.logo}}">
+    </div>
+    <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+    <div class="node-wizard__description">
+      <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+    </div>
+
+    <div class="blu-bordered-button" ng-click="controller.connectThings(nodeType)">
+        CONNECT
+    </div>
+  </div>
+</md-content>
