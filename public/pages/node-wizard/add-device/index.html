@@ -11,9 +11,11 @@
 </md-content>
 
 <md-content class="node-wizard">
-  <h2 class="node-wizard__title">Add {{nodeType.name}}</h2>
-
   <img src="{{nodeType.logo}}" class="node-wizard__logo">
+  <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+  <div class="node-wizard__description">
+    <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+  </div>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
     <md-button ng-href="http://gateblu.octoblu.com">

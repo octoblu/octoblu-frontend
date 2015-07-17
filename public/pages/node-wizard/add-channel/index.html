@@ -10,7 +10,10 @@
   </header>
 </md-content>
 <main class="node-wizard">
-  <h2 class="node-wizard__title">Add {{nodeType.name}}</h2>
   <img src="{{nodeType.logo}}" alt="{{nodeType.name}}" class="node-wizard__logo">
+  <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+  <div class="node-wizard__description">
+    <p class="node-wizard__description--text" ng-show="nodeType.helpText">{{nodeType.helpText}}</p>
+  </div>
   <div ui-view class="node-wizard__body"></div>
 </main>
