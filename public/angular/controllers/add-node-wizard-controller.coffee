@@ -7,7 +7,6 @@ class AddNodeWizardController
       @scope.nodeType = nodeType
 
   connectThings: (nodeType) =>
-    console.log "CONNECTING THINGS"
     @scope.nextState = 'material.nodewizard.adddevice'
     if nodeType.category == 'channel' then @scope.nextState = 'material.nodewizard.addchannel.default-options'
     if nodeType.connector then @scope.nextState = 'material.nodewizard.addsubdevice.selectgateblu'
