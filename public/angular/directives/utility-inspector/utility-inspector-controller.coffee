@@ -6,7 +6,8 @@ class UtilityInspectorController
     @scope.collectionViewStyle = 'list'
     @scope.viewSource = false
     @scope.loading = true
-    @scope.paneCollapsed = false;
+    @scope.paneCollapsed = false
+    @scope.unreadDebug = false
 
     @toggleActiveTab 'things'
     @FlowNodeTypeService = FlowNodeTypeService
@@ -35,6 +36,14 @@ class UtilityInspectorController
 
     @scope.$watch 'things', @updateThingsByCategory
 
+    @scope.$watch 'debug', (debug) =>
+      return if @scope.unreadDebug
+      return if @scope.tab.state == 'debug'
+      return unless debug.length
+
+      @scope.unreadDebug = true
+    , true
+
   updateThingsByCategory: (things) =>
     @scope.noThings = !things.length
     @scope.thingsByCategory = _.groupBy things, (thing) =>
@@ -60,6 +69,7 @@ class UtilityInspectorController
     if tabState in ['things', 'tools', 'debug']
       @scope.paneCollapsed = false
       @scope.tab.state = tabState
+      @scope.unreadDebug = false if tabState == 'debug'
     else
       @scope.tab.state = undefined
 

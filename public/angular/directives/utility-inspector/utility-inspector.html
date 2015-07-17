@@ -1,5 +1,4 @@
 <div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': paneCollapsed}">
-
   <header class="Sidebar-pane-header">
     <div class="tabs">
       <a
@@ -20,12 +19,12 @@
         ng-click="controller.toggleActiveTab('debug')"
         class="Sidebar-toolbar-button tab-link"
         ng-class="{'is-selected' : tab.state === 'debug'}" title="Debug">
-        Debug
+        Debug <span class="Unread" ng-show="unreadDebug"></span>
       </a>
     </div>
 
 
-    <button class="Sidebar-pane-collapse-button" ng-click="paneCollapsed = !paneCollapsed">
+    <button class="Sidebar-pane-collapse-button" title="Toggle Pane" ng-click="paneCollapsed = !paneCollapsed">
       <i class="fa" ng-class="{'fa-plus': paneCollapsed, 'fa-minus': !paneCollapsed}"></i>
     </button>
   </header>
