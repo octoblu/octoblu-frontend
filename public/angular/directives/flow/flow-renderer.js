@@ -79,8 +79,6 @@ angular.module('octobluApp')
     var dispatch = Dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
 
     function updateViewBox(x,y,w,h) {
-      if (w<1 || h<1) return;
-      if (w>1000000 || h>1000000) return;
       viewBoxX = x;
       viewBoxY = y;
       viewBoxW = w;
@@ -90,11 +88,35 @@ angular.module('octobluApp')
 
     function updateZoomScale(scale) {
       if (!scale) return;
-      zoomScale = scale;
+
+      var maxMinSize = FlowNodeDimensions.minHeight * 1.2;
+      var newW = vbOrigW / scale;
+      var newH = vbOrigH / scale;
+      var maxD = (newW>newH ? newW : newH);
+      var maxOrig = (vbOrigW>vbOrigH ? vbOrigW : vbOrigH);
+
+      if (maxD<maxMinSize) {
+        scale = maxOrig / maxMinSize;
+      }
+
+      var minMaxSize = 5000;
+      var vb = snap.select('.flow-render-area').getBBox();
+      var vbW = vb.width*3;
+      var vbH = vb.height*3;
+      var maxVbD = (vbW>vbH ? vbW : vbH);
+      var minMaxD = (maxVbD<minMaxSize ? minMaxSize : maxVbD);
+
+      if (maxD>minMaxD && scale<zoomScale) {
+        return;
+      }
+
       var w = vbOrigW / scale;
       var h = vbOrigH / scale;
       var x = viewBoxX - (w-viewBoxW)/2;
       var y = viewBoxY - (h-viewBoxH)/2;
+
+      zoomScale = scale;
+
       updateViewBox(x,y,w,h);
     }
 
@@ -426,19 +448,21 @@ angular.module('octobluApp')
       var enabled;
       var origViewBoxW;
       var origViewBoxH;
+      var origZoomScale;
 
       function zoomStart() {
         origViewBoxW = viewBoxW;
         origViewBoxH = viewBoxH;
+        origZoomScale = zoomScale;
       }
 
       function zoom(scaleChange) {
-        updateZoomScale(zoomScale * scaleChange);
+        updateZoomScale(scaleChange);
       }
 
       function pinchmove(event) {
         if (shouldAbort(event,enabled)) return;
-        zoom(1/event.scale);
+        zoom(origZoomScale * event.scale);
       }
 
       function pinchstart(event) {
@@ -449,7 +473,10 @@ angular.module('octobluApp')
       snapParent.addEventListener('wheel', function(event) {
         if (shouldAbort(event,enabled)) return;
         zoomStart();
-        zoom( 1+(event.deltaY/event.screenY) );
+        var deltaZoom = (1+(event.deltaY/event.screenY));
+        if (deltaZoom>0) {
+          zoom( zoomScale * deltaZoom );
+        }
       });
 
       hammerSnap.get('pinch').set({enable:true});
