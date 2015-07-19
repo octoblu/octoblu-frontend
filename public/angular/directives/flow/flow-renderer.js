@@ -89,7 +89,7 @@ angular.module('octobluApp')
     function updateZoomScale(scale) {
       if (!scale) return;
 
-      var maxMinSize = FlowNodeDimensions.minHeight * 1.2;
+      var maxMinSize = 150;
       var newW = vbOrigW / scale;
       var newH = vbOrigH / scale;
       var maxD = (newW>newH ? newW : newH);
@@ -456,17 +456,13 @@ angular.module('octobluApp')
         origZoomScale = zoomScale;
       }
 
-      function zoom(scaleChange) {
-        updateZoomScale(scaleChange);
-      }
-
       function pinchmove(event) {
         if (shouldAbort(event,enabled)) return;
-        zoom(origZoomScale * event.scale);
+        updateZoomScale(origZoomScale * event.scale);
       }
 
       function pinchstart(event) {
-        if (!enabled) return;
+        if (shouldAbort(event,enabled)) return;
         zoomStart();
       }
 
@@ -475,7 +471,7 @@ angular.module('octobluApp')
         zoomStart();
         var deltaZoom = (1+(event.deltaY/event.screenY));
         if (deltaZoom>0) {
-          zoom( zoomScale * deltaZoom );
+          updateZoomScale( zoomScale * deltaZoom );
         }
       });
 
