@@ -1,4 +1,10 @@
-<div draggable="true" class="flow-editor" drop="addNode($data, $event)" ondragstart="return false">
+<div
+  draggable="true"
+  class="flow-editor"
+  drop="addNode($data, $event)"
+  drop-accept="'json/flow-node-type'"
+  onmousedown="return false"
+>
 
   <svg
     class="flow-editor-workspace"
