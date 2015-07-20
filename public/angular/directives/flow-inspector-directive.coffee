@@ -7,4 +7,7 @@ angular.module('octobluApp')
     transclude: true,
     scope:
       flow: '='
+      needsSetup: '='
+      isThing: '='
+      isFlow: '='
   }

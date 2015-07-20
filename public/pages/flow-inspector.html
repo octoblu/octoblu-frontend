@@ -1,42 +1,59 @@
-<div class="Sidebar-pane" ng-class="{'Sidebar-pane--is-collapsed': hideSection}">
+<div
+  class="Sidebar-pane"
+  ng-class="{'Sidebar-pane--is-collapsed': hideSection}"
+  needs-setup="flow.selectedFlowNode &&
+        (flow.selectedFlowNode.needsSetup || flow.selectedFlowNode.resourceType == 'node-type')"
+  is-thing="flow.selectedFlowNode"
+  is-flow="!flow.selectedFlowNode"
+>
   <header class="Sidebar-pane-header">
     <h2
-      ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
+      ng-if="isThing && !needsSetup"
       class="Sidebar-pane-header-title">
       Thing Inspector
     </h2>
 
     <h2
-      ng-if="!flow.selectedFlowNode"
+      ng-if="isFlow"
       class="Sidebar-pane-header-title">
       Flow Inspector
     </h2>
 
     <h2
-      ng-if="flow.selectedFlowNode.resourceType === 'node-type'"
+      ng-if="needsSetup"
       class="Sidebar-pane-header-title">
       Setup Thing
     </h2>
 
-    <button ng-click="hideSection = !hideSection" title="Toggle Pane" class="Sidebar-pane-collapse-button">
-      <i class="fa" ng-class="{'fa-plus': hideSection, 'fa-minus': !hideSection}"></i>
+    <button
+      ng-click="hideSection = !hideSection"
+      title="Toggle Pane"
+      class="Sidebar-pane-collapse-button">
+      <i
+        class="fa"
+        ng-class="{'fa-plus': hideSection, 'fa-minus': !hideSection}">
+      </i>
     </button>
   </header>
 
   <main class="Sidebar-pane-body">
     <flow-node-editor
-      ng-if="flow.selectedFlowNode && flow.selectedFlowNode.resourceType != 'node-type'"
+      ng-if="isThing && !needsSetup"
       flow-id="flow.flowId"
       flow-node="flow.selectedFlowNode">
     </flow-node-editor>
 
     <!-- Flow Inspector -->
     <flow-detail-editor
-      ng-if="!flow.selectedFlowNode"
+      ng-if="isFlow"
       flow="flow">
     </flow-detail-editor>
 
     <!-- Setup -->
-    <flow-node-setup ng-if="flow.selectedFlowNode.resourceType === 'node-type'" node-type="flow.selectedFlowNode"></flow-node-setup>
+    <flow-node-setup
+      ng-if="needsSetup"
+      logo="flow.selectedFlowNode.logo"
+      node-type="flow.selectedFlowNode.nodeType || flow.selectedFlowNode">
+    </flow-node-setup>
   </main>
 </div>
