@@ -1,0 +1,23 @@
+[Unit]
+Description=Healthcheck vulcand for octoblu-app-octoblu-green
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+RemainAfterExit=yes
+ExecStartPre=-/usr/bin/docker pull quay.io/octoblu/deployinate-healthcheck
+ExecStart=/bin/sh -c "/usr/bin/echo 'Checking backends before switching vulcand' && \
+  /usr/bin/docker run --rm \
+    -e ETCDCTL_PEERS=http://$(ifconfig docker0 | grep 'inet ' | awk '{print $2}'):2379 \
+    quay.io/octoblu/deployinate-healthcheck octoblu app-octoblu green && \
+  /usr/bin/docker run --rm octoblu/vctl frontend upsert \
+    --id octoblu-app-octoblu \
+    --backend octoblu-app-octoblu-green \
+    --route \"Host(\\\"$(/usr/bin/etcdctl get /octoblu/app-octoblu/host)\\\")\" \
+    --vulcan http://$(/usr/bin/etcdctl get /vulcand/host):8182 && \
+  /usr/bin/etcdctl set /octoblu/app-octoblu/active green \
+"
+
+[X-Fleet]
+MachineMetadata=Services=true
