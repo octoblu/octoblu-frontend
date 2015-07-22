@@ -4,20 +4,21 @@
       <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
         <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
       </a>
-      Shared Bluprints
+      Discover Bluprints
     </div>
   </h2>
 </md-toolbar>
 
 <md-content class="browse">
-  <div class="directory">
+  <div class="interior directory">
+    <!--
     <form class="directory__search-form">
       <input type="text" placeholder="Search..." ng-model="bluprintSearch" class="directory__search-input" autofocus>
       <button type="submit" class="directory__search-button">
         <i class="fa fa-search"></i> Search
       </button>
     </form>
-
+    -->
     <div class="directory__header">
       <h2 class="directory__header-text">{{sortMethods[sortMethod]}}</h2>
       <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
@@ -26,52 +27,47 @@
         <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
       </md-select>
     </div>
+
     <div class="bluprint-loading-indicator" ng-show="isLoading">
       <h1 class="text-center">
         <i class="fa fa-spin fa-refresh"></i>
       </h1>
     </div>
+
     <div class="bluprints-no-bluprints" ng-show="controller.bluprints.length===0">
       <h1>There are no shared bluprints.</h1>
       <img ng-src="{{controller.randomRobot()}}" style="max-height:30%;max-width:30%;">
     </div>
-    <ul class="bluprints">
-      <li ng-repeat="bluprint in controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch}" class="flow-container">
-        <div class="flow">
-          <div class="header">
-            <h3 class="name">
-              {{bluprint.name}}
-            </h3>
-            <div class="actions">
-              <md-button class="action" clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)" clip-copy="bluprint.url" clip-click="controller.toastBluprintUrl(bluprint.url)" aria-label="Copy Link">
-                Copy
-              </md-button>
-              <md-button class="action" ng-click="controller.importBluprint(bluprint.uuid)" aria-label="Import">
-                Import
-              </md-button>
-            </div>
+
+    <ul class="Bluprints">
+      <li
+        ng-repeat="bluprint in controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch}"
+        class="Bluprint">
+
+        <a href="" class="Bluprint-name">
+          {{bluprint.name}}
+        </a>
+
+        <p class="Bluprint-description" ng-show="bluprint.description">
+          {{bluprint.description}}
+        </p>
+
+        <footer class="Bluprint-footer">
+          <div class="info-group">
+            <button
+              ng-click="controller.toggleLike(bluprint)"
+              ng-class="{liked: controller.liked(bluprint)}"
+              class="info Bluprint-like-action">
+              <i class="fa fa-lgx fa-heart"></i> {{bluprint.likedBy.length}}
+            </button>
           </div>
 
-          <div class="content">
-            <p class="description">
-              {{bluprint.description || "No description available."}}
-            </p>
-
+          <div class="info-group">
+            <span class="info Bluprint-author">
+              Author: {{bluprint.ownerName}}
+            </span>
           </div>
-          <div class="footer">
-            <div class="info-group">
-              <div class="info" ng-click="controller.toggleLike(bluprint)" ng-class="{liked: controller.liked(bluprint)}">
-                <i class="fa fa-lg fa-heart"></i> {{bluprint.likedBy.length}}
-              </div>
-            </div>
-
-            <div class="info-group">
-              <div class="info author">
-                <i class="fa fa-lg fa-user"></i> {{bluprint.ownerName}}
-              </div>
-            </div>
-          </div>
-        </div>
+        </footer>
       </li>
     </ul>
   </div>
