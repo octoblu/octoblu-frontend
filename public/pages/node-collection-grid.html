@@ -1,13 +1,4 @@
 <div class="node-collection">
-
-  <header class="blu-bordered-header" ng-show="category">
-    <h4 class="blu-bordered-header-label">
-      {{category}}
-    </h4>
-    <hr class="blu-bordered-header-divider">
-  </header>
-
-
   <div class="node-collection__items node-collection__items--grid">
     <a
       ng-repeat="flowNodeType in filteredNodes = (nodes | filter: nameFilter)"

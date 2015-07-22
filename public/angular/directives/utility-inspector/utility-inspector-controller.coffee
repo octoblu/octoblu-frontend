@@ -7,6 +7,7 @@ class UtilityInspectorController
     @scope.viewSource = false
     @scope.loading = true
     @scope.paneCollapsed = false
+    @scope.showCategory = true
     @scope.unreadDebug = false
 
     @toggleActiveTab 'things'
