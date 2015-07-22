@@ -1,6 +1,7 @@
 class DeviceCollectionController
   constructor: ($scope, $state, OCTOBLU_ICON_URL) ->
     @scope = $scope
+    @scope.showCategory = true
     @state = $state
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
