@@ -1,0 +1,34 @@
+[Unit]
+Description=octoblu-app-octoblu-blue
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=/bin/sh -c '/usr/bin/docker login \
+  --username $(/usr/bin/etcdctl get /docker/quay.io/username) \
+  --password $(/usr/bin/etcdctl get /docker/quay.io/password) \
+  --email $(/usr/bin/etcdctl get /docker/quay.io/email) \
+  quay.io'
+ExecStartPre=/usr/bin/etcdctl get /meshblu/host || /usr/bin/echo "etcd did not contain /meshblu/host" && exit 1
+ExecStartPre=/usr/bin/etcdctl get /meshblu/port || /usr/bin/echo "etcd did not contain /meshblu/port" && exit 1
+ExecStartPre=/usr/bin/etcdctl get /octoblu/app-octoblu/blue/port || /usr/bin/echo "etcd did not contain /octoblu/app-octoblu/blue/port" && exit 1
+ExecStartPre=/usr/bin/etcdctl get /octoblu/app-octoblu/blue/docker_url || /usr/bin/echo "etcd did not contain /octoblu/app-octoblu/blue/docker_url" && exit 1
+ExecStartPre=-/usr/bin/docker rm octoblu-app-octoblu-blue-%i
+ExecStart=/bin/sh -c "/usr/bin/docker run --rm \
+  --name octoblu-app-octoblu-blue-%i \
+  -e DEBUG=app-octoblu* \
+  -e MESHBLU_HOST=$(/usr/bin/etcdctl get /meshblu/host) \
+  -e MESHBLU_PORT=$(/usr/bin/etcdctl get /meshblu/port) \
+  -e MESHBLU_PROTOCOL=$(/usr/bin/etcdctl get /meshblu/protocol) \
+  -p $(/usr/bin/etcdctl get /octoblu/app-octoblu/blue/port):80 \
+  $(/usr/bin/etcdctl get /octoblu/app-octoblu/blue/docker_url) \
+"
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Fleet]
+Conflicts=octoblu-app-octoblu-blue@*.service
+MachineMetadata=Services=true

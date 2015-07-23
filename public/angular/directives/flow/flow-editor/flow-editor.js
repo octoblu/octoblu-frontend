@@ -75,17 +75,11 @@ angular.module('octobluApp')
           if (!$scope.flow) return;
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
-
-          if(flowNode && flowNode.needsSetup){
-            NodeTypeService.getNodeTypeByType(flowNode.type).then(function(flowNodeType){
-              $scope.$emit('flow-node-type-selected', flowNodeType);
-            });
-          }
-
           $scope.$apply();
         });
 
         flowRenderer.on('linkSelected', function (flowLink) {
+          if (!$scope.flow) return;
           $scope.flow.selectedFlowNode = null;
           $scope.flow.selectedLink = flowLink;
           $scope.$apply();

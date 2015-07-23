@@ -71,14 +71,3 @@ deploy:
   region: us-west-2
   skip_cleanup: true
   local-dir: dpl_static
-- provider: codedeploy
-  access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: *1
-  bucket: octoblu-deploy
-  key: docker-builder/app-octoblu-frontend-$TRAVIS_COMMIT.zip
-  bundle_type: zip
-  region: us-west-2
-  application: docker-builder
-  deployment_group: app-octoblu-frontend
-  on:
-    branch: master
