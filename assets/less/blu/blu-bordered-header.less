@@ -5,13 +5,21 @@
   background-image: -webkit-linear-gradient(top, @background-color 49%, #eeeeee 51%, @background-color 52%);
   background-image: -moz-linear-gradient(top, @background-color 49%, #eeeeee 51%, @background-color 52%);
   background-image: linear-gradient(top, @background-color 49%, #eeeeee 51%, @background-color 52%);
-  & > * {
-    padding: 0 7px;
+
+  & > .header-label {
     background: @background-color;
     font-size: 13px;
     text-transform: uppercase;
     z-index: 1;
+    padding: 0 7px;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
   }
+
   h4 {
     font-weight: bold;
   }

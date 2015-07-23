@@ -1,9 +1,9 @@
 <div class="interior device-collection">
   <header class="device-collection__header" ng-show="category">
-    <h4>
+    <h4 class="header-label">
       {{category | uppercase}}
     </h4>
-    <button ng-click="showCategory = !showCategory" class="device-collection__button" aria-label="Show/Hide Nodes in Category">
+    <button ng-click="showCategory = !showCategory" class="device-collection__button header-label" aria-label="Show/Hide Nodes in Category">
       <span ng-show="showCategory">Hide</span>
       <span ng-show="!showCategory">Show</span>
     </button>
