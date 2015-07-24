@@ -26,15 +26,6 @@ before_script:
 deploy:
 - provider: s3
   access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: &1
-    secure: "ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE="
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  bucket: octoblu-deploy
-  on:
-    branch: master
-- provider: s3
-  access_key_id: AWS_ACCESS_KEY_ID
   secret_access_key: *1
   bucket: app.octoblu.com
   region: us-west-2
