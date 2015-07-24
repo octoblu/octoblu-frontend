@@ -1,3 +1,5 @@
+@trigger-button-color: #14568f;
+
 @-webkit-keyframes pulseTrigger {
   0% {
     stroke-width: 0;
@@ -100,14 +102,19 @@
 }
 
 .flow-node-button {
-  fill: #aaa;
+  fill: @trigger-button-color;
   shape-rendering : crispEdges;
   stroke: #d0d0d0;
   stroke-width: 2;
   cursor: pointer;
 
   &:hover {
-    fill: #ccc;
+    fill: darken(@trigger-button-color, 5%);
+    stroke: #aaa;
+  }
+
+  &:active {
+    fill: darken(@trigger-button-color, 10%);
     stroke: #aaa;
   }
 }
