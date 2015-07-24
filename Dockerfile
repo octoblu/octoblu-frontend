@@ -7,4 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY public /usr/share/nginx/html
+RUN curl --silent https://s3-us-west-2.amazonaws.com/deploy-octoblu-static/public.tar.gz \
+    | tar -xzmC /usr/share/nginx/html && \
+    mv /usr/share/nginx/html/public/* /usr/share/nginx/html && \
+    rm -rf /usr/share/nginx/html/public
