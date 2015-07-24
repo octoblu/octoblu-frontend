@@ -12,7 +12,6 @@ angular.module('octobluApp')
       skynetConnection.whoami({}, function(user) {
         $scope.device = user;
         $scope.tokens = user.meshblu.tokens;
-        window.user = user;
         $scope.$digest();
       });
     });
