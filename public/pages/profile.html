@@ -44,15 +44,15 @@
           </md-toolbar>
           <div class="card-content">
             <md-content flex layout="column" layout-wrap="wrap" class="sessions-list">
-              <div ng-if="!tokens.length" class="text-center">
+              <div ng-if="!hasTokens()" class="text-center">
                 <h1 class="text-center">You have no authorized sessions.</h1>
               </div>
               <md-list flex>
-                <md-item ng-repeat="token in tokens">
+                <md-item ng-repeat="(tokenHash, tokenData) in tokens">
                   <md-item-content layout="row" layout-align="space-around">
                     <div flex layout layout-align="space-between">
-                      <h3>{{token.createdAt | date : 'medium'}}</h3>
-                      <md-button class="md-warn" ng-click="confirmDeleteToken(token)" aria-label="Delete Session">
+                      <h3>{{tokenData.createdAt | date : 'medium'}}</h3>
+                      <md-button class="md-warn" ng-click="confirmDeleteToken(tokenHash)" aria-label="Delete Session">
                         <i class="fa fa-lg fa-trash-o"></i>
                       </md-button>
                     </div>
