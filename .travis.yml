@@ -7,22 +7,7 @@ cache:
   - public/lib
 node_js:
 - '0.10'
-env:
-  global:
-  - AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
-  - DOCKER_USERNAME=octoblu
-  - DEPLOY_APPLICATION_NAME=app-octoblu-frontend
-  - DEPLOY_REGION=us-west-2
-  - DEPLOY_BUCKET=octoblu-deploy
-  - DEPLOYMENT_GROUP=master
-  - DEPLOY_KEY=app-octoblu-frontend/app-octoblu-frontend-$TRAVIS_COMMIT.zip
-  - TGZ_URL=https://s3-us-west-2.amazonaws.com/deploy-octoblu-static/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz
-  - secure: YymURBsnETYUEJ/yTBXfA3hmInTsY/hm2W0rXtCDAOpQPlcNT08aksiGaJzzSXWnEUznOEd8FQhc6fLSTx3glZFOsyXt29FQHCG/8gdZG+IUx+7JqaWvv1cSe4vw1SqYSKbmzsL0udaLV5KMqQ92p11MDOBuBtNn3wIUTwN1AB4=
-  - secure: KihNBJIMr1WlgKXXysrdRYWiko1GiCxZJGODwfbfh6p8QXgxM1lA5m+7Z96/O+riHJo3O93Gwbljmx8sIW8SzYHBVpTKUTdUfdzn198sq9vxnZC5tc6+r0GA7X8UuGgrt/++OR3B3jlrqY7z0VCwyLR6F87ktZGFwNJ9e1R/3zE=
-  - secure: XXCd+vdAZDJYctL42j5aDlxdtSLSBWFlbFqF0Mh7JQAN3Ef3Sel7X0qRneHJnEjFofPKXHMERty8I5mB3TwUOaPbnA/gGrFfuJO9Wo8WYcaGpNeOFU3KXgKGhx72k6YWPBNBCna7bsezt6g0XO9/vVfv9jKD4yqzNhxkwZbkG5M=
-  - secure: bhquGCd/hTB7XZKgaG6EzCBxXKvKDhI6xrNLf4brTgY5IyDuuSgt+bCt9vK4lDrxCgLewB9RuYBWmutnkyy2AEo6s6f5iT8HMthogfZBQmiZygzFM5PR/ubmUvQYqtSCVSz8t/p2DmAOdiGWwg/u9ZiLNZV3H+3v2OCdYLRBbvQ=
 after_success:
-- .kubernetes/travis_after_success
 - find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
 - mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -cf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar Dockerfile default.conf public
 - tar --append -f build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar public/lib/zeroclipboard/dist/ZeroClipboard.swf
