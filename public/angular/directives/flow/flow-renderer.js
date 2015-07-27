@@ -471,7 +471,7 @@ angular.module('octobluApp')
         zoomStart();
         var deltaZoom = (1+(event.deltaY/event.screenY));
         if (deltaZoom>0) {
-          updateZoomScale( zoomScale * deltaZoom );
+          updateZoomScale( zoomScale / deltaZoom );
         }
       });
 
