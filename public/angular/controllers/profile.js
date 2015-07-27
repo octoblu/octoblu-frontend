@@ -7,31 +7,34 @@ angular.module('octobluApp')
     $scope.currentUser = user;
   });
 
-  $scope.tokens = [];
-
   var refreshDevice = function(){
     skynetService.getSkynetConnection().then(function (skynetConnection) {
-      skynetConnection.whoami({}, function(data) {
-        $scope.device = data;
-        $scope.tokens = data.tokens || [];
+      skynetConnection.whoami({}, function(user) {
+        $scope.device = user;
+        $scope.tokens = user.meshblu.tokens;
         $scope.$digest();
       });
     });
   };
+
   refreshDevice();
+
+  $scope.hasTokens = function(){
+    return !(_.isEmpty($scope.tokens));
+  };
 
   $scope.confirmDeleteToken = function(token){
     NotifyService.confirm({
       title: 'Delete Session',
       content: 'Deleting this session will cause mobile apps and other apps using that authorization to stop working. Are you sure you want to do this?'
     }).then(function(){
-      $scope.deleteToken(token);
+      deleteToken(token);
     });
   };
 
-  $scope.deleteToken = function(token) {
-    $scope.device.tokens = _.without($scope.tokens, token);
-    $scope.tokens = $scope.device.tokens;
+  var deleteToken = function(token) {
+    $scope.device.meshblu.tokens = _.omit($scope.tokens, token);
+    $scope.tokens = $scope.device.meshblu.tokens;
     deviceService.updateDevice($scope.device);
   };
 

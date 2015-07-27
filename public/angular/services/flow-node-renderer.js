@@ -103,9 +103,12 @@ angular.module('octobluApp')
         nodeElement.append(
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
-        nodeElement.append(
-          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
-            .attr({'preserveAspectRatio':'xMaxYMax'}));
+        var logo = logoUrl(node);
+        if (logo) {
+          nodeElement.append(
+            snap.image(logo,0,0,FlowNodeDimensions.width,nodeHeight)
+              .attr({'preserveAspectRatio':'xMaxYMax'}));
+        }
 
         renderIsOnline(node, nodeElement);
 
