@@ -25,9 +25,9 @@
   <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:20%;">
 </div>
 
-<md-content class="bluprints-container" ng-hide="isLoading">
-  <ul class="flows">
-    <li class="flow" ng-class="{'selected-bluprint': selectedBluprint == bluprint }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
+<md-content class="Bluprints" ng-hide="isLoading">
+  <ul class="Bluprint-list">
+    <li class="Bluprint-listItem" ng-class="{'selected-bluprint': selectedBluprint == bluprint }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
       <div ng-show="!bluprint.expanded" ng-include="'/pages/bluprint-list-item.html'">
       </div>
 

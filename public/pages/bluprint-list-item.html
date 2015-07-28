@@ -1,6 +1,6 @@
 <div class="bluprint-list-item">
-  <div class="header">
-    <h3 class="name clickable" ng-click="toggleBluprint(bluprint)">
+  <header class="Bluprint-header">
+    <h3 class="Bluprint-name clickable" ng-click="toggleBluprint(bluprint)">
       {{bluprint.name}}
     </h3>
     <div class="info-group">
@@ -8,19 +8,17 @@
         <i ng-show="bluprint.public" class="fa fa-lg fa-globe"></i>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="content">
-    <p class="description">
-      {{bluprint.description || "No description available."}}
-    </p>
-  </div>
+  <p class="Bluprint-description">
+    {{bluprint.description || "No description available."}}
+  </p>
 
-  <div class="footer">
+  <footer class="Bluprint-footer">
     <div class="info-group">
       <div class="info author">
         AUTHOR: {{bluprint.ownerName}}
       </div>
     </div>
-  </div>
+  </footer>
 </div>
