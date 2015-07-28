@@ -124,7 +124,7 @@ angular.module('octobluApp')
 
         if (node.type === 'operation:trigger') {
           nodeElement.append(
-            snap.rect(-35,(FlowNodeDimensions.minHeight/2)-15,30,30,2,2)
+            snap.polygon([-20,45, 0,35, -20,25])
               .attr({'id':'node-button-' + node.id})
               .toggleClass('flow-node-button', true));
         }
