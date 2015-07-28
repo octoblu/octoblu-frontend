@@ -232,11 +232,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
-      .state('material.nodewizard.addchannel.clouddotcom', {
-        url: '/clouddotcom',
-        controller: 'addChannelCloudDotComController',
-        templateUrl: '/pages/node-wizard/add-channel/clouddotcom.html'
-      })
       .state('material.nodewizard.addchannel.echosign', {
         url: '/echosign',
         controller: 'addChannelEchoSignController',
