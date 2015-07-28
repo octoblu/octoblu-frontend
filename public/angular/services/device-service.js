@@ -7,6 +7,7 @@ angular.module('octobluApp')
         _onDeviceMessageCallbacks = [];
         myDevices = [];
         skynetPromise = skynetService.getSkynetConnection();
+
         getMyDevices = function(){
           return skynetPromise.then(function(skynetConnection){
             var defer = $q.defer();
@@ -25,6 +26,7 @@ angular.module('octobluApp')
             return defer.promise;
           });
         };
+
         myDevicesPromise = getMyDevices();
 
         function addDevice(device) {
@@ -118,12 +120,26 @@ angular.module('octobluApp')
         };
 
         var service = {
-            onDeviceChange: function(onDeviceChangeCallback){
+            onDeviceChange: function(onDeviceChangeCallback, $scope){
+              if(!onDeviceChangeCallback || !$scope) {
+                throw new Error('You must provide a callback and a scope');
+              }
+
               _onDeviceChangeCallbacks.push(onDeviceChangeCallback);
+              $scope.$on('$destroy', function(){
+                _onDeviceChangeCallbacks = _.without(_onDeviceChangeCallbacks, onDeviceChangeCallback)
+              });
             },
 
-            onDeviceMessage: function(onDeviceMessageCallback){
+            onDeviceMessage: function(onDeviceMessageCallback, $scope) {
+              if(!onDeviceMessageCallback || !$scope) {
+                throw new Error('You must provide a callback and a scope');
+              }
               _onDeviceMessageCallbacks.push(onDeviceMessageCallback);
+
+              $scope.$on('$destroy', function(){
+                _onDeviceMessageCallbacks = _.without(_onDeviceMessageCallbacks, onDeviceMessageCallback)
+              });
             },
 
             addOrUpdateDevice: function(device){
@@ -141,6 +157,7 @@ angular.module('octobluApp')
                 }
                 myDevices.push(device);
             },
+
             getDevices: function (force) {
               if (myDevices && myDevices.length && !force) {
                 return $q.when(myDevices);
@@ -160,6 +177,7 @@ angular.module('octobluApp')
                        });
                 });
             },
+
             getDeviceByUUID: function(uuid, force){
                 return service.getDevices(force).then(function(devices){
                     return _.findWhere(devices, {uuid: uuid});

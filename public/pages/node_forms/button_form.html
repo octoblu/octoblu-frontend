@@ -7,7 +7,6 @@
   <label>Topic</label>
   <input ng-model="flowNode.topic">
 </md-input-container>
-<br/>
 
 <md-radio-group ng-model="flowNode.payloadType">
   <label>Payload Type</label>
@@ -20,13 +19,12 @@
   <label>Payload</label>
   <textarea ng-model="flowNode.payload"></textarea>
 </md-input-container>
-
-<p>
-There are two ways to trigger your webhook:
-<br>
-<h4>Email</h4>
-<a href="mailto:{{flowId}}-{{flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowId}}-{{flowNode.id}}@webhook.octoblu.com</a>
-<br>
-<h4>HTTP POST</h4>
-<a ng-href="https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}</a>
-</p>
+<div class="Sidebar--trigger-webhook">
+  <p class="Sidebar--trigger-webhook-title">
+  There are two ways to trigger your webhook
+  </p>
+  <h5 class="Sidebar--trigger-webhook-type">EMAIL</h5>
+  <a class="Sidebar--trigger-webhook-content" href="mailto:{{flowId}}-{{flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowId}}-{{flowNode.id}}@webhook.octoblu.com</a>
+  <h5 class="Sidebar--trigger-webhook-type">HTTP POST</h5>
+  <a class="Sidebar--trigger-webhook-content" ng-href="https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}</a>
+</div>

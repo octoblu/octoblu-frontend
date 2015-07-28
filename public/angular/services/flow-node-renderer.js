@@ -103,9 +103,12 @@ angular.module('octobluApp')
         nodeElement.append(
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
-        nodeElement.append(
-          snap.image(logoUrl(node),0,0,FlowNodeDimensions.width,nodeHeight)
-            .attr({'preserveAspectRatio':'xMaxYMax'}));
+        var logo = logoUrl(node);
+        if (logo) {
+          nodeElement.append(
+            snap.image(logo,0,0,FlowNodeDimensions.width,nodeHeight)
+              .attr({'preserveAspectRatio':'xMaxYMax'}));
+        }
 
         renderIsOnline(node, nodeElement);
 
@@ -121,7 +124,7 @@ angular.module('octobluApp')
 
         if (node.type === 'operation:trigger') {
           nodeElement.append(
-            snap.rect(-35,(FlowNodeDimensions.minHeight/2)-15,30,30,2,2)
+            snap.polygon([-20,45, 0,35, -20,25])
               .attr({'id':'node-button-' + node.id})
               .toggleClass('flow-node-button', true));
         }
