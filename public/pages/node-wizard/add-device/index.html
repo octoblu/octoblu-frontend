@@ -17,14 +17,13 @@
   <h2 class="node-wizard__title">{{nodeType.name}}</h2>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
-    <md-button ng-href="http://gateblu.octoblu.com">
+    <button class="BluButton node-wizard__outline--btn" ng-href="https://gateblu.octoblu.com/docs">
       <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
       Download Gateblu
-    </md-button>
-    <md-button class="md-primary md-raised" ng-click="downloaded = true">
-      <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
+    </button>
+    <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
       Already Downloaded
-    </md-button>
+    </button>
   </div>
 
   <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
