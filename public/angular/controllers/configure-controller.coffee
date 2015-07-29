@@ -1,34 +1,36 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, NodeService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, OCTOBLU_ICON_URL) ->
     @scope = $scope
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
-    @scope.loading = true
+    @FlowNodeTypeService = FlowNodeTypeService
+    @scope.loadingConnectedThings = true
     @scope.noThings = false
-    devices = []
+    connectedThings = []
 
-    NodeService.getNodes().then (newDevices) =>
-      @scope.loading = false
-      devices = newDevices
-      @updateDevicesByCategory devices
+    @FlowNodeTypeService.getFlowNodeTypes()
+      .then (flowNodeTypes) =>
+        connectedThings = _.filter flowNodeTypes, (node) =>
+          node.category != 'operation'
+        @scope.loadingConnectedThings = false
+        @updateThingsByCategory connectedThings
 
     @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>
       deviceNameFilter = deviceNameFilter || '';
-      filteredDevices = _.filter devices, (device) =>
+      filteredDevices = _.filter connectedThings, (device) =>
         name = (device.name || '').toLowerCase()
         deviceNameFilter = deviceNameFilter.toLowerCase();
         return _.contains name, deviceNameFilter
+      @updateThingsByCategory(filteredDevices)
 
-      @updateDevicesByCategory(filteredDevices)
-
-  updateDevicesByCategory: (devices) =>
-    if !devices.length
+  updateThingsByCategory: (things) =>
+    if !things.length
       @scope.noThings = true
-    if devices.length
+    if things.length
       @scope.noThings = false
-    @scope.devicesByCategory = _.groupBy devices, (device) =>
+    @scope.connectedThingsByCategory = _.groupBy things, (device) =>
       return "Flows" if device.type == 'device:flow'
-      return "Other" unless device.nodeType.categories?
-      device.nodeType.categories;
+      return "Other" unless device.defaults.nodeType.categories?
+      device.defaults.nodeType.categories;
 
 
 angular.module('octobluApp').controller 'ConfigureController', ConfigureController

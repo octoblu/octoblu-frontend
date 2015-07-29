@@ -1,10 +1,15 @@
-.blu-button {
+.BluButton {
+  border: none;
   border-radius: 2px;
   display: inline-block;
   padding: 6px 25px;
 
+  background: transparent;
+  color: #14568F;
   text-decoration: none;
   text-transform: uppercase;
+
+  transition: all 0.3s ease;
 
   &:hover,
   &:focus {
@@ -12,17 +17,31 @@
   }
 }
 
-.blu-bordered-button {
-  .blu-button;
 
-  border: 1px solid #14568F;
+.BluButton--primary(@bgColor: #14568F) {
+  border: 1px solid @bgColor;
+  background: @bgColor;
 
-  background-color: transparent;
-  color: #14568F;
+  color: #FEFEFE;
 
   &:hover,
   &:focus {
-    background: #14568F;
-    color: #FFF;
+    border-color: darken(@bgColor, 9%);
+    background-color: darken(@bgColor, 9%);
+  }
+}
+
+
+.BluButton--outline(@bgColor: #14568F) {
+  border: 1px solid @bgColor;
+  background: transparent;
+
+  color: @bgColor;
+
+  &:hover,
+  &:focus {
+    border-color: @bgColor;
+    background-color: @bgColor;
+    color: #FEFEFE;
   }
 }

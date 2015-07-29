@@ -1,0 +1,6 @@
+<select ng-show="form.key"
+        class="form-control {{form.fieldHtmlClass}}"
+        schema-validate="form"
+        ng-model="endpoint"
+        ng-disabled="form.readonly"
+        ng-options="endpoint for endpoint in form.schema.enum" />

@@ -37,18 +37,6 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 };
 
-this.saveCloudDotComApi = function (uuid, channelid, username, password, callback) {
-
-  $http.post(OCTOBLU_API_URL + '/api/channel/clouddotcom/channel/' + channelid, { username: username, password: password })
-  .success(function (data) {
-    callback(data);
-  })
-  .error(function (data) {
-    console.log('Error: ' + data);
-    callback({});
-  });
-};
-
 this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/google-places/channel/' + channelid, { apikey: apikey })
   .success(function (data) {

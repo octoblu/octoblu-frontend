@@ -21,7 +21,7 @@ class DeviceCollectionController
     if device.category == 'device' || device.category == 'microblu'
       params.uuid = device.uuid
     if device.category == 'channel'
-      params.id = device.channelid
+      params.id = device.defaults.nodeType.channelid
 
     @state.href(sref, params)
 

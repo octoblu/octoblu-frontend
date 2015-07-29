@@ -18,17 +18,15 @@
     Already know your thing's uuid and token? <a ui-sref="material.nodewizard.manualclaim">claim your device manually.</a>
   </p>
 
-  <div class="blu-loading" ng-show="loading">
-    <i class="blu-loading__icon fa fa-spinner fa-5x fa-spin"></i>
-  </div>
 
-  <random-robot title='No Things Found for "{{nodeNameSearch}}"' ng-show="noDevices && !loading"></random-robot>
-
-  <div ng-repeat="(category, devices) in devicesByCategory">
+  <random-robot title='No Things Found for "{{nodeNameSearch}}"' ng-show="noDevices && !loadingThings"></random-robot>
+    <device-collection ng-if="showAllThings" devices="devices">
+    </device-collection>
+  <div ng-if="!showAllThings" ng-repeat="(category, devices) in devicesByCategory">
     <device-collection devices="devices" category="category">
     </device-collection>
   </div>
 
-  <da-loading loading="loadingNodes"></da-loading>
+  <da-loading loading="loadingThings"></da-loading>
 
 </div>
