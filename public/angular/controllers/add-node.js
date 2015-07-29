@@ -4,13 +4,13 @@ angular.module('octobluApp')
   var devices = [];
   $scope.devicesByCategory = {};
 
-  $scope.loading = true;
+  $scope.loadingThings = true;
   $scope.noDevices = false;
 
   NodeTypeService.getNodeTypes().then(function(newDevices) {
     devices = newDevices;
 
-    $scope.loading = false;
+    $scope.loadingThings = false;
     updateDevicesByCategory(devices);
   });
 
@@ -38,6 +38,7 @@ angular.module('octobluApp')
     } else {
       $scope.noDevices = false;
     }
+    $scope.devices = devices;
     $scope.devicesByCategory = _.groupBy(devices, 'categories');
   };
 
