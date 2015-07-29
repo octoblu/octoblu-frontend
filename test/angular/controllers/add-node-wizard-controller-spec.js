@@ -32,6 +32,7 @@ describe('AddNodeWizardController', function () {
       beforeEach(function () {
         nodeTypeService.getById.resolve({category: 'device'});
         $rootScope.$apply();
+        sut.connectThings();
       });
 
       it('should redirect to the add device state', function(){
@@ -59,6 +60,7 @@ describe('AddNodeWizardController', function () {
       beforeEach(function () {
         nodeTypeService.getById.resolve({category: 'channel'});
         $rootScope.$apply();
+        sut.connectThings();
       });
 
       it('should redirect to the add channel state', function(){
