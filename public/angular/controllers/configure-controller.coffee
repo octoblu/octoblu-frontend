@@ -7,7 +7,6 @@ class ConfigureController
     @scope.noThings = false
     connectedThings = []
 
-
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
         connectedThings = _.filter flowNodeTypes, (node) =>

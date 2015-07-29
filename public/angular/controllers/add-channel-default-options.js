@@ -49,14 +49,15 @@ angular.module('octobluApp')
   	if($scope.existingChannel){
   		auth_strategy = 'existing';
 			$scope.isLoadingOptions = false;
-  	}else{
+  	}
+		else{
 	  	if(!$scope.channel) return;
   		auth_strategy = $scope.channel.auth_strategy;
 			$scope.isLoadingOptions = false;
   	}
 
 
-		$state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: 'replace'});
+		$state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: false});
   };
 
   function convertParamsToObject(params){
@@ -82,7 +83,8 @@ angular.module('octobluApp')
   				if(_.isEmpty(channel.defaultParams)){
             if(!_.isEmpty($scope.channelDefaultParams)){
               $scope.saveDefaultParams();
-            }else{
+            }
+						else{
               $scope.goToNextStep();
             }
   				}
