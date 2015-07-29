@@ -15,13 +15,8 @@ angular.module('octobluApp')
                 var devices = _.cloneDeep(result.devices);
                 devices = _.map(devices, addDevice);
                 devices = _.map(devices, addLogoUrl);
-                async.map(devices, addMessageSchemaFromUrl, function(error, devices) {
-                  if (error) {
-                    return defer.reject(error);
-                  }
-                  myDevices = devices;
-                  defer.resolve(myDevices);
-                });
+                myDevices = devices;
+                defer.resolve(myDevices);
             });
             return defer.promise;
           });
@@ -56,35 +51,6 @@ angular.module('octobluApp')
               data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
           }
           return data;
-        }
-
-        function loadMessageSchemaFromUrl(url, callback) {
-          $http.get(url).success(function(data, status, headers, config){
-            return callback(null, data);
-          })
-          .error(function(data, status, headers, config){
-            return callback(new Error());
-          });
-        }
-
-        function addMessageSchemaFromUrl(data, callback){
-          if(data.messageSchema){
-            return callback(null, data);
-          }
-          if(!data.messageSchemaUrl){
-            return callback(null, data);
-          }
-          if (myDevices && myDevices.length) {
-            var device = _.find(myDevices, { uuid: data.uuid });
-            if(device && device.messageSchema){
-              data.messageSchema = device.messageSchema;
-              return callback(null, data);
-            }
-          }
-          loadMessageSchemaFromUrl(data.messageSchemaUrl, function(error, messageSchema){
-            data.messageSchema = messageSchema;
-            return callback(null, data);
-          });
         }
 
         skynetPromise.then(function (skynetConnection) {

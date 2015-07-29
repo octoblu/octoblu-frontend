@@ -12,27 +12,6 @@ class ThingService
     logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
     _.extend logo: logo, data
 
-  addMessageSchemaFromUrl: (data, callback) =>
-    return callback null, _.clone data unless data.messageSchemaUrl?
-
-    @http.get(data.messageSchemaUrl)
-    .success (body, status, headers, config) ->
-      data.messageSchema = body
-      return callback null, data
-    .error (body, status, headers, config) ->
-      return callback new Error()
-
-  addMessageFormSchemaFromUrl: (data, callback) =>
-    data.messageFormSchema ?= ['*']
-    return callback null, _.clone data unless data.messageFormSchemaUrl?
-
-    @http.get(data.messageFormSchemaUrl)
-    .success (body, status, headers, config) ->
-      data.messageFormSchema = body
-      return callback null, data
-    .error (body, status, headers, config) ->
-      return callback new Error()
-
   addUuidToWhitelists: (uuid, device={}) =>
     thing = {}
     thing.owner = uuid
@@ -144,9 +123,7 @@ class ThingService
 
         things = _.map things, @addLogo
 
-        async.map things, @addMessageSchemaFromUrl, (error, things) =>
-          async.map things, @addMessageFormSchemaFromUrl, (error, things) =>
-            deferred.resolve things
+        deferred.resolve things
 
     deferred.promise
 
