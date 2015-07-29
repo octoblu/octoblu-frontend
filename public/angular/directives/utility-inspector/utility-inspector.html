@@ -43,10 +43,10 @@
       </h3>
       <div ng-repeat="category in categories">
         <header class="category-header">
-          <h4>
+          <h4 class="header-label">
             {{category}}
           </h4>
-          <button ng-click="showCategory = !showCategory" class="Sidebar-button" aria-label="Show/Hide Nodes in Category">
+          <button ng-click="showCategory = !showCategory" class="Sidebar-button header-label" aria-label="Show/Hide Nodes in Category">
             <span ng-show="showCategory">Hide</span>
             <span ng-show="!showCategory">Show</span>
           </button>

@@ -1,26 +1,38 @@
-<div class="bluprint-list-item">
-  <div class="header">
-    <h3 class="name clickable" ng-click="toggleBluprint(bluprint)">
-      {{bluprint.name}}
+<div class="">
+  <header class="Bluprint-header">
+    <h3 class="Bluprint-name">
+      <a class="Bluprint-name-link" ng-click="toggleBluprint(bluprint)">
+        {{bluprint.name}}
+      </a>
     </h3>
-    <div class="info-group">
-      <div class="info">
-        <i ng-show="bluprint.public" class="fa fa-lg fa-globe"></i>
-      </div>
-    </div>
-  </div>
 
-  <div class="content">
-    <p class="description">
-      {{bluprint.description || "No description available."}}
-    </p>
-  </div>
+    <div class="Bluprint-meta">
+      <span ng-show="bluprint.public" class="Bluprint-meta-item">
+        <i class="fa fa-globe"></i>
+        Public
+      </span>
 
-  <div class="footer">
-    <div class="info-group">
-      <div class="info author">
-        AUTHOR: {{bluprint.ownerName}}
-      </div>
+      <span ng-hide="bluprint.public" class="Bluprint-meta-item">
+        Private
+      </span>
+
+
+      <span class="Bluprint-meta-item">
+        <i class="fa fa-star"></i>
+        {{bluprint.likedBy.length}}
+      </span>
     </div>
-  </div>
+  </header>
+
+  <p class="Bluprint-description">
+    {{bluprint.description || 'No description'}}
+    <span class="Bluprint-edit">
+      -
+      <a class="Bluprint-editLink" ng-click="toggleBluprint(bluprint)">Edit</a>
+    </span>
+  </p>
+
+  <footer class="Bluprint-footer">
+
+  </footer>
 </div>

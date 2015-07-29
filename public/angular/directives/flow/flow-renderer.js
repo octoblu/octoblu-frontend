@@ -589,11 +589,9 @@ angular.module('octobluApp')
           return;
         }
 
-        var nodeImage = nodeElement.select("image:last-of-type");
-        if (nodeImage){
-          addClickBehavior(nodeImage.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
-          addNodeDragBehavior(nodeElement, nodeImage, node);
-        }
+        var nodeImage = nodeElement.select("image:last-of-type") || nodeElement;
+        addClickBehavior(nodeImage.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
+        addNodeDragBehavior(nodeElement, nodeImage, node);
 
         var nodeButton = snap.select('#node-button-'+node.id);
         if (nodeButton){

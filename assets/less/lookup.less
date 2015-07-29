@@ -27,3 +27,27 @@
             transition: background-color 200ms linear;
   }
 }
+
+
+.lookup--header {
+  margin: 0 24px;
+
+  .lookup__icon {
+    color: #FFF;
+  }
+
+  .lookup__input {
+    border: none;
+    width: 300px;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFF;
+
+    &::placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder,
+    &::-webkit-input-placeholder {
+      color: #FFF;
+    }
+  }
+}

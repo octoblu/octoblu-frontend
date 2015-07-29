@@ -1,8 +1,80 @@
 .Bluprints {
-  background: #FFF;
+  .flex(1);
 
   margin: 0;
-  padding: 0;
+  padding: 48px;
+  list-style: none;
+
+  background: #F3F6F7;
+}
+
+
+.Bluprint-list {
+  .md-whiteframe-z1;
 
   list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width:100%;
+  max-width: 800px;
+
+  background: #FFF;
+}
+
+.Bluprint-listItem {
+  padding: 24px;
+  border-bottom: 1px solid #f3f6f7;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.Bluprint-header {
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-between);
+  .align-items(center);
+
+  margin: 0 0 12px;
+
+  // background: pink;
+}
+
+.Bluprint-name {
+  margin: 0;
+
+  color: #14568F;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Bluprint-name-link {
+  cursor: pointer;
+
+  &:hover {
+    color: #14568F;
+  }
+}
+
+.Bluprint-meta {
+  // background: oldlace;
+  color: #555;
+}
+
+.Bluprint-meta-item {
+  margin: 0 0 0 8px;
+  padding: 0;
+
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.Bluprint-description {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.Bluprint-editLink:hover {
+   color: #14568F;
 }
