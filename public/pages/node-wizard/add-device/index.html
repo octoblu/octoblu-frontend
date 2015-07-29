@@ -15,10 +15,12 @@
     <img src="{{nodeType.logo}}">
   </div>
   <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+  <div class="node-wizard__description">
+    <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+  </div>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
     <button class="BluButton node-wizard__outline--btn" ng-href="https://gateblu.octoblu.com/docs">
-      <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
       Download Gateblu
     </button>
     <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
@@ -57,11 +59,11 @@
         </md-input-container>
       </section>
 
-      <p class="help-block node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
+      <p class="node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
 
-      <md-button class="md-primary md-raised node-wizard__button">
-        Add Thing
-      </md-button>
+      <button class="BluButton node-wizard__connect--btn">
+        Connect {{nodeType.name}}
+      </button>
     </form>
 
   </div>

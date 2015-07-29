@@ -123,14 +123,15 @@
   .flex-display;
   .flex-wrap(wrap);
   .justify-content(center);
+  .align-items(center);
 
   margin: 16px 0;
   padding: 0 8px;
 
-  .md-button {
-    .flex-grow(1);
-    margin: 0 8px;
+  button {
+    margin: 0 10px;
   }
+
 }
 
 .node-wizard-form {
@@ -194,7 +195,11 @@
 }
 
 .node-wizard__outline--btn {
-  .BluButton--outline(#14568F);
+  .BluButton--outline(#14568F) !important;
+}
+
+.node-wizard__button-deactivate {
+  .BluButton--outline(#AA2200) !important;
 }
 
 .gateblu-download {
