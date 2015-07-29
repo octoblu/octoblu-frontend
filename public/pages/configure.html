@@ -28,7 +28,7 @@
 
   <random-robot
     title='No Things Found for "{{deviceNameFilter}}"'
-    ng-show="noDevices && !loadingConnectedThings">
+    ng-show="noThings && !loadingConnectedThings">
   </random-robot>
 
   <div ng-repeat="(category, devices) in connectedThingsByCategory">
