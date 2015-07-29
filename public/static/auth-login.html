@@ -1,9 +1,7 @@
 <html>
 	<head>
 			<title>Octoblu Login</title>
-      <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css">
-      <link rel="stylesheet" type="text/css" href="/assets/stylesheets/font-awesome.min.css">
+			<link rel="stylesheet" href="https://d2zw6j512x6z0x.cloudfront.net/master/1e2eb0115ec1b50a55e322872a05c3157981b5ab/assets/stylesheets/dist/styles.css">
       <style>
        .login-via-provider {
        	 display : block;
@@ -14,52 +12,65 @@
       </style>
 	</head>
 	<body>
-		<div class="row">
-			<div class="col-xs-12" style="padding: 20px">
-	      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
-	      	<img src="/assets/images/octoblucircle.png" class="center-block">
-	        <h3 class="text-center login-header">Octoblu Login</h3>
-	      </div>
-	      <div class="text-center">
-		      <div class="col-xs-12 col-lg-8 col-lg-offset-2">
-		        <p>
-		          <a href="https://login.octoblu.com/?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" class="btn-lg btn-success login-via-provider" data-provider="email-password">
-		            <span class="fa fa-envelope-o"> Email</span>
-		          </a>
-		        </p><br>
+		<div class="auth ng-scope">
+		  <div class="auth__card">
+		    <div class="auth__card-inner">
+		      <img class="auth__octoblu-logo" src="//d2zw6j512x6z0x.cloudfront.net/master/1e2eb0115ec1b50a55e322872a05c3157981b5ab/assets/images/octoblu-color.png">
+
+		      <div class="auth__form-row">
+		        <a class="auth__button--citrix md-button md-default-theme" ng-transclude="" href="https://citrix-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html"><span class="ng-scope">
+		          Log in with Citrix
+		        </span></a>
 		      </div>
-	      <div class="text-center">
-		      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
-		        <p>
-		          <a href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" class="btn-lg btn-github login-via-provider" data-provider="github">
-		            <span class="fa fa-github"> Github</span>
-		          </a>
-		        </p><br>
+
+		      <strong class="auth__form-divider">
+		        or
+		      </strong>
+
+		      <div class="auth__form-row auth__form-row--social">
+		        <a class="auth__button--social auth__button--email md-button md-default-theme" ng-transclude="" ng-href="https://login.octoblu.com?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" href="https://login.octoblu.com?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html">
+		          <i class="fa fa-lg fa-envelope-o ng-scope"></i><span class="ng-scope"> Email
+		        </span><div class="md-ripple-container"></div></a>
 		      </div>
-		      <div class="col-xs-6 col-lg-4">
-		        <p>
-		          <a href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" class="btn-lg btn-facebook login-via-provider" data-provider="facebook">
-		            <span class="fa fa-facebook"> Facebook</span>
-		          </a>
-		        </p><br>
+
+		      <div class="auth__form-row auth__form-row--social">
+		        <a class="auth__button--social auth__button--github md-button md-default-theme" ng-transclude="" ng-href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" href="https://github-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html">
+		          <i class="fa fa-lg fa-github-square ng-scope"></i><span class="ng-scope"> Github
+		        </span></a>
+
+		        <a class="auth__button--social auth__button--facebook md-button md-default-theme" ng-transclude="" ng-href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" href="https://facebook-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html">
+		          <i class="fa fa-lg fa-facebook-square ng-scope"></i><span class="ng-scope"> Facebook
+		        </span></a>
 		      </div>
-		      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
-		        <p>
-		          <a href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" class="btn-lg btn-twitter login-via-provider" data-provider="twitter">
-		            <span class="fa fa-twitter"> Twitter</span>
-		          </a>
-		        </p><br>
+
+		      <div class="auth__form-row auth__form-row--social">
+		        <a class="auth__button--social auth__button--twitter md-button md-default-theme" ng-transclude="" ng-href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" href="https://twitter-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html">
+		          <i class="fa fa-lg fa-twitter-square ng-scope"></i><span class="ng-scope"> Twitter
+		        </span></a>
+
+		        <a class="auth__button--social auth__button--google md-button md-default-theme" ng-transclude="" ng-href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html">
+		          <i class="fa fa-lg fa-google-plus-square ng-scope"></i><span class="ng-scope"> Google+
+		        </span></a>
 		      </div>
-		      <div class="col-xs-6 col-lg-4">
-		        <p>
-		          <a href="https://google-oauth.octoblu.com/login?callback=https%3A%2F%2Fapp.octoblu.com%2Fstatic%2Fauth-login-success.html" class="btn-lg btn-google-plus login-via-provider" data-provider="google">
-		            <span class="fa fa-google-plus"> Google+</span>
-		          </a>
-		        </p><br>
-					  </div>
-					</div>
-				</div>
-			</div>
-    </div>
+
+		      <p class="auth__form-suffix">Don't have an account? <a ui-sref="signup" href="/signup">Sign up here!</a></p>
+		    </div>
+
+		  </div>
+
+		  <footer class="auth__footer">
+		    <p class="auth__footer-links">
+		      <a href="//blog.citrix.com/team/octoblu/" class="auth__footer-link">Blog</a> •
+		      <a href="//developer.octoblu.com" class="auth__footer-link">Developers</a> •
+		      <a href="//gateblu.octoblu.com/" class="auth__footer-link" title="Octoblu's IoT Gateway">Gateblu</a> •
+		      <a href="mailto://info@octoblu.com" class="auth__footer-link">Contact Us</a> •
+		      <a href="//app.octoblu.com/terms" class="auth__footer-link">Terms &amp; Conditions</a>
+		    </p>
+
+		    <a href="https://www.citrix.com/" class="auth__footer-link--citrix" title="Octoblu, now part of Citrix">
+		      <img src="//d2zw6j512x6z0x.cloudfront.net/master/1e2eb0115ec1b50a55e322872a05c3157981b5ab/assets/images/citrix-logo.png" alt="Citrix" class="auth__footer-citrix-logo">
+		    </a>
+		  </footer>
+		</div>
 	</body>
 </html>
