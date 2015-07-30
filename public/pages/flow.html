@@ -15,7 +15,6 @@
           </li>
         </ul>
         <span class="input-group-addon flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
-          <a class="text-center dropdown-new-flow flow-search--create-button" data-toggle="dropdown" ng-click="addFlow()"><i class="fa fa-plus input-addon"></i> CREATE A NEW FLOW</a>
           <button class="flow-search--button" ng-click="toggleDropdown($event)">
             <i class="fa fa-lg fa-angle-down input-addon"></i>
           </button>
@@ -24,6 +23,8 @@
     </div>
 
     <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
+      <a class="text-center dropdown-new-flow flow-search--create-button" data-toggle="dropdown" ng-click="addFlow()"><i class="fa fa-plus input-addon"></i> CREATE FLOW</a>
+
       <md-button ng-click="deleteFlow(activeFlow)" data-action="delete-flow" aria-label="Delete Flow">
         <md-tooltip>Delete Flow</md-tooltip>
         <i class="fa fa-lg fa-trash"></i>
