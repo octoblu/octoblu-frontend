@@ -166,6 +166,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.nodewizard.add', {
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
+        controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/add.html'
       })
       .state('material.nodewizard.claim', {
@@ -230,11 +231,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/aws',
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
-      })
-      .state('material.nodewizard.addchannel.clouddotcom', {
-        url: '/clouddotcom',
-        controller: 'addChannelCloudDotComController',
-        templateUrl: '/pages/node-wizard/add-channel/clouddotcom.html'
       })
       .state('material.nodewizard.addchannel.echosign', {
         url: '/echosign',

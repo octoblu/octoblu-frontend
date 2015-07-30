@@ -13,20 +13,23 @@
       <div class="breadcrumbs">
         <a ui-sref="material.configure" class="breadcrumb-link">Connected Things</a>
         <i class="fa fa-angle-double-right fa-lg"></i>
-        <span class="breadcrumb-link current">{{channel.name}}</span>
+        <span class="breadcrumb-link current">Manage {{channel.name}}</span>
       </div>
     </div>
   </header>
 </md-content>
-
-<main class="node-wizard">
-  <h2 class="node-wizard__header">Manage {{channel.name}}</h2>
-  <img src="{{channel.logo}}" alt="{{channel.name}}" class="node-wizard__logo">
-  <p class="node-wizard__copy">
-    Deactivating this thing will disable any flows using this thing.
-  </p>
-  <md-button ng-click="setDeactivate($event)" class="md-raised md-hue-2 md-warn node-wizard__button">Deactivate Thing</md-button>
-</main>
+<md-content class="interior__wrapper">
+  <main class="node-wizard__wrapper">
+    <div class="node-wizard-logo-container">
+      <img src="{{channel.logo}}">
+    </div>
+    <h2 class="node-wizard__title">{{channel.name}}</h2>
+    <p class="node-wizard__copy">
+      Deactivating this thing will disable any flows using this thing.
+    </p>
+    <button ng-click="setDeactivate($event)" class="BluButton node-wizard__button-deactivate">Deactivate Thing</button>
+  </main>
+</md-content>
 
 <script type="text/ng-template" id="myModalContent.html">
   <md-dialog aria-label="Delete Channel" class="node-wizard__dialog">

@@ -4,26 +4,28 @@
       <div class="breadcrumbs">
         <a ui-sref="material.nodewizard.addnode" class="breadcrumb-link">Things</a>
         <i class="fa fa-angle-double-right fa-lg"></i>
-        <span class="breadcrumb-link current">{{nodeType.name}}</span>
+        <span class="breadcrumb-link current">Connect {{nodeType.name}}</span>
       </div>
     </div>
   </header>
 </md-content>
 
 <md-content class="node-wizard">
-  <h2 class="node-wizard__title">Add {{nodeType.name}}</h2>
-
-  <img src="{{nodeType.logo}}" class="node-wizard__logo">
+  <div class="node-wizard-logo-container">
+    <img src="{{nodeType.logo}}">
+  </div>
+  <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+  <div class="node-wizard__description">
+    <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+  </div>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
-    <md-button ng-href="http://gateblu.octoblu.com">
-      <md-icon md-font-icon="fa fa-lg fa-download"></md-icon>
+    <button class="BluButton node-wizard__outline--btn" ng-href="https://gateblu.octoblu.com/docs">
       Download Gateblu
-    </md-button>
-    <md-button class="md-primary md-raised" ng-click="downloaded = true">
-      <md-icon md-font-icon="fa fa-lg fa-check"></md-icon>
+    </button>
+    <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
       Already Downloaded
-    </md-button>
+    </button>
   </div>
 
   <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
@@ -57,11 +59,11 @@
         </md-input-container>
       </section>
 
-      <p class="help-block node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
+      <p class="node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
 
-      <md-button class="md-primary md-raised node-wizard__button">
-        Add Thing
-      </md-button>
+      <button class="BluButton node-wizard__connect--btn">
+        Connect {{nodeType.name}}
+      </button>
     </form>
 
   </div>
