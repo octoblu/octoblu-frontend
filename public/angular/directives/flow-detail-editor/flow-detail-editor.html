@@ -19,13 +19,25 @@
         <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
       </md-input-container>
     </div>
-    <button ng-click="createBluprint(activeFlow)" class="Sidebar-pane-thing--primary BluButton" title="Create Bluprint" data-action="create-bluprint" ng-click="deleteFlow(activeFlow)" aria-label="Create Bluprint">
+
+    <button
+      ng-click="controller.createBluprint(flow)"
+      class="Sidebar-pane-thing--primary BluButton"
+      data-action="create-bluprint"
+      title="Create Bluprint"
+      aria-label="Create Bluprint">
       Create Bluprint
     </button>
 
-    <button ng-click="deleteFlow(activeFlow)" class="Sidebar-pane-thing--delete BluButton" title="Delete Flow" data-action="delete-flow" aria-label="Delete Flow">
+    <button
+      ng-click="controller.deleteFlow(flow)"
+      class="Sidebar-pane-thing--delete BluButton"
+      data-action="delete-flow"
+      title="Delete Flow"
+      aria-label="Delete Flow">
       Delete
     </button>
+
   </div>
 
   <md-divider class="Sidebar-section-divider"></md-divider>
