@@ -14,7 +14,9 @@
   border: 1px solid #EDEDED;
   border-radius: 2px;
   padding: 5px 34px 5px 10px;
+
   background-color: #E8EAEB;
+  font-family: citrixsans;
 
   &:focus {
     background-color: #FFF;
@@ -31,6 +33,7 @@
 
 .lookup--header {
   margin: 0 24px;
+  width: 33%;
 
   .lookup__icon {
     color: #FFF;
@@ -38,16 +41,16 @@
 
   .lookup__input {
     border: none;
-    width: 300px;
+    width: 100%;
 
     background: rgba(255, 255, 255, 0.1);
     color: #FFF;
 
-    &::placeholder,
-    &::-moz-placeholder,
-    &:-ms-input-placeholder,
-    &::-webkit-input-placeholder {
-      color: #FFF;
-    }
+    &:hover,
+    &:focus { background: rgba(255, 255, 255, 0.2); }
+
+    &::-moz-placeholder { color: #FFF !important; }
+    &:-ms-input-placeholder { color: #FFF !important; }
+    &::-webkit-input-placeholder { color: #FFF !important; }
   }
 }
