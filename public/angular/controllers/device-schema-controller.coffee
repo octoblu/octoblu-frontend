@@ -14,11 +14,11 @@ class DeviceSchemaController
         @scope.schema = schema ? {}
         @scope.form = form ? ['*']
 
-    @scope.$watch 'model.action', (newAction, oldAction) =>
-      return unless oldAction? && newAction?
-      return if oldAction == newAction
+    @scope.$watch 'model.subschema', (newSubschema, oldSubschema) =>
+      return unless oldSubschema? && newSubschema?
+      return if oldSubschema == newSubschema
 
-      @scope.model = action: newAction
+      @scope.model = subschema: newSubschema
 
   addSchemaToScope : (device, schemaType, callback=->) =>
     return callback null, device[schemaType] if device[schemaType]?
