@@ -19,6 +19,25 @@
         <textarea ng-model="flow.description" columns="1" md-maxlength="300"></textarea>
       </md-input-container>
     </div>
+
+    <button
+      ng-click="controller.createBluprint(flow)"
+      class="Sidebar-pane-thing--primary BluButton"
+      data-action="create-bluprint"
+      title="Create Bluprint"
+      aria-label="Create Bluprint">
+      Create Bluprint
+    </button>
+
+    <button
+      ng-click="controller.deleteFlow(flow)"
+      class="Sidebar-pane-thing--delete BluButton"
+      data-action="delete-flow"
+      title="Delete Flow"
+      aria-label="Delete Flow">
+      Delete
+    </button>
+
   </div>
 
   <md-divider class="Sidebar-section-divider"></md-divider>
@@ -34,7 +53,7 @@
 
     <div ng-show="showNodes" class="Sidebar-section-body">
       <div ng-show="!flow.nodes.length" class="Sidebar-alert">
-        <random-robot title="You have no nodes in your flow."></random-robot>
+        <random-robot title="You have no Things in your flow."></random-robot>
       </div>
 
       <ul class="nodes-in-flow">
@@ -51,6 +70,7 @@
       </ul>
     </div>
   </div>
+
 
   <md-divider ng-hide="showNodes" class="Sidebar-section-divider"></md-divider>
 </div>

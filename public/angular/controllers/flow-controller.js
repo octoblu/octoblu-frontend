@@ -159,6 +159,7 @@ angular.module('octobluApp')
     return FlowService.createFlow()
       .then(function(newFlow){
         $state.go('material.flow', {flowId: newFlow.flowId});
+        NotifyService.notify("Flow Created");
       })
       .catch(function(error){
         console.error(error);

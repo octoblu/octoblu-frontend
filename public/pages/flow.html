@@ -26,17 +26,7 @@
       </div>
     </div>
 
-    <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls" >
-      <md-button ng-click="deleteFlow(activeFlow)" data-action="delete-flow" aria-label="Delete Flow">
-        <md-tooltip>Delete Flow</md-tooltip>
-        <i class="fa fa-lg fa-trash"></i>
-      </md-button>
-
-      <md-button ng-click="createBluprint(activeFlow)" aria-label="Create Bluprint">
-        <md-tooltip>Create a Bluprint</md-tooltip>
-        <i class="fa fa-lg fa-share-alt"></i>
-      </md-button>
-
+    <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
       <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
         <md-tooltip>Undo</md-tooltip>
         <i class="fa fa-reply fa-lg"></i>
