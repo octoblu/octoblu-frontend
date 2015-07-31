@@ -14,6 +14,12 @@ class DeviceSchemaController
         @scope.schema = schema ? {}
         @scope.form = form ? ['*']
 
+    @scope.$watch 'model.action', (newAction, oldAction) =>
+      return unless oldAction? && newAction?
+      return if oldAction == newAction
+
+      @scope.model = action: newAction
+
   addSchemaToScope : (device, schemaType, callback=->) =>
     return callback null, device[schemaType] if device[schemaType]?
     @loadSchemaFromUrl device[schemaType + 'Url'], (error, schema) =>
