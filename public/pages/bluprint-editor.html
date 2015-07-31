@@ -1,54 +1,30 @@
-<div>
-  <header class="Bluprint-header">
-    <h3 class="Bluprint-name">
-      <a class="Bluprint-name-link" ng-click="toggleBluprint(bluprint)">
-        {{bluprint.name}}
-      </a>
-    </h3>
+<div  class="content">
+  <div class="properties-editor">
+    <md-input-container class="name">
+      <label>Name</label>
+      <input required ng-model="bluprint.name">
+    </md-input-container>
 
-    <div class="Bluprint-meta">
-      <md-button class="action md-icon-button" ng-click="confirmdeleteBluprint(bluprint.uuid)" aria-label="Delete">
-        <md-tooltip>Delete</md-tooltip>
-        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-trash"></md-icon>
-      </md-button>
+    <md-input-container class="description">
+      <label>Description</label>
+      <input ng-model="bluprint.description">
+    </md-input-container>
 
-      <md-button class="action md-icon-button" ng-click="importBluprint(bluprint.uuid)" aria-label="Import">
-        <md-tooltip>Import</md-tooltip>
-        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-plus"></md-icon>
-      </md-button>
-
-      <md-button class="action md-icon-button" clip-click-fallback="dialogBluprintUrl(bluprint.url)" clip-copy="bluprint.url" clip-click="toastBluprintUrl(bluprint.url)" aria-label="Copy Bluprint Link">
-        <md-tooltip>Copy</md-tooltip>
-        <md-icon class="bluprint-action-icon" md-font-icon="fa fa-lg fa-copy"></md-icon>
-      </md-button>
-
-      <md-switch class="make-public" ng-model="bluprint.public" aria-label="Make Bluprint Public">
-          Public
-      </md-switch>
-    </div>
-  </header>
-
-  <div  class="content">
-    <div class="properties-editor">
-      <md-input-container class="name">
-        <label>Name</label>
-        <input required ng-model="bluprint.name">
-      </md-input-container>
-
-      <md-input-container class="description">
-        <label>Description</label>
-        <input ng-model="bluprint.description">
-      </md-input-container>
-
-      <md-input-container>
-        <label for="">Public</label>
-
-      </md-input-container>
-    </div>
+    <md-switch
+      ng-model="bluprint.public"
+      class="make-public Bluprint-edit-field"
+      aria-label="Make Bluprint Public">
+      Public
+      <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
+    </md-switch>
   </div>
-
-  <footer class="Bluprint-footer">
-    <button>Cancel</button>
-    <button class="BluButton BluButton--primary" title="Update Bluprint">Update Bluprint</button>
-  </footer>
 </div>
+
+<footer class="Bluprint-footer">
+  <button
+    ng-click="toggleBluprint(bluprint)"
+    class="BluButton BluButton--primary Bluprint-cancel-button"
+    title="Done">
+    Done
+  </button>
+</footer>

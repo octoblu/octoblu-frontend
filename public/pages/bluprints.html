@@ -36,12 +36,17 @@
 
 <md-content class="Bluprints" ng-hide="isLoading">
   <ul class="Bluprint-list">
-    <li class="Bluprint-listItem" ng-class="{'selected-bluprint': selectedBluprint == bluprint }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
+    <li class="Bluprint-listItem" ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
+      <div ng-include="'/pages/bluprint-list-item.html'">
+      </div>
+
+      <!--
       <div ng-show="!bluprint.expanded" ng-include="'/pages/bluprint-list-item.html'">
       </div>
 
       <div ng-show="bluprint.expanded" ng-include="'/pages/bluprint-editor.html'">
       </div>
+      -->
     </li>
   </ul>
 </md-content>
