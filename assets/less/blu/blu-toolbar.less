@@ -1,0 +1,37 @@
+@blu-toolbar-height: 52px;
+
+md-toolbar.BluToolbar {
+  min-height: @blu-toolbar-height;
+}
+
+.BluToolbar-tools   {
+  color: #FFF;
+  height: @blu-toolbar-height;
+  min-height: @blu-toolbar-height;
+}
+
+md-toolbar .BluToolbar-menuButton {
+  color: #FFF;
+}
+
+.BluToolbar-header {
+  font-size: 20px;
+}
+
+.BluToolbar-align {
+  .flex-display();
+  .flex(1);
+  .flex-direction(row);
+  .align-items(center);
+}
+
+.BluToolbar-align--left {
+}
+
+.BluToolbar-align--right {
+  .justify-content(flex-end);
+}
+
+.BluToolbar-align--middle {
+  .flex(2);
+}
