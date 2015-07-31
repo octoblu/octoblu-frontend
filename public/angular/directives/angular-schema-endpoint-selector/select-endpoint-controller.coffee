@@ -2,11 +2,12 @@ class SelectEndpointController
   constructor: ($scope) ->
     @scope = $scope
 
-    @scope.$watch 'endpoint', (endpoint) =>
+    @scope.$watch 'model.endpoint', (endpoint) =>
       console.log 'endpoint', endpoint
-
-      [method, url] = endpoint.split /-(.*)/
-      @scope.model.url = url
-      @scope.model.method = method
+      if endpoint?.value?
+        [method, url] = endpoint.value.split /-(.*)/
+        @scope.model.url = url
+        @scope.model.method = method
+        console.log @scope.model
 
 angular.module('octobluApp').controller 'SelectEndpointController', SelectEndpointController
