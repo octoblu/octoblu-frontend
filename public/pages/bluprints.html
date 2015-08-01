@@ -23,30 +23,19 @@
   </div>
 </md-toolbar>
 
-<div class="bluprint-loading-indicator" ng-show="isLoading">
-  <h1 class="text-center">
-    <i class="fa fa-spin fa-refresh"></i>
-  </h1>
-</div>
+<md-content class="Bluprints">
+  <random-robot
+    ng-show="bluprints.length == 0"
+    title="You have no shared Bluprints.">
+  </random-robot>
 
-<div class="bluprints-no-bluprints" ng-show="bluprints.length == 0">
-  <h1>You have no shared bluprints.</h1>
-  <img ng-src="{{randomRobot()}}" style="max-height:50%;max-width:20%;">
-</div>
+  <da-loading loading="isLoading"></da-loading>
 
-<md-content class="Bluprints" ng-hide="isLoading">
   <ul class="Bluprint-list">
     <li class="Bluprint-listItem" ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
       <div ng-include="'/pages/bluprint-list-item.html'">
       </div>
-
-      <!--
-      <div ng-show="!bluprint.expanded" ng-include="'/pages/bluprint-list-item.html'">
-      </div>
-
-      <div ng-show="bluprint.expanded" ng-include="'/pages/bluprint-editor.html'">
-      </div>
-      -->
     </li>
   </ul>
+
 </md-content>
