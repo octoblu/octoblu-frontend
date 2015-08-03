@@ -85,6 +85,17 @@
   padding: @sidebar-body-padding;
 }
 
+.Sidebar-flow-node-setup-logo {
+  width: auto;
+  height: auto;
+  min-width: 115px;
+  max-width: 115px;
+  min-height: 115px;
+  max-height: 115px;
+  display: block;
+  margin: 0 auto;
+}
+
 .Sidebar-loading-icon {
   flex: 1;
   .flex-display;
@@ -248,8 +259,14 @@ md-divider.Sidebar-section-divider {
 
 .Sidebar-pane-thing--delete {
   .BluButton--outline(#AA2200) !important;
-  margin-top: 25px;
+  margin-top: 15px;
   width: 100%;
+}
+
+.Sidebar-pane-thing--primary {
+  .Sidebar-pane-thing--delete;
+
+  .BluButton--outline() !important;
 }
 
 
