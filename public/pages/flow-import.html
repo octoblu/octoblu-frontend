@@ -18,7 +18,9 @@
   </div>
 </md-toolbar>
 
-<div class="import-bluprint--wrapper">
+<da-loading loading="loadingBluprint"></da-loading>
+
+<div ng-if="!loadingBluprint" class="import-bluprint--wrapper">
   <div class="import-bluprint--meta">
     <div class="import-bluprint--info">
       <h3>{{bluprint.name}}</h3>
