@@ -369,12 +369,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.bluprints', {
         url: '/bluprints',
-        templateUrl: '/pages/bluprints.html',
+        templateUrl: '/pages/bluprints/bluprints.html',
         controller: 'BluprintsController'
       })
       .state('material.bluprint', {
         url: '/bluprints/:bluprintId',
-        templateUrl: '/pages/bluprints.html',
+        templateUrl: '/pages/bluprints/bluprints.html',
         controller: 'BluprintsController'
       })
       .state('material.discover', {
