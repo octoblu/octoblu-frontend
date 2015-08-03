@@ -107,7 +107,7 @@ angular.module('octobluApp')
         if (logo) {
           nodeElement.append(
             snap.image(logo,0,0,FlowNodeDimensions.width,nodeHeight)
-              .attr({'preserveAspectRatio':'xMaxYMax'}));
+              .attr({'preserveAspectRatio':'xMidYMax'}));
         }
 
         renderIsOnline(node, nodeElement);
@@ -115,7 +115,7 @@ angular.module('octobluApp')
         if(node.needsConfiguration){
           nodeElement.append(
             snap.image(SOCKET_URL,0,0,FlowNodeDimensions.width,nodeHeight)
-              .attr({'preserveAspectRatio':'xMaxYMax'}));
+              .attr({'preserveAspectRatio':'xMidYMax'}));
         }
 
         if (node.errorMessage) {
