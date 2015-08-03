@@ -379,13 +379,13 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.discover', {
         url: '/discover',
-        templateUrl: '/pages/shared-bluprints.html',
+        templateUrl: '/pages/discover.html',
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
       .state('material.discovercollection', {
         url: '/discover/:collection',
-        templateUrl: '/pages/shared-bluprints.html',
+        templateUrl: '/pages/discover.html',
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
