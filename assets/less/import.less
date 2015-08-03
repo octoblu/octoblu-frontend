@@ -1,0 +1,41 @@
+.import-bluprint--meta {
+  .flex(1);
+  .flex-display;
+  .flex-direction(column);
+  .flex-wrap(wrap);
+  .justify-content(space-around);
+
+  padding: 0 30px;
+}
+
+.import-bluprint--button {
+  .BluButton--primary(#14568F) !important;
+
+  width: 150px;
+}
+
+
+.flow-image-but-really-the-flow {
+  .flex-display;
+  .flex(3);
+  .flex-direction(column);
+
+  border: 1px solid #DEDEDE;
+
+  transition: 1s all;
+
+  .flow-editor {
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+  }
+
+  &.importing {
+    background-color: #fff;
+  }
+}
+
+.import-bluprint--wrapper {
+  .flex(1);
+  .flex-display;
+  .flex-direction(column);
+}
