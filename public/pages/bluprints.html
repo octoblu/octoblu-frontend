@@ -29,12 +29,20 @@
     title="You have no shared Bluprints.">
   </random-robot>
 
+
+  <random-robot
+    ng-show="filteredBluprints.length == 0"
+    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
+  </random-robot>
+
   <da-loading loading="isLoading"></da-loading>
 
   <ul class="Bluprint-list">
-    <li class="Bluprint-listItem" ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }" ng-repeat="bluprint in bluprints | filter: {name:bluprintSearch}">
-      <div ng-include="'/pages/bluprint-list-item.html'">
-      </div>
+    <li
+      ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintSearch})"
+      ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
+      class="Bluprint-listItem">
+      <div ng-include="'/pages/bluprint-list-item.html'"></div>
     </li>
   </ul>
 

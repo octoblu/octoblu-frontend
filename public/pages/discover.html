@@ -1,0 +1,81 @@
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-show="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <h2 class="BluToolbar-header">
+        Discover Bluprints
+      </h2>
+    </div>
+
+    <div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle">
+      <i class="lookup__icon fa fa-search"></i>
+      <input ng-model="bluprintSearch" placeholder="Filter Shared Bluprints..." type="text" class="lookup__input">
+    </div>
+
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+
+<md-content class="Bluprints">
+
+  <random-robot
+    ng-show="bluprints.length == 0"
+    title="There are no shared Bluprints.">
+  </random-robot>
+
+  <da-loading loading="isLoading"></da-loading>
+
+
+  <div class="directory__header">
+    <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
+      <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
+      <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
+      <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
+    </md-select>
+  </div>
+
+  <random-robot
+    ng-show="filteredBluprints.length == 0"
+    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
+  </random-robot>
+
+
+  <ul class="Bluprint-list">
+    <li
+      ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch})"
+      class="Bluprint-listItem">
+
+      <div class="Bluprint-header">
+        <h3 class="Bluprint-name">
+          <a href="" class="Bluprint-name-link">
+            {{bluprint.name}}
+          </a>
+        </h3>
+      </div>
+
+      <p class="Bluprint-description" ng-show="bluprint.description">
+        {{bluprint.description}}
+      </p>
+
+      <footer class="Bluprint-footer">
+        <button
+          ng-click="controller.toggleLike(bluprint)"
+          ng-class="{liked: controller.liked(bluprint)}"
+          class="info Bluprint-like-action">
+          <i class="fa fa-lgx fa-heart"></i> {{bluprint.likedBy.length}}
+        </button>
+
+        <span class="info Bluprint-author">
+          By: {{bluprint.ownerName}}
+        </span>
+      </footer>
+    </li>
+  </ul>
+</md-content>
