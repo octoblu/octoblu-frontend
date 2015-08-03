@@ -2,7 +2,7 @@ angular.module('octobluApp')
 .directive 'flowSidebar', ->
   {
     restrict: 'E',
-    templateUrl: '/pages/sidebar.html',
+    templateUrl: '/angular/directives/flow-sidebar/flow-sidebar.html',
     replace: true,
     transclude: true,
     scope:

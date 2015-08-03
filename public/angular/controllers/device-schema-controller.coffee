@@ -14,6 +14,12 @@ class DeviceSchemaController
         @scope.schema = schema ? {}
         @scope.form = form ? ['*']
 
+    @scope.$watch 'model.subschema', (newSubschema, oldSubschema) =>
+      return unless oldSubschema? && newSubschema?
+      return if oldSubschema == newSubschema
+
+      @scope.model = subschema: newSubschema
+
   addSchemaToScope : (device, schemaType, callback=->) =>
     return callback null, device[schemaType] if device[schemaType]?
     @loadSchemaFromUrl device[schemaType + 'Url'], (error, schema) =>

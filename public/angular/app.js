@@ -308,6 +308,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/connector/channels/detail.html',
         controller: 'apiController'
       })
+      .state('material.credentials-device', {
+        url: '/credentials-device',
+        templateUrl: '/pages/credentials-device.html',
+        controllerAs: 'controller',
+        controller: 'CredentialsDeviceController'
+      })
       .state('material.nodewizard.addsubdevice', {
         url: '/add-subdevice/:nodeTypeId',
         controller: 'addSubdeviceController',
