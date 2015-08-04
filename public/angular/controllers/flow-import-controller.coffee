@@ -13,6 +13,7 @@ class FlowImportController
 
 
   import: =>
+    console.log "Being imported"
     @BluprintService.importBluprint(@stateParams.flowTemplateId)
       .then (flow) =>
         @scope.importing = true
