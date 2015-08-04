@@ -1,22 +1,18 @@
-.floating-omnibox {
+.omnibox-search {
   ul {
     color: black;
   }
 
   .dropdown-menu {
     width: 100%;
+    overflow-y: scroll;
   }
 }
 
-.button-shadow {
-  box-shadow: 0 2px 1px rgba(0,0,0,0.3);
+.omnibox-item-header {
+  font-size: 14px;
 }
 
-.zoom-toolbar {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-}
 
 .omnibox-item {
   .flex-display;
@@ -31,13 +27,4 @@
     padding-top: 10px;
     font-size: 14px;
   }
-}
-
-.omnibox-item--info {
-  .flex(1);
-  
-}
-
-.omnibox-item-header {
-  font-size: 14px;
 }
