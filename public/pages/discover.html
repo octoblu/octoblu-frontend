@@ -24,7 +24,6 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
-
   <random-robot
     ng-show="bluprints.length == 0"
     title="There are no shared Bluprints.">
@@ -47,35 +46,11 @@
   </random-robot>
 
 
-  <ul class="Bluprint-list">
+  <ul class="Bluprint-grid">
     <li
       ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch})"
-      class="Bluprint-listItem">
-
-      <div class="Bluprint-header">
-        <h3 class="Bluprint-name">
-          <a href="" class="Bluprint-name-link">
-            {{bluprint.name}}
-          </a>
-        </h3>
-      </div>
-
-      <p class="Bluprint-description" ng-show="bluprint.description">
-        {{bluprint.description}}
-      </p>
-
-      <footer class="Bluprint-footer">
-        <button
-          ng-click="controller.toggleLike(bluprint)"
-          ng-class="{liked: controller.liked(bluprint)}"
-          class="info Bluprint-like-action">
-          <i class="fa fa-lgx fa-heart"></i> {{bluprint.likedBy.length}}
-        </button>
-
-        <span class="info Bluprint-author">
-          By: {{bluprint.ownerName}}
-        </span>
-      </footer>
+      ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
+      ng-include="'/pages/bluprints/shared-bluprint-item.html'">
     </li>
   </ul>
 </md-content>
