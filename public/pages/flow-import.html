@@ -10,28 +10,49 @@
       </md-button>
 
       <h2 class="BluToolbar-header">
-        Import Bluprint
+        Bluprint Detail
       </h2>
     </div>
 
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
 </md-toolbar>
-
-<da-loading loading="loadingBluprint"></da-loading>
-
-<div ng-if="!loadingBluprint" class="import-bluprint--wrapper">
-  <div class="import-bluprint--meta">
-    <div class="import-bluprint--info">
-      <h3>{{bluprint.name}}</h3>
-      <h4>{{bluprint.description}}</h4>
+<md-content class="Bluprints">
+  <div class="Bluprint-list">
+    <div class="Bluprint-listItem">
+      <header class="Bluprint-header">
+        <h3 class="Bluprint-name">
+            {{bluprint.name}}
+        </h3>
+          <div class="import-bluprint--stats">
+            <span class="Bluprint-meta-item">
+              <i class="fa fa-star"></i>
+              {{bluprint.likedBy.length}}
+            </span>
+            <span ng-show="bluprint.public" class="Bluprint-meta-item">
+              <i class="fa fa-globe"></i>
+              Public
+            </span>
+            <span ng-hide="bluprint.public" class="Bluprint-meta-item">
+              <i class="fa fa-lock"></i>
+              Private
+            </span>
+          </div>
+      </header>
+      <div class="import-bluprint--description">
+        <p class="Bluprint-description" >
+          {{bluprint.description || 'No description'}}
+        </p>
+      </div>
+      <div class="import-bluprint--actions">
+        <button class="BluButton import-bluprint--button"
+                ng-click="import()"
+                title="Import"
+                aria-label="import">IMPORT</button>
+      </div>
+      <div class="flow-image-but-really-the-flow">
+        <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
+      </div>
     </div>
-    <button class="BluButton import-bluprint--button"
-            ng-click="import()"
-            title="Import"
-            aria-label="import">IMPORT</button>
   </div>
-  <div class="flow-image-but-really-the-flow">
-    <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
-  </div>
-</div>
+</md-content>
