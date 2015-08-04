@@ -10,7 +10,10 @@
       </md-button>
 
       <h2 class="BluToolbar-header">
-        Discover Bluprints
+        <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
+          <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
+          <md-option ng-value="'name'">Alphabetical</md-option>
+        </md-select>
       </h2>
     </div>
     <blu-search search-model="bluprintSearch" placeholder="Filter Shared Bluprints..."></blu-search>
@@ -20,11 +23,8 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
-  <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
-    <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
-    <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
-    <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
-  </md-select>
+  <h2 class="Bluprints-header">Discover Bluprints</h2>
+  <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
 
   <random-robot
     ng-show="(filteredBluprints.length == 0) && bluprintSearch"

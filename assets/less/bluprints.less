@@ -2,12 +2,22 @@
   .flex(1);
 
   margin: 0;
-  padding: 48px 24px;
+  padding: 24px;
   list-style: none;
 
   background: #F3F6F7;
 }
 
+.Bluprints-header,
+.Bluprints-subHeader {
+  text-align: center;
+  color: #3D3D3D;
+}
+
+.Bluprints-subHeader {
+  font-size: 18px;
+  margin-bottom:32px;
+}
 
 .Bluprint-list {
   .md-whiteframe-z1;
@@ -156,6 +166,9 @@
 
     span {
       cursor: pointer;
+      color: #14568F;
+      text-decoration: underline;
+      padding-left: 4px;
     }
   }
 
@@ -177,7 +190,7 @@
   cursor: pointer;
 
   &.liked, &:hover.liked {
-    color: #AA2200;
+    color: #14568F;
   }
 
   &:hover {

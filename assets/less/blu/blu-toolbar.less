@@ -35,3 +35,24 @@ md-toolbar .BluToolbar-menuButton {
 .BluToolbar-align--middle {
   .flex(2);
 }
+
+
+md-select.BluToolbar-select {
+  padding: 0;
+
+  &:not([disabled]):focus .md-select-label {
+    color: #FFF;
+    border: none;
+  }
+
+  .md-select-label {
+    border: none;
+    padding: 0;
+  }
+
+  .md-select-label .md-select-icon  {
+    font-size: 12px;
+    width: 18px;
+  }
+
+}
