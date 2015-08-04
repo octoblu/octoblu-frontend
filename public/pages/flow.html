@@ -9,23 +9,25 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
       <md-select
-        class="flow-toolbar--dropdown"
-        ng-model="activeFlow"
+        class="flow-toolbar--dropdown truncate"
+        ng-model="cats"
         placeholder="{{activeFlow.name}}"
+        aria-label="Select Flow"
         style="max-height: {{flowSelectorHeight}}px;">
-        <md-option ng-repeat="flow in flows | orderBy: 'name'">
+        <md-option ui-sref="material.flow({flowId: flow.flowId})" class="flow-toolbar--dropdown-item truncate" ng-repeat="flow in flows | orderBy: 'name'">
           <i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i>
-          <a ui-sref="material.flow({flowId: flow.flowId})">
+          <a class="flow-toolbar--flow-name">
             {{flow.name}}
           </a>
         </md-option>
       </md-select>
 
-      <div class="flow-toolbar--add-flow" ng-click="addFlow()">
-        <i class="fa fa-plus"></i>
+      <md-button ng-click="addFlow()">
+      <i class="fa fa-plus"></i>
         New Flow
-      </div>
+      </md-button>
     </div>
+
     <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
       omni-search="omniSearch"
       flow-nodes="activeFlow.nodes"

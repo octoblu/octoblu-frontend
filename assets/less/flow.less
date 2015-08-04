@@ -753,15 +753,6 @@ ul.flow-browser-debug {
     color: white;
   }
 }
-.flow-toolbar--add-flow {
-  .flex(1);
-  .flex-display;
-  .align-items(center);
-  .justify-content(center);
-
-  cursor: pointer;
-  padding: 5px;
-}
 
 .flow-toolbar--dropdown {
   .md-select-label {
@@ -772,5 +763,26 @@ ul.flow-browser-debug {
     &:focus {
       text-decoration: none;
     }
+
+    .md-select-icon {
+      font-size: 14px;
+    }
+  }
+}
+
+.flow-toolbar--flow-name {
+  text-decoration: none;
+  color: #333;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.flow-toolbar--dropdown-item {
+  &:hover,
+  &:focus {
+    background-color: darken(#FFF, 10%);;
   }
 }
