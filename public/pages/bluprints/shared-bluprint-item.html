@@ -1,0 +1,44 @@
+<div class="Bluprint-gridItem">
+  <header class="Bluprint-header">
+    <a href="" class="Bluprint-name">
+      {{bluprint.name}}
+    </a>
+  </header>
+
+  <main class="Bluprint-body">
+    <p class="Bluprint-description Bluprint-description--tile" ng-show="bluprint.description">
+      {{bluprint.description}}
+    </p>
+    <span class="info Bluprint-author">
+      By: {{bluprint.ownerName}}
+    </span>
+  </main>
+
+  <footer class="Bluprint-footer">
+    <button
+      ng-click="controller.toggleLike(bluprint)"
+      ng-class="{liked: controller.liked(bluprint)}"
+      class="Bluprint-gridAction"
+      title="Likes">
+      <i class="fa fa-lgx fa-star"></i> {{bluprint.likedBy.length}}
+    </button>
+
+    <span>
+      <button
+        ng-click="controller.toggleLike(bluprint)"
+        ng-class="{liked: controller.liked(bluprint)}"
+        class="Bluprint-gridAction"
+        title="Import Bluprint">
+        <i class="fa fa-lgx fa-plus"></i>
+      </button>
+
+      <button
+        ng-click="controller.toggleLike(bluprint)"
+        ng-class="{liked: controller.liked(bluprint)}"
+        class="Bluprint-gridAction"
+        title="Copy URL">
+        <i class="fa fa-lgx fa-copy"></i>
+      </button>
+    </span>
+  </footer>
+</div>
