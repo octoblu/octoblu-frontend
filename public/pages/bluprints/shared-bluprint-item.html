@@ -10,7 +10,13 @@
   </header>
 
   <main class="Bluprint-body">
-    <p data-ng-bind="bluprint.description" data-ellipsis class="Bluprint-description Bluprint-description--tile" ng-show="bluprint.description">
+    <p
+      ng-show="bluprint.description"
+      data-ng-bind="bluprint.description"
+      data-ellipsis
+      data-ellipsis-append="read more"
+      data-ellipsis-append-click="controller.goToBluprintDetail(bluprint)"
+      class="Bluprint-description Bluprint-description--tile">
       {{bluprint.description}}
     </p>
     <span class="info Bluprint-author">
