@@ -1,12 +1,12 @@
 <div class="Bluprint-gridItem">
   <header class="Bluprint-header">
-    <a href="" class="Bluprint-name">
+    <a ui-sref="material.flow-import({flowTemplateId: bluprint.uuid})" class="Bluprint-name">
       {{bluprint.name}}
     </a>
   </header>
 
   <main class="Bluprint-body">
-    <p class="Bluprint-description Bluprint-description--tile" ng-show="bluprint.description">
+    <p data-ng-bind="bluprint.description" data-ellipsis class="Bluprint-description Bluprint-description--tile" ng-show="bluprint.description">
       {{bluprint.description}}
     </p>
     <span class="info Bluprint-author">
