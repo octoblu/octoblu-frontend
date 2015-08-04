@@ -2,7 +2,7 @@
   .flex(1);
 
   margin: 0;
-  padding: 48px;
+  padding: 48px 24px;
   list-style: none;
 
   background: #F3F6F7;
@@ -118,6 +118,8 @@
 
 
 .Bluprint-gridItem {
+  .md-whiteframe-z1;
+
   .flex-display;
   .flex-direction(column);
   .justify-content(space-between);
@@ -151,6 +153,10 @@
 
   .Bluprint-description {
     max-height: 100px;
+
+    span {
+      cursor: pointer;
+    }
   }
 
   .Bluprint-body {
@@ -169,6 +175,10 @@
   border: none;
   background: transparent;
   cursor: pointer;
+
+  &.liked, &:hover.liked {
+    color: #AA2200;
+  }
 
   &:hover {
     color: #14568F;
