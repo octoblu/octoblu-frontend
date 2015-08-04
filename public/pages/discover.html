@@ -20,27 +20,23 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
+  <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
+    <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
+    <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
+    <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
+  </md-select>
+
   <random-robot
-    ng-show="bluprints.length == 0"
+    ng-show="(filteredBluprints.length == 0) && bluprintSearch"
+    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
+  </random-robot>
+
+  <random-robot
+    ng-show="(filteredBluprints.length == 0) && !bluprintSearch"
     title="There are no shared Bluprints.">
   </random-robot>
 
   <da-loading loading="isLoading"></da-loading>
-
-
-  <div class="directory__header">
-    <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="node-wizard__form-actions">
-      <md-option ng-value="'-likedBy.length'">Top Liked</md-option>
-      <md-option ng-value="'name'">Alphabetical (ascending)</md-option>
-      <md-option ng-value="'-name'">Alphabetical (descending)</md-option>
-    </md-select>
-  </div>
-
-  <random-robot
-    ng-show="filteredBluprints.length == 0"
-    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
-  </random-robot>
-
 
   <ul class="Bluprint-grid">
     <li

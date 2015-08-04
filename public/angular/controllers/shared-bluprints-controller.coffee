@@ -18,7 +18,7 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       BluprintService.getPublicBluprints(@collectionName)
         .then (bluprints) =>
           @bluprints = bluprints
-          $scope.isLoading = false;
+          $scope.isLoading = false
 
     importBluprint: (bluprintId) =>
       BluprintService.importBluprint(bluprintId)
