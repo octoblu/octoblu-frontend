@@ -3,7 +3,7 @@
     <div class="BluToolbar-align BluToolbar-align--left">
       <md-button
         ng-click="toggleNav()"
-        ng-show="isNavLockedOpen()"
+        ng-hide="isNavLockedOpen()"
         class="md-icon-button BluToolbar-menuButton"
         aria-label="Navigation">
         <i class="fa fa-lg fa-bars"></i>
@@ -13,11 +13,7 @@
         Discover Bluprints
       </h2>
     </div>
-
-    <div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle">
-      <i class="lookup__icon fa fa-search"></i>
-      <input ng-model="bluprintSearch" placeholder="Filter Shared Bluprints..." type="text" class="lookup__input">
-    </div>
+    <blu-search search-model="bluprintSearch" placeholder="Filter Shared Bluprints..."></blu-search>
 
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>

@@ -1,31 +1,26 @@
-<md-toolbar>
-  <h2 class="md-toolbar-tools page-heading" layout="row" layout-align="space-between">
-    <div flex layout="row">
-      <a href class="menu-icon flow-top-bar-tool--menu-button" ng-click="toggleNav()">
-        <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <h2 class="BluToolbar-header">
         Process
-      </a>
+      </h2>
     </div>
-  </h2>
+
+    <blu-search search-model="processSearch" placeholder="Filter Things..."></blu-search>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
 </md-toolbar>
 
 <md-content flex>
   <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
-
-  <div layout="row" layout-align="space-around center" style="margin: 0px 5px; min-height: 60px">
-      <div layout="row" layout-align="center">
-        <form class="form">
-          <div class="form-group" flex="95" style="margin-bottom: 0">
-              <div class="input-group">
-                  <input type="text" class="form-control" ng-model="processSearch" placeholder="Filter" autofocus>
-                  <span class="input-group-addon">
-                      <i class="fa fa-search"></i>
-                  </span>
-              </div>
-          </div>
-        </form>
-      </div>
-  </div>
 
   <md-toolbar layout="row" flex>
      <div class="process-row-logo"></div>

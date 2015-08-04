@@ -19,6 +19,9 @@
 }
 
 .omnibox-item {
+  .flex-display;
+  .flex-direction(row);
+
   padding: 0 0 10px 0;
   border-bottom: 1px solid #ddd;
   &:hover {
@@ -28,6 +31,11 @@
     padding-top: 10px;
     font-size: 14px;
   }
+}
+
+.omnibox-item--info {
+  .flex(1);
+  
 }
 
 .omnibox-item-header {

@@ -1,10 +1,22 @@
-<md-toolbar>
-  <h2 class="md-toolbar-tools page-heading margin">
-    <a href class="menu-icon" ng-click="toggleNav()">
-      <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
-      Things
-    </a>
-  </h2>
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <h2 class="BluToolbar-header">
+        Connected Things
+      </h2>
+    </div>
+
+    <blu-search search-model="deviceNameFilter" placeholder="Filter Things..."></blu-search>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
 </md-toolbar>
 
 <md-content class="interior__wrapper" autoscroll="false">
@@ -13,13 +25,6 @@
       <div class="tabs">
         <a ui-sref="material.nodewizard.addnode" class="tab-link">Things</a>
         <a ui-sref="material.configure" class="tab-link is-selected">Connected Things</a>
-      </div>
-
-      <div class="interior__header-actions">
-        <div class="lookup">
-          <i class="lookup__icon fa fa-search fa-lg"></i>
-          <input ng-model="deviceNameFilter" placeholder="Filter Things..." type="search" class="lookup__input" autofocus>
-        </div>
       </div>
     </div>
   </header>

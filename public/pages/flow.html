@@ -1,10 +1,61 @@
-<md-toolbar class="flow-top-bar">
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <div class="BluToolbar-header flow-top-bar-tool flow-top-bar-tool--flow-search">
+        <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
+          <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name" style="border-right: 0px;">
+          <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
+            <li class="text-center" data-toggle="dropdown" ng-click="addFlow()">
+              <a class="dropdown-new-flow"><i class="fa fa-plus"></i> CREATE A NEW FLOW</a>
+            </li>
+            <li role="presentation"  class="divider"></li>
+            <li class="flow-item" data-toggle="dropdown" ng-repeat="flow in flows | orderBy: 'name'" >
+              <a ui-sref="material.flow({flowId: flow.flowId})"><i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i> {{flow.name}}</a>
+            </li>
+          </ul>
+          <span class="input-group-addon flow-dropdown" id="flowMenuDropdown" style="border-left: 0px;">
+            <button class="flow-search--button" ng-click="toggleDropdown($event)">
+              <i class="fa fa-lg fa-angle-down input-addon"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
+      omni-search="omniSearch"
+      flow-nodes="activeFlow.nodes"
+      selected-flow-node="activeFlow.selectedFlowNode"></flow-editor-omnibox>
+    <div class="BluToolbar-align BluToolbar-align--right">
+      <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
+        <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
+          <md-tooltip>Undo</md-tooltip>
+          <i class="fa fa-reply fa-lg"></i>
+        </md-button>
+
+        <md-button ng-click="redoEdit()" ng-disabled="!redoable()" aria-label="Redo Edit">
+          <md-tooltip>Redo</md-tooltip>
+          <i class="fa fa-mail-forward fa-lg"></i>
+        </md-button>
+
+        <flow-deploy-button device="flowDevice" flow="activeFlow"></flow-deploy-button>
+      </div>
+    </div>
+  </div>
+</md-toolbar>
+<!-- <md-toolbar class="flow-top-bar">
   <div class="md-toolbar-tools">
     <md-button ng-click="toggleNav()" class="menu-icon flow-top-bar-tool flow-top-bar-tool--menu-button" aria-label="Open Menu">
       <i class="fa fa-bars" ng-hide="isNavLockedOpen()"></i>
     </md-button>
 
-    <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search" omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
 
     <div class="flow-top-bar-tool flow-top-bar-tool--flow-search">
       <div class="input-group flow-name dropdown" dropdown is-open="flowDropDownIsOpen">
@@ -40,7 +91,7 @@
       <flow-deploy-button device="flowDevice" flow="activeFlow"></flow-deploy-button>
     </div>
   </div>
-</md-toolbar>
+</md-toolbar> -->
 
 <div class="design2 designer-container">
 
