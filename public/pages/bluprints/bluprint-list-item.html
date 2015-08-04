@@ -15,7 +15,7 @@
 
         <md-menu-content width="2">
           <md-menu-item>
-            <md-button ng-click="importBluprint(bluprint.uuid)">Import</md-button>
+            <md-button ng-click="goToBluprintDetail(bluprint.uuid)">Details</md-button>
           </md-menu-item>
           <md-menu-item>
             <md-button
@@ -27,7 +27,7 @@
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="bluprint.public = !bluprint.public">
+            <md-button ng-click="togglePublic(bluprint)">
               Make {{bluprint.public ? 'Private' : 'Public'}}
             </md-button>
           </md-menu-item>
