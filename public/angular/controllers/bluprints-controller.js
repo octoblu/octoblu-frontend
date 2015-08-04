@@ -24,10 +24,6 @@ angular.module('octobluApp')
     });
   };
 
-  $scope.goToBluprintDetail = function(bluprintUuid) {
-    $state.go('material.flow-import', {flowTemplateId: bluprintUuid});
-  }
-
   $scope.importBluprint = function(bluprintId) {
     BluprintService.importBluprint(bluprintId).then(function(flow){
       $scope.importing = true;

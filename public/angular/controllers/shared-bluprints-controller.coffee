@@ -20,9 +20,6 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
           @bluprints = bluprints
           $scope.isLoading = false;
 
-    # importBluprint: (bluprintId) =>
-    #   $state.go 'material.flow-import', {flowTemplateId: bluprintId}
-
     importBluprint: (bluprintId) =>
       BluprintService.importBluprint(bluprintId)
         .then (flow) =>
