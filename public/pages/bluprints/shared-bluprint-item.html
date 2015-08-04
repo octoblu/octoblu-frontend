@@ -1,6 +1,10 @@
 <div class="Bluprint-gridItem">
   <header class="Bluprint-header">
-    <a ui-sref="material.flow-import({flowTemplateId: bluprint.uuid})" class="Bluprint-name">
+    <a
+      ui-sref="material.flow-import({flowTemplateId: bluprint.uuid})"
+      data-ng-bind="bluprint.name"
+      data-ellipsis
+      class="Bluprint-name">
       {{bluprint.name}}
     </a>
   </header>
@@ -19,22 +23,22 @@
       ng-click="controller.toggleLike(bluprint)"
       ng-class="{liked: controller.liked(bluprint)}"
       class="Bluprint-gridAction"
-      title="Likes">
+      title="Like">
       <i class="fa fa-lgx fa-star"></i> {{bluprint.likedBy.length}}
     </button>
 
     <span>
       <button
-        ng-click="controller.toggleLike(bluprint)"
-        ng-class="{liked: controller.liked(bluprint)}"
+        ng-click="controller.importBluprint(bluprint.uuid)"
         class="Bluprint-gridAction"
         title="Import Bluprint">
         <i class="fa fa-lgx fa-plus"></i>
       </button>
 
       <button
-        ng-click="controller.toggleLike(bluprint)"
-        ng-class="{liked: controller.liked(bluprint)}"
+        clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)"
+        clip-copy="bluprint.url"
+        clip-click="controller.toastBluprintUrl(bluprint.url)"
         class="Bluprint-gridAction"
         title="Copy URL">
         <i class="fa fa-lgx fa-copy"></i>
