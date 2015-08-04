@@ -1,8 +1,11 @@
-<div class="floating-omnibox">
-  <div class="floating-omnibox-input input-group">
-    <input type="text" ng-model="omniSearch" w-mousetrap="{'/':  focus}" input-focus="omniboxFocus" placeholder="Search" typeahead="item as item.name for item in omniList | filter : {name : $viewValue }" typeahead-template-url="/pages/omnibox-item.html" class="input form-control omnibox">
-    <span class="input-group-addon">
-      <i class="fa fa-lg fa-search input-addon"></i>
-    </span>
-  </div>
+<div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle omnibox-search">
+  <i class="lookup__icon fa fa-search"></i>
+  <input type="text"
+          ng-model="omniSearch"
+          w-mousetrap="{'/':  focus}"
+          input-focus="omniboxFocus"
+          placeholder="Search..."
+          typeahead="item as item.name for item in omniList | filter : {name : $viewValue }"
+          typeahead-template-url="/pages/omnibox-item.html"
+          class="lookup__input omnibox">
 </div>
