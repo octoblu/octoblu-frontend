@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService) {
   'use strict';
   var self, activeFlow = {};
   self = this;
@@ -8,6 +8,35 @@ angular.module('octobluApp')
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
+  };
+
+  self.needsPermissions = function(receiverUuid, uuids) {
+    return ThingService.getThings()
+      .then(function(things){
+        var thingsToCheck = _.filter(things, function(thing){
+          return _.contains(uuids, thing.uuid);
+        });
+
+        return _.reject(thingsToCheck, function(thing){
+          var receiveAsOk = false;
+          var sendOk = false;
+          if( _.contains(thing.receiveAsWhitelist, '*') ) {
+            receiveAsOk = true;
+          }
+          if ( _.contains(thing.receiveAsWhitelist, receiverUuid) ) {
+            receiveAsOk = true;
+          }
+          if( _.contains(thing.sendWhitelist, '*') ) {
+            sendOk = true;
+          }
+          if ( _.contains(thing.sendWhitelist, receiverUuid) ) {
+            sendOk = true;
+          }
+
+          return receiveAsOk && sendOk;
+        });
+
+      });
   };
 
   self.saveActiveFlow = function () {
@@ -26,7 +55,7 @@ angular.module('octobluApp')
   self.immediateNotifyFlowSaved = function(){
     NotifyService.notify("Flow Saved");
   };
-  
+
   self.notifyFlowSaved = _.debounce(self.immediateNotifyFlowSaved, 3000);
 
   self.selectNode = function(flowNode){
