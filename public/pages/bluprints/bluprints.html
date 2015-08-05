@@ -16,7 +16,7 @@
 
     <div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle">
       <i class="lookup__icon fa fa-search"></i>
-      <input ng-model="bluprintSearch" placeholder="Filter Bluprints..." type="text" class="lookup__input">
+      <input ng-model="bluprintNameFilter" placeholder="Filter Bluprints..." type="text" class="lookup__input">
     </div>
 
     <div class="BluToolbar-align BluToolbar-align--right"></div>
@@ -25,21 +25,21 @@
 
 <md-content class="Bluprints">
   <random-robot
-    ng-show="bluprints.length == 0"
+    ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
     title="You have no shared Bluprints.">
   </random-robot>
 
 
   <random-robot
-    ng-show="filteredBluprints.length == 0 && bluprints.length > 0"
-    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
+    ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+    title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
   </random-robot>
 
   <da-loading loading="isLoading"></da-loading>
 
   <ul class="Bluprint-list">
     <li
-      ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintSearch})"
+      ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
       ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
       class="Bluprint-listItem">
       <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
