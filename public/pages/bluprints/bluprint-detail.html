@@ -59,7 +59,7 @@
           {{bluprint.description || 'No description'}}
           <span class="Bluprint-edit">
             -
-            <a class="Bluprint-editLink" ng-hide="editMode" ng-click="editMode= true">
+            <a class="Bluprint-editLink" ng-hide="editMode" ng-click="editMode = true">
               Edit
             </a>
           </span>
@@ -77,10 +77,12 @@
         Public
         <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
       </md-switch>
-      <a class="import-bluprint--edit" ng-show="editMode" ng-click="controller.updateBluprintNow()">Save</a>
-      <a class="import-bluprint--edit" ng-show="editMode" ng-click="editMode = false">Cancel</a>
-      <div class="import-bluprint--actions">
-        <button class="BluButton import-bluprint--button"
+      <div class="import-bluprint--actions" ng-show="editMode">
+        <a class="BluButton import-bluprint--save-button" ng-click="controller.updateBluprintNow()">Save</a>
+        <a class="BluButton import-bluprint--cancel-button" ng-click="editMode = false">Cancel</a>
+      </div>
+      <div ng-hide="editMode" class="import-bluprint--actions">
+        <button class="BluButton import-bluprint--import-button"
                 ng-click="controller.import()"
                 title="Import"
                 aria-label="import">IMPORT</button>

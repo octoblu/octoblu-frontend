@@ -38,13 +38,10 @@ angular.module('octobluApp')
   }
 
   $scope.toggleBluprint = function(bluprint) {
-    if (bluprint.expanded){
-      return bluprint.expanded = false;
-    }
-    else if (!bluprint.expanded){
-      $scope.selectedBluprint = bluprint;
-      return bluprint.expanded = true;
-    }
+    if (!bluprint.expanded){
+        $scope.selectedBluprint = bluprint;
+      }
+    bluprint.expanded = !bluprint.expanded;
   };
 
   $scope.toastBluprintUrl = function(url) {

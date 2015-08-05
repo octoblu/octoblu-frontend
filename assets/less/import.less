@@ -1,20 +1,21 @@
-.import-bluprint--meta {
-  .flex(1);
-  .flex-display;
-  .flex-direction(row);
-  .flex-wrap(wrap);
-  .justify-content(space-between);
-
-  padding: 0 30px;
-}
-
-.import-bluprint--button {
+.import-bluprint--import-button {
   .BluButton--primary(#14568F) !important;
 
   width: 150px;
-  margin: 15px 0px;
 }
 
+.import-bluprint--cancel-button {
+  color: #AA2200;
+
+  &:hover,
+  &:focus {
+    color: lighten(#AA2200, 10%);
+  }
+}
+
+.import-bluprint--save-button {
+  .BluButton--outline(#14568F) !important;
+}
 
 .flow-image-but-really-the-flow {
   .flex-display;
@@ -34,11 +35,9 @@
 }
 
 .import-bluprint--actions {
-  display: flex;
-  align-items: baseline;
-}
+  .flex-display;
+  .align-items(baseline);
+  .justify-content(space-between);
 
-.import-bluprint--edit {
-  cursor: pointer;
-  margin-left: 10px;
+  margin: 15px 0;
 }
