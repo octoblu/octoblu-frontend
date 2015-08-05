@@ -6,15 +6,14 @@ class FlowImportController
     @BluprintService = BluprintService
 
 
-    @BluprintService.getBluprint(@stateParams.flowTemplateId)
+    @BluprintService.getBluprint(@stateParams.bluprintId)
       .then (bluprint) =>
         @scope.bluprint = bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
 
   import: =>
-    console.log "Being imported"
-    @BluprintService.importBluprint(@stateParams.flowTemplateId)
+    @BluprintService.importBluprint(@stateParams.bluprintId)
       .then (flow) =>
         @scope.importing = true
         _.delay =>
