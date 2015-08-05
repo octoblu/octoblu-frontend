@@ -348,7 +348,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.flow-import', {
         url: '/design/import/:flowTemplateId',
         templateUrl: '/pages/flow-import.html',
-        controller: 'FlowImportController'
+        controller: 'FlowImportController',
+        controllerAs: 'controller'
       })
       .state('material.process', {
         url: '/process',
