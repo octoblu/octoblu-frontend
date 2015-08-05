@@ -38,6 +38,14 @@
   &:last-child {
     border: none;
   }
+
+  &--isExpanded {
+    background: #F9F9F9;
+  }
+
+  &:hover .Bluprint-meta {
+    opacity: 1;
+  }
 }
 
 .Bluprint-header {
@@ -46,22 +54,15 @@
   .justify-content(space-between);
   .align-items(center);
 
-  margin: 0 0 12px;
-
-  // background: pink;
+  margin: 0 0 6px;
 }
 
 .Bluprint-name {
   margin: 0;
 
-  color: #14568F;
+  color: #454545;
   font-size: 18px;
   font-weight: bold;
-
-  &--tile {
-    font-size: 15px;
-    line-height: 1.3;
-  }
 }
 
 .Bluprint-name-link {
@@ -73,26 +74,43 @@
 }
 
 .Bluprint-meta {
-  // background: oldlace;
+  opacity: 0;
   color: #555;
+
+  &:hover { opacity: 1; }
 }
 
-.Bluprint-meta-item {
-  margin: 0 0 0 8px;
+.Bluprint-metaItem {
+  margin: 0 0 0 6px;
   padding: 0;
 
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
+  text-align: center;
+
+  &--button {
+    border: none;
+    min-width: 24px;
+
+    background: transparent;
+
+    // &:hover {
+    //   color: #222;
+    // }
+  }
+}
+
+.Bluprint-description {
+  margin-bottom: 6px;
+  padding-bottom: 0;
+
+  color: #5E5E5E;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 .Bluprint-cancel-button {
   padding: 2px;
-}
-
-.Bluprint-description {
-  margin-bottom: 0;
-  font-size: 15px;
-  line-height: 1.4;
 }
 
 .Bluprint-edit-field {
@@ -115,79 +133,16 @@
   padding: 0 6px;
 }
 
-
-.Bluprint-listItem--isExpanded {
-  background: #F9F9F9;
+.Bluprint-footer {
 }
 
-
-.Bluprint-grid {
-  .flex-display;
-  .flex-direction(row);
-  .flex-wrap(wrap);
-
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.Bluprint-author {
+  color: #787878;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-
-.Bluprint-gridItem {
-  .md-whiteframe-z1;
-
-  .flex-display;
-  .flex-direction(column);
-  .justify-content(space-between);
-
-  background: white;
-  margin: 6px;
-  width: 325px;
-  height: 325px;
-
-  .Bluprint-header {
-    height: 150px;
-    padding: 12px;
-    margin: 0;
-
-    background: #14568F;
-    color: #FFF;
-  }
-
-  .Bluprint-name {
-    .flex(1);
-    color: #FFF;
-    line-height: 1.4;
-    text-align: center;
-
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .Bluprint-description {
-    max-height: 100px;
-
-    span {
-      cursor: pointer;
-      color: #14568F;
-      text-decoration: underline;
-      padding-left: 4px;
-    }
-  }
-
-  .Bluprint-body {
-    padding: 12px;
-  }
-
-  .Bluprint-footer {
-    .flex-display;
-    .justify-content(space-between);
-
-    padding: 0 12px 12px;
-  }
-}
 
 .Bluprint-gridAction {
   border: none;
