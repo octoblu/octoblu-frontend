@@ -346,7 +346,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'FlowController'
       })
       .state('material.flow-import', {
-        url: '/design/import/:flowTemplateId',
+        url: '/design/import/:bluprintId',
         templateUrl: '/pages/flow-import.html',
         controller: 'FlowImportController',
         controllerAs: 'controller'
@@ -373,10 +373,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/bluprints/bluprints.html',
         controller: 'BluprintsController'
       })
-      .state('material.bluprint', {
+      .state('material.bluprintDetail', {
         url: '/bluprints/:bluprintId',
-        templateUrl: '/pages/bluprints/bluprints.html',
-        controller: 'BluprintsController'
+        templateUrl: '/pages/bluprints/bluprint-detail.html',
+        controller: 'BluprintDetailController',
+        controllerAs: 'controller'
       })
       .state('material.discover', {
         url: '/discover',
