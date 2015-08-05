@@ -10,7 +10,7 @@
       </md-button>
 
       <h2 class="BluToolbar-header">
-        Bluprint
+        Edit Bluprint
       </h2>
     </div>
 
@@ -77,7 +77,8 @@
         Public
         <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
       </md-switch>
-      <a class="import-bluprint--edit" ng-show="editMode" ng-click="editMode = false">Done</a>
+      <a class="import-bluprint--edit" ng-show="editMode" ng-click="controller.updateBluprintNow()">Save</a>
+      <a class="import-bluprint--edit" ng-show="editMode" ng-click="editMode = false">Cancel</a>
       <div class="import-bluprint--actions">
         <button class="BluButton import-bluprint--button"
                 ng-click="controller.import()"

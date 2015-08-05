@@ -376,7 +376,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.bluprintDetail', {
         url: '/bluprints/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
-        controller: 'FlowImportController'
+        controller: 'BluprintDetailController',
+        controllerAs: 'controller'
       })
       .state('material.discover', {
         url: '/discover',
