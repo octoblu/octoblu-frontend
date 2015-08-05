@@ -1,4 +1,4 @@
-<div class="Bluprint-gridItem">
+<div>
   <header class="Bluprint-header">
     <a
       ui-sref="material.flow-import({flowTemplateId: bluprint.uuid})"
@@ -7,36 +7,11 @@
       class="Bluprint-name">
       {{bluprint.name}}
     </a>
-  </header>
 
-  <main class="Bluprint-body">
-    <p
-      ng-show="bluprint.description"
-      data-ng-bind="bluprint.description"
-      data-ellipsis
-      data-ellipsis-append="read more"
-      data-ellipsis-append-click="controller.goToBluprintDetail(bluprint)"
-      class="Bluprint-description Bluprint-description--tile">
-      {{bluprint.description}}
-    </p>
-    <span class="info Bluprint-author">
-      By: {{bluprint.ownerName}}
-    </span>
-  </main>
-
-  <footer class="Bluprint-footer">
-    <button
-      ng-click="controller.toggleLike(bluprint)"
-      ng-class="{liked: controller.liked(bluprint)}"
-      class="Bluprint-gridAction"
-      title="Like">
-      <i class="fa fa-lgx fa-star"></i> {{bluprint.likedBy.length}}
-    </button>
-
-    <span>
+    <div class="Bluprint-meta">
       <button
         ng-click="controller.importBluprint(bluprint.uuid)"
-        class="Bluprint-gridAction"
+        class="Bluprint-metaItem Bluprint-metaItem--button"
         title="Import Bluprint">
         <i class="fa fa-lgx fa-plus"></i>
       </button>
@@ -45,10 +20,28 @@
         clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)"
         clip-copy="bluprint.url"
         clip-click="controller.toastBluprintUrl(bluprint.url)"
-        class="Bluprint-gridAction"
+        class="Bluprint-metaItem Bluprint-metaItem--button"
         title="Copy URL">
         <i class="fa fa-lgx fa-copy"></i>
       </button>
+
+      <button
+        ng-click="controller.toggleLike(bluprint)"
+        ng-class="{liked: controller.liked(bluprint)}"
+        class="Bluprint-metaItem Bluprint-metaItem--button"
+        title="Like">
+        <i class="fa fa-lgx fa-star"></i> {{bluprint.likedBy.length}}
+      </button>
+    </div>
+  </header>
+
+  <p ng-show="bluprint.description" class="Bluprint-description">
+    {{bluprint.description}}
+  </p>
+
+  <footer class="Bluprint-footer">
+    <span class="Bluprint-author">
+      by {{bluprint.ownerName}}
     </span>
   </footer>
 </div>
