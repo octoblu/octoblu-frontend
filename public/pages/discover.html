@@ -16,7 +16,7 @@
         </md-select>
       </h2>
     </div>
-    <blu-search search-model="bluprintSearch" placeholder="Filter Shared Bluprints..."></blu-search>
+    <blu-search search-model="bluprintNameFilter" placeholder="Filter Shared Bluprints..."></blu-search>
 
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
@@ -27,12 +27,12 @@
   <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
 
   <random-robot
-    ng-show="(filteredBluprints.length == 0) && bluprintSearch"
-    title='There are no Bluprints for "{{bluprintSearch}}" filter.'>
+    ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+    title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
   </random-robot>
 
   <random-robot
-    ng-show="(filteredBluprints.length == 0) && !bluprintSearch"
+    ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
     title="There are no shared Bluprints.">
   </random-robot>
 
@@ -40,7 +40,7 @@
 
   <ul class="Bluprint-grid">
     <li
-      ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintSearch})"
+      ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintNameFilter})"
       ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
       ng-include="'/pages/bluprints/shared-bluprint-item.html'">
     </li>
