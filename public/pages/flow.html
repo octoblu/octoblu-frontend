@@ -9,23 +9,20 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
       <md-select
-        class="flow-toolbar--dropdown truncate"
+        class="flow-toolbar--dropdown BluToolbar-select"
         ng-model="cats"
         placeholder="{{activeFlow.name}}"
         aria-label="Select Flow"
         style="max-height: {{flowSelectorHeight}}px;">
-        <md-option ui-sref="material.flow({flowId: flow.flowId})" class="flow-toolbar--dropdown-item truncate" ng-repeat="flow in flows | orderBy: 'name'">
+        <md-option ui-sref="material.flow({flowId: flow.flowId})" class="flow-toolbar--dropdown-item" ng-repeat="flow in flows | orderBy: 'name'">
           <i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i>
-          <a class="flow-toolbar--flow-name">
+          <a class="flow-toolbar--flow-name"
+              data-ng-bind="flow.name"
+              data-ellipsis>
             {{flow.name}}
           </a>
         </md-option>
       </md-select>
-
-      <md-button ng-click="addFlow()">
-      <i class="fa fa-plus"></i>
-        New Flow
-      </md-button>
     </div>
 
     <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
@@ -33,6 +30,11 @@
       flow-nodes="activeFlow.nodes"
       selected-flow-node="activeFlow.selectedFlowNode"></flow-editor-omnibox>
     <div class="BluToolbar-align BluToolbar-align--right">
+      <md-button class="flow-toolbar--add-flow" ng-click="addFlow()">
+        <md-tooltip>New Flow</md-tooltip>
+        <!-- <i class="fa fa-plus fa-lg"></i> -->
+          New Flow
+      </md-button>
       <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
         <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
           <md-tooltip>Undo</md-tooltip>

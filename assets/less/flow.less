@@ -755,12 +755,11 @@ ul.flow-browser-debug {
 }
 
 .flow-toolbar--dropdown {
-  width: 200px !important;
+  max-width: 250px !important;
   .md-select-label {
+    border: none;
     text-decoration: none;
     color: #FFF !important;
-
-    width: 200px;
 
     &:hover,
     &:focus {
@@ -776,6 +775,7 @@ ul.flow-browser-debug {
 .flow-toolbar--flow-name {
   text-decoration: none;
   color: #333;
+  max-width: 250px;
 
   &:hover,
   &:focus {
@@ -784,8 +784,13 @@ ul.flow-browser-debug {
 }
 
 .flow-toolbar--dropdown-item {
+  max-width: 250px;
   &:hover,
   &:focus {
     background-color: darken(#FFF, 10%);;
   }
+}
+
+.flow-toolbar--add-flow {
+  margin-right: 10px !important;
 }
