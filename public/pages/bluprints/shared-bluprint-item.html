@@ -37,10 +37,11 @@
     <div class="Bluprint-meta">
       <button
         ng-click="controller.toggleLike(bluprint)"
-        ng-class="{liked: controller.liked(bluprint)}"
         class="Bluprint-metaItem Bluprint-metaItem--button"
         title="Like">
-        <i class="fa fa-lgx fa-star"></i> {{bluprint.likedBy.length}}
+        <i ng-show="controller.liked(bluprint)" class="fa fa-lgx fa-star"></i>
+        <i ng-hide="controller.liked(bluprint)" class="fa fa-lgx fa-star-o"></i>
+        {{bluprint.likedBy.length}}
       </button>
     </div>
   </header>

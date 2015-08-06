@@ -2,10 +2,11 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
   class SharedBluprintsController
     constructor: () ->
       @luckyRobotNumber = Math.floor(1 + Math.random() * 9)
+      @sortLikedBy = {}
       $scope.isLoading = true;
-      $scope.sortMethod = '-likedBy.length'
+      $scope.sortMethod = '-sortLikedBy.length'
       $scope.sortMethods =
-        '-likedBy.length': 'Top Liked'
+        '-sortLikedBy.length': 'Top Liked'
         'name': 'Alphabetical (ascending)'
         '-name': 'Alphabetical (descending)'
       @collectionName = $stateParams.collection
@@ -18,6 +19,9 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       BluprintService.getPublicBluprints(@collectionName)
         .then (bluprints) =>
           @bluprints = bluprints
+          _.each @bluprints, (bluprint) =>
+            @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
+            bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
           $scope.isLoading = false;
 
     goToBluprintDetail: (bluprint) =>
