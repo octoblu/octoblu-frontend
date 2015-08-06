@@ -40,6 +40,11 @@
 
     <div class="Bluprint-meta">
       <span ng-show="bluprint.public" class="Bluprint-metaItem">
+        <i class="fa fa-star"></i>
+        {{bluprint.likedBy.length}}
+      </span>
+
+      <span ng-show="bluprint.public" class="Bluprint-metaItem">
         <i class="fa fa-globe"></i>
         Public
       </span>
@@ -47,11 +52,6 @@
       <span ng-hide="bluprint.public" class="Bluprint-metaItem">
         <i class="fa fa-lock"></i>
         Private
-      </span>
-
-      <span ng-show="bluprint.public" class="Bluprint-metaItem">
-        <i class="fa fa-star"></i>
-        {{bluprint.likedBy.length}}
       </span>
     </div>
   </header>
