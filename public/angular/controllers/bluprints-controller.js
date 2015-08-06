@@ -40,6 +40,7 @@ angular.module('octobluApp')
   $scope.toggleBluprint = function(bluprint) {
     if (!bluprint.expanded){
         $scope.selectedBluprint = bluprint;
+        $scope.bluprintDraft = _.cloneDeep(bluprint);
       }
     bluprint.expanded = !bluprint.expanded;
   };
@@ -57,9 +58,9 @@ angular.module('octobluApp')
   };
 
  $scope.toggleExpandedBluprints = function(selectedBluprint){
-   if(!selectedBluprint){
-     return;
-   }
+    if(!selectedBluprint){
+       return;
+    }
     _.each($scope.bluprints, function(bluprint){
       if(selectedBluprint.uuid !== bluprint.uuid){
         bluprint.expanded = false;
@@ -67,22 +68,17 @@ angular.module('octobluApp')
     });
  };
 
-  var immediateUpdateBluprint = function(newBluprint, oldBluprint){
-    if (!newBluprint || !oldBluprint) {
+  $scope.updateBluprint = function(){
+    if ($scope.selectedBluprint === $scope.bluprintDraft) {
       return;
     }
-    $scope.toggleExpandedBluprints(newBluprint);
-    BluprintService.update(newBluprint.uuid, newBluprint);
+    $scope.toggleBluprint($scope.selectedBluprint);
+    BluprintService.update($scope.selectedBluprint.uuid, $scope.bluprintDraft);
   };
-
-
-  var updateBluprint = _.debounce(immediateUpdateBluprint, 500);
 
   var collapseBluprints = $scope.toggleExpandedBluprints;
 
   $scope.$watch('selectedBluprint', collapseBluprints, true);
-
-  $scope.$watch('selectedBluprint', updateBluprint, true);
 
   $scope.refreshBluprints();
 });

@@ -65,7 +65,7 @@
     {{bluprint.description || 'No description'}}
     <span class="Bluprint-edit">
       -
-      <a class="Bluprint-editLink" ng-click="toggleBluprint(bluprint)">
+      <a class="Bluprint-editLink" ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid, editMode: true})">
         Edit
       </a>
     </span>

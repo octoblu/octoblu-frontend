@@ -2,16 +2,16 @@
   <div class="properties-editor">
     <md-input-container class="name">
       <label>Name</label>
-      <input required ng-model="bluprint.name">
+      <input required ng-model="bluprintDraft.name">
     </md-input-container>
 
     <md-input-container class="description">
       <label>Description</label>
-      <input ng-model="bluprint.description">
+      <input ng-model="bluprintDraft.description">
     </md-input-container>
 
     <md-switch
-      ng-model="bluprint.public"
+      ng-model="bluprintDraft.public"
       class="make-public Bluprint-edit-field"
       aria-label="Make Bluprint Public">
       Public
@@ -21,10 +21,14 @@
 </div>
 
 <footer class="Bluprint-footer">
-  <button
+  <!-- <button
     ng-click="toggleBluprint(bluprint)"
     class="BluButton BluButton--primary Bluprint-cancel-button"
     title="Done">
     Done
-  </button>
+  </button> -->
+  <div class="import-bluprint--actions">
+    <a class="BluButton import-bluprint--save-button" ng-click="updateBluprint()">Save</a>
+    <a class="BluButton import-bluprint--cancel-button" ng-click="toggleBluprint(bluprint)">Cancel</a>
+  </div>
 </footer>

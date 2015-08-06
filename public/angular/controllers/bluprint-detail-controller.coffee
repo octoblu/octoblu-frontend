@@ -3,12 +3,15 @@ class BluprintDetailController
     @state = $state
     @stateParams = $stateParams
     @scope = $scope
+    # @scope.editMode = @stateParms.editMode || false
     @BluprintService = BluprintService
 
     @BluprintService.getBluprint(@stateParams.bluprintId)
       .then (bluprint) =>
         @scope.bluprint = bluprint
         @scope.bluprint.public = false unless bluprint.public?
+        @scope.editMode = @stateParams.editMode || false
+        console.log 'edit mode: ', @scope.editMode
 
 
   updateBluprintNow: () =>
