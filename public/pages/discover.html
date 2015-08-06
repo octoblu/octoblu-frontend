@@ -9,12 +9,12 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
-      <h2 class="BluToolbar-header">
+      <div class="BluToolbar-header">
         <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
           <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
           <md-option ng-value="'name'">Alphabetical</md-option>
         </md-select>
-      </h2>
+      </div>
     </div>
     <blu-search search-model="bluprintNameFilter" placeholder="Filter Shared Bluprints..."></blu-search>
 

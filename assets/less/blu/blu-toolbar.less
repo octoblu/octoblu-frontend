@@ -16,6 +16,21 @@ md-toolbar .BluToolbar-menuButton {
 
 .BluToolbar-header {
   font-size: 20px;
+
+  &--current {
+    cursor: default;
+  }
+
+  &--icon {
+    padding: 0 6px;
+    color: rgba(255, 255, 255, 0.5);;
+  }
+
+  &--link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .BluToolbar-align {
@@ -38,8 +53,6 @@ md-toolbar .BluToolbar-menuButton {
 
 
 md-select.BluToolbar-select {
-  padding: 0;
-
   &:not([disabled]):focus .md-select-label {
     color: #FFF;
     border: none;
