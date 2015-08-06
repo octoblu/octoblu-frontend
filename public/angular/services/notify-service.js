@@ -8,16 +8,16 @@ angular.module('octobluApp')
       $mdToast.show(toast);
       window.$mdToast = $mdToast;
     },
-    alert: function(msg) {
-      msg.ok = msg.ok || 'ok';
-      var dialog = $mdDialog.alert(msg);
+    alert: function(options) {
+      options.ok = options.ok || 'ok';
+      var dialog = $mdDialog.alert(options);
       $mdDialog.show(dialog);
     },
-    confirm: function(msg){
-      msg = msg || {};
-      msg.ok = 'ok';
-      msg.cancel = 'cancel';
-      var dialog = $mdDialog.confirm(msg);
+    confirm: function(options){
+      options = options || {};
+      options.ok = 'ok';
+      options.cancel = 'cancel';
+      var dialog = $mdDialog.confirm(options);
       return $mdDialog.show(dialog);
     }
   };
