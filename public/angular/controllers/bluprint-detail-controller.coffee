@@ -11,7 +11,6 @@ class BluprintDetailController
         @scope.bluprint = bluprint
         @scope.bluprint.public = false unless bluprint.public?
         @scope.editMode = @stateParams.editMode || false
-        console.log 'edit mode: ', @scope.editMode
 
 
   updateBluprintNow: () =>
