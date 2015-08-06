@@ -43,7 +43,7 @@
     background: #F9F9F9;
   }
 
-  &:hover .Bluprint-meta {
+  &:hover .Bluprint-metaItem {
     opacity: 1;
   }
 }
@@ -51,7 +51,7 @@
 .Bluprint-header {
   .flex-display;
   .flex-direction(row);
-  .justify-content(space-between);
+  .justify-content(flex-start);
   .align-items(center);
 
   margin: 0 0 6px;
@@ -74,10 +74,10 @@
 }
 
 .Bluprint-meta {
-  opacity: 0;
+  .flex-display;
+  .flex(1);
+  .justify-content(flex-end);
   color: #555;
-
-  &:hover { opacity: 1; }
 }
 
 .Bluprint-metaItem {
@@ -93,12 +93,9 @@
     min-width: 24px;
 
     background: transparent;
-
-    // &:hover {
-    //   color: #222;
-    // }
   }
 }
+
 
 .Bluprint-description {
   margin-bottom: 6px;

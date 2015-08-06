@@ -1,30 +1,40 @@
 <div>
   <header class="Bluprint-header">
-    <a
-      ui-sref="material.flow-import({bluprintId: bluprint.uuid})"
-      data-ng-bind="bluprint.name"
-      data-ellipsis
-      class="Bluprint-name">
-      {{bluprint.name}}
-    </a>
+    <h3 class="Bluprint-name">
+      <a
+        ui-sref="material.flow-import({bluprintId: bluprint.uuid})"
+        data-ng-bind="bluprint.name"
+        data-ellipsis
+        class="Bluprint-name-link">
+        {{bluprint.name}}
+      </a>
+
+      <md-menu class="Bluprint-menu">
+        <button
+          ng-click="$mdOpenMenu()"
+          class="BluButton Bluprint-menu-button"
+          aria-label="Show Options">
+          <i class="fa fa-caret-down"></i>
+        </button>
+
+        <md-menu-content width="2">
+          <md-menu-item>
+            <md-button ng-click="controller.importBluprint(bluprint.uuid)">Import</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button
+              ng-click="controller"
+              clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)"
+              clip-copy="bluprint.url"
+              clip-click="controller.toastBluprintUrl(bluprint.url)">
+              Copy URL
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </h3>
 
     <div class="Bluprint-meta">
-      <button
-        ng-click="controller.importBluprint(bluprint.uuid)"
-        class="Bluprint-metaItem Bluprint-metaItem--button"
-        title="Import Bluprint">
-        <i class="fa fa-lgx fa-plus"></i>
-      </button>
-
-      <button
-        clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)"
-        clip-copy="bluprint.url"
-        clip-click="controller.toastBluprintUrl(bluprint.url)"
-        class="Bluprint-metaItem Bluprint-metaItem--button"
-        title="Copy URL">
-        <i class="fa fa-lgx fa-copy"></i>
-      </button>
-
       <button
         ng-click="controller.toggleLike(bluprint)"
         ng-class="{liked: controller.liked(bluprint)}"
