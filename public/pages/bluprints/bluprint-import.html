@@ -21,43 +21,46 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
-  <div class="Bluprint-list">
-    <div class="Bluprint-listItem">
-      <header class="Bluprint-header">
-        <h3 class="Bluprint-name">
-            {{bluprint.name}}
-        </h3>
-        <div class="Bluprint-meta import-bluprint--stats">
-          <span ng-show="bluprint.public" class="Bluprint-metaItem">
-            <i class="fa fa-globe"></i>
-            Public
-          </span>
-          <span ng-hide="bluprint.public" class="Bluprint-metaItem">
-            <i class="fa fa-lock"></i>
-            Private
-          </span>
-          <span ng-show="bluprint.public" class="Bluprint-metaItem">
-            <i class="fa fa-star"></i>
-            {{bluprint.likedBy.length}}
-          </span>
+  <div class="Bluprints-container">
+
+    <div class="Bluprint-list">
+      <div class="Bluprint-listItem">
+        <header class="Bluprint-header">
+          <h3 class="Bluprint-name">
+              {{bluprint.name}}
+          </h3>
+          <div class="Bluprint-meta import-bluprint--stats">
+            <span ng-show="bluprint.public" class="Bluprint-metaItem">
+              <i class="fa fa-globe"></i>
+              Public
+            </span>
+            <span ng-hide="bluprint.public" class="Bluprint-metaItem">
+              <i class="fa fa-lock"></i>
+              Private
+            </span>
+            <span ng-show="bluprint.public" class="Bluprint-metaItem">
+              <i class="fa fa-star"></i>
+              {{bluprint.likedBy.length}}
+            </span>
+          </div>
+        </header>
+        <div class="import-bluprint--description">
+          <p class="Bluprint-description">
+            {{bluprint.description || 'No description'}}
+          </p>
         </div>
-      </header>
-      <div class="import-bluprint--description">
-        <p class="Bluprint-description">
-          {{bluprint.description || 'No description'}}
-        </p>
-      </div>
-      <div class="import-bluprint--actions">
-        <button
-          class="BluButton import-bluprint--import-button"
-          ng-click="controller.import()"
-          title="Import"
-          aria-label="import"
-          ng-disabled="importing">IMPORT
-        </button>
-      </div>
-      <div class="flow-image-but-really-the-flow">
-        <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
+        <div class="import-bluprint--actions">
+          <button
+            class="BluButton import-bluprint--import-button"
+            ng-click="controller.import()"
+            title="Import"
+            aria-label="import"
+            ng-disabled="importing">IMPORT
+          </button>
+        </div>
+        <div class="flow-image-but-really-the-flow">
+          <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
+        </div>
       </div>
     </div>
   </div>

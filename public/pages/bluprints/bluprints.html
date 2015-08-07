@@ -24,26 +24,30 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
-  <random-robot
-    ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
-    title="You have no shared Bluprints.">
-  </random-robot>
+  <div class="Bluprints-container">
+
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
+      title="You have no shared Bluprints.">
+    </random-robot>
 
 
-  <random-robot
-    ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
-    title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
-  </random-robot>
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+      title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
+    </random-robot>
 
-  <da-loading loading="isLoading"></da-loading>
+    <da-loading loading="isLoading"></da-loading>
 
-  <ul class="Bluprint-list">
-    <li
-      ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
-      ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
-      class="Bluprint-listItem">
-      <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
-    </li>
-  </ul>
+    <ul class="Bluprint-list">
+      <li
+        ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
+        ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
+        class="Bluprint-listItem">
+        <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
+      </li>
+    </ul>
+
+  </div>
 
 </md-content>

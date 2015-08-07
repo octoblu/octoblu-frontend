@@ -23,30 +23,36 @@
 </md-toolbar>
 
 <md-content class="Bluprints">
-  <h2 class="Bluprints-header">Discover Bluprints</h2>
-  <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
+  <div class="Bluprints-container">
+    <h2 class="Bluprints-header">Discover Bluprints</h2>
+    <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
 
-  <div class="BluAlert Bluprints-subHeader" ng-show="controller.collectionName">
-    Showing Bluprints for Tag: {{controller.collectionName}}
+    <p class="Bluprints-alert" ng-show="controller.collectionName">
+      Showing Bluprints tagged
+      <span class="BluPill">
+        {{controller.collectionName}}
+        <a ui-sref="material.discover" class="BluPill-deleteButton">&#215;</a>
+      </span>
+    </p>
+
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+      title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
+    </random-robot>
+
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
+      title="There are no shared Bluprints.">
+    </random-robot>
+
+    <da-loading loading="isLoading"></da-loading>
+
+    <div class="Bluprint-list">
+      <div
+        ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintNameFilter})"
+        class="Bluprint-listItem"
+        ng-include="'/pages/bluprints/shared-bluprint-item.html'">
+      </div>
+    </div>
   </div>
-
-  <random-robot
-    ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
-    title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
-  </random-robot>
-
-  <random-robot
-    ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
-    title="There are no shared Bluprints.">
-  </random-robot>
-
-  <da-loading loading="isLoading"></da-loading>
-
-  <ul class="Bluprint-list">
-    <li
-      ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod | filter: {name:bluprintNameFilter})"
-      class="Bluprint-listItem"
-      ng-include="'/pages/bluprints/shared-bluprint-item.html'">
-    </li>
-  </ul>
 </md-content>
