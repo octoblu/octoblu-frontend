@@ -46,9 +46,9 @@
     {{bluprint.description}}
   </p>
 
-  <ul class="Bluprint-tags" ng-show="bluprint.tags.length">
-    <li class="Bluprint-tagItem" ng-repeat="tag in bluprint.tags">{{tag}}</li>
-  </ul>
+  <div class="Bluprint-tags" ng-show="bluprint.tags.length">
+    <a ui-sref="material.discovercollection({collection: tag})" class="Bluprint-tagItem" ng-repeat="tag in bluprint.tags">{{tag}}</a>
+  </div>
 
   <footer class="Bluprint-footer">
     <span class="Bluprint-author">
