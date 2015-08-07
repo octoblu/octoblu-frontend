@@ -139,6 +139,7 @@ describe 'FlowController', ->
       @q = $q
       @deleteFlow  = sinon.spy @deleteFlow
       @getAllFlows = sinon.spy @getAllFlows
+      @needsPermissions = sinon.spy @needsPermissions
 
     deleteFlow: =>
       @deleteFlow.deferred = @q.defer()
@@ -147,6 +148,10 @@ describe 'FlowController', ->
     getAllFlows: =>
       @getAllFlows.deferred = @q.defer()
       @getAllFlows.deferred.promise
+
+    needsPermissions: =>
+      @needsPermissions.deferred = @q.defer()
+      @needsPermissions.deferred.promise
 
     setActiveFlow: =>
 
