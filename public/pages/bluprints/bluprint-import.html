@@ -48,10 +48,13 @@
         </p>
       </div>
       <div class="import-bluprint--actions">
-        <button class="BluButton import-bluprint--import-button"
-                ng-click="controller.import()"
-                title="Import"
-                aria-label="import">IMPORT</button>
+        <button
+          class="BluButton import-bluprint--import-button"
+          ng-click="controller.import()"
+          title="Import"
+          aria-label="import"
+          ng-disabled="importing">IMPORT
+        </button>
       </div>
       <div class="flow-image-but-really-the-flow">
         <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>

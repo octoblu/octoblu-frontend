@@ -20,8 +20,8 @@ class BluprintDetailController
     @BluprintService.importBluprint(@stateParams.bluprintId)
       .then (flow) =>
         @scope.importing = true
-        _.delay =>
+        _.delay ( =>
           @state.go('material.flow', {flowId: flow.flowId})
-        , 1000
+        ), 1000
 
 angular.module('octobluApp').controller 'BluprintDetailController', BluprintDetailController

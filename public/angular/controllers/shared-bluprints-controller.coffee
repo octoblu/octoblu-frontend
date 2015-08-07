@@ -24,10 +24,6 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
             bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
           $scope.isLoading = false;
 
-    goToBluprintDetail: (bluprint) =>
-      console.log 'BOOM!'
-      $state.go 'material.flow-import', {flowTemplateId: bluprint.uuid}
-
     importBluprint: (bluprintId) =>
       BluprintService.importBluprint(bluprintId)
         .then (flow) =>
