@@ -1,4 +1,4 @@
-angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
+angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdDialog, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
   class SharedBluprintsController
     constructor: () ->
       @luckyRobotNumber = Math.floor(1 + Math.random() * 9)
