@@ -32,9 +32,9 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       BluprintService.importBluprint(bluprintId)
         .then (flow) =>
           $scope.importing = true;
-          _.delay =>
+          _.delay ( ->
             $state.go 'material.flow', flowId: flow.flowId
-            , 1000
+          ), 1000
 
     liked: (bluprint) =>
       _.includes bluprint.likedBy, @userUuid

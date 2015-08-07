@@ -4,6 +4,7 @@ class BluprintDetailController
     @stateParams = $stateParams
     @scope = $scope
     @scope.editMode = @stateParams.editMode
+    @scope.importing = false
     @BluprintService = BluprintService
 
     @BluprintService.getBluprint(@stateParams.bluprintId)
