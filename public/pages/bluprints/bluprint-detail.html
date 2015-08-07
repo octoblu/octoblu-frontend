@@ -83,11 +83,17 @@
 
         <div ng-hide="editMode" class="import-bluprint--actions">
           <button
+            ng-disabled="importing"
             class="BluButton import-bluprint--import-button"
             ng-click="controller.import()"
             title="Import"
-            aria-label="import"
-            ng-disabled="importing">IMPORT
+            aria-label="Import">
+
+            <i
+              ng-show="importing"
+              class="fa fa-spinner fa-spin BluButton-icon"></i>
+
+            Import
           </button>
         </div>
 

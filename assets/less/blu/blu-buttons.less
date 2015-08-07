@@ -18,6 +18,10 @@
   }
 }
 
+.BluButton-icon {
+  padding-right: 5px;
+}
+
 
 .BluButton--primary(@bgColor: #14568F) {
   border: 1px solid @bgColor;
@@ -29,6 +33,17 @@
   &:focus {
     border-color: darken(@bgColor, 9%);
     background-color: darken(@bgColor, 9%);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.7;
+
+    &:hover,
+    &:focus {
+      border-color: @bgColor;
+      background-color: @bgColor;
+    }
   }
 }
 

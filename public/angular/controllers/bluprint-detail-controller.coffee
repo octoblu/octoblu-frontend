@@ -17,9 +17,9 @@ class BluprintDetailController
     @BluprintService.update @scope.bluprint.uuid, @scope.bluprint
 
   import: =>
+    @scope.importing = true
     @BluprintService.importBluprint(@stateParams.bluprintId)
       .then (flow) =>
-        @scope.importing = true
         _.delay ( =>
           @state.go('material.flow', {flowId: flow.flowId})
         ), 1000
