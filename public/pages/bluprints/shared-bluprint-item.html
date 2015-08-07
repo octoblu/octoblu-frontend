@@ -1,11 +1,7 @@
 <div>
   <header class="Bluprint-header">
     <h3 class="Bluprint-name">
-      <a
-        ui-sref="material.flow-import({bluprintId: bluprint.uuid})"
-        data-ng-bind="bluprint.name"
-        data-ellipsis
-        class="Bluprint-name-link">
+      <a class="Bluprint-name-link" ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid})">
         {{bluprint.name}}
       </a>
 
@@ -53,7 +49,7 @@
   <ul class="Bluprint-tags" ng-show="bluprint.tags.length">
     <li class="Bluprint-tagItem" ng-repeat="tag in bluprint.tags">{{tag}}</li>
   </ul>
-  
+
   <footer class="Bluprint-footer">
     <span class="Bluprint-author">
       by {{bluprint.ownerName}}
