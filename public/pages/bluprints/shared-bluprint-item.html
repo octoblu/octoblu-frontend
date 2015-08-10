@@ -37,7 +37,7 @@
         title="Like">
         <i ng-show="controller.liked(bluprint)" class="fa fa-lgx fa-star"></i>
         <i ng-hide="controller.liked(bluprint)" class="fa fa-lgx fa-star-o"></i>
-        {{bluprint.likedBy.length}}
+        {{bluprint.likedBy.length || 0}}
       </button>
     </div>
   </header>
