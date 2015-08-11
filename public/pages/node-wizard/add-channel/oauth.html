@@ -1,6 +1,6 @@
 <da-loading loading="redirectLoading"></da-loading>
 
-<div ng-if="!redirectLoading">
+<div ng-hide="redirectLoading">
   <p class="node-wizard__copy">Activating this thing will redirect you to authorize with a third party.</p>
   <md-button ng-click="activate()" class="md-raised md-primary node-wizard__button">
     Activate Thing
