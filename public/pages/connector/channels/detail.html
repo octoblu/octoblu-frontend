@@ -9,26 +9,18 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
-      <h2 class="BluToolbar-header">
-        Thing
-      </h2>
+      <div class="BluToolbar-header">
+        <a ui-sref="material.configure" class="BluToolbar-header--link">Connected Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Manage {{channel.name}}</span>
+      </div>
+
     </div>
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
 </md-toolbar>
 
-<md-content class="interior__wrapper" autoscroll="false">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="breadcrumbs">
-        <a ui-sref="material.configure" class="breadcrumb-link">Connected Things</a>
-        <i class="fa fa-angle-double-right fa-lg"></i>
-        <span class="breadcrumb-link current">Manage {{channel.name}}</span>
-      </div>
-    </div>
-  </header>
-</md-content>
-<md-content class="interior__wrapper">
+<md-content class="interior__wrapper node-wizard">
   <main class="node-wizard__wrapper">
     <div class="node-wizard-logo-container">
       <img src="{{channel.logo}}">
