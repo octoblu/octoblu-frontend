@@ -62,7 +62,7 @@
         <div class="import-bluprint--description">
           <md-input-container class="name" ng-show="editMode">
             <label>Name</label>
-            <input required ng-model="bluprint.name">
+            <input required ng-model="bluprintEdit.name">
           </md-input-container>
 
           <p class="Bluprint-description" ng-hide="editMode">
@@ -77,12 +77,12 @@
 
           <md-input-container class="name" ng-show="editMode">
             <label>Description</label>
-            <input required ng-model="bluprint.description">
+            <input required ng-model="bluprintEdit.description">
           </md-input-container>
         </div>
 
         <md-switch
-          ng-model="bluprint.public"
+          ng-model="bluprintEdit.public"
           class="make-public Bluprint-edit-field"
           aria-label="Make Bluprint Public"
           ng-show="editMode">
