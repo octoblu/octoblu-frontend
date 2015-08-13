@@ -12,6 +12,9 @@ class OAuthProviderController
     .finally =>
       $scope.loading = false
 
+    AuthService.getCurrentUser().then (user) =>
+      $scope.currentUser = user;
+
     $scope.authorize = @authorize
 
   authorize: =>
