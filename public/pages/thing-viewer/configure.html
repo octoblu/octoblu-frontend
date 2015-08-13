@@ -9,8 +9,9 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
-      <h2 class="BluToolbar-header">
-        Connected Things
+      <h2 class="BluToolbar-header tabs">
+        <a ui-sref="material.things" class="tab-link">Things</a>
+        <a ui-sref="material.configure" class="tab-link is-selected">Connected Things</a>
       </h2>
     </div>
 
@@ -20,15 +21,6 @@
 </md-toolbar>
 
 <md-content class="interior__wrapper" autoscroll="false">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="tabs">
-        <a ui-sref="material.nodewizard.addnode" class="tab-link">Things</a>
-        <a ui-sref="material.configure" class="tab-link is-selected">Connected Things</a>
-      </div>
-    </div>
-  </header>
-
   <da-loading loading="loadingConnectedThings"></da-loading>
 
   <random-robot
