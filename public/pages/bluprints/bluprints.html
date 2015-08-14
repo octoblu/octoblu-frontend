@@ -42,7 +42,6 @@
     <ul class="Bluprint-list">
       <li
         ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
-        ng-class="{'Bluprint-listItem--isExpanded': bluprint.expanded }"
         class="Bluprint-listItem">
         <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
       </li>
