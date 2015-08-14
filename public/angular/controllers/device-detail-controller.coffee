@@ -1,4 +1,3 @@
-
 class DeviceDetailController
   constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
