@@ -8,7 +8,6 @@ class BluprintDetailController
     @stateParams = $stateParams
     @BluprintService = BluprintService
 
-
     @scope.importing = false
     @scope.editMode = @stateParams.editMode
 
@@ -31,7 +30,6 @@ class BluprintDetailController
       then @refreshBluprint
 
   import: =>
-    console.log "in heerreee"
     @scope.importing = true
     @BluprintService.importBluprint(@stateParams.bluprintId).
       then (flow) =>

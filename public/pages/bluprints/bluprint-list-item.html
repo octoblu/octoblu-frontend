@@ -54,12 +54,7 @@
     </div>
   </header>
 
-  <div
-    ng-if="bluprint.expanded"
-    ng-include="'/pages/bluprints/bluprint-editor.html'">
-  </div>
-
-  <p ng-if="!bluprint.expanded" class="Bluprint-description">
+  <p class="Bluprint-description">
     {{bluprint.description || 'No description'}}
     <span class="Bluprint-edit">
       -

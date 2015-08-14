@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('BluprintsController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, BluprintService, UrlService, OCTOBLU_ICON_URL) {
-  $scope.OCTOBLU_ICON_URL = OCTOBLU_ICON_URL;
+.controller('BluprintsController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, BluprintService, UrlService) {
+
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){
     BluprintService.getAllBluprints().then(function(bluprints) {
@@ -37,14 +37,6 @@ angular.module('octobluApp')
     BluprintService.update(bluprint.uuid, bluprint);
   }
 
-  $scope.toggleBluprint = function(bluprint) {
-    if (!bluprint.expanded){
-        $scope.selectedBluprint = bluprint;
-        $scope.bluprintDraft = _.cloneDeep(bluprint);
-      }
-    bluprint.expanded = !bluprint.expanded;
-  };
-
   $scope.getBluprintImportUrl = function(bluprintId) {
     return UrlService.withNewPath('/bluprints/import/' + bluprintId);
   }
@@ -63,28 +55,6 @@ angular.module('octobluApp')
     });
   };
 
- $scope.toggleExpandedBluprints = function(selectedBluprint){
-    if(!selectedBluprint){
-       return;
-    }
-    _.each($scope.bluprints, function(bluprint){
-      if(selectedBluprint.uuid !== bluprint.uuid){
-        bluprint.expanded = false;
-      }
-    });
- };
-
-  $scope.updateBluprint = function(){
-    if ($scope.selectedBluprint === $scope.bluprintDraft) {
-      return;
-    }
-    $scope.toggleBluprint($scope.selectedBluprint);
-    BluprintService.update($scope.selectedBluprint.uuid, $scope.bluprintDraft);
-  };
-
-  var collapseBluprints = $scope.toggleExpandedBluprints;
-
-  $scope.$watch('selectedBluprint', collapseBluprints, true);
 
   $scope.refreshBluprints();
 });
