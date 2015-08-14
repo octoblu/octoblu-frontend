@@ -547,7 +547,7 @@ angular.module('octobluApp')
       var linkElement = linkElements[linkId] =
         FlowLinkRenderer.render(snap, link, nodeMap, loc, linkElements[linkId]);
       if (!linkElement) {
-        console.log('unable to create link:',link);
+        // console.log('unable to create link:',link);
         //flow.links = _.without(flow.links,link);
         return;
       }
