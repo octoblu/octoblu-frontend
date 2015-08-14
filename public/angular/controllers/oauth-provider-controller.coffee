@@ -1,5 +1,5 @@
 class OAuthProviderController
-  constructor: ($scope, $stateParams, $window, OAUTH_PROVIDER, MeshbluDeviceService, ProfileService) ->
+  constructor: ($scope, $stateParams, $window, OAUTH_PROVIDER, MeshbluDeviceService, ProfileService, AuthService) ->
     @window = $window
     @ProfileService = ProfileService
     @oauthUUID = $stateParams.uuid
@@ -11,6 +11,9 @@ class OAuthProviderController
       $scope.oauthDevice = oauthDevice
     .finally =>
       $scope.loading = false
+
+    AuthService.getCurrentUser().then (user) =>
+      $scope.currentUser = user
 
     $scope.authorize = @authorize
 

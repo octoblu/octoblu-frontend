@@ -89,11 +89,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + $location.url();
+              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
             }
           }
           if (response.status === 403) {
-            return $window.location = '/profile/new?callbackUrl=' + $location.url();
+            return $window.location = '/profile/new?callbackUrl=' + encodeURIComponent($location.url());
           }
           if (response.status === 502) {
             if($window.location.pathname !== '/error') {
@@ -378,6 +378,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.bluprintImport', {
         url: '/bluprints/import/:bluprintId',
+        templateUrl: '/pages/bluprints/bluprint-import.html',
+        params: {
+          editMode : null
+        },
+        controller: 'BluprintDetailController',
+        controllerAs: 'controller'
+      })
+      .state('material.oldbluprintImport', {
+        url: '/design/import/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-import.html',
         params: {
           editMode : null

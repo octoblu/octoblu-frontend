@@ -6,7 +6,7 @@ class LoginController
 
     callbackUrl = $location.search().callbackUrl
     callbackParams = ''
-    callbackParams = $.param callbackUrl: callbackUrl if callbackUrl?
+    callbackParams = $.param callbackUrl: encodeURIComponent(callbackUrl) if callbackUrl?
 
     loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session?#{callbackParams}"
 

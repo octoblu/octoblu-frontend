@@ -22,6 +22,24 @@
   padding-right: 5px;
 }
 
+.BluButton--cancel {
+  color: #AA2200;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: lighten(#AA2200, 10%);
+  }
+}
+
+.BluButton--save {
+  .BluButton--primary(#14568F) !important;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
 
 .BluButton--primary(@bgColor: #14568F) {
   border: 1px solid @bgColor;
@@ -60,4 +78,12 @@
     background-color: @bgColor;
     color: #FEFEFE;
   }
+}
+
+.BluButton--actions {
+  .flex-display;
+  .align-items(baseline);
+  // .justify-content(space-between);
+
+  margin: 15px 0;
 }

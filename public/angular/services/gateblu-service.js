@@ -1,25 +1,14 @@
 angular.module('octobluApp')
-.service('GatebluService', function (deviceService, $q, skynetService) {
+.service('GatebluService', function (deviceService, $q, $cookies, skynetService) {
   'use strict';
   var self = this;
 
   var registerDevice = function(options) {
-    return deviceService.registerDevice().then(function(device){
-      return deviceService.updateDevice(_.extend({}, options, device));
-    });
+    return deviceService.registerDevice(options);
   };
 
   var updateGateblu = function(gateblu){
-    return deviceService.updateDevice(gateblu).then(function(gateblu){
-      skynetService.getSkynetConnection().then(function(conn){
-        conn.message({
-          devices: gateblu.uuid,
-          topic: 'refresh',
-          payload: gateblu
-        });
-      });
-      return;
-    });
+    return deviceService.updateDevice(gateblu);
   };
 
   var waitForDeviceToHaveOptionsSchema = function(device){
@@ -47,9 +36,23 @@ angular.module('octobluApp')
 
   self.addDevice = function(gatebluId, nodeType){
     var device;
+    var userUuid = $cookies.meshblu_auth_uuid;
 
     return $q.all([
-      registerDevice({gateblu: gatebluId, type: nodeType.type, category: 'device', connector: nodeType.connector}),
+      registerDevice({
+        gateblu: gatebluId,
+        type: nodeType.type,
+        category: 'device',
+        connector: nodeType.connector,
+        sendWhitelist: [],
+        receiveWhitelist: [],
+        configureWhitelist: [gatebluId, userUuid],
+        discoverWhitelist: [gatebluId, userUuid],
+        sendAsWhitelist: [gatebluId],
+        receiveAsWhitelist: [gatebluId],
+        configureAsWhitelist: [],
+        discoverAsWhitelist: []
+      }),
       deviceService.getDeviceByUUID(gatebluId)
     ]).then(function(results){
       var gateblu;

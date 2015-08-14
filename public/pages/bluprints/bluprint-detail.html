@@ -27,21 +27,38 @@
       <div class="Bluprint-listItem">
         <header class="Bluprint-header">
           <h3 class="Bluprint-name">
-              {{bluprint.name}}
-              <md-menu class="Bluprint-menu">
-                <button
-                  ng-click="$mdOpenMenu()"
-                  class="BluButton Bluprint-menu-button"
-                  aria-label="Show Options">
-                  <i class="fa fa-caret-down"></i>
-                </button>
+            {{bluprint.name}}
+            <md-menu class="Bluprint-menu">
+              <button
+                ng-click="$mdOpenMenu()"
+                class="BluButton Bluprint-menu-button"
+                aria-label="Show Options">
+                <i class="fa fa-caret-down"></i>
+              </button>
 
-                <md-menu-content width="2">
-                  <md-menu-item>
-                    <md-button ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">Delete</md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
+              <md-menu-content width="2">
+                <md-menu-item>
+                  <md-button ng-click="controller.import()">Import</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button
+                    ng-click=""
+                    clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
+                    clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
+                    clip-click="controller.toastBluprintUrl(bluprint.uuid)">
+                    Copy URL
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-click="controller.togglePublic(bluprint)">
+                    Make {{bluprint.public ? 'Private' : 'Public'}}
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">Delete</md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
           </h3>
           <div class="Bluprint-meta import-bluprint--stats">
             <span ng-show="bluprint.public" class="Bluprint-metaItem">
@@ -90,12 +107,12 @@
           <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
         </md-switch>
 
-        <div class="import-bluprint--actions" ng-show="editMode">
-          <a class="BluButton import-bluprint--save-button" ng-click="controller.updateBluprintNow()">Save</a>
-          <a class="BluButton import-bluprint--cancel-button" ng-click="editMode = false">Cancel</a>
+        <div class="BluButton--actions" ng-show="editMode">
+          <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
+          <a class="BluButton BluButton--cancel" ng-click="editMode = false">Cancel</a>
         </div>
 
-        <div ng-hide="editMode" class="import-bluprint--actions">
+        <div ng-hide="editMode" class="BluButton--actions">
           <button
             ng-disabled="importing"
             class="BluButton import-bluprint--import-button"

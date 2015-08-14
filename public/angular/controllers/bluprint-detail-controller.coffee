@@ -1,14 +1,18 @@
 class BluprintDetailController
-  constructor: ($mdDialog, $state, $stateParams, $scope, BluprintService) ->
+  constructor: ($mdDialog, $mdToast, $state, $stateParams, $scope, BluprintService, UrlService) ->
     @state = $state
-    @stateParams = $stateParams
     @scope = $scope
-    @scope.editMode = @stateParams.editMode
-    @scope.importing = false
-    @BluprintService = BluprintService
+    @mdToast = $mdToast
     @mdDialog = $mdDialog
+    @UrlService = UrlService
+    @stateParams = $stateParams
+    @BluprintService = BluprintService
 
-    @refreshBluprint();
+
+    @scope.importing = false
+    @scope.editMode = @stateParams.editMode
+
+    @refreshBluprint()
 
     @scope.$watch 'editMode', () =>
       @scope.bluprintEdit = _.cloneDeep(@scope.bluprint)
@@ -26,12 +30,36 @@ class BluprintDetailController
       then @refreshBluprint
 
   import: =>
+    console.log "in heerreee"
     @scope.importing = true
     @BluprintService.importBluprint(@stateParams.bluprintId).
       then (flow) =>
         _.delay ( =>
           @state.go('material.flow', {flowId: flow.flowId})
         ), 1000
+
+  togglePublic: (bluprint) =>
+    bluprint.public = !bluprint.public
+    @BluprintService.update bluprint.uuid, bluprint
+
+
+  getBluprintImportUrl: (bluprintId) =>
+    @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
+
+  toastBluprintUrl: (bluprintId) =>
+    url = @getBluprintImportUrl bluprintId
+    message = "Copied #{url} to clipboard"
+    @mdToast.show @mdToast.simple(position: 'top right').content message
+
+  dialogBluprintUrl: (bluprintId) =>
+    url = @getBluprintImportUrl bluprintId
+    alert = @mdDialog.alert()
+      .content url
+      .title 'Share this bluprint'
+      .ok 'OKAY'
+    @mdDialog.show(alert).
+      finally =>
+        alert = undefined
 
   confirmdeleteBluprint: (bluprintId) =>
     confirm = @mdDialog.confirm()
