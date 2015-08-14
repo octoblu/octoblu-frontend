@@ -39,7 +39,7 @@ class ClaimNodeController
         @errorMessage = null
         @loading = false
         state = 'material.design'
-        state = 'material.nodewizard.addnode' if @device.type == 'device:gateblu'
+        state = 'material.things' if @device.type == 'device:gateblu'
         @state.go state
       .catch (error) =>
         @loading = false
