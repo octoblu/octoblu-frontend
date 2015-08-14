@@ -150,18 +150,18 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.configure', {
         url: '/configure',
         controller: 'ConfigureController',
-        templateUrl: '/pages/configure.html'
+        templateUrl: '/pages/thing-viewer/configure.html'
+      })
+      .state('material.things', {
+        url: '/things',
+        controller: 'addNodeController',
+        templateUrl: '/pages/thing-viewer/add-node.html'
       })
       .state('material.nodewizard', {
-        url: '/node-wizard',
+        url: '',
         abstract: true,
         controller: 'nodeWizardController',
         templateUrl: '/pages/node-wizard/index.html'
-      })
-      .state('material.nodewizard.addnode', {
-        url: '',
-        controller: 'addNodeController',
-        templateUrl: '/pages/node-wizard/add-node.html'
       })
       .state('material.add', {
         url: '/add/:nodeTypeId',
