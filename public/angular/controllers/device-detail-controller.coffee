@@ -1,4 +1,3 @@
-
 class DeviceDetailController
   constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
@@ -7,9 +6,11 @@ class DeviceDetailController
     @NotifyService = NotifyService
     @ThingService = ThingService
     @form = ['*']
+    @firstRun = true
 
     deviceService.getDeviceByUUID($stateParams.uuid, true).then (device) =>
       @device = device
+      @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow()
       @hideDelete = @deviceIsFlow()
       @options = @device.options
@@ -17,15 +18,9 @@ class DeviceDetailController
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
+      @scope.$watch 'controller.devices', @updatePermissionRows, true
+      @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
 
-    @scope.$watch 'controller.device',  @updateSchemas, true
-    @scope.$watch 'controller.device.name', @saveDevice
-    @scope.$watch 'controller.options',  @saveDevice, true
-
-    @scope.$watch 'controller.devices', @updatePermissionRows, true
-    @scope.$watch 'controller.device', @updateRows, true
-
-    @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
 
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
@@ -57,16 +52,24 @@ class DeviceDetailController
 
   saveDevice: =>
     return unless @device?
+    return if _.isEqual @deviceCopy, @device
     @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
     .then =>
+      @updateSchemas()
       @notifyDeviceUpdated()
+      @deviceCopy = _.cloneDeep @device
 
   notifyDeviceUpdatedImmediate: =>
     @NotifyService.notify 'Changes Saved'
 
   updateDeviceWithPermissions: =>
-    @ThingService.updateDeviceWithPermissionRows(@device, @permissionRows).then @notifyDeviceUpdated
+    @ThingService.updateDeviceWithPermissionRows(@device, @permissionRows)
+      .then =>
+        if @firstRun
+          @firstRun = false
+        else
+          @notifyDeviceUpdated()
 
   updatePermissionRows: =>
     @permissionRows = @ThingService.combineDeviceWithPeers @device, @devices
