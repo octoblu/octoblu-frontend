@@ -43,7 +43,6 @@ class BluprintDetailController
     bluprint.public = !bluprint.public
     @BluprintService.update bluprint.uuid, bluprint
 
-
   getBluprintImportUrl: (bluprintId) =>
     @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
 
