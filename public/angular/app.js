@@ -89,7 +89,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + $location.url();
+              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
             }
           }
           if (response.status === 403) {
