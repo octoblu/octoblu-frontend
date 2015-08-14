@@ -90,12 +90,12 @@
           <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
         </md-switch>
 
-        <div class="import-bluprint--actions" ng-show="editMode">
-          <a class="BluButton import-bluprint--save-button" ng-click="controller.updateBluprintNow()">Save</a>
-          <a class="BluButton import-bluprint--cancel-button" ng-click="editMode = false">Cancel</a>
+        <div class="BluButton--actions" ng-show="editMode">
+          <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
+          <a class="BluButton BluButton--cancel" ng-click="editMode = false">Cancel</a>
         </div>
 
-        <div ng-hide="editMode" class="import-bluprint--actions">
+        <div ng-hide="editMode" class="BluButton--actions">
           <button
             ng-disabled="importing"
             class="BluButton import-bluprint--import-button"
