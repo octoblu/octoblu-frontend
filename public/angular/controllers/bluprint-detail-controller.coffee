@@ -15,13 +15,14 @@ class BluprintDetailController
     @refreshBluprint()
 
     @scope.$watch 'editMode', () =>
-      @scope.bluprintEdit = _.cloneDeep(@scope.bluprint)
+      @scope.bluprintEdit = _.cloneDeep @scope.bluprint
     , true
 
   refreshBluprint: =>
     @BluprintService.getBluprint(@stateParams.bluprintId)
       .then (bluprint) =>
         @scope.bluprint = bluprint
+        @scope.bluprintEdit = _.cloneDeep @scope.bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
   updateBluprintNow: =>
