@@ -16,22 +16,20 @@
         <img class="login-octoblu-logo" ng-src="{{oauthDevice.options.imageUrl}}">
       </div>
 
-      <div class="card-content">
-        <h1>
-          {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }} <small>&lt;{{currentUser.userDevice.octoblu.email}}&gt;</small>
-        </h1>
-      </div>
+      <h1 style="padding-left: 1em">
+        {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }} <small>&lt;{{currentUser.userDevice.octoblu.email}}&gt;</small>
+      </h1>
 
-      <h1 class="profile-header">Allow {{oauthDevice.options.name}} access to your Octoblu account?</h1>
+      <h1 class="profile-header">
+        Allow {{oauthDevice.options.name}} access to your Octoblu account?
+      </h1>
       <br>
 
-      <div layout="row">
+      <div layout="row" style="margin: auto; display: inline-block; vertical-align: middle">
         <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
           <h3>Authorize</h3>
         </md-button>
-      </div>
-      <br/>
-      <div layout="row">
+        <i>&nbsp; or &nbsp;</i>
         <md-button ng-click="logout()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
           <h3>Logout</h3>
         </md-button>
