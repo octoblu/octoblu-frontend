@@ -9,9 +9,9 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
+
       <h2 class="BluToolbar-header">
-        <a ui-sref="material.things" class="tab-link is-selected">Things</a>
-        <a ui-sref="material.configure" class="tab-link">Connected Things</a>
+        Things
       </h2>
     </div>
 
@@ -21,6 +21,14 @@
 </md-toolbar>
 <md-content ui-view>
   <div class="interior__wrapper">
+    <header class="interior__header">
+      <div class="interior">
+        <div class="tabs">
+          <a ui-sref="material.things" class="tab-link is-selected">Things</a>
+          <a ui-sref="material.configure" class="tab-link">Connected Things</a>
+        </div>
+      </div>
+    </header>
     <p class="interior">
       Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>
     </p>
