@@ -9,25 +9,17 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
-      <h2 class="BluToolbar-header">
-        {{controller.device.name}}
-      </h2>
+      <div class="BluToolbar-header truncate">
+        <a ui-sref="material.configure" class="BluToolbar-header--link">Connected Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Manage {{controller.device.name || controller.device.uuid}}</span>
+      </div>
+
     </div>
 
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
 </md-toolbar>
-
-<md-content class="interior__wrapper" autoscroll="false">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="breadcrumbs">
-        <a ui-sref="material.configure" class="breadcrumb-link">Connected Things</a>
-        <i class="fa fa-angle-double-right fa-lg"></i>
-        <span class="breadcrumb-link current">{{controller.device.name}}</span>
-      </div>
-    </div>
-  </header>
 
 <md-content class="interior device-details">
   <div class="device-header">
@@ -35,7 +27,7 @@
       <img src="{{controller.device.logo}}" class="device-logo" ng-class="{faded: !controller.device.online}">
 
       <div class="device-name">
-        <h1>{{controller.device.name}}</h1>
+        <h1>{{controller.device.name || controller.device.uuid}}</h1>
 
         <div>
           <span ng-show="controller.device.online" class="label label-success">Online</span>

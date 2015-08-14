@@ -8,19 +8,27 @@ class BluprintDetailController
     @BluprintService = BluprintService
     @mdDialog = $mdDialog
 
+    @refreshBluprint();
+
+    @scope.$watch 'editMode', () =>
+      @scope.bluprintEdit = _.cloneDeep(@scope.bluprint)
+    , true
+
+  refreshBluprint: =>
     @BluprintService.getBluprint(@stateParams.bluprintId)
       .then (bluprint) =>
         @scope.bluprint = bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
-  updateBluprintNow: () =>
+  updateBluprintNow: =>
     @scope.editMode = false
-    @BluprintService.update @scope.bluprint.uuid, @scope.bluprint
+    @BluprintService.update(@scope.bluprint.uuid, @scope.bluprintEdit).
+      then @refreshBluprint
 
   import: =>
     @scope.importing = true
-    @BluprintService.importBluprint(@stateParams.bluprintId)
-      .then (flow) =>
+    @BluprintService.importBluprint(@stateParams.bluprintId).
+      then (flow) =>
         _.delay ( =>
           @state.go('material.flow', {flowId: flow.flowId})
         ), 1000

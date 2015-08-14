@@ -89,11 +89,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + $location.url();
+              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
             }
           }
           if (response.status === 403) {
-            return $window.location = '/profile/new?callbackUrl=' + $location.url();
+            return $window.location = '/profile/new?callbackUrl=' + encodeURIComponent($location.url());
           }
           if (response.status === 502) {
             if($window.location.pathname !== '/error') {
@@ -163,7 +163,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addNodeController',
         templateUrl: '/pages/node-wizard/add-node.html'
       })
-      .state('material.nodewizard.add', {
+      .state('material.add', {
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
         controllerAs: 'controller',
@@ -175,7 +175,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/claim.html'
       })
-      .state('material.nodewizard.manualclaim', {
+      .state('material.manualclaim', {
         url: '/claim',
         controller: 'ManualClaimNodeController',
         controllerAs: 'controller',

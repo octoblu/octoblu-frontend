@@ -1,12 +1,35 @@
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
 
-<div class="node-wizard-logo-container">
-  <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
-</div>
-<h2 class="text-center">{{nodeType.name}}</h2>
-<p class="node-wizard__description--text" ng-show="nodeType.helpText">
-  {{nodeType.helpText}}
-</p>
-<p>
-  This Thing requires a Gateblu to function.
-  Gateblu allows you to connect local smart things that do not directly connect to the internet to Octoblu.
-</p>
+      <div class="BluToolbar-header truncate">
+        <a ui-sref="material.nodewizard.addnode" class="BluToolbar-header--link">Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Add {{nodeType.name}}</span>
+      </div>
+
+    </div>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+
+<md-content class="interior__wrapper node-wizard">
+  <div class="node-wizard-logo-container">
+    <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
+  </div>
+  <h2 class="text-center">{{nodeType.name}}</h2>
+  <p class="node-wizard__description--text" ng-show="nodeType.helpText">
+    {{nodeType.helpText}}
+  </p>
+  <p>
+    This Thing requires a Gateblu to function.
+    Gateblu allows you to connect local smart things that do not directly connect to the internet to Octoblu.
+  </p>
+</md-content>

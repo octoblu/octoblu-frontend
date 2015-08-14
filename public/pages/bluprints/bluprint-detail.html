@@ -9,7 +9,7 @@
         <i class="fa fa-lg fa-bars"></i>
       </md-button>
 
-      <div class="BluToolbar-header">
+      <div class="BluToolbar-header truncate">
         <a ui-sref="material.bluprints" class="BluToolbar-header--link">Bluprints</a>
         <i class="fa fa-angle-right BluToolbar-header--icon"></i>
         <span class="BluToolbar-header--current">{{bluprint.name}}</span>
@@ -62,7 +62,7 @@
         <div class="import-bluprint--description">
           <md-input-container class="name" ng-show="editMode">
             <label>Name</label>
-            <input required ng-model="bluprint.name">
+            <input required ng-model="bluprintEdit.name">
           </md-input-container>
 
           <p class="Bluprint-description" ng-hide="editMode">
@@ -77,12 +77,12 @@
 
           <md-input-container class="name" ng-show="editMode">
             <label>Description</label>
-            <input required ng-model="bluprint.description">
+            <input required ng-model="bluprintEdit.description">
           </md-input-container>
         </div>
 
         <md-switch
-          ng-model="bluprint.public"
+          ng-model="bluprintEdit.public"
           class="make-public Bluprint-edit-field"
           aria-label="Make Bluprint Public"
           ng-show="editMode">

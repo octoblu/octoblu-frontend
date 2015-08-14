@@ -11,6 +11,12 @@ describe 'OAuthProviderController', ->
       @q = $q
       @controller = $controller
 
+      class FakeAuthService
+        constructor: (@q)->
+          @getCurrentUser = sinon.stub().returns(@q.when(true))
+          @resetToken = sinon.stub().returns(@q.when(true))
+      @AuthService = new FakeAuthService @q
+
   describe '->constructor', ->
     describe 'when MeshbluDeviceService never resolves', ->
       beforeEach ->
@@ -23,6 +29,7 @@ describe 'OAuthProviderController', ->
           ProfileService: {}
           $stateParams : @stateParams
           $scope : @scope
+          AuthService: @AuthService
 
       it 'should indicate that it is loading', ->
         expect(@scope.loading).to.be.true
@@ -37,6 +44,7 @@ describe 'OAuthProviderController', ->
           ProfileService: {}
           $stateParams : @stateParams
           $scope : @scope
+          AuthService: @AuthService
 
         @rootScope.$digest()
 
@@ -59,6 +67,7 @@ describe 'OAuthProviderController', ->
           ProfileService: {}
           $stateParams : @stateParams
           $scope : @scope
+          AuthService: @AuthService
 
         @rootScope.$digest()
 
@@ -80,6 +89,7 @@ describe 'OAuthProviderController', ->
           $stateParams: {uuid: 'snickers', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $scope: @scope
           $window: @window
+          AuthService: @AuthService
 
         @sut.authorize()
         @rootScope.$digest()
@@ -101,6 +111,7 @@ describe 'OAuthProviderController', ->
           $scope: @scope
           $stateParams: {uuid: 'mars', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $window: @window
+          AuthService: @AuthService
 
         @sut.authorize()
         @rootScope.$digest()

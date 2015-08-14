@@ -1,15 +1,26 @@
-<md-content class="interior__wrapper" autoscroll="false">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="breadcrumbs">
-        <a ui-sref="material.nodewizard.addnode" class="breadcrumb-link">Things</a>
-        <i class="fa fa-angle-double-right fa-lg"></i>
-        <span class="breadcrumb-link current">Connect {{nodeType.name}}</span>
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <div class="BluToolbar-header truncate">
+        <a ui-sref="material.nodewizard.addnode" class="BluToolbar-header--link">Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Add {{nodeType.name}}</span>
       </div>
+
     </div>
-  </header>
-</md-content>
-<md-content class="interior__wrapper">
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+
+<md-content class="interior__wrapper node-wizard">
   <div class="node-wizard__wrapper">
     <div class="node-wizard-logo-container">
       <img src="{{nodeType.logo}}">
