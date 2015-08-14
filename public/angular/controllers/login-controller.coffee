@@ -6,9 +6,9 @@ class LoginController
 
     callbackUrl = $location.search().callbackUrl
     callbackParams = ''
-    callbackParams = $.param callbackUrl: callbackUrl if callbackUrl?
+    callbackParams = $.param callbackUrl: encodeURIComponent(callbackUrl) if callbackUrl?
 
-    loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session?#{encodeURIComponent(callbackParams)}"
+    loginParams = $.param callback: "#{protocol}://#{host}:#{port}/api/session?#{callbackParams}"
 
     @emailPasswordLoginUri = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '?' + loginParams
     @citrixLoginUri        = AUTHENTICATOR_URIS.CITRIX + '?' + loginParams
