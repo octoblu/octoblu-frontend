@@ -385,6 +385,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
       })
+      .state('material.oldbluprintImport', {
+        url: '/design/import/:bluprintId',
+        templateUrl: '/pages/bluprints/bluprint-import.html',
+        params: {
+          editMode : null
+        },
+        controller: 'BluprintDetailController',
+        controllerAs: 'controller'
+      })
       .state('material.discover', {
         url: '/discover',
         templateUrl: '/pages/discover.html',

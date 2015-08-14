@@ -45,12 +45,18 @@ angular.module('octobluApp')
     bluprint.expanded = !bluprint.expanded;
   };
 
-  $scope.toastBluprintUrl = function(url) {
+  $scope.getBluprintImportUrl = function(bluprintId) {
+    return UrlService.withNewPath('/bluprints/import/' + bluprintId);
+  }
+
+  $scope.toastBluprintUrl = function(bluprintId) {
+    var url = $scope.getBluprintImportUrl(bluprintId);
     var message = 'Copied ' + url + ' to clipboard';
     $mdToast.show($mdToast.simple({position: 'top right'}).content(message));
   };
 
-  $scope.dialogBluprintUrl = function(url) {
+  $scope.dialogBluprintUrl = function(bluprintId) {
+    var url = $scope.getBluprintImportUrl(bluprintId);
     var alert = $mdDialog.alert().content(url).title('Share this bluprint').ok('OKAY');
     $mdDialog.show(alert).finally(function(){
       alert = undefined;
