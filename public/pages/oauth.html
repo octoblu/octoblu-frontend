@@ -14,30 +14,27 @@
       <div layout="row" flex>
         <img class="login-octoblu-logo" src="/assets/images/300x300spiral.png">
         <img class="login-octoblu-logo" ng-src="{{oauthDevice.options.imageUrl}}">
+      </div>
 
-        <div class="card-content" style="padding-left: 2em">
-          <h1>
-            <br/>
-            {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}
-            <br/>
-            <small>{{currentUser.userDevice.octoblu.email}}</small>
-          </h1>
-        </div>
+      <div class="card-content">
+        <h1>
+          {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }} <small>&lt;{{currentUser.userDevice.octoblu.email}}&gt;</small>
+        </h1>
       </div>
 
       <h1 class="profile-header">Allow {{oauthDevice.options.name}} access to your Octoblu account?</h1>
       <br>
-      <br>
-      <div layout="row" flex>
-        <div flex/>
-        <md-button flex ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised" flex>
+
+      <div layout="row">
+        <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
           <h3>Authorize</h3>
         </md-button>
-        <div flex/>
-        <md-button flex ng-click="logout()" href ng-disabled="!oauthDevice" class="md-primary md-raised" flex>
+      </div>
+      <br/>
+      <div layout="row">
+        <md-button ng-click="logout()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
           <h3>Logout</h3>
         </md-button>
-        <div flex/>
       </div>
     </div>
   </div>
