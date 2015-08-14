@@ -65,7 +65,6 @@ angular.module('octobluApp')
 
   self.addProperties = function(bluprint) {
     bluprint = _.clone(bluprint);
-    bluprint.url = UrlService.withNewPath('/bluprints/import/' + bluprint.uuid);
     bluprint.tags = _.uniq(bluprint.tags) || [];
     return bluprint;
   };
