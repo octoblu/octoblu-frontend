@@ -163,7 +163,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'nodeWizardController',
         templateUrl: '/pages/node-wizard/index.html'
       })
-      .state('material.add', {
+      .state('material.nodewizard.add', {
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
         controllerAs: 'controller',
