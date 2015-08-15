@@ -122,16 +122,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'ErrorController',
         controllerAs: 'controller',
       })
-      .state('material.analyze', {
-        url: '/analyze',
-        templateUrl: '/pages/analyze.html',
-        controller: 'AnalyzeController',
-        resolve: {
-          myDevices: function (NodeService) {
-            return NodeService.getNodes({cache: false})
-          }
-        }
-      })
       .state('material.schemaeditortest', {
         url: '/schema-editor-test',
         templateUrl: '/pages/schema-editor-test.html',
