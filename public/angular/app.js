@@ -138,11 +138,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'SchemaEditorTestController',
         controllerAs: 'controller'
       })
-      .state('material.clearauth', {
-        url: '/clearauth',
-        templateUrl: '/pages/clear-auth.html',
-        controller:  'clearAuthController'
-      })
       .state('material.design', {
         url: '/design',
         controller: 'DesignerController'
@@ -305,14 +300,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.channel', {
         url: '/channel/:id',
-        templateUrl: '/pages/connector/channels/detail.html',
+        templateUrl: '/pages/existing-channel-detail.html',
         controller: 'apiController'
-      })
-      .state('material.credentials-device', {
-        url: '/credentials-device',
-        templateUrl: '/pages/credentials-device.html',
-        controllerAs: 'controller',
-        controller: 'CredentialsDeviceController'
       })
       .state('material.nodewizard.addsubdevice', {
         url: '/add-subdevice/:nodeTypeId',
@@ -420,12 +409,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/terms',
         templateUrl: '/pages/terms.html',
         controller: 'termsController',
-        unsecured: true
-      })
-      .state('contact', {
-        url: '/contact',
-        templateUrl: '/pages/contact.html',
-        controller: 'contactController',
         unsecured: true
       })
       .state('material.profile', {
