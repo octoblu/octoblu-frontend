@@ -11,8 +11,10 @@
     </div>
 
     <div class="oauth-provider-card" layout="column" ng-show="oauthDevice">
-      <img class="oauth-logos" src="/assets/images/300x300spiral.png">
-      <img class="oauth-logos" ng-src="{{oauthDevice.options.imageUrl}}">
+      <div flex>
+        <img class="oauth-logos" src="/assets/images/300x300spiral.png">
+        <img class="oauth-logos" ng-src="{{oauthDevice.options.imageUrl}}">
+      </div>
 
       <h3 style="padding-left: 1em">
         {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }} <small>&lt;{{currentUser.userDevice.octoblu.email}}&gt;</small>
