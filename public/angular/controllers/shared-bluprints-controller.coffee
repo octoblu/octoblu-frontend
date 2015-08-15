@@ -1,7 +1,6 @@
 angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $mdDialog, $mdToast, $state, $stateParams, AuthService, BluprintService) ->
   class SharedBluprintsController
     constructor: () ->
-      @luckyRobotNumber = Math.floor(1 + Math.random() * 9)
       @sortLikedBy = {}
       $scope.isLoading = true;
       $scope.sortMethod = '-sortLikedBy.length'
@@ -47,14 +46,5 @@ angular.module('octobluApp').controller 'SharedBluprintsController', ($scope, $m
       $mdDialog.show(alert).finally =>
         alert = undefined
 
-    searchByTag: (tag) =>
-      $scope.bluprintFilter =
-        if _.includes($scope.bluprintFilter, tag)
-          _.without($scope.bluprintFilter, tag)
-        else
-          _.union($scope.bluprintFilter, [tag])
-
-    randomRobot: () =>
-      "/assets/images/robots/robot#{@luckyRobotNumber}.png"
 
   new SharedBluprintsController()
