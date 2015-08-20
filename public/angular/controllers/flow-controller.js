@@ -333,6 +333,10 @@ angular.module('octobluApp')
     $scope.currentMouseY = e.clientY;
   };
 
+  $scope.focusDesigner = function () {
+    document.getElementById("designer").focus();
+  }
+
   $scope.clearMousePosition = function () {
     $scope.currentMouseX = null;
     $scope.currentMouseY = null;
