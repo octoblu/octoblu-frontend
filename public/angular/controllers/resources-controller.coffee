@@ -3,6 +3,8 @@ class ResourcesController
     @scope = $scope
     @fullResourceList = ResourceList
 
+    @scope.noResources = false
+
     @updateResources(@fullResourceList)
 
     @scope.$watch 'resourceSearch', (resourceSearch) =>
@@ -17,6 +19,8 @@ class ResourcesController
       @updateResources(filteredResources)
 
   updateResources: (resources) =>
+    if resources.length then @scope.noResources = false
+    if !resources.length then @scope.noResources = true
     @scope.resources = resources
     @scope.resourcesList = _.groupBy(resources, 'category')
 
