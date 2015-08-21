@@ -13,88 +13,29 @@
         Resources
       </h2>
     </div>
+
+    <blu-search search-model="resourceSearch" placeholder="Filter Resources..."></blu-search>
+
     <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
 </md-toolbar>
 
-<md-list class="resource__list scrollable">
-  <header class="resource__collection-container">
-    <div class="resource__collection-header">Docs</div>
-    <hr class="resource__collection-divider">
-  </header>
-  <md-item ng-repeat="resource in Docs">
-    <md-item-content class="resource">
-      <div class="resource__body">
-        <h3 class="resource__title">
-          <a href="{{resource.link}}">
-            {{resource.title}}
-          </a>
-        </h3>
-
-        <p class="resource__summary" ng-show="{{!!resource.summary}}">
-          {{resource.summary}}
-        </p>
-      </div>
-    </md-item-content>
-  </md-item>
-
-  <header class="resource__collection-container">
-    <div class="resource__collection-header">Videos</div>
-    <hr class="resource__collection-divider">
-  </header>
-  <md-item ng-repeat="resource in Videos">
-    <md-item-content class="resource">
-      <div class="resource__body">
-        <h3 class="resource__title">
-          <a href="{{resource.link}}">
-            {{resource.title}}
-          </a>
-        </h3>
-
-        <p class="resource__summary" ng-show="{{!!resource.summary}}">
-          {{resource.summary}}
-        </p>
-      </div>
-    </md-item-content>
-  </md-item>
-
-  <header class="resource__collection-container">
-    <div class="resource__collection-header">Tutorials</div>
-    <hr class="resource__collection-divider">
-  </header>
-  <md-item ng-repeat="resource in Tutorials">
-    <md-item-content class="resource">
-      <div class="resource__body">
-        <h3 class="resource__title">
-          <a href="{{resource.link}}">
-            {{resource.title}}
-          </a>
-        </h3>
-
-        <p class="resource__summary" ng-show="{{!!resource.summary}}">
-          {{resource.summary}}
-        </p>
-      </div>
-    </md-item-content>
-  </md-item>
-
-  <header class="resource__collection-container">
-    <div class="resource__collection-header">Links</div>
-    <hr class="resource__collection-divider">
-  </header>
-  <md-item ng-repeat="resource in Links">
-    <md-item-content class="resource">
-      <div class="resource__body">
-        <h3 class="resource__title">
-          <a href="{{resource.link}}">
-            {{resource.title}}
-          </a>
-        </h3>
-
-        <p class="resource__summary" ng-show="{{!!resource.summary}}">
-          {{resource.summary}}
-        </p>
-      </div>
-    </md-item-content>
-  </md-item>
-</md-list>
+<md-content class="interior__wrapper">
+  <div class="interior">
+    <md-list ng-repeat="(category, resources) in resourcesList">
+      <header class="device-collection__header" ng-show="category">
+        <h4 class="header-label">
+          {{category | uppercase}}
+        </h4>
+      </header>
+      <md-list-item class="md-2-line" ng-repeat="resource in filteredResources = (resources)">
+        <div class="md-list-item-text">
+          <h3>
+            <a href="{{resource.link}}">{{resource.title}}</a>
+          </h3>
+          <p ng-show="resource.summary">{{resource.summary}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</md-content>

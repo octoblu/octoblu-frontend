@@ -415,7 +415,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       .state('material.resources', {
         url: '/resources',
         controller: 'ResourcesController',
-        controllerAs: 'controller',
         templateUrl: '/pages/resources.html'
       })
       .state('login', {
