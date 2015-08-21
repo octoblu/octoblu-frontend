@@ -20,12 +20,13 @@ describe 'LoginController', ->
           GITHUB: 'https://login.to.the.github'
           FACEBOOK: 'https://login.to.the.facebook'
 
-    @callbackUrl = 'https%3A%2F%2Fthe.mothership%3A1234%2Fapi%2Fsession%3FcallbackUrl%3D%25252Fdevices%25252Fcoffee-cup%25253Fempty%25253Dtrue'
+    @encodedCallbackUrl = 'https%3A%2F%2Fthe.mothership%3A1234%2Fapi%2Fsession%3FcallbackUrl%3D%25252Fdevices%25252Fcoffee-cup%25253Fempty%25253Dtrue'
+    @callbackUrl        = 'https%3A%2F%2Fthe.mothership%3A1234%2Fapi%2Fsession%3FcallbackUrl%3D%252Fdevices%252Fcoffee-cup%253Fempty%253Dtrue'
 
 
   describe 'emailPasswordLoginUri', ->
     it 'should have one', ->
-      expect(@sut.emailPasswordLoginUri).to.equal "https://login.to.the.grid?callback=#{@callbackUrl}"
+      expect(@sut.emailPasswordLoginUri).to.equal "https://login.to.the.grid?callback=#{@encodedCallbackUrl}"
 
   describe 'googleLoginUri', ->
     it 'should have one', ->
