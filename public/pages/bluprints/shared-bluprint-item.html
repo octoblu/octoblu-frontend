@@ -19,10 +19,10 @@
           </md-menu-item>
           <md-menu-item>
             <md-button
-              ng-click="controller"
-              clip-click-fallback="controller.dialogBluprintUrl(bluprint.url)"
-              clip-copy="bluprint.url"
-              clip-click="controller.toastBluprintUrl(bluprint.url)">
+              ng-click=""
+              clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
+              clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
+              clip-click="controller.toastBluprintUrl(bluprint.uuid)">
               Copy URL
             </md-button>
           </md-menu-item>
