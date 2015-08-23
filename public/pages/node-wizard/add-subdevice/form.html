@@ -20,9 +20,10 @@
         <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
       </div>
 
-      <div class="form-group">
-        <device-schema device="device.options" schema-type="options"></device-schema>
-      </div>
+      <!-- This is crazy. device-schema directive is not working for some reason which we have no clue so
+    we put in the old implementation-->
+      <!-- <device-schema device="device" model="device.options" schema-type="options"></device-schema> -->
+      <div sf-schema="device.optionsSchema" sf-form="['*']" sf-model="device.options"></div>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg btn-block">
