@@ -15,3 +15,4 @@ angular.module('octobluApp')
   .constant 'OCTOBLU_ICON_URL', 'http://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', "http://#{window.location.hostname}:8080"
   .constant 'FLOW_LOGGER_UUID', 'c9296386-f1bb-46bf-9f85-ec9a3c287a95'
+  .constant 'GATEBLU_LOGGER_UUID', '9dd90de9-5970-435b-8e97-9e0d04f07d97'
