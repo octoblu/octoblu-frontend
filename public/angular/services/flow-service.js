@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService) {
   'use strict';
   var self, activeFlow = {};
   self = this;
@@ -81,7 +81,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
-
+    FlowLogService.logStart(flow);
     $http.post(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
 
@@ -90,6 +90,7 @@ angular.module('octobluApp')
     if(!flow){
       flow = activeFlow;
     }
+    FlowLogService.logStop(flow);
     return $http.delete(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
   };
 
