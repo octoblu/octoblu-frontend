@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService, HttpResponseHandler) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService, HttpResponseHandler, UUIDService) {
   'use strict';
   var self, activeFlow = {};
   self = this;
@@ -7,11 +7,19 @@ angular.module('octobluApp')
 
   //Flow cruds
   self.createFlow = function(flowAttributes) {
-    var logger = new FlowLogService(null, 'flow-create');
+    var deploymentUuid = UUIDService.v1();
+    var logger = new FlowLogService(null, 'flow-create', deploymentUuid);
     var url = OCTOBLU_API_URL + '/api/flows';
     
-    logger.logBegin();
-    var request = $http.post(url, flowAttributes);
+    logger.logBegin();    
+    var request = $http({
+      url: url,
+      method: 'POST',
+      headers: {
+        deploymentUuid: deploymentUuid
+      },
+      data: flowAttributes
+    });
     
     return handleResponseAndLog(request, logger)      
       .then(function(data){
@@ -21,13 +29,21 @@ angular.module('octobluApp')
   };
 
   self.saveFlow = function(flow) {
+    var deploymentUuid = UUIDService.v1();
     flow = flow || activeFlow;
     if(!flow) return;
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
     flow.hash = self.hashFlow(flow);
     
-    var request = $http.put(url, flow);
+    var request = $http({
+      url: url,
+      method: 'PUT',
+      headers: {
+        deploymentUuid: deploymentUuid
+      },
+      data: flow
+    });
     
     return HttpResponseHandler.handle(request);
   };
@@ -36,27 +52,42 @@ angular.module('octobluApp')
     return self.saveFlow();
   };
 
-  self.deleteFlow = function(flowId){
+  self.deleteFlow = function(flowId){    
     if (!flowId) return;
     
-    var logger = new FlowLogService(flowId, 'flow-delete');
+    var deploymentUuid = UUIDService.v1();
+    var logger = new FlowLogService(flowId, 'flow-delete', deploymentUuid);
     var url = OCTOBLU_API_URL + '/api/flows/' + flowId;
     
-    logger.logBegin();
-    var request = $http.delete(url);    
+    logger.logBegin();    
+    var request = $http({
+      url: url,
+      method: 'DELETE',
+      headers: {
+        deploymentUuid: deploymentUuid
+      }
+    });
     
     return handleResponseAndLog(request, logger);    
   };
 
-  self.start = function(flow) {
+  self.start = function(flow) {    
     flow = flow || activeFlow;
     if(!flow) return;    
     
+    var deploymentUuid = UUIDService.v1()
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
     var logger = new FlowLogService(flow.flowId, 'flow-start');    
     
     logger.logBegin();
-    var request = $http.post(url);
+    
+    var request = $http({
+      url: url,
+      method: 'POST',
+      headers: {
+        deploymentUuid: deploymentUuid
+      }
+    });
     
     return handleResponseAndLog(request, logger);  
   };
@@ -64,26 +95,23 @@ angular.module('octobluApp')
   self.stop = function(flow) {
     flow = flow || activeFlow;
     if(!flow) return;
-  
+    
+    var deploymentUuid = UUIDService.v1();
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    var logger = new FlowLogService(flow.flowId, 'flow-stop');    
+    var logger = new FlowLogService(flow.flowId, 'flow-stop', deploymentUuid);    
     
     logger.logBegin();
-    var request = $http.delete(url);       
+ 
+    var request = $http({
+      url: url,
+      method: 'POST',
+      headers: {
+        deploymentUuid: deploymentUuid
+      },
+      data: flow
+    });  
        
     return handleResponseAndLog(request, logger);  
-  };
-
-  self.restart = function(flow) {
-    flow = flow || activeFlow;
-    if(!flow) return;
-    
-    var url = OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance';
-    var logger = new FlowLogService(flow.flowId, 'flow-restart');    
-    
-    logger.logBegin();
-    
-    return handleResponseAndLog(request, logger);
   };
 
   function handleResponseAndLog(request, logger) {

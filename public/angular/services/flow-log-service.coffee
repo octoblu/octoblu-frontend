@@ -1,9 +1,10 @@
 angular.module("octobluApp").factory "FlowLogService", 
-(skynetService, FLOW_LOGGER_UUID, $cookies, UUIDService) ->
+(skynetService, FLOW_LOGGER_UUID, $cookies) ->
   class FlowLogService
-    constructor: (flowId, workflow) ->
+    constructor: (flowUuid, workflow, deploymentUuid) ->
+      @flowUuid = flowUuid
       @workflow = workflow
-      @deploymentUuid = UUIDService.v1()
+      @deploymentUuid = deploymentUuid
       @userUuid = $cookies.meshblu_auth_uuid
       @application = "app-octoblu"
 
@@ -16,14 +17,16 @@ angular.module("octobluApp").factory "FlowLogService",
     logError: (message) =>
       @log 'error', message
 
-    log: (state, message) =>
-      skynetService.sendMessage
+    log: (state, logMessage) =>
+      message = 
         devices: FLOW_LOGGER_UUID
         payload:
           userUuid: @userUuid
           deploymentUuid: @deploymentUuid
           application: @application
-          flowUuid: @flowId
+          flowUuid: @flowUuid
           workflow: @workflow
           state: state
-          message: message
+          message: logMessage
+          
+      skynetService.sendMessage message
