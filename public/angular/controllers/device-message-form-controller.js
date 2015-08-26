@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('DeviceMessageFormController', function(OCTOBLU_API_URL, $scope, ThingService) {
+.controller('DeviceMessageFormController', function(OCTOBLU_API_URL, $scope, ThingService, NotifyService) {
   'use strict';
 
   $scope.schema = {};
@@ -11,6 +11,16 @@ angular.module('octobluApp')
       $scope.device.options = $scope.device.options || {};
     });
   };
+
+  var saveDevice = function(){
+    if (!$scope.device) {
+      return;
+    }
+    ThingService.updateDevice(_.pick($scope.device, 'uuid', 'name', 'options'))
+    .then(function(){
+      NotifyService.notify('Changes Saved');
+    });
+  }
 
   $scope.$watch('uuid', getDevice);
 });

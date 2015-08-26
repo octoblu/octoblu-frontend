@@ -4,7 +4,6 @@ class DeviceSchemaController
     @http = $http
     @scope.$watch 'device', (device) =>
       return unless device?
-      @scope.options = "{formDefaults: {ngModelOptions: {updateOn: 'default blur', debounce: {default: 3000, blur: 0}}}}" unless @scope.saveImmediately
 
       async.parallel [
         async.apply @addSchemaToScope, device, "#{@scope.schemaType}Schema"

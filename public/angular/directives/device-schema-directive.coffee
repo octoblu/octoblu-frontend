@@ -8,5 +8,4 @@ angular.module('octobluApp')
       device: '='
       model: '='
       schemaType: '@'
-      saveImmediately: '@'
   }

@@ -1,5 +1,5 @@
 class DeviceDetailController
-  constructor: ($mdDialog, $scope, $state, $stateParams, deviceService, NotifyService, ThingService) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
@@ -8,14 +8,12 @@ class DeviceDetailController
     @form = ['*']
     @firstRun = true
 
-    deviceService.getDeviceByUUID($stateParams.uuid, true).then (device) =>
+    @ThingService.getThing(uuid: $stateParams.uuid).then (device) =>
       @device = device
       @device.options ?= {}
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow()
       @hideDelete = @deviceIsFlow()
-      @options = @device.options
-      @optionsSchema = @device.optionsSchema
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
@@ -54,10 +52,8 @@ class DeviceDetailController
   saveDevice: =>
     return unless @device?
     return if _.isEqual @deviceCopy, @device
-    @device.options = @options
     @ThingService.updateDevice _.pick(@device, 'uuid', 'name', 'options')
     .then =>
-      @updateSchemas()
       @notifyDeviceUpdated()
       @deviceCopy = _.cloneDeep @device
 
@@ -77,8 +73,6 @@ class DeviceDetailController
 
   updateSchemas: =>
     return unless @device?
-    _.extend @options, @device.options
-    _.extend @optionsSchema, @device.optionsSchema
 
 angular.module 'octobluApp'
        .controller 'DeviceDetailController', DeviceDetailController

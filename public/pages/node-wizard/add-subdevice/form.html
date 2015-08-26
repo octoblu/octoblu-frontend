@@ -1,35 +1,17 @@
-<div class="row" ng-hide="device">
-  <div class="col-xs-12 col-md-offset-3 col-md-6">
-    <h1 class="text-center">
-      Updating your gateblu...
-    </h1>
-    <h1 class="text-center">
-      <i class="fa fa-spin fa-refresh"></i>
-    </h1>
-  </div>
-</div>
+<h1 ng-if="!device">
+  <i class="fa fa-spin fa-refresh"></i> Updating your Gateblu...
+</h1>
 
-<div class="row" ng-if="device">
-  <div class="col-xs-12 col-md-offset-3 col-md-6">
-    <h1>Configure your thing</h1>
-    <form class="form" ng-submit="submit()">
-      <div class="form-group" ng-class="{'has-error': errorMessage}">
-        <label for="name" class="control-label">Name</label>
-        <input type="text" ng-model="device.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
+<div ng-if="device">
+  <h2>Configure your thing</h2>
+  <md-input-container>
+    <label>name</label>
+    <input ng-model="device.name" required ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
+  </md-input-container>
 
-        <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-      </div>
+  <device-schema device="device" model="device.options" schema-type="options"></device-schema>
 
-      <!-- This is crazy. device-schema directive is not working for some reason which we have no clue so
-    we put in the old implementation-->
-      <!-- <device-schema device="device" model="device.options" schema-type="options"></device-schema> -->
-      <div sf-schema="device.optionsSchema" sf-form="['*']" sf-model="device.options"></div>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-          Update
-        </button>
-      </div>
-    </form>
+  <div class="BluButton--actions">
+    <a class="BluButton BluButton--save" ng-click="saveDevice()">Save</a>
   </div>
 </div>
