@@ -5,6 +5,104 @@ angular.module('octobluApp')
   self = this;
   var previousHashableFlow;
 
+  //Flow crud
+  self.createFlow = function(flowAttributes) {
+    var workflow = 'flow-create';
+    var url = OCTOBLU_API_URL + '/api/flows';
+
+    FlowLogService.logBegin(null, workflow);
+
+    return handleHttpResponse($http.post(url, flowAttributes), workflow)
+      .then(function(data){
+        self.notifyFlowSaved();
+        return new FlowModel(data);
+      });
+  };
+
+  self.saveFlow = function(flow) {
+    flow = flow || activeFlow;
+    if(!flow) return;
+
+    var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
+
+    flow.hash = self.hashFlow(flow);
+
+    return $http.put(url, flow);
+  };
+
+  self.saveActiveFlow = function () {
+    return self.saveFlow();
+  };
+
+  self.deleteFlow = function(flowId){
+    if (!flowId) return;
+
+    var workflow = 'flow-delete';
+    var url = OCTOBLU_API_URL + '/api/flows/' + flowId;
+    FlowLogService.logBegin(flowId, workflow);
+
+    return handleHttpResponse($http.delete(url), workflow, flowId);
+  };
+
+  self.start = function(flow) {
+    flow = flow || activeFlow;
+    if(!flow) return;
+
+    var workflow = 'flow-start';
+    var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
+    FlowLogService.logBegin(flow.flowId, workflow);
+
+    return handleHttpResponse($http.post(url), workflow, flow.flowId);
+  };
+
+  self.stop = function(flow) {
+    flow = flow || activeFlow;
+    if(!flow) return;
+
+    var workflow = 'flow-stop';
+    var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
+    FlowLogService.logBegin(flow.flowId, workflow);
+
+    return handleHttpResponse($http.delete(url), workflow, flow.flowId);
+  };
+
+  self.restart = function(flow){
+    flow = flow || activeFlow;
+    if(!flow) return;
+
+    var workflow = 'flow-restart';
+    var url = OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance';
+    FlowLogService.logBegin(flow.flowId, workflow);
+
+    return handleHttpResponse($http.put(url), workflow, flow.flowId);
+  };
+
+  //log errors, handle http request errors
+  function handleHttpResponse(request, workflow, flowId) {
+    return request
+      .then(function(response){
+        if(response.status >= 400) {
+          return $q.reject(new Error("server returned a" + response.status));
+        }
+
+        if(workflow || flowId) {
+          FlowLogService.logEnd(workflow, flowId);
+        }
+
+        return response.data;
+      })
+      .catch(function(error) {
+          var message;
+          if(error && error.message) {
+            message = error.message;
+          }
+          if (workflow || flowId) {
+            FlowLogService.logError(workflow, flowId, message);
+          }
+          return $q.reject(new Error(message));
+      });
+  };
+
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
@@ -39,19 +137,6 @@ angular.module('octobluApp')
       });
   };
 
-  self.saveActiveFlow = function () {
-    if(!activeFlow){return;}
-    return self.saveFlow(activeFlow);
-  };
-
-  self.saveFlow = function(flow) {
-    flow.hash = self.hashFlow(flow);
-    return $http.put(OCTOBLU_API_URL + "/api/flows/" + flow.flowId, _.clone(flow)).then(function(response){
-      self.notifyFlowSaved();
-      return response;
-    });
-  };
-
   self.immediateNotifyFlowSaved = function(){
     NotifyService.notify("Flow Saved");
   };
@@ -74,32 +159,6 @@ angular.module('octobluApp')
 
   self.getActiveFlow = function(){
     return activeFlow;
-  };
-
-  self.start = function(flow){
-    if(!flow && !activeFlow) return;
-    if(!flow){
-      flow = activeFlow;
-    }
-    FlowLogService.logStart(flow);
-    $http.post(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
-  };
-
-  self.stop = function(flow){
-    if(!flow && !activeFlow) return;
-    if(!flow){
-      flow = activeFlow;
-    }
-    FlowLogService.logStop(flow);
-    return $http.delete(OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance');
-  };
-
-  self.restart = function(flow){
-    if(!flow && !activeFlow) return;
-    if(!flow){
-      flow = activeFlow;
-    }
-    return $http.put(OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance');
   };
 
   self.processFlows = function(flows){
@@ -152,25 +211,11 @@ angular.module('octobluApp')
     });
   };
 
-  self.createFlow = function(flowAttributes) {
-    return $http.post(OCTOBLU_API_URL + '/api/flows', flowAttributes).then(function(response) {
-      var flow = response.data;
-      if(!flow || !flow.flowId){
-        return $q.reject(new Error('flow not created'));
-      }
-      return new FlowModel(flow);
-    });
-  };
-
   self.createDemoFlow = function(options) {
     return $http.post(OCTOBLU_API_URL + '/api/demo_flows').then(function(response) {
       return new FlowModel(response.data);
     });
   };
 
-  self.deleteFlow = function(flowId){
-    return $http.delete(OCTOBLU_API_URL + '/api/flows/' + flowId).then(function(response){
-      return response.data;
-    });
-  };
+  return self;
 });

@@ -3,21 +3,27 @@ class FlowLogService
     @skynetService = skynetService
     @FLOW_LOGGER_UUID = FLOW_LOGGER_UUID
     @userUuid = $cookies.meshblu_auth_uuid
-    @EVENT_PREFIX = "ui-"
-  logStart: (flow)=>
+    @application = "ui-flow"
+
+  logBegin: (flowId, workflow, message) =>
+    @log flowId, workflow, 'begin', message
+
+  logEnd: (flowId, workflow, message) =>
+    @log flowId, workflow, 'end', message
+
+  logError: (flowId, workflow, message) =>
+    @log flowId, workflow, 'error', message
+
+  log: (flowId, workflow, state, message) =>
     @skynetService.sendMessage
       devices: @FLOW_LOGGER_UUID
       payload:
-        flowUuid: flow.flowId
         userUuid: @userUuid
-        action: "#{@EVENT_PREFIX}flow-start"
+        application: @application
+        flowUuid: flowId
+        workflow: workflow
+        state: state
+        message: message
 
-  logStop: (flow)=>
-    @skynetService.sendMessage
-      devices: @FLOW_LOGGER_UUID
-      payload:
-        flowUuid: flow.flowId
-        userUuid: @userUuid
-        action: "#{@EVENT_PREFIX}flow-stop"
 
-angular.module('octobluApp').service 'FlowLogService', FlowLogService
+angular.module("octobluApp").service "FlowLogService", FlowLogService
