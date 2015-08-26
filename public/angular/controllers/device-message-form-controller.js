@@ -8,6 +8,7 @@ angular.module('octobluApp')
     $scope.device = null;
     ThingService.getThings().then(function(devices){
       $scope.device = _.findWhere(devices, {uuid: $scope.uuid});
+      $scope.device.options = $scope.device.options || {};
     });
   };
 
