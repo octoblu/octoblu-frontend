@@ -10,6 +10,7 @@ class DeviceDetailController
 
     deviceService.getDeviceByUUID($stateParams.uuid, true).then (device) =>
       @device = device
+      @device.options ?= {}
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow()
       @hideDelete = @deviceIsFlow()
