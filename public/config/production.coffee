@@ -14,4 +14,4 @@ angular.module('octobluApp')
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', 'https://app.octoblu.com'
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
-  .constant 'GATEBLU_LOGGER_UUID', '427e5737-633e-4ad3-944d-984d258fe4fa'
+  .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
