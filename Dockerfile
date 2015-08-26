@@ -7,8 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY default.conf /etc/nginx/conf.d/default.conf
-ADD package.json .
-RUN sleep 300; curl --silent https://s3-us-west-2.amazonaws.com/deploy-octoblu-static/public.tar.gz \
-    | tar -xzmC /usr/share/nginx/html && \
-    mv /usr/share/nginx/html/public/* /usr/share/nginx/html && \
-    rm -rf /usr/share/nginx/html/public
+COPY package.json .
+COPY .git/HEAD .git/HEAD
+COPY download-built-assets.sh .
+RUN ./download-built-assets.sh
