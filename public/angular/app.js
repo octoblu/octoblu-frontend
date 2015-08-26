@@ -142,19 +142,13 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addNodeController',
         templateUrl: '/pages/thing-viewer/add-node.html'
       })
-      .state('material.nodewizard', {
-        url: '/node-wizard',
-        abstract: true,
-        controller: 'addNodeController',
-        template : '<ui-view></ui-view>'
-      })
-      .state('material.nodewizard.add', {
+      .state('material.nodewizard-add', {
         url: '/add/:nodeTypeId',
         controller: 'AddNodeWizardController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/add.html'
       })
-      .state('material.nodewizard.claim', {
+      .state('material.nodewizard-claim', {
         url: '/claim/:uuid/:token',
         controller: 'ClaimNodeController',
         controllerAs: 'controller',
@@ -166,12 +160,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/manual-claim.html'
       })
-      .state('material.nodewizard.adddevice', {
+      .state('material.nodewizard-adddevice', {
         url: '/add-device/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('material.nodewizard.addchannel', {
+      .state('material.nodewizard-addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         controller: 'addChannelController',
         templateUrl: '/pages/node-wizard/add-channel/index.html',
@@ -182,102 +176,102 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           }
         }
       })
-      .state('material.nodewizard.addchannel.default-options', {
+      .state('material.nodewizard-addchannel.default-options', {
         url: '',
         controller: 'addDefaultOptionsController',
         templateUrl: '/pages/node-wizard/add-channel/default-options.html'
       })
-      .state('material.nodewizard.addchannel.existing', {
+      .state('material.nodewizard-addchannel.existing', {
         url: '/existing',
         controller: 'addChannelExistingController',
         templateUrl: '/pages/node-wizard/add-channel/existing.html'
       })
-      .state('material.nodewizard.addchannel.noauth', {
+      .state('material.nodewizard-addchannel.noauth', {
         url: '/noauth',
         controller: 'addChannelNoauthController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
-      .state('material.nodewizard.addchannel.oauth', {
+      .state('material.nodewizard-addchannel.oauth', {
         url: '/oauth',
         controller: 'addChannelOauthController',
         templateUrl: '/pages/node-wizard/add-channel/oauth.html'
       })
-      .state('material.nodewizard.addchannel.simple', {
+      .state('material.nodewizard-addchannel.simple', {
         url: '/simple',
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
-      .state('material.nodewizard.addchannel.header', {
+      .state('material.nodewizard-addchannel.header', {
         url: '/header',
         controller: 'addChannelHeaderController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
-      .state('material.nodewizard.addchannel.aws', {
+      .state('material.nodewizard-addchannel.aws', {
         url: '/aws',
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
-      .state('material.nodewizard.addchannel.echosign', {
+      .state('material.nodewizard-addchannel.echosign', {
         url: '/echosign',
         controller: 'addChannelEchoSignController',
         templateUrl: '/pages/node-wizard/add-channel/echosign.html'
       })
-      .state('material.nodewizard.addchannel.basic', {
+      .state('material.nodewizard-addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
-      .state('material.nodewizard.addchannel.tesla', {
+      .state('material.nodewizard-addchannel.tesla', {
         url: '/tesla',
         controller: 'addChannelTeslaController',
         templateUrl: '/pages/node-wizard/add-channel/tesla.html'
       })
-      .state('material.nodewizard.addchannel.travis-ci', {
+      .state('material.nodewizard-addchannel.travis-ci', {
         url: '/travis-ci',
         controller: 'addChannelTravisCIController',
         templateUrl: '/pages/node-wizard/add-channel/travis-ci.html'
       })
-      .state('material.nodewizard.addchannel.travis-ci-pro', {
+      .state('material.nodewizard-addchannel.travis-ci-pro', {
         url: '/travis-ci-pro',
         controller: 'addChannelTravisCIProController',
         templateUrl: '/pages/node-wizard/add-channel/travis-ci.html'
       })
-      .state('material.nodewizard.addchannel.littlebits', {
+      .state('material.nodewizard-addchannel.littlebits', {
         url: '/littlebits',
         controller: 'addChannelLittlebitsController',
         templateUrl: '/pages/node-wizard/add-channel/littlebits.html'
       })
-      .state('material.nodewizard.addchannel.wink', {
+      .state('material.nodewizard-addchannel.wink', {
         url: '/wink',
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
       })
-      .state('material.nodewizard.addchannel.witai', {
+      .state('material.nodewizard-addchannel.witai', {
         url: '/witai',
         controller: 'addChannelWitaiController',
         templateUrl: '/pages/node-wizard/add-channel/witai.html'
       })
-      .state('material.nodewizard.addchannel.docusign', {
+      .state('material.nodewizard-addchannel.docusign', {
         url: '/docusign',
         controller: 'addChannelDocuSignController',
         templateUrl: '/pages/node-wizard/add-channel/docusign.html'
       })
-      .state('material.nodewizard.addchannel.apikey', {
+      .state('material.nodewizard-addchannel.apikey', {
         url: '/apikey',
         controller: 'addChannelApiKeyController',
         templateUrl: '/pages/node-wizard/add-channel/apikey.html'
       })
-      .state('material.nodewizard.addchannel.apikey-basic', {
+      .state('material.nodewizard-addchannel.apikey-basic', {
         url: '/apikey-basic',
         controller: 'addChannelApiKeyBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
       })
-      .state('material.nodewizard.addchannel.apikey-dummypass-basic', {
+      .state('material.nodewizard-addchannel.apikey-dummypass-basic', {
         url: '/apikey-dummypass-basic',
         controller: 'addChannelApiKeyDummyPassBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
       })
-      .state('material.nodewizard.addchannel.meshblu', {
+      .state('material.nodewizard-addchannel.meshblu', {
         url: '/meshblu',
         controller: 'addChannelMeshbluController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
@@ -293,28 +287,28 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/existing-channel-detail.html',
         controller: 'apiController'
       })
-      .state('material.nodewizard.addsubdevice', {
+      .state('material.nodewizard-addsubdevice', {
         url: '/add-subdevice/:nodeTypeId',
         controller: 'addSubdeviceController',
         templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
-      .state('material.nodewizard.addgateblu', {
+      .state('material.nodewizard-addgateblu', {
         url: '/add-gateblu/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
-      .state('material.nodewizard.addsubdevice.addgateblu', {
+      .state('material.nodewizard-addsubdevice.addgateblu', {
         url: '/add-gateblu',
         controller: 'AddSubdeviceAddGatebluController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
-      .state('material.nodewizard.addsubdevice.selectgateblu', {
+      .state('material.nodewizard-addsubdevice.selectgateblu', {
         url: '',
         controller: 'AddSubdeviceSelectGatebluController',
         templateUrl: '/pages/node-wizard/add-subdevice/select-gateblu.html'
       })
-      .state('material.nodewizard.addsubdevice.form', {
+      .state('material.nodewizard-addsubdevice.form', {
         url: '/gateblus/:gatebluId',
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'

@@ -8,13 +8,13 @@ class AddNodeWizardController
       @scope.nodeType = nodeType
 
   connectThings: () =>
-    @scope.nextState = 'material.nodewizard.adddevice'
+    @scope.nextState = 'material.nodewizard-adddevice'
 
     if @scope.nodeType.category == 'channel'
-      @scope.nextState = 'material.nodewizard.addchannel.default-options'
+      @scope.nextState = 'material.nodewizard-addchannel.default-options'
 
     if @scope.nodeType.connector
-      @scope.nextState = 'material.nodewizard.addsubdevice.selectgateblu'
+      @scope.nextState = 'material.nodewizard-addsubdevice.selectgateblu'
 
     @state.go(@scope.nextState, {nodeTypeId : @state.params.nodeTypeId}, {location: false})
 

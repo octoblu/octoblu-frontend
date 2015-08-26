@@ -4,7 +4,7 @@
   <div class="gateblu-list">
     <div class="device-collection__items device-collection__items--grid">
       <a ng-repeat="gateblu in gateblus | orderBy: 'name'"
-        ui-sref="material.nodewizard.addsubdevice.form({gatebluId: gateblu.uuid})"
+        ui-sref="material.nodewizard-addsubdevice.form({gatebluId: gateblu.uuid})"
         class="device-collection__item">
 
         <img ng-src="{{gateblu.logo}}"
