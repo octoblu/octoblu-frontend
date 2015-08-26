@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService, HttpResponseHandler) {
   'use strict';
   var self, activeFlow = {};
   self = this;
@@ -7,16 +7,17 @@ angular.module('octobluApp')
 
   //Flow cruds
   self.createFlow = function(flowAttributes) {
-    var workflow = 'flow-create';
+    var logger = new FlowLogService(null, 'flow-create');
     var url = OCTOBLU_API_URL + '/api/flows';
-
-    FlowLogService.logBegin(null, workflow);
-
-    return handleHttpResponse($http.post(url, flowAttributes), workflow)
+    
+    logger.logBegin();
+    var request = $http.post(url, flowAttributes);
+    
+    return handleResponseAndLog(request, logger)      
       .then(function(data){
-        self.notifyFlowSaved();
+        self.notifyFlowSaved();        
         return new FlowModel(data);
-      });
+      });      
   };
 
   self.saveFlow = function(flow) {
@@ -24,10 +25,11 @@ angular.module('octobluApp')
     if(!flow) return;
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
-
     flow.hash = self.hashFlow(flow);
-
-    return $http.put(url, flow);
+    
+    var request = $http.put(url, flow);
+    
+    return HttpResponseHandler.handle(request);
   };
 
   self.saveActiveFlow = function () {
@@ -36,73 +38,66 @@ angular.module('octobluApp')
 
   self.deleteFlow = function(flowId){
     if (!flowId) return;
-
-    var workflow = 'flow-delete';
+    
+    var logger = new FlowLogService(flowId, 'flow-delete');
     var url = OCTOBLU_API_URL + '/api/flows/' + flowId;
-    FlowLogService.logBegin(flowId, workflow);
-
-    return handleHttpResponse($http.delete(url), workflow, flowId);
+    
+    logger.logBegin();
+    var request = $http.delete(url);    
+    
+    return handleResponseAndLog(request, logger);    
   };
 
   self.start = function(flow) {
     flow = flow || activeFlow;
-    if(!flow) return;
-
-    var workflow = 'flow-start';
+    if(!flow) return;    
+    
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    FlowLogService.logBegin(flow.flowId, workflow);
-
-    return handleHttpResponse($http.post(url), workflow, flow.flowId);
+    var logger = new FlowLogService(flow.flowId, 'flow-start');    
+    
+    logger.logBegin();
+    var request = $http.post(url);
+    
+    return handleResponseAndLog(request, logger);  
   };
 
   self.stop = function(flow) {
     flow = flow || activeFlow;
     if(!flow) return;
-
-    var workflow = 'flow-stop';
+  
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    FlowLogService.logBegin(flow.flowId, workflow);
-
-    return handleHttpResponse($http.delete(url), workflow, flow.flowId);
+    var logger = new FlowLogService(flow.flowId, 'flow-stop');    
+    
+    logger.logBegin();
+    var request = $http.delete(url);       
+       
+    return handleResponseAndLog(request, logger);  
   };
 
-  self.restart = function(flow){
+  self.restart = function(flow) {
     flow = flow || activeFlow;
     if(!flow) return;
-
-    var workflow = 'flow-restart';
+    
     var url = OCTOBLU_API_URL + '/api/flows/' + flow.flowId + '/instance';
-    FlowLogService.logBegin(flow.flowId, workflow);
-
-    return handleHttpResponse($http.put(url), workflow, flow.flowId);
+    var logger = new FlowLogService(flow.flowId, 'flow-restart');    
+    
+    logger.logBegin();
+    
+    return handleResponseAndLog(request, logger);
   };
 
-  //log errors, handle http request errors
-  function handleHttpResponse(request, workflow, flowId) {
-    return request
-      .then(function(response){
-        if(response.status >= 400) {
-          return $q.reject(new Error("server returned a" + response.status));
-        }
-
-        if(workflow || flowId) {
-          FlowLogService.logEnd(workflow, flowId);
-        }
-
-        return response.data;
+  function handleResponseAndLog(request, logger) {
+    return HttpResponseHandler.handle(request)
+      .then(function(data){
+        logger.logEnd();
+        return data;
       })
-      .catch(function(error) {
-          var message;
-          if(error && error.message) {
-            message = error.message;
-          }
-          if (workflow || flowId) {
-            FlowLogService.logError(workflow, flowId, message);
-          }
-          return $q.reject(new Error(message));
+      .catch(function(error){         
+        logger.logError(error.message);
+        throw new Error(message);
       });
-  };
-
+  }
+  
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
