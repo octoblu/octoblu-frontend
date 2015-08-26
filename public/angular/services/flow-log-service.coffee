@@ -25,4 +25,5 @@ class FlowLogService
         state: state
         message: message
 
+
 angular.module("octobluApp").service "FlowLogService", FlowLogService
