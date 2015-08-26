@@ -13,5 +13,6 @@ beforeEach(function () {
     $provide.value('$mdDialog', {});
     $provide.constant('OCTOBLU_API_URL', '');
     $provide.constant('OCTOBLU_ICON_URL', '');
+    $provide.constant('FLOW_LOGGER_UUID', 'asdf');
   });
 });

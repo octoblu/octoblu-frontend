@@ -1,13 +1,15 @@
 angular.module('octobluApp')
-.service('GatebluService', function (deviceService, $q, $cookies, skynetService) {
+.service('GatebluService', function (deviceService, $q, $cookies, skynetService, GatebluLogService) {
   'use strict';
   var self = this;
 
   var registerDevice = function(options) {
+    GatebluLogService.registerDeviceBegin(options);
     return deviceService.registerDevice(options);
   };
 
   var updateGateblu = function(gateblu){
+    GatebluLogService.updateGatebluBegin(gateblu);
     return deviceService.updateDevice(gateblu);
   };
 
@@ -20,6 +22,7 @@ angular.module('octobluApp')
         deviceService.getDeviceByUUIDAndToken(device.uuid, device.token)
         .then(function(device){
           if(device && device.optionsSchema){
+            GatebluLogService.deviceOptionsLoaded(device);
             deviceService.addOrUpdateDevice(device);
 
             clearInterval(waitInterval);
@@ -61,8 +64,11 @@ angular.module('octobluApp')
 
       gateblu.devices = gateblu.devices || [];
       gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
+
+      GatebluLogService.registerDeviceEnd(device);
       return updateGateblu(gateblu);
     }).then(function(){
+      GatebluLogService.updateGatebluEnd(device)
       return waitForDeviceToHaveOptionsSchema(device);
     });
   };
