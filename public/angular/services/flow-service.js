@@ -5,7 +5,7 @@ angular.module('octobluApp')
   self = this;
   var previousHashableFlow;
 
-  //Flow crud
+  //Flow cruds
   self.createFlow = function(flowAttributes) {
     var workflow = 'flow-create';
     var url = OCTOBLU_API_URL + '/api/flows';
