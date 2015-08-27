@@ -149,7 +149,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/add.html'
       })
       .state('material.nodewizard-claim', {
-        url: '/claim/:uuid/:token',
+        url: '/node-wizard/claim/:uuid/:token',
         controller: 'ClaimNodeController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/claim.html'
@@ -161,7 +161,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/manual-claim.html'
       })
       .state('material.nodewizard-adddevice', {
-        url: '/add-device/:nodeTypeId',
+        url: '/node-wizard/add-device/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
@@ -288,13 +288,13 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'apiController'
       })
       .state('material.nodewizard-addsubdevice', {
-        url: '/add-subdevice/:nodeTypeId',
+        url: '/node-wizard/add-subdevice/:nodeTypeId',
         controller: 'addSubdeviceController',
         templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
       .state('material.nodewizard-addgateblu', {
-        url: '/add-gateblu/:nodeTypeId',
+        url: '/node-wizard/add-gateblu/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
