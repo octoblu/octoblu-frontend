@@ -10,8 +10,8 @@ angular.module('octobluApp')
     var deploymentUuid = UUIDService.v1();
     var logger = new FlowLogService(null, 'flow-create', deploymentUuid);
     var url = OCTOBLU_API_URL + '/api/flows';
-    
-    logger.logBegin();    
+
+    logger.logBegin();
     var request = $http({
       url: url,
       method: 'POST',
@@ -20,12 +20,12 @@ angular.module('octobluApp')
       },
       data: flowAttributes
     });
-    
-    return handleResponseAndLog(request, logger)      
+
+    return handleResponseAndLog(request, logger)
       .then(function(data){
-        self.notifyFlowSaved();        
+        self.notifyFlowSaved();
         return new FlowModel(data);
-      });      
+      });
   };
 
   self.saveFlow = function(flow) {
@@ -35,7 +35,7 @@ angular.module('octobluApp')
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
     flow.hash = self.hashFlow(flow);
-    
+
     var request = $http({
       url: url,
       method: 'PUT',
@@ -44,7 +44,7 @@ angular.module('octobluApp')
       },
       data: flow
     });
-    
+
     return HttpResponseHandler.handle(request);
   };
 
@@ -52,14 +52,14 @@ angular.module('octobluApp')
     return self.saveFlow();
   };
 
-  self.deleteFlow = function(flowId){    
+  self.deleteFlow = function(flowId){
     if (!flowId) return;
-    
+
     var deploymentUuid = UUIDService.v1();
     var logger = new FlowLogService(flowId, 'flow-delete', deploymentUuid);
     var url = OCTOBLU_API_URL + '/api/flows/' + flowId;
-    
-    logger.logBegin();    
+
+    logger.logBegin();
     var request = $http({
       url: url,
       method: 'DELETE',
@@ -67,20 +67,20 @@ angular.module('octobluApp')
         deploymentUuid: deploymentUuid
       }
     });
-    
-    return handleResponseAndLog(request, logger);    
+
+    return handleResponseAndLog(request, logger);
   };
 
-  self.start = function(flow) {    
+  self.start = function(flow) {
     flow = flow || activeFlow;
-    if(!flow) return;    
-    
+    if(!flow) return;
+
     var deploymentUuid = UUIDService.v1()
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    var logger = new FlowLogService(flow.flowId, 'flow-start');    
-    
+    var logger = new FlowLogService(flow.flowId, 'flow-start', deploymentUuid);    
+
     logger.logBegin();
-    
+
     var request = $http({
       url: url,
       method: 'POST',
@@ -88,20 +88,20 @@ angular.module('octobluApp')
         deploymentUuid: deploymentUuid
       }
     });
-    
-    return handleResponseAndLog(request, logger);  
+
+    return handleResponseAndLog(request, logger);
   };
 
   self.stop = function(flow) {
     flow = flow || activeFlow;
     if(!flow) return;
-    
+
     var deploymentUuid = UUIDService.v1();
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    var logger = new FlowLogService(flow.flowId, 'flow-stop', deploymentUuid);    
-    
+    var logger = new FlowLogService(flow.flowId, 'flow-stop', deploymentUuid);
+
     logger.logBegin();
- 
+
     var request = $http({
       url: url,
       method: 'POST',
@@ -109,9 +109,9 @@ angular.module('octobluApp')
         deploymentUuid: deploymentUuid
       },
       data: flow
-    });  
-       
-    return handleResponseAndLog(request, logger);  
+    });
+
+    return handleResponseAndLog(request, logger);
   };
 
   function handleResponseAndLog(request, logger) {
@@ -120,12 +120,12 @@ angular.module('octobluApp')
         logger.logEnd();
         return data;
       })
-      .catch(function(error){         
+      .catch(function(error){
         logger.logError(error.message);
         throw new Error(message);
       });
   }
-  
+
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
