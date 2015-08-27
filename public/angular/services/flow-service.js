@@ -77,7 +77,7 @@ angular.module('octobluApp')
 
     var deploymentUuid = UUIDService.v1()
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId + '/instance';
-    var logger = new FlowLogService(flow.flowId, 'flow-start', deploymentUuid);    
+    var logger = new FlowLogService(flow.flowId, 'flow-start', deploymentUuid);
 
     logger.logBegin();
 
@@ -104,7 +104,7 @@ angular.module('octobluApp')
 
     var request = $http({
       url: url,
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         deploymentUuid: deploymentUuid
       },
