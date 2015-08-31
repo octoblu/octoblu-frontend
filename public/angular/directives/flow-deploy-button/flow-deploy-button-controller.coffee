@@ -6,8 +6,8 @@ class FlowDeployButtonController
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
 
-    @start = _.throttle @immediateStart, 5000
-    @stop = _.throttle @immediateStop, 5000
+    @start = _.throttle @immediateStart, 5000, leading: true, trailing: false
+    @stop = _.throttle @immediateStop, 5000, leading: true, trailing: false
 
   immediateStart : (e) =>
     e?.preventDefault()
