@@ -2,7 +2,7 @@ class GatebluLogService
   constructor: (skynetService, GATEBLU_LOGGER_UUID, $cookies) ->
     @skynetService       = skynetService
 
-    @APPLICATION         = "app_octoblu"
+    @APPLICATION         = "app-octoblu"
     @WORKFLOW            = 'device-add-to-gateblu'
     @GATEBLU_LOGGER_UUID = GATEBLU_LOGGER_UUID
     @userUuid            = $cookies.meshblu_auth_uuid

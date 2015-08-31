@@ -3,7 +3,7 @@ describe 'GatebluLogService', ->
     @skynet = {}
     @skynetService =
       sendMessage: sinon.stub()
-    @APPLICATION = 'APP_OCTOBLU'
+    @APPLICATION = 'app-octoblu'
     @WORKFLOW = 'device-add-to-gateblu'
     @GATEBLU_LOGGER_UUID = 'd02f42fd-2f61-402e-8491-8efa2c8ad32d'
 
