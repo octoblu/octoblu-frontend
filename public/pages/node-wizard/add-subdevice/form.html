@@ -1,17 +1,19 @@
-<h1 ng-if="!device">
-  <i class="fa fa-spin fa-refresh"></i> Updating your Gateblu...
-</h1>
+<div class="node-wizard">
+  <h1 ng-if="!device">
+    <i class="fa fa-spin fa-refresh"></i> Updating your Gateblu...
+  </h1>
 
-<div ng-if="device">
-  <h2>Configure your thing</h2>
-  <md-input-container>
-    <label>name</label>
-    <input ng-model="device.name" required ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
-  </md-input-container>
+  <div ng-if="device">
+    <h2>Configure your thing</h2>
+    <md-input-container>
+      <label>name</label>
+      <input ng-model="device.name" required ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
+    </md-input-container>
 
-  <device-schema device="device" model="device.options" schema-type="options"></device-schema>
+    <device-schema device="device" model="device.options" schema-type="options"></device-schema>
 
-  <div class="BluButton--actions">
-    <a class="BluButton BluButton--save" ng-click="saveDevice()">Save</a>
+    <div class="BluButton--actions">
+      <a class="BluButton BluButton--save" ng-click="saveDevice()">Save</a>
+    </div>
   </div>
 </div>
