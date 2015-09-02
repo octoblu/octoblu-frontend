@@ -1,7 +1,9 @@
 class GatebluLogService
-  constructor: (skynetService, GATEBLU_LOGGER_UUID, $cookies) ->
+  constructor: (skynetService, UUIDService, GATEBLU_LOGGER_UUID, $cookies) ->
     @skynetService       = skynetService
+    @uuidService         = UUIDService
 
+    @DEPLOYMENTUUID      = @uuidService.v1()
     @APPLICATION         = "app-octoblu"
     @WORKFLOW            = 'device-add-to-gateblu'
     @GATEBLU_LOGGER_UUID = GATEBLU_LOGGER_UUID
@@ -24,6 +26,7 @@ class GatebluLogService
 
   logEvent: (state, device) =>
     payload =
+      deploymentUuid: @DEPLOYMENTUUID
       application: @APPLICATION
       workflow: @WORKFLOW
       state: state
