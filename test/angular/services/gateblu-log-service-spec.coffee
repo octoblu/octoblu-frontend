@@ -8,13 +8,25 @@ describe 'GatebluLogService', ->
     @GATEBLU_LOGGER_UUID = 'd02f42fd-2f61-402e-8491-8efa2c8ad32d'
 
     module 'octobluApp', ($provide) =>
+      @fakeUUIDService = new FakeUUIDService()
       $provide.value '$cookies', { meshblu_auth_uuid : 'second-assassin'}
       $provide.value 'skynetService', @skynetService
+      $provide.value 'UUIDService', @fakeUUIDService
       $provide.value 'GATEBLU_LOGGER_UUID', @GATEBLU_LOGGER_UUID
       return # !important
 
     inject (GatebluLogService) =>
       @sut = GatebluLogService
+
+
+  FakeUUIDService = () =>
+    _this = this
+
+    _this.v1 = sinon.spy(() =>
+      _this.v1.returns
+    )
+
+    this
 
   it 'should exist', ->
     expect(@sut).to.exist
@@ -80,9 +92,11 @@ describe 'GatebluLogService', ->
       @userUuid = 'second-assassin'
       @state = 'ghost-appearance'
       @device = 'assisted-flight'
+      @DEPLOYMENT_UUID = @fakeUUIDService.v1()
       @sut.logEvent @state, @device
 
       @payload =
+        deploymentUuid: @DEPLOYMENT_UUID
         application: @APPLICATION
         workflow: @WORKFLOW
         state: @state

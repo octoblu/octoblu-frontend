@@ -3,7 +3,7 @@ class GatebluLogService
     @skynetService       = skynetService
     @uuidService         = UUIDService
 
-    @DEPLOYMENTUUID      = @uuidService.v1()
+    @DEPLOYMENT_UUID     = @uuidService.v1()
     @APPLICATION         = "app-octoblu"
     @WORKFLOW            = 'device-add-to-gateblu'
     @GATEBLU_LOGGER_UUID = GATEBLU_LOGGER_UUID
@@ -26,7 +26,7 @@ class GatebluLogService
 
   logEvent: (state, device) =>
     payload =
-      deploymentUuid: @DEPLOYMENTUUID
+      deploymentUuid: @DEPLOYMENT_UUID
       application: @APPLICATION
       workflow: @WORKFLOW
       state: state
