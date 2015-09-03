@@ -16,7 +16,7 @@ describe 'GatebluLogService', ->
       return # !important
 
     inject (GatebluLogService) =>
-      @sut = GatebluLogService
+      @sut = new GatebluLogService()
 
 
   FakeUUIDService = () =>
@@ -31,6 +31,17 @@ describe 'GatebluLogService', ->
   it 'should exist', ->
     expect(@sut).to.exist
 
+
+  describe '->addDeviceBegin', ->
+    beforeEach ->
+      @sut.logEvent = sinon.stub()
+      @device =
+        type: 'bad-droppings'
+      @sut.addDeviceBegin @device
+
+    it 'should called logEvent with the state and device type', ->
+      expect(@sut.logEvent).to.have.been.calledWith 'begin', type: @device.type
+
   describe '->registerDeviceBegin', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
@@ -39,7 +50,7 @@ describe 'GatebluLogService', ->
       @sut.registerDeviceBegin @device
 
     it 'should called logEvent with the state and device type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'begin', type: @device.type
+      expect(@sut.logEvent).to.have.been.calledWith 'register-device-begin', type: @device.type
 
   describe '->registerDeviceEnd', ->
     beforeEach ->
@@ -72,20 +83,41 @@ describe 'GatebluLogService', ->
         type: 'walk-on-water'
       @sut.updateGatebluEnd @device
 
-    it 'should called logEvent with the state and device type', ->
+    it 'should called logEvent with the state and device uuid and type', ->
       expect(@sut.logEvent).to.have.been.calledWith 'gateblu-update-end', { uuid: @device.uuid, type: @device.type }
 
-  describe '->deviceOptionsLoaded', ->
+  describe '->deviceOptionsLoadBegin', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid: 'heroic-feats'
         type: 'smush-into-a-ball'
-      @sut.deviceOptionsLoaded @device
+      @sut.deviceOptionsLoadBegin @device
 
-    it 'should called logEvent with the state and device type', ->
+    it 'should called logEvent with the state and device uuid and type', ->
+      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-begin', { uuid: @device.uuid, type: @device.type }
+
+  describe '->deviceOptionsLoadEnd', ->
+    beforeEach ->
+      @sut.logEvent = sinon.stub()
+      @device =
+        uuid: 'ophelia'
+        type: 'plus-one-to-science'
+      @sut.deviceOptionsLoadEnd @device
+
+    it 'should call logEvent with the state and device uuid and type', ->
+      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-end', { uuid: @device.uuid, type: @device.type }
+
+  describe '->addDeviceEnd', ->
+    beforeEach ->
+      @sut.logEvent = sinon.stub()
+      @device =
+        uuid: 'party'
+        type: 'solution'
+      @sut.addDeviceEnd @device
+
+    it 'should call logEvent with the state and device uuid and type', ->
       expect(@sut.logEvent).to.have.been.calledWith 'end', { uuid: @device.uuid, type: @device.type }
-
 
   describe '->logEvents', ->
     beforeEach ->
