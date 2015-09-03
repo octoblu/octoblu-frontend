@@ -1,14 +1,17 @@
 angular.module("octobluApp").factory "GatebluLogService",
-(skynetService, GATEBLU_LOGGER_UUID, $cookies) ->
+(skynetService, GATEBLU_LOGGER_UUID, $cookies, UUIDService) ->
   class GatebluLogService
-    constructor: (deploymentUuid) ->
-      @deploymentUuid      = deploymentUuid
-      @userUuid            = $cookies.meshblu_auth_uuid
-      @APPLICATION         = "app-octoblu"
-      @WORKFLOW            = 'device-add-to-gateblu'
+    constructor: () ->
+      @deploymentUuid = UUIDService.v1()
+      @userUuid       = $cookies.meshblu_auth_uuid
+      @APPLICATION    = "app-octoblu"
+      @WORKFLOW       = 'device-add-to-gateblu'
+
+    addDeviceBegin: (nodeType) =>
+      @logEvent "begin", { type: nodeType.type }
 
     registerDeviceBegin: (device)=>
-      @logEvent "begin", { type: device.type }
+      @logEvent "register-device-begin", { type: device.type }
 
     registerDeviceEnd: (device)=>
       @logEvent "register-device-end", { uuid: device.uuid, type: device.type }
@@ -19,7 +22,13 @@ angular.module("octobluApp").factory "GatebluLogService",
     updateGatebluEnd: (device) =>
       @logEvent "gateblu-update-end",  { uuid: device.uuid, type: device.type }
 
-    deviceOptionsLoaded: (device) =>
+    deviceOptionsLoadBegin: (device) =>
+      @logEvent "device-options-load-begin", { uuid: device.uuid, type: device.type }
+
+    deviceOptionsLoadEnd: (device) =>
+      @logEvent "device-options-load-end", { uuid: device.uuid, type: device.type }
+
+    addDeviceEnd: (device) =>
       @logEvent "end", { uuid: device.uuid, type: device.type }
 
     logEvent: (state, device) =>
@@ -31,7 +40,6 @@ angular.module("octobluApp").factory "GatebluLogService",
         userUuid: @userUuid
         device: device
 
-      console.log 'deploymentuuid', payload.deploymentUuid
       skynetService.sendMessage
         devices: GATEBLU_LOGGER_UUID
         payload: payload
