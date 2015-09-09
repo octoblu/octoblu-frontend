@@ -36,96 +36,106 @@ describe 'GatebluLogService', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
-        type: 'bad-droppings'
-      @sut.addDeviceBegin @device
+        connector: 'bad-droppings'
+      @gatebluUuid = 'pope-of-nope'
+      @sut.addDeviceBegin @gatebluUuid, @device.connector
 
     it 'should called logEvent with the state and device type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'begin', type: @device.type
+      expect(@sut.logEvent).to.have.been.calledWith 'begin', null, @gatebluUuid, @device.connector
 
   describe '->registerDeviceBegin', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
-        type: 'robotify'
-      @sut.registerDeviceBegin @device
+        connector: 'robotify'
+      @gatebluUuid = 'narnope'
+      @sut.registerDeviceBegin @gatebluUuid, @device.connector
 
     it 'should called logEvent with the state and device type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'register-device-begin', type: @device.type
+      expect(@sut.logEvent).to.have.been.calledWith 'register-device-begin', null, @gatebluUuid, @device.connector
 
   describe '->registerDeviceEnd', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid : 'self-immolation'
-        type : 'non-lethal-shot'
-      @sut.registerDeviceEnd @device
+        connector : 'non-lethal-shot'
+      @gatebluUuid = 'nope-ninja'
+      @sut.registerDeviceEnd @device.uuid, @gatebluUuid, @device.connector
 
     it 'should called logEvent with the state and device type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'register-device-end', { uuid: @device.uuid, type: @device.type }
+      expect(@sut.logEvent).to.have.been.calledWith 'register-device-end', @device.uuid, @gatebluUuid, @device.connector
 
   describe '->updateGatebluBegin', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @gateblu =
         uuid : 'escaped-prisoner'
-        type : 'animal-expert'
-        devices: ['bad-doctor', 'name-withheld', 'no-questions']
-      @sut.updateGatebluBegin @gateblu
+      @device =
+        uuid : 'glass-of-nope'
+        connector : 'animal-expert'
+      @sut.updateGatebluBegin @device.uuid, @gateblu.uuid, @device.connector
 
     it 'should called logEvent with the state and device type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'gateblu-update-begin', { uuid: @gateblu.uuid, type: @gateblu.type, devices: @gateblu.devices }
+      expect(@sut.logEvent).to.have.been.calledWith 'gateblu-update-begin', @device.uuid, @gateblu.uuid, @device.connector
 
   describe '->updateGatebluEnd', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid: 'right-key'
-        type: 'walk-on-water'
-      @sut.updateGatebluEnd @device
+        connector: 'walk-on-water'
+      @gatebluUuid = 'a-butt-tuba'
+      @sut.updateGatebluEnd @device.uuid, @gatebluUuid, @device.connector
 
     it 'should called logEvent with the state and device uuid and type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'gateblu-update-end', { uuid: @device.uuid, type: @device.type }
+      expect(@sut.logEvent).to.have.been.calledWith 'gateblu-update-end', @device.uuid, @gatebluUuid, @device.connector
 
   describe '->deviceOptionsLoadBegin', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid: 'heroic-feats'
-        type: 'smush-into-a-ball'
-      @sut.deviceOptionsLoadBegin @device
+        connector: 'smush-into-a-ball'
+      @gatebluUuid = 'taco-cat'
+      @sut.deviceOptionsLoadBegin @device.uuid, @gatebluUuid, @device.connector
 
     it 'should called logEvent with the state and device uuid and type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-begin', { uuid: @device.uuid, type: @device.type }
+      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-begin', @device.uuid, @gatebluUuid, @device.connector
 
   describe '->deviceOptionsLoadEnd', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid: 'ophelia'
-        type: 'plus-one-to-science'
-      @sut.deviceOptionsLoadEnd @device
+        connector: 'plus-one-to-science'
+      @gatebluUuid = 'potato-cat'
+      @sut.deviceOptionsLoadEnd @device.uuid, @gatebluUuid, @device.connector
 
     it 'should call logEvent with the state and device uuid and type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-end', { uuid: @device.uuid, type: @device.type }
+      expect(@sut.logEvent).to.have.been.calledWith 'device-options-load-end', @device.uuid, @gatebluUuid, @device.connector
 
   describe '->addDeviceEnd', ->
     beforeEach ->
       @sut.logEvent = sinon.stub()
       @device =
         uuid: 'party'
-        type: 'solution'
-      @sut.addDeviceEnd @device
+        connector: 'solution'
+      @gatebluUuid = 'monster-energy'
+      @sut.addDeviceEnd @device.uuid, @gatebluUuid, @device.connector
 
     it 'should call logEvent with the state and device uuid and type', ->
-      expect(@sut.logEvent).to.have.been.calledWith 'end', { uuid: @device.uuid, type: @device.type }
+      expect(@sut.logEvent).to.have.been.calledWith 'end', @device.uuid, @gatebluUuid, @device.connector
 
   describe '->logEvents', ->
     beforeEach ->
       @userUuid = 'second-assassin'
       @state = 'ghost-appearance'
-      @device = 'assisted-flight'
+      @deviceUuid = 'assisted-flight'
+      @gatebluUuid = 'rick-and-morty'
+      @connector = 'premium-coffee'
       @DEPLOYMENT_UUID = @fakeUUIDService.v1()
-      @sut.logEvent @state, @device
+      @sut.logEvent @state, @deviceUuid, @gatebluUuid, @connector
 
       @payload =
         deploymentUuid: @DEPLOYMENT_UUID
@@ -133,7 +143,9 @@ describe 'GatebluLogService', ->
         workflow: @WORKFLOW
         state: @state
         userUuid: @userUuid
-        device: @device
+        deviceUuid: @deviceUuid
+        gatebluUuid: @gatebluUuid
+        connector: @connector
 
       @message =
         devices: @GATEBLU_LOGGER_UUID

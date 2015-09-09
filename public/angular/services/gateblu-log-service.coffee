@@ -7,8 +7,8 @@ angular.module("octobluApp").factory "GatebluLogService",
       @APPLICATION    = "app-octoblu"
       @WORKFLOW       = 'device-add-to-gateblu'
 
-    addDeviceBegin: (gatebluUuid, nodeType) =>
-      @logEvent "begin", gatebluUuid, null, nodeType.connector
+    addDeviceBegin: (gatebluUuid, connector) =>
+      @logEvent "begin", null, gatebluUuid, connector
 
     registerDeviceBegin: (gatebluUuid, connector) =>
       @logEvent "register-device-begin", null, gatebluUuid, connector
