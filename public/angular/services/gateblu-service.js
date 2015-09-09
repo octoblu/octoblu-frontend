@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('GatebluService', function (deviceService, $q, $cookies, skynetService, GatebluLogService) {
+.service('GatebluService', function (deviceService, $q, $cookies, skynetService) {
   'use strict';
   var self = this;
 
@@ -7,13 +7,13 @@ angular.module('octobluApp')
     return deviceService.registerDevice(options);
   };
 
-  var updateGateblu = function(gateblu, logger){
-    logger.updateGatebluBegin(gateblu);
+  var updateGateblu = function(gateblu, device, logger){
+    logger.updateGatebluBegin(device.uuid, gateblu.uuid, device.connector);
     return deviceService.updateDevice(gateblu);
   };
 
   var waitForDeviceToHaveOptionsSchema = function(device, logger){
-    logger.deviceOptionsLoadBegin(device);
+    logger.deviceOptionsLoadBegin(device.uuid, device.gateblu, device.connector);
 
     var deferred, waitFunction, waitInterval;
     deferred = $q.defer();
@@ -25,7 +25,7 @@ angular.module('octobluApp')
           if(device && device.optionsSchema){
             deviceService.addOrUpdateDevice(device);
 
-            logger.deviceOptionsLoadEnd(device);
+            logger.deviceOptionsLoadEnd(device.uuid, device.gateblu, device.connector);
 
             clearInterval(waitInterval);
             deferred.resolve(device);
@@ -42,7 +42,7 @@ angular.module('octobluApp')
   self.addDevice = function(gatebluId, nodeType, logger){
     var device;
     var userUuid = $cookies.meshblu_auth_uuid;
-    logger.registerDeviceBegin(nodeType)
+    logger.registerDeviceBegin(gatebluId, nodeType.connector)
     return $q.all([
       registerDevice({
         gateblu: gatebluId,
@@ -67,10 +67,10 @@ angular.module('octobluApp')
       gateblu.devices = gateblu.devices || [];
       gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
 
-      logger.registerDeviceEnd(device);
-      return updateGateblu(gateblu, logger);
+      logger.registerDeviceEnd(device.uuid, gateblu.uuid, device.connector);
+      return updateGateblu(gateblu, device, logger);
     }).then(function(){
-      logger.updateGatebluEnd(device);
+      logger.updateGatebluEnd(device.uuid, device.gateblu, device.connector);
       return waitForDeviceToHaveOptionsSchema(device, logger);
     });
   };

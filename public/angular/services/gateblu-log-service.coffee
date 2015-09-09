@@ -7,38 +7,40 @@ angular.module("octobluApp").factory "GatebluLogService",
       @APPLICATION    = "app-octoblu"
       @WORKFLOW       = 'device-add-to-gateblu'
 
-    addDeviceBegin: (nodeType) =>
-      @logEvent "begin", { type: nodeType.type }
+    addDeviceBegin: (gatebluUuid, nodeType) =>
+      @logEvent "begin", gatebluUuid, null, nodeType.connector
 
-    registerDeviceBegin: (device)=>
-      @logEvent "register-device-begin", { type: device.type }
+    registerDeviceBegin: (gatebluUuid, connector) =>
+      @logEvent "register-device-begin", null, gatebluUuid, connector
 
-    registerDeviceEnd: (device)=>
-      @logEvent "register-device-end", { uuid: device.uuid, type: device.type }
+    registerDeviceEnd: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "register-device-end", deviceUuid, gatebluUuid, connector
 
-    updateGatebluBegin: (gateblu) =>
-      @logEvent "gateblu-update-begin", { uuid: gateblu.uuid, type: gateblu.type, devices: gateblu.devices}
+    updateGatebluBegin: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "gateblu-update-begin", deviceUuid, gatebluUuid, connector
 
-    updateGatebluEnd: (device) =>
-      @logEvent "gateblu-update-end",  { uuid: device.uuid, type: device.type }
+    updateGatebluEnd: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "gateblu-update-end", deviceUuid, gatebluUuid, connector
 
-    deviceOptionsLoadBegin: (device) =>
-      @logEvent "device-options-load-begin", { uuid: device.uuid, type: device.type }
+    deviceOptionsLoadBegin: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "device-options-load-begin", deviceUuid, gatebluUuid, connector
 
-    deviceOptionsLoadEnd: (device) =>
-      @logEvent "device-options-load-end", { uuid: device.uuid, type: device.type }
+    deviceOptionsLoadEnd: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "device-options-load-end", deviceUuid, gatebluUuid, connector
 
-    addDeviceEnd: (device) =>
-      @logEvent "end", { uuid: device.uuid, type: device.type }
+    addDeviceEnd: (deviceUuid, gatebluUuid, connector) =>
+      @logEvent "end", deviceUuid, gatebluUuid, connector
 
-    logEvent: (state, device) =>
+    logEvent: (state, deviceUuid, gatebluUuid, connector) =>
       payload =
         deploymentUuid: @deploymentUuid
         application: @APPLICATION
         workflow: @WORKFLOW
-        state: state
         userUuid: @userUuid
-        device: device
+        state: state
+        deviceUuid: deviceUuid
+        gatebluUuid: gatebluUuid
+        connector: connector
 
       skynetService.sendMessage
         devices: GATEBLU_LOGGER_UUID

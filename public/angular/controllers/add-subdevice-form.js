@@ -7,10 +7,10 @@ angular.module('octobluApp')
   NodeTypeService.getNodeTypeById($stateParams.nodeTypeId).then(function(nodeType){
     $scope.nodeType = nodeType;
   }).then(function(){
-    gatebluLogger.addDeviceBegin($scope.nodeType);
+    gatebluLogger.addDeviceBegin($stateParams.gatebluId, $scope.nodeType);
     return GatebluService.addDevice($stateParams.gatebluId, $scope.nodeType, gatebluLogger);
   }).then(function(device){
-    gatebluLogger.addDeviceEnd(device);
+    gatebluLogger.addDeviceEnd(device.uuid, device.gateblu, device.connector);
     return ThingService.getThing({uuid: device.uuid});
   }).then(function(device){
     $scope.device = device;
