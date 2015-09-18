@@ -1,7 +1,8 @@
 class FlowDeployButtonController
-  constructor: ($scope, FlowService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
+  constructor: ($scope, FlowService, ThingService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
     @scope = $scope
     @FlowService = FlowService
+    @ThingService = ThingService
     @cookies = $cookies
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
@@ -15,13 +16,17 @@ class FlowDeployButtonController
     _.each @scope.flow.nodes, (node) =>
       delete node.errorMessage
 
-    @FlowService.saveActiveFlow()
+    @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: true, stopping: false
+      .then =>
+        @FlowService.saveActiveFlow()
       .then =>
         @FlowService.immediateNotifyFlowSaved()
         @FlowService.start @scope.flow
 
   immediateStop: (e) =>
     e?.preventDefault()
-    @FlowService.stop @scope.flow
+    @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: false, stopping: true
+      .then =>
+        @FlowService.stop @scope.flow
 
 angular.module('octobluApp').controller 'FlowDeployButtonController', FlowDeployButtonController
