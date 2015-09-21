@@ -27,6 +27,7 @@
   <h2 class="node-wizard__title">{{nodeType.name}}</h2>
   <div class="node-wizard__description">
     <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+    <a class="node-wizard_description" ng-if="nodeType.documentation" href={{nodeType.documentation}} target="_blank" >Read Documentation</a>
   </div>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
