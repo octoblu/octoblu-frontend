@@ -49,6 +49,7 @@ angular.module('octobluApp')
         type: nodeType.type,
         category: 'device',
         connector: nodeType.connector,
+        initializing: true,
         sendWhitelist: [],
         receiveWhitelist: [],
         configureWhitelist: [gatebluId, userUuid],
