@@ -37,7 +37,8 @@ class DeviceDetailController
       .then =>
         @ThingService.deleteThing(@device)
       .then =>
-        @state.go "material.configure"
+        name = @device.name || @device.type
+        @state.go "material.configure", deleted: name
 
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (token) =>

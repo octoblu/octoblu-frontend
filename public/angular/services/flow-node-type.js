@@ -4,11 +4,6 @@ angular.module('octobluApp')
 
   var self = this;
 
-  var CACHE_TIMEOUT = 3000;
-  var cacheTimeStamp;
-  var resolvedPromise;
-  var pendingPromise;
-
   self.createFlowNode = function(flowNodeType){
     var defaults = _.cloneDeep(flowNodeType.defaults);
 
@@ -28,35 +23,21 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function(cache) {
-    var now = (new Date).getTime();
-
-    if (!pendingPromise && (!cacheTimeStamp || (now - cacheTimeStamp)>CACHE_TIMEOUT)) {
-      pendingPromise = $http.get(OCTOBLU_API_URL + '/api/flow_node_types')
-      .then(function(res) {
-        var result = _.map(res.data, function(data){
-          if(data.logo){
-            return data;
-          }
-          if(data.defaults && data.defaults.logo){
-            data.logo = data.defaults.logo;
-            return data;
-          }
-          if (data && data.type) {
-            data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
-          }
+    return $http.get(OCTOBLU_API_URL + '/api/flow_node_types').then(function(res){
+      return _.map(res.data, function(data){
+        if(data.logo){
           return data;
-        });
-        cacheTimeStamp = (new Date).getTime();
-        resolvedPromise = pendingPromise;
-        pendingPromise = undefined;
-        return result;
-      }, function(reason) {
-        pendingPromise = undefined;
-        console.error(reason);
+        }
+        if(data.defaults && data.defaults.logo){
+          data.logo = data.defaults.logo;
+          return data;
+        }
+        if (data && data.type) {
+          data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
+        }
+        return data;
       });
-    }
-
-    return resolvedPromise || pendingPromise;
+    });
   };
 
   self.getOtherMatchingFlowNodeTypes = function(type){

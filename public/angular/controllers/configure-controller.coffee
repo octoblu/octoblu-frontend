@@ -8,7 +8,8 @@ class ConfigureController
     @scope.noThings = false
     connectedThings = []
 
-    @NotifyService.notify "#{$stateParams.device} successfully added" if $stateParams.device
+    @NotifyService.notify "#{$stateParams.added} successfully added" if $stateParams.added
+    @NotifyService.notify "#{$stateParams.deleted} successfully deleted" if $stateParams.deleted
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
