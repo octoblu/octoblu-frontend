@@ -17,8 +17,8 @@ class ConfigureController
     @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>
       deviceNameFilter = deviceNameFilter || '';
       filteredDevices = _.filter connectedThings, (device) =>
-        name = (device.name || '').toLowerCase()
-        deviceNameFilter = deviceNameFilter.toLowerCase();
+        name = (device.name || device.type).toLowerCase()
+        deviceNameFilter = deviceNameFilter.toLowerCase()
         return _.contains name, deviceNameFilter
       @updateThingsByCategory(filteredDevices)
 
