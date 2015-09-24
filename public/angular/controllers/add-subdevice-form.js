@@ -30,7 +30,7 @@ angular.module('octobluApp')
 
   $scope.saveDevice = function(){
     return ThingService.updateDevice($scope.device).then(function(){
-      $state.go('material.configure');
+      $state.go('material.configure', {device: $scope.device.name});
     });
   };
 });

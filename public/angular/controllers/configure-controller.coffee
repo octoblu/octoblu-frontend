@@ -1,11 +1,14 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, NotifyService, OCTOBLU_ICON_URL) ->
     @scope = $scope
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @FlowNodeTypeService = FlowNodeTypeService
+    @NotifyService = NotifyService
     @scope.loadingConnectedThings = true
     @scope.noThings = false
     connectedThings = []
+
+    @NotifyService.notify "#{$stateParams.device} successfully added" if $stateParams.device
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>

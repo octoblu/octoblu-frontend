@@ -134,6 +134,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.configure', {
         url: '/configure',
+        params: {
+          device: null
+        },
         controller: 'ConfigureController',
         templateUrl: '/pages/thing-viewer/configure.html'
       })
