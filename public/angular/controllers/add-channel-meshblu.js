@@ -7,7 +7,7 @@ angular.module('octobluApp')
       userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
         $cookies.meshblu_auth_uuid, $cookies.meshblu_auth_token,
         function () {
-          $state.go('material.design');
+          $state.go('material.configure', {added: nodeType.name});
         });
     });
   };

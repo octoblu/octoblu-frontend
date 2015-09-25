@@ -6,7 +6,7 @@ angular.module('octobluApp')
     AuthService.getCurrentUser().then(function(user){
       userService.saveConnection(user.resource.uuid, nodeType.channelid, undefined, undefined, {},
         function () {
-          $state.go('material.design');
+          $state.go('material.configure', {added: nodeType.name});
         }
       );
     });

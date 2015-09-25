@@ -10,7 +10,7 @@ angular.module('octobluApp')
     var profile = { username: $scope.newChannel.user, password : $scope.newChannel.pass };
     channelPromise.then(function(channel){
       $http.post(OCTOBLU_API_URL + '/api/wink/auth', profile).then(function(){
-        $state.go('material.configure', {added: 'Wink'});
+        $state.go('material.configure', {added: nodeType.name});
       })
     });
   };

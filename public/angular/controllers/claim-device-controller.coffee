@@ -1,5 +1,5 @@
 class ClaimNodeController
-  constructor:  ($stateParams, $q, $state, $cookies, ThingService) ->
+  constructor:  ($stateParams, $q, $state, $cookies, ThingService, OCTOBLU_ICON_URL) ->
     @stateParams = $stateParams
     @q = $q
     @state = $state
@@ -11,9 +11,18 @@ class ClaimNodeController
         @loading = false
         @deviceName = device.name
         @device = device
+        @device.logo = @logoUrl @device
       .catch (errorMessage) =>
         @loading = false
         @errorMessage = errorMessage
+
+  logoUrl: (device) =>
+    return device.logo if device.logo
+    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
+
+    type = device.type.replace 'octoblu:', 'device:'
+    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
+    device.logo
 
   getDevice: =>
     return @q.reject 'Unable to retrieve device, missing uuid' unless @stateParams.uuid?
@@ -38,9 +47,7 @@ class ClaimNodeController
       .then =>
         @errorMessage = null
         @loading = false
-        state = 'material.design'
-        state = 'material.things' if @device.type == 'device:gateblu'
-        @state.go state
+        @state.go 'material.configure', added: @deviceName
       .catch (error) =>
         @loading = false
         @errorMessage = error

@@ -7,7 +7,7 @@ angular.module('octobluApp')
     userService.activateNoAuthChannel(user.resource.uuid, nodeType.channelid, function () {
       channelService.getActiveChannels(true);
       channelService.getAvailableChannels(true);
-      $state.go('material.design');
+      $state.go('material.configure', {added: nodeType.name});
     });
   });
 });
