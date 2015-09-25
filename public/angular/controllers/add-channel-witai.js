@@ -10,7 +10,7 @@ angular.module('octobluApp')
     var profile = { accessToken: $scope.newChannel.accessToken};
     channelPromise.then(function(channel){
       $http.post(OCTOBLU_API_URL + '/api/witai/auth', profile).then(function(){
-        $state.go('material.design');
+        $state.go('material.configure', {added: 'Wit.ai'});
       })
     })
   };

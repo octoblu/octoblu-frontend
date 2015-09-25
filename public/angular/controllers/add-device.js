@@ -56,14 +56,10 @@ angular.module('octobluApp')
       }
 
       promise.then(function (data) {
-        if(data.type === "device:gateblu"){
-          $state.go("material.things");
-        }
-        else{
-          $state.go("material.design");
-        }
+        var name = data.name || data.type
+        $state.go("material.configure", {added: name});
       }, function (error) {
-        $scope.errorMessage = error;
+          $scope.errorMessage = error;
       });
     });
   };

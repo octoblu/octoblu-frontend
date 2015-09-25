@@ -49,7 +49,6 @@ this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
 };
 
 this.saveBasicApi = function (uuid, channelid, username, password, callback) {
-
   $http.post(OCTOBLU_API_URL + '/api/channel/basic/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
     callback(null, data);
@@ -86,7 +85,6 @@ this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey,
 };
 
 this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
-
   $http.put(OCTOBLU_API_URL + '/api/user/' + uuid+ '/channel/' + channelid,
   	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams })
   .success(function (data) {

@@ -5,7 +5,7 @@ angular.module('octobluApp')
   $scope.activate = function(){
     AuthService.getCurrentUser().then(function(user){
       userService.saveApiKey(nodeType.channelid, $scope.newChannel.apikey, function(){
-        $state.go('material.design');
+        $state.go('material.configure', {added: nodeType.name});
       });
     });
   };

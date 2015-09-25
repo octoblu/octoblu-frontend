@@ -7,7 +7,7 @@ angular.module('octobluApp')
       userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
        $scope.newChannel.user, $scope.newChannel.pass,
        function () {
-        $state.go('material.design');
+        $state.go('material.configure', {added: nodeType.name});
       });
     });
   };
