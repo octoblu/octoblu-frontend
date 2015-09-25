@@ -133,10 +133,10 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'DesignerController'
       })
       .state('material.configure', {
-        url: '/configure',
+        url: '/configure?added&deleted',
         params: {
-          deleted: null,
-          added: null
+          added: null,
+          deleted: null
         },
         controller: 'ConfigureController',
         templateUrl: '/pages/thing-viewer/configure.html'
