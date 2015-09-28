@@ -122,7 +122,7 @@ angular.module('octobluApp')
       })
       .catch(function(error){
         logger.logError(error.message);
-        throw new Error(message);
+        throw new Error(error.message);
       });
   }
 
