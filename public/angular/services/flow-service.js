@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService, HttpResponseHandler, UUIDService) {
+.service('FlowService', function (OCTOBLU_API_URL, $http, $q, AuthService, FlowModel, FlowNodeTypeService, NotifyService, deviceService, ThingService, FlowLogService, HttpResponseHandler, UUIDService, MeshbluHttpService) {
   'use strict';
   var self, activeFlow = {};
   self = this;
@@ -159,6 +159,20 @@ angular.module('octobluApp')
 
       });
   };
+
+  self.subscribeFlowToDevices = function(flowUuid, deviceUuids){
+    async.each(deviceUuids, function(deviceUuid, callback){
+      MeshbluHttpService.createSubscription({
+        subscriberId: flowUuid,
+        emitterId:    deviceUuid,
+        type:         'broadcast'
+      }, callback);
+    }, function(error){
+      if(error){
+        console.error(error);
+      }
+    });
+  }
 
   self.immediateNotifyFlowSaved = function(){
     NotifyService.notify("Flow Saved");

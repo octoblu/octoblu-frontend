@@ -457,9 +457,19 @@ angular.module('octobluApp')
       });
   };
 
+  var subscribeFlowToDevices = function(newNodes){
+    if(!$scope.activeFlow) {
+      return;
+    }
+
+    var deviceNodeUuids = _.pluck(_.filter(newNodes, 'meshblu'), 'uuid');
+    FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
+  };
+
   $scope.$watch('activeFlow', calculateFlowHash, true);
   $scope.$watch('activeFlow.hash', compareFlowHash);
   $scope.$watchCollection('activeFlow.nodes', checkDevicePermissions);
+  $scope.$watchCollection('activeFlow.nodes', subscribeFlowToDevices);
 
   $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
 

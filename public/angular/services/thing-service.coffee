@@ -1,8 +1,7 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL, $http) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
-    @http = $http
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
   addLogo: (data) =>
