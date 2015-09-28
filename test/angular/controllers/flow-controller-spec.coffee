@@ -6,8 +6,8 @@ describe 'FlowController', ->
       $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
       $provide.value 'OCTOBLU_ICON_URL', ''
-      $provide.value('MESHBLU_HOST', 'http://whatever.com');
-      $provide.value('MESHBLU_PORT', 1111);
+      $provide.value 'MESHBLU_HOST', 'http://whatever.com'
+      $provide.value 'MESHBLU_PORT', 1111
       return
 
     inject ($controller, $rootScope, $q) =>
@@ -26,7 +26,6 @@ describe 'FlowController', ->
 
       @sut = $controller('FlowController', {
         $scope : @scope
-        $stateParams : @stateParams
         $stateParams : @stateParams
         $window : @fakeWindow
         FlowService : @fakeFlowService
@@ -153,6 +152,8 @@ describe 'FlowController', ->
       @needsPermissions.deferred.promise
 
     setActiveFlow: =>
+
+    subscribeFlowToDevices: =>
 
     onStep: =>
 
