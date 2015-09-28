@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addChannelTeslaController', function(OCTOBLU_API_URL, $scope, $state, $http, nodeType, userService, channelService, AuthService) {
+.controller('addChannelTeslaController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, $http, nodeType, userService, channelService, AuthService) {
   var channelPromise;
 
   channelPromise = channelService.getById(nodeType.channelid);
@@ -10,7 +10,13 @@ angular.module('octobluApp')
     var profile = { username: $scope.newChannel.user, password : $scope.newChannel.pass };
     channelPromise.then(function(channel){
       $http.post(OCTOBLU_API_URL + '/api/tesla/auth', profile).then(function(){
-        $state.go('material.configure', {added: nodeType.name});
+        var redirectToDesign = $stateParams.designer || false;
+        if(redirectToDesign){
+          $state.go('material.design', {added: nodeType.name});
+        }
+        else{
+          $state.go('material.configure', {added: nodeType.name});
+        }
       })
     })
   };

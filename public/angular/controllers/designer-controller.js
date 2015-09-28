@@ -1,6 +1,9 @@
 angular.module('octobluApp')
-.controller('DesignerController', function ($state, $scope, $cookies, FlowService) {
-
+.controller('DesignerController', function ($state, $scope, $stateParams, $cookies, FlowService, NotifyService) {
+  if ($stateParams.added) {
+    var device = $stateParams.added
+    NotifyService.notify(device + " successfully added!");
+  }
   FlowService.getAllFlows().then(function (flows) {
     var flowId;
     $state.flows = flows;

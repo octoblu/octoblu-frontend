@@ -8,6 +8,7 @@ class AddNodeWizardController
       @scope.nodeType = nodeType
 
   connectThings: () =>
+    redirectToDesign = @state.params.designer || false
     @scope.nextState = 'material.nodewizard-adddevice'
 
     if @scope.nodeType.category == 'channel'
@@ -16,6 +17,6 @@ class AddNodeWizardController
     if @scope.nodeType.connector
       @scope.nextState = 'material.nodewizard-addsubdevice.selectgateblu'
 
-    @state.go(@scope.nextState, {nodeTypeId : @state.params.nodeTypeId}, {location: false})
+    @state.go(@scope.nextState, {nodeTypeId : @state.params.nodeTypeId, designer: redirectToDesign}, {location: false})
 
 angular.module('octobluApp').controller 'AddNodeWizardController', AddNodeWizardController
