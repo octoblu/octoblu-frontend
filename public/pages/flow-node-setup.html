@@ -6,5 +6,6 @@
       Click Setup to start configuring this thing
     </p>
     <md-button ui-sref="material.nodewizard-add({nodeTypeId: nodeType._id, designer: true})" class="md-raised md-primary Sidebar-setup-button">Setup</md-button>
+    <button ng-if="controller.showDelete()" ng-click="controller.deleteNode()" class="Sidebar-pane-thing--delete BluButton" aria-label="Delete">Delete</button>
   </div>
 </div>

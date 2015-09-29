@@ -1,5 +1,5 @@
 class AddNodeWizardController
-  constructor: (OCTOBLU_API_URL, $scope, $state, NodeTypeService) ->
+  constructor: ($scope, $state, NodeTypeService) ->
     @scope = $scope
     @state = $state
     @NodeTypeService = NodeTypeService
