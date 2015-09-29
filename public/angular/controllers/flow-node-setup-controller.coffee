@@ -10,15 +10,15 @@ class FlowNodeSetupController
     @activeFlow = @FlowService.getActiveFlow()
 
   logoUrl: () =>
-    return @scope.nodeType.logo if @scope.nodeType.logo
-    return @scope.nodeType.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless @scope.nodeType && @scope.nodeType.type
+    return @activeFlow.selectedFlowNode.logo if @activeFlow.selectedFlowNode.logo
+    return @activeFlow.selectedFlowNode.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless @activeFlow.selectedFlowNode && @activeFlow.selectedFlowNode.type
 
-    type = @scope.nodeType.type.replace 'octoblu:', 'node:'
+    type = @activeFlow.selectedFlowNode.type.replace 'octoblu:', 'node:'
     type = type.replace(':', '/')
     "#{@OCTOBLU_ICON_URL}#{type}.svg"
 
   getNodeId: () =>
-    @NodeTypeService.getNodeTypeByType(@scope.nodeType.type).then (nodeType) =>
+    @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
       @state.go 'material.nodewizard-add', nodeTypeId: nodeType._id, designer: true
 
   showDelete: () =>
