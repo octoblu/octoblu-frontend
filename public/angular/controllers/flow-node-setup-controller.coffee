@@ -19,7 +19,9 @@ class FlowNodeSetupController
 
   getNodeId: () =>
     @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
-      @state.go 'material.nodewizard-add', nodeTypeId: nodeType._id, designer: true
+      nodeTypeId = '53c9b832f400e177dca325b3'
+      nodeTypeId = nodeType._id if nodeType?._id
+      @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, designer: true
 
   showDelete: () =>
     @activeFlow.selectedFlowNode.needsConfiguration
