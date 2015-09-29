@@ -1,11 +1,13 @@
 class FlowDetailEditorController
-  constructor: ($cookies, $scope, $state, BluprintService, FlowService, NotifyService) ->
+  constructor: ($cookies, $scope, $state, BluprintService, FlowService, NotifyService, AuthService) ->
     @cookies = $cookies
     @scope = $scope
     @state = $state
     @BluprintService = BluprintService
     @FlowService = FlowService
     @NotifyService = NotifyService
+    AuthService.getCurrentUser().then (user) =>
+      $scope.userNanocyteBeta = user?.userDevice?.nanocyteBeta
 
   createBluprint: (flow) ->
     @BluprintService
@@ -25,5 +27,8 @@ class FlowDetailEditorController
         @FlowService.deleteFlow(flow.flowId)
           .then =>
             @state.go 'material.design'
+
+  saveFlow: (flow) ->
+    @FlowService.saveFlow(flow)
 
 angular.module('octobluApp').controller 'FlowDetailEditorController', FlowDetailEditorController
