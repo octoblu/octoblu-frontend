@@ -23,6 +23,7 @@ describe 'FlowController', ->
       @fakeFlowNodeTypeService = new FakeFlowNodeTypeService $q
       @fakeSkynetService = new FakeSkynetService $q
       @fakeNotifyService = new FakeNotifyService $q
+      @fakeNodeRegistryService = new FakeNodeRegistryService $q
 
       @sut = $controller('FlowController', {
         $scope : @scope
@@ -33,6 +34,7 @@ describe 'FlowController', ->
         FlowNodeTypeService : @fakeFlowNodeTypeService
         skynetService: @fakeSkynetService
         NotifyService : @fakeNotifyService
+        NodeRegistryService: @fakeNodeRegistryService
       })
 
   beforeEach ->
@@ -192,3 +194,8 @@ describe 'FlowController', ->
   class FakeNotifyService
     constructor: (@q) ->
       @confirm = sinon.stub().returns @q.when()
+
+  class FakeNodeRegistryService
+    constructor: (@q) ->
+    needsPermissions: =>
+      @q.when()
