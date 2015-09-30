@@ -28,3 +28,11 @@
     <div ng-message="info">Collection will clear after maximun count. 0 is Infinite.</div>
   </div>
 </md-input-container>
+<md-input-container>
+  <label>Clear Key</label>
+  <input type="number" ng-model="flowNode.clearKey">
+  <div ng-messages="{info:true}">
+    <div ng-message="info">Collection will clear if the message contains this key with a value of true</div>
+    <br>
+  </div>
+</md-input-container>
