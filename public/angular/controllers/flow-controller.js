@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -409,6 +409,14 @@ angular.module('octobluApp')
     return NotifyService.confirm(options);
   };
 
+  var askToAddSendWhitelist = function(thingsNeedingSendWhitelist) {
+    var options = {
+      title: 'Permissions Required',
+      content: 'The following devices need to send messages to your flow: ' + thingsNeedingSendWhitelist.join(', ')
+    };
+    return NotifyService.confirm(options);
+  };
+
   var addFlowToWhitelists = function(thingsNeedingReceiveAs) {
     var deferred = $q.defer()
 
@@ -429,6 +437,14 @@ angular.module('octobluApp')
     return deferred;
   };
 
+  var addSendWhitelistsToFlow = function(thingsNeedingSendWhitelist) {
+    ThingService.getThing({uuid: $scope.activeFlow.flowId}).then(function(thing) {
+      thing.sendWhitelist = thing.sendWhitelist || [];
+      thing.sendWhitelist = _.union(thing.sendWhitelist, thingsNeedingSendWhitelist);
+      ThingService.updateDevice(thing);
+    })
+  };
+
   var askAndAddToReceiveAs = function(thingsNeedingReceiveAs) {
     return askToAddReceiveAs(thingsNeedingReceiveAs)
       .then(function(){
@@ -442,13 +458,23 @@ angular.module('octobluApp')
       });
   };
 
-  var checkDevicePermissions = function(newNodes) {
-    if(!$scope.activeFlow) {
-      return;
-    }
+  var askAndAddToSendWhitelist = function(thingsNeedingSendWhitelist) {
+    return askToAddSendWhitelist(thingsNeedingSendWhitelist)
+      .then(function(){
+        return addSendWhitelistsToFlow(thingsNeedingSendWhitelist);
+      })
+      .then(function(){
+        return NotifyService.notify('Permissions updated');
+      })
+      .catch(function(error){
+        return NotifyService.alert(error.message);
+      });
+  };
 
+  var checkDevicePermissions = function(newNodes) {
     var deviceNodes = _.filter(newNodes, 'meshblu');
-    FlowService.needsPermissions($scope.activeFlow.flowId, _.pluck(deviceNodes, 'uuid'))
+    var deviceUuids = _.pluck(deviceNodes, 'uuid');
+    FlowService.needsPermissions($scope.activeFlow.flowId, deviceUuids)
       .then(function(thingsNeedingReceiveAs){
         if (_.isEmpty(thingsNeedingReceiveAs)){
           return;
@@ -457,20 +483,36 @@ angular.module('octobluApp')
       });
   };
 
-  var subscribeFlowToDevices = function(newNodes){
+  var checkNodeRegistryPermissions = function(newNodes) {
+    var deviceNodes = _.filter(newNodes, 'meshblu');
+    var nodeTypes = _.pluck(newNodes, 'type');
+    NodeRegistryService.needsPermissions($scope.activeFlow.flowId, nodeTypes)
+      .then(function(thingsNeedingSendWhitelist){
+        if (_.isEmpty(thingsNeedingSendWhitelist)){
+          return;
+        }
+        return askAndAddToSendWhitelist(thingsNeedingSendWhitelist);
+      });
+  };
+
+  var watchNodes = function(newNodes) {
     if(!$scope.activeFlow) {
       return;
     }
 
+    checkDevicePermissions(newNodes);
+    checkNodeRegistryPermissions(newNodes);
+    subscribeFlowToDevices(newNodes);
+  }
+
+  var subscribeFlowToDevices = function(newNodes){
     var deviceNodeUuids = _.pluck(_.filter(newNodes, 'meshblu'), 'uuid');
     FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
   };
 
   $scope.$watch('activeFlow', calculateFlowHash, true);
   $scope.$watch('activeFlow.hash', compareFlowHash);
-  $scope.$watchCollection('activeFlow.nodes', checkDevicePermissions);
-  $scope.$watchCollection('activeFlow.nodes', subscribeFlowToDevices);
-
+  $scope.$watchCollection('activeFlow.nodes', watchNodes);
   $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
 
 });
