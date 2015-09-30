@@ -6,8 +6,10 @@ class FlowDetailEditorController
     @BluprintService = BluprintService
     @FlowService = FlowService
     @NotifyService = NotifyService
-    AuthService.getCurrentUser().then (user) =>
-      $scope.userNanocyteBeta = user?.userDevice?.nanocyteBeta
+
+    @scope.$watch 'flow', =>
+      AuthService.getCurrentUser().then (user) =>
+        $scope.offerNanocyteBeta = user?.userDevice?.nanocyteBeta || @scope.flow?.nanocyteBeta
 
   createBluprint: (flow) ->
     @BluprintService

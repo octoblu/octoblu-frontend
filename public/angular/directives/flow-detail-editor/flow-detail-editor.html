@@ -23,11 +23,11 @@
     <md-checkbox
       ng-model="flow.nanocyteBeta"
       ng-change="controller.saveFlow(flow)"
-      ng-if="userNanocyteBeta"
+      ng-if="offerNanocyteBeta"
       aria-label="Use Beta Flow Engine">
       Use Beta Flow Engine
     </md-checkbox>
-    <md-divider class="Sidebar-section-divider" ng-if="userNanocyteBeta"></md-divider>
+    <md-divider class="Sidebar-section-divider" ng-if="offerNanocyteBeta"></md-divider>
 
     <button
       ng-click="controller.createBluprint(flow)"
