@@ -6,4 +6,4 @@ angular.module('octobluApp')
   controller: 'PluginPlatformDependencies'
   controllerAs: 'controller'
   scope:
-    dependencies: '='
+    connector: '='

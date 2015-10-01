@@ -1,12 +1,12 @@
 class PluginPlatformDependencies
-  constructor: ($scope, NPMRegistryService) ->
+  constructor: ($scope, ConnectorDetailService) ->
     @scope = $scope
-    @scope.dependencies = []
-    @NPMRegistryService = NPMRegistryService
+    @scope.dependencies = {}
+    @ConnectorDetailService = ConnectorDetailService
 
-    @NPMRegistryService.getDependenciesForPackage 'meshblu-ble-heartrate'
-
-    # Service get us the package.json for this package
-    # and return the dependencies
+    @ConnectorDetailService.getDependenciesForPackage @scope.connector
+      .then (dependencies) =>
+        console.log 'got dependencies'
+        @scope.dependencies = dependencies
 
 angular.module('octobluApp').controller 'PluginPlatformDependencies', PluginPlatformDependencies
