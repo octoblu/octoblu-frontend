@@ -7,3 +7,4 @@ angular.module('octobluApp')
   controllerAs: 'controller'
   scope:
     connector: '='
+    platform: '='

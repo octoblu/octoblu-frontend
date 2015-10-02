@@ -17,7 +17,10 @@ class AddNodeWizardController
     if @scope.nodeType.connector
       @scope.nextState = 'material.nodewizard-addsubdevice.selectgateblu'
 
-    stateParams = nodeTypeId : @state.params.nodeTypeId, designer: redirectToDesign
-    @state.go(@scope.nextState, stateParams, location: true)
+    stateParams =
+      nodeTypeId : @state.params.nodeTypeId
+      designer: redirectToDesign
+
+    @state.go @scope.nextState, stateParams, location: true
 
 angular.module('octobluApp').controller 'AddNodeWizardController', AddNodeWizardController

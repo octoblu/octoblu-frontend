@@ -1,8 +1,17 @@
-<div class="Dependencies">
-  <h2>Platform Dependencies</h2>
-  <div class="Dependency-list">
-    <a href="#">Dependency #1</a>
-    <a href="#">Dependency #2</a>
-    <a href="#">Dependency #3</a>
+<div class="dependencies" ng-show="platformDependencies.length > 0 || showAll">
+  <h2><span ng-hide="platform">All&nbsp;</span>Required Dependencies <span ng-show="friendlyPlatform">({{friendlyPlatform}})</span></h2>
+  <div ng-show="platformDependencies.length > 0" class="dependency-section">
+    <ul class="dependency-list">
+      <li ng-repeat="dependency in platformDependencies">{{dependency}}</li>
+    </ul>
+  </div>
+  <div ng-show="showAll" class="dependency-section">
+    <div ng-repeat="(platformKey, dependencies) in allDependencies">
+      <h4><strong>{{ PLATFORMS[platformKey] }}</strong></h4>
+      <ul class="dependency-list">
+        <li ng-repeat="dependency in dependencies">{{dependency}}</li>
+        <li ng-hide="dependencies.length">No Dependencies</li>
+      </ul>
+    </div>
   </div>
 </div>

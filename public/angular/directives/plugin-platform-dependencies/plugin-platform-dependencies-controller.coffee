@@ -1,12 +1,28 @@
 class PluginPlatformDependencies
   constructor: ($scope, ConnectorDetailService) ->
     @scope = $scope
-    @scope.dependencies = {}
     @ConnectorDetailService = ConnectorDetailService
+    @connector = @scope.connector
+    @platform = @scope.platform
+    @scope.PLATFORMS =
+      darwin: 'Mac OS X'
+      win32: 'Windows'
+      win64: 'Windows'
+      linux: 'Linux'
+      ios: 'iOS'
+      android: 'Android'
+    @scope.showAll = false
+    @scope.friendlyPlatform = @scope.PLATFORMS[@platform]
+    @ConnectorDetailService.getDependenciesForPackage @connector
+      .then (result) =>
+        @dependencies = result.data
+        @setDependencies()
 
-    @ConnectorDetailService.getDependenciesForPackage @scope.connector
-      .then (dependencies) =>
-        console.log 'got dependencies'
-        @scope.dependencies = dependencies
+  setDependencies: =>
+    @scope.allDependencies = {}
+    @scope.platformDependencies = []
+    @scope.platformDependencies = @dependencies[@platform] if @dependencies[@platform]?
+    @scope.allDependencies = @dependencies
+    @scope.showAll = !@dependencies[@platform]?
 
 angular.module('octobluApp').controller 'PluginPlatformDependencies', PluginPlatformDependencies
