@@ -3,10 +3,6 @@
 angular.module('octobluApp')
 .controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService, ThingService) {
 
-  AuthService.getCurrentUser().then(function(user){
-    $scope.currentUser = user;
-  });
-
   var refreshDevice = function(){
     skynetService.getSkynetConnection().then(function (skynetConnection) {
       skynetConnection.whoami({}, function(user) {
@@ -18,6 +14,23 @@ angular.module('octobluApp')
   };
 
   refreshDevice();
+
+  var saveBeta = function(newValue, oldValue){
+    if(newValue == oldValue) {
+      return;
+    }
+    
+    deviceService.updateDevice({
+      uuid: $scope.currentUser.userDevice.uuid,
+      nanocyteBeta: $scope.currentUser.userDevice.nanocyteBeta
+    }).then(function(){
+      if($scope.currentUser.userDevice.nanocyteBeta) {
+        NotifyService.notify("Opted in to Flow Runner Beta");
+      } else {
+        NotifyService.notify("Opted out of Flow Runner Beta");
+      }
+    });
+  }
 
   $scope.hasTokens = function(){
     return !(_.isEmpty($scope.tokens));
@@ -74,4 +87,8 @@ angular.module('octobluApp')
     })
   };
 
+  AuthService.getCurrentUser().then(function(user){
+    $scope.currentUser = user;
+    $scope.$watch('currentUser.userDevice.nanocyteBeta', saveBeta);
+  });
 });

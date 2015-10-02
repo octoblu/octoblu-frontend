@@ -6,8 +6,8 @@ describe 'FlowController', ->
       $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
       $provide.value 'OCTOBLU_ICON_URL', ''
-      $provide.value('MESHBLU_HOST', 'http://whatever.com');
-      $provide.value('MESHBLU_PORT', 1111);
+      $provide.value 'MESHBLU_HOST', 'http://whatever.com'
+      $provide.value 'MESHBLU_PORT', 1111
       return
 
     inject ($controller, $rootScope, $q) =>
@@ -23,10 +23,10 @@ describe 'FlowController', ->
       @fakeFlowNodeTypeService = new FakeFlowNodeTypeService $q
       @fakeSkynetService = new FakeSkynetService $q
       @fakeNotifyService = new FakeNotifyService $q
+      @fakeNodeRegistryService = new FakeNodeRegistryService $q
 
       @sut = $controller('FlowController', {
         $scope : @scope
-        $stateParams : @stateParams
         $stateParams : @stateParams
         $window : @fakeWindow
         FlowService : @fakeFlowService
@@ -34,6 +34,7 @@ describe 'FlowController', ->
         FlowNodeTypeService : @fakeFlowNodeTypeService
         skynetService: @fakeSkynetService
         NotifyService : @fakeNotifyService
+        NodeRegistryService: @fakeNodeRegistryService
       })
 
   beforeEach ->
@@ -154,6 +155,8 @@ describe 'FlowController', ->
 
     setActiveFlow: =>
 
+    subscribeFlowToDevices: =>
+
     onStep: =>
 
     hashFlow: (flow) =>
@@ -191,3 +194,8 @@ describe 'FlowController', ->
   class FakeNotifyService
     constructor: (@q) ->
       @confirm = sinon.stub().returns @q.when()
+
+  class FakeNodeRegistryService
+    constructor: (@q) ->
+    needsPermissions: =>
+      @q.when()

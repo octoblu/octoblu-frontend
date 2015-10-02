@@ -6,6 +6,7 @@ window.meshblu = {
     return new EventEmitter();
   }
 }
+window.MeshbluHttp = function(){};
 
 beforeEach(function () {
   module('octobluApp', function($provide) {

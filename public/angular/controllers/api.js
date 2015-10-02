@@ -7,6 +7,7 @@ angular.module('octobluApp')
     $scope.channel = channel;
   })
 
+
   $scope.setDeactivate = function (ev) {
     $mdDialog.show({
       parent: angular.element(document.querySelector('ui-view')),
@@ -33,8 +34,7 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         channelService.getActiveChannels(true);
         channelService.getAvailableChannels(true);
-        _.defer($state.go, 'material.configure');
-        NotifyService.notify('Channel deleted');
+        _.defer($state.go, 'material.configure', {deleted: $scope.channel.name});
       });
     });
   };

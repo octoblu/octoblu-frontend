@@ -29,13 +29,13 @@ describe 'ClaimNodeController', ->
       beforeEach (done) ->
         @stateParams.uuid = 'working'
         @stateParams.token = 'token'
-        @ThingService.getThing.returns @q.when uuid: 'working'
+        @ThingService.getThing.returns @q.when uuid: 'working', logo: 'logo'
         _.defer => @rootScope.$digest()
         @sut = @controller 'ClaimNodeController', @controllerParams
         _.delay done, 100
 
       it 'should set the device on the controller', ->
-        expect(@sut.device).to.deep.equal uuid: 'working'
+        expect(@sut.device).to.deep.equal uuid: 'working', logo: 'logo'
 
     describe 'when called getDevice is failed', ->
       beforeEach (done) ->

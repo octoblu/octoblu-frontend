@@ -10,7 +10,8 @@ angular.module('octobluApp')
       description : options.description,
       hash        : options.hash,
       nodes       : options.nodes || [],
-      links       : options.links || []
+      links       : options.links || [],
+      nanocyteBeta: options.nanocyteBeta
     }
   };
 });

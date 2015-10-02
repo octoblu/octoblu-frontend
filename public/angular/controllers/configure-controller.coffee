@@ -1,11 +1,15 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, NotifyService, OCTOBLU_ICON_URL) ->
     @scope = $scope
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @FlowNodeTypeService = FlowNodeTypeService
+    @NotifyService = NotifyService
     @scope.loadingConnectedThings = true
     @scope.noThings = false
     connectedThings = []
+
+    @NotifyService.notify "#{$stateParams.added} successfully added" if $stateParams.added
+    @NotifyService.notify "#{$stateParams.deleted} successfully deleted" if $stateParams.deleted
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
@@ -17,8 +21,8 @@ class ConfigureController
     @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>
       deviceNameFilter = deviceNameFilter || '';
       filteredDevices = _.filter connectedThings, (device) =>
-        name = (device.name || '').toLowerCase()
-        deviceNameFilter = deviceNameFilter.toLowerCase();
+        name = (device.name || device.type).toLowerCase()
+        deviceNameFilter = deviceNameFilter.toLowerCase()
         return _.contains name, deviceNameFilter
       @updateThingsByCategory(filteredDevices)
 

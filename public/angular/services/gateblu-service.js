@@ -7,12 +7,20 @@ angular.module('octobluApp')
     return deviceService.registerDevice(options);
   };
 
-  var updateGateblu = function(gateblu, device, logger){
+  self.updateGateblu = function(results, logger){
+    var gateblu, device;
+    device = results[0];
+    gateblu = results[1];
+
+    gateblu.devices = gateblu.devices || [];
+    gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
+
+    logger.registerDeviceEnd(device.uuid, gateblu.uuid, device.connector);
     logger.updateGatebluBegin(device.uuid, gateblu.uuid, device.connector);
     return deviceService.updateDevice(gateblu);
   };
 
-  var waitForDeviceToHaveOptionsSchema = function(device, logger){
+  self.waitForDeviceToHaveOptionsSchema = function(device, logger){
     logger.deviceOptionsLoadBegin(device.uuid, device.gateblu, device.connector);
 
     var deferred, waitFunction, waitInterval;
@@ -60,20 +68,7 @@ angular.module('octobluApp')
         discoverAsWhitelist: []
       }),
       deviceService.getDeviceByUUID(gatebluId)
-    ]).then(function(results){
-      var gateblu;
-      device = results[0];
-      gateblu = results[1];
-
-      gateblu.devices = gateblu.devices || [];
-      gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
-
-      logger.registerDeviceEnd(device.uuid, gateblu.uuid, device.connector);
-      return updateGateblu(gateblu, device, logger);
-    }).then(function(){
-      logger.updateGatebluEnd(device.uuid, device.gateblu, device.connector);
-      return waitForDeviceToHaveOptionsSchema(device, logger);
-    });
+    ])
   };
 
   return self;

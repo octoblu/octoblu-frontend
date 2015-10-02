@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addChannelDocuSignController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, AuthService) {
+.controller('addChannelDocuSignController', function($scope, $state, $stateParams, nodeType, userService, AuthService) {
   'use strict';
 
   $scope.activate = function(){
@@ -7,7 +7,13 @@ angular.module('octobluApp')
       userService.saveBasicApi(user.resource.uuid, nodeType.channelid,
         $scope.newChannel.user, $scope.newChannel.pass,
         function () {
-          $state.go('material.design');
+          var redirectToDesign = $stateParams.designer || false;
+          if(redirectToDesign){
+            $state.go('material.design', {added: nodeType.name});
+          }
+          else{
+            $state.go('material.configure', {added: nodeType.name});
+          }
       });
     });
   };

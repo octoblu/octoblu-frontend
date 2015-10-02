@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('addDefaultOptionsController', function(OCTOBLU_API_URL, $scope, $state, nodeType, userService, channelService, AuthService) {
+.controller('addDefaultOptionsController', function($scope, $state, $stateParams, nodeType, userService, channelService, AuthService) {
 	var AUTH_DESTINATIONS = {
     'aws'                    : 'material.nodewizard-addchannel.aws',
     'basic'                  : 'material.nodewizard-addchannel.basic',
@@ -56,8 +56,10 @@ angular.module('octobluApp')
 			$scope.isLoadingOptions = false;
   	}
 
+		var redirectToDesign = $stateParams.designer || false;
 
-		$state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: false});
+
+		$state.go(AUTH_DESTINATIONS[auth_strategy], {designer: redirectToDesign}, {location: false});
   };
 
   function convertParamsToObject(params){

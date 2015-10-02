@@ -130,10 +130,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.design', {
         url: '/design',
+        params: {
+          added: null
+        },
         controller: 'DesignerController'
       })
       .state('material.configure', {
-        url: '/configure',
+        url: '/configure?added&deleted',
+        params: {
+          added: null,
+          deleted: null
+        },
         controller: 'ConfigureController',
         templateUrl: '/pages/thing-viewer/configure.html'
       })
@@ -144,6 +151,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-add', {
         url: '/node-wizard/add/:nodeTypeId',
+        params: {
+          designer: null
+        },
         controller: 'AddNodeWizardController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/add.html'
@@ -162,6 +172,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-adddevice', {
         url: '/node-wizard/add-device/:nodeTypeId',
+        params: {
+          designer: null
+        },
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
@@ -178,6 +191,9 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-addchannel.default-options', {
         url: '',
+        params: {
+          designer: null
+        },
         controller: 'addDefaultOptionsController',
         templateUrl: '/pages/node-wizard/add-channel/default-options.html'
       })
@@ -188,26 +204,41 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-addchannel.noauth', {
         url: '/noauth',
+        params: {
+          designer: null
+        },
         controller: 'addChannelNoauthController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
       .state('material.nodewizard-addchannel.oauth', {
         url: '/oauth',
+        params: {
+          designer: null
+        },
         controller: 'addChannelOauthController',
         templateUrl: '/pages/node-wizard/add-channel/oauth.html'
       })
       .state('material.nodewizard-addchannel.simple', {
         url: '/simple',
+        params: {
+          designer: null
+        },
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
       .state('material.nodewizard-addchannel.header', {
         url: '/header',
+        params: {
+          designer: null
+        },
         controller: 'addChannelHeaderController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
       .state('material.nodewizard-addchannel.aws', {
         url: '/aws',
+        params: {
+          designer: null
+        },
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
@@ -218,11 +249,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-addchannel.basic', {
         url: '/basic',
+        params: {
+          designer: null
+        },
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
       .state('material.nodewizard-addchannel.tesla', {
         url: '/tesla',
+        params: {
+          designer: null
+        },
         controller: 'addChannelTeslaController',
         templateUrl: '/pages/node-wizard/add-channel/tesla.html'
       })
@@ -238,41 +275,65 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
       })
       .state('material.nodewizard-addchannel.littlebits', {
         url: '/littlebits',
+        params: {
+          designer: null
+        },
         controller: 'addChannelLittlebitsController',
         templateUrl: '/pages/node-wizard/add-channel/littlebits.html'
       })
       .state('material.nodewizard-addchannel.wink', {
         url: '/wink',
+        params: {
+          designer: null
+        },
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
       })
       .state('material.nodewizard-addchannel.witai', {
         url: '/witai',
+        params: {
+          designer: null
+        },
         controller: 'addChannelWitaiController',
         templateUrl: '/pages/node-wizard/add-channel/witai.html'
       })
       .state('material.nodewizard-addchannel.docusign', {
         url: '/docusign',
+        params: {
+          designer: null
+        },
         controller: 'addChannelDocuSignController',
         templateUrl: '/pages/node-wizard/add-channel/docusign.html'
       })
       .state('material.nodewizard-addchannel.apikey', {
         url: '/apikey',
+        params: {
+          designer: null
+        },
         controller: 'addChannelApiKeyController',
         templateUrl: '/pages/node-wizard/add-channel/apikey.html'
       })
       .state('material.nodewizard-addchannel.apikey-basic', {
         url: '/apikey-basic',
+        params: {
+          designer: null
+        },
         controller: 'addChannelApiKeyBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
       })
       .state('material.nodewizard-addchannel.apikey-dummypass-basic', {
         url: '/apikey-dummypass-basic',
+        params: {
+          designer: null
+        },
         controller: 'addChannelApiKeyDummyPassBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
       })
       .state('material.nodewizard-addchannel.meshblu', {
         url: '/meshblu',
+        params: {
+          designer: null
+        },
         controller: 'addChannelMeshbluController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })

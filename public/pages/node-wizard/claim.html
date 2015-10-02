@@ -1,7 +1,31 @@
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+
+      <h2 class="BluToolbar-header">
+        Claim Thing
+      </h2>
+    </div>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+
 <md-content class="node-wizard">
   <h2 class="node-wizard__title">Claim Thing ({{controller.device.type}})</h2>
 
-  <img src="{{controller.device.logo}}" class="node-wizard__logo">
+  <div class="node-wizard__wrapper">
+    <div class="node-wizard-logo-container">
+      <img src="{{controller.device.logo}}">
+    </div>
+    <h2 class="node-wizard__title">{{nodeType.name}}</h2>
 
   <div class="node-wizard__body">
 
