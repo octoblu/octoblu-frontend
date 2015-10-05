@@ -1,7 +1,8 @@
 <td class="permission-row-name">
-  <div class="permission-row-logo" ng-style="{'background-image': 'url(' + controller.logo + ')'}"></div>
+  <div class="permission-row-logo" ng-style="{'background-image': 'url(' + controller.logo + ')'}">
+    <md-tooltip ng-hide="controller.type == 'octoblu:user'">{{controller.type}}</md-tooltip>
+  </div>
   <div class="permission-row-title">
-    <span>{{controller.name}}</span>
-    <span ng-show="controller.type">({{controller.type}})</span>
+    <span class="permission-row-title--name">{{controller.name}}</span>
   </div>
 </td>

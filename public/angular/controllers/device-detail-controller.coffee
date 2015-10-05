@@ -12,8 +12,8 @@ class DeviceDetailController
       @device = device
       @device.options ?= {}
       @deviceCopy = _.cloneDeep device
-      @readOnlyName = @deviceIsFlow()
-      @hideDelete = @deviceIsFlow()
+      @readOnlyName = @deviceIsFlow @device
+      @hideDelete = @deviceIsFlow @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
@@ -23,8 +23,8 @@ class DeviceDetailController
 
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
-  deviceIsFlow: =>
-    @device.type == 'octoblu:flow' || @device.type == 'device:flow'
+  deviceIsFlow: (device) =>
+    device.type == 'octoblu:flow' || device.type == 'device:flow'
 
   confirmDeleteDevice: =>
     confirmOptions = {
@@ -70,7 +70,10 @@ class DeviceDetailController
           @notifyDeviceUpdated()
 
   updatePermissionRows: =>
-    @permissionRows = @ThingService.combineDeviceWithPeers @device, @devices
+    things = @ThingService.combineDeviceWithPeers @device, @devices
+    @permissionRows = _.groupBy things, (thing) =>
+      return "Octoblu" if thing.type == 'octoblu:user'
+      thing.type.slice(thing.type.indexOf(":")+1)
 
   updateSchemas: =>
     return unless @device?

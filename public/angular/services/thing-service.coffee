@@ -23,6 +23,7 @@ class ThingService
   calculateTheEverything: (device, peers) =>
     uuid: '*'
     name: 'Everything'
+    type: 'Octoblu'
     discover:  !device.discoverWhitelist?
     configure: !device.configureWhitelist?
     send:      !device.sendWhitelist?

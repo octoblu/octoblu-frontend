@@ -13,6 +13,7 @@ class ThingLogoCellController
 
   updateTitle: =>
     @name = if _.isEmpty(@row.name) then @row.uuid else @row.name
+    @name = "Octoblu User" if @row.type == 'octoblu:user'
 
   updateType: =>
     @type = @row.type

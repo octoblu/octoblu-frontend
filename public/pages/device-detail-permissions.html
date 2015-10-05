@@ -13,19 +13,22 @@
       </tr>
     </thead>
 
-    <tbody>
-      <tr ng-repeat="row in controller.permissionRows">
+    <tbody ng-repeat="(category, rows) in controller.permissionRows">
+      <th>
+        {{category | uppercase}}
+      </th>
+      <tr ng-repeat="row in rows">
         <td thing-logo-cell="row"></td>
-        <td class="text-center">
+        <td class="permission-row-check text-center">
           <md-checkbox aria-label="Discover" ng-model="row.discover"></md-checkbox>
         </td>
-        <td class="text-center">
+        <td class="permission-row-check text-center">
           <md-checkbox aria-label="Send" ng-model="row.send"></md-checkbox>
         </td>
-        <td class="text-center">
+        <td class="permission-row-check text-center">
           <md-checkbox aria-label="Receive" ng-model="row.receive"></md-checkbox>
         </td>
-        <td class="text-center">
+        <td class="permission-row-check text-center">
           <md-checkbox aria-label="Configure" ng-model="row.configure"></md-checkbox>
         </td>
       </tr>
