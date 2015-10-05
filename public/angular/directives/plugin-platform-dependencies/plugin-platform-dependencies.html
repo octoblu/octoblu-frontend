@@ -1,5 +1,7 @@
 <div class="dependencies" ng-show="platformDependencies == null || platformDependencies.length > 0 || showAll">
   <h2><span ng-hide="platform">All&nbsp;</span>Required Dependencies <span ng-show="friendlyPlatform">({{friendlyPlatform}})</span></h2>
+  <h4 style="text-align: center;" ng-show="showAll"><a ng-click="showAll = false">Hide All</a></h4>
+  <h4 style="text-align: center;" ng-show="!showAll"><a ng-click="showAll = true">Show All</a></h4>
   <div ng-show="platformDependencies == null || platformDependencies.length > 0" class="dependency-section">
     <ul class="dependency-list" ng-show="platformDependencies != null">
       <li ng-repeat="dependency in platformDependencies">{{dependency}}</li>
@@ -14,7 +16,7 @@
       <h4><strong>{{ PLATFORMS[platformKey] }}</strong></h4>
       <ul class="dependency-list">
         <li ng-show="allDependencies[platformKey] != null" ng-repeat="dependency in allDependencies[platformKey]">{{dependency}}</li>
-        <li ng-show="allDependencies[platformKey] != null && !allDependencies[platformKey].length">Not compatible with this platform</li>
+        <li ng-show="allDependencies[platformKey] != null && !allDependencies[platformKey].length">No dependencies</li>
         <li ng-show="allDependencies[platformKey] == null">Not compatible with this platform</li>
       </ul>
     </div>

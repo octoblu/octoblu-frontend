@@ -24,7 +24,7 @@ class PluginPlatformDependencies
     @scope.platformDependencies = @dependencies[@platform] if @dependencies[@platform]?
     @scope.platformDependencies = null if _.isNull @dependencies[@platform]
     {darwin, win32, win64, linux, ios, android} = @dependencies
-    @scope.allDependencies = darwin: darwin, win32: win32, win64: win64, linux: linux, ios: linux, android: android
+    @scope.allDependencies = darwin: darwin, win32: win32, win64: win64, linux: linux, ios: ios, android: android
     @scope.allDependencieKeys = _.keys @scope.allDependencies
     @scope.showAll = !_.isNull(@scope.platformDependencies) && _.isEmpty(@scope.platformDependencies)
 
