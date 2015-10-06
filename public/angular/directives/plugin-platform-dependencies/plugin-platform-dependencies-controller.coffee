@@ -6,8 +6,8 @@ class PluginPlatformDependencies
     @platform = @scope.platform
     @scope.PLATFORMS =
       darwin: 'Mac OS X'
-      win32: 'Windows'
-      win64: 'Windows'
+      win32: 'Windows x86'
+      win64: 'Windows x64'
       linux: 'Linux'
       ios: 'iOS'
       android: 'Android'
