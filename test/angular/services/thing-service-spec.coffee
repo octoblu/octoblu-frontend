@@ -130,6 +130,7 @@ describe 'ThingService', ->
         expect(item).to.deep.equal {
           uuid: '*'
           name: 'Everything'
+          type: 'Octoblu'
           discover: true
           configure: true
           send: true
@@ -148,6 +149,7 @@ describe 'ThingService', ->
         expect(item).to.deep.equal {
           uuid: '*'
           name: 'Everything'
+          type: 'Octoblu'
           discover: true
           configure: false
           send: false
@@ -168,6 +170,7 @@ describe 'ThingService', ->
         expect(item).to.deep.equal {
           uuid: '*'
           name: 'Everything'
+          type: 'Octoblu'
           discover: false
           configure: true
           send: true
@@ -195,6 +198,7 @@ describe 'ThingService', ->
         expect(item).to.deep.equal {
           uuid: '*'
           name: 'Everything'
+          type: 'Octoblu'
           discover: true
           configure: true
           send: false
@@ -222,6 +226,7 @@ describe 'ThingService', ->
         expect(item).to.deep.equal {
           uuid: '*'
           name: 'Everything'
+          type: 'Octoblu'
           discover: false
           configure: true
           send: false
