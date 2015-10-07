@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu-frontend",
-  "version": "1.8.54",
+  "version": "1.8.55",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
