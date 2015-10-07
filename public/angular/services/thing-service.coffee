@@ -137,7 +137,6 @@ class ThingService
 
   updateDevice: (device={}) =>
     deferred = @q.defer()
-
     @skynetPromise.then (connection) =>
       connection.update device, (response) =>
         deferred.resolve()
@@ -146,12 +145,14 @@ class ThingService
 
   updateDeviceWithPermissionRows: (device, rows) =>
     return @q.when() unless device? && rows?
+    uncategorizedRows = _.flatten(_.valuesIn rows)
+
     @updateDevice(
       uuid: device.uuid
-      discoverWhitelist: _.pluck(_.where(rows, discover: true), 'uuid')
-      configureWhitelist: _.pluck(_.where(rows, configure: true), 'uuid')
-      sendWhitelist: _.pluck(_.where(rows, send: true), 'uuid')
-      receiveWhitelist: _.pluck(_.where(rows, receive: true), 'uuid')
+      discoverWhitelist: _.pluck(_.where(uncategorizedRows, discover: true), 'uuid')
+      configureWhitelist: _.pluck(_.where(uncategorizedRows, configure: true), 'uuid')
+      sendWhitelist: _.pluck(_.where(uncategorizedRows, send: true), 'uuid')
+      receiveWhitelist: _.pluck(_.where(uncategorizedRows, receive: true), 'uuid')
     )
 
 angular.module('octobluApp').service 'ThingService', ThingService
