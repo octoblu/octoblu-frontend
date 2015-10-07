@@ -73,7 +73,7 @@ class DeviceDetailController
     things = @ThingService.combineDeviceWithPeers @device, @devices
     @permissionRows = _.groupBy things, (thing) =>
       return "Octoblu" if thing.type == 'octoblu:user'
-      thing.type = 'device:other' unless thing.type?
+      return "other" unless thing.type?
       thing.type.slice(thing.type.indexOf(":")+1)
 
   updateSchemas: =>
