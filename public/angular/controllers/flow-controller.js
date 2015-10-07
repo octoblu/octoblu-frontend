@@ -421,6 +421,8 @@ angular.module('octobluApp')
     var deferred = $q.defer()
 
     async.each(thingsNeedingReceiveAs, function(thing){
+      thing.receiveAsWhitelist = thing.receiveAsWhitelist || [];
+      thing.receiveAsWhitelist.push($scope.activeFlow.flowId);
       thing.receiveWhitelist = thing.receiveWhitelist || [];
       thing.receiveWhitelist.push($scope.activeFlow.flowId);
       thing.sendWhitelist = thing.sendWhitelist || [];
