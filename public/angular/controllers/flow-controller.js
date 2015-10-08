@@ -423,8 +423,6 @@ angular.module('octobluApp')
     async.each(thingsNeedingReceiveAs, function(thing){
       thing.receiveAsWhitelist = thing.receiveAsWhitelist || [];
       thing.receiveAsWhitelist.push($scope.activeFlow.flowId);
-      thing.receiveWhitelist = thing.receiveWhitelist || [];
-      thing.receiveWhitelist.push($scope.activeFlow.flowId);
       thing.sendWhitelist = thing.sendWhitelist || [];
       thing.sendWhitelist.push($scope.activeFlow.flowId);
       ThingService.updateDevice(thing);
