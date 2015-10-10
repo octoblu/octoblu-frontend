@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -19,9 +19,11 @@ angular.module('octobluApp')
   var subscribeToFlow = function(skynetConnection, flowId){
     if (!_.findWhere(skynetConnection.subscriptions, {uuid: flowId})) {
       skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
+      skynetConnection.subscribe({uuid: flowId, topic: 'message-batch', types: ['broadcast']});
     }
     deadManSwitch(skynetConnection, flowId);
   };
+
 
   var deadManSwitch = function(skynetConnection, flowId) {
     skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
@@ -100,6 +102,10 @@ angular.module('octobluApp')
       skynetConnection.on('message', function (message) {
         if(message.fromUuid !== $stateParams.flowId) {
           return;
+        }
+
+        if (message.topic === 'message-batch') {
+          BatchMessageService.parseMessages(message, $scope)
         }
 
         if (message.topic === 'device-status') {
