@@ -1,21 +1,9 @@
 describe "BatchMessageService", ->
   beforeEach ->
-    module 'octobluApp', ($provide) =>
-      #  @fakePermissionsService = new FakePermissionsService
-      #  @fakeSkynetConnection = new FakeSkynetConnection
-      #  @fakeSkynetService = new FakeSkynetService
-
-      #  $provide.value 'PermissionService', @fakePermissionService
-      #  $provide.value 'skynetService', @fakeSkynetService
-      #  $provide.value 'reservedProperties', ['$$hashKey', '_id']
-      #  $provide.value 'OCTOBLU_ICON_URL', ''
-       return
-
     inject ( $q, $httpBackend, $rootScope) =>
       @q = $q
       @rootScope = $rootScope
       @scope = @rootScope.$new()
-      # sinon.stub(@fakeSkynetService, 'getSkynetConnection').returns @q.when @fakeSkynetConnection
 
     inject (BatchMessageService) =>
       @sut = BatchMessageService
@@ -87,31 +75,3 @@ describe "BatchMessageService", ->
           expect(@scope.$broadcast.firstCall).to.have.been.calledWith('flow-node-error', @errorMessage)
           expect(@scope.$broadcast.secondCall).to.have.been.calledWith('flow-node-debug', @debugMessage)
           expect(@scope.$broadcast.thirdCall).to.have.been.calledWith('flow-node-pulse', @pulseMessage)
-
-  #   describe "when it is called", ->
-  #     it "should return a promise", ->
-  #       result = @sut.resetToken()
-  #       expect(result.then).to.exist;
-  #
-  #     describe "when it is resolved with the token token5", ->
-  #       beforeEach ->
-  #         sinon.stub(@fakeSkynetConnection, 'resetToken').yields token: 'token5'
-  #         _.defer @rootScope.$digest
-  #         @sut.resetToken 'uuid3'
-  #
-  #       it "should call resetToken on the skynetConnection with the value uuid3", ->
-  #         expect(@fakeSkynetConnection.resetToken).to.have.been.calledWith 'uuid3'
-  #
-  # class FakePermissionsService
-  #
-  # class FakeSkynetService
-  #   getSkynetConnection: =>
-  #
-  # class FakeSkynetConnection
-  #   constructor: ->
-  #   on: =>
-  #   mydevices: =>
-  #   message: =>
-  #   subscribe: =>
-  #   resetToken: (uuid, callback) =>
-  #

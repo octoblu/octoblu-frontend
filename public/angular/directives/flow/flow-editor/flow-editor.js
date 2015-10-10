@@ -13,32 +13,36 @@ angular.module('octobluApp')
         renderViewBox: '='
       },
 
+
+
       link: function ($scope, element) {
         var snap = Snap(element.find(".flow-editor-workspace")[0]);
         var flowRenderer = new FlowRenderer(snap, {readonly: ($scope.readonly||$scope.displayOnly)});
+        var pulseNodeById = function(nodeId) {
+          var nodeToPulse = Snap.select('#node-' + nodeId + ' > image');
+
+          if(!nodeToPulse) {
+            return;
+          }
+
+          nodeToPulse.animate({
+            width :FlowNodeDimensions.width * 1.2,
+            height:FlowNodeDimensions.minHeight * 1.2
+          }, 250, mina.easeout, function() {
+            nodeToPulse.animate({
+              width :FlowNodeDimensions.width,
+              height:FlowNodeDimensions.minHeight
+            }, 250, mina.easein);
+          });
+        };
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
-
             if (message.topic !== 'pulse') {
               return;
             }
 
-            var nodeToPulse = Snap.select('#node-' + message.payload.node + ' > image');
-
-            if(!nodeToPulse) {
-              return;
-            }
-
-            nodeToPulse.animate({
-              width :FlowNodeDimensions.width * 1.2,
-              height:FlowNodeDimensions.minHeight * 1.2
-            }, 250, mina.easeout, function() {
-              nodeToPulse.animate({
-                width :FlowNodeDimensions.width,
-                height:FlowNodeDimensions.minHeight
-              }, 250, mina.easein);
-            });
+            pulseNodeById(message.payload.node)
           });
         });
 
@@ -110,6 +114,10 @@ angular.module('octobluApp')
           flowNodeType.y = newLoc.y - (FlowNodeDimensions.minHeight / 2);
           $scope.$emit('flow-node-type-selected', flowNodeType);
         };
+
+        $scope.$on('flow-node-pulse', function (event, message) {
+          pulseNodeById(message.payload.node)
+        });
 
         $scope.$watch('flow', function(newFlow, oldFlow) {
           flowRenderer.render(newFlow);
