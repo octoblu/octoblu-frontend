@@ -105,7 +105,7 @@ angular.module('octobluApp')
         }
 
         if (message.topic === 'message-batch') {
-          BatchMessageService.parseMessages(message.messages, $scope)
+          BatchMessageService.parseMessages(message.payload.messages, $scope)
         }
 
         if (message.topic === 'device-status') {
