@@ -5,9 +5,7 @@ class BatchMessageService
     _.each messages, (message) ->
       switch(message.topic)
         when "debug"
-          msgType = message.payload.msgType
-          scope.$broadcast("flow-node-debug", message) if msgType == 'debug'
-          scope.$broadcast("flow-node-error", message) if msgType == 'error'
+          scope.$broadcast('flow-node-batch-debug', message)
         when "pulse"
           scope.$broadcast("flow-node-pulse", message)
 

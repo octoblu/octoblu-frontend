@@ -36,6 +36,18 @@ angular.module('octobluApp')
           });
         };
 
+        var debugErrorEmitter = function(payload) {
+          if ($scope.flow) {
+            var debugNode = _.findWhere($scope.flow.nodes, { id: payload.node });
+            if (debugNode && debugNode.debug) {
+              $scope.$emit('flow-node-debug', {node: debugNode, message: payload})
+            }
+            if (payload.msgType == 'error') {
+              $scope.$emit('flow-node-error', {node: debugNode, message: payload})
+            }
+          }
+        }
+
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
             if (message.topic !== 'pulse') {
@@ -52,14 +64,8 @@ angular.module('octobluApp')
               return;
             }
 
-            if ($scope.flow) {
-              var debugNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
-              if (debugNode && debugNode.debug) {
-                $scope.$emit('flow-node-debug', {node: debugNode, message: message.payload})
-              }
-              if (message.payload.msgType == 'error') {
-                $scope.$emit('flow-node-error', {node: debugNode, message: message.payload})
-              }
+            if (message.payload) {
+              debugErrorEmitter(message.payload)
             }
           });
         });
@@ -116,7 +122,15 @@ angular.module('octobluApp')
         };
 
         $scope.$on('flow-node-pulse', function (event, message) {
-          pulseNodeById(message.payload.node)
+          if (message.payload) {
+            pulseNodeById(message.payload.node)
+          }
+        });
+
+        $scope.$on('flow-node-batch-debug', function(event, message) {
+          if (message.payload) {
+            debugErrorEmitter(message.payload)
+          }
         });
 
         $scope.$watch('flow', function(newFlow, oldFlow) {

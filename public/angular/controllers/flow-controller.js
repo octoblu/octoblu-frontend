@@ -104,7 +104,6 @@ angular.module('octobluApp')
           return;
         }
 
-
         if (message.topic === 'message-batch') {
           if (message.payload) {
             BatchMessageService.parseMessages(message.payload.messages, $scope);
@@ -140,13 +139,11 @@ angular.module('octobluApp')
   }
 
   $scope.$on('flow-node-debug', function (event, options) {
-    $log.debug(options);
     pushDebugLines(options.message);
     $scope.$apply();
   });
 
   $scope.$on('flow-node-error', function(event, options) {
-    $log.debug(options);
     if(!options.node) {
       return;
     }

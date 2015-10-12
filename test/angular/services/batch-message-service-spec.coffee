@@ -50,14 +50,14 @@ describe "BatchMessageService", ->
           @sut.parseMessages([@debugMessage], @scope)
 
         it "should emit a debug message on the scope", ->
-          expect(@scope.$broadcast).to.have.been.calledWith('flow-node-debug', @debugMessage)
+          expect(@scope.$broadcast).to.have.been.calledWith('flow-node-batch-debug', @debugMessage)
 
       describe "when called with a error message", ->
         beforeEach ->
           @sut.parseMessages([@errorMessage], @scope)
 
         it "should emit a error message on the scope", ->
-          expect(@scope.$broadcast).to.have.been.calledWith('flow-node-error', @errorMessage)
+          expect(@scope.$broadcast).to.have.been.calledWith('flow-node-batch-debug', @errorMessage)
 
       describe "when called with a pulse message", ->
         beforeEach ->
@@ -72,6 +72,6 @@ describe "BatchMessageService", ->
 
         it "shuld emit a all messages", ->
           expect(@scope.$broadcast.calledThrice).to.be.true
-          expect(@scope.$broadcast.firstCall).to.have.been.calledWith('flow-node-error', @errorMessage)
-          expect(@scope.$broadcast.secondCall).to.have.been.calledWith('flow-node-debug', @debugMessage)
+          expect(@scope.$broadcast.firstCall).to.have.been.calledWith('flow-node-batch-debug', @errorMessage)
+          expect(@scope.$broadcast.secondCall).to.have.been.calledWith('flow-node-batch-debug', @debugMessage)
           expect(@scope.$broadcast.thirdCall).to.have.been.calledWith('flow-node-pulse', @pulseMessage)
