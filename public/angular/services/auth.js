@@ -29,7 +29,7 @@ angular.module('octobluApp')
         }
 
         function loginHandler(result) {
-            if(result.status === 502){
+            if(_.indexOf([502, 503, 504], result.status) >= 0){
               return result.data;
             }
             if(result.status >= 400){
