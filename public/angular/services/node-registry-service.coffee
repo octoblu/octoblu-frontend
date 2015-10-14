@@ -1,10 +1,11 @@
 class NodeRegistryService
-  constructor: ($http, ThingService) ->
+  constructor: ($http, ThingService, REGISTRY_URL) ->
     @http = $http
     @ThingService = ThingService
+    @REGISTRY_URL = REGISTRY_URL
 
   needsPermissions: (flowId, nodeTypes) =>
-    @http.get 'https://raw.githubusercontent.com/octoblu/nanocyte-node-registry/master/registry.json'
+    @http.get @REGISTRY_URL
       .then (response) =>
         response.data
       .then (nodeRegistry) =>

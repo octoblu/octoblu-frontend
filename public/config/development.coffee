@@ -17,3 +17,4 @@ angular.module('octobluApp')
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'FLOW_LOGGER_UUID', 'a9567a97-ca4a-4368-97e1-a77f45d7810f'
   .constant 'GATEBLU_LOGGER_UUID', 'a0ae81c4-45be-4459-9a34-4fd8643a7b73'
+  .constant 'REGISTRY_URL', 'http://localhost:9999/registry.json'

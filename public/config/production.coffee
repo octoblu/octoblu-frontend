@@ -16,3 +16,4 @@ angular.module('octobluApp')
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
+  .constant 'REGISTRY_URL', 'https://raw.githubusercontent.com/octoblu/nanocyte-node-registry/master/registry.json'
