@@ -429,6 +429,8 @@ angular.module('octobluApp')
     async.each(thingsNeedingReceiveAs, function(thing){
       thing.receiveAsWhitelist = thing.receiveAsWhitelist || [];
       thing.receiveAsWhitelist.push($scope.activeFlow.flowId);
+      thing.receiveWhitelist = thing.receiveWhitelist || [];
+      thing.receiveWhitelist.push($scope.activeFlow.flowId);
       thing.sendWhitelist = thing.sendWhitelist || [];
       thing.sendWhitelist.push($scope.activeFlow.flowId);
       ThingService.updateDevice(thing);
@@ -478,7 +480,10 @@ angular.module('octobluApp')
   };
 
   var checkDevicePermissions = function(newNodes) {
-    var deviceNodes = _.filter(newNodes, 'meshblu');
+    var deviceNodes = _.filter(newNodes, function(node){
+      return node.meshblu || node.class === 'device-flow';
+    });
+
     var deviceUuids = _.pluck(deviceNodes, 'uuid');
     FlowService.needsPermissions($scope.activeFlow.flowId, deviceUuids)
       .then(function(thingsNeedingReceiveAs){
@@ -490,7 +495,9 @@ angular.module('octobluApp')
   };
 
   var checkNodeRegistryPermissions = function(newNodes) {
-    var deviceNodes = _.filter(newNodes, 'meshblu');
+    var deviceNodes = _.filter(newNodes, function(node){
+      return node.meshblu || node.class === 'device-flow';
+    });
     var nodeTypes = _.pluck(newNodes, 'type');
     NodeRegistryService.needsPermissions($scope.activeFlow.flowId, nodeTypes)
       .then(function(thingsNeedingSendWhitelist){
@@ -512,7 +519,10 @@ angular.module('octobluApp')
   }
 
   var subscribeFlowToDevices = function(newNodes){
-    var deviceNodeUuids = _.pluck(_.filter(newNodes, 'meshblu'), 'uuid');
+    var deviceNodes = _.filter(newNodes, function(node){
+      return node.meshblu || node.class === 'device-flow';
+    });
+    var deviceNodeUuids = _.pluck(deviceNodes, 'uuid');
     FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
   };
 
