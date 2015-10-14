@@ -95,7 +95,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
           if (response.status === 403) {
             return $window.location = '/profile/new?callbackUrl=' + $location.url();
           }
-          if (response.status === 502) {
+          if (_.indexOf(response.status, [502, 503, 504]) >= 0) {
             if($window.location.pathname !== '/error') {
               return $window.location = '/error';
             }
