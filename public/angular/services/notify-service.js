@@ -15,8 +15,8 @@ angular.module('octobluApp')
     },
     confirm: function(options){
       options = options || {};
-      options.ok = 'ok';
-      options.cancel = 'cancel';
+      options.ok = options.ok || 'ok';
+      options.cancel = options.cancel || 'cancel';
       var dialog = $mdDialog.confirm(options);
       return $mdDialog.show(dialog);
     }

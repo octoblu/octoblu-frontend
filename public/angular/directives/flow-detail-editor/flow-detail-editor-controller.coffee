@@ -30,7 +30,25 @@ class FlowDetailEditorController
           .then =>
             @state.go 'material.design'
 
-  saveFlow: (flow) ->
+  saveflow: (flow) ->
     @FlowService.saveFlow(flow)
+
+  updateEngine: (flow) ->
+    if !flow.online
+      @FlowService.saveFlow(flow)
+    else
+      @NotifyService
+        .confirm
+          title: 'Use Nanocyte Beta'
+          content: 'Your flow must be stopped before switching engines. Do you want to stop your flow now?'
+          ok: 'Stop Flow'
+        .then ( =>
+          @FlowService.stop(flow)
+          ), =>
+          flow.nanocyteBeta = !flow.nanocyteBeta
+        .then =>
+          @FlowService.saveFlow(flow)
+
+
 
 angular.module('octobluApp').controller 'FlowDetailEditorController', FlowDetailEditorController
