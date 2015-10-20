@@ -34,12 +34,12 @@ class FlowDetailEditorController
     @FlowService.saveFlow(flow)
 
   updateEngine: (flow) ->
-    if !flow.online
+    if !flow.online || !flow.deployed
       @FlowService.saveFlow(flow)
     else
       @NotifyService
         .confirm
-          title: 'Use Nanocyte Beta'
+          title: 'Switch Flow Engines'
           content: 'Your flow must be stopped before switching engines. Do you want to stop your flow now?'
           ok: 'Stop Flow'
         .then ( =>
