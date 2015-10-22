@@ -116,6 +116,10 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/root.html',
         controller: 'RootController'
       })
+      .state('material.cloud', {
+        url: '/cloud',
+        templateUrl: '/pages/cloud.html'
+      })
       .state('material.error', {
         url: '/error',
         templateUrl: '/pages/error.html',
