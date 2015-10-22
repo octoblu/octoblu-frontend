@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="octobluApp">
+<html>
 <head>
     <!-- META -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -16,6 +16,7 @@
     <title>Octoblu - Integration of Everything</title>
 
     <link href="/assets/stylesheets/dist/styles.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://workspace.cloud.com/navbar/styles/cwc-navbar.css" />
 
     <style type="text/css">
         .reveal-animation.ng-enter {
@@ -40,6 +41,8 @@
     <script src="//cdn.octoblu.com/js/meshblu-http/latest/meshblu-http.bundle.js"></script>
     <script src="/assets/javascripts/dist/dependencies.js"></script>
     <script src="/assets/javascripts/dist/application.js"></script>
+    <script src="https://workspace.cloud.com/navbar/scripts/cwc-navbar.js"></script>
+
 
     <!-- Site metrics -->
     <script>
@@ -62,7 +65,9 @@
       ga('create', 'UA-60006262-1', 'auto');
     </script>
 </head>
+<body>
+  <cwc-navbar domain="https://workspace.cloud.com"></cwc-navbar>
+  <div id="octoblu-app" ui-view></div>
 
-<body ui-view>
 </body>
 </html>

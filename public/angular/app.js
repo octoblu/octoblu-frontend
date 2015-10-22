@@ -609,3 +609,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
 
     };
   });
+
+
+angular.element(document).ready(function(){
+  angular.bootstrap(document.getElementById("octoblu-app"),['octobluApp']);
+});
