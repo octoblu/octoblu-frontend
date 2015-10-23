@@ -16,6 +16,9 @@ class FlowDeployButtonController
     _.each @scope.flow.nodes, (node) =>
       delete node.errorMessage
 
+    @scope.device.deploying = true
+    @scope.device.stopping = false
+
     @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: true, stopping: false
       .then =>
         @FlowService.saveActiveFlow()
@@ -25,6 +28,8 @@ class FlowDeployButtonController
 
   immediateStop: (e) =>
     e?.preventDefault()
+    @scope.device.deploying = false
+    @scope.device.stopping = true
     @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: false, stopping: true
       .then =>
         @FlowService.stop @scope.flow
