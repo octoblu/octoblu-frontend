@@ -22,6 +22,11 @@ angular.module('octobluApp')
     deadManSwitch(skynetConnection, flowId);
   };
 
+  function updateFlowDeviceImmediately(data) {
+    $scope.flowDevice = data;
+  }
+
+  var updateFlowDevice = _.throttle(updateFlowDeviceImmediately, 500, {leading: false, trailing: true});
 
   var deadManSwitch = function(skynetConnection, flowId) {
     skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
@@ -93,8 +98,7 @@ angular.module('octobluApp')
         if(data.uuid !== $stateParams.flowId) {
           return;
         }
-
-        $scope.flowDevice = data;
+        updateFlowDevice(data);
       });
 
       skynetConnection.on('message', function (message) {
@@ -175,12 +179,12 @@ angular.module('octobluApp')
   };
 
   $scope.setActiveFlow = function (flow) {
-    $scope.activeFlow = flow;
-    setCookie(flow.flowId);
-    FlowService.setActiveFlow($scope.activeFlow);
     ThingService.getThing({uuid: flow.flowId}).then(function(device){
       $scope.flowDevice = device;
     });
+    $scope.activeFlow = flow;
+    setCookie(flow.flowId);
+    FlowService.setActiveFlow($scope.activeFlow);
   };
 
   $scope.isActiveFlow = function (flow) {
