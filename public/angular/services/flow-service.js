@@ -243,8 +243,11 @@ angular.module('octobluApp')
   };
 
   self.getFlow = function(flowId) {
-    return self.getAllFlows().then(function(flows){
-      return _.findWhere(flows, {flowId : flowId});
+    return $http.get(OCTOBLU_API_URL + '/api/flows/' + flowId).then(function(response){
+      var flowData = response.data;
+      return self.processFlows([flowData]);
+    }).then(function(flows){
+      return new FlowModel(_.first(flows));
     });
   };
 

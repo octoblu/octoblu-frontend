@@ -78,9 +78,8 @@ angular.module('octobluApp')
     });
   };
 
-  refreshFlows().then(function(){
+  FlowService.getFlow($stateParams.flowId).then(function(activeFlow){
     deleteCookie();
-    var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
 
     if(!activeFlow){
       $state.go('material.design');
@@ -88,6 +87,7 @@ angular.module('octobluApp')
     }
 
     $scope.setActiveFlow(activeFlow);
+    refreshFlows();
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
 
