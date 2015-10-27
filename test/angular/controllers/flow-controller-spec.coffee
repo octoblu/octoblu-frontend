@@ -84,8 +84,8 @@ describe 'FlowController', ->
         expect(@flowEditorService.deleteSelection).to.not.have.been.called
 
   describe "on instantiate", ->
-    it "should call FlowService.getAllFlows", ->
-      expect(@fakeFlowService.getAllFlows).to.have.been.called
+    it "should call FlowService.getFlow", ->
+      expect(@fakeFlowService.getFlow).to.have.been.called
 
     describe "when scope has flows and the stateParams has an flowId and getAllFlows returns", ->
       beforeEach ->
@@ -95,13 +95,14 @@ describe 'FlowController', ->
         ]
 
         @stateParams.flowId = "dogs"
-        flowDefer = @fakeFlowService.getAllFlows.deferred
-        flowDefer.resolve flows
+
+        flowDefer = @fakeFlowService.getFlow.deferred
+        flowDefer.resolve {flowId: 'dogs'}
 
         @scope.$digest()
 
       it "should set the activeFlow to the second flow on the scope", ->
-        expect(@scope.activeFlow).to.equal @scope.flows[1]
+        expect(@scope.activeFlow).to.deep.equal {flowId: 'dogs'}
 
       describe 'when getSkynetConnection resolves', ->
         beforeEach ->
@@ -139,6 +140,7 @@ describe 'FlowController', ->
       @q = $q
       @deleteFlow  = sinon.spy @deleteFlow
       @getAllFlows = sinon.spy @getAllFlows
+      @getFlow = sinon.spy @getFlow
       @needsPermissions = sinon.spy @needsPermissions
 
     deleteFlow: =>
@@ -148,6 +150,10 @@ describe 'FlowController', ->
     getAllFlows: =>
       @getAllFlows.deferred = @q.defer()
       @getAllFlows.deferred.promise
+
+    getFlow: =>
+      @getFlow.deferred = @q.defer()
+      @getFlow.deferred.promise
 
     needsPermissions: =>
       @needsPermissions.deferred = @q.defer()

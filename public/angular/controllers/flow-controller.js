@@ -17,13 +17,16 @@ angular.module('octobluApp')
   });
 
   var subscribeToFlow = function(skynetConnection, flowId){
-    if (!_.findWhere(skynetConnection.subscriptions, {uuid: flowId})) {
-      skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
-      skynetConnection.subscribe({uuid: flowId, topic: 'message-batch', types: ['broadcast']});
-    }
+    skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
+    skynetConnection.subscribe({uuid: flowId, topic: 'message-batch', types: ['broadcast']});
     deadManSwitch(skynetConnection, flowId);
   };
 
+  function updateFlowDeviceImmediately(data) {
+    $scope.flowDevice = data;
+  }
+
+  var updateFlowDevice = _.throttle(updateFlowDeviceImmediately, 500, {leading: false, trailing: true});
 
   var deadManSwitch = function(skynetConnection, flowId) {
     skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
@@ -75,9 +78,8 @@ angular.module('octobluApp')
     });
   };
 
-  refreshFlows().then(function(){
+  FlowService.getFlow($stateParams.flowId).then(function(activeFlow){
     deleteCookie();
-    var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
 
     if(!activeFlow){
       $state.go('material.design');
@@ -85,6 +87,7 @@ angular.module('octobluApp')
     }
 
     $scope.setActiveFlow(activeFlow);
+    refreshFlows();
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
 
@@ -95,8 +98,7 @@ angular.module('octobluApp')
         if(data.uuid !== $stateParams.flowId) {
           return;
         }
-
-        $scope.flowDevice = data;
+        updateFlowDevice(data);
       });
 
       skynetConnection.on('message', function (message) {
@@ -177,12 +179,12 @@ angular.module('octobluApp')
   };
 
   $scope.setActiveFlow = function (flow) {
-    $scope.activeFlow = flow;
-    setCookie(flow.flowId);
-    FlowService.setActiveFlow($scope.activeFlow);
     ThingService.getThing({uuid: flow.flowId}).then(function(device){
       $scope.flowDevice = device;
     });
+    $scope.activeFlow = flow;
+    setCookie(flow.flowId);
+    FlowService.setActiveFlow($scope.activeFlow);
   };
 
   $scope.isActiveFlow = function (flow) {
