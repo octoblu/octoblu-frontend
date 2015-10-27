@@ -1,4 +1,72 @@
 .Cloud {
-  background: #DEDEDE;
-  padding: 50px
+  .flex(1);
+  .flex-display;
+  .flex-direction(column);
+  background: #3383cf;
+
+  background-image: -webkit-linear-gradient(#fff,rgba(255,255,255,0));
+  background-image: -moz-linear-gradient(#fff,rgba(255,255,255,0));
+  background-image: -o-linear-gradient(#fff,rgba(255,255,255,0));
+  background-image: -ms-linear-gradient(#fff,rgba(255,255,255,0));
+  background-image: linear-gradient(#fff,rgba(255,255,255,0));
+
+  -webkit-background-size: 100% 900px;
+  -moz-background-size: 100% 900px;
+  background-size: 100% 900px;
+
+  background: -webkit-linear-gradient(bottom right,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%);
+  background: -moz-linear-gradient(bottom right,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%);
+  background: -o-linear-gradient(bottom right,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%);
+  background: -ms-linear-gradient(bottom right,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%);
+  background: linear-gradient(to top left,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%);
 }
+
+.Cloud-pillars {
+  .flex-display;
+  .flex-direction(row);
+  margin: 32px auto;
+}
+
+.Cloud-pillar {
+  .flex(1);
+
+  padding: 15px 10px;
+  width: 300px;
+
+  color: #FFF;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    color: #D2E3F5;
+    font-size: 15px;
+  }
+}
+
+.Cloud-button {
+  background: #FFF;
+  border-radius: 4px;
+  padding: 15px 20px;
+  width: 170px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+// .Cloud-pillar--connect {
+//   background: #3383cf;
+// }
+//
+// .Cloud-pillar--design {
+//   background: #21a9f8;
+// }
+//
+// .Cloud-pillar--compute {
+//   background: #58aef4;
+// }
+//
+// .Cloud-pillar--analyze {
+//   background: #21a9f8;
+// }
