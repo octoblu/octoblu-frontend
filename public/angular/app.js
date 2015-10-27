@@ -116,10 +116,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/root.html',
         controller: 'RootController'
       })
-      .state('material.cloud', {
-        url: '/cloud',
-        templateUrl: '/pages/cloud.html'
-      })
       .state('material.error', {
         url: '/error',
         templateUrl: '/pages/error.html',
@@ -529,6 +525,12 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/reset/reset.html',
         controller: 'resetController',
         unsecured: true
+      })
+      .state('cwclanding', {
+        url: '/cloud',
+        templateUrl: '/pages/cloud.html',
+        controller: 'CWCLandingController',
+        unsecured: true
       });
 
     $locationProvider.html5Mode({
@@ -549,6 +551,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+      console.log("Changing from state", fromState, toState);
       $intercom.update();
       if (!toState.unsecured) {
 
