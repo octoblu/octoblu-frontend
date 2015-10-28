@@ -1,5 +1,5 @@
 class CWCAccountService
-  constructor: ($http, CWC_DOMAIN, CWC_TRUST_URL) ->
+  constructor: ($http, CWC_DOMAIN, CWC_TRUST_URL, jwtHelper) ->
     @http = $http
     @CWC_DOMAIN = CWC_DOMAIN
     @CWC_TRUST_URL = CWC_TRUST_URL
@@ -15,6 +15,9 @@ class CWCAccountService
       .get(url, options)
       .then (response) => response.data,
       (error) => error if error?
+
+  decodeToken: (token) =>
+    jwtHelper.decodeToken(token);
 
   retrieveCustomerProfile: (customer, adminId) =>
     # url = "https://delegatedadministration.#{@CWC_DOMAIN}/#{customer}/Administrators?id=#{adminId}"
