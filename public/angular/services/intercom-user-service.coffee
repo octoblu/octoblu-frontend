@@ -22,6 +22,7 @@ class IntercomUserService
       name: "#{userDevice.octoblu.firstName} #{userDevice.octoblu.lastName}"
       created_at: userDevice.octoblu.termsAcceptedAt
       user_id: userDevice.uuid
+      unsubscribed_from_emails: !userDevice.octoblu.optInEmail
       nanocyte_beta: !!userDevice.nanocyteBeta
 
     @intercom.boot userInfo

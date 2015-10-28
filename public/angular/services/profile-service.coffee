@@ -14,7 +14,7 @@ class ProfileService
             firstName: firstName
             lastName: lastName
             email: email
-            optInEmail: optInEmail
+            optInEmail: optInEmail?
             termsAcceptedAt: new Date()
 
         connection.update query, =>
@@ -34,5 +34,3 @@ class ProfileService
     deferred.promise
 
 angular.module('octobluApp').service 'ProfileService', ProfileService
-
-
