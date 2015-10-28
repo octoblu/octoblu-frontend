@@ -1,14 +1,14 @@
 class CWCAccountService
-  constructor: ($http, CWC_DOMAIN) ->
+  constructor: ($http, CWC_DOMAIN, CWC_TRUST_URL) ->
     @http = $http
     @CWC_DOMAIN = CWC_DOMAIN
+    @CWC_TRUST_URL = CWC_TRUST_URL
 
-  validateToken: =>
+  validateToken: (token, customer) =>
+    url = "#{@CWC_TRUST_URL}/#{customer}/Tokens"
+    return @http.get url, json: true
 
   retrieveCustomerProfile: =>
 
-  getDependenciesForPackage: (connector) =>
-    url = "#{@CONNECTOR_DETAIL_SERVICE_URL}/#{connector}/dependencies"
-    return @http.get url, json: true
 
 angular.module('octobluApp').service 'CWCAccountService', CWCAccountService
