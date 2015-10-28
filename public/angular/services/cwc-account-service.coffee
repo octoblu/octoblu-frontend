@@ -6,9 +6,23 @@ class CWCAccountService
 
   validateToken: (token, customer) =>
     url = "#{@CWC_TRUST_URL}/#{customer}/Tokens"
-    return @http.get url, json: true
+    options =
+      headers:
+        "Authorization": "CWSAuth bearer=#{token}"
+      json: true
 
-  retrieveCustomerProfile: =>
+    @http
+      .get(url, options)
+      .then (response) => response.data,
+      (error) => error if error?
+
+  retrieveCustomerProfile: (customer, adminId) =>
+    # url = "https://delegatedadministration.#{@CWC_DOMAIN}/#{customer}/Administrators?id=#{adminId}"
+    # @http.get url
+    #   .then (response) =>
+    #     return "yay"
+    #   , (error) =>
+    #     return error
 
 
 angular.module('octobluApp').service 'CWCAccountService', CWCAccountService
