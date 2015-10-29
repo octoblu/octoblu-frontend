@@ -1,6 +1,7 @@
 <div class="Cloud">
   <div class="Cloud-container">
     <h1 class="Cloud-title">Workspace Automation</h1>
+
     <p class="Cloud-copy Cloud-leading-copy">Based on Octoblu IoT technology, the Workspace Automation service offers a powerful, user-friendly tool for workspace automation, enabling easy integration and automation of a variety of resources, including devices, services, and people. With the intuitive drag-and-drop interface and prebuilt connections for Citrix and third-party resources, it’s simple to build automated workflows that leverage the Internet of Things.</p>
 
     <hr class="Cloud-hr">
@@ -30,7 +31,9 @@
         <p class="Cloud-copy Cloud-pillar-body">Visualize data directly, or feed it into your existing aggregation tools.</p>
       </div>
     </div>
-
+    <div class="Cloud-error" ng-if="errorMessage">
+      {{errorMessage}}
+    </div>
     <button class="BluButton BluButton--save Cloud-button" ng-click="controller.requestAccess()">Get Started</button>
   </div>
 </div>
