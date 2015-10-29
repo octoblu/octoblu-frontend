@@ -1,8 +1,9 @@
 class CWCAccountService
-  constructor: ($http, CWC_DOMAIN, CWC_TRUST_URL, jwtHelper) ->
+  constructor: ($http, CWC_DOMAIN, CWC_TRUST_URL) ->
     @http = $http
     @CWC_DOMAIN = CWC_DOMAIN
     @CWC_TRUST_URL = CWC_TRUST_URL
+
 
   validateToken: (token, customer) =>
     url = "#{@CWC_TRUST_URL}/#{customer}/Tokens"
@@ -16,7 +17,5 @@ class CWCAccountService
       .then (response) => response.data,
       (error) => error if error?
 
-  decodeToken: (token) =>
-    jwtHelper.decodeToken token
 
 angular.module('octobluApp').service 'CWCAccountService', CWCAccountService

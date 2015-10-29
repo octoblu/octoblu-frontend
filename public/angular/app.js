@@ -1,7 +1,29 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap', 'ngClipboard', 'hc.marked', 'ngAnimate', 'ngIntercom', 'chart.js', 'angulartics', 'dibari.angular-ellipsis', 'schemaForm', 'angulartics.google.analytics', 'ng-autofocus', 'draganddrop', 'angular-jwt'])
+angular.module('octobluApp', [
+  'ngSanitize',
+  'ngCookies',
+  'ui.ace',
+  'ui.bootstrap',
+  'ui.router',
+  'ui.utils',
+  'angular-google-analytics',
+  'elasticsearch',
+  'ngMaterial',
+  'ngTable',
+  'mgo-mousetrap',
+  'ngClipboard',
+  'hc.marked',
+  'ngAnimate',
+  'ngIntercom',
+  'chart.js',
+  'angulartics',
+  'dibari.angular-ellipsis',
+  'schemaForm',
+  'angulartics.google.analytics',
+  'ng-autofocus',
+  'draganddrop'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -530,6 +552,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/cloud',
         templateUrl: '/pages/cloud.html',
         controller: 'CWCLandingController',
+        controllerAs: 'controller',
         unsecured: true
       });
 
