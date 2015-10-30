@@ -1,23 +1,20 @@
 class CWCLandingController
   constructor: ($scope, $window, CWCAccountService) ->
-    @window = $window
-    @CWCAccountService = CWCAccountService
-    @scope = $scope
+    @scope              = $scope
+    @window             = $window
+    @CWCAccountService  = CWCAccountService
+    @CWCValidationError = "There was a problem validating your CWC Account, please contact CWC Customer Support"
 
   requestAccess:() =>
     cwsToken = @window.localStorage.getItem("cwsToken")
     customer = @window.localStorage.getItem("customer")
-    console.log "CWCAccountService", @CWCAccountService
     @CWCAccountService.validateToken(cwsToken, customer)
       .then (isTokenValid) =>
-        console.log "Validate token result: #{isTokenValid}"
-        return @scope.errorMessage = "There was a problem validating your CWC Account, please contact CWC Customer Support" unless isTokenValid
+        return @scope.errorMessage = @CWCValidationError unless isTokenValid
         @CWCAccountService.createOctobluSession cwsToken
-
-
-
-
-
+        .then (response) =>
+          return unless response.data.callbackUrl?
+          @window.location.href = response.data.callbackUrl
 
 
 angular.module('octobluApp').controller 'CWCLandingController', CWCLandingController

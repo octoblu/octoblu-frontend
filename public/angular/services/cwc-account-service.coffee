@@ -1,9 +1,9 @@
 class CWCAccountService
   constructor: ($http, $window, CWC_DOMAIN, CWC_TRUST_URL, OCTOBLU_API_URL) ->
-    @http = $http
-    @window = $window
-    @CWC_DOMAIN = CWC_DOMAIN
-    @CWC_TRUST_URL = CWC_TRUST_URL
+    @http            = $http
+    @window          = $window
+    @CWC_DOMAIN      = CWC_DOMAIN
+    @CWC_TRUST_URL   = CWC_TRUST_URL
     @OCTOBLU_API_URL = OCTOBLU_API_URL
 
   createOctobluSession: (token) =>
@@ -23,7 +23,7 @@ class CWCAccountService
 
     @http
       .get(url, options)
-      .then (response) => console.log response.data,
+      .then (response) => response.data,
       (error) => error if error?
 
 
