@@ -7,10 +7,6 @@ class FlowDetailEditorController
     @FlowService = FlowService
     @NotifyService = NotifyService
 
-    @scope.$watch 'flow', =>
-      AuthService.getCurrentUser().then (user) =>
-        $scope.offerNanocyteBeta = user?.userDevice?.nanocyteBeta || @scope.flow?.nanocyteBeta
-
   createBluprint: (flow) ->
     @BluprintService
       .createBluprint
@@ -32,23 +28,5 @@ class FlowDetailEditorController
 
   saveflow: (flow) ->
     @FlowService.saveFlow(flow)
-
-  updateEngine: (flow) ->
-    if !flow.online || !flow.deployed
-      @FlowService.saveFlow(flow)
-    else
-      @NotifyService
-        .confirm
-          title: 'Switch Flow Engines'
-          content: 'Your flow must be stopped before switching engines. Do you want to stop your flow now?'
-          ok: 'Stop Flow'
-        .then ( =>
-          @FlowService.stop(flow)
-          ), =>
-          flow.nanocyteBeta = !flow.nanocyteBeta
-        .then =>
-          @FlowService.saveFlow(flow)
-
-
 
 angular.module('octobluApp').controller 'FlowDetailEditorController', FlowDetailEditorController
