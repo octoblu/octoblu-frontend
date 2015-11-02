@@ -20,15 +20,6 @@
       </md-input-container>
     </div>
 
-    <md-checkbox
-      ng-model="flow.nanocyteBeta"
-      ng-change="controller.updateEngine(flow)"
-      ng-if="offerNanocyteBeta"
-      aria-label="Enable Beta Flow Engine">
-      Enable Beta Flow Engine
-    </md-checkbox>
-    <md-divider class="Sidebar-section-divider" ng-if="offerNanocyteBeta"></md-divider>
-
     <button
       ng-click="controller.createBluprint(flow)"
       class="Sidebar-pane-thing--primary BluButton"

@@ -36,8 +36,8 @@
     ng-show="noThings && !loadingConnectedThings">
   </random-robot>
 
-  <div ng-repeat="(category, devices) in connectedThingsByCategory">
-    <device-collection devices="devices" category="category">
+  <div ng-repeat="category in categories">
+    <device-collection devices="connectedThingsByCategory[category]" category="category">
     </device-collection>
   </div>
 </md-content>
