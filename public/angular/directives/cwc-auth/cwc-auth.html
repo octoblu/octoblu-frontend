@@ -1,4 +1,6 @@
 <div class="Cloud-error" ng-if="errorMessage">
   {{errorMessage}}
 </div>
-<da-loading loading="controller.loggingIn"></da-loading>
+<da-loading loading="controller.loggingIn">
+</da-loading>
+<h4 ng-if="controller.loggingIn">Logging In...</h4>
