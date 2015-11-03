@@ -552,8 +552,6 @@ angular.module('octobluApp', [
       .state('cwclanding', {
         url: '/cloud',
         templateUrl: '/pages/cloud.html',
-        controller: 'CWCLandingController',
-        controllerAs: 'controller',
         unsecured: true
       });
 
