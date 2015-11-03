@@ -583,7 +583,6 @@ angular.module('octobluApp', [
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-      console.log("Changing from state", fromState, toState);
       $intercom.update();
       if (!toState.unsecured) {
 
