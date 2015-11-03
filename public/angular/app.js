@@ -23,7 +23,8 @@ angular.module('octobluApp', [
   'schemaForm',
   'angulartics.google.analytics',
   'ng-autofocus',
-  'draganddrop'])
+  'draganddrop',
+  'ngPostMessage'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -567,6 +568,15 @@ angular.module('octobluApp', [
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
 
     // $window.console.log = $log.debug;
+
+    $rootScope.$on('$messageIncoming', function (event, data){
+      if (data.name === "$cwcNavbarUserLoggedOff") {
+        AuthService.logout().then(function () {
+          console.log('Logged Out!!!');
+          $rootScope.$emit("$octobluUserLoggedOff", "*");
+        });
+      }
+    });
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.log('error from ' + fromState.name + ' to ' + toState.name, error);
