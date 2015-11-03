@@ -15,7 +15,7 @@ class CWCAuthController
   requestAccess:() =>
     cwsToken = @window.localStorage.getItem "cwsToken"
     cwcCustomer = @window.localStorage.getItem "customer"
-  
+
     @CWCAccountService.validateToken(cwsToken, cwcCustomer)
       .then (isTokenValid) =>
         return @scope.errorMessage = @CWCValidationError unless isTokenValid
