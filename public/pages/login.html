@@ -1,5 +1,9 @@
 <div class="auth">
-  <div class="auth__card">
+  <div class="auth__card" ng-if="controller.CWCAccount">
+    <cwc-auth></cwc-auth>
+  </div>
+
+  <div class="auth__card" ng-if="!controller.CWCAccount">
     <div class="auth__card-inner">
       <img class="auth__octoblu-logo" src="/assets/images/octoblu-color.png">
 

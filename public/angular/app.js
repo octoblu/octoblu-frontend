@@ -575,7 +575,7 @@ angular.module('octobluApp', [
       }
 
       if (data.name === "$cwcNavbarUserAuthorized") {
-        console.log("Authorized!!!!", data);
+        $rootScope.$broadcast("$cwcUserAuthorized");
       }
     });
 
