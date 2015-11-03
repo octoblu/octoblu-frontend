@@ -567,14 +567,15 @@ angular.module('octobluApp', [
   })
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
 
-    // $window.console.log = $log.debug;
-
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
         AuthService.logout().then(function () {
-          console.log('Logged Out!!!');
-          $rootScope.$emit("$octobluUserLoggedOff", "*");
+          $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
         });
+      }
+
+      if (data.name === "$cwcNavbarUserAuthorized") {
+        console.log("Authorized!!!!", data);
       }
     });
 

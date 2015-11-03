@@ -45,7 +45,6 @@ angular.module('octobluApp')
             angular.copy({}, currentUser);
             delete $cookies.skynetuuid;
             delete $cookies.skynettoken;
-            $window.location = '/login';
         }
 
         return service = {
