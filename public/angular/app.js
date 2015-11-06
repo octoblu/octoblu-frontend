@@ -485,7 +485,7 @@ angular.module('octobluApp', [
         controller: 'profileController'
       })
       .state('profile-new', {
-        url: '/profile/new',
+        url: '/profile/new?firstName&lastName&email',
         controller: 'NewProfileController',
         controllerAs: 'controller',
         templateUrl: '/pages/profile/new.html'
