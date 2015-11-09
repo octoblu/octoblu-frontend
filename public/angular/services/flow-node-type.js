@@ -3,6 +3,7 @@ angular.module('octobluApp')
   'use strict';
 
   var self = this;
+  self.httpGetting = null;
 
   self.createFlowNode = function(flowNodeType){
     var defaults = _.cloneDeep(flowNodeType.defaults);
@@ -22,9 +23,13 @@ angular.module('octobluApp')
     });
   };
 
-  self.getFlowNodeTypes = function(cache) {
-    return $http.get(OCTOBLU_API_URL + '/api/flow_node_types').then(function(res){
-      return _.map(res.data, function(data){
+  self.getFlowNodeTypes = function() {
+    // lame hack for now
+    if (!_.isEmpty(self.httpGetting)) {
+      return self.httpGetting;
+    }
+    self.httpGetting = $http.get(OCTOBLU_API_URL + '/api/flow_node_types').then(function(res){
+      var flowNodeTypes = _.map(res.data, function(data){
         if(data.logo){
           return data;
         }
@@ -37,11 +42,14 @@ angular.module('octobluApp')
         }
         return data;
       });
+      setTimeout(function(){self.httpGetting = null}, 2000);
+      return flowNodeTypes;
     });
+    return self.httpGetting;
   };
 
   self.getOtherMatchingFlowNodeTypes = function(type){
-    return self.getFlowNodeTypes(true).then(function(flowNodeTypes){
+    return self.getFlowNodeTypes().then(function(flowNodeTypes){
       return _.where(flowNodeTypes, { type : type });
     });
   };
