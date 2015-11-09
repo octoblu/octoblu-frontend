@@ -591,6 +591,8 @@ angular.module('octobluApp')
 
         var nodeImage = nodeElement.select("image:last-of-type") || nodeElement;
         addClickBehavior(nodeImage.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
+        var nodeText = nodeElement.select("text") || nodeElement;
+        addClickBehavior(nodeText.node, node, selectCallback(nodeElement, dispatch.nodeSelected));
         addNodeDragBehavior(nodeElement, nodeImage, node);
 
         var nodeButton = snap.select('#node-button-'+node.id);
