@@ -45,20 +45,16 @@ angular.module('octobluApp')
       readonly = true;
     }
 
-    function backgroundClicked() {
-      unselectAll();
+    function backgroundClicked(event) {
+      var background = $(event.target);
+      if(background.attr('class') != 'flow-editor-workspace') {
+        return false;
+      }
       dispatch.nodeSelected(null);
       dispatch.linkSelected(null);
     }
 
-    function unselectAll() {
-      _.each(snap.selectAll(".selected"),function(selected){
-        selected.toggleClass('selected',false);
-      });
-    }
-
     function select(snapElement) {
-      unselectAll();
       snapElement.toggleClass('selected',true);
     }
 
@@ -427,16 +423,18 @@ angular.module('octobluApp')
 
       function enable(){
         snap.removeClass('grabby-hand');
-        hammerSnap.on('panstart', panstart);
-        hammerSnap.on('panmove', panmove);
         hammerSnap.on('panend', panend);
+        hammerSnap.on('panmove', panmove);
+        hammerSnap.on('panstart', panstart);
+        hammerSnap.on('tap', backgroundClicked);
         enabled = true;
       }
 
       function disable() {
-        hammerSnap.off('panstart', panstart);
-        hammerSnap.off('panmove', panmove);
         hammerSnap.off('panend', panend);
+        hammerSnap.off('panmove', panmove);
+        hammerSnap.off('panstart', panstart);
+        hammerSnap.off('tap', backgroundClicked);
         enabled = false;
       }
 
@@ -513,7 +511,6 @@ angular.module('octobluApp')
     if (!readonly) {
       flowBehavior.pan = addFlowPanBehavior();
       flowBehavior.zoom = addFlowZoomBehavior();
-      flowBehavior.click = addClickBehavior(snapParent, undefined, backgroundClicked);
     }
 
     var flowMultiTouchCounter = 0;
