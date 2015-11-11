@@ -13,7 +13,7 @@ class FlowDetailEditorController
         name: flow.name
         flowId: flow.flowId
       .then (template) =>
-        @state.go 'material.bluprintDetail', bluprintId: template.uuid, editMode: true
+        @state.go 'material.bluprintDetail', bluprintId: template.uuid, editMode: true, createMode: true
 
   deleteFlow: (flow) ->
     @NotifyService

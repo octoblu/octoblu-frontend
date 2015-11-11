@@ -10,10 +10,12 @@ class BluprintDetailController
 
     @scope.importing = false
     @scope.editMode = @stateParams.editMode
+    @scope.createMode = @stateParams.createMode
 
     @refreshBluprint()
 
     @scope.$watch 'editMode', () =>
+      if !@scope.editMode then @scope.createMode = null
       @scope.bluprintEdit = _.cloneDeep @scope.bluprint
     , true
 
@@ -28,6 +30,14 @@ class BluprintDetailController
     @scope.editMode = false
     @BluprintService.update(@scope.bluprint.uuid, @scope.bluprintEdit).
       then @refreshBluprint
+
+  handleCancel: =>
+    if @scope.createMode
+      @BluprintService.deleteBluprint(@stateParams.bluprintId).then =>
+        @state.go('material.design')
+    else
+      @scope.editMode = false
+
 
   import: =>
     @scope.importing = true

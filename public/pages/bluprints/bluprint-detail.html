@@ -109,7 +109,7 @@
 
         <div class="BluButton--actions" ng-show="editMode">
           <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
-          <a class="BluButton BluButton--cancel" ng-click="editMode = false">Cancel</a>
+          <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
         </div>
 
         <div ng-hide="editMode" class="BluButton--actions">

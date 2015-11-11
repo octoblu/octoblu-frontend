@@ -405,7 +405,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         url: '/bluprints/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
         params: {
-          editMode : null
+          editMode : null,
+          createMode: null
         },
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
