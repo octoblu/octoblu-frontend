@@ -36,6 +36,7 @@ angular.module('octobluApp')
   };
 
   var setCookie = function(flowId) {
+    deleteCookie();
     $cookies.currentFlowId = flowId;
   };
 
