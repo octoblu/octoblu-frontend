@@ -1,5 +1,5 @@
 <div class="compose">
-  <table class="compose__table" ng-show="keyValues.length">
+  <table class="compose__table" ng-show="data.length">
     <thead class="compose__table-head">
       <tr class="compose__table-row compose__table-row--head">
         <th class="compose__table-cell"></th>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody class="compose__table-body">
-      <tr ng-repeat="keyValue in keyValues" class="compose__table-row">
+      <tr ng-repeat="keyValue in data track by $index" class="compose__table-row">
         <td class="compose__table-cell">{{$index + 1}}.</td>
         <td class="compose__table-cell compose__table-cell--value">
           <input required label="Value" ng-model="keyValue[1]">
@@ -18,7 +18,7 @@
           <input required label="Key" ng-model="keyValue[0]">
         </td>
         <td class="compose__table-cell">
-          <md-button class="md-button" ng-click="deleteKeyValue(keyValue)" aria-label="Delete Key">
+          <md-button class="md-button" ng-click="deleteKeyValue($index)" aria-label="Delete Key">
             <i class="fa fa-minus"></i>
           </md-button>
         </td>
