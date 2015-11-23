@@ -7,7 +7,7 @@ var gulp         = require('gulp'),
   sourcemaps     = require('gulp-sourcemaps'),
   webserver      = require('gulp-webserver'),
   coffee         = require('gulp-coffee'),
-  clean          = require('gulp-clean'),
+  rimraf         = require('gulp-rimraf'),
   cors           = require('cors'),
   _              = require('lodash');
 
@@ -39,7 +39,7 @@ gulp.task('less:compile', function(){
 
 gulp.task('coffee:clean', function(){
   return gulp.src(['./public/angular/compiled'], {read: false})
-    .pipe(clean())
+    .pipe(rimraf())
 })
 
 gulp.task('coffee:compile', function(){
