@@ -8,6 +8,6 @@ RUN apt-get update && \
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY package.json .
-COPY .git/HEAD .git/HEAD
+COPY .git .git
 COPY download-built-assets.sh .
 RUN ./download-built-assets.sh

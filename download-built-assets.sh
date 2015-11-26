@@ -1,7 +1,17 @@
 #!/bin/bash
 
+get_commit(){
+  local head=$(cat .git/HEAD)
+  if [[ "$head" == ref* ]]; then
+    local file=$(echo $head | awk '{print $2}')
+    cat .git/$file
+  else
+    echo $head
+  fi
+}
+
 echo "Waiting for the public.tar.gz"
-GIT_COMMIT=$(cat .git/HEAD)
+GIT_COMMIT=$(get_commit)
 URL="https://s3-us-west-2.amazonaws.com/deploy-octoblu-static/master/${GIT_COMMIT}-public.tar.gz"
 
 x=0

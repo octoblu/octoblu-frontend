@@ -1,13 +1,13 @@
 node_modules
 test
 public/lib
+public/assets/javascripts/dist/
 
 .git/branches
 .git/hooks
 .git/info
 .git/logs
 .git/objects
-.git/refs
 .git/COMMIT_EDITMSG
 .git/FETCH_HEAD
 .git/ORIG_HEAD
