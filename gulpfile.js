@@ -43,7 +43,7 @@ gulp.task('coffee:clean', function(){
 })
 
 gulp.task('coffee:compile', function(){
-  var environment = process.env.NODE_ENV || 'development'
+  var environment = process.env.NODE_ENV || 'development';
   var configFile = "./public/config/" + environment + ".coffee"
 
   return gulp.src(['./public/angular/**/*.coffee', configFile])
@@ -64,10 +64,14 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
 
 gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
 
+gulp.task('webserver', ['default', 'static']);
+
 gulp.task('static', function(){
 
   var port = process.env.OCTOBLU_FRONTEND_PORT || 8080;
   process.env.PORT = port;
+
+  var apiBackendUri = process.env.OCTOBLU_BACKEND_URI || 'http://localhost:8081/api';
 
   gulp.src('./public').pipe(webserver({
     host: '0.0.0.0',
@@ -79,8 +83,8 @@ gulp.task('static', function(){
     middleware: [cors()],
     proxies: [{
       source: '/api',
-      target: 'http://localhost:8081/api'
-      }]
+      target: apiBackendUri
+    }]
   }));
 });
 
