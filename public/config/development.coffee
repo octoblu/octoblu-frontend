@@ -7,7 +7,7 @@ angular.module('octobluApp')
     CITRIX: "http://#{window.location.hostname}:8888"
     GITHUB: "http://#{window.location.hostname}:8888"
   }
-  .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:9000"
+  .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:55871"
   .constant 'MESHBLU_HOST', "#{window.location.hostname}"
   .constant 'MESHBLU_PORT', '3000'
   .constant 'PROFILE_URI', "http://#{window.location.hostname}:8888/profile"

@@ -89,11 +89,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         responseError: function (response) {
           if (response.status === 401) {
             if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + $location.url();
+              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
             }
           }
           if (response.status === 403) {
-            return $window.location = '/profile/new?callbackUrl=' + $location.url();
+            return $window.location = '/profile/new?callbackUrl=' + encodeURIComponent($location.url());
           }
           if (_.indexOf([502, 503, 504], response.status) >= 0) {
             if($window.location.pathname !== '/error') {
