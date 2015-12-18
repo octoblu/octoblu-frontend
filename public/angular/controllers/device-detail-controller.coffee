@@ -15,7 +15,7 @@ class DeviceDetailController
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
-      @showLink = @deviceIsGatebluDevice @device
+      @showLink = false # DISABLED # @deviceIsGatebluDevice @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
