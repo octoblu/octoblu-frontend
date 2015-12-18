@@ -1,42 +1,14 @@
 angular.module('octobluApp')
 .controller('ComposeController', function($scope) {
-  if ($scope.composeValues && $scope.composeKeys) {
-    $scope.data = _.zipObject($scope.composeKeys, $scope.composeValues);
-    delete $scope.composeKeys;
-    delete $scope.composeValues;
+  if (!_.isArray($scope.data)) {
+    $scope.data = _.pairs($scope.data);
   }
-
-  $scope.keyValues = _.pairs($scope.data);
-
-  $scope.$watch('keyValues', function(keyValues) {
-    if(!keyValues) {
-      return;
-    }
-
-    updateComposeNode(keyValues);
-  }, true);
 
   $scope.addKeyValue = function() {
-    $scope.keyValues.push([]);
+    $scope.data.push(['', '']);
   };
 
-  $scope.deleteKeyValue = function(keyValue) {
-    $scope.keyValues = _.without($scope.keyValues, keyValue);
+  $scope.deleteKeyValue = function(index) {
+    _.pullAt($scope.data, index);
   };
-
-  function updateComposeNode(keyValues) {
-    var newComposeNode = {};
-
-    _.each(keyValues, function(keyValue){
-      var key = keyValue[0], value = keyValue[1];
-
-      if(!key) {
-        return;
-      }
-      newComposeNode[key] = value;
-    });
-
-    $scope.data = newComposeNode;
-  }
-
 });

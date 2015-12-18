@@ -10,6 +10,7 @@ angular.module('octobluApp')
   $scope.debugLines = [];
   $scope.deviceOnline = false;
   $scope.deployProgress = 0;
+  $scope.documentHidden = false;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -28,14 +29,23 @@ angular.module('octobluApp')
 
   var updateFlowDevice = _.throttle(updateFlowDeviceImmediately, 500, {leading: false, trailing: true});
 
+  var visibilityChanged = function(){
+    $scope.documentHidden = document.hidden;
+  }
+
+  if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);
+
   var deadManSwitch = function(skynetConnection, flowId) {
-    skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
+    if (!$scope.documentHidden) {
+      skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
+    }
     _.delay(function() {
       deadManSwitch(skynetConnection, flowId);
     }, 60 * 1000)
   };
 
   var setCookie = function(flowId) {
+    deleteCookie();
     $cookies.currentFlowId = flowId;
   };
 
