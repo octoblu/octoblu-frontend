@@ -7,6 +7,7 @@ class DeviceDetailController
     @ThingService = ThingService
     @form = ['*']
     @firstRun = true
+    @showLink = false
 
     @ThingService.getThing(uuid: $stateParams.uuid).then (device) =>
       @device = device
@@ -14,6 +15,7 @@ class DeviceDetailController
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
+      @showLink = @deviceIsGatebluDevice @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
@@ -25,6 +27,12 @@ class DeviceDetailController
 
   deviceIsFlow: (device) =>
     device.type == 'octoblu:flow' || device.type == 'device:flow'
+
+  deviceIsGatebluDevice: (device) =>
+    device.category == 'device'
+
+  linkToGateblu: =>
+    @state.go "material.nodewizard-linksubdevice", deviceUuid: @device.uuid, {location: true}
 
   confirmDeleteDevice: =>
     confirmOptions = {

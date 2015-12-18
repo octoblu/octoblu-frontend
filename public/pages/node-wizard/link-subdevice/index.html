@@ -1,0 +1,34 @@
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <div class="BluToolbar-header truncate">
+        <a ui-sref="material.things" class="BluToolbar-header--link">Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Add {{contoller.device.name}}</span>
+      </div>
+
+    </div>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+<md-content>
+  <div class="node-wizard-logo-container">
+    <img ng-src="{{controller.device.logo}}">
+  </div>
+  <h2 class="text-center">{{contoller.device.name}}</h2>
+  <div class="node-wizard-gateblu-explanation">
+    <p>
+      Link device to an existing Gateblu.
+    </p>
+  </div>
+
+  <ui-view></ui-view>
+</md-content>
