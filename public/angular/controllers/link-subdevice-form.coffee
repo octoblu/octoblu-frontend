@@ -9,27 +9,35 @@ class LinkSubdeviceFormController
     @updating = true
     @loading = true
     @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid
-    @getDeviceWithToken().then (device) =>
-      @addDeviceToGateblu(device).then =>
+    @updateDeviceForGateblu().then (result) =>
+      @addDeviceToGateblu(result).then (device) =>
         @loading = false
         @device = device
 
-  addDeviceToGateblu: (device) =>
-    @ThingService.getThing uuid: @stateParams.gatebluUuid
-      .then (gatebluDevice) =>
-        @GatebluService.updateGateblu [device, gatebluDevice], @gatebluLogger
+  addDeviceToGateblu: ([device, gatebluDevice]) =>
+    @GatebluService.updateGateblu [device, gatebluDevice], @gatebluLogger
       .then =>
         @updating = false
-        @GatebluService.waitForDeviceToHaveOptionsSchema device, @gatebluLogger
+        @GatebluService.waitForEndOfInitializing device, @gatebluLogger
       .then =>
         @gatebluLogger.addDeviceEnd device.uuid, device.gateblu, device.connector
-        @ThingService.getThing uuid: device.uuid
+        @getDevice()
+
+  getDevice: =>
+    @ThingService.getThing uuid: @stateParams.deviceUuid
 
   getDeviceWithToken: =>
-    @ThingService.getThing uuid: @stateParams.uuid
-      .then (device) =>
-        @ThingService.generateSessionToken(device).then (token) =>
+    @getDevice().then (device) =>
+      @ThingService.generateSessionToken uuid: device.uuid
+        .then (token) =>
           device.token = token
           return device
+
+  updateDeviceForGateblu: =>
+    @getDeviceWithToken().then (device) =>
+      @GatebluService.updateDevice device, @stateParams.gatebluUuid, @gatebluLogger
+        .then ([newDevice, gatebluDevice]) =>
+          mergedDevice = _.assign {}, device, newDevice
+          return [mergedDevice, gatebluDevice]
 
 angular.module('octobluApp').controller 'LinkSubdeviceFormController', LinkSubdeviceFormController

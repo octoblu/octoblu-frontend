@@ -15,13 +15,12 @@ class DeviceDetailController
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
-      @showLink = false # DISABLED # @deviceIsGatebluDevice @device
+      @showLink = @deviceIsGatebluDevice @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
       @scope.$watch 'controller.devices', @updatePermissionRows, true
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
-
 
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
