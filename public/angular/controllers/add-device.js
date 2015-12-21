@@ -39,11 +39,7 @@ angular.module('octobluApp')
         deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;
       }
 
-     if($scope.newDevice.action === 'addUnclaimed'){
-
-        deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-        promise = deviceService.claimDevice(deviceOptions);
-      } else if($scope.newDevice.action === 'claimExisting'){
+      if($scope.newDevice.action === 'claimExisting'){
 
         deviceOptions.uuid = $scope.existingDevice.uuid;
         deviceOptions.token = $scope.existingDevice.token;
