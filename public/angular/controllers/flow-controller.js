@@ -156,11 +156,10 @@ angular.module('octobluApp')
   });
 
   $scope.$on('flow-node-error', function(event, options) {
-    if(!options.node) {
-      return;
-    }
     pushDebugLines(options.message);
-    options.node.errorMessage = options.message.msg;
+    if(options.node) {
+      options.node.errorMessage = options.message.msg;
+    }
     $scope.$apply();
   });
 
