@@ -4,6 +4,9 @@ class LoginController
     host     = $location.host()
     port     = $location.port()
 
+    @CWCAccount = host == "octoblu.cloud.com"
+    @loggingIn = true
+
     callbackUrl = $location.search().callbackUrl
     callbackParams = encodedCallbackParams = ''
     encodedCallbackParams = $.param callbackUrl: encodeURIComponent(callbackUrl) if callbackUrl?
@@ -19,5 +22,6 @@ class LoginController
     @googleLoginUri        = AUTHENTICATOR_URIS.GOOGLE + '?' + loginParams
     @twitterLoginUri       = AUTHENTICATOR_URIS.TWITTER + '?' + loginParams
     @signUpUri             = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '/signup?' + loginParams
+
 
 angular.module('octobluApp').controller 'LoginController', LoginController

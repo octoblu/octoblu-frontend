@@ -1,11 +1,15 @@
 
 class NewProfileController
-  constructor: ($cookies, $state, FlowService, ProfileService, userService) ->
+  constructor: ($cookies, $scope, $state, $stateParams, FlowService, ProfileService, userService) ->
     @cookies        = $cookies
+    @scope          = $scope
     @state          = $state
+    @stateParams    = $stateParams
     @FlowService    = FlowService
     @ProfileService = ProfileService
     @userService    = userService
+
+    @populateProfileFromParams()
 
   submit: (firstName, lastName, email, optInEmail) =>
     emailID = '542ce2ad47a930b1280b0d05'
@@ -31,6 +35,12 @@ class NewProfileController
             @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
         @loading = false
+
+  populateProfileFromParams: =>
+    { firstName, lastName, email } = @stateParams
+    @scope.firstName = firstName if firstName?
+    @scope.lastName = lastName if lastName?
+    @scope.email = email if email?
 
   addDemoFlow: =>
     @FlowService.createDemoFlow name: 'Demo Flow'

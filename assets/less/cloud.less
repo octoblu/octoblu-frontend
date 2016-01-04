@@ -1,0 +1,97 @@
+.Cloud {
+  .flex(1);
+  .flex-display;
+  .flex-direction(column);
+
+  background: #1E6DB9;
+  -webkit-background-size: 100% 900px;
+     -moz-background-size: 100% 900px;
+          background-size: 100% 900px;
+
+  color: #FFF;
+  overflow: scroll;
+  text-align: center;
+}
+
+.Cloud-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Cloud-title {
+  margin: 36px 0 24px;
+}
+
+.Cloud-error {
+  border: 1px solid white !important;
+  border-radius: 4px;
+  margin: 50px auto 20px auto;
+  padding: 20px;
+
+  background-color: white;
+  color: #1E6DB9;
+  font-size: 18px;
+  text-align: center;
+}
+
+.Cloud-leading-copy {
+  font-size: 18px;
+  width: 90%;
+  margin: 0 auto 36px;
+}
+
+.Cloud-copy {
+  line-height: 1.5;
+  color: #E7F0F9;
+}
+
+.Cloud-pillars {
+  .flex-display;
+  .flex-direction(row);
+  margin: 32px auto;
+  width: 100%;
+}
+
+.Cloud-pillar {
+  .flex(1);
+
+  padding: 15px 10px;
+  width: 25%;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+.Cloud-button {
+  border: 1px solid #2B6CAB !important;
+  border-radius: 4px;
+  box-shadow: inset 0 -2px 6px rgba(7, 45, 74, 0.23), 0 0 0 1px rgba(90, 101, 112, 0.05), 0 1px 2px rgba(90, 101, 112, 0.22);
+  margin: 0 auto;
+  padding: 15px 20px;
+  width: 170px;
+
+  background: #FFF !important;
+  color: #14568f !important;
+  text-align: center;
+
+  &:hover {
+    box-shadow: inset 0 -2px 6px rgba(7, 45, 74, 0.4), 0 0 0 1px rgba(90, 101, 112, 0.05), 0 1px 2px rgba(90, 101, 112, 0.22);
+    background: #FFF !important;
+    border: 1px solid #2B6CAB !important;
+  }
+
+}
+
+.Cloud-hr {
+  border: none;
+  width: 25%;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.16);
+}

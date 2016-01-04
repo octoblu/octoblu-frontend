@@ -1,7 +1,30 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap', 'ngClipboard', 'hc.marked', 'ngAnimate', 'ngIntercom', 'chart.js', 'angulartics', 'dibari.angular-ellipsis', 'schemaForm', 'angulartics.google.analytics', 'ng-autofocus', 'draganddrop'])
+angular.module('octobluApp', [
+  'ngSanitize',
+  'ngCookies',
+  'ui.ace',
+  'ui.bootstrap',
+  'ui.router',
+  'ui.utils',
+  'angular-google-analytics',
+  'elasticsearch',
+  'ngMaterial',
+  'ngTable',
+  'mgo-mousetrap',
+  'ngClipboard',
+  'hc.marked',
+  'ngAnimate',
+  'ngIntercom',
+  'chart.js',
+  'angulartics',
+  'dibari.angular-ellipsis',
+  'schemaForm',
+  'angulartics.google.analytics',
+  'ng-autofocus',
+  'draganddrop',
+  'ngPostMessage'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -481,7 +504,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'profileController'
       })
       .state('profile-new', {
-        url: '/profile/new',
+        url: '/profile/new?firstName&lastName&email',
         controller: 'NewProfileController',
         controllerAs: 'controller',
         templateUrl: '/pages/profile/new.html'
@@ -544,6 +567,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/reset/reset.html',
         controller: 'resetController',
         unsecured: true
+      })
+      .state('cwclanding', {
+        url: '/cloud',
+        templateUrl: '/pages/cloud.html',
+        unsecured: true
       });
 
     $locationProvider.html5Mode({
@@ -556,7 +584,17 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
   })
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
 
-    // $window.console.log = $log.debug;
+    $rootScope.$on('$messageIncoming', function (event, data){
+      if (data.name === "$cwcNavbarUserLoggedOff") {
+        AuthService.logout().then(function () {
+          $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
+        });
+      }
+
+      if (data.name === "$cwcNavbarUserAuthorized") {
+        $rootScope.$broadcast("$cwcUserAuthorized");
+      }
+    });
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.log('error from ' + fromState.name + ' to ' + toState.name, error);
@@ -628,3 +666,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
 
     };
   });
+
+
+angular.element(document).ready(function(){
+  angular.bootstrap(document.getElementById("octoblu-app"),['octobluApp']);
+});
