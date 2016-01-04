@@ -31,7 +31,7 @@ class DeviceDetailController
     device.type == 'octoblu:flow' || device.type == 'device:flow'
 
   deviceIsGatebluDevice: (device) =>
-    device.category == 'device'
+    !@deviceIsFlow device
 
   linkToGateblu: =>
     @state.go "material.nodewizard-linksubdevice", deviceUuid: @device.uuid, {location: true}
