@@ -21,13 +21,10 @@
 </md-toolbar>
 <md-content>
   <div class="link-subdevice-wizard">
-    <header class="link-subdevice-header">
-      <div class="header-section">
-        <h3><strong>Linking</strong> {{controller.device.name}}</h3>
-        <img class="icon" ng-src="{{controller.device.logo}}">
-      </div>
-      <device-wizard-header-section></device-wizard-header-section>
-      <device-wizard-header-section></device-wizard-header-section>
+    <header class="device-wizard-header">
+      <device-wizard-header-section title="{{subdeviceLink.device.name}}" missing="!subdeviceLink.device" logo="{{subdeviceLink.device.logo}}"></device-wizard-header-section>
+      <device-wizard-header-section title="{{subdeviceLink.nodeType.type}}" missing="!subdeviceLink.nodeType" logo="{{subdeviceLink.nodeType.logo}}"></device-wizard-header-section>
+      <device-wizard-header-section title="{{subdeviceLink.gateblu.name}}" missing="!subdeviceLink.gateblu" logo="{{subdeviceLink.gateblu.logo}}"></device-wizard-header-section>
     </header>
 
     <div class="node-wizard-gateblu-explanation">
