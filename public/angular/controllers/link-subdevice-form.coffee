@@ -4,15 +4,14 @@ class LinkSubdeviceFormController
     @GatebluService = GatebluService
     @ThingService = ThingService
     # @gatebluLogger = new GatebluLogService()
-    @updating = true
-    @loading = true
-    @done = false
-    # @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid    
+    # @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid
 
   linkSubdeviceToGateblu: =>
+    @updating = true
     @updateSubdevice().then =>
       @updateGatebluDevice().then =>
-        console.log 'Done linking!'
+        @updating = false
+        @done = true
 
   updateGatebluDevice: =>
     @gateblu.devices ?= []

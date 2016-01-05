@@ -1,19 +1,16 @@
-<button class="BluButton" ng-click="controller.linkSubdeviceToGateblu()">Link</button>
 <div class="node-wizard">
-  <ul ng-if="controller.done" class="fa-ul">
-    <li class="Gateblu-add-device--step">
+  <div ng-hide="controller.updating || controller.done">
+    <button class="BluButton" ng-click="controller.linkSubdeviceToGateblu()">Link</button>
+  </div>  
+  <ul ng-if="!controller.done" class="fa-ul">
+    <li ng-if="controller.updating" class="Gateblu-add-device--step">
       <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': controller.updating}"></i>
       <i class="fa fa-li fa-lg" ng-class="{'fa-check': !controller.updating}"></i>
       Updating Your Gateblu...
     </li>
-    <li class="Gateblu-add-device--step">
-      <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': controller.loading}"></i>
-      <i class="fa fa-li fa-lg" ng-class="{'fa-check': !controller.loading}"></i>
-      Loading Device Options...
-    </li>
   </ul>
 
-  <div ng-if="controller.device">
+  <div ng-if="controller.done">
     <p>Done adding device!</p>
   </div>
 </div>
