@@ -380,9 +380,15 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/index.html'
       })
+      .state('material.nodewizard-linksubdevice.selecttype', {
+        url: '',
+        controller: 'LinkSubdeviceSelectTypeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/select-type.html'
+      })
       .state('material.nodewizard-linksubdevice.selectgateblu', {
         url: '',
-        controller: 'LinkSubdeviceSelectController',
+        controller: 'LinkSubdeviceSelectGatebluController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/select-gateblu.html'
       })

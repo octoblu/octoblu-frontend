@@ -4,7 +4,8 @@
   <div class="gateblu-list">
     <div class="device-collection__items device-collection__items--grid">
       <a ng-repeat="gateblu in controller.gateblus | orderBy: 'name'"
-        ui-sref="material.nodewizard-linksubdevice.form({gatebluUuid: gateblu.uuid, uuid: controller.device.uuid})"
+        ng-click="controller.selectGateblu(gateblu)"
+        href=""
         class="device-collection__item">
 
         <img ng-src="{{gateblu.logo}}"
@@ -16,8 +17,10 @@
       </a>
     </div>
   </div>
-
-  <plugin-platform-dependencies connector="controller.device.connector" platform="controller.gateblus.length == 1 && controller.gateblus[0].platform"></plugin-platform-dependencies>
+  <div ng-if="controller.gateblu && controller.device">
+    <plugin-platform-dependencies connector="controller.device.connector" platform="controller.gateblus.length == 1 && controller.gateblus[0].platform"></plugin-platform-dependencies>
+    <button ng-click="linkDeviceToGateblu()" class="BluButton">Link Device</button>
+  </div>
 </div>
 
 <div ng-hide="controller.gateblus.length" class="gateblu-download">

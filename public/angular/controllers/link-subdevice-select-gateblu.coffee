@@ -1,12 +1,20 @@
-class LinkSubdeviceSelectController
-  constructor: ($scope, $state, $stateParams, ThingService, deviceService) ->
-    @scope = $scope
+class LinkSubdeviceSelectGatebluController
+  constructor: ($scope, $state, $stateParams, $cookies, ThingService, deviceService) ->
     @state = $state
-    @deviceService = deviceService
-    @ThingService = ThingService
+    {@device} = $scope.subdeviceLink
+    @subdeviceLink = $scope.subdeviceLink
+    deviceService.getGateblus().then (@gateblus) =>
 
-    @ThingService.getThing(uuid: $stateParams.uuid).then (@device) =>
+  selectGateblu: (gateblu) =>
+    @device.gateblu = gateblu.uuid
+    @device.configureWhitelist = [gateblu.uuid, @userUuid]
+    @device.discoverWhitelist = [gateblu.uuid, @userUuid]
+    @device.sendAsWhitelist = [gateblu.uuid]
+    @device.receiveAsWhitelist = [gateblu.uuid]
+    @device.configureAsWhitelist = []
+    @device.discoverAsWhitelist = []
 
-    @deviceService.getOnlineGateblus().then (@gateblus) =>
+    @subdeviceLink.gateblu = _.cloneDeep gateblu
+    @state.go 'material.nodewizard-linksubdevice.form'
 
-angular.module('octobluApp').controller 'LinkSubdeviceSelectController', LinkSubdeviceSelectController
+angular.module('octobluApp').controller 'LinkSubdeviceSelectGatebluController', LinkSubdeviceSelectGatebluController

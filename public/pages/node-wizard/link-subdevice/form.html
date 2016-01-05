@@ -1,5 +1,6 @@
+<button class="BluButton" ng-click="controller.linkSubdeviceToGateblu()">Link</button>
 <div class="node-wizard">
-  <ul ng-if="!controller.device" class="fa-ul">
+  <ul ng-if="controller.done" class="fa-ul">
     <li class="Gateblu-add-device--step">
       <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': controller.updating}"></i>
       <i class="fa fa-li fa-lg" ng-class="{'fa-check': !controller.updating}"></i>
