@@ -387,13 +387,11 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/node-wizard/link-subdevice/select-type.html'
       })
       .state('material.nodewizard-linksubdevice.selectgateblu', {
-        url: '',
         controller: 'LinkSubdeviceSelectGatebluController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/select-gateblu.html'
       })
-      .state('material.nodewizard-linksubdevice.form', {
-        url: '/gateblus/:gatebluUuid',
+      .state('material.nodewizard-linksubdevice.form', {        
         controller: 'LinkSubdeviceFormController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/form.html'

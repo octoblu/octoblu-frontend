@@ -7,8 +7,8 @@ class LinkSubdeviceSelectGatebluController
 
   selectGateblu: (gateblu) =>
     @device.gateblu = gateblu.uuid
-    @device.configureWhitelist = [gateblu.uuid, @userUuid]
-    @device.discoverWhitelist = [gateblu.uuid, @userUuid]
+    @device.configureWhitelist = [gateblu.uuid]
+    @device.discoverWhitelist = [gateblu.uuid]
     @device.sendAsWhitelist = [gateblu.uuid]
     @device.receiveAsWhitelist = [gateblu.uuid]
     @device.configureAsWhitelist = []

@@ -1,6 +1,6 @@
 class LinkSubdeviceController
   constructor: ($scope, $state, $stateParams, ThingService) ->
-
+    
     ThingService.getThing(uuid: $stateParams.deviceUuid).then (device) =>
       $scope.subdeviceLink = device: _.cloneDeep device
       {@device} = $scope.subdeviceLink

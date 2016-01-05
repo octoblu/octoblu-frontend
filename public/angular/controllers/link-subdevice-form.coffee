@@ -7,12 +7,9 @@ class LinkSubdeviceFormController
     @updating = true
     @loading = true
     @done = false
-    # @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid
-    console.log "Subdevice:", @device
-    console.log "Gateblu:", @gateblu
+    # @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid    
 
   linkSubdeviceToGateblu: =>
-    console.log 'linking subdevice to gateblu'
     @updateSubdevice().then =>
       @updateGatebluDevice().then =>
         console.log 'Done linking!'
