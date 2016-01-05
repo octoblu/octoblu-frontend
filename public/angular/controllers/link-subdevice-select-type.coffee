@@ -6,9 +6,7 @@ class LinkSubdeviceSelectTypeController
     NodeTypeService.getSubdeviceNodeTypes().then (@nodeTypes) =>
 
   selectNodeType: (nodeType) =>
-    @device.category = nodeType.category
-    @device.connector = nodeType.connector
-    @device.logo = nodeType.logo
+    @subdeviceLink.nodeType = nodeType
     @state.go 'material.nodewizard-linksubdevice.selectgateblu'
 
 angular.module('octobluApp').controller 'LinkSubdeviceSelectTypeController', LinkSubdeviceSelectTypeController

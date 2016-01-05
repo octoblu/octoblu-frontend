@@ -20,15 +20,28 @@
   </div>
 </md-toolbar>
 <md-content>
-  <div class="node-wizard-logo-container">
-    <img ng-src="{{controller.device.logo}}">
-  </div>
-  <h2 class="text-center">{{contoller.device.name}}</h2>
-  <div class="node-wizard-gateblu-explanation">
-    <p>
-      Link device to an existing Gateblu.
-    </p>
-  </div>
+  <div class="link-subdevice-wizard">
+    <header class="link-subdevice-header">
+      <div class="header-section">
+        <h3><strong>Linking</strong> {{controller.device.name}}</h3>
+        <img class="icon" ng-src="{{controller.device.logo}}">
+      </div>
+      <div class="header-section" ng-if="subdeviceLink.nodeType">
+        <h3><strong>Of Type</strong> {{subdeviceLink.nodeType.type}}</h3>
+        <img class="icon" ng-src="{{subdeviceLink.nodeType.logo}}">
+      </div>
+      <div class="header-section" ng-if="subdeviceLink.gateblu">
+        <h3><strong>To</strong> {{subdeviceLink.gateblu.name}}</h3>
+        <img class="icon" ng-src="{{subdeviceLink.gateblu.logo}}">
+      </div>
+    </header>
 
-  <ui-view></ui-view>
+    <div class="node-wizard-gateblu-explanation">
+      <p>
+        Link device to an existing Gateblu.
+      </p>
+    </div>
+
+    <ui-view></ui-view>
+  </div>
 </md-content>
