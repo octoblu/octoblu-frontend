@@ -5,5 +5,6 @@ angular.module('octobluApp')
     replace: true
     scope:
       title:   '@'
+      name:    '@'
       logo:    '@'
       missing: '='

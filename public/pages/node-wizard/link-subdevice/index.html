@@ -22,9 +22,9 @@
 <md-content>
   <div class="link-subdevice-wizard">
     <header class="device-wizard-header">
-      <device-wizard-header-section title="{{subdeviceLink.device.name}}" missing="!subdeviceLink.device" logo="{{subdeviceLink.device.logo}}"></device-wizard-header-section>
-      <device-wizard-header-section title="{{subdeviceLink.nodeType.type}}" missing="!subdeviceLink.nodeType" logo="{{subdeviceLink.nodeType.logo}}"></device-wizard-header-section>
-      <device-wizard-header-section title="{{subdeviceLink.gateblu.name}}" missing="!subdeviceLink.gateblu" logo="{{subdeviceLink.gateblu.logo}}"></device-wizard-header-section>
+      <device-wizard-header-section title="Linking" name="{{subdeviceLink.device.name}}" missing="!subdeviceLink.device" logo="{{subdeviceLink.device.logo}}"></device-wizard-header-section>
+      <device-wizard-header-section ng-click="selectNodeType()" title="of type" name="{{subdeviceLink.nodeType.type}}" missing="!subdeviceLink.nodeType" logo="{{subdeviceLink.nodeType.logo}}"></device-wizard-header-section>
+      <device-wizard-header-section ng-click="selectNodeType()" title="to" name="{{subdeviceLink.gateblu.name}}" missing="!subdeviceLink.gateblu" logo="{{subdeviceLink.gateblu.logo}}"></device-wizard-header-section>
     </header>
 
     <div class="node-wizard-gateblu-explanation">
