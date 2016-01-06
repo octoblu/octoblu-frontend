@@ -8,3 +8,4 @@ angular.module('octobluApp')
       name:    '@'
       logo:    '@'
       missing: '='
+      selected: '='

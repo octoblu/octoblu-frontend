@@ -1,14 +1,22 @@
 class LinkSubdeviceFormController
-  constructor: ($scope, ThingService) ->
-    {@device, @gateblu, @nodeType} = $scope.subdeviceLink
+  constructor: ($scope, $state, ThingService, NotifyService) ->
+    @state = $state
     @ThingService = ThingService
+    @NotifyService = NotifyService
+    {@device, @gateblu, @nodeType} = $scope.subdeviceLink
+
+    return @state.go 'material.nodewizard-linksubdevice.selectgateblu' unless @gateblu?
+    return @state.go 'material.nodewizard-linksubdevice.selecttype' unless @nodeType?
 
   linkSubdeviceToGateblu: =>
     @updating = true
-    @updateSubdevice().then =>
-      @updateGatebluDevice().then =>
-        @updating = false
-        @done = true
+    @updateSubdevice()
+      .then @updateGatebluDevice
+      .then @finish
+
+  finish: =>
+    @NotifyService.notify "#{@device.name} successfully linked to #{@gateblu.name}"
+    @state.go 'material.things'
 
   updateGatebluDevice: =>
     propertiesToUpdate =
