@@ -1,43 +1,41 @@
 class LinkSubdeviceFormController
-  constructor: ($scope, $state, $stateParams, ThingService, GatebluService, GatebluLogService) ->
-    @scope = $scope
+  constructor: ($scope, $state, ThingService, NotifyService) ->
     @state = $state
-    @stateParams = $stateParams
-    @GatebluService = GatebluService
     @ThingService = ThingService
-    @gatebluLogger = new GatebluLogService()
+    @NotifyService = NotifyService
+    {@device, @gateblu, @nodeType} = $scope.subdeviceLink
+
+    return @state.go 'material.nodewizard-linksubdevice.selectgateblu' unless @gateblu?
+    return @state.go 'material.nodewizard-linksubdevice.selecttype' unless @nodeType?
+
+  linkSubdeviceToGateblu: =>
     @updating = true
-    @loading = true
-    @gatebluLogger.addDeviceBegin @stateParams.gatebluUuid
-    @updateDeviceForGateblu().then (result) =>
-      @addDeviceToGateblu(result).then (device) =>
-        @loading = false
-        @device = device
+    @updateSubdevice()
+      .then @updateGatebluDevice
+      .then @finish
 
-  addDeviceToGateblu: ([device, gatebluDevice]) =>
-    @GatebluService.updateGateblu [device, gatebluDevice], @gatebluLogger
-      .then =>
-        @updating = false
-        @GatebluService.waitForEndOfInitializing device, @gatebluLogger
-      .then =>
-        @gatebluLogger.addDeviceEnd device.uuid, device.gateblu, device.connector
-        @getDevice()
+  finish: =>
+    @NotifyService.notify "#{@device.name} successfully linked to #{@gateblu.name}"
+    @state.go 'material.things'
 
-  getDevice: =>
-    @ThingService.getThing uuid: @stateParams.deviceUuid
+  updateGatebluDevice: =>
+    propertiesToUpdate =
+      devices: _.union @gateblu.devices, [uuid: @device.uuid, type: @device.type, connector: @device.connector]
+    @ThingService.updateDevice propertiesToUpdate
 
-  getDeviceWithToken: =>
-    @getDevice().then (device) =>
-      @ThingService.generateSessionToken uuid: device.uuid
-        .then (token) =>
-          device.token = token
-          return device
+  updateSubdevice: =>
+    propertiesToUpdate =
+      uuid: @device.uuid
+      category: @nodeType.category
+      connector: @nodeType.connector
+      logo: @nodeType.logo
+      type: @nodeType.type
+      gateblu: @gateblu.uuid
+      configureWhitelist: _.union [@gateblu.uuid], @device.configureWhitelist
+      discoverWhitelist: _.union [@gateblu.uuid], @device.discoverWhitelist
+      sendAsWhitelist: _.union [@gateblu.uuid], @device.sendAsWhitelist
+      receiveAsWhitelist: _.union [@gateblu.uuid], @device.receiveAsWhitelist
 
-  updateDeviceForGateblu: =>
-    @getDeviceWithToken().then (device) =>
-      @GatebluService.updateDevice device, @stateParams.gatebluUuid, @gatebluLogger
-        .then ([newDevice, gatebluDevice]) =>
-          mergedDevice = _.assign {}, device, newDevice
-          return [mergedDevice, gatebluDevice]
+    @ThingService.updateDevice propertiesToUpdate
 
 angular.module('octobluApp').controller 'LinkSubdeviceFormController', LinkSubdeviceFormController

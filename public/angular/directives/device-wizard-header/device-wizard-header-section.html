@@ -1,0 +1,7 @@
+<div class="device-wizard-header-section", ng-class="{selected: selected}">
+  <h3><strong>{{title}}</strong> {{name || "..."}}</h3>
+  <div class="header-section-body">
+    <device-missing ng-if="missing"></device-missing>
+    <img ng-if="!missing" ng-src="{{logo}}" class="icon">
+  </div>
+</div>

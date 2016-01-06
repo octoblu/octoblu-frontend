@@ -1,12 +1,12 @@
-class LinkSubdeviceSelectController
-  constructor: ($scope, $state, $stateParams, ThingService, deviceService) ->
-    @scope = $scope
+class LinkSubdeviceSelectGatebluController
+  constructor: ($scope, $state, $stateParams, $cookies, ThingService, deviceService) ->
     @state = $state
-    @deviceService = deviceService
-    @ThingService = ThingService
+    {@device, @nodeType} = $scope.subdeviceLink
+    @subdeviceLink = $scope.subdeviceLink
+    deviceService.getGateblus().then (@gateblus) =>
 
-    @ThingService.getThing(uuid: $stateParams.uuid).then (@device) =>
+  selectGateblu: (gateblu) =>
+    @subdeviceLink.gateblu = _.cloneDeep gateblu    
+    @state.go 'material.nodewizard-linksubdevice.form'
 
-    @deviceService.getOnlineGateblus().then (@gateblus) =>
-
-angular.module('octobluApp').controller 'LinkSubdeviceSelectController', LinkSubdeviceSelectController
+angular.module('octobluApp').controller 'LinkSubdeviceSelectGatebluController', LinkSubdeviceSelectGatebluController

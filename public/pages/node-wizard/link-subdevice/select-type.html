@@ -1,0 +1,17 @@
+<div class="type-select" ng-if="controller.nodeTypes.length">
+  <h2 class="text-center">Select Connector</h2>
+
+  <div class="type-list">
+    <div class="device-collection__items device-collection__items--grid">
+      <a ng-repeat="type in controller.nodeTypes | orderBy: 'name'" ng-click="controller.selectNodeType(type)"
+        class="device-collection__item">
+
+        <img ng-src="{{type.logo}}"
+          class="device-collection__item-thumbnail animated-popout"
+          title="{{device.name}}">
+
+        <div class="device-collection__item-name truncate">{{type.name}}</div>
+      </a>
+    </div>
+  </div>
+</div>

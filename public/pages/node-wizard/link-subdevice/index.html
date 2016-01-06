@@ -12,7 +12,7 @@
       <div class="BluToolbar-header truncate">
         <a ui-sref="material.things" class="BluToolbar-header--link">Things</a>
         <i class="fa fa-angle-right BluToolbar-header--icon"></i>
-        <span class="BluToolbar-header--current">Add {{contoller.device.name}}</span>
+        <span class="BluToolbar-header--current">Add {{subdeviceLink.device.name}}</span>
       </div>
 
     </div>
@@ -20,15 +20,37 @@
   </div>
 </md-toolbar>
 <md-content>
-  <div class="node-wizard-logo-container">
-    <img ng-src="{{controller.device.logo}}">
-  </div>
-  <h2 class="text-center">{{contoller.device.name}}</h2>
-  <div class="node-wizard-gateblu-explanation">
-    <p>
-      Link device to an existing Gateblu.
-    </p>
-  </div>
+  <div class="link-subdevice-wizard">
+    <h1 class="link-subdevice-header"> Connect An Existing Device to Gateblu </h1>
+    <header class="device-wizard-header">
+      <device-wizard-header-section
+        title="Adding"
+        name="{{subdeviceLink.device.name}}"
+        missing="!subdeviceLink.device"
+        logo="{{subdeviceLink.device.logo}}">
+      </device-wizard-header-section>
 
-  <ui-view></ui-view>
+      <device-wizard-header-section
+        class="selectable"
+        selected="controller.isSelectGateblu()"
+        ng-click="controller.changeGateblu()"
+        title="to gateblu"
+        name="{{subdeviceLink.gateblu.name}}"
+        missing="!subdeviceLink.gateblu"
+        logo="{{subdeviceLink.gateblu.logo}}">
+      </device-wizard-header-section>
+
+      <device-wizard-header-section
+        class="selectable"
+        selected="controller.isSelectNodeType()"
+        ng-click="controller.changeNodeType()"
+        title="Using connector"
+        name="{{subdeviceLink.nodeType.type}}"
+        missing="!subdeviceLink.nodeType"
+        logo="{{subdeviceLink.nodeType.logo}}">
+      </device-wizard-header-section>
+    </header>
+
+    <ui-view></ui-view>
+  </div>
 </md-content>

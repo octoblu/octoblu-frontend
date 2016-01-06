@@ -403,14 +403,17 @@ angular.module('octobluApp', [
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/index.html'
       })
+      .state('material.nodewizard-linksubdevice.selecttype', {
+        controller: 'LinkSubdeviceSelectTypeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/select-type.html'
+      })
       .state('material.nodewizard-linksubdevice.selectgateblu', {
-        url: '',
-        controller: 'LinkSubdeviceSelectController',
+        controller: 'LinkSubdeviceSelectGatebluController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/select-gateblu.html'
       })
       .state('material.nodewizard-linksubdevice.form', {
-        url: '/gateblus/:gatebluUuid',
         controller: 'LinkSubdeviceFormController',
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/link-subdevice/form.html'
