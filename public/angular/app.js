@@ -569,7 +569,7 @@ angular.module('octobluApp', [
         unsecured: true
       })
       .state('cwclanding', {
-        url: '/cloud',
+        url: '/workspacecloud',
         templateUrl: '/pages/cloud.html',
         unsecured: true
       });
