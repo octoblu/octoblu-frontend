@@ -570,7 +570,9 @@ angular.module('octobluApp', [
       })
       .state('cwclanding', {
         url: '/workspacecloud',
-        templateUrl: '/pages/cloud.html',
+        templateUrl: '/pages/workspace-cloud.html',
+        controller: 'WorkspaceCloudController',
+        controllerAs: 'controller',
         unsecured: true
       });
 
