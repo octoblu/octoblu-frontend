@@ -17,4 +17,4 @@ angular.module('octobluApp')
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
   .constant 'CWC_DOMAIN', 'https://workspace.cloudburrito.com'
-  .constant 'CWC_TRUST_URL', 'https://trust-eastus-bvtrelease-a.ctxwsdev.net'
+  .constant 'CWC_TRUST_URL', 'https://trust.ctxwsstgapi.net'

@@ -588,7 +588,7 @@ angular.module('octobluApp', [
 
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
-        AuthService.logout().then(function () {
+        customerAuthService.logout().then(function () {
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
         });
       }

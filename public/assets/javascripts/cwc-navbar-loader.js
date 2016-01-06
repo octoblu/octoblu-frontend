@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  if (!verifyWorkspaceCloudUser()) return
+
   var body = $('body');
   var navbarElement = $("<cwc-navbar></cwc-navbar>")
   var navbarScriptElement = $("<script></script>");
@@ -10,3 +12,10 @@ $(document).ready(function() {
   body.append(navbarScriptElement);
   navbarElement.prependTo(body);
 });
+
+function verifyWorkspaceCloudUser() {
+  if (window.location.pathname === '/workspacecloud') return true
+  if (window.localStorage.getItem('customer')) return true
+
+  return false;
+}

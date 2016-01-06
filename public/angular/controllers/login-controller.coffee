@@ -1,10 +1,10 @@
 class LoginController
-  constructor: (AUTHENTICATOR_URIS, $location) ->
+  constructor: (AUTHENTICATOR_URIS, $location, $cookies) ->
     protocol = $location.protocol()
     host     = $location.host()
     port     = $location.port()
 
-    @CWCAccount = host == "octoblu.cloud.com"
+    @CWCAccount = $cookies.workspaceCloud
     @loggingIn = true
 
     callbackUrl = $location.search().callbackUrl

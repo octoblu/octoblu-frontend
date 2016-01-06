@@ -1,11 +1,9 @@
 class WorkspaceCloudController
-  constructor: ($scope, $cookies) ->
-    @scope = $scope
+  constructor: ($scope, $cookies, $location) ->
     @cookies = $cookies
-    @setCookie()
+    @location = $location
+    @scope = $scope
 
-  setCookie: () =>
     @cookies.workspaceCloud = true
-
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController
