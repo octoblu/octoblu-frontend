@@ -1,6 +1,18 @@
 angular.module 'octobluApp'
   .constant 'ResourceList', [
     {
+      title: 'Octoblu Main Documentation'
+      link: 'https://octoblu-designer.readme.io'
+      summary: 'Comprehensive documentation for the Designer, Things, and Tools with sample flows.'
+      category: 'Docs'
+    },
+    {
+      title: 'Meshblu Connectors'
+      link: 'https://meshblu-connectors.readme.io'
+      summary: 'Documentation for all plugins and connectors'
+      category: 'Docs'
+    },
+    {
       title: 'Octoblu Weekly'
       link: 'http://tinyletter.com/octoblu'
       summary: 'Subscribe to Octoblu Weekly and get updates on changes, additions, and all things Octoblu.'
@@ -31,7 +43,7 @@ angular.module 'octobluApp'
       category: 'Videos'
     },
     {
-      title: 'Getting started with Octoblu Documentation'
+      title: 'Getting started with Octoblu PDF'
       link: 'http://cdn.ws.citrix.com/wp-content/uploads/2015/01/Octoblu_Getting_Started.pdf?_ga=1.196412460.1064020618.1427145342'
       summary: 'Documentation for "Getting started with Octoblu".'
       category: 'Docs'
@@ -50,7 +62,7 @@ angular.module 'octobluApp'
     },
     {
       title: 'Octoblu Blog'
-      link: 'http://blog.citrix.com/team/octoblu/'
+      link: 'https://www.citrix.com/blogs/product/octoblu-2/'
       summary: 'Stay up-to-date with Octoblu.'
       category: 'Links'
     },
