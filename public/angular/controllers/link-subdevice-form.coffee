@@ -20,7 +20,11 @@ class LinkSubdeviceFormController
 
   updateGatebluDevice: =>
     propertiesToUpdate =
+      uuid: @gateblu.uuid
       devices: _.union @gateblu.devices, [uuid: @device.uuid, type: @device.type, connector: @device.connector]
+
+    @gateblu = _.extend @gateblu, propertiesToUpdate
+
     @ThingService.updateDevice propertiesToUpdate
 
   updateSubdevice: =>
@@ -35,6 +39,8 @@ class LinkSubdeviceFormController
       discoverWhitelist: _.union [@gateblu.uuid], @device.discoverWhitelist
       sendAsWhitelist: _.union [@gateblu.uuid], @device.sendAsWhitelist
       receiveAsWhitelist: _.union [@gateblu.uuid], @device.receiveAsWhitelist
+
+    @device = _.extend @device, propertiesToUpdate
 
     @ThingService.updateDevice propertiesToUpdate
 
