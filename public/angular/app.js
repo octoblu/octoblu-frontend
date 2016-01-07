@@ -590,7 +590,9 @@ angular.module('octobluApp', [
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
 
     $rootScope.$on('$messageIncoming', function (event, data){
+      console.log('$messageIncoming', data);
       if (data.name === "$cwcNavbarUserLoggedOff") {
+        console.log('$cwcNavbarUserLoggedOff!!!!');
         customerAuthService.logout().then(function () {
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
         });
