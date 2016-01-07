@@ -152,4 +152,6 @@ describe 'GatebluLogService', ->
         payload: @payload
 
     it 'should called logEvent with the state and device type', ->
-      expect(@skynetService.sendMessage).to.have.been.calledWith @message
+      firstArg = @skynetService.sendMessage.firstCall.args[0]
+      delete firstArg.payload.date
+      expect(firstArg).to.deep.equal @message

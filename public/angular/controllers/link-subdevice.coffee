@@ -16,6 +16,9 @@ class LinkSubdeviceController
   changeGateblu: =>
     @state.go @SELECT_GATEBLU_STATE, {}, location: true
 
+  useCustom: =>
+    @state.go @SELECT_CUSTOM_TYPE, {}, location: true
+
   isSelectNodeType: =>
     @state.current.name == @SELECT_NODE_TYPE_STATE
 
@@ -24,6 +27,7 @@ class LinkSubdeviceController
 
   SELECT_GATEBLU_STATE: 'material.nodewizard-linksubdevice.selectgateblu'
   SELECT_NODE_TYPE_STATE: 'material.nodewizard-linksubdevice.selecttype'
+  SELECT_CUSTOM_TYPE: 'material.nodewizard-linksubdevice.selectCustomType'
 
 
 angular.module('octobluApp').controller 'LinkSubdeviceController', LinkSubdeviceController
