@@ -5,7 +5,7 @@ class CWCAccountService
     @q               = $q
     @window          = $window
     @skynetPromise   = skynetService.getSkynetConnection()
-    @CWC_AUTHENTICATOR_URL =
+    @CWC_AUTHENTICATOR_URL = CWC_AUTHENTICATOR_URL
     @CWC_TRUST_URL   = CWC_TRUST_URL
     @OCTOBLU_API_URL = OCTOBLU_API_URL
 
