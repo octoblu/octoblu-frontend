@@ -5,6 +5,7 @@ describe 'LoginController', ->
     inject ($controller, $rootScope) =>
       @rootScope = $rootScope
       @sut = $controller 'LoginController',
+        $cookies : {}
         $location:
           host: -> 'the.mothership'
           port: -> 1234
