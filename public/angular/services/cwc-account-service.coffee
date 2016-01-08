@@ -1,11 +1,11 @@
 class CWCAccountService
-  constructor: ($cookies, $http, $q, $window, skynetService, CWC_TRUST_URL, OCTOBLU_API_URL) ->
+  constructor: ($cookies, $http, $q, $window, skynetService, CWC_TRUST_URL, OCTOBLU_API_URL, CWC_AUTHENTICATOR_URL) ->
     @cookies         = $cookies
     @http            = $http
     @q               = $q
     @window          = $window
     @skynetPromise   = skynetService.getSkynetConnection()
-
+    @CWC_AUTHENTICATOR_URL =
     @CWC_TRUST_URL   = CWC_TRUST_URL
     @OCTOBLU_API_URL = OCTOBLU_API_URL
 
@@ -29,7 +29,7 @@ class CWCAccountService
 
   createOctobluSession: (token) =>
     return unless token?
-    url = "http://#{@window.location.hostname}:3006/devices"
+    url = "#{CWC_AUTHENTICATOR_URL}/devices"
     options =
        callbackUrl: "#{@OCTOBLU_API_URL}/api/session?callbackUrl=%2F"
        token: token
