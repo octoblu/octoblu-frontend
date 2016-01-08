@@ -598,7 +598,8 @@ angular.module('octobluApp', [
       console.log('$messageIncoming', data);
       if (data.name === "$cwcNavbarUserLoggedOff") {
         console.log('$cwcNavbarUserLoggedOff!!!!');
-        customerAuthService.logout().then(function () {
+          AuthService.logout().then(function () {
+          delete $cookies.workspaceCloud;
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
         });
       }
