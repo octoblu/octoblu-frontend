@@ -595,9 +595,7 @@ angular.module('octobluApp', [
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
 
     $rootScope.$on('$messageIncoming', function (event, data){
-      console.log('$messageIncoming', data);
       if (data.name === "$cwcNavbarUserLoggedOff") {
-        console.log('$cwcNavbarUserLoggedOff!!!!');
           AuthService.logout().then(function () {
           delete $cookies.workspaceCloud;
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
