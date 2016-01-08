@@ -29,7 +29,7 @@ class CWCAccountService
 
   createOctobluSession: (token) =>
     return unless token?
-    url = "#{CWC_AUTHENTICATOR_URL}/devices"
+    url = "#{@CWC_AUTHENTICATOR_URL}/devices"
     options =
        callbackUrl: "#{@OCTOBLU_API_URL}/api/session?callbackUrl=%2F"
        token: token
