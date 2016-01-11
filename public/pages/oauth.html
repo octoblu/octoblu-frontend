@@ -44,7 +44,7 @@
       <h4 class="Oauth-userEmail">{{currentUser.userDevice.octoblu.email}}</h4>
 
       <div layout="row">
-        <md-button ng-click="authorize()" ng-disabled="oauthDevice" class="BluButton BluButton--save Oauth-authorize">
+        <md-button ng-click="authorize()" ng-disabled="!oauthDevice" class="BluButton BluButton--save Oauth-authorize">
           Authorize
         </md-button>
 
