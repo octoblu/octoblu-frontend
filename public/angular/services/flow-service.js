@@ -163,8 +163,8 @@ angular.module('octobluApp')
   self.subscribeFlowToDevices = function(flowUuid, deviceUuids){
     async.each(deviceUuids, function(deviceUuid, callback){
       MeshbluHttpService.createSubscription({
-        subscriberId: flowUuid,
-        emitterId:    deviceUuid,
+        subscriberUuid: flowUuid,
+        emitterUuid:    deviceUuid,
         type:         'broadcast'
       }, callback);
     }, function(error){
