@@ -1,0 +1,193 @@
+.cwc-navbar {
+  height: 62px;
+  background-color: #485264;
+  background-size: cover;
+  padding: 0;
+  border-radius: 0;
+  font-family: "citrixsans-regular";
+}
+.cwc-navbar .cwc-logo {
+  display: inline-block;
+  padding: 16px 15px;
+  font-family: 'citrixsans-light';
+  font-size: 22px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.cwc-navbar .pull-right {
+  float: right;
+}
+.cwc-navbar .navbar-actions {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 24px;
+  margin-right: 12px;
+  padding: 18px 0 12px;
+}
+.cwc-navbar .help-dropdown {
+  position: relative;
+  height: 62px;
+  width: 40px;
+  text-align: center;
+}
+.cwc-navbar .username-container {
+  display: inline-block;
+  vertical-align: top;
+  background-color: #39404d;
+  height: 62px;
+  width: 200px;
+}
+.cwc-navbar .username-icon-container {
+  width: 100%;
+  height: 52px;
+  padding-top: 10px;
+  text-align: left !important;
+}
+.cwc-navbar .username-icon-small-container {
+  height: 62px;
+  width: 62px;
+  padding-top: 23px;
+}
+.cwc-navbar .username-dropdown {
+  height: 62px;
+  background-color: #39404d;
+  width: 200px;
+  position: relative;
+  color: #ffffff;
+}
+.cwc-navbar .username {
+  display: inline-block;
+  padding: 20px 3px 20px 24px;
+  text-align: left;
+  cursor: pointer;
+}
+.cwc-navbar .cwc-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin: 0;
+  background-color: #39404d;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+  padding: 5px 0;
+  list-style: none;
+}
+.cwc-navbar .cwc-dropdown-menu > div:hover,
+.cwc-navbar .cwc-dropdown-menu > div:focus {
+  background-color: #485264;
+}
+.cwc-navbar .cwc-dropdown-menu > div > a {
+  white-space: nowrap;
+  cursor: pointer;
+}
+.cwc-navbar .cwc-dropdown-menu > div > a > span {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 15px;
+  text-align: left;
+  padding: 16px 0 16px 24px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.cwc-navbar .username-menu {
+  display: block;
+  z-index: 1050;
+  right: 0;
+  opacity: .3;
+  border: 1px solid #e9e8e7;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  -ms-transform-origin: top;
+  -o-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: none;
+  -moz-animation-fill-mode: none;
+  -o-animation-fill-mode: none;
+  animation-fill-mode: none;
+  -webkit-transform: scale(1, 0);
+  -moz-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  -o-transform: scale(1, 0);
+  transform: scale(1, 0);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.cwc-navbar .username-menu:before {
+  position: absolute;
+  z-index: 1050;
+  pointer-events: none;
+  border: solid 11px transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  border-bottom-color: #e9e8e7;
+  top: -22px;
+  left: 23px;
+}
+.cwc-navbar .username-menu:after {
+  position: absolute;
+  z-index: 1051;
+  pointer-events: none;
+  border: solid 10px transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  border-bottom-color: #39404d;
+  top: -19px;
+  left: 24px;
+}
+.cwc-navbar .open > .username-menu {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.cwc-navbar .username-small {
+  display: none;
+  padding: 10px 0 10px 24px;
+  color: #ffffff;
+  pointer-events: none;
+}
+@media screen and (max-width: 866px) {
+  .cwc-navbar .cwc-logo {
+    font-size: 16px;
+    padding: 20px 15px;
+  }
+}
+@media screen and (max-width: 362px) {
+  .cwc-navbar .cwc-logo {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cwc-navbar .username-container,
+  .cwc-navbar .username-dropdown {
+    width: 62px;
+  }
+  .cwc-navbar .username {
+    display: none !important;
+  }
+  .cwc-navbar .username-menu {
+    left: -150px;
+  }
+  .cwc-navbar .username-menu:before {
+    left: auto;
+    right: 19px;
+  }
+  .cwc-navbar .username-menu:after {
+    left: auto;
+    right: 20px;
+  }
+  .cwc-navbar .username-small {
+    display: inline-block !important;
+  }
+}

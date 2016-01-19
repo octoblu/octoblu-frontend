@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'CitrixIconFont';
+  src: url(fonts/citrixicons.eot);
+  src: url(fonts/citrixicons.eot?#iefix) format('eot'), url(fonts/citrixicons.woff) format('woff'), url(fonts/citrixicons.ttf) format('truetype'), url(fonts/citrixicons.svg#CitrixIconFont) format('svg');
+}
+.spinner-container {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 1em;
+  vertical-align: middle;
+}
+.spinner-container > .spinner-circle {
+  opacity: .4;
+}
+.spinner-container > .spinner-circle:before {
+  content: "\e689";
+}
+.spinner-container > .spinner-segment {
+  -webkit-animation: spinner-segment 0.8s infinite step-end;
+  -moz-animation: spinner-segment 0.8s infinite step-end;
+  -o-animation: spinner-segment 0.8s infinite step-end;
+  animation: spinner-segment 0.8s infinite step-end;
+  -webkit-transform-origin: 50% 51%;
+  -ms-transform-origin: 50% 51%;
+  -moz-transform-origin: 50% 51%;
+  -o-transform-origin: 50% 51%;
+  transform-origin: 50% 51%;
+}
+.spinner-container > .spinner-segment:before {
+  content: "\e689a";
+}
+.spinner-container > .spinner-circle,
+.spinner-container > .spinner-segment {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: inherit;
+  font-family: 'CitrixIconFont';
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@-webkit-keyframes spinner-segment {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes spinner-segment {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
