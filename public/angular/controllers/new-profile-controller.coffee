@@ -21,7 +21,6 @@ class NewProfileController
     return unless @newProfileForm.$valid
 
     @loading = true
-    console.log "about to update profile service", @workspaceCloudUser
 
     @ProfileService
       .update firstName, lastName, email, optInEmail, @workspaceCloudUser
