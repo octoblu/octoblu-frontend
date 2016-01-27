@@ -1,8 +1,8 @@
 angular.module('octobluApp')
-.directive 'daLoading',  () ->
+.directive 'spinner',  () ->
   {
     restrict: 'E'
-    templateUrl: '/angular/directives/da-loading/da-loading.html'
+    templateUrl: '/angular/directives/spinner/spinner.html'
     replace: true
     scope : {
       loading : '='
