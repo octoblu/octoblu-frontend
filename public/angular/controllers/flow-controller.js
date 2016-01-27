@@ -6,8 +6,9 @@ angular.module('octobluApp')
   var undid = false;
   var lastDeployedHash;
   var progressId;
-  var triggerServiceUuid = 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64'
-  var intervalServiceUuid = '765bd3a4-546d-45e6-a62f-1157281083f0'
+  var triggerServiceUuid = 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64';
+  var intervalServiceUuid = '765bd3a4-546d-45e6-a62f-1157281083f0';
+  var credentialsServiceUuid = 'c339f6ce-fe26-4788-beee-c97605f50403';
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -424,6 +425,9 @@ angular.module('octobluApp')
       }
       if(intervalServiceUuid === uuid){
         return 'Interval Service'
+      }
+      if(credentialsServiceUuid === uuid){
+        return 'Credential Service'
       }
       return uuid
     })
