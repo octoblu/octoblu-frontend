@@ -10,6 +10,11 @@
   <md-radio-button value="string">String</md-radio-button>
 </md-radio-group>
 
+<md-input-container>
+  <label>Alias</label>
+  <textarea ng-model="flowNode.alias"></textarea>
+</md-input-container>
+
 <md-input-container ng-show="flowNode.payloadType === 'string'">
   <label>Payload</label>
   <textarea ng-model="flowNode.payload"></textarea>
@@ -19,7 +24,7 @@
   There are two ways to trigger your webhook
   </p>
   <h5 class="Sidebar--trigger-webhook-type">EMAIL</h5>
-  <a class="Sidebar--trigger-webhook-content" href="mailto:{{flowId}}-{{flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowId}}-{{flowNode.id}}@webhook.octoblu.com</a>
-  <h5 class="Sidebar--trigger-webhook-type">HTTP (POST or GET)</h5>
-  <a class="Sidebar--trigger-webhook-content" ng-href="https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.id}}</a>
+  <a class="Sidebar--trigger-webhook-content" href="mailto:{{flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com</a>
+  <h5 class="Sidebar--trigger-webhook-type">HTTP POST</h5>
+  <a class="Sidebar--trigger-webhook-content" ng-href="https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.alias || flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.alias || flowNode.id}}</a>
 </div>
