@@ -490,16 +490,6 @@ angular.module('octobluApp', [
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
-      .state('accept_terms', {
-        url: '/accept_terms',
-        templateUrl: '/pages/accept_terms.html',
-        controller: 'acceptTermsController',
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          }
-        }
-      })
       .state('terms', {
         url: '/terms',
         templateUrl: '/pages/terms.html',
@@ -529,33 +519,10 @@ angular.module('octobluApp', [
         controllerAs: 'controller',
         unsecured: true
       })
-      .state('forgot', {
-        url: '/forgot',
-        templateUrl: '/pages/forgot.html',
-        controller: 'forgotController',
-        unsecured: true
-      })
       .state('invitation', {
         url: '/invitation',
         templateUrl : '/pages/invitation/index.html',
         abstract : true,
-        unsecured: true
-      })
-      .state('invitation.accept', {
-        url : '/accept',
-        templateUrl : '/pages/invitation/accept.html',
-        controller: 'InvitationAcceptController',
-        unsecured: true
-      })
-      .state('invitation.request', {
-        url : '/request',
-        templateUrl : '/pages/invitation/request.html',
-        controller: 'InvitationRequestController',
-        unsecured: true
-      })
-      .state('invitation.sent', {
-        url : '/sent',
-        templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
       .state('material.oauth', {
