@@ -541,23 +541,6 @@ angular.module('octobluApp', [
         abstract : true,
         unsecured: true
       })
-      .state('invitation.accept', {
-        url : '/accept',
-        templateUrl : '/pages/invitation/accept.html',
-        controller: 'InvitationAcceptController',
-        unsecured: true
-      })
-      .state('invitation.request', {
-        url : '/request',
-        templateUrl : '/pages/invitation/request.html',
-        controller: 'InvitationRequestController',
-        unsecured: true
-      })
-      .state('invitation.sent', {
-        url : '/sent',
-        templateUrl : '/pages/invitation/sent.html',
-        unsecured: true
-      })
       .state('material.oauth', {
         url: '/oauth/:uuid?redirect&response_type&redirect_uri',
         templateUrl : '/pages/oauth.html',
