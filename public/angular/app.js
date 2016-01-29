@@ -490,16 +490,6 @@ angular.module('octobluApp', [
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
-      .state('accept_terms', {
-        url: '/accept_terms',
-        templateUrl: '/pages/accept_terms.html',
-        controller: 'acceptTermsController',
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          }
-        }
-      })
       .state('terms', {
         url: '/terms',
         templateUrl: '/pages/terms.html',
@@ -527,12 +517,6 @@ angular.module('octobluApp', [
         templateUrl: '/pages/login.html',
         controller: 'LoginController',
         controllerAs: 'controller',
-        unsecured: true
-      })
-      .state('forgot', {
-        url: '/forgot',
-        templateUrl: '/pages/forgot.html',
-        controller: 'forgotController',
         unsecured: true
       })
       .state('invitation', {
