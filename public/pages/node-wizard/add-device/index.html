@@ -31,9 +31,11 @@
   </div>
 
   <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
-    <button class="BluButton node-wizard__outline--btn" ng-href="https://gateblu.readme.io/docs">
-      Download Gateblu
+
+    <button class="BluButton node-wizard__outline--btn">
+      <a href="https://gateblu.readme.io/docs" target="_blank">Download Gateblu</a>
     </button>
+
     <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
       Already Downloaded
     </button>

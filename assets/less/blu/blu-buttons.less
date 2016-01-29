@@ -15,6 +15,9 @@
   &:hover,
   &:focus {
     text-decoration: none;
+    a {
+      color: white;
+    }
   }
 }
 
@@ -46,12 +49,6 @@
   background: @bgColor;
 
   color: #FEFEFE;
-
-  &:hover,
-  &:focus {
-    border-color: darken(@bgColor, 9%);
-    background-color: darken(@bgColor, 9%);
-  }
 
   &[disabled] {
     cursor: not-allowed;

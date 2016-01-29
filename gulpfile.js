@@ -9,7 +9,8 @@ var gulp         = require('gulp'),
   coffee         = require('gulp-coffee'),
   rimraf         = require('gulp-rimraf'),
   cors           = require('cors'),
-  _              = require('lodash');
+  _              = require('lodash'),
+  replace        = require('gulp-replace');
 
 gulp.task('bower', function() {
   bower('./public/lib');
@@ -24,15 +25,22 @@ gulp.task('bower:concat', ['bower'], function(){
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
+var cssDependencies = [
+  './public/lib/fontawesome/css/font-awesome.css',
+  './public/lib/prism/themes/prism-coy.css',
+  './public/lib/angular-chart.js/dist/angular-chart.css',
+  './public/lib/angular-material/angular-material.css',
+  './assets/less/**/*.less'
+]
+
 gulp.task('less:compile', function(){
-  return gulp.src('./assets/less/manifest.less')
-    .pipe(sourcemaps.init())
+  return gulp.src(cssDependencies)
+    .pipe(replace('\\0',''))
+    .pipe(concat('styles.css'))
     .pipe(less().on('error', function(err){
       console.error(err);
       this.emit('end');
     }))
-    .pipe(concat('styles.css'))
-    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
