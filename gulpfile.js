@@ -41,7 +41,7 @@ gulp.task('less:compile', function(){
       console.error(err);
       this.emit('end');
     }))
-    .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
+    .pipe(gulp.dest('./public/assets/stylesheets/dist/'));    
 });
 
 
