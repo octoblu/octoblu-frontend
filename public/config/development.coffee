@@ -19,3 +19,4 @@ angular.module('octobluApp')
   .constant 'REGISTRY_URL', 'http://localhost:9999/registry.json'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "https://#{window.location.hostname}:3006"
+  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"

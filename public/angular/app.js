@@ -592,13 +592,14 @@ angular.module('octobluApp', [
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies, CWC_LOGIN_URL) {
 
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
           AuthService.logout().then(function () {
           delete $cookies.workspaceCloud;
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
+          $window.location = CWC_LOGIN_URL
         });
       }
 

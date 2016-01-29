@@ -18,3 +18,4 @@ angular.module('octobluApp')
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "http://cwc-auth.octoblu.com"
+  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"

@@ -19,3 +19,4 @@ angular.module('octobluApp')
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.octoblu.com"
+  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
