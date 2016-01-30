@@ -28,7 +28,6 @@ gulp.task('bower:concat', ['bower'], function(){
 var cssDependencies = [
   './public/lib/fontawesome/css/font-awesome.css',
   './public/lib/prism/themes/prism-coy.css',
-  './public/lib/angular-chart.js/dist/angular-chart.css',
   './public/lib/angular-material/angular-material.css',
   './assets/less/**/*.less'
 ]
@@ -41,7 +40,7 @@ gulp.task('less:compile', function(){
       console.error(err);
       this.emit('end');
     }))
-    .pipe(gulp.dest('./public/assets/stylesheets/dist/'));    
+    .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
 
