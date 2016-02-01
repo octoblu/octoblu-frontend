@@ -3,7 +3,7 @@ angular.module('octobluApp')
   'use strict';
 
   AuthService.getCurrentUser().then(function(user){
-    $scope.isCWCEnabled = user.workspaceCloudUser
+    $scope.isCWCEnabled = user.userDevice.workspaceCloudUser
   })
 
   $scope.isNavLockedOpen = function() {
