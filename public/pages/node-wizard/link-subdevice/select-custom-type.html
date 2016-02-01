@@ -1,0 +1,19 @@
+<md-card class="custom-device-select">
+  <md-input-container>
+    <label>NPM Package</label>
+    <input type="text" name="input" ng-model="customSelect.connector" ng-required="true">
+  </md-input-container>
+  <md-input-container>
+    <label>Category</label>
+    <input type="text" name="input" ng-model="customSelect.category">
+  </md-input-container>
+  <md-input-container>
+    <label>Logo</label>
+    <input type="text" name="input" ng-init="customSelect.logo='https://ds78apnml6was.cloudfront.net/device/other.svg'" ng-model="customSelect.logo">
+  </md-input-container>
+  <md-input-container>
+    <label>Type</label>
+    <input type="text" name="input" ng-init="customSelect.type='device:generic'" ng-model="customSelect.type">
+  </md-input-container>
+  <md-button class="md-raised md-primary" ng-if="customSelect.connector" ng-click="controller.selectNodeType(customSelect)">Use custom</md-button>
+</md-card>

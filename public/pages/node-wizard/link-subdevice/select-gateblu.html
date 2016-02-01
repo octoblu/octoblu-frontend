@@ -1,0 +1,31 @@
+<div class="gateblu-select" ng-if="controller.gateblus.length">
+  <h2>Select Gateblu</h2>
+
+  <div class="gateblu-list">
+    <div class="device-collection__items device-collection__items--grid">
+      <a ng-repeat="gateblu in controller.gateblus | orderBy: 'name'"
+        ng-click="controller.selectGateblu(gateblu)"
+        href=""
+        class="device-collection__item">
+
+        <img ng-src="{{gateblu.logo}}"
+          class="device-collection__item-thumbnail animated-popout"
+          ng-class="{faded: (!device.online && device.uuid)}"
+          title="{{device.name}}">
+
+        <div class="device-collection__item-name truncate">{{gateblu.name}}</div>
+      </a>
+    </div>
+  </div>
+  <div ng-if="controller.gateblu && controller.device">
+    <plugin-platform-dependencies connector="controller.device.connector" platform="controller.gateblus.length == 1 && controller.gateblus[0].platform"></plugin-platform-dependencies>
+    <button ng-click="linkDeviceToGateblu()" class="BluButton">Link Device</button>
+  </div>
+</div>
+
+<div ng-hide="controller.gateblus.length" class="gateblu-download">
+  <p>
+    Haven't setup a Gateblu yet? <br>
+  </p>
+  <a href="https://gateblu.readme.io/docs" class="BluButton device-collection__gateblu-download">Download Gateblu</a>
+</div>

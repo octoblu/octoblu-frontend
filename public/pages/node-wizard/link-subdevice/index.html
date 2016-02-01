@@ -1,0 +1,59 @@
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <div class="BluToolbar-header truncate">
+        <a ui-sref="material.things" class="BluToolbar-header--link">Things</a>
+        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
+        <span class="BluToolbar-header--current">Add {{subdeviceLink.device.name}}</span>
+      </div>
+
+    </div>
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+<md-content>
+  <div class="link-subdevice-wizard">
+    <h1 class="link-subdevice-header"> Connect An Existing Device to Gateblu </h1>
+    <div class="custom-connector-button-container">
+      <md-button class="md-primary" ng-click="controller.useCustom()">Use Custom Type?</md-button>
+    </div>
+    <header class="device-wizard-header">
+      <device-wizard-header-section
+        title="Adding"
+        name="{{subdeviceLink.device.name}}"
+        missing="!subdeviceLink.device"
+        logo="{{subdeviceLink.device.logo}}">
+      </device-wizard-header-section>
+
+      <device-wizard-header-section
+        class="selectable"
+        selected="controller.isSelectGateblu()"
+        ng-click="controller.changeGateblu()"
+        title="to gateblu"
+        name="{{subdeviceLink.gateblu.name}}"
+        missing="!subdeviceLink.gateblu"
+        logo="{{subdeviceLink.gateblu.logo}}">
+      </device-wizard-header-section>
+
+      <device-wizard-header-section
+        class="selectable"
+        selected="controller.isSelectNodeType()"
+        ng-click="controller.changeNodeType()"
+        title="Using connector"
+        name="{{subdeviceLink.nodeType.type}}"
+        missing="!subdeviceLink.nodeType"
+        logo="{{subdeviceLink.nodeType.logo}}">
+      </device-wizard-header-section>
+    </header>
+
+    <ui-view></ui-view>
+  </div>
+</md-content>

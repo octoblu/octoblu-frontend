@@ -33,6 +33,7 @@ angular.module("octobluApp").factory "GatebluLogService",
 
     logEvent: (state, deviceUuid, gatebluUuid, connector) =>
       payload =
+        date: Date.now()
         deploymentUuid: @deploymentUuid
         application: @APPLICATION
         workflow: @WORKFLOW

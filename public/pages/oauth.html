@@ -1,13 +1,32 @@
-<md-content layout="row" layout-align="center center">
+<md-toolbar class="BluToolbar">
+  <div class="md-toolbar-tools BluToolbar-tools">
+    <div class="BluToolbar-align BluToolbar-align--left">
+      <md-button
+        ng-click="toggleNav()"
+        ng-hide="isNavLockedOpen()"
+        class="md-icon-button BluToolbar-menuButton"
+        aria-label="Navigation">
+        <i class="fa fa-lg fa-bars"></i>
+      </md-button>
+
+      <h2 class="BluToolbar-header">
+        Oauth Account
+      </h2>
+    </div>
+
+    <div class="BluToolbar-align BluToolbar-align--right"></div>
+  </div>
+</md-toolbar>
+
+
+<md-content class="interior__wrapper" autoscroll="false">
   <div class="oauth-provider-loading-card" ng-show="loading">
-    <h1 class="profile-header"><i class="fa fa-5x fa-spin fa-refresh"></i></h1>
+    <header class="interior__header"><i class="fa fa-5x fa-spin fa-refresh"></i></header>
   </div>
 
   <div ng-hide="loading">
-    <div class="oauth-provider-loading-card" ng-hide="oauthDevice">
-      <h1 class="profile-header">
-        Unable to authorize the application.
-      </h1>
+    <div class="oauth-provider-card" ng-hide="oauthDevice">
+      <h1>Unable to authorize the application.</h1>
     </div>
 
     <div class="oauth-provider-card" layout="column" ng-show="oauthDevice">
@@ -16,23 +35,19 @@
         <img class="oauth-logos" ng-src="{{oauthDevice.options.imageUrl}}">
       </div>
 
-      <h3 style="padding-left: 1em">
-        {{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }} <small>&lt;{{currentUser.userDevice.octoblu.email}}&gt;</small>
-      </h3>
 
       <h2 class="profile-header">
-        Allow {{oauthDevice.options.name}} access to your Octoblu account?
+        Allow <strong>{{oauthDevice.options.name}}</strong> to access your Octoblu account?
       </h2>
-      <br>
 
-      <div layout="row" style="margin: auto; display: inline-block; vertical-align: middle">
-        <md-button ng-click="authorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
-          <h3>Authorize</h3>
+      <h3 class="Oauth-userName">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</h3>
+      <h4 class="Oauth-userEmail">{{currentUser.userDevice.octoblu.email}}</h4>
+
+      <div layout="row">
+        <md-button ng-click="authorize()" ng-disabled="!oauthDevice" class="BluButton BluButton--save Oauth-authorize">
+          Authorize
         </md-button>
-        <i>&nbsp; or &nbsp;</i>
-        <md-button ng-click="unAuthorize()" href ng-disabled="!oauthDevice" class="md-primary md-raised">
-          <h3>Logout</h3>
-        </md-button>
+
       </div>
     </div>
   </div>

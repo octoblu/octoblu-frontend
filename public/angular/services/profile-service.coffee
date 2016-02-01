@@ -6,6 +6,7 @@ class ProfileService
 
   update: (firstName, lastName, email, optInEmail) =>
     deferred = @q.defer()
+
     @skynetPromise
       .then (connection) =>
         query =

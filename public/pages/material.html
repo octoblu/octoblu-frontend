@@ -1,6 +1,6 @@
 <div class="materialize">
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="navIsOpen" md-is-locked-open="isNavLockedOpen()">
-    <md-toolbar class="md-octo-blue-theme navbar-header" layout-align="center">
+    <md-toolbar class="BluToolbar navbar-header" layout-align="center">
       <a href ng-click="closeNav()" class="navbar-logo" ng-hide="isNavLockedOpen()">
         <img src="/assets/images/octoblu_logo.png">
       </a>
@@ -9,9 +9,9 @@
       </span>
     </md-toolbar>
 
-    <md-button class="md-fab md-primary navbar-button" ng-click="closeNav()" aria-label="Close Nav" ng-hide="isNavLockedOpen()">
+    <!-- <md-button class="md-fab md-primary navbar-button" ng-click="closeNav()" aria-label="Close Nav" ng-hide="isNavLockedOpen()">
       <i class="fa fa-bars fa-2x"></i>
-    </md-button>
+    </md-button> -->
 
     <md-content class="navigation">
       <a class="navbar-item" href ng-click="closeNav()" ui-sref="material.things">

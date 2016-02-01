@@ -1,30 +1,48 @@
 class DeviceDetailController
-  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, OCTOBLU_ICON_URL) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
     @NotifyService = NotifyService
     @ThingService = ThingService
+    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @form = ['*']
     @firstRun = true
+    @showLink = false
 
     @ThingService.getThing(uuid: $stateParams.uuid).then (device) =>
       @device = device
       @device.options ?= {}
+      @device.type ?= 'device:other'
+      @device.logo = @logoUrl @device
       @deviceCopy = _.cloneDeep device
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
+      @showLink = @deviceIsGatebluDevice @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
       @scope.$watch 'controller.devices', @updatePermissionRows, true
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
 
-
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
   deviceIsFlow: (device) =>
     device.type == 'octoblu:flow' || device.type == 'device:flow'
+
+  deviceIsGatebluDevice: (device) =>
+    !@deviceIsFlow device
+
+  linkToGateblu: =>
+    @state.go "material.nodewizard-linksubdevice", deviceUuid: @device.uuid, {location: true}
+
+  logoUrl: (device) =>
+    return device.logo if device.logo
+    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
+
+    type = device.type.replace 'octoblu:', 'device:'
+    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
+    device.logo
 
   confirmDeleteDevice: =>
     confirmOptions = {

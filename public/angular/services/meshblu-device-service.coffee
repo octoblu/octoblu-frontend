@@ -14,5 +14,3 @@ class MeshbluDeviceService
     deferred.promise
 
 angular.module('octobluApp').service 'MeshbluDeviceService', MeshbluDeviceService
-
-

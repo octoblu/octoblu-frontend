@@ -6,6 +6,9 @@ angular.module('octobluApp')
   var undid = false;
   var lastDeployedHash;
   var progressId;
+  var triggerServiceUuid = 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64';
+  var intervalServiceUuid = '765bd3a4-546d-45e6-a62f-1157281083f0';
+  var credentialsServiceUuid = 'c339f6ce-fe26-4788-beee-c97605f50403';
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -156,11 +159,10 @@ angular.module('octobluApp')
   });
 
   $scope.$on('flow-node-error', function(event, options) {
-    if(!options.node) {
-      return;
-    }
     pushDebugLines(options.message);
-    options.node.errorMessage = options.message.msg;
+    if(options.node) {
+      options.node.errorMessage = options.message.msg;
+    }
     $scope.$apply();
   });
 
@@ -416,20 +418,37 @@ angular.module('octobluApp')
     }
   }
 
+  var checkForServiceNames = function(uuids) {
+    var newList = _.map(uuids, function(uuid){
+      if(triggerServiceUuid === uuid){
+        return 'Trigger Service'
+      }
+      if(intervalServiceUuid === uuid){
+        return 'Interval Service'
+      }
+      if(credentialsServiceUuid === uuid){
+        return 'Credential Service'
+      }
+      return uuid
+    })
+    return newList;
+  }
+
   var askToAddReceiveAs = function(thingsNeedingReceiveAs) {
     var deviceList = _.map(thingsNeedingReceiveAs, function(thing){
       return thing.name || thing.uuid;
     });
     var options = {
-      title: 'Permissions Required',
+      title: 'Permission Update Required',
       content: 'The following devices need to allow the flow to send and receive messages: ' + deviceList.join(', ')
     };
     return NotifyService.confirm(options);
   };
 
   var askToAddSendWhitelist = function(thingsNeedingSendWhitelist) {
+    thingsNeedingSendWhitelist = checkForServiceNames(thingsNeedingSendWhitelist);
     var options = {
-      title: 'Permissions Required',
+      title: 'Permission Update Required',
       content: 'The following devices need to send messages to your flow: ' + thingsNeedingSendWhitelist.join(', ')
     };
     return NotifyService.confirm(options);

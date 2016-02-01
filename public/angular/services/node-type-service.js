@@ -14,6 +14,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getSubdeviceNodeTypes = function(){
+    return self.getNodeTypes().then(function(nodeTypes){
+      return _.filter(nodeTypes, 'connector');
+    })
+  };
+
   self.getUnconfiguredNodeTypes = function() {
     return self.getNodeTypes()
       .then(self.removeConfiguredNodes);

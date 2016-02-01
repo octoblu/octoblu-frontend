@@ -1,7 +1,30 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap', 'ngClipboard', 'hc.marked', 'ngAnimate', 'ngIntercom', 'chart.js', 'angulartics', 'dibari.angular-ellipsis', 'schemaForm', 'angulartics.google.analytics', 'ng-autofocus', 'draganddrop'])
+angular.module('octobluApp', [
+  'ngSanitize',
+  'ngCookies',
+  'ui.ace',
+  'ui.bootstrap',
+  'ui.router',
+  'ui.utils',
+  'angular-google-analytics',
+  'elasticsearch',
+  'ngMaterial',
+  'ngTable',
+  'mgo-mousetrap',
+  'ngClipboard',
+  'hc.marked',
+  'ngAnimate',
+  'ngIntercom',
+  'chart.js',
+  'angulartics',
+  'dibari.angular-ellipsis',
+  'schemaForm',
+  'angulartics.google.analytics',
+  'ng-autofocus',
+  'draganddrop',
+  'ngPostMessage'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -374,6 +397,32 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
+      .state('material.nodewizard-linksubdevice', {
+        url: '/node-wizard/link-subdevice/:deviceUuid',
+        controller: 'LinkSubdeviceController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/index.html'
+      })
+      .state('material.nodewizard-linksubdevice.selecttype', {
+        controller: 'LinkSubdeviceSelectTypeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/select-type.html'
+      })
+      .state('material.nodewizard-linksubdevice.selectCustomType', {
+        controller: 'LinkSubdeviceSelectTypeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/select-custom-type.html'
+      })
+      .state('material.nodewizard-linksubdevice.selectgateblu', {
+        controller: 'LinkSubdeviceSelectGatebluController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/select-gateblu.html'
+      })
+      .state('material.nodewizard-linksubdevice.form', {
+        controller: 'LinkSubdeviceFormController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/link-subdevice/form.html'
+      })
       .state('material.flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
@@ -441,16 +490,6 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
-      .state('accept_terms', {
-        url: '/accept_terms',
-        templateUrl: '/pages/accept_terms.html',
-        controller: 'acceptTermsController',
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          }
-        }
-      })
       .state('terms', {
         url: '/terms',
         templateUrl: '/pages/terms.html',
@@ -463,7 +502,7 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controller: 'profileController'
       })
       .state('profile-new', {
-        url: '/profile/new',
+        url: '/profile/new?firstName&lastName&email',
         controller: 'NewProfileController',
         controllerAs: 'controller',
         templateUrl: '/pages/profile/new.html'
@@ -480,33 +519,10 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         controllerAs: 'controller',
         unsecured: true
       })
-      .state('forgot', {
-        url: '/forgot',
-        templateUrl: '/pages/forgot.html',
-        controller: 'forgotController',
-        unsecured: true
-      })
       .state('invitation', {
         url: '/invitation',
         templateUrl : '/pages/invitation/index.html',
         abstract : true,
-        unsecured: true
-      })
-      .state('invitation.accept', {
-        url : '/accept',
-        templateUrl : '/pages/invitation/accept.html',
-        controller: 'InvitationAcceptController',
-        unsecured: true
-      })
-      .state('invitation.request', {
-        url : '/request',
-        templateUrl : '/pages/invitation/request.html',
-        controller: 'InvitationRequestController',
-        unsecured: true
-      })
-      .state('invitation.sent', {
-        url : '/sent',
-        templateUrl : '/pages/invitation/sent.html',
         unsecured: true
       })
       .state('material.oauth', {
@@ -526,6 +542,13 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
         templateUrl: '/pages/reset/reset.html',
         controller: 'resetController',
         unsecured: true
+      })
+      .state('cwclanding', {
+        url: '/workspacecloud',
+        templateUrl: '/pages/workspace-cloud.html',
+        controller: 'WorkspaceCloudController',
+        controllerAs: 'controller',
+        unsecured: true
       });
 
     $locationProvider.html5Mode({
@@ -536,9 +559,21 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies, CWC_LOGIN_URL) {
 
-    // $window.console.log = $log.debug;
+    $rootScope.$on('$messageIncoming', function (event, data){
+      if (data.name === "$cwcNavbarUserLoggedOff") {
+          AuthService.logout().then(function () {
+          delete $cookies.workspaceCloud;
+          $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
+          $window.location = CWC_LOGIN_URL
+        });
+      }
+
+      if (data.name === "$cwcNavbarUserAuthorized") {
+        $rootScope.$broadcast("$cwcUserAuthorized");
+      }
+    });
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.log('error from ' + fromState.name + ' to ' + toState.name, error);
@@ -610,3 +645,8 @@ angular.module('octobluApp', ['ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap
 
     };
   });
+
+
+angular.element(document).ready(function(){
+  angular.bootstrap(document.getElementById("octoblu-app"),['octobluApp']);
+});
