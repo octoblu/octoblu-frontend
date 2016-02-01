@@ -2,6 +2,10 @@ angular.module('octobluApp')
 .controller('MaterialController', function($mdMedia, $scope, $state, AuthService) {
   'use strict';
 
+  AuthService.getCurrentUser().then(function(user){
+    $scope.isCWCEnabled = user.workspaceCloudUser
+  })
+
   $scope.isNavLockedOpen = function() {
     if($state.is('material.design') || $state.is('material.flow')){
       return false;
