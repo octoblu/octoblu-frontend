@@ -19,37 +19,35 @@
   </div>
 </md-toolbar>
 
-<md-content flex>
+<md-content ui-view>
   <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 
-  <md-toolbar layout="row" flex>
-     <div class="process-row-logo"></div>
-     <div flex layout="row">
-       <md-button flex="35" ng-click="setSortProcess('name')" aria-label="Sort by Name" class="process-row-text" >Name</md-button>
-       <md-button flex="15" ng-click="setSortProcess('totalMessagesSent')" aria-label="Sort by Message Sent" class="process-row-text" >Sent</md-button>
-       <md-button flex="15" ng-click="setSortProcess('totalMessagesReceived')" aria-label="Sort by Message Received" class="process-row-text" >Received</md-button>
-       <md-button flex="15" ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since" class="process-row-text" >Uptime</md-button>
-       <md-button flex="20" ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
+  <md-toolbar class="process-row-header">
+     <div class="process-row-headerLabel">
+       <div class="process-row-logo"></div>
+       <md-button ng-click="setSortProcess('name')" aria-label="Sort by Name" class="process-row-text" >Name</md-button>
+       <md-button ng-click="setSortProcess('totalMessagesSent')" aria-label="Sort by Message Sent" class="process-row-text" >Sent</md-button>
+       <md-button ng-click="setSortProcess('totalMessagesReceived')" aria-label="Sort by Message Received" class="process-row-text" >Received</md-button>
+       <md-button ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since" class="process-row-text" >Uptime</md-button>
+       <md-button ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
      </div>
   </md-toolbar>
    <md-list class="process-row">
     <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending | filter: processSearch">
       <md-item-content>
-        <div class="md-tile-content process-row-space" layout="row">
-          <div flex="10" layout="row" layout-align="start">
-            <div class="process-row-logo" ng-style="{'background-image': 'url(' + node.logo + ')'}" ng-class="{faded: !node.online}"></div>
-          </div>
-          <div flex="30" layout="row" layout-align="start">
+        <div class="md-tile-content process-row-space">
+          <div class="process-row-logo" ng-style="{'background-image': 'url(' + node.logo + ')'}" ng-class="{faded: !node.online}"></div>
+          <div class="process-row-name">
             {{node.name || node.uuid}}
           </div>
-          <div flex="12" layout="row" layout-align="center">
+          <div class="process-row-messagesSent">
             <sparkline-graph line-a="node.messagesSentOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesSent}}
           </div>
-          <div flex="12" layout="row" layout-align="center">
+          <div class="process-row-messagesReceived">
             <sparkline-graph line-b="node.messagesReceivedOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesReceived}}
           </div>
-          <div flex="12" layout="row" layout-align="center">{{getUptime(node.online, node.onlineSince) || '----------'}}</div>
-          <div class="process-row-actions" flex="20" layout="row" layout-align="center">{{node.actions}}
+          <div class="process-row-uptime">{{getUptime(node.online, node.onlineSince) || '----------'}}</div>
+          <div class="process-row-actions">{{node.actions}}
             <md-button ng-click="stopProcess(node)" class="stop-button process-row-action" ng-class="{ 'btn-stopped': !node.online}" aria-label="Stop Process">
               <i class="fa fa-stop"></i>
             </md-button>
