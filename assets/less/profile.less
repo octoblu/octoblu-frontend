@@ -4,16 +4,16 @@
 }
 
 .profile-card {
-  .md-whiteframe-z1;
+  .flex(1);
   .flex-display;
   .flex-direction(column);
 
-  width: 100%;
+  .md-whiteframe-z1;
   margin: 14px;
 }
 
 .profile-cardContent {
-  padding: 1em;
+  padding: 14px;
   max-height: 500px;
 
   overflow: scroll;
@@ -25,7 +25,17 @@
   font-size: 28px;
 }
 
-
 .profile-card-user--info{
   padding: 5px;
+}
+
+.profile-card-tokens {
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-between);
+}
+
+.profile-card-tokenData {
+  font-size: 16px;
+  font-weight: bold;
 }

@@ -24,7 +24,7 @@
       <div class="profile-card">
         <md-toolbar class="md-primary">
           <div class="md-toolbar-tools">
-            <h2 class="md-flex">User</h2>
+            <h2>User</h2>
           </div>
         </md-toolbar>
 
@@ -58,8 +58,8 @@
             <md-list>
               <md-item ng-repeat="(tokenHash, tokenData) in tokens">
                 <md-item-content>
-                  <div>
-                    <h3>{{tokenData.createdAt | date : 'medium'}}</h3>
+                  <div class="profile-card-tokens">
+                    <h3 class="profile-card-tokenData">{{tokenData.createdAt | date : 'medium'}}</h3>
                     <md-button class="md-warn" ng-click="confirmDeleteToken(tokenHash)" aria-label="Delete Session">
                       <i class="fa fa-lg fa-trash-o"></i>
                     </md-button>
