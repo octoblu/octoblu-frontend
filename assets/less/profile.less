@@ -1,46 +1,31 @@
+.profile-card-container {
+  .flex-display;
+  .flex-direction(row);
+}
+
 .profile-card {
+  .md-whiteframe-z1;
+  .flex-display;
+  .flex-direction(column);
 
-  h1 {
-    font-size: 2em;
-  }
-
-  h2 {
-    font-size: inherit;
-  }
-
-  h3 {
-    font-size: 1.17em;
-    font-weight: bold;
-  }
-
-  md-input-container {
-    margin: 10px;
-    // padding-bottom: 0;
-  }
-
-  md-checkbox {
-    margin-top: 0;
-  }
-
-   md-checkbox.checkbox-error .md-icon {
-    border-color: red;
-   }
-
-  .checkbox-error {
-    color: red;
-  }
+  width: 100%;
+  margin: 14px;
 }
 
-.profile-header {
-  text-align: center;
+.profile-cardContent {
+  padding: 1em;
+  max-height: 500px;
+
+  overflow: scroll;
 }
 
-button.profile-button-submit {
-  margin: 15px 10px 0;
-  padding: 10px 0;
-
+.profile-card-user {
+  .flex-display;
+  .flex-direction(column);
+  font-size: 28px;
 }
 
-button.profile-button-tos {
-  margin-top: 25px;
+
+.profile-card-user--info{
+  padding: 5px;
 }
