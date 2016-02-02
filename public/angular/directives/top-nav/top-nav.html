@@ -1,0 +1,28 @@
+<div class="top-nav-container">
+  <md-content class="top-nav">
+    <div class="top-nav-left">
+      <a class="top-nav-link" href ui-sref="material.design">Design</a>
+      <a class="top-nav-link" href ui-sref="material.things">Things</a>
+      <a class="top-nav-link" href ui-sref="material.bluprints">Bluprints</a>
+    </div>
+
+    <div class="top-nav-right">
+      <!-- <a class="top-nav-link" href ui-sref="material.profile">Profile</a> -->
+      <md-input-container>
+        <label>Settings</label>
+        <md-select ng-model="routes">
+          <md-option value="profile">
+            <a href ui-sref="material.profile">
+              Profile
+            </a>
+          </md-option>
+          <md-option value="signout">
+            <a ng-click="logout()">
+              Sign Out
+            </a>
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </md-content>
+</div>
