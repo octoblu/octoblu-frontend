@@ -7,22 +7,21 @@
     </div>
 
     <div class="top-nav-right">
-      <!-- <a class="top-nav-link" href ui-sref="material.profile">Profile</a> -->
-      <md-input-container>
-        <label>Settings</label>
-        <md-select ng-model="routes">
-          <md-option value="profile">
-            <a href ui-sref="material.profile">
-              Profile
-            </a>
-          </md-option>
-          <md-option value="signout">
-            <a ng-click="logout()">
-              Sign Out
-            </a>
-          </md-option>
-        </md-select>
-      </md-input-container>
+      <div>
+        <md-menu md-offset="-10 40" md-position-mode="target-right target" >
+            <md-button aria-label="Open settings menu" class="top-nav-settingsBtn" ng-click="$mdOpenMenu($event)">
+              <gravatar-image email="controller.email" size="20"></gravatar-image>
+            </md-button>
+            <md-menu-content width="2" >
+              <md-menu-item>
+                <md-button><a ui-sref="material.profile">Profile</a></md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="controller.logout()">Sign Out</md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+      </div>
     </div>
   </md-content>
 </div>
