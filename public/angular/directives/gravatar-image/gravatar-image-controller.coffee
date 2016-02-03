@@ -1,15 +1,16 @@
 class GravatarImageController
   constructor: ($scope) ->
     @scope = $scope
-
-    console.log @scope
-    console.log @scope.email
     @GRAVITAR_IMAGE_URL = "http://www.gravatar.com/avatar"
+    @size = @scope.size || 40
+
+    @scope.$watch 'email', =>
+      @generateProfileUrl(@scope.email)
 
 
-    # @emailHash = md5 @scope.email?.toLowerCase()
-    # @profileImage = "#{@GRAVITAR_IMAGE_URL}/#{@emailHash}"
-    # console.log @scope.email
-
+  generateProfileUrl: (email) =>
+    return unless email?
+    @emailHash = md5 @scope.email?.toLowerCase()
+    @profileImage = "#{@GRAVITAR_IMAGE_URL}/#{@emailHash}?s=#{@size}"
 
 angular.module('octobluApp').controller 'GravatarImageController', GravatarImageController

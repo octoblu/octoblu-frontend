@@ -10,11 +10,14 @@
       <div>
         <md-menu md-offset="-10 40" md-position-mode="target-right target" >
             <md-button aria-label="Open settings menu" class="top-nav-settingsBtn" ng-click="$mdOpenMenu($event)">
-              <gravatar-image email="controller.email" size="20"></gravatar-image>
+              <gravatar-image email="controller.email"></gravatar-image>
             </md-button>
             <md-menu-content width="2" >
               <md-menu-item>
                 <md-button><a ui-sref="material.profile">Profile</a></md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button><a ui-sref="material.resources">Resources</a></md-button>
               </md-menu-item>
               <md-menu-item>
                 <md-button ng-click="controller.logout()">Sign Out</md-button>

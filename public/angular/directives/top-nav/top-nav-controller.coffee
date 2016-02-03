@@ -6,8 +6,8 @@ class TopNavController
     @AuthService.getCurrentUser()
       .then (user) =>
         {firstName, lastName, email} = user.userDevice.octoblu
-        @email = email
         @name = "#{firstName} #{lastName}"
+        @email = email
 
   logout: () =>
     @AuthService.logout()
