@@ -1,7 +1,8 @@
-class TopNavController
+class TopBarController
   constructor: ($state, AuthService) ->
     @state = $state
     @AuthService = AuthService
+    @showUserNav = false
 
     @AuthService.getCurrentUser()
       .then (user) =>
@@ -14,4 +15,4 @@ class TopNavController
       .then => @state.go 'login'
 
 
-angular.module('octobluApp').controller 'TopNavController', TopNavController
+angular.module('octobluApp').controller 'TopBarController', TopBarController

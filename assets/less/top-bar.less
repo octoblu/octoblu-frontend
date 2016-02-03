@@ -1,0 +1,56 @@
+.TopBar {
+  .flex-display;
+  .align-items(center);
+
+  padding: 0 20px;
+  height: 52px;
+  min-height: 52px;
+
+  font-family: 'citrixsans';
+  font-weight:600;
+  background: #2278cf;
+}
+
+.TopBar-nav {
+  .flex(1);
+  .flex-display;
+  .align-items(center);
+}
+
+.TopBar-nav--left {
+  .justify-content(flex-start)
+}
+
+.TopBar-nav--right {
+  .justify-content(flex-end)
+}
+
+.TopBar-logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+}
+
+.TopBar-link {
+  padding: 12px 16px;
+
+  color: #FFF;
+  font-size: 16px;
+  text-transform: normal;
+
+  &:hover {
+    color: #FFF;
+    text-decoration: none;
+    background: rgba(255,255,255, 0.1);
+  }
+
+  &:visited {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+.TopBar-settingsBtn {
+  color: #FFF;
+  margin: 0 25px;
+}

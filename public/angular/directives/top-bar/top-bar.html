@@ -1,0 +1,21 @@
+<md-content class="TopBar">
+  <img src="/assets/images/octoblucircle.png" class="TopBar-logo">
+  <nav class="TopBar-nav TopBar-nav--left">
+    <a class="TopBar-link" ui-sref="material.design">Design</a>
+    <a class="TopBar-link" ui-sref="material.things">Things</a>
+    <a class="TopBar-link" ui-sref="material.bluprints">Bluprints</a>
+  </nav>
+
+  <nav class="TopBar-nav TopBar-nav--right">
+    <div ng-show="showUserNav">
+      <a class="TopBar-link" ui-sref="material.profile">Profile</a>
+      <a class="TopBar-link" ui-sref="material.resources">Resources</a>
+      <span class="TopBar-link" ng-click="controller.logout()">Sign Out</span>
+    </div>
+
+    <span aria-label="Open settings menu" class="TopBar-link TopBar-settingsBtn" ng-click="showUserNav = !showUserNav">
+      <i class="fa fa-cog fa-lg"></i>
+    </span>
+  </nav>
+
+</md-content>

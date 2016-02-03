@@ -15,8 +15,18 @@
   </div>
 </md-toolbar>
 
-<md-content class="Bluprints">
+<md-content class="interior__wrapper">
+  <header class="interior__header">
+    <div class="interior">
+      <div class="tabs">
+        <a ui-sref="material.bluprints" class="tab-link is-selected">Bluprints</a>
+        <a ui-sref="material.discover" class="tab-link">Discover</a>
+      </div>
+    </div>
+  </header>
   <div class="Bluprints-container">
+    <h2 class="Bluprints-header">Your Bluprints</h2>
+    <h4 class="Bluprints-subHeader">Browse Bluprints created by you.</h4>
 
     <random-robot
       ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
