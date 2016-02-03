@@ -20,13 +20,18 @@
             <h2>User</h2>
           </div>
         </md-toolbar>
-
         <div class="profile-cardContent">
-          <h1 class="profile-card-user">
-            <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
-            <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
-            <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
-          </h1>
+          <div class="profile-card-user">
+            <div class="profile-card-user-image">
+              <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
+              <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
+            </div>
+            <h1 class="profile-card-user-text">
+              <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
+              <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
+              <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
+            </h1>
+        </div>
 
           <p>
             To obtain a token, you must click <md-button md-no-ink ng-click="generateSessionToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Generate Token</md-button> and it will be displayed one time only.
