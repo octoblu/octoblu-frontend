@@ -2,7 +2,7 @@ class TopBarController
   constructor: ($state, AuthService) ->
     @state = $state
     @AuthService = AuthService
-    
+
     @showUserNav = false
 
   logout: =>

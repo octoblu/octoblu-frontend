@@ -1,0 +1,20 @@
+<header class="TabBar">
+  <div class="TabBar-section TabBar-section--tabs">
+    <a
+      ui-sref="material.configure"
+      class="TabBar-tabLink"
+      ng-class="{'TabBar-tabLink--is-selected': selectedTab == 'material.configure'}">My Things</a>
+    <a
+      ui-sref="material.things"
+      class="TabBar-tabLink"
+      ng-class="{'TabBar-tabLink--is-selected': selectedTab == 'material.things'}">Things</a>
+    <a
+      ui-sref="material.process"
+      class="TabBar-tabLink"
+      ng-class="{'TabBar-tabLink--is-selected': selectedTab == 'material.process'}">Process</a>
+  </div>
+
+  <div class="TabBar-section TabBar-section--actions">
+    <blu-search search-model="filterModel" placeholder="Filter Things..."></blu-search>
+  </div>
+</header>

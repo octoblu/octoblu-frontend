@@ -1,20 +1,9 @@
 <md-content class="interior__wrapper">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="tabs">
-        <a ui-sref="material.bluprints" class="tab-link is-selected">Bluprints</a>
-        <a ui-sref="material.discover" class="tab-link">Discover</a>
-      </div>
-    </div>
-  </header>
+  <bluprints-tab-bar selected-tab="material.bluprints" filter-model="bluprintNameFilter"></bluprints-tab-bar>
+
   <div class="Bluprints-container">
     <h2 class="Bluprints-header">Your Bluprints</h2>
     <h4 class="Bluprints-subHeader">Browse Bluprints created by you.</h4>
-
-    <div class="Bluprints-search lookup lookup--header">
-      <i class="lookup__icon fa fa-search"></i>
-      <input ng-model="bluprintNameFilter" placeholder="Filter Bluprints..." type="text" class="lookup__input">
-    </div>
 
     <random-robot
       ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"

@@ -1,17 +1,7 @@
 <md-content ui-view>
   <div class="interior__wrapper">
-    <header class="interior__header">
-      <div class="interior">
-        <div class="tabs">
-          <a ui-sref="material.things" class="tab-link">Things</a>
-          <a ui-sref="material.configure" class="tab-link">Connected Things</a>
-          <a ui-sref="material.process" class="tab-link is-selected">Process</a>
-        </div>
-      </div>
-    </header>
 
-    <blu-search class="process-search hidden" search-model="processSearch" placeholder="Filter Things..."></blu-search>
-
+    <things-tab-bar selected-tab="material.process" filter-model="processSearch"></things-tab-bar>
 
     <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 

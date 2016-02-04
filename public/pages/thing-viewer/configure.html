@@ -1,15 +1,5 @@
 <md-content class="interior__wrapper" autoscroll="false">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="tabs">
-        <a ui-sref="material.things" class="tab-link">Things</a>
-        <a ui-sref="material.configure" class="tab-link is-selected">Connected Things</a>
-        <a ui-sref="material.process" class="tab-link">Process</a>
-      </div>
-    </div>
-  </header>
-
-  <blu-search search-model="deviceNameFilter" placeholder="Filter Things..."></blu-search>
+  <things-tab-bar selected-tab="material.configure" filter-model="deviceNameFilter"></things-tab-bar>
 
   <da-loading loading="loadingConnectedThings"></da-loading>
 

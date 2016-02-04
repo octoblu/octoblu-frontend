@@ -1,18 +1,6 @@
 <md-content>
   <div class="interior__wrapper">
-    <header class="interior__header">
-      <div class="interior">
-        <div class="tabs">
-          <a ui-sref="material.things" class="tab-link is-selected">Things</a>
-          <a ui-sref="material.configure" class="tab-link">Connected Things</a>
-          <a ui-sref="material.process" class="tab-link">Process</a>
-        </div>
-
-        <i class="lookup__icon fa fa-search"></i>
-        <blu-search search-model="nodeNameSearch" placeholder="Filter Things..."></blu-search>
-      </div>
-    </header>
-
+    <things-tab-bar selected-tab="material.things" filter-model="nodeNameSearch"></things-tab-bar>
 
     <p class="interior">
       Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>

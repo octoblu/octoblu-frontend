@@ -1,12 +1,7 @@
 <md-content class="interior__wrapper">
-  <header class="interior__header">
-    <div class="interior">
-      <div class="tabs">
-        <a ui-sref="material.bluprints" class="tab-link">Bluprints</a>
-        <a ui-sref="material.discover" class="tab-link is-selected">Discover</a>
-      </div>
-    </div>
-  </header>
+  <bluprints-tab-bar selected-tab="material.discover" filter-model="bluprintNameFilter">
+  </bluprints-tab-bar>
+
   <div class="Bluprints-container">
     <h2 class="Bluprints-header">Discover Bluprints</h2>
     <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
@@ -15,8 +10,6 @@
         <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
         <md-option ng-value="'name'">Alphabetical</md-option>
       </md-select>
-
-      <blu-search class="Discover-search" search-model="bluprintNameFilter" placeholder="Filter Shared Bluprints..."></blu-search>
     </div>
 
     <p class="Bluprints-alert" ng-show="controller.collectionName">
