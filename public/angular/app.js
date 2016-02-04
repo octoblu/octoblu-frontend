@@ -360,6 +360,11 @@ angular.module('octobluApp', [
         controller: 'addChannelMeshbluController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
+      .state('material.nodewizard-addchannel.xenmobile', {
+        url: '/xenmobile',
+        controller: 'addChannelXenMobileController',
+        templateUrl: '/pages/node-wizard/add-channel/xenmobile.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
