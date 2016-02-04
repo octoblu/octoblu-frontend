@@ -7,7 +7,6 @@ class GravatarImageController
     @scope.$watch 'email', =>
       @generateProfileUrl(@scope.email)
 
-
   generateProfileUrl: (email) =>
     return unless email?
     @emailHash = md5 @scope.email?.toLowerCase()

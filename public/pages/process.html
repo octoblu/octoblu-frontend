@@ -1,17 +1,3 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <h2 class="BluToolbar-header">
-        Process
-      </h2>
-    </div>
-
-    <blu-search search-model="processSearch" placeholder="Filter Things..."></blu-search>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
 <md-content ui-view>
   <div class="interior__wrapper">
     <header class="interior__header">
@@ -23,19 +9,24 @@
         </div>
       </div>
     </header>
+
+    <blu-search class="process-search hidden" search-model="processSearch" placeholder="Filter Things..."></blu-search>
+
+
     <total-activity-graph class="total-activity-graph" line-a="totalMessagesSentOverTime" line-b="totalMessagesReceivedOverTime"></total-activity-graph>
 
     <md-toolbar class="process-row-header">
-       <div class="process-row-headerLabel">
-         <div class="process-row-logo"></div>
-         <md-button ng-click="setSortProcess('name')" aria-label="Sort by Name" class="process-row-text" >Name</md-button>
-         <md-button ng-click="setSortProcess('totalMessagesSent')" aria-label="Sort by Message Sent" class="process-row-text" >Sent</md-button>
-         <md-button ng-click="setSortProcess('totalMessagesReceived')" aria-label="Sort by Message Received" class="process-row-text" >Received</md-button>
-         <md-button ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since" class="process-row-text" >Uptime</md-button>
-         <md-button ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
-       </div>
+      <div class="process-row-headerLabel">
+        <div class="process-row-logo"></div>
+        <md-button ng-click="setSortProcess('name')" aria-label="Sort by Name" class="process-row-text" >Name</md-button>
+        <md-button ng-click="setSortProcess('totalMessagesSent')" aria-label="Sort by Message Sent" class="process-row-text" >Sent</md-button>
+        <md-button ng-click="setSortProcess('totalMessagesReceived')" aria-label="Sort by Message Received" class="process-row-text" >Received</md-button>
+        <md-button ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since" class="process-row-text" >Uptime</md-button>
+        <md-button ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
+      </div>
     </md-toolbar>
-     <md-list class="process-row">
+
+    <md-list class="process-row">
       <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending | filter: processSearch">
         <md-item-content>
           <div class="md-tile-content process-row-space">
@@ -43,13 +34,17 @@
             <div class="process-row-name">
               {{node.name || node.uuid}}
             </div>
+
             <div class="process-row-messagesSent">
               <sparkline-graph line-a="node.messagesSentOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesSent}}
             </div>
+
             <div class="process-row-messagesReceived">
               <sparkline-graph line-b="node.messagesReceivedOverTime" graph-width="80"></sparkline-graph>&nbsp;&nbsp;{{node.totalMessagesReceived}}
             </div>
+
             <div class="process-row-uptime">{{getUptime(node.online, node.onlineSince) || '----------'}}</div>
+
             <div class="process-row-actions">{{node.actions}}
               <md-button ng-click="stopProcess(node)" class="stop-button process-row-action" ng-class="{ 'btn-stopped': !node.online}" aria-label="Stop Process">
                 <i class="fa fa-stop"></i>

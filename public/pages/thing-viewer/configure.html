@@ -1,17 +1,3 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <h2 class="BluToolbar-header">
-        Connected Things
-      </h2>
-    </div>
-
-    <blu-search search-model="deviceNameFilter" placeholder="Filter Things..."></blu-search>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
 <md-content class="interior__wrapper" autoscroll="false">
   <header class="interior__header">
     <div class="interior">
@@ -22,6 +8,8 @@
       </div>
     </div>
   </header>
+
+  <blu-search search-model="deviceNameFilter" placeholder="Filter Things..."></blu-search>
 
   <da-loading loading="loadingConnectedThings"></da-loading>
 

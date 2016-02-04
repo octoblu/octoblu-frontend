@@ -1,20 +1,3 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <div class="BluToolbar-header">
-        <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
-          <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
-          <md-option ng-value="'name'">Alphabetical</md-option>
-        </md-select>
-      </div>
-    </div>
-    <blu-search search-model="bluprintNameFilter" placeholder="Filter Shared Bluprints..."></blu-search>
-
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
 <md-content class="interior__wrapper">
   <header class="interior__header">
     <div class="interior">
@@ -27,6 +10,14 @@
   <div class="Bluprints-container">
     <h2 class="Bluprints-header">Discover Bluprints</h2>
     <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
+    <div class="Bluprints-sort">
+      <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
+        <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
+        <md-option ng-value="'name'">Alphabetical</md-option>
+      </md-select>
+
+      <blu-search class="Discover-search" search-model="bluprintNameFilter" placeholder="Filter Shared Bluprints..."></blu-search>
+    </div>
 
     <p class="Bluprints-alert" ng-show="controller.collectionName">
       Showing Bluprints tagged

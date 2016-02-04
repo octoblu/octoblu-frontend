@@ -1,5 +1,5 @@
-<div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle omnibox-search">
-  <i class="lookup__icon fa fa-search omnibox-search-icon"></i>
+<div class="lookup designer-lookup--header BluToolbar-align BluToolbar-align--middle omnibox-search">
+  <i class="designer-lookup__icon fa fa-search omnibox-search-icon"></i>
   <input type="text"
           ng-model="omniSearch"
           w-mousetrap="{'/':  focus}"
@@ -7,5 +7,5 @@
           placeholder="Search..."
           typeahead="item as item.name for item in omniList | filter : {name : $viewValue }"
           typeahead-template-url="/pages/omnibox-item.html"
-          class="lookup__input omnibox">
+          class="designer-lookup__input omnibox">
 </div>

@@ -1,16 +1,3 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <h2 class="BluToolbar-header">
-        Things
-      </h2>
-    </div>
-
-    <blu-search search-model="nodeNameSearch" placeholder="Filter Things..."></blu-search>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
 <md-content>
   <div class="interior__wrapper">
     <header class="interior__header">
@@ -20,8 +7,13 @@
           <a ui-sref="material.configure" class="tab-link">Connected Things</a>
           <a ui-sref="material.process" class="tab-link">Process</a>
         </div>
+
+        <i class="lookup__icon fa fa-search"></i>
+        <blu-search search-model="nodeNameSearch" placeholder="Filter Things..."></blu-search>
       </div>
     </header>
+
+
     <p class="interior">
       Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>
     </p>

@@ -7,10 +7,40 @@
   top: 9px;
   right: 10px;
 
+  color: #333;
+}
+
+.designer-lookup__icon {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+
   color: #afb5b9;
 }
 
 .lookup__input {
+  border: 1px solid #EDEDED;
+  border-radius: 2px;
+  padding: 5px 34px 5px 10px;
+
+  background-color: #E8EAEB;
+  font-family: "citrix-sans";
+  color: #333;
+
+  &:hover,
+  &:focus {
+    background-color: #FFF;
+    outline: none;
+
+    -webkit-transition: background-color 200ms linear;
+       -moz-transition: background-color 200ms linear;
+        -ms-transition: background-color 200ms linear;
+         -o-transition: background-color 200ms linear;
+            transition: background-color 200ms linear;
+  }
+}
+
+.designer-lookup__input {
   border: 1px solid #EDEDED;
   border-radius: 2px;
   padding: 5px 34px 5px 10px;
@@ -33,16 +63,45 @@
 
 
 .lookup--header {
+  margin: 0;
+
+  font-size: 16px;
+
+  .lookup__icon {
+    color: #797979;
+  }
+
+  .lookup__input {
+    border: none;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.1);
+    background: transparent;
+    color: #333;
+
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.05);
+      color: #333;
+    }
+
+    &::-moz-placeholder { color: #797979 !important; }
+    &:-ms-input-placeholder { color: #797979 !important; }
+    &::-webkit-input-placeholder { color: #797979 !important; }
+  }
+}
+
+.designer-lookup--header {
   margin: 0 24px;
   max-width: 600px;
 
   font-size: 18px;
 
-  .lookup__icon {
+  .designer-lookup__icon {
     color: rgba(255, 255, 255, 0.87);
   }
 
-  .lookup__input {
+  .designer-lookup__input {
     border: none;
     width: 100%;
 

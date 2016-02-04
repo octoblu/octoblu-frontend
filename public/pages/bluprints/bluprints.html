@@ -1,20 +1,3 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-      <div class="BluToolbar-header">
-        <h2>Bluprints</h2>
-      </div>
-    </div>
-
-    <div class="lookup lookup--header BluToolbar-align BluToolbar-align--middle">
-      <i class="lookup__icon fa fa-search"></i>
-      <input ng-model="bluprintNameFilter" placeholder="Filter Bluprints..." type="text" class="lookup__input">
-    </div>
-
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
 <md-content class="interior__wrapper">
   <header class="interior__header">
     <div class="interior">
@@ -27,6 +10,11 @@
   <div class="Bluprints-container">
     <h2 class="Bluprints-header">Your Bluprints</h2>
     <h4 class="Bluprints-subHeader">Browse Bluprints created by you.</h4>
+
+    <div class="Bluprints-search lookup lookup--header">
+      <i class="lookup__icon fa fa-search"></i>
+      <input ng-model="bluprintNameFilter" placeholder="Filter Bluprints..." type="text" class="lookup__input">
+    </div>
 
     <random-robot
       ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
