@@ -21,7 +21,8 @@ angular.module('octobluApp')
     'travis-ci'              : 'material.nodewizard-addchannel.travis-ci',
     'travis-ci-pro'          : 'material.nodewizard-addchannel.travis-ci-pro',
     'witai'                  : 'material.nodewizard-addchannel.witai',
-    'wink'                   : 'material.nodewizard-addchannel.wink'
+    'wink'                   : 'material.nodewizard-addchannel.wink',
+		'xenmobile'							 : 'material.nodewizard-addchannel.xenmobile'
   };
 
 	$scope.isLoadingOptions = true;
