@@ -10,64 +10,61 @@
   </div>
 </md-toolbar>
 
-
-<md-content>
-  <div class="interior__wrapper">
-    <div class="profile-card-container">
-      <div class="profile-card">
-        <md-toolbar class="md-primary">
-          <div class="md-toolbar-tools">
-            <h2>User</h2>
+<md-content class="profile-container">
+  <div class="profile-card-container">
+    <div class="profile-card">
+      <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+          <h2>User</h2>
+        </div>
+      </md-toolbar>
+      <div class="profile-cardContent">
+        <div class="profile-card-user">
+          <div class="profile-card-user-image">
+            <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
+            <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
           </div>
-        </md-toolbar>
-        <div class="profile-cardContent">
-          <div class="profile-card-user">
-            <div class="profile-card-user-image">
-              <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
-              <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
-            </div>
-            <h1 class="profile-card-user-text">
-              <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
-              <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
-              <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
-            </h1>
-        </div>
-
-          <p>
-            To obtain a token, you must click <md-button md-no-ink ng-click="generateSessionToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Generate Token</md-button> and it will be displayed one time only.
-          </p>
-          <p>
-              Your token gives you full access to your account and connected devices, be sure to keep it secret.
-          </p>
-        </div>
+          <h1 class="profile-card-user-text">
+            <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
+            <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
+            <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
+          </h1>
       </div>
 
-      <div class="profile-card">
-        <md-toolbar class="md-primary">
-          <div class="md-toolbar-tools">
-            <h2>Authorized Sessions</h2>
-          </div>
-        </md-toolbar>
-        <div class="profile-cardContent">
-          <md-content class="sessions-list">
-            <div ng-if="!hasTokens()" class="text-center">
-              <h1 class="text-center">You have no authorized sessions.</h1>
-            </div>
-            <md-list>
-              <md-item ng-repeat="(tokenHash, tokenData) in tokens">
-                <md-item-content>
-                  <div class="profile-card-tokens">
-                    <h3 class="profile-card-tokenData">{{tokenData.createdAt | date : 'medium'}}</h3>
-                    <md-button class="md-warn" ng-click="confirmDeleteToken(tokenHash)" aria-label="Delete Session">
-                      <i class="fa fa-lg fa-trash-o"></i>
-                    </md-button>
-                  </div>
-                </md-item-content>
-                <md-divider ng-if="!$last"></md-divider>
-              </md-item>
-            </md-list>
-          </md-content>
+        <p>
+          To obtain a token, you must click <md-button md-no-ink ng-click="generateSessionToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Generate Token</md-button> and it will be displayed one time only.
+        </p>
+        <p>
+            Your token gives you full access to your account and connected devices, be sure to keep it secret.
+        </p>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+          <h2>Authorized Sessions</h2>
         </div>
+      </md-toolbar>
+      <div class="profile-cardContent">
+        <md-content class="sessions-list">
+          <div ng-if="!hasTokens()" class="text-center">
+            <h1 class="text-center">You have no authorized sessions.</h1>
+          </div>
+          <md-list>
+            <md-item ng-repeat="(tokenHash, tokenData) in tokens">
+              <md-item-content>
+                <div class="profile-card-tokens">
+                  <h3 class="profile-card-tokenData">{{tokenData.createdAt | date : 'medium'}}</h3>
+                  <md-button class="md-warn" ng-click="confirmDeleteToken(tokenHash)" aria-label="Delete Session">
+                    <i class="fa fa-lg fa-trash-o"></i>
+                  </md-button>
+                </div>
+              </md-item-content>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-item>
+          </md-list>
+        </md-content>
       </div>
     </div>
   </div>

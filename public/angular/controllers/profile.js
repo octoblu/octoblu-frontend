@@ -2,7 +2,6 @@
 
 angular.module('octobluApp')
 .controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService, ThingService) {
-
   var refreshDevice = function(){
     skynetService.getSkynetConnection().then(function (skynetConnection) {
       skynetConnection.whoami({}, function(user) {
