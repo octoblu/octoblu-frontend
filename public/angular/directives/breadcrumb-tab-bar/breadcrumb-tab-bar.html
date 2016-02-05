@@ -1,10 +1,9 @@
-<header class="TabBar">
-  <div class="TabBar-section TabBar-section--tabs">
-    <a
-      ui-sref="{{parentTabLink}}"
-      class="TabBar-tabLink">{{parentTabLabel}}</a>
-      <i class="fa fa-angle-right"></i>
-    <span
-      class="TabBar-tabLink TabBar-tabLink--is-selected">{{selectedTabName}}</span>
+<header class="BreadcrumbBar">
+  <div class="BreadcrumbBar-section BreadcrumbBar-section--tabs">
+    <span class="BreadcrumbBar-section-container" ng-repeat="tab in fragments">
+      <a ng-if="tab.linkTo" class="BreadcrumbBar-item BreadcrumbBar-link" ui-sref="{{tab.linkTo}}">{{tab.label}}</a>
+      <i ng-if="tab.linkTo" class="fa fa-angle-right"></i>
+      <span ng-if="!tab.linkTo" class="BreadcrumbBar-item">{{tab.label}}</span>
+    </span>
   </div>
 </header>

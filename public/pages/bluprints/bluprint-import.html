@@ -1,22 +1,6 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
+<md-content class="interior__wrapper">
+  <breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
 
-      <div class="BluToolbar-header truncate" ng-show="bluprint.public">
-        <a ui-sref="material.discover" class="BluToolbar-header--link">Discover</a>
-        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
-        <span class="BluToolbar-header--current">{{bluprint.name}}</span>
-      </div>
-      <div class="BluToolbar-header truncate" ng-hide="bluprint.public">
-        <span class="BluToolbar-header--current">{{bluprint.name}}</span>
-      </div>
-    </div>
-
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
-<md-content class="Bluprints">
   <div class="Bluprints-container">
 
     <div class="Bluprint-list">

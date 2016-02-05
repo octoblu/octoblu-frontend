@@ -26,6 +26,11 @@ class BluprintDetailController
         @scope.bluprintEdit = _.cloneDeep @scope.bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
+        @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
+        if(@state.current.name == 'material.bluprintDetail')
+          @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
+        @scope.fragments = [ @linkTo, {label: bluprint.name}]
+
   updateBluprintNow: =>
     @scope.editMode = false
     @BluprintService.update(@scope.bluprint.uuid, @scope.bluprintEdit).

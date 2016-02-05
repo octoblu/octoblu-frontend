@@ -6,7 +6,5 @@ angular.module('octobluApp')
     replace: true
     transclude: true
     scope:
-      parentTabLink: "@"
-      parentTabLabel: "@"
-      selectedTabName: "@"
+      fragments: "="
   }
