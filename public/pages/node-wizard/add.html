@@ -1,19 +1,5 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <div class="BluToolbar-header truncate">
-        <a ui-sref="material.things" class="BluToolbar-header--link">Things</a>
-        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
-        <span class="BluToolbar-header--current">Add {{nodeType.name}}</span>
-      </div>
-
-    </div>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
-<md-content>
+<md-content class="node-wizard-container">
+  <breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
   <div class="node-wizard__wrapper">
     <div class="node-wizard-logo-container">
       <img src="{{nodeType.logo}}">

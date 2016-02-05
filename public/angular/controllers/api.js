@@ -5,7 +5,10 @@ angular.module('octobluApp')
 
   channelService.getById($stateParams.id).then(function(channel){
     $scope.channel = channel;
+    $scope.fragments = [{linkTo: 'material.configure', label: 'My Things'},
+    {label: "Manage " + channel.name}]
   })
+
 
 
   $scope.setDeactivate = function (ev) {

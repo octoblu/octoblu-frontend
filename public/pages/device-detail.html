@@ -1,19 +1,4 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <div class="BluToolbar-header truncate">
-        <a ui-sref="material.configure" class="BluToolbar-header--link">Connected Things</a>
-        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
-        <span class="BluToolbar-header--current">Manage {{controller.device.name || controller.device.uuid}}</span>
-      </div>
-
-    </div>
-
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
+<breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
 <md-content class="interior" autoscroll="false">
   <div class="device-header">
     <div class="logo-header">

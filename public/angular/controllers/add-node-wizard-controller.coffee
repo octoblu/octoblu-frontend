@@ -4,11 +4,13 @@ class AddNodeWizardController
     @state = $state
     @NodeTypeService = NodeTypeService
 
+    @redirectToDesign = @state.params.designer || false
+
     @NodeTypeService.getById(@state.params.nodeTypeId).then (nodeType) =>
       @scope.nodeType = nodeType
+      fragments = @generateBreadcrumbFragments nodeType
 
   connectThings: () =>
-    redirectToDesign = @state.params.designer || false
     @scope.nextState = 'material.nodewizard-adddevice'
 
     if @scope.nodeType.category == 'channel'
@@ -19,8 +21,14 @@ class AddNodeWizardController
 
     stateParams =
       nodeTypeId : @state.params.nodeTypeId
-      designer: redirectToDesign
+      designer: @redirectToDesign
 
     @state.go @scope.nextState, stateParams, location: true
+
+  generateBreadcrumbFragments: (nodeType) =>
+    @linkTo = linkTo: 'material.things', label: 'Things'
+    if @redirectToDesign
+      @linkTo = linkTo: 'material.design', label: 'Designer'
+    @fragments = [@linkTo, {label: "Connect #{nodeType.name}"}]
 
 angular.module('octobluApp').controller 'AddNodeWizardController', AddNodeWizardController

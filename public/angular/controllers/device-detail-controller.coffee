@@ -19,6 +19,7 @@ class DeviceDetailController
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
       @showLink = @deviceIsGatebluDevice @device
+      @fragments = @generateBreadcrumbFragments @device
 
     @ThingService.getThings().then (devices) =>
       @devices = devices
@@ -32,6 +33,10 @@ class DeviceDetailController
 
   deviceIsGatebluDevice: (device) =>
     !@deviceIsFlow device
+
+  generateBreadcrumbFragments: (device) =>
+    return [{linkTo: 'material.configure', label: 'My Things'},
+      {label: "Manage #{device.name || device.uuid}"}]
 
   linkToGateblu: =>
     @state.go "material.nodewizard-linksubdevice", deviceUuid: @device.uuid, {location: true}
