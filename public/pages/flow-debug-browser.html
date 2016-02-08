@@ -1,6 +1,21 @@
 <div>
-  <div ng-if="viewSource" class="full-height">
-    <pre>{{ flow | json }}</pre>
+  <div ng-if="viewSource" class="flow-debug">
+    <div class="flow-debug-edit-toolbar">
+      <button ng-if="debugEditor.edit" ng-click="debugEditor.save()"xw>
+        <i class="fa fa-save fa-lg"></i>
+      </button>
+      <button ng-if="debugEditor.edit" ng-click="debugEditor.syncFromFlow()">
+        <i class="fa fa-refresh fa-lg"></i>
+      </button>
+      <button ng-click="debugEditor.toggleEdit()" class="flow-debug-edit-button">
+        <i class="fa fa-edit fa-lg"></i>
+      </button>
+    </div>
+
+    <pre ng-if="!debugEditor.edit">{{ flow | json }}</pre>
+    <div ng-if="debugEditor.edit" class="flow-debug-editor">
+      <textarea ng-model="debugEditor.flowText"></textarea>
+    </div>
   </div>
   <div ng-if="!viewSource">
     <ul class="flow-browser-debug">
