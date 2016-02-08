@@ -1,5 +1,6 @@
 class TopBarController
-  constructor: ($state, AuthService) ->
+  constructor: ($scope, $state, AuthService) ->
+    @scope = $scope
     @state = $state
     @AuthService = AuthService
 
