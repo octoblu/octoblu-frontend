@@ -75,12 +75,12 @@
     border: none;
     width: 100%;
 
-    background: rgba(0, 0, 0, 0.05);
+    background: #EEF1F2;
     color: #333;
 
     &:hover,
     &:focus {
-      background: rgba(0, 0, 0, 0.05);
+      background: #EEF1F2;
       color: #333;
     }
 
@@ -97,24 +97,31 @@
   font-size: 18px;
 
   .designer-lookup__icon {
-    color: rgba(255, 255, 255, 0.87);
+    color: #6e8593;
   }
 
   .designer-lookup__input {
     border: none;
     width: 100%;
 
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.87);
+    background: #EEF1F2;
+    color: #797979;
+
+    background: #FFF;
+    color: #586976;
+    border: 1px solid rgba(20, 86, 143, 0.3);
 
     &:hover,
     &:focus {
-      background: rgba(255, 255, 255, 0.18);
-      color: #FFF;
+      border-color: rgba(20, 86, 143, 0.5);
     }
 
-    &::-moz-placeholder { color: rgba(255, 255, 255, 0.8) !important; }
-    &:-ms-input-placeholder { color: rgba(255, 255, 255, 0.8) !important; }
-    &::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.8) !important; }
+    &:focus {
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.1), inset 0 1px 2px 0 transparent;
+    }
+
+    &::-moz-placeholder { color: #6E8593 !important; }
+    &:-ms-input-placeholder { color: #6E8593 !important; }
+    &::-webkit-input-placeholder { color: #6E8593 !important; }
   }
 }
