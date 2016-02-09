@@ -512,6 +512,11 @@ angular.module('octobluApp', [
         controllerAs: 'controller',
         templateUrl: '/pages/profile/new.html'
       })
+      .state('material.guides', {
+        url: '/guides',
+        controller: 'ResourcesController',
+        templateUrl: '/pages/resources.html'
+      })
       .state('material.resources', {
         url: '/resources',
         controller: 'ResourcesController',
