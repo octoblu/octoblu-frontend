@@ -22,10 +22,9 @@ class SharedBluprintsController
     @AuthService.getCurrentUser().then (user) =>
       @userUuid = user.resource.uuid
 
-    @limitPerPage = 5
+    @limitPerPage = 3
     @currentPage = 1
 
-    #@refreshBluprints()
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
 
@@ -41,12 +40,22 @@ class SharedBluprintsController
   refreshLimit: =>
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
+  showMore: =>
+    @currentPage = @currentPage + 1
+    @BluprintService.getPublicBluprintsPaged(@collectionName, @limitPerPage, @currentPage)
+      .then (bluprints) =>
+        @bluprints = _.union(@bluprints, bluprints)
+        _.each @bluprints, (bluprint) =>
+          @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
+          bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
+        @scope.isLoading = false;
+
   prev: =>
     @currentPage = @currentPage - 1 if @currentPage != 0
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
   next: =>
-    @currentPage = @currentPage + 1 unless @limitPerPage > _.size(@bluprints)  
+    @currentPage = @currentPage + 1 unless @limitPerPage > _.size(@bluprints)
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
   refreshBluprintsPaged: (limit, page)=>

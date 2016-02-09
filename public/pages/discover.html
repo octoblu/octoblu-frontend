@@ -10,12 +10,6 @@
           <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
           <md-option ng-value="'name'">Alphabetical</md-option>
         </md-select>
-        <md-select md-on-close='controller.refreshLimit()' ng-model="controller.limitPerPage" class="BluToolbar-select">
-          <md-option ng-value="3">3</md-option>
-          <md-option ng-value="5">5</md-option>
-          <md-option ng-value="10">10</md-option>
-          <md-option ng-value="20">20</md-option>
-        </md-select>
       </div>
 
       <p class="Bluprints-alert" ng-show="controller.collectionName">
@@ -46,10 +40,9 @@
         </div>
       </div>
 
- <div class="Bluprints-sort">
-    <md-button md-no-ink class="md-primary" ng-click='controller.prev()'>Prev</md-button>
-    <md-button md-no-ink class="md-primary" ng-click='controller.next()'>Next</md-button>
- </div>
+       <div class="Bluprints-subHeader">
+          <md-button md-no-ink class="md-primary" ng-click='controller.showMore()'>Show More</md-button>
+       </div>
 
     </div>
   </div>
