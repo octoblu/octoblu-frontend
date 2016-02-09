@@ -1,31 +1,33 @@
+<bluprints-tab-bar selected-tab="material.bluprints" filter-model="bluprintNameFilter"></bluprints-tab-bar>
 <md-content class="interior__wrapper">
-  <bluprints-tab-bar selected-tab="material.bluprints" filter-model="bluprintNameFilter"></bluprints-tab-bar>
+  <div class="interior">
 
-  <div class="Bluprints-container">
-    <h2 class="Bluprints-header">Your Bluprints</h2>
-    <h4 class="Bluprints-subHeader">Browse Bluprints created by you.</h4>
+    <div class="Bluprints-container interior">
+      <h2 class="Bluprints-header">Your Bluprints</h2>
+      <h4 class="Bluprints-subHeader">Browse Bluprints created by you.</h4>
 
-    <random-robot
-      ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
-      title="You have no shared Bluprints.">
-    </random-robot>
+      <random-robot
+        ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
+        title="You have no shared Bluprints.">
+      </random-robot>
 
 
-    <random-robot
-      ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
-      title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
-    </random-robot>
+      <random-robot
+        ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+        title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
+      </random-robot>
 
-    <da-loading loading="isLoading"></da-loading>
+      <da-loading loading="isLoading"></da-loading>
 
-    <ul class="Bluprint-list">
-      <li
-        ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
-        class="Bluprint-listItem">
-        <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
-      </li>
-    </ul>
+      <ul class="Bluprint-list">
+        <li
+          ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
+          class="Bluprint-listItem">
+          <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
+        </li>
+      </ul>
 
+    </div>
   </div>
 
 </md-content>

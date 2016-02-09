@@ -9,7 +9,7 @@
 <md-content class="interior__wrapper">
   <div class="interior">
     <random-robot title='No Resources Found for "{{resourceSearch}}"' ng-show="noResources"></random-robot>
-    <md-list ng-repeat="(category, resources) in resourcesList" class="device-collection">
+    <md-list ng-repeat="(category, resources) in resourcesList" class="device-collection interior">
       <header class="device-collection__header" ng-show="category">
         <h4 class="header-label">
           {{category | uppercase}}
