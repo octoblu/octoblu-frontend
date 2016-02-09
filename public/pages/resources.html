@@ -1,22 +1,15 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
+<header class="TabBar">
+  <h2 class="TabBar-title">Resources</h2>
 
-      <h2 class="BluToolbar-header">
-        Resources
-      </h2>
-    </div>
-
+  <div class="TabBar-section TabBar-section--actions">
     <blu-search search-model="resourceSearch" placeholder="Filter Resources..."></blu-search>
-
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
   </div>
-</md-toolbar>
+</header>
 
 <md-content class="interior__wrapper">
   <div class="interior">
     <random-robot title='No Resources Found for "{{resourceSearch}}"' ng-show="noResources"></random-robot>
-    <md-list ng-repeat="(category, resources) in resourcesList">
+    <md-list ng-repeat="(category, resources) in resourcesList" class="device-collection">
       <header class="device-collection__header" ng-show="category">
         <h4 class="header-label">
           {{category | uppercase}}

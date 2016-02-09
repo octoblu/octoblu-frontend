@@ -68,25 +68,29 @@
   font-size: 16px;
 
   .lookup__icon {
-    color: #797979;
+    color: #6e8593;
   }
 
   .lookup__input {
     border: none;
     width: 100%;
 
-    background: #EEF1F2;
-    color: #333;
+    background: #FFF;
+    color: #586976;
+    border: 1px solid rgba(20, 86, 143, 0.3);
 
     &:hover,
     &:focus {
-      background: #EEF1F2;
-      color: #333;
+      border-color: rgba(20, 86, 143, 0.5);
     }
 
-    &::-moz-placeholder { color: #797979 !important; }
-    &:-ms-input-placeholder { color: #797979 !important; }
-    &::-webkit-input-placeholder { color: #797979 !important; }
+    &:focus {
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.1), inset 0 1px 2px 0 transparent;
+    }
+
+    &::-moz-placeholder { color: #6E8593 !important; }
+    &:-ms-input-placeholder { color: #6E8593 !important; }
+    &::-webkit-input-placeholder { color: #6E8593 !important; }
   }
 }
 
@@ -103,9 +107,6 @@
   .designer-lookup__input {
     border: none;
     width: 100%;
-
-    background: #EEF1F2;
-    color: #797979;
 
     background: #FFF;
     color: #586976;

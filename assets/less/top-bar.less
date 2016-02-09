@@ -1,7 +1,4 @@
 .TopBar {
-  .flex-display;
-  .align-items(center);
-
   padding: 0 20px;
   height: 52px;
   min-height: 52px;
@@ -19,30 +16,40 @@
 }
 
 .TopBar-nav {
-  .flex(1);
-  .flex-display;
-  .align-items(center);
+  display: block;
+  height: 100%;
 }
 
-.TopBar-nav--left {
-  .justify-content(flex-start)
+.TopBar-nav--primary {
+  float: left;
 }
 
-.TopBar-nav--right {
-  .justify-content(flex-end)
+.TopBar-nav--secondary {
+  float: right;
 }
 
 .TopBar-logo {
   width: 125px;
-  margin-right: 16px;
+  margin-top: 13px;
+  float: left;
 }
 
+.TopBar-link--logo {
+  float: left;
+  height: 52px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
 .TopBar-link {
-  padding: 4px 16px;
+  display: inline-block;
+  padding: 0 16px;
 
   color: #E9F2FB;
   font-size: 16px;
   text-transform: none;
+  text-decoration: none !important;
+  line-height: 52px;
 
   &:hover {
     color: #FFF;
