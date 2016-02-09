@@ -22,8 +22,9 @@ class SharedBluprintsController
     @AuthService.getCurrentUser().then (user) =>
       @userUuid = user.resource.uuid
 
-    @limitPerPage = 3
+    @limitPerPage = 10
     @currentPage = 1
+    @noneLeft = false
 
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
@@ -45,6 +46,7 @@ class SharedBluprintsController
     @BluprintService.getPublicBluprintsPaged(@collectionName, @limitPerPage, @currentPage)
       .then (bluprints) =>
         @bluprints = _.union(@bluprints, bluprints)
+        @noneLeft = true if _.size(bluprints) < @limitPerPage
         _.each @bluprints, (bluprint) =>
           @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
           bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
