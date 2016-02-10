@@ -1,64 +1,66 @@
 <breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
-<md-content class="interior device-container" autoscroll="false">
-  <div class="device-header">
-    <div class="logo-header">
-      <img src="{{controller.device.logo}}" class="device-logo" ng-class="{faded: !controller.device.online}">
+<md-content class="interior__wrapper">
+  <div class="interior device-container">
+    <div class="device-header">
+      <div class="logo-header">
+        <img src="{{controller.device.logo}}" class="device-logo" ng-class="{faded: !controller.device.online}">
 
-      <div class="device-name">
-        <h1>{{controller.device.name || controller.device.uuid}}</h1>
+        <div class="device-name">
+          <h1>{{controller.device.name || controller.device.uuid}}</h1>
 
-        <div>
-          <span ng-show="controller.device.online" class="label label-success">Online</span>
-          <span ng-hide="controller.device.online" class="label label-danger">Offline</span>
+          <div>
+            <span ng-show="controller.device.online" class="label label-success">Online</span>
+            <span ng-hide="controller.device.online" class="label label-danger">Offline</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="device-actions">
+        <div ng-show='controller.showLink'>
+          <button ng-click="controller.linkToGateblu()" class="device-actions--link BluButton">Connect to Gateblu</button>
+        </div>
+        <div ng-hide='controller.hideDelete' >
+          <button ng-click="controller.confirmDeleteDevice()" class="device-actions--delete BluButton">Delete</button>
         </div>
       </div>
     </div>
 
-    <div class="device-actions">
-      <div ng-show='controller.showLink'>
-        <button ng-click="controller.linkToGateblu()" class="device-actions--link BluButton">Connect to Gateblu</button>
+    <div class="device-meta">
+      <div class="meta-item">
+        <div class="meta-key">
+          Type
+        </div>
+        <div class="meta-value">
+          {{controller.device.type}}
+        </div>
       </div>
-      <div ng-hide='controller.hideDelete' >
-        <button ng-click="controller.confirmDeleteDevice()" class="device-actions--delete BluButton">Delete</button>
+
+      <div class="meta-item">
+        <div class="meta-key">
+          Uuid
+        </div>
+        <div class="meta-value">
+          {{controller.device.uuid}}
+        </div>
+      </div>
+
+      <div class="meta-item">
+        <div class="meta-key">
+          Token
+        </div>
+        <div class="meta-value">
+          <md-button ng-click="controller.generateSessionToken()" class="md-primary">Generate Token</md-button>
+        </div>
       </div>
     </div>
+
+    <md-tabs md-dynamic-height>
+      <md-tab label="Properties">
+        <div ng-include="'/pages/device-detail-properties.html'"></div>
+      </md-tab>
+      <md-tab label="Permissions">
+        <div ng-include="'/pages/device-detail-permissions.html'"></div>
+      </md-tab>
+    </md-tabs>
   </div>
-
-  <div class="device-meta">
-    <div class="meta-item">
-      <div class="meta-key">
-        Type
-      </div>
-      <div class="meta-value">
-        {{controller.device.type}}
-      </div>
-    </div>
-
-    <div class="meta-item">
-      <div class="meta-key">
-        Uuid
-      </div>
-      <div class="meta-value">
-        {{controller.device.uuid}}
-      </div>
-    </div>
-
-    <div class="meta-item">
-      <div class="meta-key">
-        Token
-      </div>
-      <div class="meta-value">
-        <md-button ng-click="controller.generateSessionToken()" class="md-primary">Generate Token</md-button>
-      </div>
-    </div>
-  </div>
-
-  <md-tabs md-dynamic-height>
-    <md-tab label="Properties">
-      <div ng-include="'/pages/device-detail-properties.html'"></div>
-    </md-tab>
-    <md-tab label="Permissions">
-      <div ng-include="'/pages/device-detail-permissions.html'"></div>
-    </md-tab>
-  </md-tabs>
 </md-content>
