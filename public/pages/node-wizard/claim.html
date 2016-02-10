@@ -1,39 +1,31 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
+<breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+  <div class="interior">
 
-      <h2 class="BluToolbar-header">
-        Claim Thing
-      </h2>
+    <h2 class="node-wizard__title">Claim Thing ({{controller.device.type}})</h2>
+
+    <div class="node-wizard__wrapper">
+      <div class="node-wizard-logo-container">
+        <img src="{{controller.device.logo}}">
+      </div>
+      <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+
+    <div class="node-wizard__body">
+
+      <p class="help-block" ng-if="controller.errorMessage">{{controller.errorMessage}}</p>
+
+      <form ng-if="!controller.loading" ng-submit="controller.iWantToClaimTheDevice()" class="node-wizard__form">
+        <md-input-container class="node-wizard__form-row">
+          <label>Name</label>
+          <input type="text" ng-model="controller.deviceName" aria-label="Name" required>
+        </md-input-container>
+
+        <md-button type="submit" class="md-primary md-raised node-wizard__button">
+          Claim
+        </md-button>
+      </form>
+
+      <da-loading loading="controller.loading"></da-loading>
     </div>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
-
-<md-content class="node-wizard">
-  <h2 class="node-wizard__title">Claim Thing ({{controller.device.type}})</h2>
-
-  <div class="node-wizard__wrapper">
-    <div class="node-wizard-logo-container">
-      <img src="{{controller.device.logo}}">
-    </div>
-    <h2 class="node-wizard__title">{{nodeType.name}}</h2>
-
-  <div class="node-wizard__body">
-
-    <p class="help-block" ng-if="controller.errorMessage">{{controller.errorMessage}}</p>
-
-    <form ng-if="!controller.loading" ng-submit="controller.iWantToClaimTheDevice()" class="node-wizard__form">
-      <md-input-container class="node-wizard__form-row">
-        <label>Name</label>
-        <input type="text" ng-model="controller.deviceName" aria-label="Name" required>
-      </md-input-container>
-
-      <md-button type="submit" class="md-primary md-raised node-wizard__button">
-        Claim
-      </md-button>
-    </form>
-
-    <da-loading loading="controller.loading"></da-loading>
   </div>
 </md-content>

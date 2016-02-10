@@ -5,6 +5,8 @@ class ManualClaimNodeController
     @user = uuid: $cookies.meshblu_auth_uuid
     @query = {}
 
+    @fragments = [{linkTo: 'material.things', label: 'All Things'}, {label: 'Claim Thing'}]
+
   claimThing: =>
     @loading = true
     @ThingService.claimThing(@query, @user, {name: @name})

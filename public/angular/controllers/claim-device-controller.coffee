@@ -12,6 +12,7 @@ class ClaimNodeController
         @deviceName = device.name
         @device = device
         @device.logo = @logoUrl @device
+        @fragments = [{linkTo: 'material.things', label: 'All Things'},{label: "Claim Thing"}]
       .catch (errorMessage) =>
         @loading = false
         @errorMessage = errorMessage

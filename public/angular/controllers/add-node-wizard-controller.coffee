@@ -29,6 +29,6 @@ class AddNodeWizardController
     @linkTo = linkTo: 'material.things', label: 'All Things'
     if @redirectToDesign
       @linkTo = linkTo: 'material.design', label: 'Designer'
-    @fragments = [@linkTo, {label: "Connect #{nodeType.name}"}]
+    @fragments = [@linkTo, {label: "Add #{nodeType.name}"}]
 
 angular.module('octobluApp').controller 'AddNodeWizardController', AddNodeWizardController
