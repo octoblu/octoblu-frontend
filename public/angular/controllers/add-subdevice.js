@@ -6,5 +6,6 @@ angular.module('octobluApp')
 
   NodeTypeService.getNodeTypeById($stateParams.nodeTypeId).then(function(nodeType){
     $scope.nodeType = nodeType;
+    $scope.fragments = [{linkTo: 'material.things', label: 'All Things'}, {label: "Add " + nodeType.name}]
   });
 });

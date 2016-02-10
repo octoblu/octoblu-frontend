@@ -1,69 +1,56 @@
-<md-toolbar class="BluToolbar">
-  <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-
-      <div class="BluToolbar-header truncate">
-        <a ui-sref="material.things" class="BluToolbar-header--link">Things</a>
-        <i class="fa fa-angle-right BluToolbar-header--icon"></i>
-        <span class="BluToolbar-header--current">Add {{nodeType.name}}</span>
-      </div>
-
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+  <div class="interior">
+    <div class="node-wizard-logo-container">
+      <img src="{{nodeType.logo}}">
     </div>
-    <div class="BluToolbar-align BluToolbar-align--right"></div>
-  </div>
-</md-toolbar>
+    <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+    <div class="node-wizard__description">
+      <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+      <a class="node-wizard_description" ng-if="nodeType.documentation" href={{nodeType.documentation}} target="_blank" >Read Documentation</a>
+    </div>
 
-<md-content>
-  <div class="node-wizard-logo-container">
-    <img src="{{nodeType.logo}}">
-  </div>
-  <h2 class="node-wizard__title">{{nodeType.name}}</h2>
-  <div class="node-wizard__description">
-    <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
-    <a class="node-wizard_description" ng-if="nodeType.documentation" href={{nodeType.documentation}} target="_blank" >Read Documentation</a>
-  </div>
+    <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
 
-  <div ng-show="nodeType.name === 'Gateblu'" class="node-wizard-choice-button-container">
-
-    <button class="BluButton node-wizard__outline--btn">
-      <a href="https://gateblu.readme.io/docs" target="_blank">Download Gateblu</a>
-    </button>
-
-    <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
-      Already Downloaded
-    </button>
-  </div>
-
-  <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
-    <md-select ng-model="newDevice.action" class="node-wizard__form-actions" required>
-      <md-option ng-value="'registerNew'">Register a new thing</md-option>
-      <md-option ng-value="'claimExisting'">Claim an existing thing</md-option>
-    </md-select>
-
-    <form ng-submit="addDevice()" class="node-wizard__form">
-      <md-input-container class="node-wizard__form-row">
-        <label>Name</label>
-        <input type="text" ng-model="newDevice.name" aria-label="Name" required>
-      </md-input-container>
-
-      <section ng-show="newDevice.action == claimExisting" ng-hide="newDevice.action !== 'claimExisting'">
-        <md-input-container class="node-wizard__form-row">
-          <label>UUID</label>
-          <input type="text" aria-label="UUID" ng-model="existingDevice.uuid">
-        </md-input-container>
-
-        <md-input-container class="node-wizard__form-row">
-          <label>Token</label>
-          <input type="password" aria-label="token" ng-model="existingDevice.token">
-        </md-input-container>
-      </section>
-
-      <p class="node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
-
-      <button class="BluButton node-wizard__connect--btn">
-        Connect {{nodeType.name}}
+      <button class="BluButton node-wizard__outline--btn">
+        <a href="https://gateblu.readme.io/docs" target="_blank">Download Gateblu</a>
       </button>
-    </form>
 
+      <button class="BluButton node-wizard__connect--btn" ng-click="downloaded = true">
+        Already Downloaded
+      </button>
+    </div>
+
+    <div ng-show="downloaded===true || nodeType.name !== 'Gateblu'" class="node-wizard__body">
+      <md-select ng-model="newDevice.action" class="node-wizard__form-actions" required aria-label="Select Action">
+        <md-option ng-value="'registerNew'">Register a new thing</md-option>
+        <md-option ng-value="'claimExisting'">Claim an existing thing</md-option>
+      </md-select>
+
+      <form ng-submit="addDevice()" class="node-wizard__form">
+        <md-input-container class="node-wizard__form-row">
+          <label>Name</label>
+          <input type="text" ng-model="newDevice.name" aria-label="Name" required>
+        </md-input-container>
+
+        <section ng-show="newDevice.action == claimExisting" ng-hide="newDevice.action !== 'claimExisting'">
+          <md-input-container class="node-wizard__form-row">
+            <label>UUID</label>
+            <input type="text" aria-label="UUID" ng-model="existingDevice.uuid">
+          </md-input-container>
+
+          <md-input-container class="node-wizard__form-row">
+            <label>Token</label>
+            <input type="password" aria-label="token" ng-model="existingDevice.token">
+          </md-input-container>
+        </section>
+
+        <p class="node-wizard__form-row" ng-if="errorMessage">{{errorMessage}}</p>
+
+        <button class="BluButton node-wizard__connect--btn">
+          Connect {{nodeType.name}}
+        </button>
+      </form>
+    </div>
   </div>
 </md-content>
