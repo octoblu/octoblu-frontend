@@ -1,6 +1,6 @@
 <breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
-<md-content class="node-wizard-container">
-  <div class="node-wizard__wrapper">
+<md-content class="interior__wrapper">
+  <div class="interior">
     <div class="node-wizard-logo-container">
       <img src="{{nodeType.logo}}">
     </div>
@@ -8,9 +8,10 @@
     <div class="node-wizard__description">
       <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
     </div>
-
-    <button class="BluButton node-wizard__connect--btn" ng-click="controller.connectThings()">
-        CONNECT {{nodeType.name}}
-    </button>
+    <div class="node-wizard__connect">
+      <button class="BluButton node-wizard__connect--btn" ng-click="controller.connectThings()">
+          CONNECT {{nodeType.name}}
+      </button>
+    </div>
   </div>
 </md-content>
