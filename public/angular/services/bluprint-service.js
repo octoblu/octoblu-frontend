@@ -42,7 +42,7 @@ angular.module('octobluApp')
   };
 
   self.getPublicBluprintsPaged = function(tags, limit, page) {
-    return $http.get(OCTOBLU_API_URL + '/api/templates/public/page', {params: {tags: tags, limit: limit, page: page}}).then(function(response){
+    return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags, pageLimit: limit, pageNumber: page}}).then(function(response){
       return self.addPropertiesToList(response.data);
     });
   };
