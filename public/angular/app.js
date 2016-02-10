@@ -365,6 +365,11 @@ angular.module('octobluApp', [
         controller: 'addChannelXenMobileController',
         templateUrl: '/pages/node-wizard/add-channel/xenmobile.html'
       })
+      .state('material.nodewizard-addchannel.clm', {
+        url: '/clm',
+        controller: 'addChannelCLMController',
+        templateUrl: '/pages/node-wizard/add-channel/clm.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
