@@ -8,7 +8,10 @@ angular.module('octobluApp')
   $scope.totalMessagesReceivedOverTime = [];
   $scope.totalMessagesSentOverTime = [];
 
+  $scope.loadingNodes = true;
+
   ProcessNodeService.getProcessNodes().then(function(processNodes){
+    $scope.loadingNodes = false;
     $scope.processNodes = processNodes;
   });
 
