@@ -24,7 +24,7 @@ class SharedBluprintsController
 
     @limitPerPage = 10
     @currentPage = 1
-    @noneLeft = false
+    @noneLeft = true
 
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
@@ -45,7 +45,7 @@ class SharedBluprintsController
     @currentPage = @currentPage + 1
     @BluprintService.getPublicBluprintsPaged(@collectionName, @limitPerPage, @currentPage)
       .then (bluprints) =>
-        @bluprints = _.union(@bluprints, bluprints)
+        @bluprints = @bluprints.concat(bluprints)
         @noneLeft = true if _.size(bluprints) < @limitPerPage
         _.each @bluprints, (bluprint) =>
           @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
@@ -64,6 +64,7 @@ class SharedBluprintsController
     @BluprintService.getPublicBluprintsPaged(@collectionName, limit, page)
       .then (bluprints) =>
         @bluprints = bluprints
+        @noneLeft = false unless _.size(bluprints) < @limitPerPage
         _.each @bluprints, (bluprint) =>
           @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
           bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
