@@ -4,7 +4,6 @@ angular.module('octobluApp')
 .controller('BluprintsController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, BluprintService, UrlService) {
 
   $scope.isLoading = true;
-  $scope.importing = true;
   $scope.refreshBluprints = function(){
     BluprintService.getAllBluprints().then(function(bluprints) {
       $scope.bluprints = bluprints;
