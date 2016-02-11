@@ -1,15 +1,14 @@
 <things-tab-bar selected-tab="material.configure" filter-model="deviceNameFilter"></things-tab-bar>
 <md-content class="interior__wrapper" autoscroll="false">
   <div class="interior">
-
+    
     <spinner size="large" loading="loadingConnectedThings"></spinner>
-
     <random-robot
       title='No Things Found for "{{deviceNameFilter}}"'
       ng-show="noThings && !loadingConnectedThings">
     </random-robot>
 
-    <div ng-repeat="category in categories">
+    <div ng-repeat="category in categories" ng-hide="loadingConnectedThings">
       <device-collection devices="connectedThingsByCategory[category]" category="category">
       </device-collection>
     </div>

@@ -17,7 +17,7 @@
 
     <spinner loading="loadingNodes" size="large"></spinner>
 
-    <md-list class="process-row">
+    <md-list class="process-row" ng-hide="loadingNodes">
       <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending | filter: processSearch">
         <md-item-content>
           <div class="md-tile-content process-row-space">

@@ -19,7 +19,7 @@
 
       <spinner size="large" loading="isLoading"></spinner>
 
-      <ul class="Bluprint-list">
+      <ul class="Bluprint-list" ng-hide="isLoading">
         <li
           ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
           class="Bluprint-listItem">
