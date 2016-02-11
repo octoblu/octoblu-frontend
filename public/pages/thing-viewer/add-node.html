@@ -5,6 +5,7 @@
       Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>
     </p>
 
+    <spinner loading="loadingThings" size="large"></spinner>
 
     <random-robot title='No Things Found for "{{nodeNameSearch}}"' ng-show="noDevices && !loadingThings"></random-robot>
       <device-collection ng-if="showAllThings" devices="devices">
@@ -14,7 +15,6 @@
       </device-collection>
     </div>
 
-    <da-loading loading="loadingThings"></da-loading>
 
   </div>
 </md-content>

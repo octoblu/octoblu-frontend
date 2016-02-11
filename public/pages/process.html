@@ -14,8 +14,10 @@
         <md-button ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
       </div>
     </md-toolbar>
+
+    <spinner loading="loadingNodes" size="large"></spinner>
+
     <md-list class="process-row">
-      <da-loading loading="loadingNodes"></da-loading>
       <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending | filter: processSearch">
         <md-item-content>
           <div class="md-tile-content process-row-space">
