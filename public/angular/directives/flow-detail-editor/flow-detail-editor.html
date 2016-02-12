@@ -11,8 +11,12 @@
     <div class="Sidebar-section-body" ng-hide="hideInfo">
       <md-input-container>
         <label>Name</label>
+        <md-button class="Sidebar-pane--delete">
+          <i class="fa fa-trash fa-lg" ng-click="controller.deleteFlow(flow)"></i>
+        </md-button>
         <input ng-model="flow.name">
       </md-input-container>
+
 
       <md-input-container>
         <label>Description</label>
@@ -28,16 +32,6 @@
       aria-label="Create Bluprint">
       Create Bluprint
     </button>
-
-    <button
-      ng-click="controller.deleteFlow(flow)"
-      class="Sidebar-pane-thing--delete BluButton"
-      data-action="delete-flow"
-      title="Delete Flow"
-      aria-label="Delete Flow">
-      Delete
-    </button>
-
   </div>
 
   <md-divider class="Sidebar-section-divider"></md-divider>
@@ -45,13 +39,13 @@
   <div class="Sidebar-section Sidebar-section-nodes">
     <div class="Sidebar-section-header">
       <h5 class="Sidebar-section-title">Things In Flow</h5>
-      <button ng-click="showNodes = !showNodes" ng-class="{'Sidebar-section-toggle-btn': showNodes}" class="Sidebar-button" aria-label="Show/Hide Node List">
-        <span ng-show="showNodes">Hide</span>
-        <span ng-show="!showNodes">Show</span>
+      <button ng-click="showNodes = !showNodes" ng-class="{'Sidebar-section-toggle-btn': !showNodes}" class="Sidebar-button" aria-label="Show/Hide Node List">
+        <span ng-show="!showNodes">Hide</span>
+        <span ng-show="showNodes">Show</span>
       </button>
     </div>
 
-    <div ng-show="showNodes" class="Sidebar-section-body">
+    <div ng-show="!showNodes" class="Sidebar-section-body">
       <div ng-show="!flow.nodes.length" class="Sidebar-alert">
         <random-robot class="Sidebar-no-nodes-in-flow" title="You have no Things in your flow."></random-robot>
       </div>
