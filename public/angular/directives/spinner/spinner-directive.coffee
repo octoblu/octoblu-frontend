@@ -5,6 +5,7 @@ angular.module('octobluApp')
     templateUrl: '/angular/directives/spinner/spinner.html'
     replace: true
     scope : {
-      loading : '='
+      loading : '=',
+      size: '@'
     }
   }

@@ -1,6 +1,6 @@
 <form class="node-wizard__form" ng-submit="activate()">
   <div class="form-group" ng-class="{'has-error': errorMessage}">
-    <label for="serverUrl" class="control-label">Hostname:Port</label>
+    <label for="serverUrl" class="control-label">http/https://Hostname:Port</label>
     <input type="text" ng-model="serverUrl" class="form-control input-lg" id="serverUrl" required>
     <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
   </div>

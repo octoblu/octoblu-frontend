@@ -1,18 +1,18 @@
 <div class="node-wizard">
   <ul ng-if="!device" class="fa-ul">
     <li class="Gateblu-add-device--step">
-      <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': registering}"></i>
-      <i class="fa fa-li fa-lg" ng-class="{'fa-check': !registering}"></i>
+      <spinner loading="registering" size="small"></spinner>
+      <i class="fa fa-check fa-lg" ng-if="!registering"></i>
       Registering Device...
     </li>
     <li class="Gateblu-add-device--step">
-      <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': updating}"></i>
-      <i class="fa fa-li fa-lg" ng-class="{'fa-check': !updating}"></i>
+      <spinner loading="updating" size="small"></spinner>
+      <i class="fa fa-check fa-lg" ng-if="!updating"></i>
       Updating Your Gateblu...
     </li>
     <li class="Gateblu-add-device--step">
-      <i class="fa fa-li fa-lg" ng-class="{'fa-spinner fa-spin': loading}"></i>
-      <i class="fa fa-li fa-lg" ng-class="{'fa-check': !loading}"></i>
+      <spinner loading="loading" size="small"></spinner>
+      <i class="fa fa-check fa-lg" ng-if="!loading"></i>
       Loading Device Options...
     </li>
   </ul>

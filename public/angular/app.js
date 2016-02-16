@@ -541,7 +541,7 @@ angular.module('octobluApp', [
         unsecured: true
       })
       .state('material.oauth', {
-        url: '/oauth/:uuid?redirect&response_type&redirect_uri',
+        url: '/oauth/:uuid?redirect&response_type&redirect_uri&state',
         templateUrl : '/pages/oauth.html',
         controller: 'OAuthProviderController'
       })

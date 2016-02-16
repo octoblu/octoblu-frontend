@@ -7,15 +7,57 @@
     <md-toolbar class="process-row-header">
       <div class="process-row-headerLabel">
         <div class="process-row-logo"></div>
-        <md-button ng-click="setSortProcess('name')" aria-label="Sort by Name" class="process-row-text" >Name</md-button>
-        <md-button ng-click="setSortProcess('totalMessagesSent')" aria-label="Sort by Message Sent" class="process-row-text" >Sent</md-button>
-        <md-button ng-click="setSortProcess('totalMessagesReceived')" aria-label="Sort by Message Received" class="process-row-text" >Received</md-button>
-        <md-button ng-click="setSortProcess('onlineSince')" aria-label="Sort by Online Since" class="process-row-text" >Uptime</md-button>
-        <md-button ng-click="setSortProcess('online')" aria-label="Sort by Online" class="process-row-text" >Actions</md-button>
+        <md-button
+          ng-click="setSortProcess('name')"
+          aria-label="Sort by Name"
+          class="process-row-text">Name
+            <div ng-show="sortProcesses == 'name'" class="process-row-sortIcon">
+              <i ng-show="sortAscending" class="fa fa-sort-asc"></i>
+              <i ng-hide="sortAscending" class="fa fa-sort-desc"></i>
+            </div>
+        </md-button>
+        <md-button
+          ng-click="setSortProcess('totalMessagesSent')"
+          aria-label="Sort by Message Sent"
+          class="process-row-text">Sent
+            <div ng-show="sortProcesses == 'totalMessagesSent'" class="process-row-sortIcon">
+              <i ng-show="sortAscending" class="fa fa-sort-asc"></i>
+              <i ng-hide="sortAscending" class="fa fa-sort-desc"></i>
+            </div>
+        </md-button>
+        <md-button
+          ng-click="setSortProcess('totalMessagesReceived')"
+          aria-label="Sort by Message Received"
+          class="process-row-text">Received
+            <div ng-show="sortProcesses == 'totalMessagesReceived'" class="process-row-sortIcon">
+              <i ng-show="sortAscending" class="fa fa-sort-asc"></i>
+              <i ng-hide="sortAscending" class="fa fa-sort-desc"></i>
+            </div>
+        </md-button>
+        <md-button
+          ng-click="setSortProcess('onlineSince')"
+          aria-label="Sort by Online Since"
+          class="process-row-text">Uptime
+            <div ng-show="sortProcesses == 'onlineSince'" class="process-row-sortIcon">
+              <i ng-show="sortAscending" class="fa fa-sort-asc"></i>
+              <i ng-hide="sortAscending" class="fa fa-sort-desc"></i>
+            </div>
+        </md-button>
+        <md-button
+          ng-click="setSortProcess('online')"
+          aria-label="Sort by Online"
+          class="process-row-text">Actions
+            <div ng-show="sortProcesses == 'online'" class="process-row-sortIcon">
+              <i ng-show="sortAscending" class="fa fa-sort-asc"></i>
+              <i ng-hide="sortAscending" class="fa fa-sort-desc"></i>
+            </div>
+        </md-button>
       </div>
     </md-toolbar>
-    <md-list class="process-row">
-      <da-loading loading="loadingNodes"></da-loading>
+
+    <spinner loading="loadingNodes" size="large"></spinner>
+
+    <md-list class="process-row" ng-hide="loadingNodes">
       <md-item ng-repeat="node in processNodes | orderBy: sortProcesses:!sortAscending | filter: processSearch">
         <md-item-content>
           <div class="md-tile-content process-row-space">
