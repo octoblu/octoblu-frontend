@@ -1,0 +1,12 @@
+<md-input-container>
+  <label for="name">Name</label>
+  <input  id="name" type="text" ng-model="flowNode.name">
+</md-input-container>
+<md-input-container>
+  <label for="url">Callback Url</label>
+  <input  id="url" ng-model="flowNode.url" placeholder="{{msg.callbackUrl}}" required>
+</md-input-container>
+<md-input-container>
+  <label for="responseText">Response Text</label>
+  <input  id="responseText" ng-model="flowNode.responseText" placeholder="Success!" required>
+</md-input-container>
