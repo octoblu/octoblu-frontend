@@ -27,6 +27,7 @@ class SharedBluprintsController
     @noneLeft = true
 
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
+    @watchChange(@searchPublic)
 
 
   refreshBluprints: =>
@@ -37,6 +38,20 @@ class SharedBluprintsController
           @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
           bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
         @scope.isLoading = false;
+
+  searchPublic: (name)=>
+    @BluprintService.getPublicBluprintsNameFilter(@collectionName, name)
+      .then (bluprints) =>
+        @bluprints = bluprints
+        _.each @bluprints, (bluprint) =>
+          @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
+          bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
+        @scope.isLoading = false;
+
+  watchChange: (search) =>
+    self = @
+    @scope.$watch 'bluprintNameFilter', (oldVal, newVal) ->
+      search(self.scope.bluprintNameFilter)
 
   refreshLimit: =>
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
