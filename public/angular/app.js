@@ -500,6 +500,11 @@ angular.module('octobluApp', [
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
       })
+      .state('material.signout', {
+        url: '/signout',
+        templateUrl: '/pages/signout.html',
+        controller: 'SignoutController'
+      })
       .state('terms', {
         url: '/terms',
         templateUrl: '/pages/terms.html',

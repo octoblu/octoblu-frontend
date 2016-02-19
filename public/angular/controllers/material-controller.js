@@ -6,10 +6,4 @@ angular.module('octobluApp')
     $scope.isCWCEnabled = user.userDevice.workspaceCloudUser
   })
 
-  $scope.logout = function(){
-    console.log("logging out...");
-    // AuthService.logout().then(function () {
-    //   $state.go('login');
-    // });
-  };
 });
