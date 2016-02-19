@@ -51,7 +51,7 @@ class SharedBluprintsController
   watchChange: (search, refresh) =>
     self = @
     @scope.$watch 'bluprintNameFilter', (oldVal, newVal) ->
-      search(self.scope.bluprintNameFilter) if oldVal != newVal unless self.scope.bluprintNameFilter == null
+      search(self.scope.bluprintNameFilter) unless self.scope.bluprintNameFilter == null
       refresh(10, 1) if self.scope.bluprintNameFilter == null
 
   refreshLimit: =>
