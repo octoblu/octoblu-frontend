@@ -370,6 +370,14 @@ angular.module('octobluApp', [
         controller: 'addChannelCLMController',
         templateUrl: '/pages/node-wizard/add-channel/clm.html'
       })
+      .state('material.nodewizard-addchannel.pagerduty', {
+        url: '/pagerduty',
+        params: {
+          designer: null
+        },
+        controller: 'addChannelPagerdutyController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
