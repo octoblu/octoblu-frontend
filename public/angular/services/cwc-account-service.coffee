@@ -31,7 +31,7 @@ class CWCAccountService
     return unless token?
     url = "#{@CWC_AUTHENTICATOR_URL}/devices"
     options =
-       callbackUrl: "#{@OCTOBLU_API_URL}/api/session?callbackUrl=%2F"
+       callbackUrl: "#{@OCTOBLU_API_URL}/api/session?callbackUrl=https%3A%2F%2Fstore.octoblu.com%2Fcwc"
        token: token
     @http.post url, options
 

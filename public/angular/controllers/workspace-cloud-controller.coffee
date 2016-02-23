@@ -5,7 +5,6 @@ class WorkspaceCloudController
     @scope = $scope
 
     @cookies.workspaceCloud = true
-    callbackUrl = 'https://store.octoblu.com/cwc'
-    @state.go 'login', { callbackUrl: callbackUrl }
+    @state.go 'login'
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController
