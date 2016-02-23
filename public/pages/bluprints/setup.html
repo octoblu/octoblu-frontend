@@ -1,0 +1,17 @@
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+
+  <div class="interior">
+    <h2>Bluprint setup</h2>
+
+    <hr>
+    <div ng-repeat="node in flowNodes">
+      <h3>{{node.type}} - {{node.name}}</h3>
+      <!-- <div ng-include="node.formTemplatePath"></div> -->
+      <flow-node-editor
+        flow-id="007"
+        flow-node="node">
+      </flow-node-editor>
+    </div>
+  </div>
+</md-content>

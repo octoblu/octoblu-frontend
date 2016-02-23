@@ -4,8 +4,8 @@
   </a>
 
   <nav class="TopBar-nav TopBar-nav--primary">
-    <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.design">Design</a>
     <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.things">Things</a>
+    <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.design">Design</a>
     <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.bluprints">Bluprints</a>
   </nav>
 
@@ -13,7 +13,7 @@
     <span ng-show="showUserNav">
       <a class="TopBar-link" ui-sref="material.profile">Profile</a>
       <a class="TopBar-link" ui-sref="material.guides">Guides</a>
-      <span class="TopBar-link" ng-click="controller.logout()">Sign Out</span>
+      <span class="TopBar-link" ui-sref="material.signout">Sign Out</span>
     </span>
 
     <span aria-label="Open settings menu" class="TopBar-link" ng-click="showUserNav = !showUserNav">

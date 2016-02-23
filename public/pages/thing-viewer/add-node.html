@@ -1,6 +1,10 @@
 <things-tab-bar selected-tab="material.things" filter-model="nodeNameSearch"></things-tab-bar>
 <md-content class="interior__wrapper">
+
   <div class="interior">
+    <spinner loading="loadingThings" size="large"></spinner>
+
+  <div ng-hide="loadingThings">
     <p class="BluAlert">
       Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>
     </p>
@@ -13,8 +17,8 @@
       <device-collection devices="devices" category="category">
       </device-collection>
     </div>
+  </div>
 
-    <da-loading loading="loadingThings"></da-loading>
 
   </div>
 </md-content>

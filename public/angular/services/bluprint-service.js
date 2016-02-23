@@ -47,6 +47,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getPublicBluprintsNameFilter = function(tags, name) {
+    return $http.get(OCTOBLU_API_URL + '/api/templates/public', {params: {tags: tags, nameFilter: name}}).then(function(response){
+      return self.addPropertiesToList(response.data);
+    });
+  };
+
   self.getAllBluprints = function() {
     return $http.get(OCTOBLU_API_URL + '/api/templates').then(function(response) {
       return self.addPropertiesToList(response.data);

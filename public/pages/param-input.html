@@ -8,7 +8,9 @@
             required="{{paramDefinition.required}}">
         </md-input-container>
         <div ng-if="paramDefinition.schema">
-            <schema-editor schema="paramDefinition.schema" model="params[paramDefinition.name]" allow-json-edit="true" additional-properties="true"></schema-editor>
+            <!-- <pre>{{fakeSchema | json}}</pre> -->jso
+            <form sf-model="params[paramDefinition.name]" sf-form="defaultSchemaForm" sf-schema="paramDefinition.schema"></form>
+            <!-- <schema-editor schema="paramDefinition.schema" model="params[paramDefinition.name]" allow-json-edit="true" additional-properties="true"></schema-editor> -->
         </div>
     </div>
 </div>

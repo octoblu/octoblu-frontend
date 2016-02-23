@@ -2,7 +2,7 @@ angular.module('octobluApp')
   .controller('ParamInputController', function(OCTOBLU_API_URL, $scope) {
     'use strict';
     var copyParamsToNgModel, instantiateParams;
-
+    $scope.defaultSchemaForm = ['*'];    
     $scope.ngModel = $scope.ngModel || {};
     var defaultSchema = {
       type: "object",

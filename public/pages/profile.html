@@ -39,12 +39,15 @@
           <h2>Authorized Sessions</h2>
         </div>
       </md-toolbar>
+
+      <spinner loading="loadingTokens" size="large"></spinner>
+
       <div class="profile-cardContent">
         <md-content class="sessions-list">
-          <div ng-if="!hasTokens()" class="text-center">
+          <div ng-if="!hasTokens() && !loadingTokens" class="text-center">
             <h1 class="text-center">You have no authorized sessions.</h1>
           </div>
-          <md-list>
+          <md-list ng-if="hasTokens()">
             <md-item ng-repeat="(tokenHash, tokenData) in tokens">
               <md-item-content>
                 <div class="profile-card-tokens">

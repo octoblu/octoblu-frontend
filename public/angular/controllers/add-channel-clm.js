@@ -7,7 +7,7 @@ angular.module('octobluApp')
 
   channelPromise = channelService.getById(nodeType.channelid);
   getPath = function(){
-    return OCTOBLU_API_URL + '/api/clm/auth?servername=' + $scope.servername + '&apiKey=' + $scope.api-key;
+    return OCTOBLU_API_URL + '/api/clm/auth?servername=' + $scope.servername + '&apiKey=' + encodeURIComponent($scope.apikey) + '&apiSecret=' + encodeURIComponent($scope.apiSecret);
   };
 
   $scope.activate = function(){

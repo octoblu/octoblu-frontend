@@ -137,6 +137,10 @@ md-sidenav.md-sidenav-left {
         background-color: #CC2200;
         color: #FFF;
       }
+
+      md-toolbar:not(.md-menu-toolbar) &:not(.md-raised) {
+        color: #FFF;
+      }
     }
 
     &.btn-playing {
@@ -146,6 +150,11 @@ md-sidenav.md-sidenav-left {
       &:not([disabled]):hover,
       &:not([disabled]):focus {
         background-color: #00AA00;
+        color: #FFF;
+      }
+
+
+      md-toolbar:not(.md-menu-toolbar) &:not(.md-raised) {
         color: #FFF;
       }
     }
@@ -181,6 +190,13 @@ md-sidenav.md-sidenav-left {
       animation-duration: 2s;
       animation-iteration-count: infinite;
     }
+  }
+}
+
+.spin-button {
+  .spinner-container {
+    line-height: 25px;
+    right: 5px;
   }
 }
 

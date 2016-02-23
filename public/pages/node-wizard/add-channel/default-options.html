@@ -1,7 +1,8 @@
-<da-loading loading="isLoadingOptions"></da-loading>
+<spinner loading="isLoadingOptions"></spinner>
 <form ng-hide="isLoadingOptions" class="node-wizard__body" ng-submit="saveDefaultParams()">
 	<h4>Channel Configuration</h4>
   <param-input ng-model="channelDefaultParams" param-definitions="channel.defaultParams"></param-input>
+	<param-input ng-model="channelDefaultHeaderParams" param-definitions="channel.defaultHeaderParams"></param-input>
   <p ng-if="errorMessage">{{errorMessage}}</p>
   <button class="BluButton node-wizard__connect--btn">
       Save Configuration

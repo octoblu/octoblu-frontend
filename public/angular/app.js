@@ -370,6 +370,14 @@ angular.module('octobluApp', [
         controller: 'addChannelCLMController',
         templateUrl: '/pages/node-wizard/add-channel/clm.html'
       })
+      .state('material.nodewizard-addchannel.pagerduty', {
+        url: '/pagerduty',
+        params: {
+          designer: null
+        },
+        controller: 'addChannelPagerdutyController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
@@ -470,6 +478,15 @@ angular.module('octobluApp', [
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
       })
+      .state('material.bluprintSetup', {
+        url: '/bluprints/setup/:bluprintId',
+        templateUrl: '/pages/bluprints/setup.html',
+        params: {
+          editMode : null
+        },
+        controller: 'BluprintSetupController',
+        controllerAs: 'controller'
+      })
       .state('material.bluprintImport', {
         url: '/bluprints/import/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-import.html',
@@ -499,6 +516,11 @@ angular.module('octobluApp', [
         templateUrl: '/pages/discover.html',
         controller: 'SharedBluprintsController',
         controllerAs: 'controller'
+      })
+      .state('material.signout', {
+        url: '/signout',
+        templateUrl: '/pages/signout.html',
+        controller: 'SignoutController'
       })
       .state('terms', {
         url: '/terms',
@@ -541,7 +563,7 @@ angular.module('octobluApp', [
         unsecured: true
       })
       .state('material.oauth', {
-        url: '/oauth/:uuid?redirect&response_type&redirect_uri',
+        url: '/oauth/:uuid?redirect&response_type&redirect_uri&state',
         templateUrl : '/pages/oauth.html',
         controller: 'OAuthProviderController'
       })
