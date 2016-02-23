@@ -10,7 +10,6 @@ angular.module('octobluApp')
   .constant 'OAUTH_PROVIDER', 'https://oauth-staging.octoblu.com'
   .constant 'MESHBLU_HOST', 'meshblu-staging.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
-  .constant 'PROFILE_URI', '#'
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', 'https://staging-api.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
