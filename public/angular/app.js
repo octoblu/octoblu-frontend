@@ -478,6 +478,15 @@ angular.module('octobluApp', [
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
       })
+      .state('material.bluprintSetup', {
+        url: '/bluprints/setup/:bluprintId',
+        templateUrl: '/pages/bluprints/setup.html',
+        params: {
+          editMode : null
+        },
+        controller: 'BluprintSetupController',
+        controllerAs: 'controller'
+      })
       .state('material.bluprintImport', {
         url: '/bluprints/import/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-import.html',
