@@ -5,5 +5,6 @@ class WorkspaceCloudController
     @scope = $scope
 
     @cookies.workspaceCloud = true
+    document.location = 'https://store.octoblu.com/cwc'
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController
