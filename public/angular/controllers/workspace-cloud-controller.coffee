@@ -1,10 +1,11 @@
 class WorkspaceCloudController
-  constructor: ($scope, $cookies, $location) ->
+  constructor: ($scope, $cookies, $state) ->
     @cookies = $cookies
-    @location = $location
+    @state = $state
     @scope = $scope
 
     @cookies.workspaceCloud = true
-    document.location = 'https://store.octoblu.com/cwc'
+    callbackUrl = 'https://store.octoblu.com/cwc'
+    @state.go 'login', { callbackUrl: callbackUrl }
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController
