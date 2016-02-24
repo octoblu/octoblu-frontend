@@ -7,6 +7,6 @@ class BluprintsTabBarController
 
     @AuthService.getCurrentUser()
       .then (user)=>
-        @scope.APP_STORE_URL = "#{APP_STORE_URL}context/cwc" if user.userDevice.workspaceCloudUser
+        @scope.APP_STORE_URL = "#{APP_STORE_URL}cwc" if user.userDevice.workspaceCloudUser
 
 angular.module('octobluApp').controller 'BluprintsTabBarController', BluprintsTabBarController
