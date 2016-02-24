@@ -20,3 +20,4 @@ angular.module('octobluApp')
   .constant 'CWC_AUTHENTICATOR_URL', "https://#{window.location.hostname}:3006"
   .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
   .constant "APP_STORE_URL", "http://localhost:6040/"
+  .constant "CWC_APP_STORE_URL", "http://localhost:6041/"
