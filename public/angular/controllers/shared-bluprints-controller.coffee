@@ -43,6 +43,7 @@ class SharedBluprintsController
     @BluprintService.getPublicBluprintsNameFilter(@collectionName, name)
       .then (bluprints) =>
         @bluprints = bluprints
+        @noneLeft = true
         _.each @bluprints, (bluprint) =>
           @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
           bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
