@@ -376,7 +376,7 @@ angular.module('octobluApp', [
           designer: null
         },
         controller: 'addChannelPagerdutyController',
-        templateUrl: '/pages/node-wizard/add-channel/apikey.html'
+        templateUrl: '/pages/node-wizard/add-channel/pagerduty.html'
       })
       .state('material.octos',{
         url: '/octos',

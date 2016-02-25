@@ -37,6 +37,17 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 };
 
+this.savePagerdutyApi = function (channelId, token, callback) {
+  $http.post(OCTOBLU_API_URL + '/api/channel/pagerduty/channel/' + channelId, {token: token})
+  .success(function (data) {
+    callback(data);
+  })
+  .error(function (data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
+};
+
 this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/google-places/channel/' + channelid, { apikey: apikey })
   .success(function (data) {
