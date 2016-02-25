@@ -370,6 +370,14 @@ angular.module('octobluApp', [
         controller: 'addChannelCLMController',
         templateUrl: '/pages/node-wizard/add-channel/clm.html'
       })
+      .state('material.nodewizard-addchannel.pagerduty', {
+        url: '/pagerduty',
+        params: {
+          designer: null
+        },
+        controller: 'addChannelPagerdutyController',
+        templateUrl: '/pages/node-wizard/add-channel/pagerduty.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
@@ -468,6 +476,15 @@ angular.module('octobluApp', [
           createMode: null
         },
         controller: 'BluprintDetailController',
+        controllerAs: 'controller'
+      })
+      .state('material.bluprintSetup', {
+        url: '/bluprints/setup/:bluprintId',
+        templateUrl: '/pages/bluprints/setup.html',
+        params: {
+          editMode : null
+        },
+        controller: 'BluprintSetupController',
         controllerAs: 'controller'
       })
       .state('material.bluprintImport', {

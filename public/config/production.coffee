@@ -10,7 +10,6 @@ angular.module('octobluApp')
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
   .constant 'MESHBLU_HOST', 'meshblu.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
-  .constant 'PROFILE_URI', '#'
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', 'https://app.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
@@ -20,4 +19,5 @@ angular.module('octobluApp')
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.octoblu.com"
   .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
-  .constant "APP_STORE_URL", "https://store.octoblu.com"
+  .constant "APP_STORE_URL", "https://store.octoblu.com/"
+  .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com/"

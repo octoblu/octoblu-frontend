@@ -23,13 +23,14 @@ angular.module('octobluApp')
     'witai'                  : 'material.nodewizard-addchannel.witai',
     'wink'                   : 'material.nodewizard-addchannel.wink',
 		'xenmobile'							 : 'material.nodewizard-addchannel.xenmobile',
-		'clm'										 : 'material.nodewizard-addchannel.clm'
+		'clm'										 : 'material.nodewizard-addchannel.clm',
+		'pagerduty'							 : 'material.nodewizard-addchannel.pagerduty'
   };
 
 	$scope.isLoadingOptions = true;
 
   $scope.channelDefaultParams = {};
-
+  $scope.channelDefaultHeaderParams = {};
   $scope.saveDefaultParams = function(){
     AuthService.getCurrentUser().then(function(user){
       userService.saveConnection(
@@ -41,7 +42,8 @@ angular.module('octobluApp')
         function () {
           $scope.goToNextStep();
         },
-        $scope.channelDefaultParams);
+        $scope.channelDefaultParams,
+				$scope.channelDefaultHeaderParams);
     });
   };
 
@@ -84,6 +86,7 @@ angular.module('octobluApp')
   			.then(function(channel){
           $scope.channel = channel;
           _.extend($scope.channelDefaultParams, convertParamsToObject(channel.defaultParams));
+					_.extend($scope.channelDefaultHeaderParams, convertParamsToObject(channel.defaultHeaderParams));
   				if(_.isEmpty(channel.defaultParams)){
             if(!_.isEmpty($scope.channelDefaultParams)){
               $scope.saveDefaultParams();

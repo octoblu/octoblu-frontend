@@ -50,10 +50,10 @@ class SharedBluprintsController
         @scope.isLoading = false;
 
   watchChange: (search, refresh) =>
-    self = @
-    @scope.$watch 'bluprintNameFilter', (oldVal, newVal) ->
-      search(self.scope.bluprintNameFilter) unless self.scope.bluprintNameFilter.length == 0
-      refresh(10, 1) if self.scope.bluprintNameFilter.length == 0
+    @scope.$watch 'bluprintNameFilter', (oldVal, newVal) =>
+      @scope.bluprintNameFilter = @scope.bluprintNameFilter || '';
+      search(@scope.bluprintNameFilter) unless @scope.bluprintNameFilter.length == 0
+      refresh(10, 1) if @scope.bluprintNameFilter.length == 0
 
   refreshLimit: =>
     @refreshBluprintsPaged(@limitPerPage,@currentPage)

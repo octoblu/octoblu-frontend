@@ -37,6 +37,17 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 };
 
+this.savePagerdutyApi = function (channelId, token, callback) {
+  $http.post(OCTOBLU_API_URL + '/api/channel/pagerduty/channel/' + channelId, {token: token})
+  .success(function (data) {
+    callback(data);
+  })
+  .error(function (data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
+};
+
 this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/google-places/channel/' + channelid, { apikey: apikey })
   .success(function (data) {
@@ -84,9 +95,9 @@ this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey,
   });
 };
 
-this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
+this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams, defaultHeaderParams) {
   $http.put(OCTOBLU_API_URL + '/api/user/' + uuid+ '/channel/' + channelid,
-  	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams })
+  	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams, defaultHeaderParams: defaultHeaderParams})
   .success(function (data) {
     callback(data);
   })

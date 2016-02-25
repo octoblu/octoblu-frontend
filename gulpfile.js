@@ -49,7 +49,7 @@ gulp.task('coffee:clean', function(){
     .pipe(rimraf())
 })
 
-gulp.task('coffee:compile', function(){
+gulp.task('coffee:compile', ['coffee:clean'], function(){
   var environment = process.env.NODE_ENV || 'development';
   var configFile = "./public/config/" + environment + ".coffee"
 
@@ -64,16 +64,16 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
   return gulp.src(['./public/angular/app.js', './public/angular/**/*.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-      .pipe(concat('application.js'))
+    .pipe(concat('application.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
 gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
 
-gulp.task('webserver', ['default', 'static']);
+gulp.task('webserver', ['static']);
 
-gulp.task('static', function(){
+gulp.task('static', ['default'], function(){
 
   var port = process.env.OCTOBLU_FRONTEND_PORT || 8080;
   process.env.PORT = port;
@@ -95,9 +95,21 @@ gulp.task('static', function(){
   }));
 });
 
-gulp.task('watch', ['default', 'static'], function() {
-  gulp.watch(['./bower.json'], ['bower']);
-  gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
-  gulp.watch(['./public/angular/**/*.js', './public/angular/*.js'], ['javascript:concat']);
-  gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], ['coffee:clean', 'coffee:compile']);
+var onChange = function(name) {
+  return function(event) {
+    console.log(name + ' : ' + event.path + ' was ' + event.type);
+  }
+}
+
+var watchConfig = { interval: 3000, usePoll: true }
+
+gulp.task('watch', ['static'], function() {
+  gulp.watch(['./bower.json'], watchConfig, ['bower'])
+    .on('change', onChange('bower'));
+  gulp.watch(['./assets/less/**/*.less'], watchConfig, ['less:compile'])
+    .on('change', onChange('less'));
+  gulp.watch(['./public/angular/!(compiled)/**/*.js', './public/angular/*.js'], watchConfig, ['javascript:concat'])
+    .on('change', onChange('concat'));
+  gulp.watch(['./public/config/*.coffee','./public/angular/**/*.coffee', './public/angular/*.coffee'], watchConfig, ['coffee:compile', 'javascript:concat'])
+    .on('change', onChange('coffee'));
 });
