@@ -61,6 +61,24 @@ angular.module 'octobluApp'
       category: 'Docs'
     },
     {
+      title: 'Control Panel'
+      link: 'https://control.octoblu.com'
+      summary: 'Drag and Drop dashboard to control and display Octoblu messages!'
+      category: 'Octo-Sites'
+    },
+    {
+      title: 'Camera'
+      link: 'https://camera.octoblu.com'
+      summary: 'Use webcam through a web browser with Octoblu.'
+      category: 'Octo-Sites'
+    },
+    {
+      title: 'Kiosk'
+      link: 'https://kiosk.octoblu.com'
+      summary: 'A webpage that can be populated from Octoblu messages.'
+      category: 'Octo-Sites'
+    },
+    {
       title: 'Octoblu Blog'
       link: 'https://www.citrix.com/blogs/product/octoblu-2/'
       summary: 'Stay up-to-date with Octoblu.'
@@ -70,23 +88,23 @@ angular.module 'octobluApp'
       title: 'Blu - iOS'
       link: 'https://itunes.apple.com/us/app/blu/id938900017?mt=8'
       summary: 'Blu for iOS provides a dead simple way for Octoblu users to trigger flows created in the Octoblu designer. With a simple click of a button, you can do just about anything.'
-      category: 'Links'
+      category: 'Mobile Apps'
     },
     {
       title: 'Blu - Android'
       link: 'https://play.google.com/store/apps/details?id=com.octoblu.blu'
       summary: 'Blu for Android provides a dead simple way for Octoblu users to trigger flows created in the Octoblu designer. With a simple click of a button, you can do just about anything.'
-      category: 'Links'
+      category: 'Mobile Apps'
     },
     {
       title: 'Contact via Chat'
       link: 'https://gitter.im/octoblu/help'
       summary: 'Chat with the Octoblu team.'
-      category: 'Links'
+      category: 'Support'
     },
     {
       title: 'Status'
       link: 'http://status.octoblu.com/'
       summary: 'View the current status of the designer.'
-      category: 'Links'
+      category: 'Support'
     }]
