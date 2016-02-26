@@ -5,11 +5,11 @@
     <h2>Bluprint setup</h2>
 
     <hr>
-    <div ng-repeat="node in flowNodes">
+    <div ng-repeat="node in flow.nodes">
       <h3>{{node.type}} - {{node.name}}</h3>
       <!-- <div ng-include="node.formTemplatePath"></div> -->
       <flow-node-editor
-        flow-id="007"
+        flow-id="flow.flowId"
         flow-node="node">
       </flow-node-editor>
     </div>

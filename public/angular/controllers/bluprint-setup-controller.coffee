@@ -8,7 +8,7 @@ class BluprintSetupController
     @stateParams = $stateParams
     @BluprintService = BluprintService
 
-    @refreshBluprint()
+    @import()
 
   refreshBluprint: =>
     @BluprintService.getBluprint(@stateParams.bluprintId)
@@ -21,18 +21,13 @@ class BluprintSetupController
         console.log 'Bluprint', bluprint
         console.log 'Bluprint - Flow - Nodes', @scope.flowNodes
 
-        @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
-        if(@state.current.name == 'material.bluprintDetail')
-          @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
-        @scope.fragments = [ @linkTo, {label: bluprint.name}]
-
   import: =>
     @scope.importing = true
     @BluprintService.importBluprint(@stateParams.bluprintId).
       then (flow) =>
-        _.delay ( =>
-          @state.go('material.flow', {flowId: flow.flowId})
-        ), 1000
+        @scope.flow = flow
+        @scope.fragments = [{label: "Setup #{flow.name}"}]
+        console.log @scope.flow
 
 
 angular.module('octobluApp').controller 'BluprintSetupController', BluprintSetupController
