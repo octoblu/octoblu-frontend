@@ -34,7 +34,7 @@
 
     <div class="Bluprint-list" ng-hide="isLoading">
       <div
-        ng-repeat="bluprint in controller.bluprints"
+        ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod)"
         class="Bluprint-listItem"
         ng-include="'/pages/bluprints/shared-bluprint-item.html'">
       </div>
