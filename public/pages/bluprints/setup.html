@@ -9,9 +9,10 @@
       <h3>{{node.type}} - {{node.name}}</h3>
       <!-- <div ng-include="node.formTemplatePath"></div> -->
       <flow-node-editor
-        flow-id="flow.flowId"
+        flow="flow"
         flow-node="node">
       </flow-node-editor>
     </div>
   </div>
+  <a class="BluButton BluButton--save" ui-sref="material.flow({flowId: flow.flowId})">CHECK OUT YO FLOW DAWG!!!!!!</a>
 </md-content>

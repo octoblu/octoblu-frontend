@@ -29,12 +29,16 @@ angular.module('octobluApp')
   };
 
   self.saveFlow = function(flow) {
+    console.log("saving flow...", flow);
     var deploymentUuid = UUIDService.v1();
     flow = flow || activeFlow;
+    console.log(flow);
     if(!flow) return;
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
     flow.hash = self.hashFlow(flow);
+
+    console.log("about to hit up url...", url);
 
     var request = $http({
       url: url,
