@@ -28,12 +28,9 @@ angular.module('octobluApp')
 
 
   $scope.deleteNode = function(flowNode, flow){
-    FlowService.setActiveFlow(flow);
-    console.log("Flow node", flowNode);
     flow.selectedFlowNode = flowNode
     FlowEditorService.deleteSelection(flow);
-    console.log("flow", flow);
-    FlowService.saveActiveFlow(flow);
+    FlowService.saveFlow(flow);
   };
 
   setFlowNodeType();

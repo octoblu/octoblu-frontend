@@ -1,17 +1,19 @@
 class BluprintSetupController
-  constructor: ($stateParams, $scope, BluprintService) ->
+  constructor: ($stateParams, $state, $scope, FlowService) ->
     @scope = $scope
+    @state = $state
     @stateParams = $stateParams
-    @BluprintService = BluprintService
+    @FlowService = FlowService
 
-    @import()
-
-  import: =>
-    @scope.importing = true
-    @BluprintService.importBluprint(@stateParams.bluprintId).
+    @FlowService.getFlow(@stateParams.flowId).
       then (flow) =>
         @scope.flow = flow
         @scope.fragments = [{label: "Setup #{flow.name}"}]
 
+  saveFlow: =>
+    { flow } = @scope
+    @FlowService.saveFlow(flow).
+      then ()=>
+        @state.go 'material.flow', flowId: flow.flowId
 
 angular.module('octobluApp').controller 'BluprintSetupController', BluprintSetupController

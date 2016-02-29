@@ -6,7 +6,7 @@
 
     <hr>
     <div ng-repeat="node in flow.nodes">
-      <h3>{{node.type}} - {{node.name}}</h3>
+      <h3 class="BluprintSetup--header">{{node.type}} - {{node.name}}</h3>
       <!-- <div ng-include="node.formTemplatePath"></div> -->
       <flow-node-editor
         flow="flow"
@@ -14,5 +14,5 @@
       </flow-node-editor>
     </div>
   </div>
-  <a class="BluButton BluButton--save" ui-sref="material.flow({flowId: flow.flowId})">CHECK OUT YO FLOW DAWG!!!!!!</a>
+  <a class="BluButton BluButton--save" ng-click="controller.saveFlow()">CHECK OUT YO FLOW DAWG!!!!!!</a>
 </md-content>

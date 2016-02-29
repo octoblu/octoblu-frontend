@@ -45,12 +45,9 @@ class BluprintDetailController
 
 
   import: =>
+    { bluprintId } = @stateParams
     @scope.importing = true
-    @BluprintService.importBluprint(@stateParams.bluprintId).
-      then (flow) =>
-        _.delay ( =>
-          @state.go('material.flow', {flowId: flow.flowId})
-        ), 1000
+    @state.go 'material.bluprintWizard', bluprintId: bluprintId
 
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public
