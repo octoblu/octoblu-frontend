@@ -378,6 +378,14 @@ angular.module('octobluApp', [
         controller: 'addChannelPagerdutyController',
         templateUrl: '/pages/node-wizard/add-channel/pagerduty.html'
       })
+      .state('material.nodewizard-addchannel.datadog', {
+        url: '/datadog',
+        params: {
+          designer: null
+        },
+        controller: 'addChannelDatadogController',
+        templateUrl: '/pages/node-wizard/add-channel/datadog.html'
+      })
       .state('material.octos',{
         url: '/octos',
         controller: 'ListOctosController',
