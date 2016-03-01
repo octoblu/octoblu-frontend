@@ -2,11 +2,6 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
-    <h2>Flow Setup</h2>
-
-    <hr>
-
-
     <div class="FlowConfigure-permissions" ng-hide="controller.permissionsUpdated">
       <spinner class="Flowconfigure-permissionsSpinner" loading="controller.permissionsLoading" size="large"></spinner>
 
@@ -35,22 +30,22 @@
     </div>
 
     <div class="FlowConfigure-container">
-      <ul class="FlowConfigure-sideNav">
-        <li ng-repeat="node in flow.nodes" class="FlowConfigure-sideNav-item">
-          {{node.name}}
-        </li>
-      </ul>
+      <nav class="FlowConfigure-sideNav">
+        <button ng-repeat="node in flow.nodes" class="FlowConfigure-sideNav-item">
+          {{controller.prettifyType(node.type)}}
+        </button>
+      </nav>
 
-    <div>
-      <div ng-repeat="node in flow.nodes">
-        <h3 class="BluprintSetup--header">{{node.type}} - {{node.name}}</h3>
-        <flow-node-editor
-          flow="flow"
-          flow-node="node">
-        </flow-node-editor>
+      <div class="FlowConfigure-nodeConfigure">
+        <div ng-repeat="node in flow.nodes">
+          <h3 class="BluprintSetup--header">{{controller.prettifyType(node.type)}}</h3>
+          <flow-node-editor
+            flow="flow"
+            flow-node="node">
+          </flow-node-editor>
+        </div>
       </div>
     </div>
-  </div>
 
   </div>
   <a class="BluButton BluButton--save" ng-click="controller.saveFlow()">CHECK OUT YO FLOW DAWG!!!!!!</a>

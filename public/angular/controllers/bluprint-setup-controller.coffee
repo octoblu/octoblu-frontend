@@ -97,4 +97,7 @@ class BluprintSetupController
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
         @ThingService.updateDevice thing
 
+  prettifyType: (type) =>
+    _.capitalize type.split(':')[1]
+
 angular.module('octobluApp').controller 'BluprintSetupController', BluprintSetupController
