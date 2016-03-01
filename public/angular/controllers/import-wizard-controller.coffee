@@ -8,7 +8,7 @@ class ImportWizardController
     @BluprintService.importBluprint(@stateParams.bluprintId).
       then (flow) =>
         @scope.flow = flow
-        @scope.fragments = [{label: "Flow Setup Wizard"}]
+        @scope.fragments = [{label: "Flow Wizard"}]
 
   doIt: =>
     @goThere 'material.flowConfigure'

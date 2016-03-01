@@ -1,0 +1,57 @@
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+
+  <div class="interior">
+    <h2>Flow Setup</h2>
+
+    <hr>
+
+
+    <div class="FlowConfigure-permissions" ng-hide="controller.permissionsUpdated">
+      <spinner class="Flowconfigure-permissionsSpinner" loading="controller.permissionsLoading" size="large"></spinner>
+
+      <div ng-show="thingsNeedingSendWhitelist">
+        <span class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</span>
+          <ul class="FlowConfigure-permissionsList">
+            <li ng-repeat="permission in thingsNeedingSendWhitelist">
+              {{controller.checkForServiceNames(permission)}}
+            </li>
+          </ul>
+      </div>
+      <div ng-show="thingsNeedingReceiveAs">
+        <span class="FlowConfigure-permissionHeader">These things need to have permission to receieve messages as your flow</span>
+        <ul class="FlowConfigure-permissionsList">
+          <li ng-repeat="permission in thingsNeedingReceiveAs">
+            {{controller.checkForServiceNames(permission)}}
+          </li>
+        </ul>
+      </div>
+      <button
+        ng-click="controller.updatePermissions()"
+        ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist"
+        class="BluButton BluButton--save">
+        MY BODY IS READY DO IT
+      </button>
+    </div>
+
+    <div class="FlowConfigure-container">
+      <ul class="FlowConfigure-sideNav">
+        <li ng-repeat="node in flow.nodes" class="FlowConfigure-sideNav-item">
+          {{node.name}}
+        </li>
+      </ul>
+
+    <div>
+      <div ng-repeat="node in flow.nodes">
+        <h3 class="BluprintSetup--header">{{node.type}} - {{node.name}}</h3>
+        <flow-node-editor
+          flow="flow"
+          flow-node="node">
+        </flow-node-editor>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <a class="BluButton BluButton--save" ng-click="controller.saveFlow()">CHECK OUT YO FLOW DAWG!!!!!!</a>
+</md-content>

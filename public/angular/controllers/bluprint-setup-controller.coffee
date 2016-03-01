@@ -23,6 +23,8 @@ class BluprintSetupController
         @checkNodeRegistryPermissions(@scope.flow.flowId, @scope.flow.nodes).
           then (thingsNeedingSendWhitelist)=>
             @permissionsLoading = false
+            @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
+
             @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
             @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
 
@@ -78,9 +80,9 @@ class BluprintSetupController
 
       @ThingService.updateDevice thing
     , (error)=>
-      return deferred.reject(error) if error
+      return deferred.reject error if error
 
-      deferred.resolve(thingsNeedingReceiveAs)
+      deferred.resolve thingsNeedingReceiveAs
 
     deferred
 

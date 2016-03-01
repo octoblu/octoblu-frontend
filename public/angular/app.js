@@ -488,13 +488,13 @@ angular.module('octobluApp', [
       })
       .state('material.bluprintWizard', {
         url: '/import-wizard/:bluprintId',
-        templateUrl: '/pages/bluprints/import-wizard.html',
+        templateUrl: '/pages/flow-wizard/import-wizard.html',
         controller: 'ImportWizardController',
         controllerAs: 'controller'
       })
       .state('material.flowConfigure', {
         url: '/flows/configure/:flowId',
-        templateUrl: '/pages/bluprints/setup.html',
+        templateUrl: '/pages/flow-wizard/flow-configure.html',
         controller: 'BluprintSetupController',
         controllerAs: 'controller'
       })
