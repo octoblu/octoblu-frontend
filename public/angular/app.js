@@ -380,9 +380,6 @@ angular.module('octobluApp', [
       })
       .state('material.nodewizard-addchannel.datadog', {
         url: '/datadog',
-        params: {
-          designer: null
-        },
         controller: 'addChannelDatadogController',
         templateUrl: '/pages/node-wizard/add-channel/datadog.html'
       })
