@@ -31,22 +31,23 @@
 
     <div class="FlowConfigure-container">
       <nav class="FlowConfigure-sideNav">
-        <button ng-repeat="node in flow.nodes" class="FlowConfigure-sideNav-item">
+        <button
+          ng-repeat="node in flow.nodes"
+          class="FlowConfigure-sideNav-item"
+          ng-click="controller.setSelectedNode(node)"
+          ng-class="{'FlowConfigure-sideNav-item--is-selected': node == selectedNode}">
           {{controller.prettifyType(node.type)}}
         </button>
       </nav>
-
-      <div class="FlowConfigure-nodeConfigure">
-        <div ng-repeat="node in flow.nodes">
-          <h3 class="BluprintSetup--header">{{controller.prettifyType(node.type)}}</h3>
-          <flow-node-editor
-            flow="flow"
-            flow-node="node">
-          </flow-node-editor>
-        </div>
+      <div class="FlowConfigure-nodes" ng-show="selectedNode">
+        <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(selectedNode.type)}}</h3>
+        <flow-node-editor
+          flow="flow"
+          flow-node="selectedNode">
+        </flow-node-editor>
       </div>
     </div>
 
+    <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()">CHECK OUT YO FLOW DAWG!!!!!!</a>
   </div>
-  <a class="BluButton BluButton--save" ng-click="controller.saveFlow()">CHECK OUT YO FLOW DAWG!!!!!!</a>
 </md-content>

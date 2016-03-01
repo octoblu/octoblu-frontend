@@ -11,10 +11,15 @@ class BluprintSetupController
 
     @FlowService.getFlow(@stateParams.flowId).
       then (flow) =>
+        @setSelectedNode _.first flow.nodes
         @scope.flow = flow
         @scope.fragments = [{label: "Setup #{flow.name}"}]
 
         @checkPermissions()
+
+  setSelectedNode: (node)=>
+    "setting selected Node!!!"
+    @scope.selectedNode = node
 
   checkPermissions: =>
     @permissionsLoading = true
@@ -98,6 +103,8 @@ class BluprintSetupController
         @ThingService.updateDevice thing
 
   prettifyType: (type) =>
-    _.capitalize type.split(':')[1]
+    return unless type
+    type = type.split(':')[1]
+    type.replace('-', ' ')
 
 angular.module('octobluApp').controller 'BluprintSetupController', BluprintSetupController

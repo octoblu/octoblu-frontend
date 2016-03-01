@@ -1,4 +1,3 @@
-
 .ImportWizard-header {
   .flex-display;
   .justify-content(center);
@@ -41,13 +40,38 @@
 .FlowConfigure-sideNav-item {
   color: white;
   background: transparent;
+  text-align: left;
+  text-transform: capitalize;
 
-  padding: 20px 60px;
+  padding: 20px 50px 20px 10px;
   border: 1px solid #EEE;
   border-style: none none solid none;
+  white-space: nowrap;
 }
 
-.FlowConfigure-nodeConfigure {
+.FlowConfigure-sideNav-item:last-child {
+  border: none;
+}
+
+.FlowConfigure-sideNav-item--is-selected {
+  background: #F9FBFC;
+  color: #333;
+  font-weight: bold;
+}
+
+.FlowConfigure-nodes {
   width: 100%;
-  padding-left: 48px; 
+  padding-left: 48px;
+}
+
+.FlowConfigure-nodeHeader {
+  text-transform: capitalize;
+}
+
+.FlowConfigure-save {
+  .flex-display;
+  .justify-content(center);
+
+  width: 500px;
+  margin: 30px auto;
 }
