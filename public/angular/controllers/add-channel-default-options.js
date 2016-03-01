@@ -24,7 +24,8 @@ angular.module('octobluApp')
     'wink'                   : 'material.nodewizard-addchannel.wink',
 		'xenmobile'							 : 'material.nodewizard-addchannel.xenmobile',
 		'clm'										 : 'material.nodewizard-addchannel.clm',
-		'pagerduty'							 : 'material.nodewizard-addchannel.pagerduty'
+		'pagerduty'							 : 'material.nodewizard-addchannel.pagerduty',
+		'datadog'								 : 'material.nodewizard-addchannel.datadog'
   };
 
 	$scope.isLoadingOptions = true;
