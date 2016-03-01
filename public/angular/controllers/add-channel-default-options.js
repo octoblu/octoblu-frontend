@@ -2,7 +2,7 @@
 
 angular.module('octobluApp')
 .controller('addDefaultOptionsController', function($scope, $state, $stateParams, nodeType, userService, channelService, AuthService) {
-	var AUTH_DESTINATIONS = {
+  var AUTH_DESTINATIONS = {
     'aws'                    : 'material.nodewizard-addchannel.aws',
     'basic'                  : 'material.nodewizard-addchannel.basic',
     'meshblu'                : 'material.nodewizard-addchannel.meshblu',
@@ -22,13 +22,13 @@ angular.module('octobluApp')
     'travis-ci-pro'          : 'material.nodewizard-addchannel.travis-ci-pro',
     'witai'                  : 'material.nodewizard-addchannel.witai',
     'wink'                   : 'material.nodewizard-addchannel.wink',
-		'xenmobile'							 : 'material.nodewizard-addchannel.xenmobile',
-		'clm'										 : 'material.nodewizard-addchannel.clm',
-		'pagerduty'							 : 'material.nodewizard-addchannel.pagerduty',
-		'datadog'								 : 'material.nodewizard-addchannel.datadog'
+    'xenmobile'              : 'material.nodewizard-addchannel.xenmobile',
+    'clm'                    : 'material.nodewizard-addchannel.clm',
+    'pagerduty'              : 'material.nodewizard-addchannel.pagerduty',
+    'datadog'                : 'material.nodewizard-addchannel.datadog'
   };
 
-	$scope.isLoadingOptions = true;
+  $scope.isLoadingOptions = true;
 
   $scope.channelDefaultParams = {};
   $scope.channelDefaultHeaderParams = {};
@@ -44,27 +44,26 @@ angular.module('octobluApp')
           $scope.goToNextStep();
         },
         $scope.channelDefaultParams,
-				$scope.channelDefaultHeaderParams);
+        $scope.channelDefaultHeaderParams);
     });
   };
 
   $scope.goToNextStep = function(){
-  	var auth_strategy;
+    var auth_strategy;
 
-  	if($scope.existingChannel){
-  		auth_strategy = 'existing';
-			$scope.isLoadingOptions = false;
-  	}
-		else{
-	  	if(!$scope.channel) return;
-  		auth_strategy = $scope.channel.auth_strategy;
-			$scope.isLoadingOptions = false;
-  	}
+    if($scope.existingChannel){
+      auth_strategy = 'existing';
+      $scope.isLoadingOptions = false;
+    }
+    else{
+      if(!$scope.channel) return;
+      auth_strategy = $scope.channel.auth_strategy;
+      $scope.isLoadingOptions = false;
+    }
 
-		var redirectToDesign = $stateParams.designer || false;
+    var redirectToDesign = $stateParams.designer || false;
 
-
-		$state.go(AUTH_DESTINATIONS[auth_strategy], {designer: redirectToDesign}, {location: false});
+    $state.go(AUTH_DESTINATIONS[auth_strategy], {designer: redirectToDesign}, {location: false});
   };
 
   function convertParamsToObject(params){
@@ -75,29 +74,29 @@ angular.module('octobluApp')
     return newObject;
   }
 
-	channelService.getChannelActivationById(nodeType.channelid)
-		.then(function(channelActivation){
-	    $scope.existingChannel = channelActivation;
-	    if($scope.existingChannel){
-	    	$scope.goToNextStep();
-	    	return;
-	    }
+  channelService.getChannelActivationById(nodeType.channelid)
+    .then(function(channelActivation){
+      $scope.existingChannel = channelActivation;
+      if($scope.existingChannel){
+        $scope.goToNextStep();
+        return;
+      }
 
-	    channelService.getById(nodeType.channelid)
-  			.then(function(channel){
+      channelService.getById(nodeType.channelid)
+        .then(function(channel){
           $scope.channel = channel;
           _.extend($scope.channelDefaultParams, convertParamsToObject(channel.defaultParams));
-					_.extend($scope.channelDefaultHeaderParams, convertParamsToObject(channel.defaultHeaderParams));
-  				if(_.isEmpty(channel.defaultParams)){
+          _.extend($scope.channelDefaultHeaderParams, convertParamsToObject(channel.defaultHeaderParams));
+          if(_.isEmpty(channel.defaultParams)){
             if(!_.isEmpty($scope.channelDefaultParams)){
               $scope.saveDefaultParams();
             }
-						else{
+            else{
               $scope.goToNextStep();
             }
-  				}
+          }
 
-					$scope.isLoadingOptions = false;
-  			});
-	  });
+          $scope.isLoadingOptions = false;
+        });
+    });
 });
