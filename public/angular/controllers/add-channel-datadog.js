@@ -5,8 +5,8 @@ angular.module('octobluApp')
 
   var channelPromise, getPath;
 
-  channelPromise = channelService.getById(nodeType.channelid);
-  getPath = function(){
+  var channelPromise = channelService.getById(nodeType.channelid);
+  var getPath = function(){
     return OCTOBLU_API_URL + '/api/datadog/auth?apiKey=' + $scope.apikey + '&appKey=' + $scope.appKey;
   };
 
