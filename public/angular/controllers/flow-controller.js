@@ -1,14 +1,11 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
   var lastDeployedHash;
   var progressId;
-  var triggerServiceUuid = 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64';
-  var intervalServiceUuid = '765bd3a4-546d-45e6-a62f-1157281083f0';
-  var credentialsServiceUuid = 'c339f6ce-fe26-4788-beee-c97605f50403';
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -420,13 +417,13 @@ angular.module('octobluApp')
 
   var checkForServiceNames = function(uuids) {
     var newList = _.map(uuids, function(uuid){
-      if(triggerServiceUuid === uuid){
+      if(SERVICE_UUIDS.TRIGGER === uuid){
         return 'Trigger Service'
       }
-      if(intervalServiceUuid === uuid){
+      if(SERVICE_UUIDS.INTERVAL === uuid){
         return 'Interval Service'
       }
-      if(credentialsServiceUuid === uuid){
+      if(SERVICE_UUIDS.CREDENTIALS === uuid){
         return 'Credential Service'
       }
       return uuid

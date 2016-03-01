@@ -5,9 +5,28 @@
     <h2>Bluprint setup</h2>
 
     <hr>
+    <spinner loading="controller.permissionsLoading" size="large"></spinner>
+    <div ng-hide="controller.permissionsLoading">
+      <div ng-show="thingsNeedingSendWhitelist">
+        <span>These things need to have permission to send your flow messages</span>
+          <ul>
+            <li ng-repeat="permission in thingsNeedingSendWhitelist">
+              {{controller.checkForServiceNames(permission)}}
+            </li>
+          </ul>
+      </div>
+      <div ng-show="thingsNeedingReceiveAs">
+        <span>These things need to have permission to receieve messages as your flow</span>
+        <ul>
+          <li ng-repeat="permission in thingsNeedingReceiveAs">
+            {{controller.checkForServiceNames(permission)}}
+          </li>
+        </ul>
+      </div>
+      <button ng-click="controller.updatePermissions()" ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist">MY BODY IS READY DO IT</button>
+    </div>
     <div ng-repeat="node in flow.nodes">
       <h3 class="BluprintSetup--header">{{node.type}} - {{node.name}}</h3>
-      <!-- <div ng-include="node.formTemplatePath"></div> -->
       <flow-node-editor
         flow="flow"
         flow-node="node">
