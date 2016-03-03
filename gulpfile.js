@@ -13,7 +13,7 @@ var gulp         = require('gulp'),
   replace        = require('gulp-replace');
 
 gulp.task('bower', function() {
-  bower('./public/lib');
+  return bower('./public/lib');
 });
 
 gulp.task('bower:concat', ['bower'], function(){
@@ -69,7 +69,7 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
-gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {});
+gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat']);
 
 gulp.task('webserver', ['static']);
 
@@ -80,7 +80,7 @@ gulp.task('static', ['default'], function(){
 
   var apiBackendUri = process.env.OCTOBLU_BACKEND_URI || 'http://localhost:8081/api';
 
-  gulp.src('./public').pipe(webserver({
+  return gulp.src('./public').pipe(webserver({
     host: '0.0.0.0',
     port: port,
     livereload: false,
