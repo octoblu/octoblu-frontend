@@ -1,11 +1,13 @@
 class BluprintSetupController
-  constructor: ($stateParams, $state, $scope, $q, FlowService, NodeRegistryService, ThingService, SERVICE_UUIDS) ->
+  constructor: ($stateParams, $scope, $state, $timeout, $q, FlowService, FlowNodeTypeService, NodeRegistryService, ThingService, SERVICE_UUIDS) ->
     @q                   = $q
     @scope               = $scope
     @state               = $state
+    @timeout             = $timeout
     @stateParams         = $stateParams
     @FlowService         = FlowService
     @ThingService        = ThingService
+    @FlowNodeTypeService = FlowNodeTypeService
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
@@ -16,10 +18,11 @@ class BluprintSetupController
         @scope.fragments = [{label: "Setup #{flow.name}"}]
 
         @checkPermissions()
+        @setFlowNodeType()
 
   setSelectedNode: (node)=>
-    "setting selected Node!!!"
-    @scope.selectedNode = node
+    @scope.flowNode = node
+    @setFlowNodeType()
 
   checkPermissions: =>
     @permissionsLoading = true
@@ -106,5 +109,21 @@ class BluprintSetupController
     return unless type
     type = type.split(':')[1]
     type.replace('-', ' ')
+
+  setFlowNodeType: =>
+    @scope.showFlowNodeEditor = false
+    return @scope.flowNodeType = null unless @scope.flowNode
+
+    @FlowNodeTypeService.getFlowNodeType(@scope.flowNode.type).
+      then (flowNodeType)=>
+        @scope.flowNodeType = flowNodeType
+        @timeout( =>
+          @scope.showFlowNodeEditor = true
+        , 200)
+
+    @FlowNodeTypeService.getOtherMatchingFlowNodeTypes(@scope.flowNode.type).
+      then (otherMatchingFlowNodeTypes)=>
+        @scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes
+
 
 angular.module('octobluApp').controller 'BluprintSetupController', BluprintSetupController

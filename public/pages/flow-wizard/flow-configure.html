@@ -16,8 +16,8 @@
       <div ng-show="thingsNeedingReceiveAs">
         <span class="FlowConfigure-permissionHeader">These things need to have permission to receieve messages as your flow</span>
         <ul class="FlowConfigure-permissionsList">
-          <li ng-repeat="permission in thingsNeedingReceiveAs">
-            {{controller.checkForServiceNames(permission)}}
+          <li class="FlowConfigure-permissionsListItem" ng-repeat="permission in thingsNeedingReceiveAs">
+            {{controller.checkForServiceNames(permission.name || controller.prettifyType(permission.type) || permission.uuid)}}
           </li>
         </ul>
       </div>
@@ -35,16 +35,22 @@
           ng-repeat="node in flow.nodes"
           class="FlowConfigure-sideNav-item"
           ng-click="controller.setSelectedNode(node)"
-          ng-class="{'FlowConfigure-sideNav-item--is-selected': node == selectedNode}">
+          ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
           {{controller.prettifyType(node.type)}}
         </button>
       </nav>
-      <div class="FlowConfigure-nodes" ng-show="selectedNode">
-        <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(selectedNode.type)}}</h3>
-        <flow-node-editor
-          flow="flow"
-          flow-node="selectedNode">
-        </flow-node-editor>
+      <div class="FlowConfigure-nodes" ng-show="flowNode">
+        <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(flowNode.type)}}</h3>
+        <div class="Sidebar-pane-content">
+          <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
+            <spinner loading="!showFlowNodeEditor" size="large"></spinner>
+          </div>
+          <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+            <div class="Sidebar-pane-form">
+              <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
