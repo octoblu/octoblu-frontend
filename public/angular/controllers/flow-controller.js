@@ -483,27 +483,27 @@ angular.module('octobluApp')
 
   var askAndAddToReceiveAs = function(thingsNeedingReceiveAs) {
     return askToAddReceiveAs(thingsNeedingReceiveAs)
-      .then(function(){
+      .then(function(things){
         return addFlowToWhitelists(thingsNeedingReceiveAs);
       })
       .then(function(){
         return NotifyService.notify('Permissions updated');
       })
-      .catch(function(error){
-        return NotifyService.alert(error.message);
+      .catch(function(){
+        return NotifyService.notify('Permissions Not Updated');
       });
   };
 
   var askAndAddToSendWhitelist = function(thingsNeedingSendWhitelist) {
     return askToAddSendWhitelist(thingsNeedingSendWhitelist)
-      .then(function(){
+      .then(function(things){
         return addSendWhitelistsToFlow(thingsNeedingSendWhitelist);
       })
       .then(function(){
         return NotifyService.notify('Permissions updated');
       })
-      .catch(function(error){
-        return NotifyService.alert(error.message);
+      .catch(function(){
+        return NotifyService.notify('Permissions Not Updated');
       });
   };
 

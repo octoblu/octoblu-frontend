@@ -21,6 +21,7 @@ class FlowDeployButtonController
 
     @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: true, stopping: false
       .then =>
+        @FlowService.setActiveFlow(@scope.flow)
         @FlowService.saveActiveFlow()
       .then =>
         @FlowService.immediateNotifyFlowSaved()

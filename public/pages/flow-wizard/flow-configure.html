@@ -3,8 +3,6 @@
 
   <div class="interior">
     <div class="FlowConfigure-permissions" ng-hide="controller.permissionsUpdated">
-      <spinner class="Flowconfigure-permissionsSpinner" loading="controller.permissionsLoading" size="large"></spinner>
-
       <div ng-show="thingsNeedingSendWhitelist">
         <span class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</span>
           <ul class="FlowConfigure-permissionsList">
@@ -31,6 +29,7 @@
 
     <div class="FlowConfigure-container">
       <nav class="FlowConfigure-sideNav">
+        <h3 class="FlowConfigure-sideNav-header">things in flow</h3>
         <button
           ng-repeat="node in flow.nodes"
           class="FlowConfigure-sideNav-item"
@@ -42,7 +41,7 @@
 
       <div class="FlowConfigure-nodes" ng-show="flowNode">
         <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(flowNode.type)}}</h3>
-        <div class="Sidebar-pane-content">
+        <div class="FlowConfigure-sideNav-content">
           <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
             <spinner loading="!showFlowNodeEditor" size="large"></spinner>
           </div>
@@ -55,8 +54,8 @@
         <div class="FlowConfigure-actions">
           <button ng-click="controller.saveFlow()" class="BluButton BluButton--cancel">Can we just...not? Please?</button>
           <div>
-            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-hide="controller.finalOne">NEXT ONE!</button>
-            <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-show="controller.finalOne">CHECK OUT YO FLOW DAWG!!!!!!</a>
+            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne">NEXT ONE!</button>
+            <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">CHECK OUT YO FLOW DAWG!!!!!!</a>
           </div>
         </div>
       </div>

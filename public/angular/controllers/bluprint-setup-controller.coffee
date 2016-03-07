@@ -11,6 +11,8 @@ class BluprintSetupController
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
+    @permissionsUpdated = true
+
     @FlowService.getFlow(@stateParams.flowId).
       then (flow) =>
         @setSelectedNode _.first flow.nodes
@@ -26,13 +28,15 @@ class BluprintSetupController
     @setFlowNodeType()
 
   checkPermissions: =>
-    @permissionsLoading = true
     @checkDevicePermission(@scope.flow.flowId, @scope.flow.nodes).
       then (thingsNeedingReceiveAs)=>
         @checkNodeRegistryPermissions(@scope.flow.flowId, @scope.flow.nodes).
           then (thingsNeedingSendWhitelist)=>
-            @permissionsLoading = false
+            @permissionsUpdated = false
             @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
+
+            console.log "RECIEVE AS", thingsNeedingReceiveAs
+            console.log "SEND", thingsNeedingSendWhitelist
 
             @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
             @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
@@ -46,7 +50,6 @@ class BluprintSetupController
       then (thingsNeedingReceiveAs)=>
         return if _.isEmpty thingsNeedingReceiveAs
         thingsNeedingReceiveAs
-
 
   checkNodeRegistryPermissions: (flowId, nodes)=>
     nodeTypes = _.pluck nodes, 'type'
@@ -65,7 +68,9 @@ class BluprintSetupController
     { flow } = @scope
     @FlowService.saveFlow(flow).
       then ()=>
-        @state.go 'material.flow', flowId: flow.flowId
+        @FlowService.start(flow).
+        then ()=>
+          @state.go 'material.flow', flowId: flow.flowId
 
   updatePermissions: () =>
     @addFlowToWhitelists()
@@ -114,7 +119,7 @@ class BluprintSetupController
   checkForNextButton: =>
     return unless @scope.flow
     current = _.indexOf @scope.flow.nodes, @scope.flowNode
-    return true if _.last(@scope.flow.nodes).uuid == @scope.flow.nodes[current].uuid
+    return true if _.last(@scope.flow.nodes) == @scope.flow.nodes[current]
     false
 
   nextNode: =>

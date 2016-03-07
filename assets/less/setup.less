@@ -39,6 +39,18 @@
   .flex-direction(column);
 
   background: #333;
+  height: 100%;
+}
+
+.FlowConfigure-sideNav-content {
+  .flex(1);
+  overflow: auto;
+  background: #F9FBFC;
+  height: 700px;
+
+  md-input-container {
+    width: 100%;
+  }
 }
 
 .FlowConfigure-sideNav-item {
@@ -51,6 +63,12 @@
   border: 1px solid #EEE;
   border-style: none none solid none;
   white-space: nowrap;
+}
+
+.FlowConfigure-sideNav-header {
+  .FlowConfigure-sideNav-item;
+  margin: 0 auto;
+  border: none;
 }
 
 .FlowConfigure-sideNav-item:last-child {

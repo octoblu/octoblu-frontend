@@ -31,7 +31,6 @@ angular.module('octobluApp')
   self.saveFlow = function(flow) {
     var deploymentUuid = UUIDService.v1();
     flow = flow || activeFlow;
-
     if(!flow) return;
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
