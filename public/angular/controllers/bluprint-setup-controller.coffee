@@ -22,6 +22,7 @@ class BluprintSetupController
 
   setSelectedNode: (node)=>
     @scope.flowNode = node
+    @finalOne = @checkForNextButton()
     @setFlowNodeType()
 
   checkPermissions: =>
@@ -109,6 +110,17 @@ class BluprintSetupController
     return unless type
     type = type.split(':')[1]
     type.replace('-', ' ')
+
+  checkForNextButton: =>
+    return unless @scope.flow
+    current = _.indexOf @scope.flow.nodes, @scope.flowNode
+    return true if _.last(@scope.flow.nodes).uuid == @scope.flow.nodes[current].uuid
+    false
+
+  nextNode: =>
+    current = _.indexOf @scope.flow.nodes, @scope.flowNode
+    return unless current < @scope.flow.nodes.length - 1
+    @setSelectedNode @scope.flow.nodes[current+1]
 
   setFlowNodeType: =>
     @scope.showFlowNodeEditor = false
