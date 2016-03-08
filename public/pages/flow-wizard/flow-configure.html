@@ -55,10 +55,10 @@
           </div>
         </div>
         <div class="FlowConfigure-actions">
-          <button ng-click="controller.saveFlow()" class="BluButton BluButton--cancel">Can we just...not? Please?</button>
+          <button ng-click="controller.saveFlow()" class="BluButton BluButton--cancel">Skip</button>
           <div>
-            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne">NEXT ONE!</button>
-            <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">CHECK OUT YO FLOW DAWG!!!!!!</a>
+            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne">Next</button>
+            <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Save and Deploy Flow</a>
           </div>
         </div>
       </div>
