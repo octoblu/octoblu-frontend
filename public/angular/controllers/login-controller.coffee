@@ -24,7 +24,7 @@ class LoginController
     @twitterLoginUri       = AUTHENTICATOR_URIS.TWITTER + '?' + loginParams
     @signUpUri             = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '/signup?' + loginParams
 
-    isCWCAccount: () =>
+  isCWCAccount: () =>
       { otp, customerId } = @stateParams
       otp && customerId
 
