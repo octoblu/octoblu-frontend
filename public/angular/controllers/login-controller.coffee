@@ -1,10 +1,11 @@
 class LoginController
-  constructor: (AUTHENTICATOR_URIS, $location, $cookies) ->
-    protocol = $location.protocol()
-    host     = $location.host()
-    port     = $location.port()
+  constructor: (AUTHENTICATOR_URIS, $location, $cookies, $stateParams) ->
+    @stateParams = $stateParams
+    protocol     = $location.protocol()
+    host         = $location.host()
+    port         = $location.port()
 
-    @CWCAccount = $cookies.workspaceCloud
+    @CWCAccount = @isCWCAccount()
     @loggingIn = true
 
     callbackUrl = $location.search().callbackUrl
@@ -23,5 +24,8 @@ class LoginController
     @twitterLoginUri       = AUTHENTICATOR_URIS.TWITTER + '?' + loginParams
     @signUpUri             = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '/signup?' + loginParams
 
+    isCWCAccount: () =>
+      { otp, customerId } = @stateParams
+      otp && customerId
 
 angular.module('octobluApp').controller 'LoginController', LoginController

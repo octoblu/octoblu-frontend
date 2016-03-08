@@ -21,3 +21,5 @@ angular.module('octobluApp')
   .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
   .constant "APP_STORE_URL", "https://store.octoblu.com/"
   .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com/"
+  .constant "CWC_STAGING_URL", "http://localhost:6041/"
+  .constant "CWC_PRODUCTION_URL", "http://localhost:6041/"
