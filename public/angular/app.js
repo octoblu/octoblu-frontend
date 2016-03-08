@@ -492,7 +492,7 @@ angular.module('octobluApp', [
       .state('material.flowConfigure', {
         url: '/flows/configure/:flowId',
         templateUrl: '/pages/flow-wizard/flow-configure.html',
-        controller: 'BluprintSetupController',
+        controller: 'FlowConfigureController',
         controllerAs: 'controller'
       })
       .state('material.bluprintImport', {

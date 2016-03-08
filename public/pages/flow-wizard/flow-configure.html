@@ -2,6 +2,9 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
+    <div ng-show="controller.permissionsLoading">
+      <spinner size="large" loading="controller.permissionsLoading"></spinner>
+    </div>
     <div class="FlowConfigure-permissions" ng-hide="controller.permissionsUpdated">
       <div ng-show="thingsNeedingSendWhitelist">
         <span class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</span>
@@ -15,7 +18,7 @@
         <span class="FlowConfigure-permissionHeader">These things need to have permission to receieve messages as your flow</span>
         <ul class="FlowConfigure-permissionsList">
           <li class="FlowConfigure-permissionsListItem" ng-repeat="permission in thingsNeedingReceiveAs">
-            {{controller.checkForServiceNames(permission.name || controller.prettifyType(permission.type) || permission.uuid)}}
+            {{permission.name || controller.prettifyType(permission.type) || permission.uuid}}
           </li>
         </ul>
       </div>
@@ -23,15 +26,15 @@
         ng-click="controller.updatePermissions()"
         ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist"
         class="BluButton BluButton--save">
-        MY BODY IS READY DO IT
+        Update My Permissions
       </button>
     </div>
 
-    <div class="FlowConfigure-container">
+    <div class="FlowConfigure-container" ng-show="flowNode && !controller.permissionsLoading">
       <nav class="FlowConfigure-sideNav">
         <h3 class="FlowConfigure-sideNav-header">things in flow</h3>
         <button
-          ng-repeat="node in flow.nodes"
+          ng-repeat="node in nodesToConfigure"
           class="FlowConfigure-sideNav-item"
           ng-click="controller.setSelectedNode(node)"
           ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
@@ -39,7 +42,7 @@
         </button>
       </nav>
 
-      <div class="FlowConfigure-nodes" ng-show="flowNode">
+      <div class="FlowConfigure-nodes">
         <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(flowNode.type)}}</h3>
         <div class="FlowConfigure-sideNav-content">
           <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
