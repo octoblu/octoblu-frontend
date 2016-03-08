@@ -61,6 +61,9 @@ angular.module('octobluApp')
 
   self.getBluprint = function(id) {
     return $http.get(OCTOBLU_API_URL + '/api/templates/' + id).then(function(response){
+      if(!response.data) {
+        throw new Error("No Bluprint Found")
+      };
       return self.addProperties(response.data);
     });
   };

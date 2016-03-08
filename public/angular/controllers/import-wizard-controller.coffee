@@ -7,12 +7,14 @@ class ImportWizardController
 
     @loading = true
 
-    @BluprintService.getBluprint(@stateParams.bluprintId).
-      then (bluprint) =>
-        previous = {linkTo: 'material.bluprints', label: 'My Bluprints'}
-        previous = {linkTo: 'material.discover', label: 'Discover Bluprints'} if bluprint.public
-        @scope.fragments = [previous, {label: "Import #{bluprint.name}"}]
-        @loading = false
+    @BluprintService.getBluprint(@stateParams.bluprintId)
+    .then (bluprint) =>
+      previous = {linkTo: 'material.bluprints', label: 'My Bluprints'}
+      previous = {linkTo: 'material.discover', label: 'Discover Bluprints'} if bluprint.public
+      @scope.fragments = [previous, {label: "Import #{bluprint.name}"}]
+      @loading = false
+    .catch (error) =>
+      @scope.error = error
 
   doIt: =>
     @goThere 'material.flowConfigure'

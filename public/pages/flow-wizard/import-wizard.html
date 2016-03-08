@@ -2,8 +2,10 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
-    <spinner size="large" loading="controller.loading"></spinner>
-
+    <div ng-show="error">
+      <random-robot>{{error.message}}</random-robot>
+    </div>
+    <spinner size="large" loading="controller.loading" ng-hide="error"></spinner>
     <div ng-hide="controller.loading">
       <h2 class="ImportWizard-header">Almost There...</h2>
       <span class="ImportWizard-text">
