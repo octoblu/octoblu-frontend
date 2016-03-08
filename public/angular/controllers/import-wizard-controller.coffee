@@ -5,10 +5,14 @@ class ImportWizardController
     @stateParams = $stateParams
     @BluprintService = BluprintService
 
-    @BluprintService.importBluprint(@stateParams.bluprintId).
-      then (flow) =>
-        @scope.flow = flow
-        @scope.fragments = [{label: "Flow Wizard"}]
+    @loading = true
+
+    @BluprintService.getBluprint(@stateParams.bluprintId).
+      then (bluprint) =>
+        previous = {linkTo: 'material.bluprints', label: 'My Bluprints'}
+        previous = {linkTo: 'material.discover', label: 'Discover Bluprints'} if bluprint.public
+        @scope.fragments = [previous, {label: "Import #{bluprint.name}"}]
+        @loading = false
 
   doIt: =>
     @goThere 'material.flowConfigure'
@@ -17,6 +21,9 @@ class ImportWizardController
     @goThere 'material.flow'
 
   goThere: (route) =>
-    @state.go route, flowId: @scope.flow.flowId
+    @loading = true
+    @BluprintService.importBluprint(@stateParams.bluprintId).
+    then (flow) =>
+      @state.go route, flowId: flow.flowId
 
 angular.module('octobluApp').controller 'ImportWizardController', ImportWizardController
