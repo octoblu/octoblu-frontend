@@ -1,33 +1,5 @@
-.ImportWizard-header {
-  .flex-display;
-  .justify-content(center);
-}
-
-.ImportWizard-text {
-  text-align: center;
-  padding: 18px;
-}
-
-.ImportWizard-actions {
-  .flex-display;
-  .flex-direction(column);
-  .align-items(center);
-  padding: 32px;
-
-  .BluButton--outline {
-    padding-top: 50px;
-  }
-
-  .BluButton--save {
-    padding: 32px;
-    width: 50%;
-  }
-}
-
 .FlowConfigure-permissions {
-  padding: 14px;
-  background: #F9FBFC;
-  border: 1px solid #EEEEEE;
+  
 }
 
 .Flowconfigure-permissionsSpinner {
@@ -48,20 +20,24 @@
 
 .FlowConfigure-container {
   .flex-display;
+
+  background: #FFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.15), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .FlowConfigure-sideNav {
   .flex-display;
   .flex-direction(column);
 
-  background: #333;
-  height: 100%;
+  background: #4E4E4E;
+  width: 100%;
+  max-width: 230px;
 }
 
 .FlowConfigure-sideNav-content {
   .flex(1);
   overflow: auto;
-  background: #F9FBFC;
+  background: #FFF;
   height: 700px;
 
   md-input-container {
@@ -70,20 +46,29 @@
 }
 
 .FlowConfigure-sideNav-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 18px 24px;
+
   color: white;
-  background: transparent;
   text-align: left;
   text-transform: capitalize;
-
-  padding: 20px 50px 20px 10px;
-  border: 1px solid #EEE;
-  border-style: none none solid none;
   white-space: nowrap;
+
+  background: transparent;
+}
+
+.FlowConfigure-sideNav-item--is-selected {
+  color: #FFF;
+  font-weight: bold;
+
+  background: rgba(0,0,0, 0.2);
 }
 
 .FlowConfigure-sideNav-header {
-  .FlowConfigure-sideNav-item;
-  margin: 0 auto;
+  margin-top: 10px;
+  color: #3D3D3D;
+  text-align: center;
   border: none;
 }
 
@@ -91,19 +76,15 @@
   border: none;
 }
 
-.FlowConfigure-sideNav-item--is-selected {
-  background: #F9FBFC;
-  color: #333;
-  font-weight: bold;
-}
-
 .FlowConfigure-nodes {
   width: 100%;
-  padding-left: 48px;
+  padding: 24px 36px;
 }
 
 .FlowConfigure-nodeHeader {
   text-transform: capitalize;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .FlowConfigure-actions {

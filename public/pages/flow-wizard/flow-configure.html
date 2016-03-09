@@ -1,38 +1,10 @@
 <breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+
 <md-content class="interior__wrapper">
-
   <div class="interior">
-    <div ng-show="controller.permissionsLoading">
-      <spinner size="large" loading="controller.permissionsLoading"></spinner>
-    </div>
-    <div class="FlowConfigure-permissions" ng-hide="controller.permissionsUpdated">
-      <div ng-show="thingsNeedingSendWhitelist">
-        <span class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</span>
-          <ul class="FlowConfigure-permissionsList">
-            <li ng-repeat="permission in thingsNeedingSendWhitelist">
-              {{controller.checkForServiceNames(permission)}}
-            </li>
-          </ul>
-      </div>
-      <div ng-show="thingsNeedingReceiveAs">
-        <span class="FlowConfigure-permissionHeader">These things need to have permission to receieve messages as your flow</span>
-        <ul class="FlowConfigure-permissionsList">
-          <li class="FlowConfigure-permissionsListItem" ng-repeat="permission in thingsNeedingReceiveAs">
-            {{permission.name || controller.prettifyType(permission.type) || permission.uuid}}
-          </li>
-        </ul>
-      </div>
-      <button
-        ng-click="controller.updatePermissions()"
-        ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist"
-        class="BluButton BluButton--save">
-        Update My Permissions
-      </button>
-    </div>
-
-    <div class="FlowConfigure-container" ng-show="flowNode && !controller.permissionsLoading">
+    <h2 class="Bluprints-header">Flow Configure</h2>
+    <div class="FlowConfigure-container">
       <nav class="FlowConfigure-sideNav">
-        <h3 class="FlowConfigure-sideNav-header">things in flow</h3>
         <button
           ng-repeat="node in nodesToConfigure"
           class="FlowConfigure-sideNav-item"
@@ -48,8 +20,10 @@
           <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
             <spinner loading="!showFlowNodeEditor" size="large"></spinner>
           </div>
+
           <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
             <div class="Sidebar-pane-form">
+              <flow-configure-permissions flow="flow" ng-show="!flowNodeType.formTemplatePath" onSubmit="controller.nextNode"></flow-configure-permissions>
               <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
             </div>
           </div>

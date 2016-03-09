@@ -1,0 +1,30 @@
+<div>
+  <spinner loading="controller.permissionsLoading" size="large"></spinner>
+
+  <div class="FlowConfigure-permissions" ng-hide="controller.permissionsLoading">
+    <div ng-show="thingsNeedingSendWhitelist">
+      <div class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</div>
+      <div class="FlowConfigure-permissionsList">
+        <div ng-repeat="permission in thingsNeedingSendWhitelist">
+          {{controller.checkForServiceNames(permission)}}
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="thingsNeedingReceiveAs">
+      <div class="FlowConfigure-permissionHeader">These things need to have permission to receieve messages as your flow</div>
+      <div class="FlowConfigure-permissionsList">
+        <div class="FlowConfigure-permissionsListItem" ng-repeat="permission in thingsNeedingReceiveAs">
+          {{permission.name || controller.prettifyType(permission.type) || permission.uuid}}
+        </div>
+      </div>
+    </div>
+
+    <button
+      ng-click="controller.updatePermissions()"
+      ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist"
+      class="BluButton BluButton--save">
+      Update My Permissions
+    </button>
+  </div>
+</div>
