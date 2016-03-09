@@ -5,7 +5,7 @@ class LoginController
     host         = $location.host()
     port         = $location.port()
 
-    @CWCAccount = @isCWCAccount()
+    @CWCAccount = @isCWCAccount() || $cookies.workspaceCloud
     @loggingIn = true
 
     callbackUrl = $location.search().callbackUrl
