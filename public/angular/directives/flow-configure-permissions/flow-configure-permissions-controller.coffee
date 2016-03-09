@@ -1,6 +1,7 @@
 class FlowConfigurePermissionsController
-  constructor: ($scope, FlowService, NodeRegistryService, ThingService, SERVICE_UUIDS) ->
+  constructor: ($scope, $q, FlowService, NodeRegistryService, ThingService, SERVICE_UUIDS) ->
     @scope               = $scope
+    @q                   = $q
     @FlowService         = FlowService
     @ThingService        = ThingService
     @NodeRegistryService = NodeRegistryService
@@ -13,6 +14,10 @@ class FlowConfigurePermissionsController
       return unless flow
       @checkPermissions()
 
+    @scope.$on 'update-permissions', (event) =>
+      return if @permissionsUpdated
+      @updatePermissions()
+
   checkPermissions: =>
     { flow } = @scope
     { flowId, nodes } = flow
@@ -22,6 +27,8 @@ class FlowConfigurePermissionsController
         @permissionsLoading = false
         @permissionsUpdated = false
         @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
+
+        @scope.$emit 'permissions-updated' if @permissionsUpdated
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
@@ -52,7 +59,6 @@ class FlowConfigurePermissionsController
     @addFlowToWhitelists()
     @addSendWhitelistsToFlow()
     @checkPermissions()
-    @scope.onSubmit()
 
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope

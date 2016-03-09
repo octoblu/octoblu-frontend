@@ -8,6 +8,5 @@ angular.module('octobluApp')
     controllerAs: 'controller'
     scope: {
       flow: '='
-      onSubmit: '='
     }
   }

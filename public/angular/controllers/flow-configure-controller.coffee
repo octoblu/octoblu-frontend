@@ -11,12 +11,16 @@ class FlowConfigureController
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
+    @permissionsUpdated = false
+
+    @scope.$watch 'permissions-updated', =>
+      @permissionsUpdated = true
+
     @FlowService.getFlow(@stateParams.flowId).
       then (flow) =>
         @scope.nodesToConfigure = @removeDebugAndComment flow.nodes
         @addPermissionsNode @scope.nodesToConfigure
         @setSelectedNode _.first @scope.nodesToConfigure
-        console.log @scope.nodesToConfigure
         @scope.flow = flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
@@ -36,8 +40,7 @@ class FlowConfigureController
 
   removeDebugAndComment: (nodes)=>
     _.filter nodes, (node) =>
-      return false unless node.type != 'operation:comment'
-      return false unless node.type != 'operation:debug'
+      return false unless node.type.split(':')[0] != 'operation'
       true
 
   saveFlow: =>
@@ -52,6 +55,9 @@ class FlowConfigureController
     return unless type
     type = type.split(':')[1]
     type.replace('-', ' ')
+
+  emitUpdatePermissions: =>
+    @scope.$broadcast 'update-permissions', null
 
   checkForNextButton: =>
     return unless @scope.flow

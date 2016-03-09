@@ -1,5 +1,8 @@
 <div>
   <spinner loading="controller.permissionsLoading" size="large"></spinner>
+  <div ng-show="controller.permissionsUpdated && !controller.permissionsLoading">
+    <random-robot>Permissions Updated</random-robot>
+  </div>
 
   <div class="FlowConfigure-permissions" ng-hide="controller.permissionsLoading">
     <div ng-show="thingsNeedingSendWhitelist">
@@ -19,12 +22,5 @@
         </div>
       </div>
     </div>
-
-    <button
-      ng-click="controller.updatePermissions()"
-      ng-show="thingsNeedingReceiveAs || thingsNeedingSendWhitelist"
-      class="BluButton BluButton--save">
-      Update My Permissions
-    </button>
   </div>
 </div>

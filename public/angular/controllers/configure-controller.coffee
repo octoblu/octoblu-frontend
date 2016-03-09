@@ -14,6 +14,7 @@ class ConfigureController
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
         connectedThings = _.filter flowNodeTypes, (node) =>
+          return unless node.uuid
           node.category != 'operation'
         @scope.loadingConnectedThings = false
         @updateThingsByCategory connectedThings
