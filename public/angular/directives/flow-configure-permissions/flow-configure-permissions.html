@@ -8,7 +8,7 @@
     <div ng-show="thingsNeedingSendWhitelist">
       <div class="FlowConfigure-permissionHeader">These things need to have permission to send your flow messages</div>
       <div class="FlowConfigure-permissionsList">
-        <div ng-repeat="permission in thingsNeedingSendWhitelist">
+        <div class="FlowConfigure-permissionsListItem" ng-repeat="permission in thingsNeedingSendWhitelist">
           {{controller.checkForServiceNames(permission)}}
         </div>
       </div>

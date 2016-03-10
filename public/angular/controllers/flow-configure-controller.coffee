@@ -13,7 +13,8 @@ class FlowConfigureController
 
     @permissionsUpdated = false
 
-    @scope.$watch 'permissions-updated', =>
+    @scope.$on 'permissions-updated', (event, options) =>
+      return unless options
       @permissionsUpdated = true
 
     @FlowService.getFlow(@stateParams.flowId).

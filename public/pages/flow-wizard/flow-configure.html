@@ -12,6 +12,7 @@
           ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
           {{controller.prettifyType(node.type)}}
         </button>
+        <button ng-click="controller.saveFlow()" class="BluButton FlowConfigure-skipButton">Skip Wizard</button>
       </nav>
 
       <div class="FlowConfigure-nodes">
@@ -29,13 +30,10 @@
           </div>
         </div>
         <div class="FlowConfigure-actions">
-          <button ng-click="controller.saveFlow()" class="BluButton BluButton--cancel">Skip</button>
-          <div>
-            <button ng-click="controller.emitUpdatePermissions()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && !controller.permissionsUpdated">Update Permissions</button>
-            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && controller.permissionsUpdated">Next</button>
-            <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne && flowNode.type !== 'cats:Permissions'">Next</button>
-            <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Save and Deploy Flow</a>
-          </div>
+          <button ng-click="controller.emitUpdatePermissions()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && !controller.permissionsUpdated">Update Permissions</button>
+          <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && controller.permissionsUpdated">Next</button>
+          <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne && flowNode.type !== 'cats:Permissions'">Next</button>
+          <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Save and Deploy Flow</a>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ class FlowConfigurePermissionsController
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
-    @permissionsUpdated  = true
+    @permissionsUpdated  = false
     @permissionsLoading  = true
 
     @scope.$watch 'flow', (flow) =>
@@ -28,7 +28,7 @@ class FlowConfigurePermissionsController
         @permissionsUpdated = false
         @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
 
-        @scope.$emit 'permissions-updated' if @permissionsUpdated
+        @scope.$emit 'permissions-updated', @permissionsUpdated if @permissionsUpdated
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs

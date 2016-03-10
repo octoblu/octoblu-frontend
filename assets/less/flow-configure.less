@@ -1,5 +1,5 @@
 .FlowConfigure-permissions {
-  
+
 }
 
 .Flowconfigure-permissionsSpinner {
@@ -7,15 +7,22 @@
 }
 
 .FlowConfigure-permissionsList {
-  list-style: none;
+  .flex-display;
+  .flex-direction(column);
+  .justify-content(space-around);
+
+  height: 150px;
 }
 
 .FlowConfigure-permissionHeader {
   font-weight: bold;
+  font-size: 16px;
 }
 
 .FlowConfigure-permissionsListItem {
   text-transform: capitalize;
+  text-align: center;
+  padding: 24px 0;
 }
 
 .FlowConfigure-container {
@@ -29,9 +36,11 @@
   .flex-display;
   .flex-direction(column);
 
-  background: #4E4E4E;
   width: 100%;
   max-width: 230px;
+  position: relative;
+
+  background: #4E4E4E;
 }
 
 .FlowConfigure-sideNav-content {
@@ -87,9 +96,16 @@
   padding-top: 0;
 }
 
+.FlowConfigure-skipButton {
+  color: #C3C3C3 !important;
+  position: absolute;
+  bottom: 10px;
+  left: 40px;
+}
+
 .FlowConfigure-actions {
   .flex-display;
-  .justify-content(space-between);
+  .justify-content(flex-end);
 
   padding-top: 30px;
 }
