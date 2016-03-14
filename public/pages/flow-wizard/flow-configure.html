@@ -2,7 +2,9 @@
 
 <md-content class="interior__wrapper">
   <div class="interior">
-    <h2 class="Bluprints-header">Flow Configure</h2>
+    <div class="PageHeader">
+      <div class="PageHeader-title">Flow Configure</div>
+    </div>
     <div class="FlowConfigure-container">
       <nav class="FlowConfigure-sideNav">
         <button
@@ -12,7 +14,7 @@
           ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
           {{controller.prettifyType(node.type)}}
         </button>
-        <button ng-click="controller.saveFlow()" class="BluButton FlowConfigure-skipButton">Skip Wizard</button>
+        <button ng-click="controller.saveFlow()" class="BluButton FlowConfigure-skipButton">Skip Configuration</button>
       </nav>
 
       <div class="FlowConfigure-nodes">
@@ -33,7 +35,7 @@
           <button ng-click="controller.emitUpdatePermissions()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && !controller.permissionsUpdated">Update Permissions</button>
           <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="flowNode.type =='cats:Permissions' && controller.permissionsUpdated">Next</button>
           <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne && flowNode.type !== 'cats:Permissions'">Next</button>
-          <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Save and Deploy Flow</a>
+          <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Done</a>
         </div>
       </div>
     </div>
