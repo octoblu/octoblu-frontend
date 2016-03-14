@@ -8,6 +8,7 @@ describe 'FlowController', ->
       $provide.value 'OCTOBLU_ICON_URL', ''
       $provide.value 'MESHBLU_HOST', 'http://whatever.com'
       $provide.value 'MESHBLU_PORT', 1111
+      $provide.value 'SERVICE_UUIDS', ''
       return
 
     inject ($controller, $rootScope, $q) =>
