@@ -37,8 +37,8 @@
           </div>
         </div>
         <div class="FlowConfigure-actions">
-          <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne">Next</button>
-          <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne">Done</a>
+          <button ng-click="controller.nextNode()" class="BluButton BluButton--save FlowConfigure-nextNode" ng-if="!controller.finalOne && nodesToConfigure.length > 1">Next</button>
+          <a class="FlowConfigure-save BluButton BluButton--save" ng-click="controller.saveFlow()" ng-if="controller.finalOne || nodesToConfigure.length == 1">Done</a>
         </div>
       </div>
     </div>

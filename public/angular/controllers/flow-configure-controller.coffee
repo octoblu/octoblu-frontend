@@ -20,8 +20,8 @@ class FlowConfigureController
         @scope.flow = flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
-        @checkPermissions()
         @setFlowNodeType()
+        @checkPermissions()
 
   checkPermissions: =>
     { flow } = @scope
@@ -117,9 +117,6 @@ class FlowConfigureController
     return unless type
     type = type.split(':')[1]
     type.replace('-', ' ')
-
-  emitUpdatePermissions: =>
-    @scope.$broadcast 'update-permissions', null
 
   checkForNextButton: =>
     return unless @scope.flow
