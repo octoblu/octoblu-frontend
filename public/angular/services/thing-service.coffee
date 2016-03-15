@@ -138,6 +138,7 @@ class ThingService
   updateDevice: (device={}) =>
     deferred = @q.defer()
     @skynetPromise.then (connection) =>
+      console.log "IN THING SERVICE", device
       connection.update device, (response) =>
         deferred.resolve()
 

@@ -18,6 +18,7 @@ class FlowConfigureController
         @scope.nodesToConfigure = @removeOperatorNodes flow.nodes
         @setSelectedNode _.first @scope.nodesToConfigure
         @scope.flow = flow
+        console.log "FLOW IS", flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
         @setFlowNodeType()
@@ -31,6 +32,8 @@ class FlowConfigureController
       @checkNodeRegistryPermissions(flowId, nodes).then (thingsNeedingSendWhitelist) =>
         return @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
         @permissionsUpdated = false
+
+        console.log "permissions", thingsNeedingSendWhitelist, thingsNeedingReceiveAs
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
@@ -63,6 +66,12 @@ class FlowConfigureController
     @addSendWhitelistsToFlow()
     @checkPermissions()
 
+  getNodeId: () =>
+    @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
+      nodeTypeId = '53c9b832f400e177dca325b3'
+      nodeTypeId = nodeType._id if nodeType?._id
+      @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, wizard: true
+
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope
     deferred = @q.defer()
@@ -77,7 +86,7 @@ class FlowConfigureController
 
       thing.sendWhitelist = thing.sendWhitelist || []
       thing.sendWhitelist.push flow.flowId
-
+      console.log "In addFlowToWhitelists", thing
       @ThingService.updateDevice thing
     , (error)=>
       return deferred.reject error if error
@@ -93,6 +102,7 @@ class FlowConfigureController
       then (thing)=>
         thing.sendWhitelist = thing.sendWhitelist || []
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
+        console.log "In addSendWhitelistsToFlow", thing
         @ThingService.updateDevice thing
 
   setSelectedNode: (node)=>
@@ -137,6 +147,7 @@ class FlowConfigureController
 
     @FlowNodeTypeService.getFlowNodeType(flowNode.type).
       then (flowNodeType)=>
+        console.log "flowNodeType is", flowNodeType
         @scope.flowNodeType = flowNodeType
         @timeout( =>
           @scope.showFlowNodeEditor = true
