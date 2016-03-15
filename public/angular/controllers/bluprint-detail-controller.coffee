@@ -1,15 +1,15 @@
 class BluprintDetailController
   constructor: ($mdDialog, $mdToast, $state, $stateParams, $scope, BluprintService, UrlService) ->
-    @state = $state
-    @scope = $scope
-    @mdToast = $mdToast
-    @mdDialog = $mdDialog
-    @UrlService = UrlService
-    @stateParams = $stateParams
+    @state           = $state
+    @scope           = $scope
+    @mdToast         = $mdToast
+    @mdDialog        = $mdDialog
+    @UrlService      = UrlService
+    @stateParams     = $stateParams
     @BluprintService = BluprintService
 
-    @scope.importing = false
-    @scope.editMode = @stateParams.editMode
+    @scope.importing  = false
+    @scope.editMode   = @stateParams.editMode
     @scope.createMode = @stateParams.createMode
 
     @refreshBluprint()
@@ -47,7 +47,8 @@ class BluprintDetailController
   import: =>
     { bluprintId } = @stateParams
     @scope.importing = true
-    @state.go 'material.bluprintWizard', bluprintId: bluprintId
+    @BluprintService.importBluprint(@stateParams.bluprintId).then (flow) =>
+      @state.go 'material.flow', flowId: flow.flowId
 
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public
