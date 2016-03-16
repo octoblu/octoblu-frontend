@@ -4,16 +4,19 @@ angular.module('octobluApp')
 .controller('addChannelAWSController', function($scope, $state, $stateParams, nodeType, userService, AuthService) {
   $scope.activate = function(){
     AuthService.getCurrentUser().then(function(user){
-      userService.saveAWSApi(user.resource.uuid, nodeType.channelid,
-       $scope.newChannel.user, $scope.newChannel.pass,
-       function () {
-         var redirectToDesign = $stateParams.designer || false;
-         if(redirectToDesign){
-           $state.go('material.design', {added: nodeType.name});
-         }
-         else{
-           $state.go('material.configure', {added: nodeType.name});
-         }
+      userService.saveAWSApi(user.resource.uuid, nodeType.channelid,$scope.newChannel.user, $scope.newChannel.pass,function () {
+        var redirectToDesign = $stateParams.designer || false;
+        var redirectToWizard = $stateParams.wizard || false;
+        var route = 'material.configure';
+        var params = {added: nodeType.name};
+        if(redirectToWizard){
+          route = 'material.flowConfigure';
+          params = {flowId: $stateParams.wizardFlowId};
+        }
+        if(redirectToDesign){
+          route = 'material.design';
+        }
+        $state.go(route, params);
       });
     });
   };

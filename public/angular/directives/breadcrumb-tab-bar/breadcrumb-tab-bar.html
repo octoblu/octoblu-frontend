@@ -1,7 +1,9 @@
 <header class="BreadcrumbBar">
   <div class="BreadcrumbBar-section BreadcrumbBar-section--tabs">
     <span class="BreadcrumbBar-section-container" ng-repeat="tab in fragments">
-      <a ng-if="tab.linkTo" class="BreadcrumbBar-item BreadcrumbBar-link" ui-sref="{{tab.linkTo}}">{{tab.label}}</a>
+      <a ng-if="tab.linkTo" class="BreadcrumbBar-item BreadcrumbBar-link" ui-sref="{{tab.linkTo}}({{tab.params}})">
+        {{tab.label}}
+      </a>
       <i ng-if="tab.linkTo" class="fa fa-angle-right"></i>
       <span ng-if="!tab.linkTo" class="BreadcrumbBar-item">{{tab.label}}</span>
     </span>

@@ -6,12 +6,17 @@ angular.module('octobluApp')
     AuthService.getCurrentUser().then(function(user){
       userService.savePagerdutyApi(nodeType.channelid, $scope.newChannel.token, function(){
         var redirectToDesign = $stateParams.designer || false;
+        var redirectToWizard = $stateParams.wizard || false;
+        var route = 'material.configure';
+        var params = {added: nodeType.name};
+        if(redirectToWizard){
+          route = 'material.flowConfigure';
+          params = {flowId: $stateParams.wizardFlowId};
+        }
         if(redirectToDesign){
-          $state.go('material.design', {added: nodeType.name});
+          route = 'material.design';
         }
-        else{
-          $state.go('material.configure', {added: nodeType.name});
-        }
+        $state.go(route, params);
       });
     });
   };

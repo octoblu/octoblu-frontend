@@ -1,5 +1,5 @@
 class FlowConfigureController
-  constructor: ($stateParams, $scope, $state, $timeout, $q, FlowService, FlowNodeTypeService, NodeRegistryService, ThingService, SERVICE_UUIDS) ->
+  constructor: ($stateParams, $scope, $state, $timeout, $q, FlowService, FlowNodeTypeService, NodeRegistryService, NodeTypeService, ThingService, SERVICE_UUIDS) ->
     @q                   = $q
     @scope               = $scope
     @state               = $state
@@ -8,6 +8,7 @@ class FlowConfigureController
     @FlowService         = FlowService
     @ThingService        = ThingService
     @FlowNodeTypeService = FlowNodeTypeService
+    @NodeTypeService     = NodeTypeService
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
@@ -17,8 +18,8 @@ class FlowConfigureController
       then (flow) =>
         @scope.nodesToConfigure = @removeOperatorNodes flow.nodes
         @setSelectedNode _.first @scope.nodesToConfigure
+
         @scope.flow = flow
-        console.log "FLOW IS", flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
         @setFlowNodeType()
@@ -32,8 +33,6 @@ class FlowConfigureController
       @checkNodeRegistryPermissions(flowId, nodes).then (thingsNeedingSendWhitelist) =>
         return @permissionsUpdated = true unless thingsNeedingSendWhitelist || thingsNeedingReceiveAs
         @permissionsUpdated = false
-
-        console.log "permissions", thingsNeedingSendWhitelist, thingsNeedingReceiveAs
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
@@ -66,11 +65,17 @@ class FlowConfigureController
     @addSendWhitelistsToFlow()
     @checkPermissions()
 
-  getNodeId: () =>
-    @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
+  getNodeId: (node) =>
+    @NodeTypeService.getNodeTypeByType(node.type).then (nodeType) =>
       nodeTypeId = '53c9b832f400e177dca325b3'
       nodeTypeId = nodeType._id if nodeType?._id
-      @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, wizard: true
+      params =
+        nodeTypeId: nodeTypeId,
+        wizard: true,
+        designer: false,
+        wizardFlowId: @scope.flow.flowId
+
+      @state.go 'material.nodewizard-add', params
 
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope
@@ -86,7 +91,6 @@ class FlowConfigureController
 
       thing.sendWhitelist = thing.sendWhitelist || []
       thing.sendWhitelist.push flow.flowId
-      console.log "In addFlowToWhitelists", thing
       @ThingService.updateDevice thing
     , (error)=>
       return deferred.reject error if error
@@ -102,7 +106,6 @@ class FlowConfigureController
       then (thing)=>
         thing.sendWhitelist = thing.sendWhitelist || []
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
-        console.log "In addSendWhitelistsToFlow", thing
         @ThingService.updateDevice thing
 
   setSelectedNode: (node)=>
@@ -145,9 +148,13 @@ class FlowConfigureController
 
     return @scope.flowNodeType = null unless flowNode
 
+    if flowNode.needsSetup
+      @scope.flowNodeType = flowNode
+      @scope.showFlowNodeEditor = true
+      return
+
     @FlowNodeTypeService.getFlowNodeType(flowNode.type).
       then (flowNodeType)=>
-        console.log "flowNodeType is", flowNodeType
         @scope.flowNodeType = flowNodeType
         @timeout( =>
           @scope.showFlowNodeEditor = true

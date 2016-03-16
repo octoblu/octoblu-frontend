@@ -62,8 +62,11 @@ angular.module('octobluApp')
     }
 
     var redirectToDesign = $stateParams.designer || false;
+    var redirectToWizard = $stateParams.wizard || false;
 
-    $state.go(AUTH_DESTINATIONS[auth_strategy], {designer: redirectToDesign}, {location: false});
+    $state.go(AUTH_DESTINATIONS[auth_strategy],
+      {designer: redirectToDesign, wizard: redirectToWizard, wizardFlowId: $stateParams.wizardFlowId},
+      {location: false});
   };
 
   function convertParamsToObject(params){
