@@ -32,7 +32,7 @@
   There are two ways to trigger your webhook
   </p>
   <h5 class="Sidebar--trigger-webhook-type">EMAIL</h5>
-  <a class="Sidebar--trigger-webhook-content" href="mailto:{{flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com</a>
+  <a class="Sidebar--trigger-webhook-content" href="mailto:{{flow.flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com" target="_blank">{{flow.flowId}}-{{flowNode.alias || flowNode.id}}@webhook.octoblu.com</a>
   <h5 class="Sidebar--trigger-webhook-type">HTTP POST</h5>
-  <a class="Sidebar--trigger-webhook-content" ng-href="https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.alias || flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flowId}}/triggers/{{flowNode.alias || flowNode.id}}</a>
+  <a class="Sidebar--trigger-webhook-content" ng-href="https://triggers.octoblu.com/flows/{{flow.flowId}}/triggers/{{flowNode.alias || flowNode.id}}" target="_blank">https://triggers.octoblu.com/flows/{{flow.flowId}}/triggers/{{flowNode.alias || flowNode.id}}</a>
 </div>

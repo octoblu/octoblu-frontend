@@ -18,4 +18,6 @@ meshblu.json
 *.sublime-workspace
 public/angular/compiled
 assets/json/operations.json
-*-dev
+
+# dev files
+.*-dev
