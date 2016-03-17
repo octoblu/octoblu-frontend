@@ -68,9 +68,14 @@
   color: white;
   text-align: left;
   text-transform: capitalize;
-  white-space: nowrap;
 
   background: transparent;
+
+   /* truncate */
+  width: 230px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .FlowConfigure-sideNav-item--is-selected {
@@ -121,10 +126,6 @@
   float: right;
 }
 
-.ng-hide {
-    display: none !important;
-}
-
 .FlowConfigure-prevButton {
   border: 1px solid #14568F !important;
   float: left;
@@ -139,4 +140,8 @@
 
 .FlowConfigure-actions {
   padding-top: 30px;
+}
+
+.ng-hide {
+  display: none !important;
 }
