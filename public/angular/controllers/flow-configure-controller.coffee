@@ -131,17 +131,18 @@ class FlowConfigureController
     return true if _.#{position}(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
     false
 
-  checkForNextButton: () =>
+  checkForNextButton: (current) =>
     return unless @scope.flow
-    current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
     return true if _.last(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
     false
 
-  checkForPrevButton: () =>
+  checkForPrevButton: (current) =>
     return unless @scope.flow
-    current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
     return true if _.first(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
     false
+
+  getCurrent: () =>
+    return _.indexOf @scope.nodesToConfigure, @scope.flowNode
 
   navigateNode: (position) =>
     current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
@@ -155,21 +156,19 @@ class FlowConfigureController
   setFlowNodeType: (node) =>
     @scope.showFlowNodeEditor = false
     @scope.flowNode = node
-
     return @scope.flowNodeType = null unless @scope.flowNode
+
+    @firstOne = @checkForPrevButton(@getCurrent())
+    @finalOne = @checkForNextButton(@getCurrent())
 
     if @scope.flowNode.needsSetup
       @scope.flowNodeType = @scope.flowNode
       @scope.showFlowNodeEditor = true
-      @firstOne = @checkForPrevButton()
-      @finalOne = @checkForNextButton()
       return
 
     @FlowNodeTypeService.getFlowNodeType(@scope.flowNode.type).
       then (flowNodeType)=>
         @scope.flowNodeType = flowNodeType
-        @firstOne = @checkForPrevButton()
-        @finalOne = @checkForNextButton()
         @timeout( =>
           @scope.showFlowNodeEditor = true
         , 200)

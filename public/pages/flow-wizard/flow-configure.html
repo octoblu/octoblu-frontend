@@ -16,7 +16,7 @@
         <button
           ng-repeat="node in nodesToConfigure"
           class="FlowConfigure-sideNav-item"
-          ng-click="controller.setSelectedNode(node)"
+          ng-click="controller.setFlowNodeType(node)"
           ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
           {{node.name || controller.prettifyType(node.type)}}
         </button>
@@ -48,8 +48,8 @@
         </div>
         <div class="FlowConfigure-actions">
           <button ng-click="controller.navigateNode('prev')" class="BluButton BluButton--outline FlowConfigure-prevButton" ng-show="!controller.firstOne && nodesToConfigure.length > 1">Previous</button>
-          <button ng-click="controller.navigateNode('next')" class="BluButton BluButton--save FlowConfigure-nextButton" ng-show="!controller.finalOne && nodesToConfigure.length > 1">Next</button>
-          <a class="FlowConfigure-saveButton BluButton BluButton--save" ng-click="controller.saveFlow()" ng-show="controller.finalOne || nodesToConfigure.length == 1">Done</a>
+          <button ng-click="controller.navigateNode('next')" class="BluButton BluButton--save FlowConfigure-nextButton" ng-cloak ng-show="!controller.finalOne && nodesToConfigure.length > 1">Next</button>
+          <a class="FlowConfigure-saveButton BluButton BluButton--save" ng-click="controller.saveFlow()" ng-cloak ng-show="controller.finalOne || nodesToConfigure.length == 1">Done</a>
         </div>
       </div>
     </div>
