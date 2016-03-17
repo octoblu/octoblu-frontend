@@ -21,7 +21,7 @@ class FlowConfigureController
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
 
-        @setSelectedNode _.first @scope.nodesToConfigure
+        @setFlowNodeType _.first @scope.nodesToConfigure
         @checkPermissions()
 
   checkPermissions: =>
@@ -107,10 +107,6 @@ class FlowConfigureController
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
         @ThingService.updateDevice thing
 
-  setSelectedNode: (node) =>
-    @scope.flowNode = node
-    @setFlowNodeType()
-
   removeOperatorNodes: (nodes)=>
     _.filter nodes, (node) =>
       return false unless node.type.split(':')[0] != 'operation'
@@ -151,25 +147,25 @@ class FlowConfigureController
     current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
     if position == 'next'
       return unless current < @scope.nodesToConfigure.length - 1
-      @setSelectedNode @scope.nodesToConfigure[current + 1]
+      @setFlowNodeType @scope.nodesToConfigure[current + 1]
     if position == 'prev'
       return unless current != _.first @scope.nodesToConfigure
-      @setSelectedNode @scope.nodesToConfigure[current - 1]
+      @setFlowNodeType @scope.nodesToConfigure[current - 1]
 
-  setFlowNodeType: =>
+  setFlowNodeType: (node) =>
     @scope.showFlowNodeEditor = false
-    { flowNode } = @scope
+    @scope.flowNode = node
 
-    return @scope.flowNodeType = null unless flowNode
+    return @scope.flowNodeType = null unless @scope.flowNode
 
-    if flowNode.needsSetup
-      @scope.flowNodeType = flowNode
+    if @scope.flowNode.needsSetup
+      @scope.flowNodeType = @scope.flowNode
       @scope.showFlowNodeEditor = true
       @firstOne = @checkForPrevButton()
       @finalOne = @checkForNextButton()
       return
 
-    @FlowNodeTypeService.getFlowNodeType(flowNode.type).
+    @FlowNodeTypeService.getFlowNodeType(@scope.flowNode.type).
       then (flowNodeType)=>
         @scope.flowNodeType = flowNodeType
         @firstOne = @checkForPrevButton()
@@ -178,7 +174,7 @@ class FlowConfigureController
           @scope.showFlowNodeEditor = true
         , 200)
 
-    @FlowNodeTypeService.getOtherMatchingFlowNodeTypes(flowNode.type).
+    @FlowNodeTypeService.getOtherMatchingFlowNodeTypes(@scope.flowNode.type).
       then (otherMatchingFlowNodeTypes)=>
         @scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes
 

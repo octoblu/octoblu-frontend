@@ -113,13 +113,20 @@
   left: 0;
   width: 100%;
 }
+.FlowConfigure-saveButton{
+  .FlowConfigure-nextButton;
+}
 
-.FlowConfigure-actions--right {
+.FlowConfigure-nextButton {
   float: right;
 }
 
-.FlowConfigure-actions--left {
+.FlowConfigure-prevButton {
+  border: 1px solid #14568F !important;
   float: left;
+  &:hover {
+    color: darken(#14568F, 10%);
+  }
 }
 
 .FlowConfigure-skipButton:hover {
