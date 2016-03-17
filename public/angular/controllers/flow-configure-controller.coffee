@@ -17,12 +17,11 @@ class FlowConfigureController
     @FlowService.getFlow(@stateParams.flowId).
       then (flow) =>
         @scope.nodesToConfigure = @removeOperatorNodes flow.nodes
-        @setSelectedNode _.first @scope.nodesToConfigure
-
         @scope.flow = flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
-        @setFlowNodeType()
+
+        @setSelectedNode _.first @scope.nodesToConfigure
         @checkPermissions()
 
   checkPermissions: =>
@@ -108,9 +107,8 @@ class FlowConfigureController
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
         @ThingService.updateDevice thing
 
-  setSelectedNode: (node)=>
+  setSelectedNode: (node) =>
     @scope.flowNode = node
-    @finalOne = @checkForNextButton()
     @setFlowNodeType()
 
   removeOperatorNodes: (nodes)=>
@@ -131,16 +129,32 @@ class FlowConfigureController
     type = type.split(':')[1]
     type.replace('-', ' ')
 
-  checkForNextButton: =>
+  checkButton: (position) =>
+    return unless @scope.flow
+    current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
+    return true if _.#{position}(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
+    false
+
+  checkForNextButton: () =>
     return unless @scope.flow
     current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
     return true if _.last(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
     false
 
-  nextNode: =>
+  checkForPrevButton: () =>
+    return unless @scope.flow
     current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
-    return unless current < @scope.nodesToConfigure.length - 1
-    @setSelectedNode @scope.nodesToConfigure[current+1]
+    return true if _.first(@scope.nodesToConfigure) == @scope.nodesToConfigure[current]
+    false
+
+  navigateNode: (position) =>
+    current = _.indexOf @scope.nodesToConfigure, @scope.flowNode
+    if position == 'next'
+      return unless current < @scope.nodesToConfigure.length - 1
+      @setSelectedNode @scope.nodesToConfigure[current + 1]
+    if position == 'prev'
+      return unless current != _.first @scope.nodesToConfigure
+      @setSelectedNode @scope.nodesToConfigure[current - 1]
 
   setFlowNodeType: =>
     @scope.showFlowNodeEditor = false
@@ -151,11 +165,15 @@ class FlowConfigureController
     if flowNode.needsSetup
       @scope.flowNodeType = flowNode
       @scope.showFlowNodeEditor = true
+      @firstOne = @checkForPrevButton()
+      @finalOne = @checkForNextButton()
       return
 
     @FlowNodeTypeService.getFlowNodeType(flowNode.type).
       then (flowNodeType)=>
         @scope.flowNodeType = flowNodeType
+        @firstOne = @checkForPrevButton()
+        @finalOne = @checkForNextButton()
         @timeout( =>
           @scope.showFlowNodeEditor = true
         , 200)
