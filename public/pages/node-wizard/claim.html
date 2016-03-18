@@ -2,10 +2,10 @@
 <md-content class="interior__wrapper">
   <div class="interior">
 
-    <h2 class="node-wizard__title">Claim Thing ({{controller.device.type}})</h2>
+    <h2 class="node-wizard__title">Claim Thing <span ng-show="controller.device.type">({{controller.device.type}})</span></h2>
 
     <div class="node-wizard__wrapper">
-      <div class="node-wizard-logo-container">
+      <div class="node-wizard-logo-container" ng-show="{{controller.device.logo}}">
         <img src="{{controller.device.logo}}">
       </div>
       <h2 class="node-wizard__title">{{nodeType.name}}</h2>

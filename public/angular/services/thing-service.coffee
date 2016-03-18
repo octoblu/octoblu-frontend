@@ -1,8 +1,11 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
+    @MeshbluHttp = MeshbluHttp
+    @MESHBLU_HOST = MESHBLU_HOST
+    @MESHBLU_PORT = MESHBLU_PORT
 
   addLogo: (data) =>
     return _.clone data unless data?.type?
@@ -33,17 +36,25 @@ class ThingService
     send:      !device.sendWhitelist?
     receive:   !device.receiveWhitelist?
 
-  claimThing: (query, user, params)=>
-    return @q.reject 'Unable to claim device, missing uuid'  unless query?.uuid?
-    return @q.reject 'Unable to claim device, missing token' unless query?.token?
-
-    @getThing(query).then (thing) =>
+  claimThing: (query={}, user, params)=>
+    {uuid, token} = query
+    return @q.reject 'Unable to claim device, missing uuid'  unless uuid?
+    return @q.reject 'Unable to claim device, missing token' unless token?
+    deferred = @q.defer()
+    meshbluHttp = new @MeshbluHttp {
+      hostname: @MESHBLU_HOST,
+      port: @MESHBLU_PORT,
+      uuid: uuid,
+      token: token
+    }
+    meshbluHttp.whoami (error, thing) =>
+      return deferred.reject error if error?
       thing = @addUuidToWhitelists user.uuid, thing
-      thing.name =  params.name
-      thing.uuid =  query.uuid
-      thing.token = query.token
-
-      @updateDevice(thing)
+      thing.name = params.name
+      meshbluHttp.update uuid, thing, (error) =>
+        return deferred.reject error if error?
+        deferred.resolve()
+    return deferred.promise
 
   combineDeviceWithPeers: (device, peers) =>
     return unless device? && peers?

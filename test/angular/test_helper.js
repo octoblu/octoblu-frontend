@@ -14,6 +14,9 @@ beforeEach(function () {
     $provide.value('$mdDialog', {});
     $provide.constant('OCTOBLU_API_URL', '');
     $provide.constant('OCTOBLU_ICON_URL', '');
+    $provide.constant('MESHBLU_PORT', 0xd00d);
+    $provide.constant('MESHBLU_HOST', 'localhost');
+    $provide.constant('OCTOBLU_ICON_URL', '');
     $provide.constant('FLOW_LOGGER_UUID', 'asdf');
   });
 });

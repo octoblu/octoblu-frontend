@@ -19,65 +19,69 @@ describe 'ThingService', ->
   describe '->claimThing', ->
     describe 'when called', ->
       beforeEach (done) ->
-        @skynet.devices = sinon.stub().yields {devices: [{type: "gateblu"}]}
-        @skynet.update = sinon.stub().yields null
-
         @user = uuid: 'user-holla'
         @query = uuid: 'holla', token: 'jolla'
         @params = name: 'mokka'
+        @meshbluHttp = {
+          whoami: sinon.stub().yields null, {type: "gateblu"}
+          update: sinon.stub().yields null
+        }
+        @sut.MeshbluHttp = () => @meshbluHttp
 
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).then (@device) => done()
 
       it 'should call update with the new device properties', ->
         device =
-          uuid:  'holla'
-          token: 'jolla'
           name:  'mokka'
           owner: 'user-holla'
           discoverWhitelist:  ['user-holla']
           configureWhitelist: ['user-holla']
           sendWhitelist:      ['user-holla']
           receiveWhitelist:   ['user-holla']
-        expect(@skynet.update).to.have.been.calledWith device
+        expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called and the device already has a whitelist', ->
       beforeEach (done) ->
-        @skynet.devices = sinon.stub().yields devices: [{
-          discoverWhitelist:  ['other-holla']
-          configureWhitelist: ['other-holla']
-          sendWhitelist:      ['other-holla']
-          receiveWhitelist:   ['other-holla']
-        }]
-        @skynet.update = sinon.stub().yields null
-
         @user = uuid: 'user-holla'
         @query = uuid: 'holla', token: 'jolla'
         @params = name: 'mokka'
-
+        @meshbluHttp = {
+          whoami: sinon.stub().yields null, {
+            discoverWhitelist:  ['other-holla']
+            configureWhitelist: ['other-holla']
+            sendWhitelist:      ['other-holla']
+            receiveWhitelist:   ['other-holla']
+          }
+          update: sinon.stub().yields null
+        }
+        @sut.MeshbluHttp = () => @meshbluHttp
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).then (@device) => done()
 
       it 'should call claimDevice with the new device properties', ->
         device =
-          uuid:  'holla'
-          token: 'jolla'
           name:  'mokka'
           owner: 'user-holla'
           discoverWhitelist:  ['user-holla', 'other-holla']
           configureWhitelist: ['user-holla', 'other-holla']
           sendWhitelist:      ['user-holla', 'other-holla']
           receiveWhitelist:   ['user-holla', 'other-holla']
-        expect(@skynet.update).to.have.been.calledWith device
+        expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called without a uuid or token', ->
       beforeEach (done) ->
         @skynet.devices = sinon.spy()
         _.defer => @rootScope.$digest()
+        @meshbluHttp = {
+          whoami: sinon.stub().yields null, {}
+          update: sinon.stub().yields null
+        }
+        @sut.MeshbluHttp = () => @meshbluHttp
         @sut.claimThing().catch (@error) => done()
 
       it 'should not call skynet.devices', ->
-        expect(@skynet.devices).not.to.have.been.called
+        expect(@meshbluHttp.whoami).not.to.have.been.called
 
       it 'should resolve an error', ->
         expect(@error).to.deep.equal 'Unable to claim device, missing uuid'
@@ -89,9 +93,16 @@ describe 'ThingService', ->
         @user = uuid: 'user-holla'
         @query = uuid: 'holla', token: 'jolla'
         @params = name: 'mokka'
-
+        @meshbluHttp = {
+          whoami: sinon.stub().yields 'nope'
+          update: sinon.stub().yields null
+        }
+        @sut.MeshbluHttp = () => @meshbluHttp
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).catch (@error) => done()
+
+      it 'should not call skynet.devices', ->
+        expect(@meshbluHttp.whoami).to.have.been.called
 
       it 'should resolve an error', ->
         expect(@error).to.deep.equal 'nope'

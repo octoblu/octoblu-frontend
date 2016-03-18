@@ -9,7 +9,7 @@ class ManualClaimNodeController
 
   claimThing: =>
     @loading = true
-    @ThingService.claimThing(@query, @user, {name: @name})
+    @ThingService.claimThing(@query, @user, {name: @deviceName})
       .then =>
         @state.go 'material.device', uuid: @query.uuid
       .catch (error) =>
