@@ -32,6 +32,7 @@
 
           <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
             <div class="Sidebar-pane-form">
+
               <div class="flow-node-form" ng-hide="flowNodeType.needsSetup" ng-include="flowNodeType.formTemplatePath"></div>
 
               <div class="Sidebar-flow-node-setup" ng-show="flowNodeType.needsSetup">
