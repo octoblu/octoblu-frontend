@@ -40,9 +40,11 @@ class ClaimNodeController
     device.configureWhitelist = _.union [uuid], @device.configureWhitelist || []
     device.sendWhitelist = _.union [uuid], @device.sendWhitelist || []
     device.receiveWhitelist = _.union [uuid], @device.receiveWhitelist || []
-    _.pull device.configureWhitelist, '*'
     _.pull device.discoverWhitelist, '*'
-    device
+    _.pull device.configureWhitelist, '*'
+    _.pull device.sendWhitelist, '*'
+    _.pull device.receiveWhitelist, '*'
+    return device
 
   iWantToClaimTheDevice: =>
     @loading = true

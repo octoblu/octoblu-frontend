@@ -18,6 +18,10 @@ class ThingService
     thing.configureWhitelist = _.union [uuid], device.configureWhitelist ? []
     thing.sendWhitelist      = _.union [uuid], device.sendWhitelist ? []
     thing.receiveWhitelist   = _.union [uuid], device.receiveWhitelist ? []
+    _.pull thing.discoverWhitelist, '*'
+    _.pull thing.configureWhitelist, '*'
+    _.pull thing.sendWhitelist, '*'
+    _.pull thing.receiveWhitelist, '*'
     thing
 
   calculateTheEverything: (device, peers) =>
@@ -96,9 +100,9 @@ class ThingService
 
     @skynetPromise.then (connection) =>
       connection.generateAndStoreToken uuid: device.uuid, (result) =>
-        if result.error?
-          console.error "Error updating device: #{device.uuid}", result.error?
-          deferred.reject result.error
+        if result?.error?
+          console.error "Error generating session token: #{device.uuid}", result?.error
+          deferred.reject result?.error || 'Unknown Error'
           return
         deferred.resolve result.token
 
@@ -143,6 +147,10 @@ class ThingService
     deferred = @q.defer()
     @skynetPromise.then (connection) =>
       connection.update device, (response) =>
+        if response?.error?
+          console.error "Error updating device: #{device.uuid}", response.error
+          deferred.reject response?.error || 'Unknown Error'
+          return
         deferred.resolve()
 
     deferred.promise
