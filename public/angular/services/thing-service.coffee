@@ -96,6 +96,10 @@ class ThingService
 
     @skynetPromise.then (connection) =>
       connection.generateAndStoreToken uuid: device.uuid, (result) =>
+        if result.error?
+          console.error "Error updating device: #{device.uuid}", result.error?
+          deferred.reject result.error
+          return
         deferred.resolve result.token
 
     deferred.promise

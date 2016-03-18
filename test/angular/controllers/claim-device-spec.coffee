@@ -143,7 +143,10 @@ describe 'ClaimNodeController', ->
         @stateParams.token = 'jolla'
         @ThingService.updateDevice.returns @q.when null
         _.defer => @rootScope.$digest()
-        @sut.device = {}
+        @sut.device = {
+          discoverWhitelist: ['*']
+          configureWhitelist: ['*']
+        }
         @sut.claimDevice().then (@device) => done()
 
       it 'should call claimDevice with the new device properties', ->

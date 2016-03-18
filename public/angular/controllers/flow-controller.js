@@ -454,14 +454,18 @@ angular.module('octobluApp')
   var addFlowToWhitelists = function(thingsNeedingReceiveAs) {
     var deferred = $q.defer()
 
-    async.each(thingsNeedingReceiveAs, function(thing){
-      thing.receiveAsWhitelist = thing.receiveAsWhitelist || [];
-      thing.receiveAsWhitelist.push($scope.activeFlow.flowId);
-      thing.receiveWhitelist = thing.receiveWhitelist || [];
-      thing.receiveWhitelist.push($scope.activeFlow.flowId);
-      thing.sendWhitelist = thing.sendWhitelist || [];
-      thing.sendWhitelist.push($scope.activeFlow.flowId);
-      ThingService.updateDevice(thing);
+    async.eachSeries(thingsNeedingReceiveAs, function(thing, callback){
+      var updateObj = {};
+      updateObj.uuid = thing.uuid;
+      updateObj.receiveAsWhitelist = thing.receiveAsWhitelist || [];
+      updateObj.receiveAsWhitelist.push($scope.activeFlow.flowId);
+      updateObj.receiveWhitelist = thing.receiveWhitelist || [];
+      updateObj.receiveWhitelist.push($scope.activeFlow.flowId);
+      updateObj.sendWhitelist = thing.sendWhitelist || [];
+      updateObj.sendWhitelist.push($scope.activeFlow.flowId);
+      ThingService.updateDevice(updateObj)
+        .then(function(){ callback() })
+        .catch(callback)
     }, function(error){
       if (error){
         return deferred.reject(error)
