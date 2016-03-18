@@ -30,12 +30,6 @@
             <spinner loading="!showFlowNodeEditor" size="large"></spinner>
           </div>
 
-          <div class="Sidebar-section flow-node-editor" ng-show="flowNode.type === 'device:gateblu' && showFlowNodeEditor">
-            <div class="Sidebar-pane-form">
-              <div class="flow-node-form" ng-hide="flowNodeType.needsSetup" ng-include="flowNodeType.formTemplatePath"></div>
-            </div>
-          </div>
-
           <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
             <div class="Sidebar-pane-form">
 
