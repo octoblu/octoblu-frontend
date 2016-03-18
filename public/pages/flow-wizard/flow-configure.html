@@ -26,13 +26,13 @@
       <div class="FlowConfigure-nodes">
         <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(flowNode.type)}}</h3>
         <div class="FlowConfigure-sideNav-content">
+
           <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
             <spinner loading="!showFlowNodeEditor" size="large"></spinner>
           </div>
 
           <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
             <div class="Sidebar-pane-form">
-
               <div class="flow-node-form" ng-hide="flowNodeType.needsSetup" ng-include="flowNodeType.formTemplatePath"></div>
 
               <div class="Sidebar-flow-node-setup" ng-show="flowNodeType.needsSetup">

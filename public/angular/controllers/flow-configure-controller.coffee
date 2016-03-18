@@ -20,7 +20,6 @@ class FlowConfigureController
         @scope.flow = flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
-
         @setFlowNodeType _.first @scope.nodesToConfigure
         @checkPermissions()
 
@@ -35,7 +34,9 @@ class FlowConfigureController
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
+        return if @ranUpdate
         @updatePermissions()
+
 
   checkDevicePermission: (flowId, nodes) =>
     deviceNodes = _.filter nodes, (node) => node.meshblu || node.class == 'device-flow'
@@ -60,6 +61,7 @@ class FlowConfigureController
     uuid
 
   updatePermissions: () =>
+    @ranUpdate = true
     @addFlowToWhitelists()
     @addSendWhitelistsToFlow()
     @checkPermissions()
@@ -76,23 +78,28 @@ class FlowConfigureController
 
       @state.go 'material.nodewizard-add', params
 
+
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope
     deferred = @q.defer()
 
     return unless thingsNeedingReceiveAs
-    async.each thingsNeedingReceiveAs, (thing)=>
-      thing.receiveAsWhitelist = thing.receiveAsWhitelist || []
-      thing.receiveAsWhitelist.push flow.flowId
-
-      thing.receiveWhitelist = thing.receiveWhitelist || []
-      thing.receiveWhitelist.push flow.flowId
-
-      thing.sendWhitelist = thing.sendWhitelist || []
-      thing.sendWhitelist.push flow.flowId
-      @ThingService.updateDevice thing
-    , (error)=>
-      return deferred.reject error if error
+    async.eachSeries thingsNeedingReceiveAs, ((thing, callback) ->
+      updateObj = {}
+      updateObj.uuid = thing.uuid
+      updateObj.receiveAsWhitelist = thing.receiveAsWhitelist or []
+      updateObj.receiveAsWhitelist.push flow.flowId
+      updateObj.receiveWhitelist = thing.receiveWhitelist or []
+      updateObj.receiveWhitelist.push flow.flowId
+      updateObj.sendWhitelist = thing.sendWhitelist or []
+      updateObj.sendWhitelist.push flow.flowId
+      ThingService.updateDevice(updateObj).then( ->
+        callback()
+        return
+      ).catch callback
+      return
+    ), (error) ->
+      return deferred.reject(error) if error
       deferred.resolve thingsNeedingReceiveAs
 
     deferred
