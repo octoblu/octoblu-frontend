@@ -66,7 +66,7 @@ angular.module('octobluApp')
 
         if(redirectToWizard) {
           route = "material.flowConfigure";
-          params = {flowId: $stateParams.wizardFlowId};
+          params = {flowId: $stateParams.wizardFlowId, nodeIndex: $stateParams.wizardNodeIndex};
         }
 
         $state.go(route, params);

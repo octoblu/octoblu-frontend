@@ -20,7 +20,9 @@ class FlowConfigureController
         @scope.flow = flow
         @scope.fragments = [{label: "Configure #{flow.name}"}]
 
-        @setFlowNodeType _.first @scope.nodesToConfigure
+        @nodeIndex = @stateParams.nodeIndex
+
+        @setFlowNodeType @scope.nodesToConfigure[@nodeIndex]
         @checkPermissions()
 
   checkPermissions: =>
@@ -34,7 +36,6 @@ class FlowConfigureController
 
         @scope.thingsNeedingSendWhitelist = thingsNeedingSendWhitelist
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
-        return if @ranUpdate
         @updatePermissions()
 
 
@@ -61,7 +62,6 @@ class FlowConfigureController
     uuid
 
   updatePermissions: () =>
-    @ranUpdate = true
     @addFlowToWhitelists()
     @addSendWhitelistsToFlow()
     @checkPermissions()
@@ -75,6 +75,9 @@ class FlowConfigureController
         wizard: true,
         designer: false,
         wizardFlowId: @scope.flow.flowId
+        wizardNodeIndex: @getCurrent()
+
+      console.log params
 
       @state.go 'material.nodewizard-add', params
 
@@ -84,7 +87,7 @@ class FlowConfigureController
     deferred = @q.defer()
 
     return unless thingsNeedingReceiveAs
-    async.eachSeries thingsNeedingReceiveAs, ((thing, callback) ->
+    async.eachSeries thingsNeedingReceiveAs, ((thing, callback) =>
       updateObj = {}
       updateObj.uuid = thing.uuid
       updateObj.receiveAsWhitelist = thing.receiveAsWhitelist or []
@@ -93,7 +96,7 @@ class FlowConfigureController
       updateObj.receiveWhitelist.push flow.flowId
       updateObj.sendWhitelist = thing.sendWhitelist or []
       updateObj.sendWhitelist.push flow.flowId
-      ThingService.updateDevice(updateObj).then( ->
+      @ThingService.updateDevice(updateObj).then( ->
         callback()
         return
       ).catch callback

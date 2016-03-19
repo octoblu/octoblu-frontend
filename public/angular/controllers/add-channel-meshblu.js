@@ -13,7 +13,7 @@ angular.module('octobluApp')
           var params = {added: nodeType.name};
           if(redirectToWizard){
             route = 'material.flowConfigure';
-            params = {flowId: $stateParams.wizardFlowId};
+            params = {flowId: $stateParams.wizardFlowId, nodeIndex: $stateParams.wizardNodeIndex};
           }
           if(redirectToDesign){
             route = 'material.design';

@@ -25,6 +25,7 @@ class AddNodeWizardController
       designer: @redirectToDesign
       wizard: @redirectToWizard
       wizardFlowId: @state.params.wizardFlowId
+      wizardNodeIndex: @state.params.wizardNodeIndex
 
     @state.go @scope.nextState, stateParams, location: true
 
@@ -38,6 +39,7 @@ class AddNodeWizardController
         label: 'Flow Configure'
         params:
           flowId: @state.params.wizardFlowId
+          nodeIndex: @state.params.wizardNodeIndex
 
     @fragments = [@linkTo, {label: "Add #{nodeType.name}"}]
 

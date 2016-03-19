@@ -177,7 +177,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'AddNodeWizardController',
         controllerAs: 'controller',
@@ -200,7 +201,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
@@ -210,7 +212,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelController',
         templateUrl: '/pages/node-wizard/add-channel/index.html',
@@ -226,7 +229,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addDefaultOptionsController',
         templateUrl: '/pages/node-wizard/add-channel/default-options.html'
@@ -241,7 +245,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelNoauthController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
@@ -251,7 +256,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelOauthController',
         templateUrl: '/pages/node-wizard/add-channel/oauth.html'
@@ -261,7 +267,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
@@ -271,7 +278,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelHeaderController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
@@ -281,7 +289,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
@@ -296,7 +305,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
@@ -306,7 +316,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelTeslaController',
         templateUrl: '/pages/node-wizard/add-channel/tesla.html'
@@ -326,7 +337,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelLittlebitsController',
         templateUrl: '/pages/node-wizard/add-channel/littlebits.html'
@@ -336,7 +348,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelWinkController',
         templateUrl: '/pages/node-wizard/add-channel/wink.html'
@@ -346,7 +359,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelWitaiController',
         templateUrl: '/pages/node-wizard/add-channel/witai.html'
@@ -356,7 +370,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelDocuSignController',
         templateUrl: '/pages/node-wizard/add-channel/docusign.html'
@@ -366,7 +381,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelApiKeyController',
         templateUrl: '/pages/node-wizard/add-channel/apikey.html'
@@ -376,7 +392,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelApiKeyBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
@@ -386,7 +403,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelApiKeyDummyPassBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
@@ -396,7 +414,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelMeshbluController',
         templateUrl: '/pages/node-wizard/add-channel/noauth.html'
@@ -416,7 +435,8 @@ angular.module('octobluApp', [
         params: {
           designer: null,
           wizard: null,
-          wizardFlowId: null
+          wizardFlowId: null,
+          wizardNodeIndex: null
         },
         controller: 'addChannelPagerdutyController',
         templateUrl: '/pages/node-wizard/add-channel/pagerduty.html'
@@ -535,6 +555,9 @@ angular.module('octobluApp', [
       .state('material.flowConfigure', {
         url: '/flows/configure/:flowId',
         templateUrl: '/pages/flow-wizard/flow-configure.html',
+        params: {
+          nodeIndex: 0
+        },
         controller: 'FlowConfigureController',
         controllerAs: 'controller'
       })

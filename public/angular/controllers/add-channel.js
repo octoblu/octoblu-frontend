@@ -23,7 +23,7 @@ angular.module('octobluApp')
     linkTo = {
       linkTo: 'material.flowConfigure',
       label: 'Flow Configure',
-      params: {flowId: $stateParams.wizardFlowId}
+      params: {flowId: $stateParams.wizardFlowId, nodeIndex: $stateParams.wizardNodeIndex}
     }
   };
 
