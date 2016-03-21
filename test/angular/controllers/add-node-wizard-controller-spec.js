@@ -36,7 +36,13 @@ describe('AddNodeWizardController', function () {
       });
 
       it('should redirect to the add device state', function(){
-        expect(state.go).to.have.been.calledWith('material.nodewizard-adddevice', {nodeTypeId: 'deviceid', designer: false, wizard: false, wizardFlowId: undefined});
+        expect(state.go).to.have.been.calledWith('material.nodewizard-adddevice', {
+          nodeTypeId: 'deviceid',
+          designer: false,
+          wizard: false,
+          wizardFlowId: undefined,
+          wizardNodeIndex: undefined
+        });
       });
     });
   });
@@ -64,7 +70,13 @@ describe('AddNodeWizardController', function () {
       });
 
       it('should redirect to the add channel state', function(){
-        expect(state.go).to.have.been.calledWith('material.nodewizard-addchannel.default-options', {nodeTypeId: 'channelid', designer: false, wizard: false, wizardFlowId: undefined});
+        expect(state.go).to.have.been.calledWith('material.nodewizard-addchannel.default-options', {
+          nodeTypeId: 'channelid',
+          designer: false,
+          wizard: false,
+          wizardFlowId: undefined,
+          wizardNodeIndex: undefined
+        });
       });
     });
   });
