@@ -70,9 +70,8 @@ class SharedBluprintsController
         @scope.isLoading = false
 
   importBluprint: (bluprintId) =>
-    @BluprintService.importBluprint(bluprintId).then (flow) =>
       @scope.importing = true
-      _.delay ( -> @state.go 'material.flow', flowId: flow.flowId), 1000
+      @state.go 'material.bluprintWizard', bluprintId: bluprintId
 
   editSortBy: (bluprints) =>
     return _.each @bluprints, (bluprint) =>
