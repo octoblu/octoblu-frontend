@@ -34,6 +34,8 @@
       title="There are no shared Bluprints.">
     </random-robot>
 
+    <bluprint-grid bluprints="controller.bluprints"></bluprint-grid>
+    
     <div class="Bluprint-list" ng-hide="isLoading">
       <div
         ng-repeat="bluprint in filteredBluprints = (controller.bluprints | orderBy: sortMethod)"

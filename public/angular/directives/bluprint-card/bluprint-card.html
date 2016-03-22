@@ -1,0 +1,23 @@
+
+<div class="bluprint-card">
+  <pre>{{bluprint}}</pre>
+  <main className="BluprintCard-main">
+    <div className="BluprintCard-body">
+      <h4 className="BluprintCard-label">{{bluprint.name}}</h4>
+      <p className="BluprintCard-description"></p>
+
+      <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})">
+        Learn More
+      </a>
+
+    </div>
+
+    <footer className="BluprintCard-footer">
+      <span>
+        {{bluprint.ownerName}}
+      </span>
+      <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" title="Import App">Automate</a>
+    </footer>
+
+  </main>
+</div>
