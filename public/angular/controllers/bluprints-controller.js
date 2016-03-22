@@ -24,12 +24,8 @@ angular.module('octobluApp')
   };
 
   $scope.importBluprint = function(bluprintId) {
-    BluprintService.importBluprint(bluprintId).then(function(flow){
-      $scope.importing = true;
-      _.delay(function(){
-        $state.go('material.flow', {flowId: flow.flowId});
-      }, 1000);
-    })
+    $scope.importing = true;
+    $state.go('material.bluprintWizard', {bluprintId: bluprintId});
   };
 
   $scope.togglePublic = function(bluprint) {
