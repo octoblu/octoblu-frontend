@@ -21,13 +21,15 @@
 
       <spinner size="large" loading="isLoading"></spinner>
 
-      <ul class="Bluprint-list" ng-hide="isLoading">
+      <bluprint-grid bluprints="bluprints" ng-hide="isLoading"></bluprint-grid>
+
+      <!-- <ul class="Bluprint-list" ng-hide="isLoading">
         <li
           ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
           class="Bluprint-listItem">
           <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
         </li>
-      </ul>
+      </ul> -->
 
     </div>
   </div>

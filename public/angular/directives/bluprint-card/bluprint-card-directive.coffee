@@ -6,7 +6,4 @@ angular.module('octobluApp')
     replace: true
     controller: 'BluprintCardController'
     controllerAs: 'controller'
-    # scope: {
-    #   bluprint: '='
-    # }
   }
