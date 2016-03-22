@@ -77,8 +77,6 @@ class FlowConfigureController
         wizardFlowId: @scope.flow.flowId
         wizardNodeIndex: @getCurrent()
 
-      console.log params
-
       @state.go 'material.nodewizard-add', params
 
 
