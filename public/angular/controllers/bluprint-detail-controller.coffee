@@ -26,7 +26,7 @@ class BluprintDetailController
         @scope.bluprintEdit = _.cloneDeep @scope.bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
-        @twitterUrl = "https://twitter.com/intent/tweet?text=Check%20Out%20This%20Awesome%20Bluprint%20-%20#{bluprint.name}%20-%20#{@getBluprintImportUrl(bluprint.uuid)} via @octoblu"
+        @generateShareUrls(bluprint)
 
         @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
         if(@state.current.name == 'material.bluprintDetail')
@@ -80,5 +80,12 @@ class BluprintDetailController
     @mdDialog.show(confirm).then =>
       @BluprintService.deleteBluprint(bluprintId).then =>
         @state.go('material.bluprints')
+
+  generateShareUrls: (bluprint) =>
+    @shareUrl = @getBluprintImportUrl bluprint.uuid
+
+    @twitterUrl = "https://twitter.com/intent/tweet?text=Check%20Out%20This%20Awesome%20Bluprint%20-%20#{bluprint.name}%20-%20#{@shareUrl} via @Octoblu"
+    @facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{@shareUrl}"
+    @emailUrl = "mailto:?subject=#{encodeURIComponent(bluprint.name)}&body=#{encodeURIComponent("Check out #{bluprint.name} on Octoblu #{@shareUrl}")}"
 
 angular.module('octobluApp').controller 'BluprintDetailController', BluprintDetailController
