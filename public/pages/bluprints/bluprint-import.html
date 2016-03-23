@@ -2,7 +2,33 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
+    <div class="BluprintDetail">
+      <h1 class="BluprintDetail-label">
+        {{bluprint.name}}
+      </h1>
 
+      <p class="BluprintDetail-description">
+        {{bluprint.description}}
+      </p>
+
+      <button ng-click="controller.import()" class="BluprintDetail-import">Import</button>
+
+      <div class="BluprintDetail-meta">
+        <button class="Share-button">
+          <i class="Share-buttonImage fa fa-twitter"></i>
+          Twitter
+        </button>
+        <button class="Share-button">
+          <i class="Share-buttonImage fa fa-facebook"></i>
+          Facebook
+        </button>
+        <button class="Share-button">
+          <i class="Share-buttonImage fa fa-envelope"></i>
+          Email
+        </button>
+      </div>
+    </div>
+<!--
     <div class="Bluprint-list">
       <div class="Bluprint-listItem">
         <header class="Bluprint-header">
@@ -46,6 +72,9 @@
           <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
         </div>
       </div>
-    </div>
+    </div> -->
+
+
+
   </div>
 </md-content>

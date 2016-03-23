@@ -43,7 +43,6 @@ class BluprintDetailController
     else
       @scope.editMode = false
 
-
   import: =>
     { bluprintId } = @stateParams
     @scope.importing = true
