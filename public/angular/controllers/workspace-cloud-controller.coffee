@@ -1,12 +1,22 @@
 class WorkspaceCloudController
-  constructor: ($scope, $cookies, $rootScope, $state, $stateParams, CWC_APP_STORE_URL, CWC_STAGING_URL) ->
+  constructor: ($scope, $cookies, $rootScope, $state, $stateParams, $window, CWC_APP_STORE_URL, CWC_STAGING_URL) ->
+    #Check the reffer Url, if it doesn't exist go directly to login
+    #If referrer Url exists
+    #  if referrer Url is from CWC (CloudBuritto, TryWorkspaces or Cloud) then
+    #     set flag for workspaceCloudUser on the cookies
+    #     route to login with the query parameters (otp, customerId, cwcReferralUrl, redirectUrl)
+    #otherwise
+    # redirect to login
+    @state = $state
+    @referrer = $window.referrer
     @stateParams       = $stateParams
     @CWC_APP_STORE_URL = CWC_APP_STORE_URL
     @CWC_STAGING_URL   = CWC_STAGING_URL
 
-    $cookies.workspaceCloud = true
+    return @state.go("login", {}) if _.isEmpty @referrer
 
     $rootScope.$on "$cwcUserAuthorized", (event, data) =>
+      $cookies.workspaceCloud = true
       $state.go 'login', @buildQueryParams()
 
   buildQueryParams: =>
@@ -17,8 +27,6 @@ class WorkspaceCloudController
     queryParams["otp"]            = otp if otp?
     queryParams["cwcReferralUrl"] = @CWC_STAGING_URL
     queryParams["redirectUrl"]    = @CWC_APP_STORE_URL
-
-    console.log 'queryParams', queryParams
     return queryParams
 
 
