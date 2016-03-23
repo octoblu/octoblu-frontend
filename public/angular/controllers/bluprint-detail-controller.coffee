@@ -26,6 +26,8 @@ class BluprintDetailController
         @scope.bluprintEdit = _.cloneDeep @scope.bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
+        @twitterUrl = "https://twitter.com/intent/tweet?text=Check%20Out%20This%20Awesome%20Bluprint%20-%20#{bluprint.name}%20-%20#{@getBluprintImportUrl(bluprint.uuid)} via @octoblu"
+
         @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
         if(@state.current.name == 'material.bluprintDetail')
           @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
