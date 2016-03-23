@@ -29,17 +29,20 @@
 }
 
 .BluprintDetail-import {
-  display: inline-block;
   border: none;
   border-radius: 2px;
-  text-align: center;
-  cursor: pointer;
+
   width: 100%;
   padding: 24px;
+
   color: #fff;
-  font-size: 21px;
-  text-decoration: none;
   background: #0091de;
+
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
 }
 
 .BluprintDetail-meta {
@@ -56,21 +59,20 @@
 .Share-button {
   .flex-display;
   .flex-direction(row);
-  .align-items(baseline);
+  .align-items(center);
 
   margin: 0 5px;
-  border: 1px solid #DDD;
+  padding: 10px 20px;
 
   color: #AAA;
-
   background: #EEE;
-
+  border: 1px solid #DDD;
   border-radius: 2px;
-  padding: 10px 20px;
+
+  cursor: pointer;
   font-size: 16px;
   text-align: center;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .Share-button:hover {
@@ -80,5 +82,6 @@
 .Share-buttonImage {
   height: 18px;
   width: 18px;
+  max-width: 160px;
   margin: 0 6px 0 0;
 }
