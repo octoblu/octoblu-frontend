@@ -3,6 +3,41 @@ angular.module('octobluApp')
   'use strict';
   var self;
   self = this;
+  var operators = ["broadcast","debug","equal","http-post-request","less-than","pluck","set-key",
+  "change",
+  "delay",
+  "function",
+  "http-put-request",
+  "math",
+  "range",
+  "template",
+  "collect",
+  "demultiplex",
+  "get-key",
+  "http-request",
+  "microblu",
+  "rss",
+  "throttle",
+  "comment",
+  "device",
+  "greater-than-equal",
+  "interval",
+  "not-equal",
+  "sample",
+  "trigger",
+  "compose",
+  "echo-in",
+  "greater-than",
+  "leading-edge-debounce",
+  "null",
+  "schedule",
+  "unique",
+  "debounce",
+  "echo-out",
+  "http-delete-request",
+  "less-than-equal",
+  "on-start",
+  "sentiment"]
 
   self.createBluprint = function(bluprint) {
     return $http.post(OCTOBLU_API_URL + "/api/templates", bluprint).then(function(response) {

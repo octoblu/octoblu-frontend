@@ -69,9 +69,6 @@ class SharedBluprintsController
         @editSortBy @bluprints
         @scope.isLoading = false
 
-  importBluprint: (bluprintId) =>
-      @scope.importing = true
-      @state.go 'material.bluprintWizard', bluprintId: bluprintId
 
   editSortBy: (bluprints) =>
     return _.each @bluprints, (bluprint) =>
@@ -80,24 +77,5 @@ class SharedBluprintsController
 
   liked: (bluprint) =>
     _.includes bluprint.likedBy, @userUuid
-
-  toggleLike: (bluprint) =>
-    @BluprintService.toggleLike(@userUuid, bluprint).then => @refreshBluprints()
-
-  getBluprintImportUrl: (bluprintId) =>
-    @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
-
-  toastBluprintUrl: (bluprintId) =>
-    url = @getBluprintImportUrl bluprintId
-    message = "Copied #{url} to clipboard"
-    @mdToast.show @mdToast.simple(position: 'top right').content message
-
-  dialogBluprintUrl: (bluprintId) =>
-    url = @getBluprintImportUrl bluprintId
-    alert = @mdDialog.alert().content(url).title('Share this bluprint').ok 'OKAY'
-    @mdDialog.show(alert).finally =>
-      alert = undefined
-
-
 
 angular.module('octobluApp').controller 'SharedBluprintsController', SharedBluprintsController

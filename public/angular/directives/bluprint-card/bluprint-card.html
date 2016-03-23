@@ -3,36 +3,14 @@
   <main class="BluprintCard-main">
     <div class="BluprintCard-body">
       <h4 class="BluprintCard-label">{{bluprint.name}}
-        <md-menu class="BluprintCard-menu">
-          <button ng-click="$mdOpenMenu()" class="BluButton Bluprint-menu-button" aria-label="Show Options">
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <md-menu-content width="2">
-            <md-menu-item>
-              <md-button ng-click="controller.importBluprint(bluprint.uuid)">Import</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button
-                ng-click=""
-                clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
-                clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
-                clip-click="controller.toastBluprintUrl(bluprint.uuid)">
-                Copy URL
-              </md-button>
-            </md-menu-item>
-            <md-menu-item ng-hide="controller.discover">
-              <md-button ng-click="controller.togglePublic(bluprint)">
-                Make {{bluprint.public ? 'Private' : 'Public'}}
-              </md-button>
-            </md-menu-item>
-            <md-menu-item ng-hide="controller.discover">
-              <md-button ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">Delete</md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
+        <span ng-show="bluprint.public" class="Bluprint-metaItem">
+          <i class="fa fa-star"></i>
+          {{bluprint.likedBy.length || 0}}
+        </span>
       </h4>
 
-      <p class="BluprintCard-description">{{bluprint.description}}</p>
+      <p ng-show="bluprint.description" class="BluprintCard-description">{{bluprint.description}}</p>
+      <p ng-hide="bluprint.description" class="BluprintCard-description">No Description Added</p>
 
       <a ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid, editMode: true})" ng-hide="controller.discover">Edit Bluprint</a>
       <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="controller.discover">Learn More</a>
@@ -43,7 +21,7 @@
         <i class="fa fa-user BluprintCard-authorIcon"></i>
         {{bluprint.ownerName}}
       </span>
-      <a ng-click="controller.importBluprint(bluprint.uuid)" title="Import Bluprint">Automate</a>
+      <a ui-sref="material.bluprintWizard({bluprintId: bluprint.uuid})" title="Import Bluprint">Import</a>
     </footer>
   </main>
 </div>
