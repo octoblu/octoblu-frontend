@@ -3,7 +3,7 @@ class MeshbluHttpService extends MeshbluHttp
     super
       uuid: $cookies.meshblu_auth_uuid
       token: $cookies.meshblu_auth_token
-      server: MESHBLU_HOST
+      hostname: MESHBLU_HOST
       port: MESHBLU_PORT
 
 angular.module('octobluApp').service 'MeshbluHttpService', MeshbluHttpService

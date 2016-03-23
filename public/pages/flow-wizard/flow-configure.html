@@ -1,0 +1,59 @@
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+
+<md-content class="interior__wrapper">
+  <div class="interior">
+
+    <div class="PageHeader">
+      <div class="PageHeader-title">Configure Your Flow</div>
+    </div>
+
+    <p ng-show="controller.permissionsUpdated" class="BluAlert">
+      Permissions have been updated for your flow.
+    </p>
+
+    <div class="FlowConfigure-container">
+      <nav class="FlowConfigure-sideNav">
+        <button
+          ng-repeat="node in nodesToConfigure"
+          class="FlowConfigure-sideNav-item"
+          ng-click="controller.setFlowNodeType(node)"
+          ng-class="{'FlowConfigure-sideNav-item--is-selected': node == flowNode}">
+          {{node.name || controller.prettifyType(node.type)}}
+        </button>
+        <button ng-click="controller.saveFlow()" class="BluButton FlowConfigure-skipButton">Skip Configuration</button>
+      </nav>
+
+      <div class="FlowConfigure-nodes">
+        <h3 class="FlowConfigure-nodeHeader">{{controller.prettifyType(flowNode.type)}}</h3>
+        <div class="FlowConfigure-sideNav-content">
+
+          <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
+            <spinner loading="!showFlowNodeEditor" size="large"></spinner>
+          </div>
+
+          <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+            <div class="Sidebar-pane-form">
+              <div class="flow-node-form" ng-hide="flowNodeType.needsSetup" ng-include="flowNodeType.formTemplatePath"></div>
+
+              <div class="Sidebar-flow-node-setup" ng-show="flowNodeType.needsSetup">
+                <img class="Sidebar-flow-node-setup-logo" ng-src="{{flowNodeType.logo}}">
+                <h3 class="text-center Sidebar-setup-title">This thing requires setup</h3>
+                <p class="text-center">
+                  Click Setup to start configuring this thing
+                </p>
+                <md-button ng-click="controller.getNodeId(flowNodeType)" class="md-raised md-primary Sidebar-setup-button">Setup</md-button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="FlowConfigure-actions">
+          <button ng-click="controller.navigateNode('prev')" class="BluButton BluButton--outline FlowConfigure-prevButton" ng-show="!controller.firstOne && nodesToConfigure.length > 1">Previous</button>
+          <button ng-click="controller.navigateNode('next')" class="BluButton BluButton--save FlowConfigure-nextButton" ng-cloak ng-show="!controller.finalOne && nodesToConfigure.length > 1">Next</button>
+          <a class="FlowConfigure-saveButton BluButton BluButton--save" ng-click="controller.saveFlow()" ng-cloak ng-show="controller.finalOne || nodesToConfigure.length == 1">Done</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</md-content>

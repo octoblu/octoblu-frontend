@@ -1,14 +1,11 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
   var undid = false;
   var lastDeployedHash;
   var progressId;
-  var triggerServiceUuid = 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64';
-  var intervalServiceUuid = '765bd3a4-546d-45e6-a62f-1157281083f0';
-  var credentialsServiceUuid = 'c339f6ce-fe26-4788-beee-c97605f50403';
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deviceOnline = false;
@@ -420,13 +417,13 @@ angular.module('octobluApp')
 
   var checkForServiceNames = function(uuids) {
     var newList = _.map(uuids, function(uuid){
-      if(triggerServiceUuid === uuid){
+      if(SERVICE_UUIDS.TRIGGER === uuid){
         return 'Trigger Service'
       }
-      if(intervalServiceUuid === uuid){
+      if(SERVICE_UUIDS.INTERVAL === uuid){
         return 'Interval Service'
       }
-      if(credentialsServiceUuid === uuid){
+      if(SERVICE_UUIDS.CREDENTIALS === uuid){
         return 'Credential Service'
       }
       return uuid
@@ -457,14 +454,18 @@ angular.module('octobluApp')
   var addFlowToWhitelists = function(thingsNeedingReceiveAs) {
     var deferred = $q.defer()
 
-    async.each(thingsNeedingReceiveAs, function(thing){
-      thing.receiveAsWhitelist = thing.receiveAsWhitelist || [];
-      thing.receiveAsWhitelist.push($scope.activeFlow.flowId);
-      thing.receiveWhitelist = thing.receiveWhitelist || [];
-      thing.receiveWhitelist.push($scope.activeFlow.flowId);
-      thing.sendWhitelist = thing.sendWhitelist || [];
-      thing.sendWhitelist.push($scope.activeFlow.flowId);
-      ThingService.updateDevice(thing);
+    async.eachSeries(thingsNeedingReceiveAs, function(thing, callback){
+      var updateObj = {};
+      updateObj.uuid = thing.uuid;
+      updateObj.receiveAsWhitelist = thing.receiveAsWhitelist || [];
+      updateObj.receiveAsWhitelist.push($scope.activeFlow.flowId);
+      updateObj.receiveWhitelist = thing.receiveWhitelist || [];
+      updateObj.receiveWhitelist.push($scope.activeFlow.flowId);
+      updateObj.sendWhitelist = thing.sendWhitelist || [];
+      updateObj.sendWhitelist.push($scope.activeFlow.flowId);
+      ThingService.updateDevice(updateObj)
+        .then(function(){ callback() })
+        .catch(callback)
     }, function(error){
       if (error){
         return deferred.reject(error)
@@ -486,27 +487,27 @@ angular.module('octobluApp')
 
   var askAndAddToReceiveAs = function(thingsNeedingReceiveAs) {
     return askToAddReceiveAs(thingsNeedingReceiveAs)
-      .then(function(){
+      .then(function(things){
         return addFlowToWhitelists(thingsNeedingReceiveAs);
       })
       .then(function(){
         return NotifyService.notify('Permissions updated');
       })
-      .catch(function(error){
-        return NotifyService.alert(error.message);
+      .catch(function(){
+        return NotifyService.notify('Permissions Not Updated');
       });
   };
 
   var askAndAddToSendWhitelist = function(thingsNeedingSendWhitelist) {
     return askToAddSendWhitelist(thingsNeedingSendWhitelist)
-      .then(function(){
+      .then(function(things){
         return addSendWhitelistsToFlow(thingsNeedingSendWhitelist);
       })
       .then(function(){
         return NotifyService.notify('Permissions updated');
       })
-      .catch(function(error){
-        return NotifyService.alert(error.message);
+      .catch(function(){
+        return NotifyService.notify('Permissions Not Updated');
       });
   };
 

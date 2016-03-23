@@ -29,5 +29,4 @@ class WorkspaceCloudController
     queryParams["redirectUrl"]    = @CWC_APP_STORE_URL
     return queryParams
 
-
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController

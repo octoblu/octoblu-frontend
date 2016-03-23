@@ -2,8 +2,10 @@
 <md-content class="interior__wrapper">
   <div class="interior">
 
-    <h2 class="Bluprints-header">Discover Bluprints</h2>
-    <h4 class="Bluprints-subHeader">Discover Bluprints created and shared by our community.</h4>
+    <div class="PageHeader">
+      <div class="PageHeader-title">Discover Bluprints</div>
+      <div class="PageHeader-subTitle">Discover Bluprints created and shared by our community.</div>
+    </div>
 
     <div class="Bluprints-sort">
       <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
@@ -41,7 +43,7 @@
     </div>
 
      <div class="Bluprints-subHeader">
-        <md-button md-no-ink class="md-primary" ng-hide='controller.noneLeft' ng-click='controller.showMore()'>Show More</md-button>
+        <button class="BluButton Bluprint-showMore" ng-hide='controller.noneLeft' ng-click='controller.showMore()'>Show More</button>
      </div>
   </div>
 </md-content>

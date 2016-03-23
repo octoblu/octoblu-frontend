@@ -1,8 +1,11 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
+    @MeshbluHttp = MeshbluHttp
+    @MESHBLU_HOST = MESHBLU_HOST
+    @MESHBLU_PORT = MESHBLU_PORT
 
   addLogo: (data) =>
     return _.clone data unless data?.type?
@@ -18,6 +21,10 @@ class ThingService
     thing.configureWhitelist = _.union [uuid], device.configureWhitelist ? []
     thing.sendWhitelist      = _.union [uuid], device.sendWhitelist ? []
     thing.receiveWhitelist   = _.union [uuid], device.receiveWhitelist ? []
+    _.pull thing.discoverWhitelist, '*'
+    _.pull thing.configureWhitelist, '*'
+    _.pull thing.sendWhitelist, '*'
+    _.pull thing.receiveWhitelist, '*'
     thing
 
   calculateTheEverything: (device, peers) =>
@@ -29,17 +36,25 @@ class ThingService
     send:      !device.sendWhitelist?
     receive:   !device.receiveWhitelist?
 
-  claimThing: (query, user, params)=>
-    return @q.reject 'Unable to claim device, missing uuid'  unless query?.uuid?
-    return @q.reject 'Unable to claim device, missing token' unless query?.token?
-
-    @getThing(query).then (thing) =>
+  claimThing: (query={}, user, params)=>
+    {uuid, token} = query
+    return @q.reject 'Unable to claim device, missing uuid'  unless uuid?
+    return @q.reject 'Unable to claim device, missing token' unless token?
+    deferred = @q.defer()
+    meshbluHttp = new @MeshbluHttp {
+      hostname: @MESHBLU_HOST,
+      port: @MESHBLU_PORT,
+      uuid: uuid,
+      token: token
+    }
+    meshbluHttp.whoami (error, thing) =>
+      return deferred.reject error if error?
       thing = @addUuidToWhitelists user.uuid, thing
-      thing.name =  params.name
-      thing.uuid =  query.uuid
-      thing.token = query.token
-
-      @updateDevice(thing)
+      thing.name = params.name
+      meshbluHttp.update uuid, thing, (error) =>
+        return deferred.reject error if error?
+        deferred.resolve()
+    return deferred.promise
 
   combineDeviceWithPeers: (device, peers) =>
     return unless device? && peers?
@@ -96,6 +111,10 @@ class ThingService
 
     @skynetPromise.then (connection) =>
       connection.generateAndStoreToken uuid: device.uuid, (result) =>
+        if result?.error?
+          console.error "Error generating session token: #{device.uuid}", result?.error
+          deferred.reject result?.error || 'Unknown Error'
+          return
         deferred.resolve result.token
 
     deferred.promise
@@ -139,6 +158,10 @@ class ThingService
     deferred = @q.defer()
     @skynetPromise.then (connection) =>
       connection.update device, (response) =>
+        if response?.error?
+          console.error "Error updating device: #{device.uuid}", response.error
+          deferred.reject response?.error || 'Unknown Error'
+          return
         deferred.resolve()
 
     deferred.promise

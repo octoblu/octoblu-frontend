@@ -18,6 +18,10 @@ class DeviceCollectionController
     params = {}
 
     return @state.href('material.nodewizard-add', nodeTypeId: device._id) unless device.uuid
+
+    if device.category == 'gateblu'
+      sref = 'material.device'
+      params.uuid = device.uuid
     if device.category == 'device' || device.category == 'microblu'
       params.uuid = device.uuid
     if device.category == 'channel'

@@ -7,6 +7,11 @@ angular.module('octobluApp')
     TWITTER: 'https://twitter-oauth.octoblu.com/login'
     GITHUB: 'https://github-oauth.octoblu.com/login'
   }
+  .constant 'SERVICE_UUIDS', {
+    TRIGGER: 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64',
+    INTERVAL: '765bd3a4-546d-45e6-a62f-1157281083f0',
+    CREDENTIALS: 'c339f6ce-fe26-4788-beee-c97605f50403'
+  }
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
   .constant 'MESHBLU_HOST', 'meshblu.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
@@ -23,3 +28,4 @@ angular.module('octobluApp')
   .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com/"
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
+  .constant "CWC_AUTH_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.com/"

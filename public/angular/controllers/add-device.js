@@ -53,15 +53,24 @@ angular.module('octobluApp')
       }
 
       promise.then(function (data) {
-        var redirectToDesign = $stateParams.designer || false;
         var name = data.name || data.type;
+        var redirectToDesign = $stateParams.designer || false;
+        var redirectToWizard = $stateParams.wizard || false;
+
+        var route = 'material.configure';
+        var params = {added: name};
 
         if (redirectToDesign) {
-          $state.go("material.design", {added: name});
+          route = "material.design";
         }
-        else{
-          $state.go("material.configure", {added: name});
+
+        if(redirectToWizard) {
+          route = "material.flowConfigure";
+          params = {flowId: $stateParams.wizardFlowId, nodeIndex: $stateParams.wizardNodeIndex};
         }
+
+        $state.go(route, params);
+
       }, function (error) {
           $scope.errorMessage = error;
       });

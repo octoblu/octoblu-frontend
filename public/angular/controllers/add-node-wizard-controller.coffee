@@ -5,6 +5,7 @@ class AddNodeWizardController
     @NodeTypeService = NodeTypeService
 
     @redirectToDesign = @state.params.designer || false
+    @redirectToWizard = @state.params.wizard || false
 
     @NodeTypeService.getById(@state.params.nodeTypeId).then (nodeType) =>
       @scope.nodeType = nodeType
@@ -22,6 +23,9 @@ class AddNodeWizardController
     stateParams =
       nodeTypeId : @state.params.nodeTypeId
       designer: @redirectToDesign
+      wizard: @redirectToWizard
+      wizardFlowId: @state.params.wizardFlowId
+      wizardNodeIndex: @state.params.wizardNodeIndex
 
     @state.go @scope.nextState, stateParams, location: true
 
@@ -29,6 +33,14 @@ class AddNodeWizardController
     @linkTo = linkTo: 'material.things', label: 'All Things'
     if @redirectToDesign
       @linkTo = linkTo: 'material.design', label: 'Designer'
+    if @redirectToWizard
+      @linkTo =
+        linkTo: 'material.flowConfigure'
+        label: 'Flow Configure'
+        params:
+          flowId: @state.params.wizardFlowId
+          nodeIndex: @state.params.wizardNodeIndex
+
     @fragments = [@linkTo, {label: "Add #{nodeType.name}"}]
 
 angular.module('octobluApp').controller 'AddNodeWizardController', AddNodeWizardController

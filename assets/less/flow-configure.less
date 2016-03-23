@@ -1,0 +1,147 @@
+.FlowConfigure-Header {
+  margin: 10px 0 32px 0;
+  color: #3D3D3D;
+  text-align: center;
+}
+
+.Flowconfigure-permissionsSpinner {
+  padding: 0 !important;
+}
+
+.FlowConfigure-permissionsList {
+  font-size: 16px;
+}
+
+.FlowConfigure-permissionHeader {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.FlowConfigure-permissionsListItem {
+  text-transform: capitalize;
+  padding: 12px 0 0 4px
+}
+
+.FlowConfigure-sidenav-img {
+  width: 30px;
+  height: 30px;
+}
+
+.FlowConfigure-sidenav-name {
+  font-size: 16px;
+}
+
+.FlowConfigure-container {
+  .flex-display;
+
+  background: #FFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.15), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.FlowConfigure-sideNav {
+  .flex-display;
+  .flex-direction(column);
+
+  width: 100%;
+  max-width: 230px;
+  position: relative;
+
+  background: #4E4E4E;
+}
+
+.FlowConfigure-sideNav-content {
+  .flex(1);
+  overflow: auto;
+  background: #FFF;
+  height: 700px;
+
+  md-input-container {
+    width: 100%;
+  }
+}
+
+.FlowConfigure-sideNav-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 18px 24px;
+
+  color: white;
+  text-align: left;
+  text-transform: capitalize;
+
+  background: transparent;
+
+   /* truncate */
+  width: 230px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.FlowConfigure-sideNav-item--is-selected {
+  color: #FFF;
+  background: rgba(0,0,0, 0.2);
+  font-weight: bold;
+}
+
+.FlowConfigure-sideNav-header {
+  margin-top: 10px;
+  color: #3D3D3D;
+  text-align: center;
+  border: none;
+}
+
+
+.FlowConfigure-sideNav-content .Sidebar-section {
+  padding: 12px 0 0;
+}
+
+.FlowConfigure-sideNav-item:last-child {
+  border: none;
+}
+
+.FlowConfigure-nodes {
+  width: 100%;
+  padding: 24px 36px;
+}
+
+.FlowConfigure-nodeHeader {
+  text-transform: capitalize;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.FlowConfigure-skipButton {
+  color: #C3C3C3 !important;
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  width: 100%;
+}
+.FlowConfigure-saveButton{
+  .FlowConfigure-nextButton;
+}
+
+.FlowConfigure-nextButton {
+  float: right;
+}
+
+.FlowConfigure-prevButton {
+  border: 1px solid #14568F !important;
+  float: left;
+  &:hover {
+    color: darken(#14568F, 10%);
+  }
+}
+
+.FlowConfigure-skipButton:hover {
+  color: #FEFEFE !important;
+}
+
+.FlowConfigure-actions {
+  padding-top: 30px;
+}
+
+.ng-hide {
+  display: none !important;
+}

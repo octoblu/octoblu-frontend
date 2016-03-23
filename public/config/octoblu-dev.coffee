@@ -7,6 +7,11 @@ angular.module('octobluApp')
     CITRIX: "http://email-password-site.octoblu.dev"
     GITHUB: "http://email-password-site.octoblu.dev"
   }
+  .constant 'SERVICE_UUIDS', {
+    TRIGGER: 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64',
+    INTERVAL: '11d64fbe-1633-4e56-ade8-3517e0ff3bae',
+    CREDENTIALS: 'c339f6ce-fe26-4788-beee-c97605f50403'
+  }
   .constant 'OAUTH_PROVIDER', "http://oauth.octoblu.dev"
   .constant 'MESHBLU_HOST', "meshblu.octoblu.dev"
   .constant 'MESHBLU_PORT', '80'
@@ -18,4 +23,6 @@ angular.module('octobluApp')
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "https://#{window.location.hostname}:3006"
-  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
+  .constant 'CWC_LOGIN_URL', 'https://workspace.tryworkspaces.com/login'
+  .constant 'APP_STORE_URL', 'http://localhost:6040/'
+  .constant 'CWC_APP_STORE_URL', 'http://localhost:6041/'
