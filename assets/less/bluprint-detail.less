@@ -6,16 +6,18 @@
   text-align: center;
 }
 
+.BluprintDetail-delete {
+  .BluButton--outline(#AA2200) !important;
+
+  float: right;
+}
+
 .BluprintDetail-label {
   font-weight: bold;
 }
 
 .BluprintDetail-label--edit {
-  width: 300px;
-  input {    
-    font-size: 24px;
-    font-weight: bold;
-  }
+  width: 100%;
 }
 
 .BluprintDetail-editLink {
@@ -47,6 +49,18 @@
   font-weight: bold;
 }
 
+.BluprintDetail-public-container {
+  .flex-display;
+  .justify-content(center);
+  .align-items(center);
+
+  width: 100%;
+
+  .md-label {
+    margin: 0 14px;
+  }
+}
+
 .BluprintDetail-blogLink {
   display: inline-block;
   margin-bottom: 12px;
@@ -66,10 +80,10 @@
   border-radius: 2px;
 
   width: 100%;
-  padding: 24px;
+  padding: 6px 25px;
 
   color: #fff;
-  background: #0091de;
+  background: #14568F;
 
   font-size: 21px;
   font-weight: bold;
@@ -81,7 +95,7 @@
 .BluprintDetail-editActions {
   .flex-display;
   .align-items(baseline);
-  .justify-content(space-around);
+  .justify-content(space-between);
 
   margin: 15px 0;
 }

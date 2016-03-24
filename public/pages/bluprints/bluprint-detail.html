@@ -2,12 +2,13 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
+    <button class="BluButton BluprintDetail-delete" ng-show="editMode">DELETE BLUPRINT</button>
     <div class="BluprintDetail">
       <h1 class="BluprintDetail-label" ng-hide="editMode">
         {{bluprint.name}}
       </h1>
 
-      <md-input-container class="name BluprintDetail-label--edit" ng-show="editMode">
+      <md-input-container class="BluprintDetail-label--edit" ng-show="editMode">
         <label>Name</label>
         <input required ng-model="bluprintEdit.name">
       </md-input-container>
@@ -22,7 +23,7 @@
         </span>
       </p>
 
-      <md-input-container class="name BluprintDetail-description--edit" ng-show="editMode">
+      <md-input-container class="BluprintDetail-description--edit" ng-show="editMode">
         <label>Description</label>
         <textarea md-maxlength="300" required ng-model="bluprintEdit.description"></textarea>
       </md-input-container>
@@ -42,18 +43,20 @@
         </span>
       </div>
 
-      <md-switch
-        ng-model="bluprintEdit.public"
-        class="make-public Bluprint-edit-field"
-        aria-label="Make Bluprint Public"
-        ng-show="editMode">
-        Public
-        <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
-      </md-switch>
+      <div ng-show="editMode" class="BluprintDetail-public-container">
+        <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
+          Private
+        </div>
+        <md-switch
+          ng-model="bluprintEdit.public"
+          aria-label="Make Bluprint Public">
+          Public
+        </md-switch>
+      </div>
 
       <div class="BluprintDetail-editActions" ng-show="editMode">
-        <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
         <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
+        <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Update</a>
       </div>
 
 
@@ -82,11 +85,5 @@
             Get Link
         </button>
       </div>
-
-        <div ng-show="editMode">
-          <h3>DANGER ZONE</h3>
-          <hr>
-          <button class="BluButton BluButton--cancel">DELETE YOUR BLUPRINT</button>
-        </div>
   </div>
 </md-content>
