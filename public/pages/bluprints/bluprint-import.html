@@ -33,6 +33,15 @@
           <img src="https://icons.octoblu.com/channel/email.svg" class="Share-buttonImage" alt="email">
           Email
         </a>
+        <button
+          class="Share-button"
+          ng-click=""
+          clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
+          clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
+          clip-click="controller.toastBluprintUrl(bluprint.uuid)">
+          <i class="fa fa-clipboard Share-buttonImage"></i>
+          Get Link
+        </button>
       </div>
     </div>
   </div>
