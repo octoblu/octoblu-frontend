@@ -1,17 +1,15 @@
-<bluprints-tab-bar selected-tab="material.discover" filter-model="bluprintNameFilter"></bluprints-tab-bar>
+<bluprints-tab-bar
+  selected-tab="material.discover"
+  filter-model="bluprintNameFilter"
+></bluprints-tab-bar>
+
+
 <md-content class="interior__wrapper">
   <div class="interior">
 
     <div class="PageHeader">
       <div class="PageHeader-title">Discover Bluprints</div>
       <div class="PageHeader-subTitle">Discover Bluprints created and shared by our community.</div>
-    </div>
-
-    <div class="Bluprints-sort">
-      <md-select ng-model="sortMethod" placeholder="Filter Bluprints" class="BluToolbar-select">
-        <md-option ng-value="'-sortLikedBy.length'">Top Liked</md-option>
-        <md-option ng-value="'name'">Alphabetical</md-option>
-      </md-select>
     </div>
 
     <spinner size="large" loading="isLoading"></spinner>
@@ -36,8 +34,13 @@
 
     <bluprint-grid bluprints="controller.bluprints" ng-hide="isLoading"></bluprint-grid>
 
-     <div class="Bluprints-subHeader">
-        <button class="BluButton Bluprint-showMore" ng-hide='controller.noneLeft' ng-click='controller.showMore()'>Show More</button>
-     </div>
+    <div class="Bluprints-subHeader">
+      <button
+        ng-click='controller.showMore()'
+        ng-hide='controller.noneLeft'
+        class="BluButton Bluprint-showMore">
+        Show More
+      </button>
+    </div>
   </div>
 </md-content>

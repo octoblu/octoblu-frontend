@@ -2,12 +2,7 @@
 <div class="BluprintCard">
   <main class="BluprintCard-main">
     <div class="BluprintCard-body">
-      <h4 class="BluprintCard-label">{{bluprint.name}}
-        <span ng-show="bluprint.public" class="Bluprint-metaItem">
-          <i class="fa fa-star"></i>
-          {{bluprint.likedBy.length || 0}}
-        </span>
-      </h4>
+      <h4 class="BluprintCard-label">{{bluprint.name}}</h4>
 
       <p ng-show="bluprint.description" class="BluprintCard-description">{{bluprint.description}}</p>
       <p ng-hide="bluprint.description" class="BluprintCard-description">No Description Added</p>
