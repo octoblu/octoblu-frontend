@@ -25,7 +25,7 @@ class WorkspaceCloudController
     queryParams                   = {}
     queryParams["customerId"]     = customerId if customerId?
     queryParams["otp"]            = otp if otp?
-    queryParams["cwcReferralUrl"] = @CWC_STAGING_URL
+    queryParams["cwcReferralUrl"] = @referrer
     queryParams["redirectUrl"]    = @CWC_APP_STORE_URL
     return queryParams
 

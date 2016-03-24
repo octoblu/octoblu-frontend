@@ -1,39 +1,33 @@
 class CWCAuthController
-  constructor: ($rootScope, $scope, $window, $stateParams,  CWCAccountService) ->
+  constructor: ($rootScope, $scope, $window, $state, $stateParams,  CWC_APP_STORE_URL, CWCAuthProxyService) ->
     @scope                 = $scope
     @rootScope             = $rootScope
     @window                = $window
-    @CWCAccountService     = CWCAccountService
+    # @CWCAccountService     = CWCAccountService
+    @state                 = $stateParams
     @stateParams           = $stateParams
     @loggingIn             = true
     @CWCValidationError    = "There was a problem validating your CWC Account, please contact CWC Customer Support"
     @CWCAuthenticatorError = "There was a problem authenticating your CWC Account with Octoblu"
+    @CWCAuthProxyService   = CWCAuthProxyService
+    @CWC_APP_STORE_URL     = CWC_APP_STORE_URL
 
-    @rootScope.$on "$cwcUserAuthorized", (event, data) =>
-      @requestAccess()
+    @requestAccess()
 
   requestAccess:() =>
     console.log 'stateParams', @stateParams
-    # return @requestAccessViaAuthenticator()
-    # return requestAccessViaAuthenticator() unless @stateParams.cwcReferralUrl?
-    # requestAccessViaAuthenticatorProxy()
+    {@customerId, @otp, @cwcReferralUrl} = @stateParams
 
-  requestAccessViaAuthenticator:() =>
-    cwsToken = @window.localStorage.getItem "cwsToken"
-    cwcCustomer = @window.localStorage.getItem "customer"
+    @CWCAuthProxyService
+      .authenticateCWCUser(@otp, @customerId, @cwcReferralUrl)
+      .then ( cwcAuthInfo ) =>
+        return @scope.errorMessage = @CWCValidationError unless cwcAuthInfo?.cwcSessionId
+        {@cwcSessionId, @cwcUserDevice} = cwcAuthInfo
+        return @CWCAuthProxyService.createOctobluSession @cwcUserDevice.uuid, @cwcUserDevice.token, @CWC_APP_STORE_URL
 
-    @CWCAccountService.validateToken(cwsToken, cwcCustomer)
-      .then (isTokenValid) =>
-        return @scope.errorMessage = @CWCValidationError unless isTokenValid
-        @CWCAccountService.createOctobluSession cwsToken
-        .then (response) =>
-          @loggingIn = false
 
-          return @scope.errorMessage = @CWCAuthenticatorError if !response.data?
-          return unless response.data.callbackUrl?
-          @window.location.href = response.data.callbackUrl
 
-  requestAccessViaAuthenticatorProxy:() =>
+
 
 
 
