@@ -2,12 +2,81 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
-    <div class="Bluprint-list">
-      <div class="Bluprint-listItem">
-        <header class="Bluprint-header">
-          <h3 class="Bluprint-name">
-            {{bluprint.name}}
-            <md-menu class="Bluprint-menu">
+    <div class="BluprintDetail">
+      <h1 class="BluprintDetail-label">
+        {{bluprint.name}}
+      </h1>
+
+      <p class="BluprintDetail-description">
+        {{bluprint.description}}
+      </p>
+
+      <div ng-show="bluprint.public" class="BluprintDetail-publicMeta">
+        <span>
+          <i class="fa fa-user BluprintCard-authorIcon"></i>
+          {{bluprint.ownerName}}
+        </span>
+      </div>
+
+
+      <button ng-click="controller.import()" class="BluprintDetail-import">Import</button>
+
+      <div class="BluprintDetail-meta">
+        <a href="{{controller.twitterUrl}}" target="_blank" class="Share-button">
+          <img src="https://icons.octoblu.com/channel/twitter.svg" class="Share-buttonImage" alt="twitter">
+          Twitter
+        </a>
+        <a href="{{controller.facebookUrl}}" target="_blank" class="Share-button">
+          <img src="https://icons.octoblu.com/channel/facebook.svg" class="Share-buttonImage" alt="facebook">
+          Facebook
+        </a>
+        <a href="{{controller.emailUrl}}" target="_blank" class="Share-button">
+          <img src="https://icons.octoblu.com/channel/email.svg" class="Share-buttonImage" alt="email">
+          Email
+        </a>
+        <button
+          class="Share-button"
+          ng-click=""
+          clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
+          clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
+          clip-click="controller.toastBluprintUrl(bluprint.uuid)">
+            <i class="fa fa-clipboard Share-buttonImage--copy"></i>
+            Get Link
+        </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <md-menu class="Bluprint-menu">
               <button
                 ng-click="$mdOpenMenu()"
                 class="BluButton Bluprint-menu-button"
@@ -107,7 +176,7 @@
         <div class="flow-image-but-really-the-flow">
           <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </md-content>
