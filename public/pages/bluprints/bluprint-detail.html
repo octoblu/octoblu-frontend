@@ -2,7 +2,8 @@
 <md-content class="interior__wrapper">
 
   <div class="interior">
-    <button class="BluButton BluprintDetail-delete" ng-show="editMode">DELETE BLUPRINT</button>
+    <button class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)" ng-show="editMode">DELETE BLUPRINT</button>
+
     <div class="BluprintDetail">
       <h1 class="BluprintDetail-label" ng-hide="editMode">
         {{bluprint.name}}
@@ -45,11 +46,15 @@
 
       <div ng-show="editMode" class="BluprintDetail-public-container">
         <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
+          <i class="fa fa-lock BluprintDetail-public-icon"></i>
+          <md-tooltip>Anyone with the import link can import your private bluprint</md-tooltip>
           Private
         </div>
         <md-switch
           ng-model="bluprintEdit.public"
           aria-label="Make Bluprint Public">
+          <i class="fa fa-globe BluprintDetail-public-icon"></i>
+          <md-tooltip>Making a bluprint public allows any Octoblu user to import it via the Discover page.</md-tooltip>
           Public
         </md-switch>
       </div>
