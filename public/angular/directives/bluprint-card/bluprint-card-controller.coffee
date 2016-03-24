@@ -25,11 +25,11 @@ class BluprintCardController
     @NotifyService.alert 'Share This Bluprint', url
 
   confirmdeleteBluprint: (bluprintId) =>
-    confirm = @mdDialog.confirm()
-      .content("Are you sure you want to delete this bluprint?")
-      .ok("Delete")
-      .cancel("Cancel")
-    @NotifyService.show(confirm).then =>
+    confirm =
+      content: "Are you sure you want to delete this bluprint?"
+      ok: "Delete"
+      cancel: "Cancel"
+    @NotifyService.alert(confirm).then =>
       @BluprintService.deleteBluprint(bluprintId).then =>
         @state.go 'material.bluprints'
 

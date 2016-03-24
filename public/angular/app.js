@@ -539,11 +539,16 @@ angular.module('octobluApp', [
       .state('material.bluprintDetail', {
         url: '/bluprints/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
+        controller: 'BluprintDetailController',
+        controllerAs: 'controller'
+      })
+      .state('material.bluprintEdit', {
+        url: '/bluprints/:bluprintId/edit',
+        templateUrl: '/pages/bluprints/bluprint-detail-edit.html',
         params: {
-          editMode : null,
           createMode: null
         },
-        controller: 'BluprintDetailController',
+        controller: 'BluprintDetailEditController',
         controllerAs: 'controller'
       })
       .state('material.bluprintWizard', {

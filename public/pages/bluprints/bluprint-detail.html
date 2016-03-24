@@ -1,35 +1,22 @@
 <breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
 <md-content class="interior__wrapper">
-
   <div class="interior">
     <button class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)" ng-show="editMode">DELETE BLUPRINT</button>
 
     <div class="BluprintDetail">
-      <h1 class="BluprintDetail-label" ng-hide="editMode">
+      <h1 class="BluprintDetail-label">
         {{bluprint.name}}
       </h1>
-
-      <md-input-container class="BluprintDetail-label--edit" ng-show="editMode">
-        <label>Name</label>
-        <input required ng-model="bluprintEdit.name">
-      </md-input-container>
-
-      <p class="BluprintDetail-description" ng-hide="editMode">
+      <p class="BluprintDetail-description">
         {{bluprint.description}}
         <span>
           -
-          <a class="BluprintDetail-editLink" ng-hide="editMode" ng-click="editMode = true">
+          <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
             Edit
           </a>
         </span>
       </p>
-
-      <md-input-container class="BluprintDetail-description--edit" ng-show="editMode">
-        <label>Description</label>
-        <textarea md-maxlength="300" required ng-model="bluprintEdit.description"></textarea>
-      </md-input-container>
-
-      <div class="BluprintDetail-publicMeta" ng-hide="editMode">
+      <div class="BluprintDetail-publicMeta">
         <span>
           <i class="fa fa-user BluprintCard-authorIcon"></i>
           {{bluprint.ownerName}}
@@ -44,30 +31,9 @@
         </span>
       </div>
 
-      <div ng-show="editMode" class="BluprintDetail-public-container">
-        <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
-          <i class="fa fa-lock BluprintDetail-public-icon"></i>
-          <md-tooltip>Anyone with the import link can import your private bluprint</md-tooltip>
-          Private
-        </div>
-        <md-switch
-          ng-model="bluprintEdit.public"
-          aria-label="Make Bluprint Public">
-          <i class="fa fa-globe BluprintDetail-public-icon"></i>
-          <md-tooltip>Making a bluprint public allows any Octoblu user to import it via the Discover page.</md-tooltip>
-          Public
-        </md-switch>
-      </div>
+      <button ng-click="controller.import()" class="BluprintDetail-import">Import</button>
 
-      <div class="BluprintDetail-editActions" ng-show="editMode">
-        <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
-        <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Update</a>
-      </div>
-
-
-      <button ng-click="controller.import()" class="BluprintDetail-import" ng-hide="editMode">Import</button>
-
-      <div class="BluprintDetail-meta" ng-hide="editMode">
+      <div class="BluprintDetail-meta">
         <a href="{{controller.twitterUrl}}" target="_blank" class="Share-button">
           <img src="https://icons.octoblu.com/channel/twitter.svg" class="Share-buttonImage" alt="twitter">
           Twitter
@@ -90,5 +56,7 @@
             Get Link
         </button>
       </div>
+      
+    </div>
   </div>
 </md-content>
