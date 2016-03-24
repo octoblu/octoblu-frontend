@@ -23,6 +23,7 @@ class BluprintDetailController
     @BluprintService.getBluprint(@stateParams.bluprintId)
       .then (bluprint) =>
         @scope.bluprint = bluprint
+        @scope.bluprint.ownerName = _.capitalize @scope.bluprint.ownerName
         @scope.bluprintEdit = _.cloneDeep @scope.bluprint
         @scope.bluprint.public = false unless bluprint.public?
 
