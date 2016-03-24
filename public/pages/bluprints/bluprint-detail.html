@@ -3,25 +3,63 @@
 
   <div class="interior">
     <div class="BluprintDetail">
-      <h1 class="BluprintDetail-label">
+      <h1 class="BluprintDetail-label" ng-hide="editMode">
         {{bluprint.name}}
       </h1>
 
-      <p class="BluprintDetail-description">
+      <md-input-container class="name BluprintDetail-label--edit" ng-show="editMode">
+        <label>Name</label>
+        <input required ng-model="bluprintEdit.name">
+      </md-input-container>
+
+      <p class="BluprintDetail-description" ng-hide="editMode">
         {{bluprint.description}}
+        <span>
+          -
+          <a class="BluprintDetail-editLink" ng-hide="editMode" ng-click="editMode = true">
+            Edit
+          </a>
+        </span>
       </p>
 
-      <div ng-show="bluprint.public" class="BluprintDetail-publicMeta">
+      <md-input-container class="name BluprintDetail-description--edit" ng-show="editMode">
+        <label>Description</label>
+        <textarea md-maxlength="300" required ng-model="bluprintEdit.description"></textarea>
+      </md-input-container>
+
+      <div class="BluprintDetail-publicMeta" ng-hide="editMode">
         <span>
           <i class="fa fa-user BluprintCard-authorIcon"></i>
           {{bluprint.ownerName}}
         </span>
+        <span ng-show="bluprint.public" class="Bluprint-metaItem">
+          <i class="fa fa-globe"></i>
+          Public
+        </span>
+        <span ng-hide="bluprint.public" class="Bluprint-metaItem">
+          <i class="fa fa-lock"></i>
+          Private
+        </span>
+      </div>
+
+      <md-switch
+        ng-model="bluprintEdit.public"
+        class="make-public Bluprint-edit-field"
+        aria-label="Make Bluprint Public"
+        ng-show="editMode">
+        Public
+        <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
+      </md-switch>
+
+      <div class="BluprintDetail-editActions" ng-show="editMode">
+        <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
+        <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
       </div>
 
 
-      <button ng-click="controller.import()" class="BluprintDetail-import">Import</button>
+      <button ng-click="controller.import()" class="BluprintDetail-import" ng-hide="editMode">Import</button>
 
-      <div class="BluprintDetail-meta">
+      <div class="BluprintDetail-meta" ng-hide="editMode">
         <a href="{{controller.twitterUrl}}" target="_blank" class="Share-button">
           <img src="https://icons.octoblu.com/channel/twitter.svg" class="Share-buttonImage" alt="twitter">
           Twitter
@@ -43,140 +81,12 @@
             <i class="fa fa-clipboard Share-buttonImage--copy"></i>
             Get Link
         </button>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <md-menu class="Bluprint-menu">
-              <button
-                ng-click="$mdOpenMenu()"
-                class="BluButton Bluprint-menu-button"
-                aria-label="Show Options">
-                <i class="fa fa-caret-down"></i>
-              </button>
-
-              <md-menu-content width="2">
-                <md-menu-item>
-                  <md-button ng-click="controller.import()">Import</md-button>
-                </md-menu-item>
-                <md-menu-item>
-                  <md-button
-                    ng-click=""
-                    clip-click-fallback="controller.dialogBluprintUrl(bluprint.uuid)"
-                    clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
-                    clip-click="controller.toastBluprintUrl(bluprint.uuid)">
-                    Copy URL
-                  </md-button>
-                </md-menu-item>
-                <md-menu-item>
-                  <md-button ng-click="controller.togglePublic(bluprint)">
-                    Make {{bluprint.public ? 'Private' : 'Public'}}
-                  </md-button>
-                </md-menu-item>
-                <md-menu-item>
-                  <md-button ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">Delete</md-button>
-                </md-menu-item>
-              </md-menu-content>
-            </md-menu>
-          </h3>
-          <div class="Bluprint-meta import-bluprint--stats">
-            <span ng-show="bluprint.public" class="Bluprint-metaItem">
-              <i class="fa fa-globe"></i>
-              Public
-            </span>
-            <span ng-hide="bluprint.public" class="Bluprint-metaItem">
-              <i class="fa fa-lock"></i>
-              Private
-            </span>
-            <span ng-show="bluprint.public" class="Bluprint-metaItem">
-              <i class="fa fa-star"></i>
-              {{bluprint.likedBy.length}}
-            </span>
-          </div>
-        </header>
-
-        <div class="import-bluprint--description">
-          <md-input-container class="name import-bluprintName" ng-show="editMode">
-            <label>Name</label>
-            <input required ng-model="bluprintEdit.name">
-          </md-input-container>
-
-          <p class="Bluprint-description" ng-hide="editMode">
-            {{bluprint.description || 'No description'}}
-            <span class="Bluprint-edit">
-              -
-              <a class="Bluprint-editLink" ng-hide="editMode" ng-click="editMode = true">
-                Edit
-              </a>
-            </span>
-          </p>
-
-          <md-input-container class="name import-bluprintDescription" ng-show="editMode">
-            <label>Description</label>
-            <input required ng-model="bluprintEdit.description">
-          </md-input-container>
+        <div ng-show="editMode">
+          <h3>DANGER ZONE</h3>
+          <hr>
+          <button class="BluButton BluButton--cancel">DELETE YOUR BLUPRINT</button>
         </div>
-
-        <md-switch
-          ng-model="bluprintEdit.public"
-          class="make-public Bluprint-edit-field"
-          aria-label="Make Bluprint Public"
-          ng-show="editMode">
-          Public
-          <em>(Making your Bluprint public will allow other users to import it from the Discover page.)</em>
-        </md-switch>
-
-        <div class="BluButton--actions" ng-show="editMode">
-          <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Save</a>
-          <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
-        </div>
-
-        <div ng-hide="editMode" class="BluButton--actions">
-          <button
-            ng-disabled="importing"
-            class="BluButton import-bluprint--import-button"
-            ng-click="controller.import()"
-            title="Import"
-            aria-label="Import">
-
-            <spinner size="small" loading="importing"></spinner>
-            Import
-          </button>
-        </div>
-
-        <div class="flow-image-but-really-the-flow">
-          <flow-editor flow="bluprint.flow" readonly="true"></flow-editor>
-        </div>
-      </div>-->
-    </div>
   </div>
 </md-content>
