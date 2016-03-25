@@ -23,12 +23,12 @@
     </p>
 
     <random-robot
-      ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+      ng-show="(controller.bluprints.length == 0) && bluprintNameFilter"
       title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
     </random-robot>
 
     <random-robot
-      ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
+      ng-show="(controller.bluprints.length == 0) && !bluprintNameFilter"
       title="There are no shared Bluprints.">
     </random-robot>
 
