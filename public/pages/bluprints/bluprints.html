@@ -1,35 +1,24 @@
 <bluprints-tab-bar selected-tab="material.bluprints" filter-model="bluprintNameFilter"></bluprints-tab-bar>
 <md-content class="interior__wrapper">
   <div class="interior">
-
-    <div class="Bluprints-container interior">
-      <div class="PageHeader">
-        <div class="PageHeader-title">Your Bluprints</div>
-        <div class="PageHeader-subTitle">Browse Bluprints created by you.</div>
-      </div>
-
-      <random-robot
-        ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
-        title="You have no shared Bluprints.">
-      </random-robot>
-
-
-      <random-robot
-        ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
-        title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
-      </random-robot>
-
-      <spinner size="large" loading="isLoading"></spinner>
-
-      <ul class="Bluprint-list" ng-hide="isLoading">
-        <li
-          ng-repeat="bluprint in filteredBluprints = (bluprints | filter: {name:bluprintNameFilter})"
-          class="Bluprint-listItem">
-          <div ng-include="'/pages/bluprints/bluprint-list-item.html'"></div>
-        </li>
-      </ul>
-
+    <div class="PageHeader">
+      <div class="PageHeader-title">Your Bluprints</div>
+      <div class="PageHeader-subTitle">Browse Bluprints created by you.</div>
     </div>
-  </div>
 
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && !bluprintNameFilter"
+      title="You have no shared Bluprints.">
+    </random-robot>
+
+    <random-robot
+      ng-show="(filteredBluprints.length == 0) && bluprintNameFilter"
+      title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
+    </random-robot>
+
+    <spinner size="large" loading="isLoading"></spinner>
+
+    <bluprint-grid bluprints="bluprints" ng-hide="isLoading"></bluprint-grid>
+
+  </div>
 </md-content>

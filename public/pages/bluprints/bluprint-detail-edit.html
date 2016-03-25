@@ -1,0 +1,49 @@
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+
+  <div class="interior">
+    <div class="BluprintDetailEdit">
+      <md-input-container class="BluprintDetail-label--edit">
+        <label>Name</label>
+        <input required ng-model="bluprintEdit.name">
+      </md-input-container>
+
+      <md-input-container class="BluprintDetail-description--edit">
+        <label>Description</label>
+        <textarea md-maxlength="300" required ng-model="bluprintEdit.description"></textarea>
+      </md-input-container>
+
+
+      <label class="md-label BluprintDetail-visibility">Visibility</label>
+      <div class="BluprintDetail-public-container">
+        <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
+          <i class="fa fa-lock BluprintDetail-public-icon"></i>
+          <md-tooltip>Only someone with the link can import your bluprint</md-tooltip>
+          Anyone With Link
+        </div>
+
+        <md-switch
+          ng-model="bluprintEdit.public"
+          aria-label="Make Bluprint Public">
+          <i class="fa fa-globe BluprintDetail-public-icon"></i>
+          <md-tooltip>Making your bluprint publicly available for any Octoblu user to import it via the Discover page.</md-tooltip>
+          Public On Discover
+        </md-switch>
+      </div>
+
+      <div class="BluAlert" ng-hide="!bluprintEdit || bluprintEdit.public">
+        Your share link is {{controller.getBluprintImportUrl(bluprintEdit.uuid)}}
+      </div>
+
+      <div class="BluprintDetail-editActions">
+        <div>
+          <a class="BluButton BluButton--save" ng-click="controller.updateBluprintNow()">Update</a>
+          <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
+        </div>
+
+        <button ng-hide="controller.createMode" class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(controller.bluprint.uuid)">DELETE BLUPRINT</button>
+      </div>
+
+    </div>
+  </div>
+</md-content>

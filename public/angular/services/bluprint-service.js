@@ -3,6 +3,41 @@ angular.module('octobluApp')
   'use strict';
   var self;
   self = this;
+  var operators = ["broadcast","debug","equal","http-post-request","less-than","pluck","set-key",
+  "change",
+  "delay",
+  "function",
+  "http-put-request",
+  "math",
+  "range",
+  "template",
+  "collect",
+  "demultiplex",
+  "get-key",
+  "http-request",
+  "microblu",
+  "rss",
+  "throttle",
+  "comment",
+  "device",
+  "greater-than-equal",
+  "interval",
+  "not-equal",
+  "sample",
+  "trigger",
+  "compose",
+  "echo-in",
+  "greater-than",
+  "leading-edge-debounce",
+  "null",
+  "schedule",
+  "unique",
+  "debounce",
+  "echo-out",
+  "http-delete-request",
+  "less-than-equal",
+  "on-start",
+  "sentiment"]
 
   self.createBluprint = function(bluprint) {
     return $http.post(OCTOBLU_API_URL + "/api/templates", bluprint).then(function(response) {
@@ -13,18 +48,6 @@ angular.module('octobluApp')
   self.update = function(uuid, data) {
     var bluprint = _.omit(data, ['_id', 'uuid', 'flow']);
     return $http.put(OCTOBLU_API_URL + '/api/templates/' + uuid, bluprint).then(function(response){
-      return response.data;
-    });
-  };
-
-  self.like = function(userUuid, bluprint) {
-    return $http.put(OCTOBLU_API_URL + '/api/templates/' + bluprint.uuid + '/like', {userUuid: userUuid}).then(function(response){
-      return response.data;
-    });
-  };
-
-  self.unlike = function(userUuid, bluprint) {
-    return $http.delete(OCTOBLU_API_URL + '/api/templates/' + bluprint.uuid + '/unlike', {userUuid: userUuid}).then(function(response){
       return response.data;
     });
   };
@@ -83,16 +106,6 @@ angular.module('octobluApp')
     bluprint.tags = _.uniq(bluprint.tags) || [];
     return bluprint;
   };
-
-  self.toggleLike = function(userUuid, bluprint) {
-    if(_.includes(bluprint.likedBy, userUuid)){
-      return self.unlike(userUuid, bluprint);
-    }
-    else{
-      return self.like(userUuid, bluprint);
-    }
-  };
-
 
   self.deleteBluprint = function(id) {
     return $http.delete(OCTOBLU_API_URL + '/api/templates/' + id);

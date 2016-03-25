@@ -10,14 +10,8 @@ class SharedBluprintsController
     @AuthService     = AuthService
     @BluprintService = BluprintService
 
-    @sortLikedBy = {}
     @bluprints = []
     @scope.isLoading = true
-    @scope.sortMethod = '-sortLikedBy.length'
-    @scope.sortMethods =
-      '-sortLikedBy.length': 'Top Liked'
-      'name': 'Alphabetical (ascending)'
-      '-name': 'Alphabetical (descending)'
 
     @collectionName = $stateParams.collection
     @AuthService.getCurrentUser().then (user) =>
@@ -38,7 +32,6 @@ class SharedBluprintsController
     @BluprintService.getPublicBluprints(@collectionName)
       .then (bluprints) =>
         @bluprints = bluprints
-        @editSortBy @bluprints
         @scope.isLoading = false
 
   searchPublic: (name)=>
@@ -46,7 +39,6 @@ class SharedBluprintsController
       .then (bluprints) =>
         @bluprints = bluprints
         @noneLeft = true
-        @editSortBy @bluprints
         @scope.isLoading = false
 
   refreshLimit: =>
@@ -58,7 +50,6 @@ class SharedBluprintsController
       .then (bluprints) =>
         @bluprints = @bluprints.concat(bluprints)
         @noneLeft = true if _.size(bluprints) < @limitPerPage
-        @editSortBy @bluprints
         @scope.isLoading = false
 
   refreshBluprintsPaged: (limit, page)=>
@@ -66,38 +57,6 @@ class SharedBluprintsController
       .then (bluprints) =>
         @bluprints = bluprints
         @noneLeft = false unless _.size(bluprints) < @limitPerPage
-        @editSortBy @bluprints
         @scope.isLoading = false
-
-  importBluprint: (bluprintId) =>
-      @scope.importing = true
-      @state.go 'material.bluprintWizard', bluprintId: bluprintId
-
-  editSortBy: (bluprints) =>
-    return _.each @bluprints, (bluprint) =>
-      @sortLikedBy[bluprint.uuid] ?= bluprint.likedBy
-      bluprint.sortLikedBy = @sortLikedBy[bluprint.uuid]
-
-  liked: (bluprint) =>
-    _.includes bluprint.likedBy, @userUuid
-
-  toggleLike: (bluprint) =>
-    @BluprintService.toggleLike(@userUuid, bluprint).then => @refreshBluprints()
-
-  getBluprintImportUrl: (bluprintId) =>
-    @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
-
-  toastBluprintUrl: (bluprintId) =>
-    url = @getBluprintImportUrl bluprintId
-    message = "Copied #{url} to clipboard"
-    @mdToast.show @mdToast.simple(position: 'top right').content message
-
-  dialogBluprintUrl: (bluprintId) =>
-    url = @getBluprintImportUrl bluprintId
-    alert = @mdDialog.alert().content(url).title('Share this bluprint').ok 'OKAY'
-    @mdDialog.show(alert).finally =>
-      alert = undefined
-
-
 
 angular.module('octobluApp').controller 'SharedBluprintsController', SharedBluprintsController

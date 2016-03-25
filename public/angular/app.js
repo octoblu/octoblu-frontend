@@ -546,10 +546,19 @@ angular.module('octobluApp', [
         url: '/bluprints/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
         params: {
-          editMode : null,
-          createMode: null
+          referrer: null
         },
         controller: 'BluprintDetailController',
+        controllerAs: 'controller'
+      })
+      .state('material.bluprintEdit', {
+        url: '/bluprints/:bluprintId/edit',
+        templateUrl: '/pages/bluprints/bluprint-detail-edit.html',
+        params: {
+          createMode: null,
+          referrer: null
+        },
+        controller: 'BluprintDetailEditController',
         controllerAs: 'controller'
       })
       .state('material.bluprintWizard', {
@@ -567,18 +576,9 @@ angular.module('octobluApp', [
         controller: 'FlowConfigureController',
         controllerAs: 'controller'
       })
-      .state('material.bluprintImport', {
-        url: '/bluprints/import/:bluprintId',
-        templateUrl: '/pages/bluprints/bluprint-import.html',
-        params: {
-          editMode : null
-        },
-        controller: 'BluprintDetailController',
-        controllerAs: 'controller'
-      })
       .state('material.oldbluprintImport', {
         url: '/design/import/:bluprintId',
-        templateUrl: '/pages/bluprints/bluprint-import.html',
+        templateUrl: '/pages/bluprints/bluprint-detail.html',
         params: {
           editMode : null
         },
@@ -630,7 +630,7 @@ angular.module('octobluApp', [
         templateUrl: '/pages/resources.html'
       })
       .state('login', {
-        url: '/login',
+        url: '/login?otp&customerId&cwcReferralUrl&redirectUrl',
         templateUrl: '/pages/login.html',
         controller: 'LoginController',
         controllerAs: 'controller',
@@ -661,7 +661,7 @@ angular.module('octobluApp', [
         unsecured: true
       })
       .state('cwclanding', {
-        url: '/workspacecloud',
+        url: '/workspacecloud?otp&customerId',
         templateUrl: '/pages/workspace-cloud.html',
         controller: 'WorkspaceCloudController',
         controllerAs: 'controller',
