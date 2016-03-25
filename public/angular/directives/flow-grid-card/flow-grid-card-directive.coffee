@@ -5,4 +5,5 @@ angular.module('octobluApp')
     templateUrl: '/angular/directives/flow-grid-card/flow-grid-card.html'
     controller: 'FlowGridCardController'
     controllerAs: 'controller'
+    replace: true
   }

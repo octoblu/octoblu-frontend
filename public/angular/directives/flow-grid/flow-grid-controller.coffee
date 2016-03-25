@@ -10,15 +10,12 @@ class FlowGridController
     @scope.isLoading = true
 
     @FlowService.getAllFlows().then (flows) =>
-      console.log flows
       @scope.isLoading = false
       @scope.flows = flows
-        
+
       # console.log flows
       # _.forEach $scope.flows, (flow, key) ->
       #   $scope.flows[key].iconUrls = $scope.logoUrl($scope.reMap(flow.nodes))
-      #
-      # console.log 'flows:', $scope.flows
 
     #
     # $scope.isLoading = true
