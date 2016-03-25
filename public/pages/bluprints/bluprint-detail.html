@@ -1,15 +1,13 @@
 <breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
 <md-content class="interior__wrapper">
   <div class="interior">
-    <button class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)" ng-show="editMode">DELETE BLUPRINT</button>
-
     <div class="BluprintDetail">
       <h1 class="BluprintDetail-label">
         {{bluprint.name}}
       </h1>
       <p class="BluprintDetail-description" ng-show="bluprint.description">
         {{bluprint.description}}
-        <span>
+        <span ng-hide="controller.referrer == 'discover'">
           -
           <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
             Edit

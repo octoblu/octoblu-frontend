@@ -6,7 +6,7 @@ class BluprintCardController
     @NotifyService = NotifyService
     @BluprintService = BluprintService
 
-    @discover = @state.current.name == 'material.discover'
+    @referrer = 'discover' if @state.current.name == 'material.discover'
 
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public

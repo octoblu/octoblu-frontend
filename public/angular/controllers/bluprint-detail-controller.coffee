@@ -7,6 +7,8 @@ class BluprintDetailController
     @BluprintService = BluprintService
     @NotifyService   = NotifyService
 
+    { @referrer } = @stateParams
+
     @BluprintService.getBluprint(@stateParams.bluprintId).then (bluprint) =>
       @scope.bluprint = bluprint
       @scope.bluprint.ownerName = _.capitalize @scope.bluprint.ownerName
@@ -31,13 +33,10 @@ class BluprintDetailController
     @NotifyService.alert 'Share This Bluprint', url
 
   generateBreadcrumbFragments: =>
-    @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
-    @currentRoute = @state.current.name
+    @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
+    @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints' if (@referrer == 'discover')
 
-    if(@currentRoute == 'material.bluprintDetail')
-      @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
-
-    [ @linkTo, {label: @scope.bluprint.name}]
+    [ @linkTo, { label: @scope.bluprint.name }]
 
   generateShareUrls: (bluprint) =>
     @shareUrl = @getBluprintImportUrl bluprint.uuid
