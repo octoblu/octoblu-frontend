@@ -1,0 +1,17 @@
+<md-card class="FlowCard">
+  <md-card-title class="FlowCard-title">
+    <md-card-title-text>
+      <a ui-sref="material.flow({flowId: flow.flowId})" class="FlowCard-titleLink">{{flow.name}}</a>
+    </md-card-title-text>
+  </md-card-title>
+
+  <md-card-content class="FlowCard-content">
+    <span class="FlowCard-status">Offline</span>
+    <span class="FlowCard-status FlowCard-status--online">Online</span>
+  </md-card-content>
+
+  <md-card-actions class="FlowCard-actions">
+    <md-button>Share</md-button>
+    <md-button>Delete</md-button>
+  </md-card-actions>
+</md-card>

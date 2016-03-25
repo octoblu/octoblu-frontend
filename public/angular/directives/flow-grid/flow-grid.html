@@ -2,23 +2,10 @@
   <!-- When request is fetching -->
   <spinner loading="isLoading" size="large"></spinner>
 
+  <!-- <button class="dashboard-add-flow" ng-click="addFlow()"><i class="fa fa-plus"></i></button> -->
   <!-- When there are no flows -->
   <div ng-show="!flows.length">No Flows</div>
 
-  <md-card ng-repeat="flow in flows">
-    <md-card-title>
-      <md-card-title-text>
-        <a ui-sref="material.flow({flowId: flow.flowId})" >{{flow.name}}</a>
-      </md-card-title-text>
-    </md-card-title>
+  <flow-grid-card ng-repeat="flow in flows"></flow-grid-card>
 
-    <md-card-content>
-      <p>{{flow.description}}<p>
-    </md-card-content>
-
-    <span class="FlowCard-status">Offline</span>
-    <span class="FlowCard-status FlowCard-status--online">Online</span>
-  </md-card>
-
-  <!-- <button class="dashboard-add-flow" ng-click="addFlow()"><i class="fa fa-plus"></i></button> -->
 </div>

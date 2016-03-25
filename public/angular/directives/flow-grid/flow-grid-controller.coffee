@@ -13,7 +13,7 @@ class FlowGridController
       console.log flows
       @scope.isLoading = false
       @scope.flows = flows
-      
+        
       # console.log flows
       # _.forEach $scope.flows, (flow, key) ->
       #   $scope.flows[key].iconUrls = $scope.logoUrl($scope.reMap(flow.nodes))
