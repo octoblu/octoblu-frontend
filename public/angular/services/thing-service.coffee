@@ -131,11 +131,11 @@ class ThingService
 
     deferred.promise
 
-  getThings: =>
+  getThings: (query={})=>
     deferred = @q.defer()
 
     @skynetPromise.then (connection) =>
-      connection.mydevices {}, (results) =>
+      connection.mydevices query, (results) =>
         [users, devices] = _.partition results.devices, type: 'octoblu:user'
 
         things = _.union(users, devices)

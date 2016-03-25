@@ -17,7 +17,6 @@ class FlowGridCardController
 
   deleteFlow: () =>
     { name, flowId } = @scope.flow
-
     @NotifyService
       .confirm
         title: 'Delete Flow'

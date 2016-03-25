@@ -1,29 +1,38 @@
 .FlowCard {
   .flex-display;
 
-  width: 30%;
+  width: 250px;
   height: 200px;
   margin: 12px 0;
-  padding: 24px;
+  padding: 16px;
 
   background: #FFF;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 .FlowCard-title {
-  background: palegoldenrod;
-
+  display: block;
   margin: 0;
   padding: 0 0 16px;
+
+  // background: palegoldenrod;
+}
+
+.FlowCard-titleText {
+  .flex(0)
 }
 
 .FlowCard-titleLink {
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .FlowCard-content {
-  background: aliceblue;
+  .flex-display;
+
   padding: 0 0 16px;
+  // background: aliceblue;
 }
 
 .FlowCard-actions {
@@ -33,7 +42,7 @@
   margin: 0;
   padding: 0;
 
-  background: pink;
+  // background: pink;
 }
 
 .FlowCard-description {
@@ -41,6 +50,7 @@
 }
 
 .FlowCard-status {
+  display: inline;
   border-radius: 2px;
   padding: 3px 6px;
 
@@ -54,4 +64,14 @@
 
 .FlowCard-status--online {
   background: rgb(89, 226, 168);
+}
+
+.FlowTags {
+  .flex-display;
+  .flex-direction(row);
+}
+
+.FlowTags-img {
+  width: 24px;
+  height: 24px;
 }

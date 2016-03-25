@@ -1,11 +1,5 @@
 <div class="FlowGrid">
-  <!-- When request is fetching -->
   <spinner loading="isLoading" size="large"></spinner>
-
-  <!-- <button class="dashboard-add-flow" ng-click="addFlow()"><i class="fa fa-plus"></i></button> -->
-  <!-- When there are no flows -->
-  <div ng-show="!flows.length">No Flows</div>
-
-  <flow-grid-card ng-repeat="flow in flows"></flow-grid-card>
-
+  <div ng-show="!flows.length && !isLoading">No Flows</div>
+  <flow-grid-card ng-repeat="flow in flows | filter:flowFilterText"></flow-grid-card>
 </div>
