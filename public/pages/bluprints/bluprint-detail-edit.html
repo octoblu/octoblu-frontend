@@ -13,6 +13,8 @@
         <textarea md-maxlength="300" required ng-model="bluprintEdit.description"></textarea>
       </md-input-container>
 
+
+      <label class="md-label BluprintDetail-visibility">Visibility</label>
       <div class="BluprintDetail-public-container">
         <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
           <i class="fa fa-lock BluprintDetail-public-icon"></i>
@@ -28,7 +30,7 @@
           Public On Discover
         </md-switch>
       </div>
-      
+
       <div class="BluAlert" ng-hide="bluprintEdit.public">
         Your share link is {{controller.getBluprintImportUrl(bluprintEdit.uuid)}}
       </div>
