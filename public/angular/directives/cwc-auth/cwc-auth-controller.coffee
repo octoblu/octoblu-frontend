@@ -1,7 +1,6 @@
 class CWCAuthController
   constructor: ($scope, $window, $cookies,  $stateParams,  CWC_APP_STORE_URL, CWCAuthProxyService) ->
     @scope                 = $scope
-    @rootScope             = $rootScope
     @window                = $window
     @cookies               = $cookies
     @stateParams           = $stateParams
