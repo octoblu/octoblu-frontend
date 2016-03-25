@@ -1,26 +1,12 @@
-<bluprints-tab-bar
-  selected-tab="material.discover"
-  filter-model="bluprintNameFilter"
-></bluprints-tab-bar>
-
-
+<bluprints-tab-bar selected-tab="material.discover" filter-model="bluprintNameFilter"></bluprints-tab-bar>
 <md-content class="interior__wrapper">
   <div class="interior">
-
     <div class="PageHeader">
       <div class="PageHeader-title">Discover Bluprints</div>
       <div class="PageHeader-subTitle">Discover Bluprints created and shared by our community.</div>
     </div>
 
     <spinner size="large" loading="isLoading"></spinner>
-
-    <p class="Bluprints-alert" ng-show="controller.collectionName">
-      Showing Bluprints tagged
-      <span class="BluPill">
-        {{controller.collectionName}}
-        <a ui-sref="material.discover" class="BluPill-deleteButton">&#215;</a>
-      </span>
-    </p>
 
     <random-robot
       ng-show="(controller.bluprints.length == 0) && bluprintNameFilter && !isLoading"

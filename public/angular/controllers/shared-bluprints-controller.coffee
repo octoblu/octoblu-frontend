@@ -1,9 +1,7 @@
 class SharedBluprintsController
-  constructor: ($scope, $mdDialog, $mdToast, $state, $stateParams, AuthService, BluprintService, UrlService) ->
+  constructor: ($scope, $state, $stateParams, AuthService, BluprintService, UrlService) ->
     @scope           = $scope
     @state           = $state
-    @mdToast         = $mdToast
-    @mdDialog        = $mdDialog
     @stateParams     = $stateParams
 
     @UrlService      = UrlService
@@ -14,14 +12,13 @@ class SharedBluprintsController
     @scope.isLoading = true
 
     { @collectionName } = @stateParams
-    @AuthService.getCurrentUser().then (user) =>
-      @userUuid = user.resource.uuid
 
     @limitPerPage = 9
     @currentPage  = 1
     @noneLeft     = true
 
     @refreshBluprintsPaged(@limitPerPage,@currentPage)
+
     @scope.$watch 'bluprintNameFilter', (oldVal, newVal) =>
       @scope.bluprintNameFilter = @scope.bluprintNameFilter || ''
       @searchPublic(@scope.bluprintNameFilter) unless @scope.bluprintNameFilter.length == 0
