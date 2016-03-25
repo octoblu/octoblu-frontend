@@ -158,6 +158,12 @@ angular.module('octobluApp', [
         },
         controller: 'DesignerController'
       })
+      .state('material.dashboard', {
+        url: '/dashboard',
+        templateUrl: '/pages/dashboard.html',
+        controller: 'DashboardController',
+        controllerAs: 'controller'
+      })
       .state('material.configure', {
         url: '/configure?added&deleted',
         params: {

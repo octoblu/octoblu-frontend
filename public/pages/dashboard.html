@@ -1,0 +1,18 @@
+<md-content class="interior__wrapper">
+  <div class="interior">
+
+    <div class="PageHeader">
+      <div class="PageHeader-title">Dashboard</div>
+    </div>
+
+    <div class="PageHeader">
+      <div class="PageHeader-title">My Flows</div>
+    </div>
+    <div class="dashboard-flow-container">
+      <button class="dashboard-add-flow"><i class="fa fa-plus"></i></button>
+      <md-card class="dashboard-md-card" ng-repeat="bluprint in bluprints">
+        {{bluprint.name}}
+      </md-card>
+    </div>
+  </div>
+</md-content>
