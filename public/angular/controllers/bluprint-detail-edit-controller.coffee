@@ -28,6 +28,9 @@ class BluprintDetailEditController
     else
       @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId
 
+  getBluprintImportUrl: (bluprintId) =>
+    @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
+
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public
     @BluprintService.update bluprint.uuid, bluprint

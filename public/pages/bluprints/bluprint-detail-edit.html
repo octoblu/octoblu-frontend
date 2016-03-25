@@ -16,17 +16,21 @@
       <div class="BluprintDetail-public-container">
         <div class="md-label" ng-click="bluprintEdit.public = !bluprintEdit.public">
           <i class="fa fa-lock BluprintDetail-public-icon"></i>
-          <md-tooltip>Anyone with the import link can import your private bluprint</md-tooltip>
-          Private
+          <md-tooltip>Only someone with the link can import your bluprint</md-tooltip>
+          Anyone With Link
         </div>
 
         <md-switch
           ng-model="bluprintEdit.public"
           aria-label="Make Bluprint Public">
           <i class="fa fa-globe BluprintDetail-public-icon"></i>
-          <md-tooltip>Making a bluprint public allows any Octoblu user to import it via the Discover page.</md-tooltip>
-          Public
+          <md-tooltip>Making your bluprint publicly available for any Octoblu user to import it via the Discover page.</md-tooltip>
+          Public On Discover
         </md-switch>
+      </div>
+      
+      <div class="BluAlert" ng-hide="bluprintEdit.public">
+        Your share link is {{controller.getBluprintImportUrl(bluprintEdit.uuid)}}
       </div>
 
       <div class="BluprintDetail-editActions">

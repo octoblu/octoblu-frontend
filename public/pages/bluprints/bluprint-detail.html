@@ -7,7 +7,7 @@
       </h1>
       <p class="BluprintDetail-description" ng-show="bluprint.description">
         {{bluprint.description}}
-        <span ng-hide="controller.referrer == 'discover'">
+        <span ng-show="controller.bluprintIsMine">
           -
           <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
             Edit

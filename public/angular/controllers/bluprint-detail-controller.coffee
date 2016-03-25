@@ -1,7 +1,8 @@
 class BluprintDetailController
-  constructor: ($state, $stateParams, $scope, BluprintService, UrlService, NotifyService) ->
+  constructor: ($state, $stateParams, $scope, $cookies, BluprintService, UrlService, NotifyService) ->
     @state           = $state
     @scope           = $scope
+    @cookies         = $cookies
     @stateParams     = $stateParams
     @UrlService      = UrlService
     @BluprintService = BluprintService
@@ -13,6 +14,8 @@ class BluprintDetailController
       @scope.bluprint = bluprint
       @scope.bluprint.ownerName = _.capitalize @scope.bluprint.ownerName
       @scope.bluprint.public = false unless bluprint.public?
+
+      @bluprintIsMine = @cookies.meshblu_auth_uuid == @scope.bluprint.owner
 
       @generateShareUrls(bluprint)
       @scope.fragments = @generateBreadcrumbFragments()
