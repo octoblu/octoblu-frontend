@@ -15,8 +15,6 @@ class BluprintDetailController
       @scope.bluprint.ownerName = _.capitalize @scope.bluprint.ownerName
       @scope.bluprint.public = false unless bluprint.public?
 
-      @bluprintIsMine = @cookies.meshblu_auth_uuid == @scope.bluprint.owner
-
       @generateShareUrls(bluprint)
       @scope.fragments = @generateBreadcrumbFragments()
 
