@@ -75,9 +75,7 @@ gulp.task('webserver', ['static']);
 
 gulp.task('static', ['default'], function(){
 
-  var port = process.env.OCTOBLU_FRONTEND_PORT || 8080;
-  process.env.PORT = port;
-
+  var port = process.env.PORT || process.env.OCTOBLU_FRONTEND_PORT || 8080;
   var apiBackendUri = process.env.OCTOBLU_BACKEND_URI || 'http://localhost:8081/api';
 
   return gulp.src('./public').pipe(webserver({
