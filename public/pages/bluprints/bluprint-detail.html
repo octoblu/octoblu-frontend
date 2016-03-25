@@ -16,7 +16,7 @@
         </span>
       </p>
 
-      <div ng-show="!bluprint.description">
+      <div ng-show="!bluprint.description && controller.referrer !='discover'">
         <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid, referrer: controller.referrer})">
           Edit
         </a>
@@ -48,7 +48,7 @@
           <img src="https://icons.octoblu.com/channel/facebook.svg" class="Share-buttonImage" alt="facebook">
           Facebook
         </a>
-        <a href="{{controller.emailUrl}}" target="_blank" class="Share-button">
+        <a href="{{controller.emailUrl}}" target="new" class="Share-button">
           <img src="https://icons.octoblu.com/channel/email.svg" class="Share-buttonImage" alt="email">
           Email
         </a>
