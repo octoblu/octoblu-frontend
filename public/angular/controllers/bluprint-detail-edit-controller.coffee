@@ -22,12 +22,10 @@ class BluprintDetailEditController
       @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId, referrer: @referrer
 
   handleCancel: =>
-    if @scope.createMode
-      @BluprintService.deleteBluprint(@stateParams.bluprintId).then =>
-        @state.go 'material.design'
+    return @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId, referrer: @referrer unless @createMode
 
-    else
-      @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId, referrer: @referrer
+    @BluprintService.deleteBluprint(@stateParams.bluprintId).then =>
+      @state.go 'material.design'
 
   getBluprintImportUrl: (bluprintId) =>
     @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
