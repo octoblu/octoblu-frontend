@@ -629,7 +629,7 @@ angular.module('octobluApp', [
         templateUrl: '/pages/resources.html'
       })
       .state('login', {
-        url: '/login',
+        url: '/login?otp&customerId&cwcReferralUrl&redirectUrl',
         templateUrl: '/pages/login.html',
         controller: 'LoginController',
         controllerAs: 'controller',
@@ -660,7 +660,7 @@ angular.module('octobluApp', [
         unsecured: true
       })
       .state('cwclanding', {
-        url: '/workspacecloud',
+        url: '/workspacecloud?otp&customerId',
         templateUrl: '/pages/workspace-cloud.html',
         controller: 'WorkspaceCloudController',
         controllerAs: 'controller',
