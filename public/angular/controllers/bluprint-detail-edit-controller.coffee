@@ -48,6 +48,6 @@ class BluprintDetailEditController
     @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
     @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints' if @currentRoute == 'material.bluprintEdit'
 
-    [ @linkTo, {label: @scope.bluprintEdit.name} ]
+    [ @linkTo, {label: "Edit #{@scope.bluprintEdit.name}"} ]
 
 angular.module('octobluApp').controller 'BluprintDetailEditController', BluprintDetailEditController
