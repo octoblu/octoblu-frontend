@@ -7,8 +7,8 @@ class WorkspaceCloudController
     #     route to login with the query parameters (otp, customerId, cwcReferralUrl, redirectUrl)
     #otherwise
     # redirect to login
-    @state = $state
-    @referrer = $window.referrer
+    @state             = $state
+    @referrer          = $window.document.referrer
     @stateParams       = $stateParams
     @CWC_APP_STORE_URL = CWC_APP_STORE_URL
     @CWC_STAGING_URL   = CWC_STAGING_URL

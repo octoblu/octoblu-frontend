@@ -2,7 +2,7 @@ describe 'WorkspaceCloudController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$state', go: sinon.spy()
-      $provide.value '$window', {}
+      $provide.value '$window', { document: {} }
       $provide.value '$cookies', {}
       $provide.value  '$stateParams', {}
       $provide.value 'CWC_APP_STORE_URL', 'https://cwc-store.octoblu.com'
@@ -44,7 +44,8 @@ describe 'WorkspaceCloudController', ->
           $rootScope: @rootScope
           $state: @state
           $window:
-            referrer : ""
+            document:
+              referrer : ""
           $stateParams: {}
 
       it 'should redirect you to the login page', ->
@@ -64,7 +65,8 @@ describe 'WorkspaceCloudController', ->
           $rootScope: @rootScope
           $state: @state
           $window:
-            referrer : "https://workspace.cloudburitto.com/labs"
+            document:
+              referrer : "https://workspace.cloudburitto.com/labs"
           $stateParams:
             otp: "midnight-maurauders"
             customerId: "ATribeCalledQuest"
