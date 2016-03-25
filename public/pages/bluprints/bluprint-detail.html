@@ -7,7 +7,7 @@
       <h1 class="BluprintDetail-label">
         {{bluprint.name}}
       </h1>
-      <p class="BluprintDetail-description">
+      <p class="BluprintDetail-description" ng-show="bluprint.description">
         {{bluprint.description}}
         <span>
           -
@@ -16,6 +16,13 @@
           </a>
         </span>
       </p>
+
+      <div ng-show="!bluprint.description">
+        <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
+          Edit
+        </a>
+      </div>
+
       <div class="BluprintDetail-publicMeta">
         <span>
           <i class="fa fa-user BluprintCard-authorIcon"></i>
@@ -53,10 +60,10 @@
           clip-copy="controller.getBluprintImportUrl(bluprint.uuid)"
           clip-click="controller.toastBluprintUrl(bluprint.uuid)">
             <i class="fa fa-clipboard Share-buttonImage--copy"></i>
-            Get Link
+            Copy URL
         </button>
       </div>
-      
+
     </div>
   </div>
 </md-content>

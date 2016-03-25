@@ -35,7 +35,7 @@
           <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
         </div>
 
-        <button class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">DELETE BLUPRINT</button>
+        <button ng-hide="createMode" class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">DELETE BLUPRINT</button>
       </div>
 
     </div>
