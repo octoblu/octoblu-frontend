@@ -31,7 +31,7 @@
         </md-switch>
       </div>
 
-      <div class="BluAlert" ng-hide="bluprintEdit.public">
+      <div class="BluAlert" ng-hide="!bluprintEdit || bluprintEdit.public">
         Your share link is {{controller.getBluprintImportUrl(bluprintEdit.uuid)}}
       </div>
 
@@ -41,7 +41,7 @@
           <a class="BluButton BluButton--cancel" ng-click="controller.handleCancel()">Cancel</a>
         </div>
 
-        <button ng-hide="createMode" class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(bluprint.uuid)">DELETE BLUPRINT</button>
+        <button ng-hide="controller.createMode" class="BluButton BluprintDetail-delete" ng-click="controller.confirmdeleteBluprint(controller.bluprint.uuid)">DELETE BLUPRINT</button>
       </div>
 
     </div>

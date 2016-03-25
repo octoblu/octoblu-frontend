@@ -5,18 +5,19 @@
       <h1 class="BluprintDetail-label">
         {{bluprint.name}}
       </h1>
+      
       <p class="BluprintDetail-description" ng-show="bluprint.description">
         {{bluprint.description}}
         <span ng-show="controller.bluprintIsMine">
           -
-          <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
+          <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid, referrer: controller.referrer})">
             Edit
           </a>
         </span>
       </p>
 
       <div ng-show="!bluprint.description">
-        <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})">
+        <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid, referrer: controller.referrer})">
           Edit
         </a>
       </div>

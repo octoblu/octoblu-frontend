@@ -549,7 +549,8 @@ angular.module('octobluApp', [
         url: '/bluprints/:bluprintId/edit',
         templateUrl: '/pages/bluprints/bluprint-detail-edit.html',
         params: {
-          createMode: null
+          createMode: null,
+          referrer: null
         },
         controller: 'BluprintDetailEditController',
         controllerAs: 'controller'

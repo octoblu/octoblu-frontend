@@ -7,9 +7,10 @@ class BluprintDetailEditController
     @BluprintService = BluprintService
     @NotifyService   = NotifyService
 
-    @scope.createMode = @stateParams.createMode
+    { @createMode, @referrer } = @stateParams
 
     @BluprintService.getBluprint(@stateParams.bluprintId).then (bluprint) =>
+      @bluprint = bluprint
       @scope.bluprintEdit = _.cloneDeep bluprint
       @scope.bluprintEdit.public = false unless bluprint.public?
 
@@ -18,7 +19,7 @@ class BluprintDetailEditController
 
   updateBluprintNow: =>
     @BluprintService.update(@stateParams.bluprintId, @scope.bluprintEdit).then =>
-      @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId
+      @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId, referrer: @referrer
 
   handleCancel: =>
     if @scope.createMode
@@ -26,7 +27,7 @@ class BluprintDetailEditController
         @state.go 'material.design'
 
     else
-      @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId
+      @state.go 'material.bluprintDetail', bluprintId: @stateParams.bluprintId, referrer: @referrer
 
   getBluprintImportUrl: (bluprintId) =>
     @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
@@ -43,13 +44,12 @@ class BluprintDetailEditController
 
     @NotifyService.confirm(confirm).then =>
       @BluprintService.deleteBluprint(bluprintId).then =>
-        @state.go('material.bluprints')
+        return @state.go 'material.discover' if @referrer == 'discover'
+        @state.go 'material.bluprints'
 
   generateBreadcrumbFragments: =>
-    @currentRoute = @state.current.name
-
-    @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints'
-    @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints' if @currentRoute == 'material.bluprintEdit'
+    @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
+    @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints' if @referrer == 'discover'
 
     [ @linkTo, {label: "Edit #{@scope.bluprintEdit.name}"} ]
 
