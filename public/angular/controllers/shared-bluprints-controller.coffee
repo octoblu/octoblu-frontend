@@ -13,6 +13,7 @@ class SharedBluprintsController
     @bluprints = []
     @scope.isLoading = true
 
+    { @collectionName } = @stateParams
     @AuthService.getCurrentUser().then (user) =>
       @userUuid = user.resource.uuid
 
