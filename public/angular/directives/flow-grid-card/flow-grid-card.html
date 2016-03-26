@@ -7,10 +7,10 @@
     <span class="FlowCard-status FlowCard-status--online" ng-show="flow.online">Online</span>
   </md-card-title>
 
-  <flow-tags flow="flow"></flow-tags>
+  <flow-tags></flow-tags>
 
   <md-card-actions class="FlowCard-actions">
-    <md-button ng-click="controller.createBluprint()">Share</md-button>
-    <md-button ng-click="controller.deleteFlow()">Delete</md-button>
+    <md-button ng-click='cardController.createBluprint()'>Share</md-button>
+    <md-button ng-click="cardController.deleteFlow()">Delete</md-button>
   </md-card-actions>
 </md-card>

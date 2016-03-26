@@ -6,7 +6,7 @@ class FlowGridCardController
     @BluprintService = BluprintService
     @NotifyService = NotifyService
 
-  createBluprint: () ->
+  createBluprint: () =>
     { name, flowId } = @scope.flow
     @BluprintService
       .createBluprint
