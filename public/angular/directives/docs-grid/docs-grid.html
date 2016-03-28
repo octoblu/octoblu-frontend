@@ -1,0 +1,5 @@
+<div class="DocsGrid">
+  <spinner loading="isLoading" size="large"></spinner>
+  <div ng-show="!docs.length && !isLoading">No Docs</div>
+  <docs-grid-card ng-repeat="doc in docs"></docs-grid-card>
+</div>

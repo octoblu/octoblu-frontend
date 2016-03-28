@@ -173,6 +173,12 @@ angular.module('octobluApp', [
         controller: 'ConfigureController',
         templateUrl: '/pages/thing-viewer/configure.html'
       })
+      .state('material.my-flows', {
+        url: '/myFlows',
+        templateUrl: '/pages/my-flows.html',
+        controller: 'MyFlowsController',
+        controllerAs: 'controller'
+      })
       .state('material.things', {
         url: '/things',
         controller: 'addNodeController',

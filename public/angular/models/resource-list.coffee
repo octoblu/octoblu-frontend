@@ -5,12 +5,14 @@ angular.module 'octobluApp'
       link: 'https://octoblu-designer.readme.io'
       summary: 'Comprehensive documentation for the Designer, Things, and Tools with sample flows.'
       category: 'Docs'
+      featured: true
     },
     {
       title: 'Meshblu Connectors'
       link: 'https://meshblu-connectors.readme.io'
       summary: 'Documentation for all plugins and connectors'
       category: 'Docs'
+      featured: true
     },
     {
       title: 'Octoblu Weekly'
@@ -29,6 +31,7 @@ angular.module 'octobluApp'
       link: 'https://www.hackster.io/octoblu'
       summary: 'Step-by-step walkthroughs using Octoblu\'s platform with your devices.'
       category: 'Tutorials'
+      featured: true
     },
     {
       title: 'Getting started with Octoblu Video'
@@ -41,6 +44,7 @@ angular.module 'octobluApp'
       link: 'https://www.youtube.com/playlist?list=PLyh2CvBTlon4R_ibknRl9CCKfn_1eAted'
       summary: 'A variety of YouTube video tutorials on how to use Octoblu.'
       category: 'Videos'
+      featured: true
     },
     {
       title: 'Getting started with Octoblu PDF'
@@ -83,6 +87,7 @@ angular.module 'octobluApp'
       link: 'https://www.citrix.com/blogs/product/octoblu-2/'
       summary: 'Stay up-to-date with Octoblu.'
       category: 'Links'
+      featured: true
     },
     {
       title: 'Blu - iOS'

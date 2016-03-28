@@ -12,7 +12,6 @@ class FlowGridController
 
     @FlowService.getAllFlows().then (flows) =>
       @scope.isLoading = false
-      @scope.flows = flows
 
       @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
         updatedFlows = _.map flows, (flow) =>
@@ -20,7 +19,8 @@ class FlowGridController
           flow.online = flowDevice.online
           flow
 
-        @scope.flows = updatedFlows
+        return @scope.flows = updatedFlows unless @scope.limit?
+        @scope.flows = _.take updatedFlows, @scope.limit
 
 
 

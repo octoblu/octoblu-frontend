@@ -1,5 +1,20 @@
 <md-content class="interior__wrapper">
   <div class="interior">
-    <flow-grid></flow-grid>
+
+    <process-graph></process-graph>
+
+    <div class="Dashboard-PageHeader">
+      <div class="Dashboard-PageHeader-title">
+        <a ui-sref="material.my-flows">My Flows</a>
+      </div>
+    </div>
+    <flow-grid limit="4"></flow-grid>
+
+    <div class="Dashboard-PageHeader">
+      <div class="Dashboard-PageHeader-title">
+        <a ui-sref="material.guides">Guides</a>
+      </div>
+    </div>
+    <docs-grid limit="4"></docs-grid>
   </div>
 </md-content>
