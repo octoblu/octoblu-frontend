@@ -1,5 +1,6 @@
 angular.module 'octobluApp'
   .constant 'FeaturedFlows', [
-    'a8b365a1-b9a1-4e54-9c33-c30e803c7127'
-    '28cb7562-95bc-454c-ab16-23e12d44e855'
+    '74ed1e8f-690e-4993-847f-c097c560dee8'
+    '7cbc0e06-495a-4c50-8482-bc5ad2e0b19b'
+    'f1053e91-90d1-4478-8e39-3448544b08f9'
   ]
