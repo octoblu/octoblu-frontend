@@ -30,8 +30,9 @@ describe 'CWCAuthController', ->
       describe "when given a valid oneTimePassword, customerId and cwcReferralUrl", ->
         beforeEach ->
           cwcAuthResult =
-            cwcSessionId: "the-love-movement-was-the-last-album"
-            cwcUserDevice:
+            cwc:
+              sessionId: "the-love-movement-was-the-last-album"
+            userDevice:
               uuid: "the-ummah"
               token: "ali-shaheed-muhammad"
 

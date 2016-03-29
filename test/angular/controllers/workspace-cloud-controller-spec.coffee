@@ -75,5 +75,5 @@ describe 'WorkspaceCloudController', ->
         @rootScope.$digest()
 
 
-      xit 'should redirect you to the login page', ->
+      it 'should redirect you to the login page', ->
         expect(@state.go).to.have.been.calledWith 'login', @queryParams
