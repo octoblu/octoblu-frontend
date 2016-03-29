@@ -1,11 +1,13 @@
 <div class="FlowGrid">
   <spinner loading="isLoading" size="large"></spinner>
 
-  <random-robot
-    ng-show="!flows.length && !isLoading"
-    title='You do not have any flows!'>
-    <a ng-click="controller.addFlow()">Create Flow</a>
-  </random-robot>
+  <div class="EmptyState" ng-show="!flows.length && !isLoading">
+    <random-robot></random-robot>
+    <div class="EmptyState-title">You don't have any Flows yet.</div>
+    <p class="EmptyState-body">Fortunately, you're one click away.</p>
+    <button ng-click="controller.addFlow()" class="BluButton BluButton--save">Create Flow</button>
+  </div>
+
 
   <flow-grid-card ng-repeat="flow in flows | filter:flowFilterText"></flow-grid-card>
 </div>

@@ -10,7 +10,6 @@ class FlowGridController
     @getFlows().then () => @scope.isLoading = false
 
   getFlows: () =>
-
     @FlowService.getAllFlows().then (flows) =>
       @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
         updatedFlows = _.map flows, (flow) =>
