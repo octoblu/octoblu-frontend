@@ -12,7 +12,6 @@ class FlowGridController
   getFlows: () =>
 
     @FlowService.getAllFlows().then (flows) =>
-
       @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
         updatedFlows = _.map flows, (flow) =>
           flowDevice = _.find things, 'uuid': flow.flowId

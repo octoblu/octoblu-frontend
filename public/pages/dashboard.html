@@ -1,27 +1,32 @@
 <md-content class="interior__wrapper">
   <div class="interior">
 
-    <div class="Dashboard-PageHeader">
-      <div class="Dashboard-PageHeader-title">
-        <a class="Dashboard-PageHeader-title" ui-sref="material.my-flows">My Flows</a>
-      </div>
-      <a ui-sref="material.my-flows">More..</a>
-    </div>
-    <flow-grid limit="4"></flow-grid>
+    <section class="Dashboard-section">
+      <header class="Dashboard-sectionHeader">
+        <div class="Dashboard-sectionTitle">My Flows</div>
+        <a ui-sref="material.my-flows" class="Dashboard-sectionAction">Show All</a>
+      </header>
 
+      <flow-grid limit="4"></flow-grid>
+    </section>
+
+    <section class="Dashboard-section">
+      <header class="Dashboard-sectionHeader">
+        <div class="Dashboard-sectionTitle">Guides</div>
+        <a ui-sref="material.guides" class="Dashboard-sectionAction">Show All</a>
+      </header>
+
+      <docs-grid limit="4"></docs-grid>
+    </section>
+
+
+<!--
     <div class="Dashboard-PageHeader">
       <div class="Dashboard-PageHeader-title">
         <a ui-sref="material.guides">Guides</a>
       </div>
+      <docs-grid limit="4"></docs-grid>
     </div>
-    <docs-grid limit="4"></docs-grid>
-
-    <!-- <div class="Dashboard-PageHeader">
-    <div class="Dashboard-PageHeader-title">
-    <a ui-sref="material.process">Message Activity</a>
+-->
   </div>
-</div>
-<process-graph></process-graph> -->
-
-</div>
 </md-content>
