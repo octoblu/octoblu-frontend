@@ -1,3 +1,7 @@
+<header class="TabBar">
+  <h2 class="TabBar-title">Dashboard</h2>
+</header>
+
 <md-content class="interior__wrapper">
   <div class="interior">
 
@@ -19,14 +23,14 @@
       <docs-grid limit="4"></docs-grid>
     </section>
 
+    <section class="Dashboard-section">
+      <header class="Dashboard-sectionHeader">
+        <div class="Dashboard-sectionTitle">Featured Flows</div>
+        <a ui-sref="material.discover" class="Dashboard-sectionAction">Show More</a>
+      </header>
 
-<!--
-    <div class="Dashboard-PageHeader">
-      <div class="Dashboard-PageHeader-title">
-        <a ui-sref="material.guides">Guides</a>
-      </div>
-      <docs-grid limit="4"></docs-grid>
-    </div>
--->
+      <bluprint-grid bluprints="controller.bluprints" ng-hide="isLoading"></bluprint-grid>
+    </section>
+
   </div>
 </md-content>
