@@ -1,5 +1,11 @@
 <div class="FlowGrid">
   <spinner loading="isLoading" size="large"></spinner>
-  <div ng-show="!flows.length && !isLoading">No Flows</div>
+
+  <random-robot
+    ng-show="!flows.length && !isLoading"
+    title='You do not have any flows!'>
+    <a ng-click="controller.addFlow()">Create Flow</a>
+  </random-robot>
+
   <flow-grid-card ng-repeat="flow in flows | filter:flowFilterText"></flow-grid-card>
 </div>

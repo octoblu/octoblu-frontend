@@ -1,20 +1,28 @@
 <md-content class="interior__wrapper">
   <div class="interior">
 
-    <process-graph></process-graph>
-
     <div class="Dashboard-PageHeader">
       <div class="Dashboard-PageHeader-title">
-        <a ui-sref="material.my-flows">My Flows</a>
+        <a class="Dashboard-PageHeader-title" ui-sref="material.my-flows">My Flows</a>
       </div>
+      <a ui-sref="material.my-flows">More..</a>
+
     </div>
     <flow-grid limit="4"></flow-grid>
-
+    
     <div class="Dashboard-PageHeader">
       <div class="Dashboard-PageHeader-title">
         <a ui-sref="material.guides">Guides</a>
       </div>
     </div>
     <docs-grid limit="4"></docs-grid>
+
+    <!-- <div class="Dashboard-PageHeader">
+    <div class="Dashboard-PageHeader-title">
+    <a ui-sref="material.process">Message Activity</a>
   </div>
+</div>
+<process-graph></process-graph> -->
+
+</div>
 </md-content>
