@@ -5,12 +5,23 @@
     </md-card-title-text>
     <span class="FlowCard-status" ng-show="!flow.online">Offline</span>
     <span class="FlowCard-status FlowCard-status--online" ng-show="flow.online">Online</span>
+    <p class="FlowCard-description" ng-show="!flow.description">
+      Add a description <a ui-sref="">here</a>
+    </p>
+
+    <p class="FlowCard-description" ng-show="flow.description">
+      {{flow.description}}
+    </p>
   </md-card-title>
 
   <flow-tags></flow-tags>
 
   <md-card-actions class="FlowCard-actions">
-    <md-button ng-click='cardController.createBluprint()'>Share</md-button>
-    <md-button ng-click="cardController.deleteFlow()">Delete</md-button>
+    <md-button ng-click="cardController.createBluprint()">
+      <i class="fa fa-plus"></i> Bluprint
+    </md-button>
+    <md-button ng-click="cardController.deleteFlow()">
+      <i class="fa fa-trash-o"></i>
+    </md-button>
   </md-card-actions>
 </md-card>
