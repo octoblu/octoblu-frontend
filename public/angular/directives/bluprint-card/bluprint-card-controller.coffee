@@ -7,9 +7,6 @@ class BluprintCardController
     @BluprintService = BluprintService
 
     @referrer = 'discover' if @state.current.name == 'material.discover'
-    
-    @bluprintDetailRouteParams = bluprintId: @scope.bluprint.uuid
-    @bluprintDetailRouteParams = bluprintId: @scope.bluprint.uuid, referrer: 'discover' if @referrer == 'discover'
 
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public

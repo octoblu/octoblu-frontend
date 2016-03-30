@@ -23,7 +23,7 @@ class ImportWizardController
     @goThere 'material.flow'
 
   goThere: (route) =>
-    @loading = true
+    @loading = false
     @BluprintService.importBluprint(@stateParams.bluprintId).
     then (flow) =>
       @state.go route, flowId: flow.flowId

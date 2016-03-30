@@ -2,7 +2,10 @@
   <main class="BluprintCard-main">
     <div class="BluprintCard-body">
       <h4 class="BluprintCard-label">
-        <a ui-sref="material.bluprintDetail(controller.bluprintDetailRouteParams)">
+        <a ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid})" ng-hide="controller.referrer == 'discover'">
+          {{bluprint.name}}
+        </a>
+        <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="controller.referrer == 'discover'">
           {{bluprint.name}}
         </a>
 
@@ -21,8 +24,8 @@
       <p ng-show="bluprint.description" class="BluprintCard-description">{{bluprint.description}}</p>
       <p ng-hide="bluprint.description" class="BluprintCard-description">No Description Added</p>
 
-      <a ui-sref="material.bluprintEdit(controller.bluprintDetailRouteParams)" ng-hide="controller.referrer == 'discover'">Edit</a>
-      <a ui-sref="material.bluprintDetail(controller.bluprintDetailRouteParams)" ng-show="controller.referrer == 'discover'">Learn More</a>
+      <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-hide="controller.referrer == 'discover'">Edit</a>
+      <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="controller.referrer == 'discover'">Learn More</a>
     </div>
 
     <footer class="BluprintCard-footer">
