@@ -40,18 +40,3 @@ describe 'CWCAuthProxyService', ->
         @httpBackend.expectPOST("#{@CWC_AUTHENTICATOR_PROXY_URL}/authenticate").respond 201, @cwcAuthInfo
         @sut.authenticateCWCUser @otp, @customerId, @cwcReferralUrl
         @httpBackend.flush()
-
-  describe '->createOctobluSession', ->
-    it 'should exist', ->
-      expect(@sut.createOctobluSession).to.be.a 'function'
-
-    describe 'when called', ->
-      beforeEach ->
-        @uuid = "push-it-along"
-        @token = "ATribeCalledQuest"
-        @queryString="uuid=#{@uuid}&token=#{@token}&callbackUrl=#{encodeURIComponent(@CWC_APP_STORE_URL)}"
-
-      it 'should make a request to the octoblu api for public flows', ->
-        @httpBackend.expectGET("#{@OCTOBLU_API_URL}/api/session?#{@queryString}").respond 301
-        @sut.createOctobluSession @uuid, @token, @CWC_APP_STORE_URL
-        @httpBackend.flush()

@@ -11,12 +11,7 @@ class CWCAuthProxyService
       cwcRefererUrl : cwcRefererUrl
     })
     .then (response) =>
-      response.data
-
-  createOctobluSession: (meshbluAuthUUID, meshbluAuthToken, redirectUrl) =>
-    queryString = "uuid=#{meshbluAuthUUID}&token=#{meshbluAuthToken}&callbackUrl=#{encodeURIComponent(redirectUrl)}"
-    @http.get "#{@OCTOBLU_API_URL}/api/session?#{queryString}"
-
+      response.data  
 
 
 angular.module('octobluApp').service 'CWCAuthProxyService', CWCAuthProxyService
