@@ -1,62 +1,58 @@
-.FlowCard {
+.BluCard {
   .flex-display;
+  .flex-direction(column);
+  .justify-content(space-between);
 
   position: relative;
   border: 1px solid #EAEDEF;
   width: 250px;
   height: 200px;
-  margin: 12px 0;
-  padding: 16px;
+  margin: 6px;
+  padding: 0;
 
   background: #FFF;
   box-shadow: none;
 }
 
-.FlowCard-title {
+.BluCard-main {
+  padding: 16px;
+}
+
+.BluCard-header {
+  .flex-display;
+  .flex-direction(row);
+  .justify-content(space-between);
+
+  margin-bottom: 8px;
+}
+
+.BluCard-title {
   display: block;
   margin: 0;
-  padding: 0 0 16px;
-
-  // background: palegoldenrod;
-}
-
-.FlowCard-titleText {
-  .flex(0)
-}
-
-.FlowCard-titleLink {
-  margin-bottom: 6px;
+  padding: 0;
 
   font-size: 16px;
   font-weight: bold;
 }
 
-.FlowCard-content {
-  .flex-display;
-
-  padding: 0 0 16px;
-  // background: aliceblue;
-}
-
-.FlowCard-actions {
+.BluCard-footer {
   .flex-display;
   .justify-content(space-between);
 
+  border-top: 1px solid #EEF1F2;
   margin: 0;
-  padding: 0;
-
-  // background: pink;
+  padding: 8px 16px;
+  width: 100%;
 }
 
-.FlowCard-description {
+.BluCard-description {
   font-size: 14px;
-
   a {
     text-decoration: underline;
   }
 }
 
-.FlowCard-status {
+.BluCard-status {
   position:absolute;
   top: -2px;
   right: -2px;
@@ -73,8 +69,18 @@
   background: #fe6363;
 }
 
-.FlowCard-status--online {
+.BluCard-status--online {
   background: rgb(89, 226, 168);
+}
+
+.BluCard-action {
+  background: transparent;
+  border: none;
+  color: #14568f;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .FlowTags {
