@@ -43,9 +43,9 @@ angular.module('octobluApp')
 
         function logoutHandler(err) {
             angular.copy({}, currentUser);
-            $cookies.getAll()
             delete $cookies.meshblu_auth_uuid;
             delete $cookies.meshblu_auth_token;
+            localStorage.clear();
         }
 
         return service = {
