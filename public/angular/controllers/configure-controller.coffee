@@ -1,12 +1,16 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, FlowNodeTypeService, NotifyService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, $stateParams, $cookies, FlowNodeTypeService, NotifyService, OCTOBLU_ICON_URL) ->
     @scope = $scope
+    @state = $state
+    @cookies = $cookies
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @FlowNodeTypeService = FlowNodeTypeService
     @NotifyService = NotifyService
     @scope.loadingConnectedThings = true
     @scope.noThings = false
     connectedThings = []
+
+    @checkRedirectToFlowConfigure()
 
     @NotifyService.notify "#{$stateParams.added} successfully added" if $stateParams.added
     @NotifyService.notify "#{$stateParams.deleted} successfully deleted" if $stateParams.deleted
@@ -26,6 +30,17 @@ class ConfigureController
         deviceNameFilter = deviceNameFilter.toLowerCase()
         return _.contains name, deviceNameFilter
       @updateThingsByCategory(filteredDevices)
+
+  checkRedirectToFlowConfigure: () =>
+    if @cookies.redirectFlowConfig == true
+      params:
+        flowId: @cookies.wizardFlowId
+        nodeIndex: @cookies.wizardNodeIndex
+
+      delete @cookies.wizardFlowId
+      delete @cookies.wizardNodeIndex
+      delete @cookies.redirectFlowConfig
+      @state.go 'material.flowConfigure', params
 
   updateThingsByCategory: (things) =>
     if !things.length
