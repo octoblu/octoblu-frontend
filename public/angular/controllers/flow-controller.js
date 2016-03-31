@@ -415,8 +415,10 @@ angular.module('octobluApp')
     }
   }
 
-  var checkForServiceNames = function(uuids) {
-    var newList = _.map(uuids, function(uuid){
+  var checkForServiceNames = function(devices) {    
+    var newList = _.map(devices, function(device){
+      var uuid = device.uuid;
+      uuid = uuid || device;
       if(SERVICE_UUIDS.TRIGGER === uuid){
         return 'Trigger Service'
       }
@@ -426,43 +428,29 @@ angular.module('octobluApp')
       if(SERVICE_UUIDS.CREDENTIALS === uuid){
         return 'Credential Service'
       }
-      return uuid
+      return device.name || uuid;
     })
     return newList;
   }
 
-  var askToAddReceiveAs = function(thingsNeedingReceiveAs) {
-    var deviceList = _.map(thingsNeedingReceiveAs, function(thing){
-      return thing.name || thing.uuid;
-    });
+  var askToAddSendWhitelist = function(thingsNeedingSend) {
+    var thingNames = checkForServiceNames(thingsNeedingSend);
     var options = {
       title: 'Permission Update Required',
-      content: 'The following devices need to allow the flow to send and receive messages: ' + deviceList.join(', ')
+      content: 'The following devices need to send messages to your flow: ' + thingNames.join(', ')
     };
     return NotifyService.confirm(options);
   };
 
-  var askToAddSendWhitelist = function(thingsNeedingSendWhitelist) {
-    thingsNeedingSendWhitelist = checkForServiceNames(thingsNeedingSendWhitelist);
-    var options = {
-      title: 'Permission Update Required',
-      content: 'The following devices need to send messages to your flow: ' + thingsNeedingSendWhitelist.join(', ')
-    };
-    return NotifyService.confirm(options);
-  };
-
-  var addFlowToWhitelists = function(thingsNeedingReceiveAs) {
+  var addFlowToWhitelists = function(uuidsNeedingtoAddFlow) {
     var deferred = $q.defer()
 
-    async.eachSeries(thingsNeedingReceiveAs, function(thing, callback){
+    async.eachSeries(uuidsNeedingtoAddFlow, function(thing, callback){
       var updateObj = {};
-      updateObj.uuid = thing.uuid;
-      updateObj.receiveAsWhitelist = thing.receiveAsWhitelist || [];
-      updateObj.receiveAsWhitelist.push($scope.activeFlow.flowId);
-      updateObj.receiveWhitelist = thing.receiveWhitelist || [];
-      updateObj.receiveWhitelist.push($scope.activeFlow.flowId);
-      updateObj.sendWhitelist = thing.sendWhitelist || [];
-      updateObj.sendWhitelist.push($scope.activeFlow.flowId);
+      updateObj.uuid             = thing.uuid;
+      updateObj.receiveWhitelist = _.union(updateObj.receiveWhitelist, [$scope.activeFlow.flowId]);
+      updateObj.sendWhitelist    = _.union(updateObj.sendWhitelist, [$scope.activeFlow.flowId]);
+
       ThingService.updateDevice(updateObj)
         .then(function(){ callback() })
         .catch(callback)
@@ -471,37 +459,27 @@ angular.module('octobluApp')
         return deferred.reject(error)
       }
 
-      return deferred.resolve(thingsNeedingReceiveAs);
+      return deferred.resolve(uuidsNeedingtoAddFlow);
     });
 
     return deferred;
   };
 
-  var addSendWhitelistsToFlow = function(thingsNeedingSendWhitelist) {
-    ThingService.getThing({uuid: $scope.activeFlow.flowId}).then(function(thing) {
-      thing.sendWhitelist = thing.sendWhitelist || [];
-      thing.sendWhitelist = _.union(thing.sendWhitelist, thingsNeedingSendWhitelist);
-      ThingService.updateDevice(thing);
+  var addThingsToFlowWhitelist = function(thingsNeedingSend) {
+    ThingService.getThing({uuid: $scope.activeFlow.flowId}).then(function(flow) {
+      flow.sendWhitelist = _.union(flow.sendWhitelist, thingsNeedingSend);
+      ThingService.updateDevice(flow);
     })
   };
 
-  var askAndAddToReceiveAs = function(thingsNeedingReceiveAs) {
-    return askToAddReceiveAs(thingsNeedingReceiveAs)
-      .then(function(things){
-        return addFlowToWhitelists(thingsNeedingReceiveAs);
+  var askAndAddToSendWhitelist = function(thingsNeedingSend) {
+    var uuidsNeedingSend = _.pluck(thingsNeedingSend, 'uuid');
+    return askToAddSendWhitelist(thingsNeedingSend)
+      .then(function(){
+        return addThingsToFlowWhitelist(uuidsNeedingSend)
       })
       .then(function(){
-        return NotifyService.notify('Permissions updated');
-      })
-      .catch(function(){
-        return NotifyService.notify('Permissions Not Updated');
-      });
-  };
-
-  var askAndAddToSendWhitelist = function(thingsNeedingSendWhitelist) {
-    return askToAddSendWhitelist(thingsNeedingSendWhitelist)
-      .then(function(things){
-        return addSendWhitelistsToFlow(thingsNeedingSendWhitelist);
+        return addFlowToWhitelists(thingsNeedingSend)
       })
       .then(function(){
         return NotifyService.notify('Permissions updated');
@@ -518,11 +496,11 @@ angular.module('octobluApp')
 
     var deviceUuids = _.pluck(deviceNodes, 'uuid');
     FlowService.needsPermissions($scope.activeFlow.flowId, deviceUuids)
-      .then(function(thingsNeedingReceiveAs){
-        if (_.isEmpty(thingsNeedingReceiveAs)){
+      .then(function(thingsNeedingSend){
+        if (_.isEmpty(thingsNeedingSend)){
           return;
         }
-        return askAndAddToReceiveAs(thingsNeedingReceiveAs);
+        return askAndAddToSendWhitelist(thingsNeedingSend);
       });
   };
 
@@ -532,11 +510,15 @@ angular.module('octobluApp')
     });
     var nodeTypes = _.pluck(newNodes, 'type');
     NodeRegistryService.needsPermissions($scope.activeFlow.flowId, nodeTypes)
-      .then(function(thingsNeedingSendWhitelist){
-        if (_.isEmpty(thingsNeedingSendWhitelist)){
+      .then(function(uuidsNeedingSend){
+        if (_.isEmpty(uuidsNeedingSend)){
           return;
         }
-        return askAndAddToSendWhitelist(thingsNeedingSendWhitelist);
+        var thingsNeedingSend = _.map(uuidsNeedingSend, function(uuid){
+          return {uuid: uuid};
+        });
+
+        return askAndAddToSendWhitelist(thingsNeedingSend);
       });
   };
 

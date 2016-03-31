@@ -132,20 +132,22 @@ angular.module('octobluApp')
   };
 
   self.needsPermissions = function(receiverUuid, uuids) {
+    var receiver = null;
     return ThingService.getThings()
       .then(function(things){
+        receiver = _.findWhere(things, {uuid: receiverUuid});
         var thingsToCheck = _.filter(things, function(thing){
           return _.contains(uuids, thing.uuid);
         });
 
         return _.reject(thingsToCheck, function(thing){
-          var receiveAsOk = false;
+          var receiverOk = false;
           var sendOk = false;
-          if( _.contains(thing.receiveAsWhitelist, '*') ) {
-            receiveAsOk = true;
+          if( _.contains(receiver.sendWhitelist, '*') ) {
+            receiverOk = true;
           }
-          if ( _.contains(thing.receiveAsWhitelist, receiverUuid) ) {
-            receiveAsOk = true;
+          if ( _.contains(receiver.sendWhitelist, thing.uuid) ) {
+            receiverOk = true;
           }
           if( _.contains(thing.sendWhitelist, '*') ) {
             sendOk = true;
@@ -154,7 +156,7 @@ angular.module('octobluApp')
             sendOk = true;
           }
 
-          return receiveAsOk && sendOk;
+          return receiverOk && sendOk;
         });
 
       });
