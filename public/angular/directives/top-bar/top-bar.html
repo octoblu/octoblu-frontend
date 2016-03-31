@@ -14,7 +14,7 @@
     <span ng-show="showUserNav">
       <a class="TopBar-link" ui-sref="material.profile">Profile</a>
       <a class="TopBar-link" ui-sref="material.guides">Guides</a>
-      <a class="TopBar-link" ui-sref="material.signout">Sign Out</a>
+      <a ng-hide="isCWCUser" ui-sref="material.signout" class="TopBar-link">Sign Out</a>
     </span>
 
     <span aria-label="Open settings menu" class="TopBar-link" ng-click="showUserNav = !showUserNav">
