@@ -16,7 +16,8 @@ class BluprintImportController
       @scope.bluprint.public = false unless bluprint.public?
 
       @generateShareUrls(bluprint)
-      @scope.fragments = [{linkTo: 'material.discover', label: 'Discover Bluprints'}, { label: @scope.bluprint.name }]
+      @scope.fragments = [{linkTo: 'material.bluprints', label: 'Bluprints'}, { label: 'Detail' }]
+
 
   import: =>
     { bluprintId } = @stateParams

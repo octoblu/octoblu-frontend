@@ -14,8 +14,7 @@ class BluprintDetailEditController
       @scope.bluprintEdit = _.cloneDeep bluprint
       @scope.bluprintEdit.public = false unless bluprint.public?
 
-      @scope.fragments = @generateBreadcrumbFragments()
-
+      @scope.fragments = [{linkTo: 'material.bluprints', label: 'Bluprints'}, { label: 'Edit' }]
 
   updateBluprintNow: =>
     @BluprintService.update(@stateParams.bluprintId, @scope.bluprintEdit).then =>
@@ -44,11 +43,5 @@ class BluprintDetailEditController
       @BluprintService.deleteBluprint(bluprintId).then =>
         return @state.go 'material.discover' if @referrer == 'discover'
         @state.go 'material.bluprints'
-
-  generateBreadcrumbFragments: =>
-    @linkTo = linkTo: 'material.bluprints', label: 'My Bluprints'
-    @linkTo = linkTo: 'material.discover', label: 'Discover Bluprints' if @referrer == 'discover'
-
-    [ @linkTo, {label: "Edit #{@scope.bluprintEdit.name}"} ]
 
 angular.module('octobluApp').controller 'BluprintDetailEditController', BluprintDetailEditController
