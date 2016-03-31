@@ -3,10 +3,20 @@
 angular.module('octobluApp')
 .controller('BluprintsController', function ($mdDialog, $mdToast, $scope, $state, $stateParams, BluprintService, UrlService) {
 
+  $scope.$watch('bluprintNameFilter', function(bluprintNameFilter) {
+    var bluprintNameFilter = bluprintNameFilter || '';
+    $scope.bluprints = _.filter($scope.ogBluprints, function(bluprint){
+      var name = (bluprint.name).toLowerCase()
+      var filter = (bluprintNameFilter).toLowerCase()
+      return _.includes(name, filter);
+    });
+  });
+
   $scope.isLoading = true;
   $scope.refreshBluprints = function(){
     BluprintService.getAllBluprints().then(function(bluprints) {
       $scope.bluprints = bluprints;
+      $scope.ogBluprints = bluprints;
       $scope.isLoading = false;
     });
   };

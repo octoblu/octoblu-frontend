@@ -3,8 +3,6 @@ describe 'CWCAuthController', ->
     class FakeCWCAuthProxyService
       constructor: (@q) ->
         @authenticateCWCUser = sinon.stub()
-        @createOctobluSession = sinon.stub()
-
 
     module 'octobluApp', ( $provide ) =>
       @cookies = {}
@@ -15,9 +13,10 @@ describe 'CWCAuthController', ->
       $provide.value '$cookies', @cookies
       $provide.value  '$stateParams', {}
       $provide.value 'CWC_APP_STORE_URL', 'https://cwc-store.octoblu.com'
+      $provide.value 'OCTOBLU_API_URL', 'http://localhost:8080'
       return
 
-    inject ($controller, $rootScope, $q, CWC_APP_STORE_URL) =>
+    inject ($controller, $rootScope, $q, CWC_APP_STORE_URL, OCTOBLU_API_URL) =>
       @q = $q
       @scope = $rootScope.$new()
 
@@ -30,8 +29,9 @@ describe 'CWCAuthController', ->
       describe "when given a valid oneTimePassword, customerId and cwcReferralUrl", ->
         beforeEach ->
           cwcAuthResult =
-            cwcSessionId: "the-love-movement-was-the-last-album"
-            cwcUserDevice:
+            cwc:
+              sessionId: "the-love-movement-was-the-last-album"
+            userDevice:
               uuid: "the-ummah"
               token: "ali-shaheed-muhammad"
 
@@ -45,6 +45,7 @@ describe 'CWCAuthController', ->
               cwcReferralUrl: @CWC_APP_STORE_URL
             CWC_APP_STORE_URL: @CWC_APP_STORE_URL
             CWCAuthProxyService: @fakeCWCAuthProxyService
+            OCTOBLU_API_URL: "http://localhost:8080"
 
           @scope.$digest()
 
@@ -60,5 +61,6 @@ describe 'CWCAuthController', ->
           expect(@window.cwcSessionId).to.equal "the-love-movement-was-the-last-album"
           expect(@window.cwcCustomerId).to.equal "ATribeCalledQuest"
 
-        it "should try to create an Octoblu Session", ->
-          expect(@fakeCWCAuthProxyService.createOctobluSession).to.have.been.calledWith "the-ummah", "ali-shaheed-muhammad", @CWC_APP_STORE_URL
+        it "should set window.location to the appropriate url", ->
+          redirectUrl = encodeURIComponent @CWC_APP_STORE_URL
+          expect(@window.location).to.equal "http://localhost:8080/api/session?uuid=the-ummah&token=ali-shaheed-muhammad&callbackUrl=#{redirectUrl}"

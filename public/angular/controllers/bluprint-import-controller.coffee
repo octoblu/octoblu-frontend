@@ -1,4 +1,4 @@
-class BluprintDetailController
+class BluprintImportController
   constructor: ($state, $stateParams, $scope, $cookies, BluprintService, UrlService, NotifyService) ->
     @state           = $state
     @scope           = $scope
@@ -16,8 +16,8 @@ class BluprintDetailController
       @scope.bluprint.public = false unless bluprint.public?
 
       @generateShareUrls(bluprint)
-
       @scope.fragments = [{linkTo: 'material.bluprints', label: 'Bluprints'}, { label: 'Detail' }]
+
 
   import: =>
     { bluprintId } = @stateParams
@@ -41,4 +41,4 @@ class BluprintDetailController
     @facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{@shareUrl}"
     @emailUrl = "mailto:?subject=#{encodeURIComponent(bluprint.name)}&body=#{encodeURIComponent("Check out #{bluprint.name} on Octoblu #{@shareUrl}")}"
 
-angular.module('octobluApp').controller 'BluprintDetailController', BluprintDetailController
+angular.module('octobluApp').controller 'BluprintImportController', BluprintImportController

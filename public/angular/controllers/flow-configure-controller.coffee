@@ -1,8 +1,9 @@
 class FlowConfigureController
-  constructor: ($stateParams, $scope, $state, $timeout, $q, FlowService, FlowNodeTypeService, NodeRegistryService, NodeTypeService, ThingService, SERVICE_UUIDS) ->
+  constructor: ($stateParams, $scope, $state, $cookies, $timeout, $q, FlowService, FlowNodeTypeService, NodeRegistryService, NodeTypeService, ThingService, SERVICE_UUIDS) ->
     @q                   = $q
     @scope               = $scope
     @state               = $state
+    @cookies             = $cookies
     @timeout             = $timeout
     @stateParams         = $stateParams
     @FlowService         = FlowService
@@ -11,6 +12,10 @@ class FlowConfigureController
     @NodeTypeService     = NodeTypeService
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
+
+    delete @cookies.wizardFlowId
+    delete @cookies.wizardNodeIndex
+    delete @cookies.redirectFlowConfig
 
     @permissionsUpdated = false
 
@@ -77,8 +82,10 @@ class FlowConfigureController
         wizardFlowId: @scope.flow.flowId
         wizardNodeIndex: @getCurrent()
 
+      @cookies.wizardFlowId = params.wizardFlowId
+      @cookies.wizardNodeIndex = params.wizardNodeIndex
+      @cookies.redirectFlowConfig = true
       @state.go 'material.nodewizard-add', params
-
 
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope

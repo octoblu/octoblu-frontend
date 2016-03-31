@@ -1,7 +1,8 @@
 class AddNodeWizardController
-  constructor: ($scope, $state, NodeTypeService) ->
+  constructor: ($scope, $state, $cookies, NodeTypeService) ->
     @scope = $scope
     @state = $state
+    @cookies = $cookies
     @NodeTypeService = NodeTypeService
 
     @redirectToDesign = @state.params.designer || false

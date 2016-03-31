@@ -548,12 +548,15 @@ angular.module('octobluApp', [
         templateUrl: '/pages/bluprints/bluprints.html',
         controller: 'BluprintsController'
       })
-      .state('material.bluprintDetail', {
+      .state('material.bluprintImport', {
         url: '/bluprints/:bluprintId',
+        templateUrl: '/pages/bluprints/bluprint-import.html',
+        controller: 'BluprintImportController',
+        controllerAs: 'controller'
+      })
+      .state('material.bluprintDetail', {
+        url: '/bluprints/:bluprintId/detail',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
-        params: {
-          referrer: null
-        },
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
       })
@@ -585,19 +588,13 @@ angular.module('octobluApp', [
       .state('material.oldbluprintImport', {
         url: '/design/import/:bluprintId',
         templateUrl: '/pages/bluprints/bluprint-detail.html',
-        params: {
-          editMode : null
-        },
         controller: 'BluprintDetailController',
         controllerAs: 'controller'
       })
       .state('material.OtherOldBluprintImport', {
         url: '/bluprints/import/:bluprintId',
-        templateUrl: '/pages/bluprints/bluprint-detail.html',
-        params: {
-          editMode : null
-        },
-        controller: 'BluprintDetailController',
+        templateUrl: '/pages/bluprints/bluprint-import.html',
+        controller: 'BluprintImportController',
         controllerAs: 'controller'
       })
       .state('material.discover', {

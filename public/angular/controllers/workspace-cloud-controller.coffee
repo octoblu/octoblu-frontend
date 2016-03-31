@@ -18,7 +18,7 @@ class WorkspaceCloudController
     $rootScope.$on "$cwcUserAuthorized", (event, data) =>
       $cookies.workspaceCloud = true
       console.log @buildQueryParams()
-      # $state.go 'login', @buildQueryParams()
+      $state.go 'login', @buildQueryParams()
 
   buildQueryParams: =>
     {customerId, otp} = @stateParams

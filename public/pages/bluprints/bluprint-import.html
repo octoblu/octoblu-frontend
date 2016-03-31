@@ -6,21 +6,7 @@
         {{bluprint.name}}
       </h1>
 
-      <p class="BluprintDetail-description" ng-show="bluprint.description">
-        {{bluprint.description}}
-        <span ng-hide="controller.referrer == 'discover'">
-          -
-          <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid, referrer: controller.referrer})">
-            Edit
-          </a>
-        </span>
-      </p>
-
-      <div ng-show="!bluprint.description && controller.referrer !='discover'">
-        <a class="BluprintDetail-editLink" ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid, referrer: controller.referrer})">
-          Edit
-        </a>
-      </div>
+      <p class="BluprintDetail-description" ng-show="bluprint.description">{{bluprint.description}}</p>
 
       <div class="BluprintDetail-publicMeta">
         <span>
