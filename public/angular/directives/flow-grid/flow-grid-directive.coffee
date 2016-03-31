@@ -8,5 +8,6 @@ angular.module('octobluApp')
     replace: true
     scope: {
       limit: '@'
+      showadd: '@'
     }
   }
