@@ -22,6 +22,6 @@ class FlowGridCardController
         title: 'Delete Flow'
         content: 'Are you sure you want to delete ' + name + '?'
       .then =>
-        @FlowService.deleteFlow(flowId).then => @state.go 'material.dashboard', {}, {reload: true}
+        @FlowService.deleteFlow(flowId).then => @state.go @state.current, {}, {reload: true}
 
 angular.module('octobluApp').controller 'FlowGridCardController', FlowGridCardController
