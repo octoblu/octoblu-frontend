@@ -32,15 +32,19 @@ class ConfigureController
       @updateThingsByCategory(filteredDevices)
 
   checkRedirectToFlowConfigure: () =>
-    if @cookies.redirectFlowConfig == true
-      params:
-        flowId: @cookies.wizardFlowId
-        nodeIndex: @cookies.wizardNodeIndex
+    return unless localStorage.getItem 'redirectFlowConfig'
+    params =
+      flowId: localStorage.getItem 'wizardFlowId'
+      nodeIndex: localStorage.getItem 'wizardNodeIndex'
 
-      delete @cookies.wizardFlowId
-      delete @cookies.wizardNodeIndex
-      delete @cookies.redirectFlowConfig
-      @state.go 'material.flowConfigure', params
+    @removeRedirectUriConfig()
+    @state.go 'material.flowConfigure', params
+
+  removeRedirectUriConfig: () =>
+    localStorage.removeItem 'wizardFlowId'
+    localStorage.removeItem 'wizardNodeIndex'
+    localStorage.removeItem 'redirectFlowConfig'
+
 
   updateThingsByCategory: (things) =>
     if !things.length

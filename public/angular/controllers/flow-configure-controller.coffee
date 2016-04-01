@@ -82,10 +82,14 @@ class FlowConfigureController
         wizardFlowId: @scope.flow.flowId
         wizardNodeIndex: @getCurrent()
 
-      @cookies.wizardFlowId = params.wizardFlowId
-      @cookies.wizardNodeIndex = params.wizardNodeIndex
-      @cookies.redirectFlowConfig = true
+      @setRedirectUriConfig()
+
       @state.go 'material.nodewizard-add', params
+
+  setRedirectUriConfig: () =>
+    localStorage.setItem 'wizardFlowId', @scope.flow.flowId
+    localStorage.setItem 'wizardNodeIndex', @getCurrent()
+    localStorage.setItem 'redirectFlowConfig', true
 
   addFlowToWhitelists: () =>
     { thingsNeedingReceiveAs, flow } = @scope
