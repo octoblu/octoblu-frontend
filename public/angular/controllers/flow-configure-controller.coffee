@@ -13,10 +13,7 @@ class FlowConfigureController
     @NodeRegistryService = NodeRegistryService
     @SERVICE_UUIDS       = SERVICE_UUIDS
 
-    delete @cookies.wizardFlowId
-    delete @cookies.wizardNodeIndex
-    delete @cookies.redirectFlowConfig
-
+    @clearLocalStorage()
     @permissionsUpdated = false
 
     @FlowService.getFlow(@stateParams.flowId).
@@ -29,6 +26,12 @@ class FlowConfigureController
 
         @setFlowNodeType @scope.nodesToConfigure[@nodeIndex]
         @checkPermissions()
+
+  clearLocalStorage: =>
+    return unless localStorage.getItem 'redirectFlowConfig'
+    localStorage.removeItem 'wizardFlowId'
+    localStorage.removeItem 'wizardNodeIndex'
+    localStorage.removeItem 'redirectFlowConfig'
 
   checkPermissions: =>
     { flow } = @scope

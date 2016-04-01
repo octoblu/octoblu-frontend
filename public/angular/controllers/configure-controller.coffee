@@ -10,10 +10,10 @@ class ConfigureController
     @scope.noThings = false
     connectedThings = []
 
-    @checkRedirectToFlowConfigure()
-
     @NotifyService.notify "#{$stateParams.added} successfully added" if $stateParams.added
     @NotifyService.notify "#{$stateParams.deleted} successfully deleted" if $stateParams.deleted
+
+    @checkRedirectToFlowConfigure()
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
