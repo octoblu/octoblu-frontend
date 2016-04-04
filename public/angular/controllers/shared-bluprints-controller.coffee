@@ -3,7 +3,6 @@ class SharedBluprintsController
     @scope           = $scope
     @state           = $state
     @stateParams     = $stateParams
-
     @UrlService      = UrlService
     @AuthService     = AuthService
     @BluprintService = BluprintService
@@ -13,17 +12,18 @@ class SharedBluprintsController
 
     { @collectionName } = @stateParams
 
-    @limitPerPage = 9
+    @limitPerPage = 12
     @currentPage  = 1
     @noneLeft     = true
 
-    @refreshBluprintsPaged(@limitPerPage,@currentPage)
+    @refreshBluprintsPaged @limitPerPage, @currentPage
 
-    @scope.$watch 'bluprintNameFilter', (oldVal, newVal) =>
-      @scope.bluprintNameFilter = @scope.bluprintNameFilter || ''
-      @searchPublic(@scope.bluprintNameFilter) unless @scope.bluprintNameFilter.length == 0
-      @refreshBluprintsPaged(9, 1) if @scope.bluprintNameFilter.length == 0
-
+    @scope.$watch 'bluprintNameFilter', _.debounce(
+      () =>
+        @scope.bluprintNameFilter = @scope.bluprintNameFilter || ''
+        @searchPublic(@scope.bluprintNameFilter) unless @scope.bluprintNameFilter.length == 0
+        @refreshBluprintsPaged(@limitPerPage, 1) if @scope.bluprintNameFilter.length == 0
+    , 200)
 
   searchPublic: (name)=>
     @BluprintService.getPublicBluprintsNameFilter(@collectionName, name)
@@ -31,9 +31,6 @@ class SharedBluprintsController
         @bluprints = bluprints
         @noneLeft = true
         @scope.isLoading = false
-
-  refreshLimit: =>
-    @refreshBluprintsPaged(@limitPerPage,@currentPage)
 
   showMore: =>
     @currentPage = @currentPage + 1
