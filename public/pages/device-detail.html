@@ -16,6 +16,9 @@
       </div>
 
       <div class="device-actions">
+        <div ng-show="false">
+          <generate-device-installer classes="{'device-actions--link': true, 'BluButton': true}" device="controller.device"></generate-device-installer>
+        </div>
         <div ng-show='controller.showLink'>
           <button ng-click="controller.linkToGateblu()" class="device-actions--link BluButton">Connect to Gateblu</button>
         </div>
