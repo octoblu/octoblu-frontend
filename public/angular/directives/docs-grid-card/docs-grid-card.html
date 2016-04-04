@@ -5,7 +5,7 @@
     </header>
 
     <div class="BluCard-body">
-      <p class="BluCard-description">{{doc.summary}}</p>
+      <p class="BluCard-description">{{doc.summary | characters:100 :true}}</p>
     </div>
   </main>
 </article>

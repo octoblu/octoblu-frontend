@@ -24,7 +24,8 @@ angular.module('octobluApp', [
   'angulartics.google.analytics',
   'ng-autofocus',
   'draganddrop',
-  'ngPostMessage'])
+  'ngPostMessage',
+  'truncate'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);

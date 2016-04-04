@@ -11,7 +11,7 @@
         Add a description <a ui-sref="">here</a>
       </p>
       <p class="BluCard-description" ng-show="flow.description">
-        {{flow.description}}
+        {{flow.description | characters:50 :true}}
       </p>
 
       <flow-tags></flow-tags>
