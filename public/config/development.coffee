@@ -24,7 +24,6 @@ angular.module('octobluApp')
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'CWC_AUTHENTICATOR_URL', "https://#{window.location.hostname}:3006"
   .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
-  .constant "APP_STORE_URL", "http://localhost:6040/"
   .constant "CWC_APP_STORE_URL", "http://localhost:6041"
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
