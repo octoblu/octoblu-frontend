@@ -22,11 +22,8 @@ function verifyWorkspaceCloudUser() {
 }
 
 function getEnvironmentDomain(referrer) {
-  // Production Env
-  if (referrer.indexOf('cloud.com') > -1) return 'cloud.com'
-  // SI Env
-  if (referrer.indexOf('tryworkspaces') > -1) return 'tryworkspaces.com'
+  return 'cloud.com'
 
-  // Staging Env
-  return 'cloudburrito.com'
+  // if (referrer.indexOf('cloudburrito.com') > -1) return 'cloudburrito.com'
+  // if (referrer.indexOf('tryworkspaces') > -1) return 'tryworkspaces.com'
 }
