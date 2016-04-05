@@ -2,6 +2,5 @@
   <div class="Cloud-error" ng-if="errorMessage">
     {{errorMessage}}
   </div>
-
-  <spinner size="large" loading="controller.loggingIn"></spinner>
+  <spinner size="large" loading="controller.loggingIn"  ng-if="!errorMessage"></spinner>
 </div>
