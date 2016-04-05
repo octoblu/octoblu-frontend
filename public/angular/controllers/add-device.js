@@ -25,14 +25,17 @@ angular.module('octobluApp')
   $scope.setUnclaimedDevice = function(device){
     $scope.newDevice.selectedDevice = device;
   }
+
   $scope.addDevice = function () {
     AuthService.getCurrentUser().then(function(currentUser){
 
       var deviceOptions, promise;
       delete $scope.errorMessage;
 
+      var deviceType = $scope.newDevice.type || $scope.nodeType.type;
+
       deviceOptions = _.defaults({
-        type: $scope.nodeType.type,
+        type: deviceType,
         name: $scope.newDevice.name
       }, $scope.nodeType.defaults);
 
@@ -41,14 +44,12 @@ angular.module('octobluApp')
       }
 
       if($scope.newDevice.action === 'claimExisting'){
-
         deviceOptions.uuid = $scope.existingDevice.uuid;
         deviceOptions.token = $scope.existingDevice.token;
         deviceOptions.owner = currentUser.skynet.uuid;
         deviceOptions.isChanged = true;
         promise = deviceService.claimDevice(deviceOptions);
       } else {
-
         promise = deviceService.registerDevice(deviceOptions);
       }
 

@@ -33,7 +33,14 @@
           <input type="text" ng-model="newDevice.name" aria-label="Name" required>
         </md-input-container>
 
-        <section ng-show="newDevice.action == claimExisting" ng-hide="newDevice.action !== 'claimExisting'">
+        <section ng-show="nodeType.type === 'device:other' && newDevice.action === 'registerNew'">
+          <md-input-container class="node-wizard__form-row">
+            <label>Type</label>
+            <input type="text" aria-label="type" ng-model="newDevice.type">
+          </md-input-container>
+        </section>
+
+        <section ng-show="newDevice.action === 'claimExisting'">
           <md-input-container class="node-wizard__form-row">
             <label>UUID</label>
             <input type="text" aria-label="UUID" ng-model="existingDevice.uuid">
