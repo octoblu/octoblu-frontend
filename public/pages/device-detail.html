@@ -16,7 +16,10 @@
       </div>
 
       <div class="device-actions">
-        <div ng-show="false">
+        <div ng-hide="showBetaInstaller">
+          <button ng-click="showBetaInstaller = true" class="BluButton"><i class="fa fa-space-shuttle"></i></button>
+        </div>
+        <div ng-show="showBetaInstaller">
           <generate-device-installer classes="{'device-actions--link': true, 'BluButton': true}" device="controller.device"></generate-device-installer>
         </div>
         <div ng-show='controller.showLink'>

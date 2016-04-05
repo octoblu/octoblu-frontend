@@ -2,10 +2,11 @@ class MeshbluOTPService
   constructor: ($http) ->
     @http = $http
 
-  generate: ({uuid, token}, callback) =>
+  generate: ({uuid, token, metadata}, callback) =>
     @http({
       method: 'POST',
-      url: "https://meshblu-otp.octoblu.com/generate/#{uuid}/#{token}"
+      url: "https://meshblu-otp.octoblu.com/generate/#{uuid}/#{token}",
+      data: metadata
     }).then((response) =>
       return callback new Error('Invalid response') if response.status != 201
       callback null, response.data
