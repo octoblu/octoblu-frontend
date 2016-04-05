@@ -695,16 +695,22 @@ angular.module('octobluApp', [
       if (data.name === "$cwcNavbarUserLoggedOff") {
         AuthService.logout().then(function () {
           delete $cookies.workspaceCloud
-          console.log('Cookie Deleted!');
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
-          $window.location = CWC_LOGIN_URL
         });
       }
 
       if (data.name === "$cwcNavbarUserAuthorized") {
         $rootScope.$broadcast("$cwcUserAuthorized");
       }
+
+      if (data.name === "$octobluUserLoggedOff") {
+        $window.location = CWC_LOGIN_URL
+      }
     });
+
+    // $rootScope.$on('$octobluUserLoggedOff', function(event, data) {
+    //   $window.location = CWC_LOGIN_URL
+    // });
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.log('error from ' + fromState.name + ' to ' + toState.name, error);
