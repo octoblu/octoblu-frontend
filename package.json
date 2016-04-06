@@ -53,7 +53,9 @@
   },
   "scripts": {
     "test": "node_modules/karma/bin/karma start --single-run",
-    "start": "node_modules/.bin/gulp static"
+    "start": "node_modules/.bin/gulp static",
+    "protractor": "protractor test/protractor.conf.js",
+    "postinstall": "bower install"
   },
   "engines": {
     "node": ">=0.6"
