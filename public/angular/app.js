@@ -694,8 +694,9 @@ angular.module('octobluApp', [
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
         AuthService.logout().then(function () {
-          delete $cookies.workspaceCloud
+          localStorage.removeItem('workspaceCloud')
           $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
+          $window.location = CWC_LOGIN_URL
         });
       }
 
@@ -704,7 +705,6 @@ angular.module('octobluApp', [
       }
 
       if (data.name === "$octobluUserLoggedOff") {
-        $window.location = CWC_LOGIN_URL
       }
     });
 

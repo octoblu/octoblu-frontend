@@ -16,7 +16,8 @@ class WorkspaceCloudController
     return @state.go("login", {}) if _.isEmpty @referrer
 
     $rootScope.$on "$cwcUserAuthorized", (event, data) =>
-      $cookies.workspaceCloud = true
+      # $cookies.workspaceCloud = true
+      localStorage.setItem('workspaceCloud', true);
       console.log @buildQueryParams()
       $state.go 'login', @buildQueryParams()
 
