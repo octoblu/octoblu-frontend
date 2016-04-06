@@ -42,6 +42,7 @@
     "karma-sinon-chai": "^0.2.0",
     "karma-spec-reporter": "0.0.13",
     "mocha": "^2.1.0",
+    "protractor": "^3.2.2",
     "proxy-middleware": "^0.11.0",
     "pushstate-server": "iamruinous/pushstate-server",
     "selenium-webdriver": "^2.42.1",
