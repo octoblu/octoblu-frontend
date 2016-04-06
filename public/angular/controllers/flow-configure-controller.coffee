@@ -123,7 +123,7 @@ class FlowConfigureController
     { thingsNeedingSendWhitelist, flow } = @scope
     return unless thingsNeedingSendWhitelist
 
-    @ThingService.getThing(flow.flowId).
+    @ThingService.getThing({uuid: flow.flowId}).
       then (thing)=>
         thing.sendWhitelist = thing.sendWhitelist || []
         thing.sendWhitelist = _.union thing.sendWhitelist, thingsNeedingSendWhitelist
