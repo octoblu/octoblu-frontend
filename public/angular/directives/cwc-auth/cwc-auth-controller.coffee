@@ -1,14 +1,15 @@
 class CWCAuthController
-  constructor: ($scope, $window, $cookies,  $stateParams,  CWC_APP_STORE_URL, OCTOBLU_API_URL, CWCAuthProxyService) ->
-    @scope                 = $scope
-    @window                = $window
-    @cookies               = $cookies
-    @stateParams           = $stateParams
-    @loggingIn             = true
-    @CWCValidationError    = "There was a problem validating your CWC Account, please contact CWC Customer Support"
-    @CWCAuthProxyService   = CWCAuthProxyService
-    @CWC_APP_STORE_URL     = CWC_APP_STORE_URL
-    @OCTOBLU_API_URL       = OCTOBLU_API_URL
+  constructor: ($scope, $window, $cookies,  $stateParams,  CWC_APP_STORE_URL, CWC_PRODUCTION_URL, OCTOBLU_API_URL, CWCAuthProxyService) ->
+    @scope               = $scope
+    @window              = $window
+    @cookies             = $cookies
+    @stateParams         = $stateParams
+    @loggingIn           = true
+    @CWCAuthProxyService = CWCAuthProxyService
+    @CWC_PRODUCTION_URL  = CWC_PRODUCTION_URL
+    @CWC_APP_STORE_URL   = CWC_APP_STORE_URL
+    @OCTOBLU_API_URL     = OCTOBLU_API_URL
+
     @requestAccess()
 
   requestAccess:() =>
@@ -18,7 +19,8 @@ class CWCAuthController
       .authenticateCWCUser(otp, customerId, cwcReferralUrl)
       .then ( cwcAuthInfo={} ) =>
         {cwc, userDevice} = cwcAuthInfo
-        return @scope.errorMessage = @CWCValidationError unless cwc?        
+        return @redirectToReferrer() unless cwc?
+
         {sessionId} = cwc
         @cookies.cwcSessionId = sessionId
         @cookies.cwcCustomerId = customerId
@@ -31,5 +33,7 @@ class CWCAuthController
     queryString = "uuid=#{meshbluAuthUUID}&token=#{meshbluAuthToken}&callbackUrl=#{encodeURIComponent(redirectUrl)}"
     return "#{@OCTOBLU_API_URL}/api/session?#{queryString}"
 
+  redirectToReferrer: () =>
+    @window.location = @stateParams.cwcReferralUrl || "#{@CWC_PRODUCTION_URL}/lab"
 
 angular.module('octobluApp').controller 'CWCAuthController', CWCAuthController

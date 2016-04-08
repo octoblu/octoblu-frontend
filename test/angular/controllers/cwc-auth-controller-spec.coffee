@@ -13,16 +13,18 @@ describe 'CWCAuthController', ->
       $provide.value '$cookies', @cookies
       $provide.value  '$stateParams', {}
       $provide.value 'CWC_APP_STORE_URL', 'https://cwc-store.octoblu.com'
+      $provide.value 'CWC_PRODUCTION_URL', 'https://workspace.cloud.com'
       $provide.value 'OCTOBLU_API_URL', 'http://localhost:8080'
       return
 
-    inject ($controller, $rootScope, $q, CWC_APP_STORE_URL, OCTOBLU_API_URL) =>
+    inject ($controller, $rootScope, $q, CWC_APP_STORE_URL, CWC_PRODUCTION_URL, OCTOBLU_API_URL) =>
       @q = $q
       @scope = $rootScope.$new()
 
       @fakeCWCAuthProxyService = new FakeCWCAuthProxyService @q
       @controller = $controller
       @CWC_APP_STORE_URL = CWC_APP_STORE_URL
+      @CWC_PRODUCTION_URL = CWC_PRODUCTION_URL
 
   describe "->constructor", ->
     context "when the CWC user has not logged in before", ->

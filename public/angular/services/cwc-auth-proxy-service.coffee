@@ -1,8 +1,8 @@
 class CWCAuthProxyService
   constructor: ($rootScope, $http, OCTOBLU_API_URL, CWC_AUTHENTICATOR_PROXY_URL) ->
-    @http            = $http
+    @http                        = $http
     @CWC_AUTHENTICATOR_PROXY_URL = CWC_AUTHENTICATOR_PROXY_URL
-    @OCTOBLU_API_URL = OCTOBLU_API_URL
+    @OCTOBLU_API_URL             = OCTOBLU_API_URL
 
   authenticateCWCUser: (oneTimePassword, customerId, cwcRefererUrl) =>
     @http.post("#{@CWC_AUTHENTICATOR_PROXY_URL}/authenticate", {
@@ -11,7 +11,7 @@ class CWCAuthProxyService
       cwcRefererUrl : cwcRefererUrl
     })
     .then (response) =>
-      response.data  
+      response.data
 
 
 angular.module('octobluApp').service 'CWCAuthProxyService', CWCAuthProxyService
