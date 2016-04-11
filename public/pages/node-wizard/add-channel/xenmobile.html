@@ -1,25 +1,17 @@
 <form class="node-wizard__form" ng-submit="activate()">
-  <div class="form-group" ng-class="{'has-error': errorMessage}">
-    <label for="serverUrl" class="control-label">http/https://Hostname:Port</label>
-    <input type="text" ng-model="serverUrl" class="form-control input-lg" id="serverUrl" required>
-    <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-  </div>
+	<h4>Authentication Configuration</h4>
 
-  <div class="form-group" ng-class="{'has-error': errorMessage}">
-    <label for="username" class="control-label">username</label>
-    <input type="text" ng-model="username" class="form-control input-lg" id="username" required>
-    <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-  </div>
+  <md-input-container>
+    <label>Username</label>
+    <input type="text" ng-model="username" required="true">
+  </md-input-container>
 
-  <div class="form-group" ng-class="{'has-error': errorMessage}">
-    <label for="password" class="control-label">Password</label>
-    <input type="text" ng-model="password" class="form-control input-lg" id="password" required>
-    <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-  </div>
+  <md-input-container>
+    <label>Password</label>
+    <input type="text" ng-model="password" required="true">
+  </md-input-container>
 
-  <div class="form-group">
-    <button type="submit" ng-click="activate()" class="BluButton node-wizard__activate--btn">
-      Connect
-    </button>
-  </div>
+  <button class="BluButton node-wizard__connect--btn" type="submit">
+    Connect
+  </button>
 </form>

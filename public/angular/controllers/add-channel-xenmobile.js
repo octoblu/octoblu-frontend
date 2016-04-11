@@ -1,18 +1,30 @@
 
 angular.module('octobluApp')
-.controller('addChannelXenMobileController', function(OCTOBLU_API_URL, $scope, $window, nodeType, channelService) {
+.controller('addChannelXenMobileController', function(OCTOBLU_API_URL, $scope, $window, nodeType, channelService, AuthService) {
   'use strict';
+  console.log('addChannelXenMobileController');
 
-  var channelPromise, getPath;
-
-  channelPromise = channelService.getById(nodeType.channelid);
-  getPath = function(){
-    return OCTOBLU_API_URL + '/api/xenmobile/auth?username=' + $scope.username + '&password=' + $scope.password + '&hostname=' + $scope.serverUrl;
+  var getPath, currentUserPromise;
+  getPath = function(serverUrl){
+    var params = $.param({
+      username:  $scope.username,
+      password:  $scope.password,
+      serverUrl: serverUrl
+    });
+    return OCTOBLU_API_URL + '/api/xenmobile/auth?' + params;
   };
 
+  currentUserPromise = AuthService.getCurrentUser(true);
+
   $scope.activate = function(){
-    channelPromise.then(function(){
-      $window.location.href = getPath();
+    currentUserPromise.then(function(user){
+      var api, hostname, port, serverUrl;
+
+      api       = _.findWhere(user.api, {type: 'channel:xenmobile'});
+      hostname  = api.defaultParams[':hostname'];
+      port      = api.defaultParams[':port'];
+      serverUrl = hostname + ':' + port;
+      $window.location.href = getPath(serverUrl);
     });
   };
 });
