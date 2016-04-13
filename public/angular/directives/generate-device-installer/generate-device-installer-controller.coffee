@@ -30,8 +30,8 @@ class GenerateDeviceInstallerController
       legacy: @isLegacy({connector}),
       node: "v5.5.0",
       connector: connector,
-      dependency_manager: "v1.0.0",
-      connector_installer: "v3.0.1"
+      dependency_manager: "v1.0.1",
+      connector_installer: "v5.0.1"
     }
 
   download: (fileName, uri) =>
