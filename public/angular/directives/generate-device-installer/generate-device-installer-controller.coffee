@@ -22,7 +22,7 @@ class GenerateDeviceInstallerController
     return true
 
   getInstallerURI: () =>
-    return "https://meshblu-connector.octoblu.com/apps/osx-installer/v2.1.3/MeshbluConnectorInstaller.dmg"
+    return "https://meshblu-connector.octoblu.com/apps/osx-installer/v2.1.6/MeshbluConnectorInstaller.dmg"
 
   getMetadata: ({type}) =>
     connector = @getConnector {type}
@@ -30,7 +30,7 @@ class GenerateDeviceInstallerController
       legacy: @isLegacy({connector}),
       node: "v5.5.0",
       connector: connector,
-      dependency_manager: "v1.0.1",
+      dependency_manager: "v1.0.2",
       connector_installer: "v5.0.1"
     }
 
