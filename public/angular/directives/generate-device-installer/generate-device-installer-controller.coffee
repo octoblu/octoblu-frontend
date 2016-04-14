@@ -22,7 +22,7 @@ class GenerateDeviceInstallerController
     return true
 
   getInstallerURI: () =>
-    return "https://meshblu-connector.octoblu.com/apps/osx-installer/v2.1.6/MeshbluConnectorInstaller.dmg"
+    return "https://meshblu-connector.octoblu.com/apps/osx-installer/v2.1.7/MeshbluConnectorInstaller.dmg"
 
   getMetadata: ({type}) =>
     connector = @getConnector {type}
