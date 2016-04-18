@@ -28,8 +28,8 @@ class FlowGridCardController
   startFlow: () =>
     @FlowService.start @scope.flow
     @scope.flow.online = true
-
+    
   stopFlow: () =>
-    @FlowService.stop @scope.flow
-    @scope.flow.online = false
+    @FlowService.stop(@scope.flow).then => @state.go @state.current, {}, {reload: true}
+
 angular.module('octobluApp').controller 'FlowGridCardController', FlowGridCardController

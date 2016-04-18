@@ -27,7 +27,7 @@ angular.module 'octobluApp'
       category: 'Tutorials'
     },
     {
-      title: 'Hackster Projects'
+      title: 'Community Projects'
       link: 'https://www.hackster.io/octoblu'
       summary: 'Step-by-step walkthroughs using Octoblu\'s platform with your devices.'
       category: 'Tutorials'
