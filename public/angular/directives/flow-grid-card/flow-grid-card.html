@@ -2,8 +2,12 @@
   <main class="BluCard-main">
     <header class="BluCard-header">
       <a ui-sref="material.flow({flowId: flow.flowId})" class="BluCard-title">{{flow.name}}</a>
-      <span class="BluCard-status" ng-show="!flow.online"><i class="fa fa-power-off"></i></span>
-      <span class="BluCard-status BluCard-status--online" ng-show="flow.online"><i class="fa fa-power-off"></i></span>
+      <span class="BluCard-status" ng-show="!flow.online" ng-click="cardController.startFlow()">
+        <i class="fa fa-power-off"></i>
+      </span>
+      <span class="BluCard-status BluCard-status--online" ng-show="flow.online" ng-click="cardController.stopFlow()">
+        <i class="fa fa-power-off"></i>
+      </span>
     </header>
 
     <div class="BluCard-body">

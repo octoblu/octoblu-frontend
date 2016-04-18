@@ -5,6 +5,7 @@ class FlowGridCardController
     @FlowService = FlowService
     @BluprintService = BluprintService
     @NotifyService = NotifyService
+    @scope.flowLoading = false
 
   createBluprint: () =>
     { name, flowId } = @scope.flow
@@ -24,4 +25,11 @@ class FlowGridCardController
       .then =>
         @FlowService.deleteFlow(flowId).then => @state.go @state.current, {}, {reload: true}
 
+  startFlow: () =>
+    @FlowService.start @scope.flow
+    @scope.flow.online = true
+
+  stopFlow: () =>
+    @FlowService.stop @scope.flow
+    @scope.flow.online = false
 angular.module('octobluApp').controller 'FlowGridCardController', FlowGridCardController

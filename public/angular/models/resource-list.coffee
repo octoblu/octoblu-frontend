@@ -1,14 +1,14 @@
 angular.module 'octobluApp'
   .constant 'ResourceList', [
     {
-      title: 'Octoblu Main Documentation'
+      title: 'Octoblu Designer'
       link: 'https://octoblu-designer.readme.io'
       summary: 'Comprehensive documentation for the Designer, Things, and Tools with sample flows.'
       category: 'Docs'
       featured: true
     },
     {
-      title: 'Meshblu Connectors'
+      title: 'Octoblu Connectors'
       link: 'https://meshblu-connectors.readme.io'
       summary: 'Documentation for all plugins and connectors'
       category: 'Docs'
@@ -27,7 +27,7 @@ angular.module 'octobluApp'
       category: 'Tutorials'
     },
     {
-      title: 'Hackster Tutorials'
+      title: 'Hackster Projects'
       link: 'https://www.hackster.io/octoblu'
       summary: 'Step-by-step walkthroughs using Octoblu\'s platform with your devices.'
       category: 'Tutorials'
@@ -40,11 +40,10 @@ angular.module 'octobluApp'
       category: 'Videos'
     },
     {
-      title: 'Octoblu Developer YouTube Playlist'
+      title: 'YouTube Playlist'
       link: 'https://www.youtube.com/playlist?list=PLyh2CvBTlon4R_ibknRl9CCKfn_1eAted'
       summary: 'A variety of YouTube video tutorials on how to use Octoblu.'
       category: 'Videos'
-      featured: true
     },
     {
       title: 'Getting started with Octoblu PDF'
