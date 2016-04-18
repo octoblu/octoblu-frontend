@@ -7,18 +7,23 @@ class FlowGridController
     @NotifyService = NotifyService
     @scope.isLoading = true
 
-    @getFlows().then () => @scope.isLoading = false
+    @getFlows()
+      .then () =>
+        @scope.isLoading = false
+        @getFlowStatus @scope.flows
 
   getFlows: () =>
     @FlowService.getAllFlows().then (flows) =>
-      @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
-        updatedFlows = _.map flows, (flow) =>
-          flowDevice = _.find things, 'uuid': flow.flowId
-          flow.online = flowDevice.online
-          flow
+      return @scope.flows = flows unless @scope.limit?
+      @scope.flows = _.take flows, @scope.limit
 
-        return @scope.flows = updatedFlows unless @scope.limit?
-        @scope.flows = _.take updatedFlows, @scope.limit
+  getFlowStatus: (flows) =>
+    @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
+      updatedFlows = _.map flows, (flow) =>
+        flowDevice = _.find things, 'uuid': flow.flowId
+        flow.online = flowDevice.online
+        flow
+      @scope.flows = updatedFlows
 
   addFlow: () =>
     @FlowService.createFlow().then((newFlow) =>

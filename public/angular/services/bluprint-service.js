@@ -37,7 +37,8 @@ angular.module('octobluApp')
   "http-delete-request",
   "less-than-equal",
   "on-start",
-  "sentiment"]
+  "sentiment",
+  "select"]
 
   self.createBluprint = function(bluprint) {
     return $http.post(OCTOBLU_API_URL + "/api/templates", bluprint).then(function(response) {
