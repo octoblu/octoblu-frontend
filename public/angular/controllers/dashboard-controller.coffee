@@ -4,15 +4,12 @@ class DashboardController
     @BluprintService = BluprintService
 
     @bluprints = []
-
     @limit = 4
-    @page = 1
 
     @fetchBluPrints()
 
-
   fetchBluPrints: () =>
-    @BluprintService.getPublicBluprintsPaged([], @limit, @page)
+    @BluprintService.getRecentPublic([], @limit)
       .then (bluprints) =>
         @bluprints = bluprints
 
