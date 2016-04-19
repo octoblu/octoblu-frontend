@@ -7,16 +7,23 @@ class FlowGridController
     @NotifyService = NotifyService
     @scope.isLoading = true
 
-    @getFlows()
+    @fetchFlows()
       .then () =>
         @scope.isLoading = false
         @getFlowStatus @scope.flows
 
-  getFlows: () =>
+  fetchFlows: () =>
+    return @allFlows() unless @scope.limit?
+    @someFlows()
+
+  allFlows: () =>
     @FlowService.getAllFlows().then (flows) =>
       flows.reverse()
-      return @scope.flows = flows unless @scope.limit?
-      @scope.flows = _.take flows, @scope.limit
+      @scope.flows = flows
+
+  someFlows: () =>
+    @FlowService.getSomeFlows(@scope.limit).then (flows) =>
+      @scope.flows = flows
 
   getFlowStatus: (flows) =>
     @ThingService.getThings({type: 'octoblu:flow'}).then (things) =>
