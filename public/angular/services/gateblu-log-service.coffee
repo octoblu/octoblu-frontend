@@ -1,5 +1,4 @@
-angular.module("octobluApp").factory "GatebluLogService",
-(skynetService, GATEBLU_LOGGER_UUID, $cookies, UUIDService) ->
+angular.module("octobluApp").factory "GatebluLogService", (MeshbluHttpService, GATEBLU_LOGGER_UUID, $cookies, UUIDService) ->
   class GatebluLogService
     constructor: () ->
       @deploymentUuid = UUIDService.v1()
@@ -43,6 +42,8 @@ angular.module("octobluApp").factory "GatebluLogService",
         gatebluUuid: gatebluUuid
         connector: connector
 
-      skynetService.sendMessage
+      message =
         devices: GATEBLU_LOGGER_UUID
         payload: payload
+
+      MeshbluHttpService.message message, _.noop

@@ -1,15 +1,14 @@
 class MeshbluDeviceService
-  constructor: (skynetService, $q) ->
-    @skynetPromise = skynetService.getSkynetConnection()
-    @q             = $q
+  constructor: ($q, MeshbluHttpService) ->
+    @q = $q
+    @MeshbluHttpService = MeshbluHttpService
 
   get: (uuid) =>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.devices uuid: uuid, (result) =>
-        return deferred.reject(new Error("No devices found")) if _.isEmpty(result.devices)
-        deferred.resolve _.first result.devices
+    @MeshbluHttpService.device uuid, (error, device) =>
+      return deferred.reject(error) if error?
+      deferred.resolve device
 
     deferred.promise
 

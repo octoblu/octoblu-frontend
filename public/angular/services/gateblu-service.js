@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('GatebluService', function (deviceService, ThingService, $q, $cookies, skynetService) {
+.service('GatebluService', function (deviceService, ThingService, $q, $cookies) {
   'use strict';
   var self = this;
 
@@ -29,23 +29,21 @@ angular.module('octobluApp')
     var deferred, waitFunction, waitInterval;
     deferred = $q.defer();
 
-    skynetService.getSkynetConnection().then(function(conn){
-      waitFunction = function(){
-        deviceService.getDeviceByUUIDAndToken(device.uuid, device.token)
-        .then(function(device){
-          if(device && device.optionsSchema){
-            deviceService.addOrUpdateDevice(device);
+    waitFunction = function(){
+      deviceService.getDeviceByUUIDAndToken(device.uuid, device.token)
+      .then(function(device){
+        if(device && device.optionsSchema){
+          deviceService.addOrUpdateDevice(device);
 
-            logger.deviceOptionsLoadEnd(device.uuid, device.gateblu, device.connector);
+          logger.deviceOptionsLoadEnd(device.uuid, device.gateblu, device.connector);
 
-            clearInterval(waitInterval);
-            deferred.resolve(device);
-          }
-        });
+          clearInterval(waitInterval);
+          deferred.resolve(device);
+        }
+      });
+    }
 
-      };
-      waitInterval = setInterval(waitFunction, 1000);
-    });
+    waitInterval = setInterval(waitFunction, 1000);
 
     return deferred.promise;
   };
@@ -57,25 +55,24 @@ angular.module('octobluApp')
     var deferred, waitFunction, waitInterval;
     deferred = $q.defer();
 
-    skynetService.getSkynetConnection().then(function(conn){
-      waitFunction = function(){
-        ThingService.getThing({uuid: device.uuid})
-          .then(function(device){
-            if(device && device.initializing){
-              deviceService.addOrUpdateDevice(device);
+    waitFunction = function(){
+      ThingService.getThing({uuid: device.uuid})
+        .then(function(device){
+          if(device && device.initializing){
+            deviceService.addOrUpdateDevice(device);
 
-              logger.deviceOptionsLoadEnd(device.uuid, device.gateblu, device.connector);
+            logger.deviceOptionsLoadEnd(device.uuid, device.gateblu, device.connector);
 
-              clearInterval(waitInterval);
-              deferred.resolve(device);
-            }
-          });
-      };
-      waitInterval = setInterval(waitFunction, 1000);
-    });
+            clearInterval(waitInterval);
+            deferred.resolve(device);
+          }
+        });
+    };
+    waitInterval = setInterval(waitFunction, 1000);
 
     return deferred.promise;
   };
+  
   self.addDevice = function(gatebluId, nodeType, logger){
     var device;
     var userUuid = $cookies.meshblu_auth_uuid;

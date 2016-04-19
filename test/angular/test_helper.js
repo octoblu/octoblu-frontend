@@ -7,6 +7,7 @@ window.meshblu = {
   }
 }
 window.MeshbluHttp = function(){};
+window.MeshbluFirehoseSocketIO = function(){};
 
 beforeEach(function () {
   module('octobluApp', function($provide) {

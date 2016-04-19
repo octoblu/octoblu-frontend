@@ -1,29 +1,25 @@
 angular.module('octobluApp')
-  .service('ProcessNodeService', function ($q, deviceService, skynetService) {
+  .service('ProcessNodeService', function ($q, deviceService, FirehoseService)  {
   'use strict';
   return {
 
     getProcessNodes: function() {
-      var self, skynetConnection;
+      var self;
       self = this;
-      return $q.all([
-        self.getSkynetConnection(),
-        self.getDevices()
-      ]).then(function(results) {
-        skynetConnection = results[0];
-        self.devices = results[1];
-        self.listenToMessages();
-        return self.devices;
-      });
+      return self.getDevices()
+        .then(function(devices) {
+          self.devices = devices;
+          self.listenToMessages();
+          return self.devices;
+        });
     },
 
     listenToMessages: function() {
       var self = this;
-      return self.getSkynetConnection().then(function(skynetConnection){
-        skynetConnection.on('message', function(message) {
-          self.incrementMessagesReceivedCount(message);
-          self.incrementMessagesSentCount(message);
-        });
+      FirehoseService.on('message', function(message){
+        var data = message.data;
+        self.incrementMessagesReceivedCount(data);
+        self.incrementMessagesSentCount(data);
       });
     },
 
@@ -68,14 +64,12 @@ angular.module('octobluApp')
       });
     },
 
-    getSkynetConnection: function() {
-      return skynetService.getSkynetConnection()
-    },
-
     sendMessageToDevice: function(uuid, topic){
-      this.getSkynetConnection().then(function(skynetConnection){
-        skynetConnection.message(uuid, null, {topic: topic});
-      });
+      message = {
+        devices: [uuid],
+        topic: topic
+      }
+      MeshbluHttpService.message(message);
     },
 
     startProcess: function(node) {

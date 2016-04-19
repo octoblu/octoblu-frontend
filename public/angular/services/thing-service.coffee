@@ -1,6 +1,5 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MeshbluHttpService, $cookies) ->
-    @skynetPromise  = skynetService.getSkynetConnection()
+  constructor: ($q, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MeshbluHttpService, $cookies) ->
     @q = $q
     @cookies = $cookies
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
@@ -152,10 +151,9 @@ class ThingService
 
   revokeToken: (device={}) =>
     deferred = @q.defer()
-    @skynetPromise.then (connection) =>
-      connection.revokeToken device, (result) =>
-        return deferred.reject new Error('Failed to revokeToken') unless result?
-        deferred.resolve {}
+    @MeshbluHttpService.revokeToken device, (error, result) =>
+      return deferred.reject(error) if error?
+      deferred.resolve {}
     deferred.promise
 
   updateDevice: (device={}) =>

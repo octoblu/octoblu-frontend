@@ -1,4 +1,4 @@
-describe 'ProcessNodeService', ->
+xdescribe 'ProcessNodeService', ->
 
   beforeEach ->
     class FakeDeviceService

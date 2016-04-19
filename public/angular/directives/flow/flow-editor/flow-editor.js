@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, CoordinatesService, FlowNodeDimensions, $interval, FlowService) {
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, CoordinatesService, FlowNodeDimensions, $interval, FlowService, MeshbluHttpService) {
     'use strict';
 
     return {
@@ -48,39 +48,6 @@ angular.module('octobluApp')
           }
         }
 
-        skynetService.getSkynetConnection().then(function (skynetConnection) {
-          skynetConnection.on('message', function (message) {
-            if (message.topic !== 'pulse') {
-              return;
-            }
-
-            pulseNodeById(message.payload.node)
-          });
-        });
-
-        skynetService.getSkynetConnection().then(function (skynetConnection) {
-          skynetConnection.on('message', function (message) {
-            if (message.topic !== 'debug') {
-              return;
-            }
-
-            if (message.payload) {
-              debugErrorEmitter(message.payload)
-            }
-          });
-        });
-
-        skynetService.getSkynetConnection().then(function (skynetConnection) {
-          skynetConnection.on('message', function (message) {
-            if (message.topic !== 'device-status') {
-              return;
-            }
-            if($scope.flow){
-              flowRenderer.render($scope.flow);
-            }
-          });
-        });
-
         flowRenderer.on('nodeSelected', function (flowNode) {
           if (!$scope.flow) return;
           $scope.flow.selectedLink = null;
@@ -102,17 +69,15 @@ angular.module('octobluApp')
         });
 
         flowRenderer.on('nodeButtonClicked', function (flowNode) {
-          skynetService.getSkynetConnection().then(function (skynetConnection) {
-            var msg = {
-              devices: [$scope.flow.flowId],
-              topic: 'button',
-              qos: 0,
-              payload: {
-                from: flowNode.id
-              }
-            };
-            skynetConnection.message(msg);
-          });
+          var msg = {
+            devices: [$scope.flow.flowId],
+            topic: 'button',
+            qos: 0,
+            payload: {
+              from: flowNode.id
+            }
+          };
+          MeshbluHttpService.message(msg, _.noop);
         });
 
         $scope.addNode = function(data, event){

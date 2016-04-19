@@ -1,5 +1,5 @@
 var sut, $httpBackend, fakeUUIDService, $q, $rootScope;
-describe('FlowNodeTypeService', function () {
+xdescribe('FlowNodeTypeService', function () {
 
   beforeEach(function () {
     module('octobluApp');
