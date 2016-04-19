@@ -1,19 +1,16 @@
 describe 'ProfileService', ->
   beforeEach ->
-    @skynet = {}
-    @skynetService = {}
     @cookies = {}
 
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', @cookies
-      $provide.value 'skynetService', @skynetService
       return # !important
 
-    inject ($q, $httpBackend, $rootScope) =>
+    inject ($q, $httpBackend, $rootScope, MeshbluHttpService) =>
       @q = $q
-      @skynetService.getSkynetConnection = => @q.when(@skynet)
       @httpBackend = $httpBackend
       @rootScope = $rootScope
+      @MeshbluHttpService = MeshbluHttpService
 
     inject (ProfileService) =>
       @sut = ProfileService
@@ -26,27 +23,27 @@ describe 'ProfileService', ->
       beforeEach ->
         @cookies.meshblu_auth_uuid  = '3musket'
         @cookies.meshblu_auth_token  = 'teers'
-        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields()
         @sut.generateSessionToken()
         @rootScope.$digest()
 
       it 'should call generateAndStoreToken on the meshblu', ->
-        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: '3musket', token: 'teers'
+        expect(@MeshbluHttpService.generateAndStoreToken).to.have.been.calledWith '3musket'
 
     describe 'with those cookies', ->
       beforeEach ->
         @cookies.meshblu_auth_uuid  = 'milky'
         @cookies.meshblu_auth_token  = 'way'
-        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields()
         @sut.generateSessionToken()
         @rootScope.$digest()
 
       it 'should call generateAndStoreToken on the meshblu', ->
-        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'milky', token: 'way'
+        expect(@MeshbluHttpService.generateAndStoreToken).to.have.been.calledWith 'milky'
 
     describe 'when there is an error', ->
       beforeEach ->
-        @skynet.generateAndStoreToken = sinon.stub().yields()
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields new Error()
         @sut.generateSessionToken().catch (@error) =>
         @rootScope.$digest()
 
@@ -55,7 +52,7 @@ describe 'ProfileService', ->
 
     describe 'when there is not an error', ->
       beforeEach ->
-        @skynet.generateAndStoreToken = sinon.stub().yields(uuid: 'this', token: 'that')
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null
         @sut.generateSessionToken().catch (@error) =>
         @rootScope.$digest()
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('ChangePasswordController', function ($rootScope, $scope, AuthService, NotifyService, skynetService, deviceService, $mdDialog) {
+.controller('ChangePasswordController', function ($rootScope, $scope, AuthService, NotifyService, deviceService, $mdDialog) {
 
   $scope.cancel = function() {
     $mdDialog.hide();

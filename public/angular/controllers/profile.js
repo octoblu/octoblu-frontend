@@ -1,16 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, skynetService, deviceService, ThingService) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, deviceService, ThingService) {
   $scope.loadingTokens = true;
   var refreshDevice = function(){
-    skynetService.getSkynetConnection().then(function (skynetConnection) {
-      skynetConnection.whoami({}, function(user) {
-        $scope.loadingTokens = false;
-        $scope.device = user;
-        $scope.tokens = user.meshblu.tokens;
-        $scope.$digest();
-      });
+    MeshbluHttpService.whoami(function(error, user) {
+      $scope.loadingTokens = false;
+      $scope.device = user;
+      $scope.tokens = user.meshblu.tokens;
+      $scope.$digest();
     });
   };
 

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -65,7 +65,7 @@ angular.module('octobluApp')
     $scope.deviceOnline = status;
   };
 
-  var checkDeviceStatus = function(skynetConnection, flowId) {
+  var checkDeviceStatus = function(flowId) {
     MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid}, function(error, result) {
       _.each($scope.flows, function(flow) {
         var device = _.findWhere(result, {uuid: flow.flowId});
@@ -128,9 +128,7 @@ angular.module('octobluApp')
       }
     });
 
-    skynetService.getSkynetConnection().then(function (skynetConnection) {
-      checkDeviceStatus(skynetConnection, activeFlow.flowId);
-    });
+    checkDeviceStatus(activeFlow.flowId);
   });
 
   function escapeLargeValue(value){

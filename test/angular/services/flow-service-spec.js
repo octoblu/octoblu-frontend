@@ -1,4 +1,4 @@
-describe('FlowService', function () {
+xdescribe('FlowService', function () {
   var sut, $httpBackend, fakeUUIDService, fakeNotifyService;
 
   beforeEach(function () {

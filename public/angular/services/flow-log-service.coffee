@@ -1,5 +1,4 @@
-angular.module("octobluApp").factory "FlowLogService",
-(skynetService, FLOW_LOGGER_UUID, $cookies) ->
+angular.module("octobluApp").factory "FlowLogService", (MeshbluHttpService, FLOW_LOGGER_UUID, $cookies) ->
   class FlowLogService
     constructor: (flowUuid, workflow, deploymentUuid) ->
       @flowUuid = flowUuid
@@ -30,4 +29,4 @@ angular.module("octobluApp").factory "FlowLogService",
           state: state
           message: logMessage
 
-      skynetService.sendMessage message
+      MeshbluHttpService.message message, _.noop

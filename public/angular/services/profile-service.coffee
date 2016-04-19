@@ -1,36 +1,35 @@
 class ProfileService
-  constructor: (skynetService, $cookies, $q) ->
-    @skynetPromise = skynetService.getSkynetConnection()
+  constructor: (MeshbluHttpService, $cookies, $q) ->
+    @MeshbluHttpService = MeshbluHttpService
     @cookies       = $cookies
     @q             = $q
 
   update: (firstName, lastName, email, optInEmail) =>
     deferred = @q.defer()
 
-    @skynetPromise
-      .then (connection) =>
-        query =
-          uuid: @cookies.meshblu_auth_uuid
-          octoblu:
-            firstName: firstName
-            lastName: lastName
-            email: email
-            optInEmail: optInEmail?
-            termsAcceptedAt: new Date()
+    query =
+      uuid: @cookies.meshblu_auth_uuid
 
-        connection.update query, =>
-          deferred.resolve()
-      .catch deferred.reject
+    data =
+      octoblu:
+        firstName: firstName
+        lastName: lastName
+        email: email
+        optInEmail: optInEmail?
+        termsAcceptedAt: new Date()
+
+    @MeshbluHttpService.update query, data, (error) =>
+      return deferred.reject(error) if error?
+      deferred.resolve()
 
     deferred.promise
 
   generateSessionToken: =>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.generateAndStoreToken uuid: @cookies.meshblu_auth_uuid, token: @cookies.meshblu_auth_token, (data) =>
-        return deferred.reject(new Error('Unable to generate a token')) unless data?
-        deferred.resolve data
+    @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, name: 'app.octoblu.com', (error, data) =>
+      return deferred.reject(error) if error?
+      deferred.resolve data
 
     deferred.promise
 
