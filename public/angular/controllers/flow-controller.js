@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -24,11 +24,10 @@ angular.module('octobluApp')
   });
 
   var createFlowSubscriptions = function(flowId){
-    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
-    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'configure.received'}, _.noop);
-    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'broadcast.sent'}, _.noop);
-    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'configure.sent'}, _.noop);
-    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'broadcast.received'}, _.noop);
+    async.series([
+      async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: $cookies.meshblu_auth_uuid, types: ['broadcast.received', 'configure.received']}),
+      async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: flowId, types: ['broadcast.sent', 'configure.sent', 'broadcast.received']})
+    ]);
   };
 
   function updateFlowDeviceImmediately(data) {
@@ -107,30 +106,30 @@ angular.module('octobluApp')
     $scope.setActiveFlow(activeFlow);
     refreshFlows();
 
+    createFlowSubscriptions(activeFlow.flowId);
+    deadManSwitch(activeFlow.flowId);
+
+    FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
+      updateFlowDevice(message.data);
+    });
+
+    FirehoseService.on('**.' + activeFlow.flowId, function(message){
+      var data = message.data;
+      if (data.topic === 'message-batch') {
+        if (data.payload) {
+          BatchMessageService.parseMessages(data.payload.messages, $scope);
+        }
+      }
+
+      if (data.topic === 'device-status') {
+        if (data.payload) {
+          setDeviceStatus(data.payload.online);
+        }
+      }
+    });
+
     skynetService.getSkynetConnection().then(function (skynetConnection) {
-
-      createFlowSubscriptions($stateParams.flowId);
-      deadManSwitch($stateParams.flowId);
-      checkDeviceStatus(skynetConnection, $stateParams.flowId);
-
-      FirehoseService.on('configure.sent.' + $stateParams.flowId, function(message){
-        updateFlowDevice(message.data);
-      });
-
-      FirehoseService.on('**.' + $stateParams.flowId, function(message){
-        var data = message.data;
-        if (data.topic === 'message-batch') {
-          if (data.payload) {
-            BatchMessageService.parseMessages(data.payload.messages, $scope);
-          }
-        }
-
-        if (data.topic === 'device-status') {
-          if (data.payload) {
-            setDeviceStatus(data.payload.online);
-          }
-        }
-      });
+      checkDeviceStatus(skynetConnection, activeFlow.flowId);
     });
   });
 

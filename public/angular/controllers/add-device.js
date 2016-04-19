@@ -1,4 +1,3 @@
-
 angular.module('octobluApp')
 .controller('addDeviceController', function ($scope, $state, $stateParams, NodeTypeService, deviceService, AuthService) {
   'use strict';

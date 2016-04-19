@@ -1,11 +1,13 @@
 class ThingService
-  constructor: ($q, skynetService, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT) ->
+  constructor: ($q, skynetService, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MeshbluHttpService, $cookies) ->
     @skynetPromise  = skynetService.getSkynetConnection()
     @q = $q
+    @cookies = $cookies
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @MeshbluHttp = MeshbluHttp
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
+    @MeshbluHttpService = MeshbluHttpService
 
   addLogo: (data) =>
     return _.clone data unless data?.type?
@@ -85,7 +87,6 @@ class ThingService
     devices = _.sortBy devices, 'uuid'
     _.union everything, users, devices
 
-
   _updateWhitelistOnRows: (rows, whitelistName, uuid) =>
     # _updateWhitelistOnRows could do in place modifications
     # to rows. Might be much faster, so look here if it's slow
@@ -100,49 +101,52 @@ class ThingService
   deleteThing: (device) =>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.unregister uuid: device.uuid, =>
-        deferred.resolve()
+    @MeshbluHttpService.unregister device.uuid, (error) =>
+      if error?
+        console.error "Error unregistering: #{device.uuid}", error.stack()
+        deferred.reject error
+        return
+
+      deferred.resolve()
 
     deferred.promise
 
   generateSessionToken: (device) =>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.generateAndStoreToken uuid: device.uuid, (result) =>
-        if result?.error?
-          console.error "Error generating session token: #{device.uuid}", result?.error
-          deferred.reject result?.error || 'Unknown Error'
-          return
-        deferred.resolve result.token
+    @MeshbluHttpService.generateAndStoreToken device.uuid, (error, result) =>
+      if error?
+        console.error "Error generating session token: #{device.uuid}", error.stack()
+        deferred.reject error
+        return
+      deferred.resolve result.token
 
     deferred.promise
 
-  getThing: (query={}) =>
+  getThing: ({uuid}) =>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.devices query, (result={}) =>
-        return deferred.reject result.error if result.error?
-        thing = _.first result.devices
-        thing = @addLogo thing
-        deferred.resolve thing
+    @MeshbluHttpService.device uuid, (error, thing) =>
+      return deferred.reject error if error?
+      thing = @addLogo thing
+      deferred.resolve thing
 
     deferred.promise
 
   getThings: (query={})=>
     deferred = @q.defer()
 
-    @skynetPromise.then (connection) =>
-      connection.mydevices query, (results) =>
-        [users, devices] = _.partition results.devices, type: 'octoblu:user'
+    query = _.clone query
+    query.owner = @cookies.meshblu_auth_uuid
+    @MeshbluHttpService.devices query, (error, results) =>
+      return deferred.reject error if error?
+      [users, devices] = _.partition results, type: 'octoblu:user'
 
-        things = _.union(users, devices)
+      things = _.union(users, devices)
 
-        things = _.map things, @addLogo
+      things = _.map things, @addLogo
 
-        deferred.resolve things
+      deferred.resolve things
 
     deferred.promise
 
@@ -156,13 +160,12 @@ class ThingService
 
   updateDevice: (device={}) =>
     deferred = @q.defer()
-    @skynetPromise.then (connection) =>
-      connection.update device, (response) =>
-        if response?.error?
-          console.error "Error updating device: #{device.uuid}", response.error
-          deferred.reject response?.error || 'Unknown Error'
-          return
-        deferred.resolve()
+    @MeshbluHttpService.update device.uuid, device, (error, response) =>
+      if error?
+        console.error "Error updating device: #{device.uuid}", error.stack()
+        deferred.reject error
+        return
+      deferred.resolve()
 
     deferred.promise
 

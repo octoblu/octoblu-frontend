@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
+    .service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL, UserSubscriptionService) {
         var myDevices, skynetPromise, _onDeviceChangeCallbacks, _onDeviceMessageCallbacks, subscribeToDevice, getMyDevices, myDevicesPromise;
 
         _onDeviceChangeCallbacks = [];
@@ -9,28 +9,28 @@ angular.module('octobluApp')
         skynetPromise = skynetService.getSkynetConnection();
 
         getMyDevices = function(){
-          return skynetPromise.then(function(skynetConnection){
-            var defer = $q.defer();
-            skynetConnection.mydevices({}, function (result) {
-                var devices = _.cloneDeep(result.devices);
-                devices = _.map(devices, addDevice);
-                devices = _.map(devices, addLogoUrl);
-                myDevices = devices;
-                defer.resolve(myDevices);
-            });
-            return defer.promise;
+          var defer = $q.defer();
+          MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid}, function (error, devices) {
+            devices = _.map(devices, addDevice);
+            devices = _.map(devices, addLogoUrl);
+            myDevices = devices;
+            defer.resolve(myDevices);
           });
+          return defer.promise;
         };
 
         myDevicesPromise = getMyDevices();
 
         function addDevice(device) {
-          MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
-          MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'configure.sent'}, _.noop);
-          return device;
+          UserSubscriptionService.createSubscriptions({emitterUuid: device.uuid, types: ['broadcast.sent', 'configure.sent']}, function(){
+            return device;
+          });
         }
 
         function addLogoUrl(data){
+          if (!data) {
+            return data;
+          }
           if(data.logo){
             return data;
           }
@@ -41,7 +41,7 @@ angular.module('octobluApp')
               return data;
             }
           }
-          if(data && data.type){
+          if(data.type){
               var type = data.type.replace('octoblu:', 'device:');
               data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
           } else {
@@ -75,11 +75,10 @@ angular.module('octobluApp')
                 return;
             }
 
-            MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
-            MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
-            // if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
-            //   skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
-            // }
+            async.series([
+              async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: $cookies.meshblu_auth_uuid, types: ['broadcast.received']}),
+              async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: device.uuid, types: ['broadcast.sent']})
+            ]);
         };
 
         var service = {
@@ -185,15 +184,15 @@ angular.module('octobluApp')
 
             registerDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
-                    defer = $q.defer();
+                defer = $q.defer();
 
-                skynetPromise.then(function (skynetConnection) {
-                    device.owner = skynetConnection.options.uuid;
+                device.owner = $cookies.meshblu_auth_uuid
 
-                    skynetConnection.register(device, function (result) {
-                        myDevices.push(result);
-                        defer.resolve(result);
-                    });
+                MeshbluHttpService.register(device, function (error, result) {
+                  if (!error) {
+                    myDevices.push(result);
+                    defer.resolve(result);
+                  }
                 });
                 return defer.promise;
             },
@@ -223,21 +222,21 @@ angular.module('octobluApp')
             },
 
             updateDevice: function (options) {
-                var device = _.omit(options, reservedProperties),
-                    defer = $q.defer();
+              var device = _.omit(options, reservedProperties),
+              defer = $q.defer();
 
-                skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.update(device, function (data) {
-                        if (data && data.error) {
-                          defer.reject('Unable to claim device');
-                          return;
-                        }
+              MeshbluHttpService.update(device.uuid, device, function (error) {
+                if (error) {
+                  defer.reject('Unable to update device');
+                  return;
+                }
 
-                        defer.resolve(device);
-                    });
+                MeshbluHttpService.device(device.uuid, function(error, device){
+                  defer.resolve(device);
                 });
+              });
 
-                return defer.promise;
+              return defer.promise;
             },
 
             clearCache: function() {
