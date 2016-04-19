@@ -82,6 +82,12 @@ angular.module 'octobluApp'
       category: 'Octo-Sites'
     },
     {
+      title: 'Freeboard Dashboard'
+      link: 'https://meshblu-connectors.readme.io/docs/freeboard'
+      summary: 'An Octoblu hosted freeboard dashboard.'
+      category: 'Octo-Sites'
+    },
+    {
       title: 'Octoblu Blog'
       link: 'https://www.citrix.com/blogs/product/octoblu-2/'
       summary: 'Stay up-to-date with Octoblu.'
@@ -98,6 +104,12 @@ angular.module 'octobluApp'
       title: 'Blu - Android'
       link: 'https://play.google.com/store/apps/details?id=com.octoblu.blu'
       summary: 'Blu for Android provides a dead simple way for Octoblu users to trigger flows created in the Octoblu designer. With a simple click of a button, you can do just about anything.'
+      category: 'Mobile Apps'
+    },
+    {
+      title: 'BeaconBlu'
+      link: 'https://meshblu-connectors.readme.io/docs/beaconblu'
+      summary: 'Use your phone to watch for BLE beacons in Octoblu.'
       category: 'Mobile Apps'
     },
     {
