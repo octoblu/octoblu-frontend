@@ -14,6 +14,7 @@ class FlowGridController
 
   getFlows: () =>
     @FlowService.getAllFlows().then (flows) =>
+      flows.reverse()
       return @scope.flows = flows unless @scope.limit?
       @scope.flows = _.take flows, @scope.limit
 
