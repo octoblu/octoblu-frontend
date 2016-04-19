@@ -44,6 +44,11 @@ angular.module('octobluApp')
 
         return {
             getSkynetConnection: function () {
+                try {
+                  throw new Error('DEPRECATION WARNING');
+                } catch (e) {
+                  console.log(e.stack);
+                }
                 return skynetPromise.then(function (skynetConnection) {
                     return skynetConnection;
                 });

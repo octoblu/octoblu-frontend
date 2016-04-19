@@ -1,19 +1,17 @@
 class IntercomUserService
-  constructor: (skynetService, $intercom, $q) ->
-    @skynetPromise = skynetService.getSkynetConnection()
+  constructor: ($cookies, $intercom, $q, MeshbluHttpService) ->
+    @cookies = $cookies
     @intercom = $intercom
     @q = $q
+    @MeshbluHttpService = MeshbluHttpService
 
   updateIntercom: =>
     deferred = @q.defer()
-    @skynetPromise
-      .then (connection) =>
-        connection.whoami {}, (userDevice) =>
-          return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
-          @setupIntercom userDevice
-          deferred.resolve()
-      .catch (error) =>
-        deferred.reject(new Error('meshblu connection error'))
+    @MeshbluHttpService.device @cookies.meshblu_auth_uuid, (error, userDevice) =>
+      return deferred.reject(error) if error?
+      return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
+      @setupIntercom userDevice
+      deferred.resolve()
     return deferred.promise
 
   setupIntercom: (userDevice) =>

@@ -75,13 +75,11 @@ angular.module('octobluApp')
                 return;
             }
 
-            skynetPromise.then(function (skynetConnection) {
-              MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
-              MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
-              // if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
-              //   skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
-              // }
-            });
+            MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
+            MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
+            // if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
+            //   skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+            // }
         };
 
         var service = {
