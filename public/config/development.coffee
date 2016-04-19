@@ -15,6 +15,10 @@ angular.module('octobluApp')
   .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:55871"
   .constant 'MESHBLU_HOST', "#{window.location.hostname}"
   .constant 'MESHBLU_PORT', '3000'
+  .constant 'MESHBLU_PROTOCOL', 'http'
+  .constant 'MESHBLU_FIREHOSE_HOSTNAME', "#{window.location.hostname}"
+  .constant 'MESHBLU_FIREHOSE_PORT', '3000'
+  .constant 'MESHBLU_FIREHOSE_PROTOCOL', 'http'
   .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
   .constant 'OCTOBLU_API_URL', "http://#{window.location.hostname}:8080"
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'

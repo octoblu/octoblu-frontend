@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $rootScope, $http, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
+    .service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, skynetService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL) {
         var myDevices, skynetPromise, _onDeviceChangeCallbacks, _onDeviceMessageCallbacks, subscribeToDevice, getMyDevices, myDevicesPromise;
 
         _onDeviceChangeCallbacks = [];
@@ -25,12 +25,9 @@ angular.module('octobluApp')
         myDevicesPromise = getMyDevices();
 
         function addDevice(device) {
-            skynetPromise.then(function (skynetConnection) {
-              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
-                skynetConnection.subscribe({uuid: device.uuid, types: ['received', 'broadcast']});
-              }
-            });
-            return device;
+          MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
+          MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'configure.sent'}, _.noop);
+          return device;
         }
 
         function addLogoUrl(data){
@@ -79,9 +76,11 @@ angular.module('octobluApp')
             }
 
             skynetPromise.then(function (skynetConnection) {
-              if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
-                skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
-              }
+              MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
+              MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: device.uuid, type: 'broadcast.sent'}, _.noop);
+              // if (!_.findWhere(skynetConnection.subscriptions, {uuid: device.uuid})) {
+              //   skynetConnection.subscribe({uuid: device.uuid, token: device.token, types: ['received', 'broadcast']});
+              // }
             });
         };
 

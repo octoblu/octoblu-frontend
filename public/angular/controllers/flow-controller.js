@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -17,10 +17,18 @@ angular.module('octobluApp')
     $scope.flowSelectorHeight = $($window).height() - 100;
   });
 
-  var subscribeToFlow = function(skynetConnection, flowId){
-    skynetConnection.subscribe({uuid: flowId, topic: 'pulse', types: ['received', 'broadcast']});
-    skynetConnection.subscribe({uuid: flowId, topic: 'message-batch', types: ['broadcast']});
-    deadManSwitch(skynetConnection, flowId);
+  FirehoseService.connect({uuid: $cookies.meshblu_auth_uuid}, function(error){
+    if (error) {
+      NotifyService.notify('Unable to connect to the Firehose');
+    }
+  });
+
+  var createFlowSubscriptions = function(flowId){
+    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'broadcast.received'}, _.noop);
+    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: $cookies.meshblu_auth_uuid, type: 'configure.received'}, _.noop);
+    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'broadcast.sent'}, _.noop);
+    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'configure.sent'}, _.noop);
+    MeshbluHttpService.createSubscription({subscriberUuid: $cookies.meshblu_auth_uuid, emitterUuid: flowId, type: 'broadcast.received'}, _.noop);
   };
 
   function updateFlowDeviceImmediately(data) {
@@ -35,12 +43,12 @@ angular.module('octobluApp')
 
   if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);
 
-  var deadManSwitch = function(skynetConnection, flowId) {
+  var deadManSwitch = function(flowId) {
     if (!$scope.documentHidden) {
-      skynetConnection.message({devices: [flowId], topic: 'subscribe:pulse'});
+      MeshbluHttpService.message({devices: [flowId], topic: 'subscribe:pulse'}, _.noop);
     }
     _.delay(function() {
-      deadManSwitch(skynetConnection, flowId);
+      deadManSwitch(flowId);
     }, 60 * 1000)
   };
 
@@ -59,9 +67,9 @@ angular.module('octobluApp')
   };
 
   var checkDeviceStatus = function(skynetConnection, flowId) {
-    skynetConnection.mydevices({}, function(result){
+    MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid}, function(error, result) {
       _.each($scope.flows, function(flow) {
-        var device = _.findWhere(result.devices, {uuid: flow.flowId});
+        var device = _.findWhere(result, {uuid: flow.flowId});
         if (device) {
           flow.online = device.online;
           if (device.uuid === flowId) {
@@ -101,29 +109,26 @@ angular.module('octobluApp')
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
 
-      subscribeToFlow(skynetConnection, $stateParams.flowId);
+      createFlowSubscriptions($stateParams.flowId);
+      deadManSwitch($stateParams.flowId);
       checkDeviceStatus(skynetConnection, $stateParams.flowId);
 
-      skynetConnection.on('config', function(data){
-        if(data.uuid !== $stateParams.flowId) {
-          return;
-        }
-        updateFlowDevice(data);
+      FirehoseService.on('configure.sent.' + $stateParams.flowId, function(message){
+        updateFlowDevice(message.data);
       });
 
-      skynetConnection.on('message', function (message) {
-        if(message.fromUuid !== $stateParams.flowId) {
-          return;
-        }
-
-        if (message.topic === 'message-batch') {
-          if (message.payload) {
-            BatchMessageService.parseMessages(message.payload.messages, $scope);
+      FirehoseService.on('**.' + $stateParams.flowId, function(message){
+        var data = message.data;
+        if (data.topic === 'message-batch') {
+          if (data.payload) {
+            BatchMessageService.parseMessages(data.payload.messages, $scope);
           }
         }
 
-        if (message.topic === 'device-status') {
-          setDeviceStatus(message.payload.online);
+        if (data.topic === 'device-status') {
+          if (data.payload) {
+            setDeviceStatus(data.payload.online);
+          }
         }
       });
     });
@@ -562,5 +567,4 @@ angular.module('octobluApp')
   $scope.$watch('activeFlow.hash', compareFlowHash);
   $scope.$watchCollection('activeFlow.nodes', watchNodes);
   $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
-
 });
