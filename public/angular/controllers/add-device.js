@@ -12,7 +12,7 @@ angular.module('octobluApp')
   .then(function (nodeType) {
     $scope.nodeType  = nodeType;
     $scope.fragments = [{linkTo: 'material.things', label: 'All Things'}, {label: "Add " + nodeType.name}];
-    return deviceService.getUnclaimed($scope.nodeType.skynet.type);
+    // return deviceService.getUnclaimed($scope.nodeType.skynet.type);
   })
   .then(function (unclaimedDevices) {
     _.each(unclaimedDevices, function(device){

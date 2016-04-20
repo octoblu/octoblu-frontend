@@ -113,12 +113,12 @@ class ThingService
   generateSessionToken: (device) =>
     deferred = @q.defer()
 
-    @MeshbluHttpService.generateAndStoreToken device.uuid, (error, result) =>
+    @MeshbluHttpService.generateAndStoreToken device.uuid, {tag: 'app.octoblu.com'}, (error, token) =>
       if error?
         console.error "Error generating session token: #{device.uuid}", error.stack()
         deferred.reject error
         return
-      deferred.resolve result.token
+      deferred.resolve token
 
     deferred.promise
 

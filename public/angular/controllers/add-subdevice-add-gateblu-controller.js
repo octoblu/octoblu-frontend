@@ -8,15 +8,15 @@ angular.module('octobluApp')
           $scope.nodeType = nodeType;
         });
 
-        deviceService.getUnclaimed('device:gateblu').then(function(unclaimedDevices){
-          _.each(unclaimedDevices, function(device){
-            device.label = device.uuid + ' (device:gateblu)';
-          });
-
-          $scope.newDevice.unclaimedDevices = unclaimedDevices;
-          $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
-          $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
-        });
+        // deviceService.getUnclaimed('device:gateblu').then(function(unclaimedDevices){
+        //   _.each(unclaimedDevices, function(device){
+        //     device.label = device.uuid + ' (device:gateblu)';
+        //   });
+        //
+        //   $scope.newDevice.unclaimedDevices = unclaimedDevices;
+        //   $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
+        //   $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
+        // });
 
         $scope.addDevice = function() {
           var deviceOptions, promise;

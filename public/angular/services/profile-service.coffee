@@ -27,7 +27,7 @@ class ProfileService
   generateSessionToken: =>
     deferred = @q.defer()
 
-    @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, name: 'app.octoblu.com', (error, data) =>
+    @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, {tag: 'app.octoblu.com'}, (error, token) =>
       return deferred.reject(error) if error?
       deferred.resolve data
 
