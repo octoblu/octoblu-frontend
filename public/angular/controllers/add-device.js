@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addDeviceController', function ($scope, $state, $stateParams, ThingService, NodeTypeService, AuthService) {
+.controller('addDeviceController', function ($scope, $cookies, $state, $stateParams, ThingService, NodeTypeService, AuthService) {
   'use strict';
 
   $scope.newDevice = {
@@ -40,7 +40,6 @@ angular.module('octobluApp')
       if($scope.nodeType.payloadOnly){
         deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;
       }
-
       if($scope.newDevice.action === 'claimExisting'){
         deviceOptions.uuid = $scope.existingDevice.uuid;
         deviceOptions.token = $scope.existingDevice.token;
