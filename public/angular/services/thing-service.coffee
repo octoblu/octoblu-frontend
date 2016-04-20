@@ -156,6 +156,16 @@ class ThingService
       deferred.resolve {}
     deferred.promise
 
+  registerThing: (data) =>
+    deferred = @q.defer()
+
+    data.owner = @cookies.meshblu_auth_uuid
+
+    @MeshbluHttpService.register data, (error, result) =>
+      return deferred.reject(error) if error?
+      deferred.resolve result
+    return deferred.promise
+
   updateDevice: (device={}) =>
     deferred = @q.defer()
     @MeshbluHttpService.update device.uuid, device, (error, response) =>

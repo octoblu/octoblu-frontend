@@ -7,9 +7,6 @@ class ProfileService
   update: (firstName, lastName, email, optInEmail) =>
     deferred = @q.defer()
 
-    query =
-      uuid: @cookies.meshblu_auth_uuid
-
     data =
       octoblu:
         firstName: firstName
@@ -18,7 +15,7 @@ class ProfileService
         optInEmail: optInEmail?
         termsAcceptedAt: new Date()
 
-    @MeshbluHttpService.update query, data, (error) =>
+    @MeshbluHttpService.update @cookies.meshblu_auth_uuid, data, (error) =>
       return deferred.reject(error) if error?
       deferred.resolve()
 
@@ -29,7 +26,7 @@ class ProfileService
 
     @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, {tag: 'app.octoblu.com'}, (error, token) =>
       return deferred.reject(error) if error?
-      deferred.resolve data
+      deferred.resolve token
 
     deferred.promise
 

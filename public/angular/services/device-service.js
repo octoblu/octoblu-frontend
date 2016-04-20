@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-.service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL, UserSubscriptionService) {
+.service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MESHBLU_PROTOCOL, UserSubscriptionService) {
   var myDevices, _onDeviceChangeCallbacks, _onDeviceMessageCallbacks, subscribeToDevice, getMyDevices, myDevicesPromise;
 
   _onDeviceChangeCallbacks = [];
@@ -147,8 +147,14 @@ angular.module('octobluApp')
 
     getDeviceByUUIDAndToken: function(uuid, token){
       var deferred = $q.defer();
-
-      MeshbluHttpService.device(uuid, function(error, device){
+      var meshbluHttp = new MeshbluHttp({
+          hostname: MESHBLU_HOST,
+          port: MESHBLU_PORT,
+          protocoL: MESHBLU_PROTOCOL,
+          uuid: uuid,
+          token: token
+        });
+      meshbluHttp.device(uuid, function(error, device){
         if (error) {
           return deferred.reject(error)
         }
@@ -162,39 +168,6 @@ angular.module('octobluApp')
       return service.getDevices(true).then(function(){
         return undefined;
       });
-    },
-
-    getGateways: function(){
-      return service.getDevices().then(function(devices){
-        return _.where(devices, {type: 'gateway'});
-      });
-    },
-
-    getOnlineGateblus: function(){
-      return service.getGateblus().then(function(devices){
-        return _.where(devices, {online: true});
-      });
-    },
-
-    getGateblus: function(){
-      return service.getDevices().then(function(devices){
-        return _.where(devices, {type: 'device:gateblu'});
-      });
-    },
-
-    registerDevice: function (options) {
-      var device = _.omit(options, reservedProperties),
-      defer = $q.defer();
-
-      device.owner = $cookies.meshblu_auth_uuid
-
-      MeshbluHttpService.register(device, function (error, result) {
-        if (!error) {
-          myDevices.push(result);
-          defer.resolve(result);
-        }
-      });
-      return defer.promise;
     },
 
     claimDevice: function (options) {

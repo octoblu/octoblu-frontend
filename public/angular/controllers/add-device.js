@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('addDeviceController', function ($scope, $state, $stateParams, NodeTypeService, deviceService, AuthService) {
+.controller('addDeviceController', function ($scope, $state, $stateParams, ThingService, NodeTypeService, AuthService) {
   'use strict';
 
   $scope.newDevice = {
@@ -12,7 +12,6 @@ angular.module('octobluApp')
   .then(function (nodeType) {
     $scope.nodeType  = nodeType;
     $scope.fragments = [{linkTo: 'material.things', label: 'All Things'}, {label: "Add " + nodeType.name}];
-    // return deviceService.getUnclaimed($scope.nodeType.skynet.type);
   })
   .then(function (unclaimedDevices) {
     _.each(unclaimedDevices, function(device){
@@ -47,9 +46,9 @@ angular.module('octobluApp')
         deviceOptions.token = $scope.existingDevice.token;
         deviceOptions.owner = currentUser.skynet.uuid;
         deviceOptions.isChanged = true;
-        promise = deviceService.claimDevice(deviceOptions);
+        promise = ThingService.claimThing(deviceOptions, {uuid: $cookies.meshblu_auth_uuid}, deviceOptions);
       } else {
-        promise = deviceService.registerDevice(deviceOptions);
+        promise = ThingService.registerThing(deviceOptions);
       }
 
       promise.then(function (data) {

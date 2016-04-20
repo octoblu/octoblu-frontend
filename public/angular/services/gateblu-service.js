@@ -3,12 +3,12 @@ angular.module('octobluApp')
   'use strict';
   var self = this;
 
-  var registerDevice = function(options) {
-    return deviceService.registerDevice(options);
+  var registerDevice = function(data) {
+    return ThingService.registerThing(data);
   };
 
-  var updateDevice = function(options) {
-    return deviceService.updateDevice(options);
+  var updateDevice = function(data) {
+    return ThingService.updateDevice(data);
   };
 
   self.updateGateblu = function(results, logger){
@@ -20,7 +20,7 @@ angular.module('octobluApp')
     gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
     logger.registerDeviceEnd(device.uuid, gateblu.uuid, device.connector);
     logger.updateGatebluBegin(device.uuid, gateblu.uuid, device.connector);
-    return deviceService.updateDevice(gateblu);
+    return ThingService.updateDevice(gateblu);
   };
 
   self.waitForDeviceToHaveOptionsSchema = function(device, logger){
@@ -72,7 +72,7 @@ angular.module('octobluApp')
 
     return deferred.promise;
   };
-  
+
   self.addDevice = function(gatebluId, nodeType, logger){
     var device;
     var userUuid = $cookies.meshblu_auth_uuid;
@@ -93,7 +93,7 @@ angular.module('octobluApp')
         configureAsWhitelist: [],
         discoverAsWhitelist: []
       }),
-      deviceService.getDeviceByUUID(gatebluId)
+      ThingService.getThing({uuid: gatebluId})
     ])
   };
 
@@ -115,7 +115,7 @@ angular.module('octobluApp')
         configureAsWhitelist: [],
         discoverAsWhitelist: []
       }),
-      deviceService.getDeviceByUUID(gatebluId)
+      ThingService.getThing({uuid: gatebluId})
     ])
   };
 
