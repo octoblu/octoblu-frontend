@@ -5,16 +5,25 @@ class UserSubscriptionService
     # only create the subscriptions one at a time
     @createSubscriptionQueue = async.queue (task, callback) =>
       @_refreshCache =>
-        @_createSubscriptionForType task, callback
+        @timeout ?= setTimeout =>
+          delete @subscriptions
+          delete @timeout
+        , 10000
+
+        @_createSubscriptionForType task, =>
+          callback()
 
   createSubscriptions: ({emitterUuid, types}, callback) =>
-    async.each types, async.apply(@_addToQueue, emitterUuid), callback
+    async.each types, async.apply(@_addToQueue, emitterUuid), ->
+    callback()
 
   _createSubscriptionForType: ({emitterUuid, type}, callback) =>
     return callback() if @_subscriptionExists {emitterUuid, type}
     @MeshbluHttpService.createSubscription {@subscriberUuid, emitterUuid, type}, (error) =>
       return callback error if error?
-      delete @subscriptions
+      @subscriptions ?= []
+      @subscriptions.push {@subscriberUuid, emitterUuid, type}
+
       callback()
 
   _subscriptionExists: ({emitterUuid, type}) =>
