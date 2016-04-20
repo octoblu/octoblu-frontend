@@ -31,7 +31,6 @@
       <i class="fa fa-user BluCard-authorIcon"></i>
       {{bluprint.ownerName | characters:25 :true}}
     </span>
-    <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-show="referrer != 'discover'">Edit</a>
-    <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="referrer == 'discover'">Learn More</a>
+    <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-show="referrer == 'edit'">Edit</a>
   </footer>
 </div>

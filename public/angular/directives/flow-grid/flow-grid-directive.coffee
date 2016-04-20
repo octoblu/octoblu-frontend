@@ -9,5 +9,6 @@ angular.module('octobluApp')
     scope: {
       limit: '@'
       showadd: '@'
+      location: '@'
     }
   }

@@ -8,18 +8,35 @@
 .FlowGrid-Add-Flow {
   height: 100%;
   font-size: 50px;
-  background: #568DBA;
+  text-shadow: #568DBA 0px 0px 1px;
+  background: #F3F6F7;
   border: 0;
 
   transition: all 0.3s ease;
   &:hover,
   &:focus {
-    background: darken(#568DBA, 10%);
+    background: lighten(#568DBA, 20%);
   }
 
   i {
-    color: white;
+    color: #F3F6F7;
   }
+}
+
+.FlowGrid-Add-flow-card {
+  .flex-display;
+  .flex-direction(column);
+  .justify-content(space-between);
+
+  position: relative;
+  border: 1px solid #568DBA;
+  width: 250px;
+  height: 200px;
+  margin: 6px;
+  padding: 0;
+
+  background: #F3F6F7;
+  box-shadow: none;
 }
 
 .FlowGrid-Spinner {
