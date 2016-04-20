@@ -29,7 +29,7 @@
   <footer class="BluCard-footer">
     <span>
       <i class="fa fa-user BluCard-authorIcon"></i>
-      {{bluprint.ownerName}}
+      {{bluprint.ownerName | characters:25 :true}}
     </span>
     <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-hide="controller.referrer == 'discover'">Edit</a>
     <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="controller.referrer == 'discover'">Learn More</a>
