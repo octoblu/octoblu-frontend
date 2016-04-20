@@ -296,7 +296,7 @@ describe 'ThingService', ->
   describe '->generateSessionToken', ->
     describe 'when called with a device and meshblu responds with a token', ->
       beforeEach ->
-        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, token: 'has-a'
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, 'has-a'
         _.defer => @rootScope.$digest()
 
         storeResult = (@result) =>
@@ -310,7 +310,7 @@ describe 'ThingService', ->
 
     describe 'when called with a different device', ->
       beforeEach ->
-        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, token: 'sweet'
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, 'sweet'
         _.defer => @rootScope.$digest()
         storeResult = (@result) =>
         @sut.generateSessionToken({uuid: 'sweet-ending'}).then storeResult
