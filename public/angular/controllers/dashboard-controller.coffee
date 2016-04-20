@@ -5,6 +5,7 @@ class DashboardController
 
     @bluprints = []
     @limit = 4
+    @scope.isLoading = true
 
     @fetchBluPrints()
 
@@ -12,6 +13,7 @@ class DashboardController
     @BluprintService.getRecentPublic([], @limit)
       .then (bluprints) =>
         @bluprints = bluprints
+        @scope.isLoading = false
 
   # fetchFeatured: () =>
   #   @BluprintService.featured()

@@ -6,6 +6,7 @@ angular.module 'octobluApp'
       summary: 'Comprehensive documentation for the Designer, Things, and Tools with sample flows.'
       category: 'Docs'
       featured: true
+      icon: "fa fa-book"
     },
     {
       title: 'Octoblu Connectors'
@@ -13,6 +14,7 @@ angular.module 'octobluApp'
       summary: 'Documentation for all plugins and connectors'
       category: 'Docs'
       featured: true
+      icon: "fa fa-book"
     },
     {
       title: 'Octoblu Weekly'
@@ -32,6 +34,7 @@ angular.module 'octobluApp'
       summary: 'Step-by-step walkthroughs using Octoblu\'s platform with your devices.'
       category: 'Tutorials'
       featured: true
+      icon: "fa fa-users"
     },
     {
       title: 'Getting started with Octoblu Video'
@@ -93,6 +96,7 @@ angular.module 'octobluApp'
       summary: 'Stay up-to-date with Octoblu.'
       category: 'Links'
       featured: true
+      icon: "fa fa-newspaper-o"
     },
     {
       title: 'Blu - iOS'

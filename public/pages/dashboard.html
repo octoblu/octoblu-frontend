@@ -19,7 +19,7 @@
         <div class="Dashboard-sectionTitle">Featured Bluprints</div>
         <a ui-sref="material.discover" class="Dashboard-sectionAction">Show All</a>
       </header>
-
+      <spinner class="FlowGrid-Spinner" loading="isLoading" size="large"></spinner>
       <bluprint-grid bluprints="controller.bluprints" ng-hide="isLoading"></bluprint-grid>
     </section>
 
