@@ -17,6 +17,6 @@ class FlowTagsController
 
       { category: category, type: type }
 
-    _.uniq mappedTags, 'type'
+    _.take _.uniq(mappedTags, 'type'), 6
 
 angular.module('octobluApp').controller 'FlowTagsController', FlowTagsController

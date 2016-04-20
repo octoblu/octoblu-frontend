@@ -1,7 +1,7 @@
 <article class="BluCard">
   <main class="BluCard-main">
     <header class="BluCard-header">
-      <a ui-sref="material.flow({flowId: flow.flowId})" class="BluCard-title">{{flow.name}}</a>
+      <a ui-sref="material.flow({flowId: flow.flowId})" class="BluCard-title">{{flow.name | characters:30 :true}}</a>
       <span class="BluCard-status" ng-show="flow.online == false" ng-click="cardController.startFlow()">
         <i class="fa fa-power-off"></i>
       </span>
@@ -17,10 +17,10 @@
       <p class="BluCard-description" ng-show="flow.description">
         {{flow.description | characters:50 :true}}
       </p>
-
-      <flow-tags></flow-tags>
     </div>
   </main>
+
+  <flow-tags></flow-tags>
 
   <footer class="BluCard-footer">
     <button ng-click="cardController.createBluprint()" class="BluCard-action">

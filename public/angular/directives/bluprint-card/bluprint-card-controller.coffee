@@ -8,6 +8,8 @@ class BluprintCardController
 
     @referrer = 'discover' if @state.current.name == 'material.discover'
 
+    @scope.flow = @scope.bluprint.flow
+
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public
     @BluprintService.update bluprint.uuid, bluprint
