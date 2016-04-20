@@ -1,10 +1,10 @@
 <div class="BluCard">
   <main class="BluCard-main">
     <header class="BluCard-header">
-      <a ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid})" class="BluCard-title" ng-hide="controller.referrer == 'discover'">
+      <a ui-sref="material.bluprintDetail({bluprintId: bluprint.uuid})" class="BluCard-title" ng-hide="referrer == 'discover'">
         {{bluprint.name | characters:30 :true}}
       </a>
-      <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" class="BluCard-title" ng-show="controller.referrer == 'discover'">
+      <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" class="BluCard-title" ng-show="referrer == 'discover'">
         {{bluprint.name | characters:30 :true}}
       </a>
 
@@ -31,7 +31,7 @@
       <i class="fa fa-user BluCard-authorIcon"></i>
       {{bluprint.ownerName | characters:25 :true}}
     </span>
-    <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-hide="controller.referrer == 'discover'">Edit</a>
-    <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="controller.referrer == 'discover'">Learn More</a>
+    <a ui-sref="material.bluprintEdit({bluprintId: bluprint.uuid})" ng-show="referrer != 'discover'">Edit</a>
+    <a ui-sref="material.bluprintImport({bluprintId: bluprint.uuid})" ng-show="referrer == 'discover'">Learn More</a>
   </footer>
 </div>

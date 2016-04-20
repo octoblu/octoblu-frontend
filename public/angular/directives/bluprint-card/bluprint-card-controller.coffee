@@ -6,8 +6,7 @@ class BluprintCardController
     @NotifyService = NotifyService
     @BluprintService = BluprintService
 
-    @referrer = 'discover' if @state.current.name == 'material.discover'
-
+    @scope.referrer = 'discover' if @state.current.name == 'material.discover' || @state.current.name == 'material.dashboard'
     @scope.flow = @scope.bluprint.flow
 
   togglePublic: (bluprint) =>
