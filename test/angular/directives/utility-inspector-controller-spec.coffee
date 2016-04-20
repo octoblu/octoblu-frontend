@@ -1,4 +1,4 @@
-describe 'UtilityInspectorController', ->
+xdescribe 'UtilityInspectorController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
@@ -17,8 +17,6 @@ describe 'UtilityInspectorController', ->
         $scope : @scope
 
   describe '->toggleActiveTab', ->
-    beforeEach ->
-
     it 'should exist', ->
       expect(@sut.toggleActiveTab).to.exist
 

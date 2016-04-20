@@ -1,8 +1,5 @@
 describe 'GatebluLogService', ->
   beforeEach ->
-    @skynet = {}
-    @skynetService =
-      sendMessage: sinon.stub()
     @APPLICATION = 'app-octoblu'
     @WORKFLOW = 'device-add-to-gateblu'
     @GATEBLU_LOGGER_UUID = 'd02f42fd-2f61-402e-8491-8efa2c8ad32d'
@@ -10,13 +7,13 @@ describe 'GatebluLogService', ->
     module 'octobluApp', ($provide) =>
       @fakeUUIDService = new FakeUUIDService()
       $provide.value '$cookies', { meshblu_auth_uuid : 'second-assassin'}
-      $provide.value 'skynetService', @skynetService
       $provide.value 'UUIDService', @fakeUUIDService
       $provide.value 'GATEBLU_LOGGER_UUID', @GATEBLU_LOGGER_UUID
       return # !important
 
-    inject (GatebluLogService) =>
+    inject (GatebluLogService, MeshbluHttpService) =>
       @sut = new GatebluLogService()
+      @MeshbluHttpService = MeshbluHttpService
 
 
   FakeUUIDService = () =>
@@ -129,6 +126,7 @@ describe 'GatebluLogService', ->
 
   describe '->logEvents', ->
     beforeEach ->
+      @MeshbluHttpService.message = sinon.stub()
       @userUuid = 'second-assassin'
       @state = 'ghost-appearance'
       @deviceUuid = 'assisted-flight'
@@ -152,6 +150,6 @@ describe 'GatebluLogService', ->
         payload: @payload
 
     it 'should called logEvent with the state and device type', ->
-      firstArg = @skynetService.sendMessage.firstCall.args[0]
+      firstArg = @MeshbluHttpService.message.firstCall.args[0]
       delete firstArg.payload.date
       expect(firstArg).to.deep.equal @message

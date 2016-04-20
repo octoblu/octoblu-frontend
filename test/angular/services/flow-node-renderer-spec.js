@@ -1,4 +1,4 @@
-describe('FlowNodeRenderer', function () {
+xdescribe('FlowNodeRenderer', function () {
   var sut, renderScope, FlowNodeDimensions, skynetService, FlowLinkRenderer;
 
   var nodeType = {

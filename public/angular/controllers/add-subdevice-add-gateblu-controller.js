@@ -1,22 +1,22 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('AddSubdeviceAddGatebluController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, NodeTypeService, skynetService, deviceService, AuthService) {
+    .controller('AddSubdeviceAddGatebluController', function(OCTOBLU_API_URL, $scope, $state, $stateParams, NodeTypeService, deviceService, AuthService) {
         $scope.newDevice = {};
 
         NodeTypeService.getNodeTypeByType('device:gateblu').then(function(nodeType){
           $scope.nodeType = nodeType;
         });
 
-        deviceService.getUnclaimed('device:gateblu').then(function(unclaimedDevices){
-          _.each(unclaimedDevices, function(device){
-            device.label = device.uuid + ' (device:gateblu)';
-          });
-
-          $scope.newDevice.unclaimedDevices = unclaimedDevices;
-          $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
-          $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
-        });
+        // deviceService.getUnclaimed('device:gateblu').then(function(unclaimedDevices){
+        //   _.each(unclaimedDevices, function(device){
+        //     device.label = device.uuid + ' (device:gateblu)';
+        //   });
+        //
+        //   $scope.newDevice.unclaimedDevices = unclaimedDevices;
+        //   $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
+        //   $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
+        // });
 
         $scope.addDevice = function() {
           var deviceOptions, promise;

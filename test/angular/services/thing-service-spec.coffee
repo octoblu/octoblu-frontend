@@ -1,17 +1,16 @@
 describe 'ThingService', ->
   beforeEach ->
-    @skynet = {}
-    @skynetService = {}
-
+    @cookies = {}
     module 'octobluApp', ($provide) =>
-      $provide.value 'skynetService', @skynetService
+      $provide.value '$cookies', @cookies
       $provide.constant 'OCTOBLU_ICON_URL', 's3/'
       return # !important
 
-    inject ($q, $rootScope) =>
+    inject ($q, $rootScope, MeshbluHttpService) =>
       @q = $q
       @rootScope = $rootScope
-      @skynetService.getSkynetConnection = => @q.when(@skynet)
+      @MeshbluHttpService = MeshbluHttpService
+
 
     inject (ThingService) =>
       @sut = ThingService
@@ -71,7 +70,7 @@ describe 'ThingService', ->
 
     describe 'when called without a uuid or token', ->
       beforeEach (done) ->
-        @skynet.devices = sinon.spy()
+        @MeshbluHttpService.devices = sinon.spy()
         _.defer => @rootScope.$digest()
         @meshbluHttp = {
           whoami: sinon.stub().yields null, {}
@@ -80,7 +79,7 @@ describe 'ThingService', ->
         @sut.MeshbluHttp = () => @meshbluHttp
         @sut.claimThing().catch (@error) => done()
 
-      it 'should not call skynet.devices', ->
+      it 'should not call whoami', ->
         expect(@meshbluHttp.whoami).not.to.have.been.called
 
       it 'should resolve an error', ->
@@ -88,7 +87,7 @@ describe 'ThingService', ->
 
     describe 'when called with invalid uuid or token', ->
       beforeEach (done) ->
-        @skynet.devices = sinon.stub().yields {error: 'nope'}
+        @MeshbluHttpService.devices = sinon.stub().yields new Error('nope')
 
         @user = uuid: 'user-holla'
         @query = uuid: 'holla', token: 'jolla'
@@ -101,7 +100,7 @@ describe 'ThingService', ->
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).catch (@error) => done()
 
-      it 'should not call skynet.devices', ->
+      it 'should not call whoami', ->
         expect(@meshbluHttp.whoami).to.have.been.called
 
       it 'should resolve an error', ->
@@ -278,58 +277,58 @@ describe 'ThingService', ->
   describe '->deleteThing', ->
     describe 'when called with a device', ->
       beforeEach ->
-        @skynet.unregister = sinon.stub().yields =>
+        @MeshbluHttpService.unregister = sinon.stub().yields null
         _.defer => @rootScope.$digest()
         @sut.deleteThing(uuid: 'nuc')
 
       it 'should call unregister with the uuid', ->
-        expect(@skynet.unregister).to.have.been.calledWith uuid: 'nuc'
+        expect(@MeshbluHttpService.unregister).to.have.been.calledWith 'nuc'
 
     describe 'when called with a different device', ->
       beforeEach ->
-        @skynet.unregister = sinon.stub().yields =>
+        @MeshbluHttpService.unregister = sinon.stub().yields null
         _.defer => @rootScope.$digest()
         @sut.deleteThing(uuid: 'what-will')
 
       it 'should call unregister with the uuid', ->
-        expect(@skynet.unregister).to.have.been.calledWith uuid: 'what-will'
+        expect(@MeshbluHttpService.unregister).to.have.been.calledWith 'what-will'
 
   describe '->generateSessionToken', ->
     describe 'when called with a device and meshblu responds with a token', ->
       beforeEach ->
-        @skynet.generateAndStoreToken = sinon.stub().yields token: 'has-a'
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, 'has-a'
         _.defer => @rootScope.$digest()
 
         storeResult = (@result) =>
         @sut.generateSessionToken({uuid: 'every-sip'}).then storeResult
 
       it 'should call generateAndStoreToken', ->
-        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'every-sip'
+        expect(@MeshbluHttpService.generateAndStoreToken).to.have.been.calledWith 'every-sip'
 
       it 'should resolve with the token', ->
         expect(@result).to.equal 'has-a'
 
     describe 'when called with a different device', ->
       beforeEach ->
-        @skynet.generateAndStoreToken = sinon.stub().yields token: 'sweet'
+        @MeshbluHttpService.generateAndStoreToken = sinon.stub().yields null, 'sweet'
         _.defer => @rootScope.$digest()
         storeResult = (@result) =>
         @sut.generateSessionToken({uuid: 'sweet-ending'}).then storeResult
 
       it 'should call generateAndStoreToken', ->
-        expect(@skynet.generateAndStoreToken).to.have.been.calledWith uuid: 'sweet-ending'
+        expect(@MeshbluHttpService.generateAndStoreToken).to.have.been.calledWith 'sweet-ending'
 
       it 'should resolve with the token', ->
         expect(@result).to.equal 'sweet'
 
   describe '->getThing', ->
     beforeEach ->
-      @skynet.devices = sinon.stub()
+      @MeshbluHttpService.device = sinon.stub()
 
     describe 'when devices yields a device', ->
       beforeEach ->
         device = uuid: 'me', name: 'Its Me', type: 'device:me'
-        @skynet.devices.yields devices: [device]
+        @MeshbluHttpService.device.yields null, device
         storeResults = (@result) =>
         _.defer => @rootScope.$digest()
         @sut.getThing(uuid: 'me', token: 'no you').then storeResults
@@ -339,33 +338,33 @@ describe 'ThingService', ->
         expect(@result.name).to.deep.equal 'Its Me'
 
       it 'should call devices with the uuid and token', ->
-        expect(@skynet.devices).to.have.been.calledWith uuid: 'me', token: 'no you'
+        expect(@MeshbluHttpService.device).to.have.been.calledWith 'me'
 
       it 'should add the logo to me', ->
         expect(@result.logo).to.equal 's3/device/me.svg'
 
     describe 'when devices yields some device', ->
       beforeEach ->
-        devices = [{uuid: 'cool', name: 'Its Cee', type: 'device:cool-beans'}]
-        @skynet.devices.yields devices: devices
+        device = {uuid: 'cool', name: 'Its Cee', type: 'device:cool-beans'}
+        @MeshbluHttpService.device.yields null, device
         storeResults = (@result) =>
         _.defer => @rootScope.$digest()
         @sut.getThing(uuid: 'cool', token: 'yeah').then storeResults
 
       it 'should call devices with the uuid and token', ->
-        expect(@skynet.devices).to.have.been.calledWith uuid: 'cool', token: 'yeah'
+        expect(@MeshbluHttpService.device).to.have.been.calledWith 'cool'
 
       it 'should add the logo to me', ->
         expect(@result.logo).to.equal 's3/device/cool-beans.svg'
 
   describe '->getThings', ->
     beforeEach ->
-      @skynet.mydevices = sinon.stub()
+      @MeshbluHttpService.devices = sinon.stub()
 
-    describe 'when mydevices yields some devices', ->
+    describe 'when devices yields some devices', ->
       beforeEach ->
         devices = [{uuid: 'a'}, {uuid: 'b'}, {uuid: 'me', name: 'Its Me', type: 'octoblu:user'}]
-        @skynet.mydevices.yields devices: devices
+        @MeshbluHttpService.devices.yields null, devices
         storeResults = (@results) =>
         _.defer => @rootScope.$digest()
         @sut.getThings().then storeResults
@@ -381,10 +380,10 @@ describe 'ThingService', ->
         [me, a, b] = @results
         expect(me.logo).to.equal 's3/device/user.svg'
 
-    describe 'when mydevices yields some devices', ->
+    describe 'when devices yields some devices', ->
       beforeEach ->
         devices = [{uuid: 'a'}, {uuid: 'b'}, {uuid: 'c', name: 'Its Cee', type: 'device:cool-beans'}]
-        @skynet.mydevices.yields devices: devices
+        @MeshbluHttpService.devices.yields null, devices
         storeResults = (@results) =>
         _.defer => @rootScope.$digest()
         @sut.getThings().then storeResults
@@ -394,9 +393,9 @@ describe 'ThingService', ->
         expect(c.logo).to.equal 's3/device/cool-beans.svg'
 
   describe '->revokeToken', ->
-    describe 'when skynet.revokeToken yields null', ->
+    describe 'when MeshbluHttpService.revokeToken yields an error', ->
       beforeEach ->
-        @skynet.revokeToken = sinon.stub().yields null
+        @MeshbluHttpService.revokeToken = sinon.stub().yields new Error()
 
       describe 'when called with a uuid and token', ->
         beforeEach ->
@@ -405,15 +404,15 @@ describe 'ThingService', ->
             .catch =>
               @promiseRejected = true
 
-        it 'should call skynet.revokeToken with the uuid and token', ->
-          expect(@skynet.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
+        it 'should call MeshbluHttpService.revokeToken with the uuid and token', ->
+          expect(@MeshbluHttpService.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
 
         it 'should reject the promise', ->
           expect(@promiseRejected).to.be.true
 
-    describe 'when skynet.revokeToken yields a uuid', ->
+    describe 'when MeshbluHttpService.revokeToken yields a uuid', ->
       beforeEach ->
-        @skynet.revokeToken = sinon.stub().yields uuid: 'some-uuid'
+        @MeshbluHttpService.revokeToken = sinon.stub().yields null, uuid: 'some-uuid'
 
       describe 'when called with a uuid and token', ->
         beforeEach ->
@@ -422,16 +421,16 @@ describe 'ThingService', ->
             .then =>
               @promiseResolved = true
 
-        it 'should call skynet.revokeToken with the uuid and token', ->
-          expect(@skynet.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
+        it 'should call MeshbluHttpService.revokeToken with the uuid and token', ->
+          expect(@MeshbluHttpService.revokeToken).to.have.been.calledWith uuid: 'some-uuid', token: 'some-token'
 
         it 'should resolve the promise', ->
           expect(@promiseResolved).to.be.true
 
   describe '->updateDeviceWithPermissionRows', ->
-    describe 'when skynet.updateDevice yields immediatly', ->
+    describe 'when MeshbluHttpService.updateDevice yields immediatly', ->
       beforeEach ->
-        @skynet.update = sinon.stub().yields {}
+        @MeshbluHttpService.update = sinon.stub().yields null
 
       describe 'when called with a device and empty permissions', ->
         beforeEach ->
@@ -440,7 +439,7 @@ describe 'ThingService', ->
           @sut.updateDeviceWithPermissionRows device, []
 
         it 'should call updateDevice with wildcards', ->
-          expect(@skynet.update).to.have.been.calledWith {
+          expect(@MeshbluHttpService.update).to.have.been.calledWith '123', {
             uuid: '123'
             discoverWhitelist: []
             configureWhitelist: []
@@ -457,7 +456,7 @@ describe 'ThingService', ->
           @sut.updateDeviceWithPermissionRows device, permissions
 
         it 'should call updateDevice with wildcards', ->
-          expect(@skynet.update).to.have.been.calledWith {
+          expect(@MeshbluHttpService.update).to.have.been.calledWith '123', {
             uuid: '123'
             discoverWhitelist: ['*']
             configureWhitelist: ['*']
@@ -474,7 +473,7 @@ describe 'ThingService', ->
           @sut.updateDeviceWithPermissionRows device, permissions
 
         it 'should call updateDevice with wildcards', ->
-          expect(@skynet.update).to.have.been.calledWith {
+          expect(@MeshbluHttpService.update).to.have.been.calledWith '123', {
             uuid: '123'
             discoverWhitelist: ['something']
             configureWhitelist: []

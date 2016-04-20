@@ -165,7 +165,7 @@ angular.module('octobluApp')
       MeshbluHttpService.createSubscription({
         subscriberUuid: flowUuid,
         emitterUuid:    deviceUuid,
-        type:         'broadcast'
+        type:         'broadcast.sent'
       }, callback);
     }, function(error){
       if(error){

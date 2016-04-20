@@ -9,7 +9,7 @@ class GenerateDeviceInstallerController
     @linkText = "Downloading..."
     @generating = true
     {uuid, type} = @scope.device
-    @MeshbluHttpService.generateAndStoreToken uuid, {}, (error, token) =>
+    @MeshbluHttpService.generateAndStoreToken uuid, {tag: 'app.octoblu.com'}, (error, token) =>
       return console.error error if error?
       metadata = @getMetadata {type}
       @MeshbluOTPService.generate {uuid, token, metadata}, (error, result) =>
