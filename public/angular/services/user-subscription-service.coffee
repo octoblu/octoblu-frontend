@@ -2,15 +2,15 @@ class UserSubscriptionService
   constructor: ($cookies, MeshbluHttpService) ->
     @MeshbluHttpService = MeshbluHttpService
     @subscriberUuid = $cookies.meshblu_auth_uuid
-    # only fetch the subscriptions one time
-    @refreshQueue = async.queue (task, callback) =>
-      @_refreshCache callback
+    # only create the subscriptions one at a time
+    @createSubscriptionQueue = async.queue (task, callback) =>
+      @_refreshCache =>
+        @_createSubscriptionForType task, callback
 
   createSubscriptions: ({emitterUuid, types}, callback) =>
-    @refreshQueue.push {}, =>
-      async.eachSeries types, async.apply @_createSubscriptionForType, emitterUuid
+    async.each types, async.apply(@_addToQueue, emitterUuid), callback
 
-  _createSubscriptionForType: (emitterUuid, type, callback) =>
+  _createSubscriptionForType: ({emitterUuid, type}, callback) =>
     return callback() if @_subscriptionExists {emitterUuid, type}
     @MeshbluHttpService.createSubscription {@subscriberUuid, emitterUuid, type}, (error) =>
       return callback error if error?
@@ -19,6 +19,9 @@ class UserSubscriptionService
 
   _subscriptionExists: ({emitterUuid, type}) =>
     _.find(@subscriptions, {emitterUuid, @subscriberUuid, type})?
+
+  _addToQueue: (emitterUuid, type, callback) =>
+    @createSubscriptionQueue.push {emitterUuid, type}, callback
 
   _refreshCache: (callback) =>
     return callback() if @subscriptions?
