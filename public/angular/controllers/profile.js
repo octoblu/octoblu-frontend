@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, deviceService, ThingService) {
+.controller('profileController', function ($rootScope, $scope, AuthService, NotifyService, $mdDialog, deviceService, ThingService, MeshbluHttpService) {
   $scope.loadingTokens = true;
   var refreshDevice = function(){
     MeshbluHttpService.whoami(function(error, user) {
