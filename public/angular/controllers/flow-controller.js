@@ -61,15 +61,16 @@ angular.module('octobluApp')
   };
 
   var setDeviceStatus = function(status) {
+    $scope.activeFlow.online = status;
     $scope.activeFlow.deployed = status;
     $scope.deviceOnline = status;
   };
 
   var checkDeviceStatus = function(flowId) {
-    MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid}, function(error, result) {
-      _.each($scope.flows, function(flow) {
-        var device = _.findWhere(result, {uuid: flow.flowId});
-        if (device) {
+    MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid, type: 'octoblu:flow'}, function(error, devices) {
+      _.each(devices, function(device){
+        var flow = _.findWhere($scope.flows, {flowId: device.uuid});
+        if (flow) {
           flow.online = device.online;
           if (device.uuid === flowId) {
             setDeviceStatus(device.online);
@@ -105,9 +106,9 @@ angular.module('octobluApp')
 
     $scope.setActiveFlow(activeFlow);
     refreshFlows();
-
     createFlowSubscriptions(activeFlow.flowId);
     deadManSwitch(activeFlow.flowId);
+    checkDeviceStatus(activeFlow.flowId);
 
     FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
       updateFlowDevice(message.data);
@@ -123,12 +124,14 @@ angular.module('octobluApp')
 
       if (data.topic === 'device-status') {
         if (data.payload) {
+          var flow = _.findWhere($scope.flows, {flowId: activeFlow.flowId});
+          if (flow) {
+            flow.online = data.payload.online;
+          }
           setDeviceStatus(data.payload.online);
         }
       }
     });
-
-    checkDeviceStatus(activeFlow.flowId);
   });
 
   function escapeLargeValue(value){
