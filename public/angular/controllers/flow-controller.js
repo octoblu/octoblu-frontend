@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -32,6 +32,7 @@ angular.module('octobluApp')
 
   function updateFlowDeviceImmediately(data) {
     $scope.flowDevice = data;
+    $scope.$applyAsync();
   }
 
   var updateFlowDevice = _.throttle(updateFlowDeviceImmediately, 500, {leading: false, trailing: true});
@@ -110,12 +111,15 @@ angular.module('octobluApp')
     deadManSwitch(activeFlow.flowId);
     checkDeviceStatus(activeFlow.flowId);
 
+    FirehoseService.removeAllListeners();
+
     FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
       updateFlowDevice(message.data);
     });
 
-    FirehoseService.on('**.' + activeFlow.flowId, function(message){
+    FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
       var data = message.data;
+      console.log("got broadcast", message);
       if (data.topic === 'message-batch') {
         if (data.payload) {
           BatchMessageService.parseMessages(data.payload.messages, $scope);
@@ -157,7 +161,6 @@ angular.module('octobluApp')
 
   $scope.$on('flow-node-debug', function (event, options) {
     pushDebugLines(options.message);
-    $scope.$apply();
   });
 
   $scope.$on('flow-node-error', function(event, options) {
@@ -165,7 +168,6 @@ angular.module('octobluApp')
     if(options.node) {
       options.node.errorMessage = options.message.msg;
     }
-    $scope.$apply();
   });
 
   $scope.$on('flow-node-delete', function(e, node){
@@ -387,7 +389,6 @@ angular.module('octobluApp')
     }
     newFlow.hash = FlowService.hashFlow(newFlow);
     addToUndoBuffer(oldFlow);
-    // $scope.$apply();
   };
 
   var addToUndoBuffer = function(oldFlow) {

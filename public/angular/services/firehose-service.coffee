@@ -1,5 +1,6 @@
 class FirehoseService extends MeshbluFirehoseSocketIO
-  constructor: ($cookies, MESHBLU_FIREHOSE_HOSTNAME, MESHBLU_FIREHOSE_PORT, MESHBLU_FIREHOSE_PROTOCOL) ->
+  constructor: ($cookies, $rootScope, MESHBLU_FIREHOSE_HOSTNAME, MESHBLU_FIREHOSE_PORT, MESHBLU_FIREHOSE_PROTOCOL) ->
+    @rootScope = $rootScope
     meshbluConfig =
       hostname: MESHBLU_FIREHOSE_HOSTNAME,
       port: MESHBLU_FIREHOSE_PORT,
@@ -9,5 +10,9 @@ class FirehoseService extends MeshbluFirehoseSocketIO
 
     super {meshbluConfig}
     @connect = _.once @connect
+
+  emit: =>
+    super
+    @rootScope.$applyAsync()
 
 angular.module('octobluApp').service 'FirehoseService', FirehoseService
