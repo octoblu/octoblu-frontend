@@ -39,18 +39,18 @@ angular.module('octobluApp')
 
   var visibilityChanged = function(){
     $scope.documentHidden = document.hidden;
+    pulseKeepalive();
   }
 
   if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);
 
-  var deadManSwitch = function(flowId) {
+  var pulseKeepalive = function() {
     if (!$scope.documentHidden) {
-      MeshbluHttpService.message({devices: [flowId], topic: 'subscribe:pulse'}, _.noop);
-    }
-    _.delay(function() {
-      deadManSwitch(flowId);
-    }, 60 * 1000)
-  };
+      MeshbluHttpService.message({devices: [$scope.activeFlow.flowId], topic: 'subscribe:pulse'}, _.noop);
+    };
+  }
+
+  setInterval(pulseKeepalive, 60*1000);
 
   var setCookie = function(flowId) {
     deleteCookie();
@@ -108,7 +108,6 @@ angular.module('octobluApp')
     $scope.setActiveFlow(activeFlow);
     refreshFlows();
     createFlowSubscriptions(activeFlow.flowId);
-    deadManSwitch(activeFlow.flowId);
     checkDeviceStatus(activeFlow.flowId);
 
     FirehoseService.removeAllListeners();
