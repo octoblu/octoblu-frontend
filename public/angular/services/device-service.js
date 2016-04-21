@@ -177,17 +177,18 @@ angular.module('octobluApp')
         if(error) {
           return defer.reject(error);
         }
-        service.updateDevice(options).then(function(updatedDevice) {
-          defer.resolve(updatedDevice);
+        service.updateDevice(options)
+        .then(function(){
+          return service.refreshDevices();
+        })
+        .then(function(){
+          return service.getDeviceByUUID(options.uuid);
+        })
+        .then(function(device){
+          return defer.resolve(device);
         });
       });
       return defer.promise
-      .then(function(){
-        return service.refreshDevices();
-      })
-      .then(function(){
-        return service.getDeviceByUUID(options.uuid);
-      });
     },
 
     updateDevice: function (options) {

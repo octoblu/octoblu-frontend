@@ -45,7 +45,10 @@ angular.module('octobluApp')
         deviceOptions.token = $scope.existingDevice.token;
         deviceOptions.owner = currentUser.skynet.uuid;
         deviceOptions.isChanged = true;
-        promise = ThingService.claimThing(deviceOptions, {uuid: $cookies.meshblu_auth_uuid}, deviceOptions);
+        promise = ThingService.claimThing(deviceOptions, {uuid: deviceOptions.owner}, deviceOptions)
+        .then(function() {
+          return ThingService.getThing(deviceOptions);
+        });
       } else {
         promise = ThingService.registerThing(deviceOptions);
       }
