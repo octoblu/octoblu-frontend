@@ -118,7 +118,6 @@ angular.module('octobluApp')
 
     FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
       var data = message.data;
-      console.log("got broadcast", message);
       if (data.topic === 'message-batch') {
         if (data.payload) {
           BatchMessageService.parseMessages(data.payload.messages, $scope);
