@@ -47,7 +47,7 @@
 
 <div class="design2 designer-container">
 
-  <flow-editor ng-class="{'flow-online' : deviceOnline }" ng-click="focusDesigner()" id="designer" flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
+  <flow-editor ng-class="{'flow-online' : online }" ng-click="focusDesigner()" id="designer" flow="activeFlow" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection, 'mod+z':undoEdit, 'mod+y':redoEdit}" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()"></flow-editor>
 
   <div class="designer__zoom-controls" ng-class="{'designer__zoom-controls-closed' : !sidebarIsExpanded}">
     <div class="designer__zoom-control-group">
