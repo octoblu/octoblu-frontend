@@ -1,5 +1,9 @@
 class StatusWidgetController
   constructor: ->
+    setInterval @update, 5*60*1000
+    @update()
+
+  update: =>
     sp = new StatusPage.page page: 'c3jcws6d2z45'
 
     sp.incidents
