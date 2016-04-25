@@ -1,11 +1,12 @@
 class FlowDeployButtonController
-  constructor: ($scope, FlowService, ThingService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
+  constructor: ($scope, FlowService, ThingService, NotifyService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
     @scope = $scope
     @FlowService = FlowService
     @ThingService = ThingService
     @cookies = $cookies
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
+    @NotifyService = NotifyService
 
     @start = _.throttle @immediateStart, 1000, leading: true, trailing: false
     @stop = _.throttle @immediateStop, 1000, leading: true, trailing: false
@@ -26,6 +27,8 @@ class FlowDeployButtonController
       .then =>
         @FlowService.immediateNotifyFlowSaved()
         @FlowService.start @scope.flow
+      .catch (error) =>
+        @NotifyService.alert title: 'Flow Start Failed', content: error.message
 
   immediateStop: (e) =>
     e?.preventDefault()
@@ -34,5 +37,7 @@ class FlowDeployButtonController
     @ThingService.updateDevice uuid: @scope.flow.flowId, deploying: false, stopping: true
       .then =>
         @FlowService.stop @scope.flow
+      .catch (error) =>
+        @NotifyService.alert title: 'Flow Stop Failed', content: error.message
 
 angular.module('octobluApp').controller 'FlowDeployButtonController', FlowDeployButtonController

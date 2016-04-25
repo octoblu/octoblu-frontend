@@ -32,7 +32,7 @@ class BluprintImportController
 
   dialogBluprintUrl: (bluprintId) =>
     url = @getBluprintImportUrl bluprintId
-    @NotifyService.alert 'Share This Bluprint', url
+    @NotifyService.alert title: 'Share This Bluprint', content: url
 
   generateShareUrls: (bluprint) =>
     @shareUrl = @getBluprintImportUrl bluprint.uuid

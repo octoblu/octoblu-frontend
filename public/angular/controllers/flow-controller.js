@@ -172,10 +172,10 @@ angular.module('octobluApp')
     return FlowService.createFlow()
       .then(function(newFlow){
         $state.go('material.flow', {flowId: newFlow.flowId});
-        NotifyService.notify("Flow Created");
+        NotifyService.notify('Flow Created');
       })
       .catch(function(error){
-        console.error(error);
+        NotifyService.alert({title: 'Flow Create Failed', content: 'Message: ' + error.message});
       });
   };
 
@@ -204,6 +204,8 @@ angular.module('octobluApp')
       deleteCookie();
       FlowService.deleteFlow(flow.flowId).then(function(){
         $state.go('material.design');
+      }).catch(function(error){
+        NotifyService.alert({title: 'Flow Deploy Failed', content: 'Message: ' + error.message});
       });
     });
   };
