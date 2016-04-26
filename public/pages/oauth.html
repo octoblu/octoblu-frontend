@@ -1,28 +1,49 @@
 <breadcrumb-tab-bar fragments="[{label: 'Authorize With Octoblu'}]"></breadcrumb-tab-bar>
 <md-content class="interior__wrapper" autoscroll="false">
-  <div class="interior">
+  <div class="interior oauth-provider-container">
 
     <spinner loading="loading" size="large"></spinner>
 
     <div ng-hide="loading">
-      <div class="oauth-provider-card" ng-hide="oauthDevice">
+      <div ng-hide="oauthDevice">
         <h1>Unable to authorize the application.</h1>
       </div>
 
-      <div class="oauth-provider-card" ng-show="oauthDevice">
-          <img class="oauth-logos" src="/assets/images/300x300spiral.png">
-          <img class="oauth-logos" ng-src="{{oauthDevice.options.imageUrl}}">
+      <div ng-show="oauthDevice">
+        <div class="oauth-provider-header">
+          <img class="oauth-logo" ng-src="{{oauthDevice.options.imageUrl}}">
+          <div class="profile-cardContent">
+            <div class="profile-card-user">
+              <div class="profile-card-user-image">
+                <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
+                <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
+              </div>
+              <h1 class="profile-card-user-text">
+                <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
+                <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
+                <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
+              </h1>
+            </div>
+          </div>
+        </div>
 
-        <h2 class="oauth-header">
+        <h1 class="title">
           Allow <strong>{{oauthDevice.options.name}}</strong> to access your Octoblu account?
-        </h2>
+        </h1>
 
-        <h3 class="Oauth-userName">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</h3>
-        <h4 class="Oauth-userEmail">{{currentUser.userDevice.octoblu.email}}</h4>
+        <div class="oauth-provider-information">
+          This device requires temporary access to your user credentials. These credentials may be used to
+          create devices, send messages, or perform other Octoblu actions on your behalf.
+        </div>
 
-        <md-button ng-click="authorize()" ng-disabled="!oauthDevice" class="BluButton BluButton--save Oauth-authorize">
-          Authorize
-        </md-button>
+        <div class="oauth-provider-description">
+          {{oauthDevice.options.description}}
+        </div>
+
+        <div class="oauth-provider-actions">
+          <button ng-click="cancel()" class="BluButton BluButton--cancel">Cancel</button>
+          <button ng-click="authorize()" ng-disabled="!oauthDevice" class="BluButton BluButton--save">Authorize</button>
+        </div>
 
       </div>
     </div>

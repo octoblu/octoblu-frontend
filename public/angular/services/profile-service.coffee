@@ -21,10 +21,11 @@ class ProfileService
 
     deferred.promise
 
-  generateSessionToken: =>
+  generateSessionToken: (metadata={})=>
     deferred = @q.defer()
+    metadata.tag ?= 'app.octoblu.com'
 
-    @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, {tag: 'app.octoblu.com'}, (error, token) =>
+    @MeshbluHttpService.generateAndStoreToken @cookies.meshblu_auth_uuid, metadata, (error, token) =>
       return deferred.reject(error) if error?
       deferred.resolve {uuid: @cookies.meshblu_auth_uuid, token}
 
