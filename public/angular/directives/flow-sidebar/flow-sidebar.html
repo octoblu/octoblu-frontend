@@ -2,6 +2,7 @@
   data-ng-init="expandedState=true"
   ng-class="{'sidebar--is-expanded': expandedState}"
   class="sidebar">
+  <flow-permission-manager flow="flow"></flow-permission-manager>
   <flow-inspector flow="flow"></flow-inspector>
   <utility-inspector flow="flow" debug="debug"></utility-inspector>
 </div>

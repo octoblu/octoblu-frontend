@@ -1,0 +1,26 @@
+<div
+  class="Sidebar-pane"
+  ng-class="{'Sidebar-pane--is-collapsed': hideSection}" >
+
+  <header class="Sidebar-pane-header">
+    <h2
+      class="Sidebar-pane-header-title">
+      Permissions Inspector
+    </h2>
+    <button
+      ng-click="hideSection = !hideSection"
+      title="Toggle Pane"
+      class="Sidebar-pane-collapse-button">
+      <i
+        class="fa"
+        ng-class="{'fa-plus': hideSection, 'fa-minus': !hideSection}">
+      </i>
+    </button>
+  </header>
+
+  <main class="Sidebar-pane-body">
+    <ul>
+      <li ng-repeat="device in controller.devices">{{device.name || device.uuid}}</li>
+    </ul>
+  </main>
+</div>

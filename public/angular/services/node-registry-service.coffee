@@ -13,6 +13,7 @@ class NodeRegistryService
           .then (thing) =>
             nodeTypes = _.uniq nodeTypes
             registryUuids = _.uniq _.compact _.flatten _.map nodeTypes, (nodeType) =>
+              nodeType ?= ''
               type = nodeType.replace /operation:/, ''
               type = type.replace /:.*/, ''
               nodeRegistry[type]?.sendWhitelist
