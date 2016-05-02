@@ -542,8 +542,8 @@ angular.module('octobluApp')
       return;
     }
 
-    checkDevicePermissions(newNodes);
-    checkNodeRegistryPermissions(newNodes);
+    // checkDevicePermissions(newNodes);
+    // checkNodeRegistryPermissions(newNodes);
     subscribeFlowToDevices(newNodes);
   }
 

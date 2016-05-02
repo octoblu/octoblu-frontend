@@ -1,5 +1,5 @@
 class FlowPermissionManagerController
-  constructor: ($scope, $state, ThingService, $q) ->
+  constructor: ($q, $scope, $state, ThingService, NodeRegistryService) ->
     @scope      = $scope
     @q          = $q
     @ThingService = ThingService
@@ -8,34 +8,44 @@ class FlowPermissionManagerController
   renderFlow: (nodes) =>
     return unless nodes?
     {flowId} = @scope.flow
-    @getDevicesNeedingUpdates({flowId, nodes})
-      .then (@devices) =>
-        console.log('@devices', @devices)
+    @getDevicesWithPermissionsFromNodes({flowId, nodes})
+      .then (@devicesWithPermissions) =>
+        @devicesNeedingPermission = _.filter @devicesWithPermissions, ({permissions}) =>
+          _.includes _.values(permissions), false
 
-  getDevicesNeedingUpdates: ({flowId, nodes}) =>
+  getDevicesWithPermissionsFromNodes: ({flowId, nodes}) =>
     @getDevicesFromNodes(nodes)
       .then (devices) =>
-        @getDevicesNeedingPermissions {flowId, devices}
+        @getDevicesWithPermissions {flowId, devices}
 
-  getDevicesNeedingPermissions: ({flowId, devices}) =>
+  _canMessageToFlow: ({device, flowDevice}) =>
+    return true unless _.includes flowDevice.receiveAsWhitelist, '*'
+    return true unless _.includes flowDevice.receiveAsWhitelist, device.uuid
+    false
+
+  _canMessageFromFlow: ({device, flowDevice}) =>
+    return true unless _.includes device.sendWhitelist, '*'
+    return true unless _.includes device.sendWhitelist, flowDevice.uuid
+    false
+
+  _canSubscribeBroadcastSent: ({device, flowDevice}) =>
+    return true unless _.includes device.receiveAsWhitelist, '*'
+    return true unless _.includes device.receiveAsWhitelist, flowDevice.uuid
+    false
+
+  getDevicesWithPermissions: ({flowId, devices}) =>
     @ThingService.getThing {uuid: flowId}
       .then (flowDevice) =>
-        noSendWhitelist = _.reject devices, (device) =>
-          return false if _.includes device.sendWhitelist, '*'
-          return false if _.includes device.sendWhitelist, flowId
-          return true
+        _.map devices, (device) =>
+          @getDeviceWithPermissions {flowDevice, device}
 
-        noReceiveAsWhitelist = _.reject devices, (device) =>
-          return false if _.includes device.receiveAsWhitelist, '*'
-          return false if _.includes device.receiveAsWhitelist, flowId
-          return true
-
-        cantSendToFlow = _.reject devices, (device) =>
-          return false if _.includes flowDevice.receiveAsWhitelist, '*'
-          return false if _.includes flowDevice.receiveAsWhitelist, device.uuid
-          return true
-
-        _.union noSendWhitelist, noReceiveAsWhitelist, cantSendToFlow
+  getDeviceWithPermissions: ({flowDevice, device}) =>
+    deviceWithPermissions =
+      device: device
+      permissions:
+        messageToFlow: @_canMessageToFlow {device, flowDevice}
+        messageFromFlow: @_canMessageFromFlow {device, flowDevice}
+        subscribeBroadcastSent: @_canSubscribeBroadcastSent {device, flowDevice}
 
   getDeviceNodes: (nodes) =>
     _.filter nodes, (node) =>

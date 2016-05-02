@@ -22,7 +22,7 @@
     <div class="Sidebar-pane-content">
       <div class="Sidebar-section Sidebar-section-nodes">
         <div class="Sidebar-section-header">
-          <h5 class="Sidebar-section-title">Things Needing Permissions</h5>
+          <h5 class="Sidebar-section-title">Updates Required</h5>
           <button class="Sidebar-button" aria-label="Approve All">
             Approve All
           </button>
@@ -30,12 +30,25 @@
 
         <div class="Sidebar-section-body">
           <ul class="nodes-in-flow">
-            <li ng-repeat="device in controller.devices | orderBy: 'name' track by device.uuid" class="nodes-in-flow__item">
-              <button class="Sidebar-button node-in-flow__button">
-                <img ng-src="{{device.logo}}" alt="{{device.class || device.type}}" class="Sidebar-pane-node-thumbnail"/>
-                <span class="node-in-flow__node--name truncate">{{device.name || device.uuid}}</span>
-              </button>
-            </li>
+            <device-permission-list-item ng-repeat="deviceWithPermissions in controller.devicesNeedingPermission | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
+            </device-permission-list-item>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <main class="Sidebar-pane-body">
+    <div class="Sidebar-pane-content">
+      <div class="Sidebar-section Sidebar-section-nodes">
+        <div class="Sidebar-section-header">
+          <h5 class="Sidebar-section-title">Things</h5>
+        </div>
+
+        <div class="Sidebar-section-body">
+          <ul class="nodes-in-flow">
+            <device-permission-list-item ng-repeat="deviceWithPermissions in controller.devicesWithPermissions | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
+            </device-permission-list-item>
           </ul>
         </div>
       </div>
