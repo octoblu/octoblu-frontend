@@ -24,7 +24,7 @@
     </div>
 
     <div ng-hide="controller.loading" class="Sidebar-pane-content">
-      <div ng-hide="controller.devicesNeedingPermission.length == 0" class="Sidebar-section Sidebar-section-nodes">
+      <div ng-show="flow.pendingPermissions" class="Sidebar-section Sidebar-section-nodes">
         <div class="Sidebar-section-header">
           <h5 class="Sidebar-section-title">Updates Required</h5>
           <button ng-click="controller.approveAll()" class="Sidebar-button" aria-label="Approve All">
@@ -34,7 +34,7 @@
 
         <div class="Sidebar-section-body">
           <ul class="nodes-in-flow">
-            <device-permission-list-item ng-repeat="deviceWithPermissions in controller.devicesNeedingPermission | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
+            <device-permission-list-item ng-repeat="deviceWithPermissions in flow.devicesNeedingPermission | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
             </device-permission-list-item>
           </ul>
         </div>
@@ -50,7 +50,7 @@
 
         <div ng-show="showThings" class="Sidebar-section-body">
           <ul class="nodes-in-flow">
-            <device-permission-list-item ng-repeat="deviceWithPermissions in controller.devicesWithPermissions | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
+            <device-permission-list-item ng-repeat="deviceWithPermissions in flow.devicesWithPermissions | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
             </device-permission-list-item>
           </ul>
         </div>

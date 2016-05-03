@@ -44,7 +44,7 @@ angular.module('octobluApp')
   if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);
 
   var pulseKeepalive = function() {
-    if (!$scope.documentHidden) {
+    if (!$scope.documentHidden && $scope.activeFlow) {
       MeshbluHttpService.message({devices: [$scope.activeFlow.flowId], topic: 'subscribe:pulse'}, _.noop);
     };
   }
