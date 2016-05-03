@@ -177,6 +177,12 @@ class ThingService
 
     deferred.promise
 
+  updateDangerously: (uuid, update) =>
+    @q (resolve, reject) =>
+      @MeshbluHttpService.updateDangerously uuid, update, (error) =>
+        return reject(error) if error?
+        resolve()
+
   updateDeviceWithPermissionRows: (device, rows) =>
     return @q.when() unless device? && rows?
     uncategorizedRows = _.flatten(_.valuesIn rows)

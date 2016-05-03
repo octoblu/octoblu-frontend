@@ -5,10 +5,40 @@ class FlowPermissionManagerController
     @ThingService = ThingService
     @REGISTRY_URL = REGISTRY_URL
     @http         = $http
-    @scope.$watchCollection 'flow.nodes', @renderFlow
+    @scope.$watchCollection 'flow.nodes', @renderPermissionManager
     @loading      = true
 
-  renderFlow: (nodes) =>
+  approveAll: =>
+    promises = _.map(@devicesNeedingPermission, @updatePermission)
+    promises.push @updateFlowSendWhitelist()
+
+    @q.all(promises).then => @renderPermissionManager @scope.flow.nodes
+
+  updatePermission: ({device, permissions}) =>
+    update = @buildUpdate permissions
+    @ThingService.updateDangerously(device.uuid, update) if update?
+
+  buildUpdate: (permissions) =>
+    update =
+      $addToSet: {}
+    update.$addToSet.sendWhitelist = @flowDevice.uuid if permissions.messageFromFlow?
+    update.$addToSet.receiveWhitelist = @flowDevice.uuid if permissions.subscribeBroadcastSent?
+
+    return if _.isEmpty update.$addToSet
+    return update
+
+  updateFlowSendWhitelist: =>
+    devicesToAdd = _.filter @devicesNeedingPermission, ({permissions}) =>
+      permissions.messageToFlow == false
+    
+    update =
+      $pushAll:
+        sendWhitelist: _.map devicesToAdd, ({device}) => device.uuid
+
+    @ThingService.updateDangerously(@flowDevice.uuid, update)
+
+  renderPermissionManager: (nodes) =>
+    console.log 'renderPermissionManager'
     return unless nodes?
     {flowId} = @scope.flow
     @ThingService.getThing(uuid: flowId)
@@ -49,16 +79,22 @@ class FlowPermissionManagerController
   _deviceCanMessageFlow: (device) =>
     return true if _.includes @flowDevice.sendWhitelist, '*'
     return true if _.includes @flowDevice.sendWhitelist, device.uuid
+
     false
 
   _flowCanMessageDevice: (device) =>
     return true if _.includes device.sendWhitelist, '*'
     return true if _.includes device.sendWhitelist, @flowDevice.uuid
+
     false
 
   _flowCanSubscribeBroadcastSentDevice: (device) =>
     return true if _.includes device.receiveAsWhitelist, '*'
     return true if _.includes device.receiveAsWhitelist, @flowDevice.uuid
+
+    return true if _.includes device.receiveWhitelist, '*'
+    return true if _.includes device.receiveWhitelist, @flowDevice.uuid
+
     false
 
   getDevicesWithPermissions: (devices) =>
@@ -75,7 +111,7 @@ class FlowPermissionManagerController
 
   getDeviceNodes: (nodes) =>
     _.filter nodes, (node) =>
-      node.meshblu || node.class == 'device-flow'
+      node?.meshblu || node?.class == 'device-flow'
 
   getDevicesFromNodes: (nodes) =>
     nodes = _.uniq @getDeviceNodes(nodes), 'uuid'
