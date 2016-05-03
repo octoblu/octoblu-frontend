@@ -53,7 +53,8 @@ class FlowPermissionManagerController
         @devicesNeedingPermission = _.filter @devicesWithPermissions, ({permissions}) =>
           _.includes _.values(permissions), false
         @loading = false
-        @scope.hideSection = @devicesNeedingPermission.length == 0
+        @scope.flow.pendingPermissions = ! _.isEmpty @devicesNeedingPermission
+        @scope.hideSection = !@scope.flow.pendingPermissions
 
   getDevicesWithPermissionsFromNodes: (nodes) =>
     @getDevicesFromNodes(nodes)
@@ -79,18 +80,21 @@ class FlowPermissionManagerController
               messageToFlow: @_deviceCanMessageFlow device
 
   _deviceCanMessageFlow: (device) =>
+    return true if @flowDevice.uuid == device.uuid
     return true if _.includes @flowDevice.sendWhitelist, '*'
     return true if _.includes @flowDevice.sendWhitelist, device.uuid
 
     false
 
   _flowCanMessageDevice: (device) =>
+    return true if @flowDevice.uuid == device.uuid
     return true if _.includes device.sendWhitelist, '*'
     return true if _.includes device.sendWhitelist, @flowDevice.uuid
 
     false
 
   _flowCanSubscribeBroadcastSentDevice: (device) =>
+    return true if @flowDevice.uuid == device.uuid
     return true if _.includes device.receiveAsWhitelist, '*'
     return true if _.includes device.receiveAsWhitelist, @flowDevice.uuid
 

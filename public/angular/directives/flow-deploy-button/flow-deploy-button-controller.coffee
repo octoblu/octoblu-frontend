@@ -13,6 +13,12 @@ class FlowDeployButtonController
 
   immediateStart : (e) =>
     e?.preventDefault()
+    return @deployFlow() unless @scope.flow.pendingPermissions
+    @NotifyService.confirm title: 'Permissions Update', content: 'In order to communicate with your devices, some permissions need to be updated. Press Approve All in the Permissions Inspector. Would you like to deploy anyway?'
+      .then =>
+        @deployFlow()
+
+  deployFlow: =>
     lastDeployedHash = _.clone @scope.flow.hash
     _.each @scope.flow.nodes, (node) =>
       delete node.errorMessage
