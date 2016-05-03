@@ -35,7 +35,7 @@ class FlowModel
           @_getDevicesFromRegistry()
         ]
       .then ([devicesWithPermissionsFromNodes, registryDevices]) =>
-        @devicesWithPermissions = _.union devicesWithPermissionsFromNodes, registryDevices
+        @devicesWithPermissions = _.union devicesWithPermissionsFromNodes, registryDevices, 'uuid'
         @devicesNeedingPermission = _.filter @devicesWithPermissions, ({permissions}) =>
           _.includes _.values(permissions), false
         @pendingPermissions = ! _.isEmpty @devicesNeedingPermission
@@ -43,20 +43,30 @@ class FlowModel
   _getDevicesFromRegistry: =>
     @http.get @REGISTRY_URL
       .then ({data}) =>
-        _.compact _.map _.uniq(@nodes, 'uuid'), (node) =>
+        sendWhitelistUuids = _.uniq _.compact _.flatten _.map @nodes, (node) =>
           return unless node.type?
           type = node.type.replace /operation:/, ''
           type = type.replace /:.*/, ''
-          return unless data[type]?.sendWhitelist?
-          device =
-            logo: node.logo
-            name: node.name || node.uuid
-            uuid: node.uuid
+          data[type]?.sendWhitelist
 
-          deviceWithPermissions =
-            device: device
-            permissions:
-              messageToFlow: @_deviceCanMessageFlow device
+        @q.all _.map sendWhitelistUuids, @_getRegistryDevice
+
+  _getRegistryDevice: (uuid) =>
+    @ThingService.getThing {uuid}
+      .then (device) =>
+        deviceWithPermissions =
+          device: device
+          permissions:
+            messageToFlow: @_deviceCanMessageFlow device
+      .catch (error) =>
+        device =
+            logo: 'https://ds78apnml6was.cloudfront.net/unknown-device.svg'
+            name: 'Unknown Device'
+            uuid: uuid
+        deviceWithPermissions =
+          device: device
+          permissions:
+            messageToFlow: @_deviceCanMessageFlow device
 
   _getDevicesWithPermissionsFromNodes: =>
     @_getDevicesFromNodes()
