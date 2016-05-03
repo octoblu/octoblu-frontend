@@ -25,12 +25,9 @@
 
     <div ng-hide="controller.loading" class="Sidebar-pane-content">
       <div ng-show="flow.pendingPermissions" class="Sidebar-section Sidebar-section-nodes">
-        <div class="Sidebar-section-header">
-          <h5 class="Sidebar-section-title">Updates Required</h5>
-          <button ng-click="controller.approveAll()" class="Sidebar-button" aria-label="Approve All">
-            Approve All
-          </button>
-        </div>
+        <button ng-click="controller.approveAll()" class="Sidebar-pane-thing--primary BluButton" aria-label="Approve All">
+          Update Permissions
+        </button>
 
         <div class="Sidebar-section-body">
           <ul class="nodes-in-flow">
