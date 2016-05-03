@@ -6,72 +6,72 @@ class FlowPermissionManagerController
     @REGISTRY_URL = REGISTRY_URL
     @http         = $http
     @scope.$watchCollection 'flow.nodes', @renderFlow
+    @loading      = true
 
   renderFlow: (nodes) =>
     return unless nodes?
     {flowId} = @scope.flow
-    @getDevicesWithPermissionsFromNodes({flowId, nodes})
-      .then (@devicesWithPermissions) =>
-        @getDevicesFromRegistry {flowId, nodes}
-      .then (registryDevices) =>
-        @devicesWithPermissions = _.union @devicesWithPermissions, registryDevices
+    @ThingService.getThing(uuid: flowId)
+      .then (@flowDevice) =>
+        @q.all [
+          @getDevicesWithPermissionsFromNodes nodes
+          @getDevicesFromRegistry nodes
+        ]
+      .then ([devicesWithPermissionsFromNodes, registryDevices]) =>
+        @devicesWithPermissions = _.union devicesWithPermissionsFromNodes, registryDevices
         @devicesNeedingPermission = _.filter @devicesWithPermissions, ({permissions}) =>
           _.includes _.values(permissions), false
+        @loading = false
 
-  getDevicesWithPermissionsFromNodes: ({flowId, nodes}) =>
+  getDevicesWithPermissionsFromNodes: (nodes) =>
     @getDevicesFromNodes(nodes)
       .then (devices) =>
-        @getDevicesWithPermissions {flowId, devices}
+        @getDevicesWithPermissions devices
 
-  getDevicesFromRegistry: ({flowId, nodes}) =>
+  getDevicesFromRegistry: (nodes) =>
     @http.get @REGISTRY_URL
       .then ({data}) =>
-        @ThingService.getThing(uuid: flowId)
-          .then (flowDevice) =>
-            _.compact _.map _.uniq(nodes, 'uuid'), (node) =>
-              return unless node.type?
-              type = node.type.replace /operation:/, ''
-              type = type.replace /:.*/, ''
-              return unless data[type]?.sendWhitelist?
-              device =
-                logo: node.logo
-                name: node.name || node.uuid
-                uuid: node.uuid
+        _.compact _.map _.uniq(nodes, 'uuid'), (node) =>
+          return unless node.type?
+          type = node.type.replace /operation:/, ''
+          type = type.replace /:.*/, ''
+          return unless data[type]?.sendWhitelist?
+          device =
+            logo: node.logo
+            name: node.name || node.uuid
+            uuid: node.uuid
 
-              deviceWithPermissions =
-                device: device
-                permissions:
-                  messageToFlow: @_canMessageToFlow {device, flowDevice}
+          deviceWithPermissions =
+            device: device
+            permissions:
+              messageToFlow: @_deviceCanMessageFlow device
 
-  _canMessageToFlow: ({device, flowDevice}) =>
-    console.log 'sendWhitelist',  flowDevice.sendWhitelist
-    return true if _.includes flowDevice.sendWhitelist, '*'
-    return true if _.includes flowDevice.sendWhitelist, device.uuid
+  _deviceCanMessageFlow: (device) =>
+    return true if _.includes @flowDevice.sendWhitelist, '*'
+    return true if _.includes @flowDevice.sendWhitelist, device.uuid
     false
 
-  _canMessageFromFlow: ({device, flowDevice}) =>
+  _flowCanMessageDevice: (device) =>
     return true if _.includes device.sendWhitelist, '*'
-    return true if _.includes device.sendWhitelist, flowDevice.uuid
+    return true if _.includes device.sendWhitelist, @flowDevice.uuid
     false
 
-  _canSubscribeBroadcastSent: ({device, flowDevice}) =>
+  _flowCanSubscribeBroadcastSentDevice: (device) =>
     return true if _.includes device.receiveAsWhitelist, '*'
-    return true if _.includes device.receiveAsWhitelist, flowDevice.uuid
+    return true if _.includes device.receiveAsWhitelist, @flowDevice.uuid
     false
 
-  getDevicesWithPermissions: ({flowId, devices}) =>
-    @ThingService.getThing {uuid: flowId}
-      .then (flowDevice) =>
-        _.map devices, (device) =>
-          @getDeviceWithPermissions {flowDevice, device}
+  getDevicesWithPermissions: (devices) =>
+    _.map devices, (device) =>
+      @getDeviceWithPermissions device
 
-  getDeviceWithPermissions: ({flowDevice, device}) =>
+  getDeviceWithPermissions: (device) =>
     deviceWithPermissions =
       device: device
       permissions:
-        messageToFlow: @_canMessageToFlow {device, flowDevice}
-        messageFromFlow: @_canMessageFromFlow {device, flowDevice}
-        subscribeBroadcastSent: @_canSubscribeBroadcastSent {device, flowDevice}
+        messageToFlow: @_deviceCanMessageFlow device
+        messageFromFlow: @_flowCanMessageDevice device
+        subscribeBroadcastSent: @_flowCanSubscribeBroadcastSentDevice device
 
   getDeviceNodes: (nodes) =>
     _.filter nodes, (node) =>

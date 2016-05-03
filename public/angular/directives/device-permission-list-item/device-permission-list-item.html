@@ -1,6 +1,20 @@
-<li class="nodes-in-flow__item">
+<li class="device-permission-list-item">
   <button class="Sidebar-button node-in-flow__button">
     <img ng-src="{{device.logo}}" alt="{{device.class || device.type}}" class="Sidebar-pane-node-thumbnail"/>
     <span class="node-in-flow__node--name truncate">{{device.name || device.uuid}}</span>
   </button>
+  <ul class="permission-list">
+    <li ng-if="permissions.messageToFlow !== undefined">
+      <i class="{{controller.getPermissionClass(permissions.messageToFlow)}}"></i>
+      Send to Flow
+     </li>
+    <li ng-if="permissions.messageFromFlow !== undefined">
+       <i class="{{controller.getPermissionClass(permissions.messageFromFlow)}}"></i>
+       Messages from Flow
+     </li>
+    <li ng-if="permissions.subscribeBroadcastSent !== undefined">
+      <i class="{{controller.getPermissionClass(permissions.subscribeBroadcastSent)}}"></i>
+        Broadcast to Flow
+     </li>
+  </ul>
 </li>

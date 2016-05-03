@@ -19,7 +19,11 @@
   </header>
 
   <main class="Sidebar-pane-body">
-    <div class="Sidebar-pane-content">
+    <div ng-show="controller.loading" class="Sidebar-pane-content">
+      <spinner loading="controller.loading" size="large"></spinner>
+    </div>
+
+    <div ng-hide="controller.loading" class="Sidebar-pane-content">
       <div class="Sidebar-section Sidebar-section-nodes">
         <div class="Sidebar-section-header">
           <h5 class="Sidebar-section-title">Updates Required</h5>
@@ -35,17 +39,16 @@
           </ul>
         </div>
       </div>
-    </div>
-  </main>
-
-  <main class="Sidebar-pane-body">
-    <div class="Sidebar-pane-content">
       <div class="Sidebar-section Sidebar-section-nodes">
         <div class="Sidebar-section-header">
           <h5 class="Sidebar-section-title">Things</h5>
+          <button ng-click="showThings = !showThings" ng-class="{'Sidebar-section-toggle-btn': showThings}" class="Sidebar-button" aria-label="Show/Hide Things">
+            <span ng-hide="!showThings">Hide</span>
+            <span ng-hide="showThings">Show</span>
+          </button>
         </div>
 
-        <div class="Sidebar-section-body">
+        <div ng-show="showThings" class="Sidebar-section-body">
           <ul class="nodes-in-flow">
             <device-permission-list-item ng-repeat="deviceWithPermissions in controller.devicesWithPermissions | orderBy: 'device.name'" device="deviceWithPermissions.device" permissions="deviceWithPermissions.permissions">
             </device-permission-list-item>
