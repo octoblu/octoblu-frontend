@@ -47,7 +47,6 @@ class FlowModel
           return unless node.type?
           type = node.type.replace /operation:/, ''
           type = type.replace /:.*/, ''
-          console.log type, data[type]?.sendWhitelist
           return unless data[type]?.sendWhitelist?
           device =
             logo: node.logo

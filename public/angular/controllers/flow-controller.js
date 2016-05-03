@@ -277,7 +277,6 @@ angular.module('octobluApp')
     return redoBuffer.length > 0;
   }
 
-
   $scope.deleteSelection = function (e) {
     if (e) {
       e.preventDefault();
@@ -412,138 +411,11 @@ angular.module('octobluApp')
     }
   }
 
-  var checkForServiceNames = function(uuids) {
-    var newList = _.map(uuids, function(uuid){
-      if(SERVICE_UUIDS.TRIGGER === uuid){
-        return 'Trigger Service'
-      }
-      if(SERVICE_UUIDS.INTERVAL === uuid){
-        return 'Interval Service'
-      }
-      if(SERVICE_UUIDS.CREDENTIALS === uuid){
-        return 'Credential Service'
-      }
-      return uuid
-    })
-    return newList;
-  }
-
-  var askToAddReceiveAs = function(thingsNeedingReceiveAs) {
-    var deviceList = _.map(thingsNeedingReceiveAs, function(thing){
-      return thing.name || thing.uuid;
-    });
-    var options = {
-      title: 'Permission Update Required',
-      content: 'The following devices need to allow the flow to send and receive messages: ' + deviceList.join(', ')
-    };
-    return NotifyService.confirm(options);
-  };
-
-  var askToAddSendWhitelist = function(thingsNeedingSendWhitelist) {
-    thingsNeedingSendWhitelist = checkForServiceNames(thingsNeedingSendWhitelist);
-    var options = {
-      title: 'Permission Update Required',
-      content: 'The following devices need to send messages to your flow: ' + thingsNeedingSendWhitelist.join(', ')
-    };
-    return NotifyService.confirm(options);
-  };
-
-  var addFlowToWhitelists = function(thingsNeedingReceiveAs) {
-    var deferred = $q.defer()
-
-    async.eachSeries(thingsNeedingReceiveAs, function(thing, callback){
-      var updateObj = {};
-      updateObj.uuid = thing.uuid;
-      updateObj.receiveAsWhitelist = thing.receiveAsWhitelist || [];
-      updateObj.receiveAsWhitelist.push($scope.activeFlow.flowId);
-      updateObj.receiveWhitelist = thing.receiveWhitelist || [];
-      updateObj.receiveWhitelist.push($scope.activeFlow.flowId);
-      updateObj.sendWhitelist = thing.sendWhitelist || [];
-      updateObj.sendWhitelist.push($scope.activeFlow.flowId);
-      ThingService.updateDevice(updateObj)
-        .then(function(){ callback() })
-        .catch(callback)
-    }, function(error){
-      if (error){
-        return deferred.reject(error)
-      }
-
-      return deferred.resolve(thingsNeedingReceiveAs);
-    });
-
-    return deferred;
-  };
-
-  var addSendWhitelistsToFlow = function(thingsNeedingSendWhitelist) {
-    ThingService.getThing({uuid: $scope.activeFlow.flowId}).then(function(thing) {
-      thing.sendWhitelist = thing.sendWhitelist || [];
-      thing.sendWhitelist = _.union(thing.sendWhitelist, thingsNeedingSendWhitelist);
-      ThingService.updateDevice(thing);
-    })
-  };
-
-  var askAndAddToReceiveAs = function(thingsNeedingReceiveAs) {
-    return askToAddReceiveAs(thingsNeedingReceiveAs)
-      .then(function(things){
-        return addFlowToWhitelists(thingsNeedingReceiveAs);
-      })
-      .then(function(){
-        return NotifyService.notify('Permissions updated');
-      })
-      .catch(function(){
-        return NotifyService.notify('Permissions Not Updated');
-      });
-  };
-
-  var askAndAddToSendWhitelist = function(thingsNeedingSendWhitelist) {
-    return askToAddSendWhitelist(thingsNeedingSendWhitelist)
-      .then(function(things){
-        return addSendWhitelistsToFlow(thingsNeedingSendWhitelist);
-      })
-      .then(function(){
-        return NotifyService.notify('Permissions updated');
-      })
-      .catch(function(){
-        return NotifyService.notify('Permissions Not Updated');
-      });
-  };
-
-  var checkDevicePermissions = function(newNodes) {
-    var deviceNodes = _.filter(newNodes, function(node){
-      return node.meshblu || node.class === 'device-flow';
-    });
-
-    var deviceUuids = _.pluck(deviceNodes, 'uuid');
-    FlowService.needsPermissions($scope.activeFlow.flowId, deviceUuids)
-      .then(function(thingsNeedingReceiveAs){
-        if (_.isEmpty(thingsNeedingReceiveAs)){
-          return;
-        }
-        return askAndAddToReceiveAs(thingsNeedingReceiveAs);
-      });
-  };
-
-  var checkNodeRegistryPermissions = function(newNodes) {
-    var deviceNodes = _.filter(newNodes, function(node){
-      return node.meshblu || node.class === 'device-flow';
-    });
-    var nodeTypes = _.pluck(newNodes, 'type');
-    NodeRegistryService.needsPermissions($scope.activeFlow.flowId, nodeTypes)
-      .then(function(thingsNeedingSendWhitelist){
-        if (_.isEmpty(thingsNeedingSendWhitelist)){
-          return;
-        }
-        return askAndAddToSendWhitelist(thingsNeedingSendWhitelist);
-      });
-  };
-
   var watchNodes = function(newNodes) {
     if(!$scope.activeFlow) {
       return;
     }
 
-    // checkDevicePermissions(newNodes);
-    // checkNodeRegistryPermissions(newNodes);
     subscribeFlowToDevices(newNodes);
   }
 
