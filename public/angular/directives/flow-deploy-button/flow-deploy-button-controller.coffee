@@ -20,7 +20,8 @@ class FlowDeployButtonController
       ok: 'Update and Deploy'
       cancel: 'Deploy Without Update'
     @NotifyService.confirm options
-      .then @scope.flow.updatePendingPermissions
+      .then =>
+        @scope.flow.updatePendingPermissions
       .catch => return
       .finally @deployFlow
 

@@ -8,9 +8,14 @@ class FlowPermissionManagerController
     @loading      = true
     @scope.hideSection = true
     @scope.$watchCollection 'flow.nodes', @renderPermissionManager
+    @scope.$watch 'flow.pendingPermissions', @updateHideSection
 
   approveAll: =>
     @scope.flow.updatePendingPermissions()
+
+  updateHideSection: (pendingPermissions) =>
+    return unless pendingPermissions?
+    @scope.hideSection = !pendingPermissions
 
   renderPermissionManager: (nodes) =>
     return unless nodes?
