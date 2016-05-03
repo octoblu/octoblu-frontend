@@ -23,8 +23,8 @@
       <spinner loading="controller.loading" size="large"></spinner>
     </div>
 
-    <div ng-hide="controller.loading || controler.devicesNeedingPermission.length == 0" class="Sidebar-pane-content">
-      <div class="Sidebar-section Sidebar-section-nodes">
+    <div ng-hide="controller.loading" class="Sidebar-pane-content">
+      <div ng-hide="controller.devicesNeedingPermission.length == 0" class="Sidebar-section Sidebar-section-nodes">
         <div class="Sidebar-section-header">
           <h5 class="Sidebar-section-title">Updates Required</h5>
           <button ng-click="controller.approveAll()" class="Sidebar-button" aria-label="Approve All">

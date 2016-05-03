@@ -5,8 +5,9 @@ class FlowPermissionManagerController
     @ThingService = ThingService
     @REGISTRY_URL = REGISTRY_URL
     @http         = $http
-    @scope.$watchCollection 'flow.nodes', @renderPermissionManager
     @loading      = true
+    @scope.hideSection = true
+    @scope.$watchCollection 'flow.nodes', @renderPermissionManager
 
   approveAll: =>
     promises = _.map(@devicesNeedingPermission, @updatePermission)
@@ -30,7 +31,7 @@ class FlowPermissionManagerController
   updateFlowSendWhitelist: =>
     devicesToAdd = _.filter @devicesNeedingPermission, ({permissions}) =>
       permissions.messageToFlow == false
-    
+
     update =
       $pushAll:
         sendWhitelist: _.map devicesToAdd, ({device}) => device.uuid
@@ -38,8 +39,8 @@ class FlowPermissionManagerController
     @ThingService.updateDangerously(@flowDevice.uuid, update)
 
   renderPermissionManager: (nodes) =>
-    console.log 'renderPermissionManager'
     return unless nodes?
+    return unless @scope.flow?
     {flowId} = @scope.flow
     @ThingService.getThing(uuid: flowId)
       .then (@flowDevice) =>
@@ -52,6 +53,7 @@ class FlowPermissionManagerController
         @devicesNeedingPermission = _.filter @devicesWithPermissions, ({permissions}) =>
           _.includes _.values(permissions), false
         @loading = false
+        @scope.hideSection = @devicesNeedingPermission.length == 0
 
   getDevicesWithPermissionsFromNodes: (nodes) =>
     @getDevicesFromNodes(nodes)
