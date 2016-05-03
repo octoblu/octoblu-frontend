@@ -16,12 +16,11 @@ class FlowDeployButtonController
     return @deployFlow() unless @scope.flow.pendingPermissions
     options =
       title: 'Permissions Update'
-      content: 'In order to communicate with your devices, some permissions need to be updated. Press Approve All in the Permissions Inspector.'
+      content: 'In order to communicate with your devices, some permissions need to be updated.'
       ok: 'Update and Deploy'
       cancel: 'Deploy Without Update'
     @NotifyService.confirm options
-      .then =>
-        @scope.flow.updatePendingPermissions
+      .then @scope.flow.updatePendingPermissions
       .catch => return
       .finally @deployFlow
 

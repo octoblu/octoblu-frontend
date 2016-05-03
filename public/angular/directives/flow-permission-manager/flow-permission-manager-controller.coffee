@@ -19,7 +19,6 @@ class FlowPermissionManagerController
 
   renderPermissionManager: (nodes) =>
     return unless nodes?
-    return unless @scope.flow?
     @scope.flow.getDevicesNeedingPermissions()
       .then =>
         @loading = false
