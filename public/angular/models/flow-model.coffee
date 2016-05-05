@@ -86,7 +86,7 @@ class FlowModel
 
   _getDevicesFromNodes: =>
     deviceNodes = _.uniq @_getDeviceNodes(), 'uuid'
-    promises = _.map deviceNodes, ThingService.getThing
+    promises = _.map deviceNodes, @ThingService.getThing
     return @q.all promises
 
   _getDeviceNodes: =>
