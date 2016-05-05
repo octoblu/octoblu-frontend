@@ -42,7 +42,7 @@ angular.module('octobluApp')
       headers: {
         deploymentUuid: deploymentUuid
       },
-      data: flow
+      data: flow.toJSON()
     });
 
     return HttpResponseHandler.handle(request);

@@ -20,6 +20,17 @@ class FlowModel
     @nodes ?= []
     @links ?= []
 
+  toJSON: =>
+    {
+      @flowId
+      @token
+      @name
+      @description
+      @hash
+      @nodes
+      @links
+    }
+
   updatePendingPermissions: =>
     promises = _.map(@devicesNeedingPermission, @_updatePermission)
     promises.push @_updateFlowSendWhitelist()
