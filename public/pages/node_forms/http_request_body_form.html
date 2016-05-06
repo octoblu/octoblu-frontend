@@ -17,13 +17,13 @@
       <div class="md-tile-content" layout="row" layout-align="space-between" style="padding: 5px 0 0 0;">
         <div style="margin: auto 10px auto 0; font-weight: bold; font-size: 1.5em">{{$index + 1}}.</div>
         <md-input-container required>
-          <label>Value</label>
-          <input ng-model="flowNode.bodyValues[$index]">
+          <label>Key</label>
+          <input ng-model="flowNode.bodyKeys[$index]">
         </md-input-container>
         <div style="margin: auto 0; font-weight: bold; font-size: 1.1em;">as</div>
         <md-input-container required>
-          <label>Key</label>
-          <input ng-model="flowNode.bodyKeys[$index]">
+          <label>Value</label>
+          <input ng-model="flowNode.bodyValues[$index]">
         </md-input-container>
         <md-button class="md-fab" ng-click="flowNode.bodyKeys.splice($index, 1);flowNode.bodyValues.splice($index, 1)">
           <i class="fa fa-minus"></i>
