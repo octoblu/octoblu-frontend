@@ -20,7 +20,7 @@ angular.module('octobluApp')
           $interval.cancel(timeoutId);
           originalDevice = scope.model;
           scope.editingDevice = angular.copy(originalDevice)
-          schema = _.extend({ title: 'Options'}, scope.schema);
+          schema = _.extend({ title: ' '}, scope.schema);
 
           if (editor) {
             editor.destroy();
@@ -33,7 +33,8 @@ angular.module('octobluApp')
               disable_collapse: true,
               disable_edit_json: !scope.allowJsonEdit,
               theme: 'bootstrap3',
-              iconlib: 'font-awesome4'
+              iconlib: 'font-awesome4',
+              expand_height: true
             });
 
 

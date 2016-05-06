@@ -8,6 +8,9 @@
 </md-input-container>
 
 <h3>Body</h3>
+<md-button ng-click="showJsonEditor = true" ng-show="!showJsonEditor" class="md-primary" aria-label="Edit Json">Show Advanced</md-button>
+<md-button ng-click="showJsonEditor = false" ng-show="showJsonEditor" class="md-primary" aria-label="Edit Json">Show Basic</md-button>
+<div class="BodyKey-Editor" ng-show="!showJsonEditor">
 <md-list>
   <md-item ng-repeat="key in flowNode.bodyKeys track by $index">
     <md-item-content>
@@ -30,6 +33,11 @@
   </md-item>
 </md-list>
 <md-button ng-click="flowNode.bodyKeys.push('')" class="md-primary" aria-label="Add Key">Add Key</md-button>
+</div>
+
+<http-body-editor ng-show="showJsonEditor"></http-body-editor>
+
+
 
 <h3>Query</h3>
 <md-list>
