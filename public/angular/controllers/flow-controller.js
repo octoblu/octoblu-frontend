@@ -349,7 +349,7 @@ angular.module('octobluApp')
 
   $scope.focusDesigner = function () {
     document.getElementById("designer").focus();
-  }
+  };
 
   $scope.clearMousePosition = function () {
     $scope.currentMouseX = null;
@@ -364,7 +364,7 @@ angular.module('octobluApp')
 
   var unselectSelectedFlowNode = function() {
     $scope.activeFlow.selectedFlowNode = null;
-  }
+  };
 
   $scope.toggleSidebarView = function() {
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
@@ -409,7 +409,7 @@ angular.module('octobluApp')
     if(nodeType.resourceType === 'node-type') {
       return $scope.sidebarIsExpanded = true;
     }
-  }
+  };
 
   var watchNodes = function(newNodes) {
     if(!$scope.activeFlow) {
@@ -417,7 +417,48 @@ angular.module('octobluApp')
     }
 
     subscribeFlowToDevices(newNodes);
+  };
+
+  var flowDeployingInterval;
+  var flowStoppingInterval;
+
+  var checkFlowDeploying = function(){
+    ThingService.getThing({uuid: $scope.flowDevice.uuid}).then(function(flow){
+      $scope.flowDevice.deploying = flow.deploying;
+      $scope.flowDevice.stopping  = flow.stopping;
+    });
   }
+
+  var watchFlowDeployingImmediate = function(deploying){
+    if (!deploying) {
+      clearInterval(flowDeployingInterval);
+      flowDeployingInterval = undefined;
+      return;
+    }
+    if (deploying) {
+      if (flowDeployingInterval) {
+        return;
+      }
+      flowDeployingInterval = setInterval(checkFlowDeploying, 1000);
+    }
+  };
+
+  var watchFlowStoppingImmediate = function(deploying){
+    if (!deploying) {
+      clearInterval(flowStoppingInterval);
+      flowStoppingInterval = undefined;
+      return;
+    }
+    if (deploying) {
+      if (flowStoppingInterval) {
+        return;
+      }
+      flowStoppingInterval = setInterval(checkFlowDeploying, 1000);
+    }
+  };
+
+  var watchFlowDeploying = _.throttle(watchFlowDeployingImmediate, 1000, {leading: false, trailing: true});
+  var watchFlowStopping = _.throttle(watchFlowStoppingImmediate, 1000, {leading: false, trailing: true});
 
   var subscribeFlowToDevices = function(newNodes){
     var deviceNodes = _.filter(newNodes, function(node){
@@ -431,4 +472,6 @@ angular.module('octobluApp')
   $scope.$watch('activeFlow.hash', compareFlowHash);
   $scope.$watchCollection('activeFlow.nodes', watchNodes);
   $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
+  $scope.$watch('flowDevice.deploying', watchFlowDeploying);
+  $scope.$watch('flowDevice.stopping', watchFlowStopping);
 });
