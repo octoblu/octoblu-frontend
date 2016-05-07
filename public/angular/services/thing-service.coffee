@@ -132,12 +132,12 @@ class ThingService
 
     deferred.promise
 
-  getThings: (query={})=>
+  getThings: (query={}, projection) =>
     deferred = @q.defer()
 
     query = _.clone query
     query.owner = @cookies.meshblu_auth_uuid
-    @MeshbluHttpService.devices query, (error, results) =>
+    @MeshbluHttpService.search {query, projection}, (error, results) =>
       return deferred.reject error if error?
       [users, devices] = _.partition results, type: 'octoblu:user'
 

@@ -132,7 +132,12 @@ angular.module('octobluApp')
   };
 
   self.needsPermissions = function(receiverUuid, uuids) {
-    return ThingService.getThings()
+    var projection = {
+      uuid: true,
+      receiveAsWhitelist: true,
+      sendWhitelist: true
+    };
+    return ThingService.getThings(null, projection)
       .then(function(things){
         var thingsToCheck = _.filter(things, function(thing){
           return _.contains(uuids, thing.uuid);

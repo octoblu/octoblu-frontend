@@ -45,7 +45,6 @@ class ConfigureController
     localStorage.removeItem 'wizardNodeIndex'
     localStorage.removeItem 'redirectFlowConfig'
 
-
   updateThingsByCategory: (things) =>
     if !things.length
       @scope.noThings = true
@@ -57,6 +56,5 @@ class ConfigureController
       device.defaults.nodeType.categories;
     @scope.categories = _.sortBy(_.keys @scope.connectedThingsByCategory)
     (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.connectedThingsByCategory['Flows']
-
 
 angular.module('octobluApp').controller 'ConfigureController', ConfigureController

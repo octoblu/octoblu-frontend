@@ -61,7 +61,9 @@ angular.module('octobluApp')
   };
 
   var checkDeviceStatus = function() {
-    MeshbluHttpService.devices({owner: $cookies.meshblu_auth_uuid, type: 'octoblu:flow'}, function(error, devices) {
+    var query = {owner: $cookies.meshblu_auth_uuid, type: 'octoblu:flow'};
+    var projection = {uuid: true, online: true};
+    MeshbluHttpService.search({query: query, projection: projection}, function(error, devices) {
       _.each(devices, function(device){
         var flow = _.findWhere($scope.flows, {flowId: device.uuid});
         if (flow) {

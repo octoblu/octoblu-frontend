@@ -8,7 +8,7 @@ angular.module('octobluApp')
       $scope.nodeType = nodeType;
     });
 
-  ThingService.getThings({type: 'device:gateblu'})
+  ThingService.getThings({type: 'device:gateblu'}, {uuid: true, platform: true, name: true, logo: true})
     .then(function(gateblus){
       $scope.gateblus = gateblus;
     });

@@ -21,7 +21,17 @@ class DeviceDetailController
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
 
-    @ThingService.getThings().then (devices) =>
+    projection =
+      uuid: true
+      type: true
+      name: true
+      logo: true
+      configureWhitelist: true
+      discoverWhitelist: true
+      sendWhitelist: true
+      receiveWhitelist: true
+
+    @ThingService.getThings(null, projection).then (devices) =>
       @devices = devices
       @scope.$watch 'controller.devices', @updatePermissionRows, true
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true

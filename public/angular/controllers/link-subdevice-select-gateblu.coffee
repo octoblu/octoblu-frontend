@@ -3,7 +3,7 @@ class LinkSubdeviceSelectGatebluController
     @state = $state
     {@device, @nodeType} = $scope.subdeviceLink
     @subdeviceLink = $scope.subdeviceLink
-    ThingService.getThings(type: 'device:gateblu').then (@gateblus) =>
+    ThingService.getThings({type: 'device:gateblu'}, {uuid: true, name: true, platform: true, logo: true}).then (@gateblus) =>
 
   selectGateblu: (gateblu) =>
     @subdeviceLink.gateblu = _.cloneDeep gateblu
