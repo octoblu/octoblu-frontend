@@ -359,12 +359,12 @@ describe 'ThingService', ->
 
   describe '->getThings', ->
     beforeEach ->
-      @MeshbluHttpService.devices = sinon.stub()
+      @MeshbluHttpService.search = sinon.stub()
 
     describe 'when devices yields some devices', ->
       beforeEach ->
         devices = [{uuid: 'a'}, {uuid: 'b'}, {uuid: 'me', name: 'Its Me', type: 'octoblu:user'}]
-        @MeshbluHttpService.devices.yields null, devices
+        @MeshbluHttpService.search.yields null, devices
         storeResults = (@results) =>
         _.defer => @rootScope.$digest()
         @sut.getThings().then storeResults
@@ -383,7 +383,7 @@ describe 'ThingService', ->
     describe 'when devices yields some devices', ->
       beforeEach ->
         devices = [{uuid: 'a'}, {uuid: 'b'}, {uuid: 'c', name: 'Its Cee', type: 'device:cool-beans'}]
-        @MeshbluHttpService.devices.yields null, devices
+        @MeshbluHttpService.search.yields null, devices
         storeResults = (@results) =>
         _.defer => @rootScope.$digest()
         @sut.getThings().then storeResults
