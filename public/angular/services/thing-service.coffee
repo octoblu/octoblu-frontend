@@ -37,12 +37,12 @@ class ThingService
     send:      !device.sendWhitelist?
     receive:   !device.receiveWhitelist?
 
-  claimThing: (query={}, user, params)=>
+  claimThing: (query={}, user, params, meshbluHttp)=>
     {uuid, token} = query
     return @q.reject 'Unable to claim device, missing uuid'  unless uuid?
     return @q.reject 'Unable to claim device, missing token' unless token?
     deferred = @q.defer()
-    meshbluHttp = new @MeshbluHttp {
+    meshbluHttp ?= new @MeshbluHttp {
       hostname: @MESHBLU_HOST,
       port: @MESHBLU_PORT,
       uuid: uuid,

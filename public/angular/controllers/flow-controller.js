@@ -425,10 +425,16 @@ angular.module('octobluApp')
   var flowStoppingInterval;
 
   var checkFlowDeploying = function(){
-    ThingService.getThing({uuid: $scope.flowDevice.uuid}).then(function(flow){
-      $scope.flowDevice.deploying = flow.deploying;
-      $scope.flowDevice.stopping  = flow.stopping;
-    });
+    ThingService.getThing({uuid: $scope.flowDevice.uuid})
+      .then(function(flow){
+        $scope.flowDevice.deploying = flow.deploying;
+        $scope.flowDevice.stopping  = flow.stopping;
+      })
+      .catch(function(error){
+        clearInterval(flowDeployingInterval);
+        flowDeployingInterval = undefined;
+        NotifyService.notifyError(error);
+      });
   }
 
   var watchFlowDeployingImmediate = function(deploying){

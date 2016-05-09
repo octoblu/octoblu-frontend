@@ -6,24 +6,15 @@ angular.module('octobluApp')
 
   var getDevice = function(){
     $scope.device = null;
-    ThingService.getThings().then(function(devices){
-      $scope.device = _.findWhere(devices, {uuid: $scope.uuid});
-      if(!$scope.device){
-        return;
-      }
-      $scope.device.options = $scope.device.options || {};
-    });
+    ThingService.getThing({ uuid: $scope.uuid })
+      .then(function(device){
+        $scope.device = device
+        $scope.device.options = $scope.device.options || {}
+      })
+      .catch(function(error){
+        NotifyService.notifyError(error)
+      });
   };
-
-  var saveDevice = function(){
-    if (!$scope.device) {
-      return;
-    }
-    ThingService.updateDevice(_.pick($scope.device, 'uuid', 'name', 'options'))
-    .then(function(){
-      NotifyService.notify('Changes Saved');
-    });
-  }
 
   $scope.$watch('uuid', getDevice);
 });
