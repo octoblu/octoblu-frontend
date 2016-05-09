@@ -2,6 +2,7 @@ describe 'OAuthProviderController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$window', {}
+      $provide.value '$cookies', {}
       $provide.value 'OAUTH_PROVIDER', 'https://smurfs.bikes'
       return
 
@@ -26,7 +27,7 @@ describe 'OAuthProviderController', ->
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: @MeshbluDeviceService
-          ProfileService: {}
+          ThingService: {}
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
@@ -41,7 +42,7 @@ describe 'OAuthProviderController', ->
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: @MeshbluDeviceService
-          ProfileService: {}
+          ThingService: {}
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
@@ -64,7 +65,7 @@ describe 'OAuthProviderController', ->
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: @MeshbluDeviceService
-          ProfileService: {}
+          ThingService: {}
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
@@ -80,12 +81,12 @@ describe 'OAuthProviderController', ->
   describe '->authorize', ->
     describe 'when called with session-token', ->
       beforeEach ->
-        @ProfileService = generateSessionToken: sinon.stub().returns @q.when(token: 'session-token', uuid: 'junior-mints')
+        @ThingService = generateSessionToken: sinon.stub().returns @q.when(token: 'session-token', uuid: 'junior-mints')
         @window = location: null
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: get: => @q.when()
-          ProfileService: @ProfileService
+          ThingService: @ThingService
           $stateParams: {uuid: 'snickers', state: '123', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $scope: @scope
           $window: @window
@@ -94,20 +95,20 @@ describe 'OAuthProviderController', ->
         @sut.authorize()
         @rootScope.$digest()
 
-      it 'should call ProfileService.generateSessionToken', ->
-        expect(@ProfileService.generateSessionToken).to.have.been.called
+      it 'should call ThingService.generateSessionToken', ->
+        expect(@ThingService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
         expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=snickers&redirect_uri=foo&token=session-token&uuid=junior-mints&state=123'
 
     describe 'when called with token-session', ->
       beforeEach ->
-        @ProfileService = generateSessionToken: sinon.stub().returns @q.when(token: 'token-session', uuid: 'mnms')
+        @ThingService = generateSessionToken: sinon.stub().returns @q.when(token: 'token-session', uuid: 'mnms')
         @window = location: null
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: get: => @q.when()
-          ProfileService: @ProfileService
+          ThingService: @ThingService
           $scope: @scope
           $stateParams: {uuid: 'mars', state: '123', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $window: @window
@@ -116,8 +117,8 @@ describe 'OAuthProviderController', ->
         @sut.authorize()
         @rootScope.$digest()
 
-      it 'should call ProfileService.generateSessionToken', ->
-        expect(@ProfileService.generateSessionToken).to.have.been.called
+      it 'should call ThingService.generateSessionToken', ->
+        expect(@ThingService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
         expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=mars&redirect_uri=foo&token=token-session&uuid=mnms&state=123'

@@ -34,10 +34,10 @@ angular.module('octobluApp')
   };
 
   $scope.generateSessionToken = function() {
-    ThingService.generateSessionToken($scope.device).then(function(token){
+    ThingService.generateSessionToken($scope.device).then(function(session){
       var alertOptions = {
         title: 'New Session Token',
-        content: token,
+        content: session.token,
         ok: 'Dismiss'
       };
 

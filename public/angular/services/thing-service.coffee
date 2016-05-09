@@ -110,10 +110,11 @@ class ThingService
 
     deferred.promise
 
-  generateSessionToken: (device) =>
-    deferred = @q.defer()
+  generateSessionToken: (device, metadata={}) =>
+    deferred      = @q.defer()
+    metadata.tag ?= 'app.octoblu.com'
 
-    @MeshbluHttpService.generateAndStoreToken device.uuid, {tag: 'app.octoblu.com'}, (error, token) =>
+    @MeshbluHttpService.generateAndStoreToken device.uuid, metadata, (error, token) =>
       if error?
         console.error "Error generating session token: #{device.uuid}", error.stack()
         deferred.reject error
