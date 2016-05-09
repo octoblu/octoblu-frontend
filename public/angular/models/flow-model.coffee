@@ -71,7 +71,7 @@ class FlowModel
             messageToFlow: @_deviceCanMessageFlow device
       .catch (error) =>
         device =
-            logo: 'https://ds78apnml6was.cloudfront.net/unknown-device.svg'
+            logo: 'https://icons.octoblu.com/unknown-device.svg'
             name: 'Unknown Device'
             uuid: uuid
         deviceWithPermissions =

@@ -13,7 +13,7 @@ xdescribe('FlowNodeTypeService', function () {
       $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
-      $provide.constant('OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/');
+      $provide.constant('OCTOBLU_ICON_URL', 'https://icons.octoblu.com/');
     });
 
     inject(function (FlowNodeTypeService, _$httpBackend_, _$q_) {
@@ -148,7 +148,7 @@ xdescribe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('function').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://ds78apnml6was.cloudfront.net/function.svg'});
+        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://icons.octoblu.com/function.svg'});
         done();
       }, done);
 
@@ -159,7 +159,7 @@ xdescribe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('inject').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://ds78apnml6was.cloudfront.net/inject.svg'});
+        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://icons.octoblu.com/inject.svg'});
         done();
       }, done);
 

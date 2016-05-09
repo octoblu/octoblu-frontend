@@ -1,10 +1,11 @@
 class ClaimNodeController
-  constructor:  ($stateParams, $q, $state, $cookies, ThingService, MESHBLU_PORT, MESHBLU_HOST, OCTOBLU_ICON_URL) ->
+  constructor:  ($stateParams, $q, $state, $cookies, ThingService, MESHBLU_PORT, MESHBLU_HOST, DeviceLogo) ->
     @stateParams = $stateParams
     @q = $q
     @state = $state
     @cookies = $cookies
     @ThingService = ThingService
+    @DeviceLogo = DeviceLogo
     @loading = true
     @meshbluHttp = new MeshbluHttp {
       port: MESHBLU_PORT,
@@ -23,12 +24,7 @@ class ClaimNodeController
       @fragments = [{linkTo: 'material.things', label: 'All Things'},{label: "Claim Thing"}]
 
   logoUrl: (device) =>
-    return device.logo if device.logo
-    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
-
-    type = device.type.replace 'octoblu:', 'device:'
-    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
-    device.logo
+    new @DeviceLogo(device).get()
 
   iWantToClaimTheDevice: =>
     @loading = true

@@ -1,10 +1,11 @@
 class DeviceDetailController
-  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, OCTOBLU_ICON_URL) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, OCTOBLU_ICON_URL, DeviceLogo) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
     @NotifyService = NotifyService
     @ThingService = ThingService
+    @DeviceLogo = DeviceLogo
     @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @form = ['*']
     @firstRun = true
@@ -52,12 +53,7 @@ class DeviceDetailController
     @state.go "material.nodewizard-linksubdevice", deviceUuid: @device.uuid, {location: true}
 
   logoUrl: (device) =>
-    return device.logo if device.logo
-    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
-
-    type = device.type.replace 'octoblu:', 'device:'
-    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
-    device.logo
+    new @DeviceLogo(device).get()
 
   confirmDeleteDevice: =>
     confirmOptions = {

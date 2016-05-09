@@ -11,7 +11,7 @@ class OAuthProviderController
     MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) =>
       oauthDevice ?= {}
       oauthDevice.options ?= {}
-      oauthDevice.options.imageUrl ?= 'https://ds78apnml6was.cloudfront.net/device/oauth.svg'
+      oauthDevice.options.imageUrl ?= 'https://icons.octoblu.com/device/oauth.svg'
       oauthDevice.options.description ?= 'No extended description provided.'
       $scope.oauthDevice = oauthDevice
 

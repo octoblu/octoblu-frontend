@@ -16,7 +16,7 @@ xdescribe('FlowNodeRenderer', function () {
       $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
-      $provide.constant('OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/');
+      $provide.constant('OCTOBLU_ICON_URL', 'https://icons.octoblu.com/');
     });
 
     inject(function(_FlowLinkRenderer_) {

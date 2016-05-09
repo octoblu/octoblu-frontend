@@ -1,17 +1,12 @@
 class DeviceCollectionController
-  constructor: ($scope, $state, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, DeviceLogo) ->
     @scope = $scope
+    @DeviceLogo = DeviceLogo
     @scope.showCategory = true
     @state = $state
-    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
 
   logoUrl: (device) =>
-    return device.logo if device.logo
-    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
-
-    type = device.type.replace 'octoblu:', 'device:'
-    device.logo = @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
-    device.logo
+    new @DeviceLogo(device).get()
 
   nextStepUrl: (device) =>
     sref = "material.#{device.category}"

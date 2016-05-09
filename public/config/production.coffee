@@ -19,7 +19,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_FIREHOSE_HOSTNAME', 'meshblu-firehose-socket-io.octoblu.com'
   .constant 'MESHBLU_FIREHOSE_PORT', '443'
   .constant 'MESHBLU_FIREHOSE_PROTOCOL', 'https'
-  .constant 'OCTOBLU_ICON_URL', 'https://ds78apnml6was.cloudfront.net/'
+  .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'OCTOBLU_API_URL', 'https://app.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
