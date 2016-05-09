@@ -10,7 +10,8 @@ var gulp         = require('gulp'),
   rimraf         = require('gulp-rimraf'),
   cors           = require('cors'),
   _              = require('lodash'),
-  replace        = require('gulp-replace');
+  replace        = require('gulp-replace'),
+  uglify         = require('gulp-uglify');
 
 gulp.task('bower', function() {
   return bower('./public/lib');
@@ -20,7 +21,8 @@ gulp.task('bower:concat', ['bower'], function(){
   return gulp.src(mainBowerFiles({filter: /\.js$/}))
     .pipe(plumber())
     .pipe(sourcemaps.init())
-      .pipe(concat('dependencies.js'))
+    .pipe(concat('dependencies.js'))
+    .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });

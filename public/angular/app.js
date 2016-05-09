@@ -9,7 +9,6 @@ angular.module('octobluApp', [
   'ui.router',
   'ui.utils',
   'angular-google-analytics',
-  'elasticsearch',
   'ngMaterial',
   'ngTable',
   'mgo-mousetrap',

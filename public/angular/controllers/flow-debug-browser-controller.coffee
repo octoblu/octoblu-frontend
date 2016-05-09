@@ -15,5 +15,4 @@ class FlowDebugBrowserController
   syncFromFlow: =>
     @flowText = JSON.stringify @scope.flow, null, 2
 
-
 angular.module('octobluApp').controller 'FlowDebugBrowserController', FlowDebugBrowserController
