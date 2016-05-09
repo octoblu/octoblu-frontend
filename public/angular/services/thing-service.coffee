@@ -123,31 +123,22 @@ class ThingService
     deferred.promise
 
   getThing: ({uuid}) =>
-    deferred = @q.defer()
-
-    @MeshbluHttpService.device uuid, (error, thing) =>
-      return deferred.reject error if error?
-      thing = @addLogo thing
-      deferred.resolve thing
-
-    deferred.promise
+    @q (resolve, reject) =>
+      @MeshbluHttpService.device uuid, (error, thing) =>
+        return reject error if error?
+        thing = @addLogo thing
+        resolve thing
 
   getThings: (query={}, projection) =>
-    deferred = @q.defer()
-
-    query = _.clone query
-    query.owner = @cookies.meshblu_auth_uuid
-    @MeshbluHttpService.search {query, projection}, (error, results) =>
-      return deferred.reject error if error?
-      [users, devices] = _.partition results, type: 'octoblu:user'
-
-      things = _.union(users, devices)
-
-      things = _.map things, @addLogo
-
-      deferred.resolve things
-
-    deferred.promise
+    @q (resolve, reject) =>
+      query = _.clone query
+      query.owner = @cookies.meshblu_auth_uuid
+      @MeshbluHttpService.search {query, projection}, (error, results) =>
+        return reject error if error?
+        [users, devices] = _.partition results, type: 'octoblu:user'
+        things = _.union(users, devices)
+        things = _.map things, @addLogo
+        resolve things
 
   revokeToken: (device={}) =>
     deferred = @q.defer()

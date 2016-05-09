@@ -46,11 +46,9 @@ class ConfigureController
     localStorage.removeItem 'redirectFlowConfig'
 
   updateThingsByCategory: (things) =>
-    if !things.length
-      @scope.noThings = true
-    if things.length
-      @scope.noThings = false
+    @scope.noThings = things.length == 0
     @scope.connectedThingsByCategory = _.groupBy things, (device) =>
+      console.log {device}
       return "Flows" if device.type == 'device:flow'
       return "Other" unless device.defaults.nodeType.categories?
       device.defaults.nodeType.categories;

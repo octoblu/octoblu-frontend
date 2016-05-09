@@ -70,10 +70,10 @@ class DeviceDetailController
         @state.go "material.configure", deleted: name
 
   generateSessionToken: =>
-    @ThingService.generateSessionToken(@device).then (token) =>
+    @ThingService.generateSessionToken(@device).then (session) =>
       alertOptions = {
         title: 'New Session Token'
-        content: token
+        content: session.token
         ok: 'Dismiss'
       }
 
