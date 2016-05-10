@@ -37,12 +37,12 @@ class ThingService
     send:      !device.sendWhitelist?
     receive:   !device.receiveWhitelist?
 
-  claimThing: (query={}, user, params)=>
+  claimThing: (query={}, user, params, meshbluHttp)=>
     {uuid, token} = query
     return @q.reject 'Unable to claim device, missing uuid'  unless uuid?
     return @q.reject 'Unable to claim device, missing token' unless token?
     deferred = @q.defer()
-    meshbluHttp = new @MeshbluHttp {
+    meshbluHttp ?= new @MeshbluHttp {
       hostname: @MESHBLU_HOST,
       port: @MESHBLU_PORT,
       uuid: uuid,
@@ -110,10 +110,11 @@ class ThingService
 
     deferred.promise
 
-  generateSessionToken: (device) =>
-    deferred = @q.defer()
+  generateSessionToken: (device, metadata={}) =>
+    deferred      = @q.defer()
+    metadata.tag ?= 'app.octoblu.com'
 
-    @MeshbluHttpService.generateAndStoreToken device.uuid, {tag: 'app.octoblu.com'}, (error, token) =>
+    @MeshbluHttpService.generateAndStoreToken device.uuid, metadata, (error, token) =>
       if error?
         console.error "Error generating session token: #{device.uuid}", error.stack()
         deferred.reject error

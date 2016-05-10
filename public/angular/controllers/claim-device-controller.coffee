@@ -16,7 +16,8 @@ class ClaimNodeController
     @meshbluHttp.whoami (error, device) =>
       @loading = false
       if error?
-        @errorMessage = errorMessage
+        @errorMessage = error?.message ? error
+        console.error(error)
         return
       @deviceName = device.name
       @device = device
@@ -42,7 +43,7 @@ class ClaimNodeController
     return @q.reject 'Unable to claim device, missing token' unless @stateParams.token?
     deferred = @q.defer()
     user = uuid: @cookies.meshblu_auth_uuid
-    @ThingService.claimThing @stateParams, user, name: @deviceName
+    @ThingService.claimThing(@stateParams, user, {name: @deviceName}, @meshbluHttp)
       .catch deferred.reject
       .then =>
         deferred.resolve()

@@ -8,6 +8,18 @@ angular.module('octobluApp')
       $mdToast.show(toast);
       window.$mdToast = $mdToast;
     },
+    notifyError: function(error) {
+      if(!error) {
+        return
+      }
+      var message = error;
+      if(error && error.message) {
+        message = error.message;
+      }
+      var toast = $mdToast.simple('Error:', message.replace(/error/i, ''));
+      $mdToast.show(toast);
+      window.$mdToast = $mdToast;
+    },
     alert: function(options) {
       options.ok = options.ok || 'ok';
       var dialog = $mdDialog.alert(options);

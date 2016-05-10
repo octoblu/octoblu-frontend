@@ -71,9 +71,10 @@ class DeviceDetailController
 
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (session) =>
+      {token} = session
       alertOptions = {
         title: 'New Session Token'
-        content: session.token
+        content: token
         ok: 'Dismiss'
       }
 
