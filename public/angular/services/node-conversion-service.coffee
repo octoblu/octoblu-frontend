@@ -17,6 +17,6 @@ class NodeConversionService
           helpText:         node.defaults?.nodeType?.helpText
           formTemplatePath: "/pages/node_forms/" + node.category + "_form.html"
 
-        _.extend node, defaults
+        _.extend defaults, node
 
 angular.module('octobluApp').service 'NodeConversionService', NodeConversionService

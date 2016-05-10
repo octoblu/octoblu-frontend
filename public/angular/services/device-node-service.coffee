@@ -11,13 +11,13 @@ class DeviceNodeService
       topic: 'flow'
       filterTopic: 'message'
 
-    _.extend node, defaults
+    _.extend defaults, node
 
   convertDevice: (node) =>
     defaults =
       category: 'device'
 
-    _.extend node, defaults
+    _.extend defaults, node
 
   convert: (node) =>
     @NodeConversionService.convert @convertDevice @convertFlow node

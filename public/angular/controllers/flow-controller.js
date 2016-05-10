@@ -89,6 +89,27 @@ angular.module('octobluApp')
     });
   };
 
+  var mergeFlowNodeType = function(node) {
+    return FlowNodeTypeService.getFlowNodeTypeByUUID(node.uuid).then(function(flowNodeType) {
+      if (!flowNodeType) {
+        return FlowNodeTypeService.getFlowNodeType(node.type);
+      }
+      return flowNodeType;
+    }).then(function(flowNodeType) {
+      if (flowNodeType) {
+        node = _.extend({}, flowNodeType, node);
+      }
+      return node;
+    });
+  };
+
+  var mergeFlowNodeTypes = function(flow) {
+    var promises = _.map(flow.nodes, mergeFlowNodeType);
+    $q.all(promises).then(function(nodes) {
+      flow.nodes = nodes;
+    });
+  };
+
   FlowService.getFlow($stateParams.flowId).then(function(activeFlow){
     deleteCookie();
 
@@ -101,6 +122,7 @@ angular.module('octobluApp')
     refreshFlows();
     checkDeviceStatus();
     createFlowSubscriptions(activeFlow.flowId);
+    mergeFlowNodeTypes(activeFlow);
 
     FirehoseService.removeAllListeners();
 

@@ -11,7 +11,7 @@ class ChannelNodeService
       online: true
       useStaticMessage: true
 
-    _.extend node, defaults
+    _.extend defaults, node
 
   convert: (node) =>
     @NodeConversionService.convert @convertChannel node
