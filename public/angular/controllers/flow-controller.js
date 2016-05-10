@@ -22,13 +22,6 @@ angular.module('octobluApp')
     }
   });
 
-  var createFlowSubscriptions = function(flowId){
-    async.series([
-      async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: $cookies.meshblu_auth_uuid, types: ['broadcast.received', 'configure.received']}),
-      async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: flowId, types: ['broadcast.sent', 'configure.sent', 'broadcast.received']})
-    ]);
-  };
-
   function updateFlowDeviceImmediately(data) {
     $scope.flowDevice = data;
     $scope.$applyAsync();
