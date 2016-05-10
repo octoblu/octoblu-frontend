@@ -1,19 +1,15 @@
 class ThingService
-  constructor: ($q, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MeshbluHttpService, $cookies) ->
+  constructor: ($q, MESHBLU_HOST, MESHBLU_PORT, MeshbluHttpService, $cookies, DeviceLogo) ->
     @q = $q
     @cookies = $cookies
-    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @MeshbluHttp = MeshbluHttp
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
     @MeshbluHttpService = MeshbluHttpService
+    @DeviceLogo = DeviceLogo
 
   addLogo: (data) =>
-    return _.clone data unless data?.type?
-
-    filePath = data.type.replace('octoblu:', 'device:').replace ':', '/'
-    logo = "#{@OCTOBLU_ICON_URL}#{filePath}.svg"
-    _.extend logo: logo, data
+    data.logo = new @DeviceLogo(data).get()
 
   addUuidToWhitelists: (uuid, device={}) =>
     thing = {}

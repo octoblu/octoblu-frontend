@@ -1,5 +1,6 @@
 class DeviceNodeService
-  constructor: (ThingService, NodeConversionService)->
+  constructor: ($q, ThingService, NodeConversionService) ->
+    @q = $q
     @ThingService = ThingService
     @NodeConversionService = NodeConversionService
 
@@ -29,7 +30,9 @@ class DeviceNodeService
       logo:     true
       category: true
 
-    @ThingService.getThings({type: {$ne: 'octoblu:user'}}, projection).then (devices) =>
-      _.map devices, self.convert
+    @ThingService.getThings {type: {$ne: 'octoblu:user'}}, projection
+      .then (devices) =>
+        promises = _.map devices, @convert
+        @q.all promises
 
 angular.module('octobluApp').service 'DeviceNodeService', DeviceNodeService

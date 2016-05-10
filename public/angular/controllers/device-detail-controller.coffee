@@ -1,12 +1,11 @@
 class DeviceDetailController
-  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, OCTOBLU_ICON_URL, DeviceLogo) ->
+  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, DeviceLogo) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
     @NotifyService = NotifyService
     @ThingService = ThingService
     @DeviceLogo = DeviceLogo
-    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @form = ['*']
     @firstRun = true
     @showLink = false

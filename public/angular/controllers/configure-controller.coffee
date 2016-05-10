@@ -1,9 +1,8 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, $cookies, FlowNodeTypeService, NotifyService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, $stateParams, $cookies, FlowNodeTypeService, NotifyService) ->
     @scope = $scope
     @state = $state
     @cookies = $cookies
-    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @FlowNodeTypeService = FlowNodeTypeService
     @NotifyService = NotifyService
     @scope.loadingConnectedThings = true
@@ -48,8 +47,8 @@ class ConfigureController
   updateThingsByCategory: (things) =>
     @scope.noThings = things.length == 0
     @scope.connectedThingsByCategory = _.groupBy things, (device) =>
-      return "Flows" if device.type == 'device:flow'
-      return "Other" unless device.defaults.nodeType.categories?
+      return 'Flows' if device.type == 'device:flow'
+      return 'Other' unless device.defaults.nodeType.categories?
       device.defaults.nodeType.categories;
     @scope.categories = _.sortBy(_.keys @scope.connectedThingsByCategory)
     (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.connectedThingsByCategory['Flows']

@@ -1,5 +1,5 @@
 class BluprintCardController
-  constructor: ($scope, $state, BluprintService, NotifyService, UrlService, OCTOBLU_ICON_URL) ->
+  constructor: ($scope, $state, BluprintService, NotifyService, UrlService)  ->
     @scope = $scope
     @state = $state
     @UrlService = UrlService

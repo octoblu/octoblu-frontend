@@ -1,5 +1,6 @@
 class ChannelNodeService
-  constructor: ($http, OCTOBLU_API_URL, NodeConversionService) ->
+  constructor: ($q, $http, OCTOBLU_API_URL, NodeConversionService) ->
+    @q = $q
     @http = $http
     @OCTOBLU_API_URL = OCTOBLU_API_URL
     @NodeConversionService = NodeConversionService
@@ -18,6 +19,7 @@ class ChannelNodeService
   fetch: =>
     @http.get "#{@OCTOBLU_API_URL}/api/user_channels"
       .then ({data}) =>
-        _.map data, self.convert
+        promises = _.map data, @convert
+        @q.all promises
 
 angular.module('octobluApp').service 'ChannelNodeService', ChannelNodeService

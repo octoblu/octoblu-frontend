@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('NodeTypeService', function (NodeService, $http, $q, OCTOBLU_ICON_URL, OCTOBLU_API_URL) {
+.service('NodeTypeService', function (NodeService, $http, $q, OCTOBLU_ICON_URL, OCTOBLU_API_URL, DeviceLogo) {
   'use strict';
 
   var self = this;
@@ -38,9 +38,8 @@ angular.module('octobluApp')
   }
 
   self.addLogo = function(node){
-    var nodeCopy = _.clone(node);
-    nodeCopy.logo = nodeCopy.logo || OCTOBLU_ICON_URL + nodeCopy.type.replace(':', '/') + '.svg';
-    return nodeCopy;
+    node.logo = new DeviceLogo(node).get();
+    return node;
   };
 
   self.getNodeTypeById = function(id){
