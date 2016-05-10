@@ -9,11 +9,9 @@ class NodeService
   getNodes: (options) =>
     return @q.when @nodes if @nodes?
 
-    deferred = @q.defer()
-    @getNodesQueue.push {}, =>
-      deferred.resolve @nodes
-
-    return deferred.promise
+    @q (resolve) =>
+      @getNodesQueue.push {}, =>
+        resolve @nodes
 
   _getNodesAndCache: (task, callback) =>
     return callback() if @nodes?
