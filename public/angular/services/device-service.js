@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-.service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, PermissionsService, reservedProperties, OCTOBLU_ICON_URL, MESHBLU_HOST, MESHBLU_PORT, MESHBLU_PROTOCOL, UserSubscriptionService) {
+.service('deviceService', function ($q, $rootScope, $http, $cookies, MeshbluHttpService, PermissionsService, reservedProperties, MESHBLU_HOST, MESHBLU_PORT, MESHBLU_PROTOCOL, UserSubscriptionService, DeviceLogo) {
   var myDevices, _onDeviceChangeCallbacks, _onDeviceMessageCallbacks, subscribeToDevice, getMyDevices, myDevicesPromise;
 
   _onDeviceChangeCallbacks = [];
@@ -30,9 +30,6 @@ angular.module('octobluApp')
     if (!data) {
       return data;
     }
-    if(data.logo){
-      return data;
-    }
     if (myDevices && myDevices.length) {
       var device = _.find(myDevices, { uuid: data.uuid });
       if(device && device.logo){
@@ -40,35 +37,10 @@ angular.module('octobluApp')
         return data;
       }
     }
-    if(data.type){
-      var type = data.type.replace('octoblu:', 'device:');
-      data.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
-    } else {
-      data.logo = OCTOBLU_ICON_URL + 'device/other.svg';
-    }
+    data.logo = new DeviceLogo(data).get();
     return data;
   }
 
-  // FirehoseService.on('message.*', function(message){
-  //   var data = message.data;
-  //   _.each(_onDeviceMessageCallbacks, function(callback){
-  //     callback(data);
-  //   });
-  //
-  //   $rootScope.$broadcast('skynet:message:' + data.fromUuid, data);
-  //   if (message.payload && _.has(data.payload, 'online')) {
-  //       var device = _.findWhere(myDevices, {uuid: data.fromUuid});
-  //       if (device) {
-  //           device.online = data.payload.online;
-  //       }
-  //   }
-  //   $rootScope.$apply();
-  // });
-  //
-  // FirehoseService.on('configure.*', function(message){
-  //   service.addOrUpdateDevice(message.data);
-  // });
-  //
   subscribeToDevice = function(device){
     if(device.category === 'channel') {
       return;

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('NodeTypeService', function (NodeService, $http, $q, OCTOBLU_ICON_URL, OCTOBLU_API_URL, DeviceLogo) {
+.service('NodeTypeService', function (NodeService, $http, $q, OCTOBLU_API_URL, DeviceLogo) {
   'use strict';
 
   var self = this;

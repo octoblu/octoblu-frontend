@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 15,
     portWidth: 15
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, IconCodes, OCTOBLU_ICON_URL) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, IconCodes, OCTOBLU_ICON_URL, DeviceLogo) {
 
     var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
 
@@ -78,12 +78,7 @@ angular.module('octobluApp')
         }
 
         var logoUrl = function(data) {
-          if (data && data.logo) {
-            return data.logo;
-          }
-          if (data && data.type) {
-            return OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
-          }
+          return new DeviceLogo(data).get();
         };
 
         if (!nodeElement) {

@@ -10,6 +10,7 @@ class ThingService
 
   addLogo: (data) =>
     data.logo = new @DeviceLogo(data).get()
+    data
 
   addUuidToWhitelists: (uuid, device={}) =>
     thing = {}

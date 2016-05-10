@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('NodeController', function ($scope, $state, NodeService, OCTOBLU_ICON_URL) {
+.controller('NodeController', function ($scope, $state, NodeService, DeviceLogo) {
   'use strict';
 
   $scope.loading = true;
@@ -11,15 +11,7 @@ angular.module('octobluApp')
   });
 
   function addLogoUrl(node){
-    if(node.logo){
-      return node;
-    }
-    if(node && node.type){
-      var type = node.type.replace('octoblu:', 'node:');
-      node.logo = OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg';
-    } else {
-      node.logo = OCTOBLU_ICON_URL + 'node/other.svg';
-    }
+    node.logo = new DeviceLogo(node).get();
     return node;
   }
 

@@ -7,7 +7,7 @@ class ThingLogoCellController
     $scope.$watch 'row.type', @updateType
 
   updateLogo: =>
-    new @DeviceLogo(@row).get()
+    @row.logo = new @DeviceLogo(@row).get()
 
   updateTitle: =>
     @name = if _.isEmpty(@row.name) then @row.uuid else @row.name

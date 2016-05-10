@@ -1,18 +1,13 @@
 'use strict';
 angular.module('octobluApp')
-    .service('channelService', function (OCTOBLU_API_URL, $q, $http, OCTOBLU_ICON_URL) {
+    .service('channelService', function (OCTOBLU_API_URL, $q, $http, DeviceLogo) {
         var customchannels = [];
         var activechannels = [];
         var availablechannels = [];
 
         this.addLogoUrl = function(data) {
-            if(data && data.logo) {
-              return data;
-            }
-            if (data && data.type) {
-                data.logo = OCTOBLU_ICON_URL + data.type.replace(':', '/') + '.svg';
-            }
-            return data;
+          data.logo = new DeviceLogo(data).get();
+          return data;
         }
 
         this.getList = function(callback) {
