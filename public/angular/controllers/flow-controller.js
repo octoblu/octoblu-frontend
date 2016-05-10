@@ -114,7 +114,6 @@ angular.module('octobluApp')
     $scope.setActiveFlow(activeFlow);
     refreshFlows();
     checkDeviceStatus();
-    createFlowSubscriptions(activeFlow.flowId);
     mergeFlowNodeTypes(activeFlow);
 
     FirehoseService.removeAllListeners();
