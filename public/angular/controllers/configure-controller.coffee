@@ -47,6 +47,7 @@ class ConfigureController
   updateThingsByCategory: (things) =>
     @scope.noThings = things.length == 0
     @scope.connectedThingsByCategory = _.groupBy things, (device) =>
+      return 'Flows' if device.type == 'octoblu:flow'
       return 'Flows' if device.type == 'device:flow'
       return 'Other' unless device.defaults.nodeType.categories?
       device.defaults.nodeType.categories;

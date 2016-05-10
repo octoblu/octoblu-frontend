@@ -5,9 +5,9 @@ class DeviceNodeService
     @NodeConversionService = NodeConversionService
 
   convertFlow: (node) =>
-    return node unless node.type == 'octoblu:flow'
+    return node unless node.type == 'octoblu:flow' || node.type == 'device:flow'
     defaults =
-      type: 'device:flow'
+      type: 'octoblu:flow'
       topic: 'flow'
       filterTopic: 'message'
 

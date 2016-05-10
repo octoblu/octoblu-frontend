@@ -430,8 +430,8 @@ angular.module('octobluApp')
 
   var expandSidebarIfNodeType = function(nodeType) {
     if(!nodeType) return;
-    if(nodeType.resourceType === 'node-type') {
-      return $scope.sidebarIsExpanded = true;
+    if(!nodeType.id) {
+      $scope.sidebarIsExpanded = true;
     }
   };
 

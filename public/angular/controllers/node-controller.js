@@ -34,7 +34,13 @@ angular.module('octobluApp')
   };
 
   $scope.filterFlows = function(node) {
-    return node.type !== 'device:flow'
+    if (node.type === 'device:flow') {
+      return true;
+    }
+    if (node.type === 'octoblu:flow') {
+      return true;
+    }
+    return false;
   }
 
 });

@@ -2,7 +2,7 @@
   <div ng-hide="showFlowNodeEditor" class="Sidebar-loading-icon">
     <spinner loading="!showFlowNodeEditor" size="large"></spinner>
   </div>
-  <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+  <div class="Sidebar-section flow-node-editor" ng-show="showFlowNodeEditor">
     <div class="Sidebar-pane-form">
       <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
       </div>

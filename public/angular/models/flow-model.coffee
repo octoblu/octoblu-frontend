@@ -21,17 +21,14 @@ class FlowModel
     @links ?= []
 
   toJSON: =>
-    nodes = _.map @nodes, (node) =>
-      _.omit node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output'
-
     {
       @flowId
       @token
       @name
       @description
       @hash
-      nodes
       @links
+      nodes: @nodesForJSON()
     }
 
   updatePendingPermissions: =>
@@ -40,6 +37,10 @@ class FlowModel
 
     @q.all promises
       .then @getDevicesNeedingPermissions
+
+  nodesForJSON: =>
+    _.map @nodes, (node) =>
+      _.omit node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output'
 
   getDevicesNeedingPermissions: =>
     @ThingService.getThing(uuid: @flowId)

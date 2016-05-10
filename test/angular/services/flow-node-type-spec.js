@@ -105,15 +105,6 @@ xdescribe('FlowNodeTypeService', function () {
       expect(flowNode.id).to.equal('something-different');
     });
 
-    it('should set the resourceType to the flow-node', function(){
-      var flowNodeType, flowNode;
-
-      fakeUUIDService.v1.returns = 'something-random';
-      flowNode     = sut.createFlowNode({resourceType: 'flow-node-type', defaults: {resourceType: 'node-type'}});
-
-      expect(flowNode.resourceType).to.equal('flow-node');
-    });
-
     it('should clone the defaults to the node', function () {
       var flowNodeType, flowNode;
 

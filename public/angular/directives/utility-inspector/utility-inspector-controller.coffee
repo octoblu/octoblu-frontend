@@ -17,6 +17,7 @@ class UtilityInspectorController
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
         flows           = _.filter flowNodeTypes, type: 'device:flow'
+        flows           = _.filter flows, type: 'octoblu:flow'
         connectedThings = _.filter flowNodeTypes, @flowNodeTypeIsConfiguredNode
 
         @scope.things = _.union(@scope.things, connectedThings, flows)
@@ -48,8 +49,9 @@ class UtilityInspectorController
   updateThingsByCategory: (things) =>
     @scope.noThings = !things.length
     @scope.thingsByCategory = _.groupBy things, (thing) =>
-      return "Flows" if thing.type == "device:flow"
-      return "Connected" if !thing.categories?
+      return 'Flows' if thing.type == 'device:flow'
+      return 'Flows' if thing.type == 'octoblu:flow'
+      return 'Connected' if !thing.categories?
       thing.categories
 
     @scope.categories = _.sortBy(_.keys @scope.thingsByCategory)
@@ -60,7 +62,10 @@ class UtilityInspectorController
     @scope.collectionViewStyle = viewStyle
 
   flowNodeTypeIsConfiguredNode: (node) =>
-    node.category != 'operation' && node.type != 'device:flow'
+    return false if node.category == 'operation'
+    return false if node.type == 'device:flow'
+    return false if node.type == 'octoblu:flow'
+    true
 
   toggleViewSource: =>
     @scope.viewSource = !@scope.viewSource

@@ -2,7 +2,7 @@
   class="Sidebar-pane"
   ng-class="{'Sidebar-pane--is-collapsed': hideSection}"
   needs-setup="flow.selectedFlowNode &&
-        (flow.selectedFlowNode.needsSetup || flow.selectedFlowNode.resourceType == 'node-type')"
+        (flow.selectedFlowNode.needsSetup)"
   is-thing="flow.selectedFlowNode"
   is-flow="!flow.selectedFlowNode"
 >

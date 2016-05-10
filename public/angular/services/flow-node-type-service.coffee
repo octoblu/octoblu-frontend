@@ -9,8 +9,7 @@ class FlowNodeTypeService
 
   createFlowNode: (flowNodeType) =>
     defaults =
-      id: UUIDService.v1()
-      resourceType: 'flow-node'
+      id: @UUIDService.v1()
 
     _.extend defaults, flowNodeType.defaults, flowNodeType
 

@@ -31,7 +31,7 @@
             <spinner loading="!showFlowNodeEditor" size="large"></spinner>
           </div>
 
-          <div class="Sidebar-section flow-node-editor" ng-show="flowNode.resourceType === 'flow-node' && showFlowNodeEditor">
+          <div class="Sidebar-section flow-node-editor" ng-show="showFlowNodeEditor">
             <div class="Sidebar-pane-form">
               <div class="flow-node-form" ng-hide="flowNodeType.needsSetup" ng-include="flowNodeType.formTemplatePath"></div>
 

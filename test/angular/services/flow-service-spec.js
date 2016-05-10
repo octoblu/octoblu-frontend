@@ -109,10 +109,6 @@ xdescribe('FlowService', function () {
       it('should add a node to the flow with the correct type', function(){
         expect(flow.nodes[0].type).to.equal('function');
       });
-
-      it('should add a resourceType of flow-node', function(){
-        expect(flow.nodes[0].resourceType).to.equal('flow-node');
-      });
     });
   });
 
