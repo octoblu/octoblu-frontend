@@ -10,6 +10,10 @@ angular.module('octobluApp')
       return;
     }
 
+    if(!$scope.flowNode.staticMessage){
+      $scope.flowNode.staticMessage = {}
+    }
+
     FlowNodeTypeService.getFlowNodeType($scope.flowNode.type).then(function(flowNodeType){
       $scope.flowNodeType = flowNodeType;
       $timeout(function(){
