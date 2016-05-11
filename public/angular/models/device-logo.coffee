@@ -3,15 +3,22 @@ class DeviceLogo
 
   get: =>
     logo = @_getLogoFromDevice @device
-    logo = logo.replace('http://', 'https://')
+    if logo.indexOf('http://') > -1
+      return @getIconUrl 'unsecure'
     return logo
 
+  getIconUrl: (path) =>
+    path = path.replace('.svg', '')
+    return "#{@OCTOBLU_ICON_URL}#{path}.svg"
+
   _getLogoFromDevice: (device) =>
-    return device.logo if device.logo
-    return device.logo = "#{@OCTOBLU_ICON_URL}node/other.svg" unless device && device.type
+    return @getIconUrl 'other' unless device?
+    return device.logo if device.logo?
+    return @getIconUrl 'other' unless device.type?
 
     type = device.type.replace 'octoblu:', 'device:'
-    return @OCTOBLU_ICON_URL + type.replace(':', '/') + '.svg'
+    type = type.replace ':', '/'
+    return @getIconUrl type
 
 angular.module('octobluApp').service 'DeviceLogo', (OCTOBLU_ICON_URL) ->
   (options) ->
