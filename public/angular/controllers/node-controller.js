@@ -16,12 +16,17 @@ angular.module('octobluApp')
   }
 
   $scope.nextStepUrl = function (node) {
-    var sref = 'material.' + node.category;
+    var sref;
     var params = {};
-    if (node.category === 'device' || node.category === 'microblu') {
-      params.uuid = node.uuid;
-    } else if (node.category === 'channel') {
+    if (node.category === 'channel') {
+      sref = 'material.' + node.category;
       params.id = node.channelid;
+    } else if (node.category === 'microblu') {
+      sref = 'material.microblu';
+      params.uuid = node.uuid;
+    } else {
+      sref = 'material.device';
+      params.uuid = node.uuid;
     }
     return $state.href(sref, params);
   };
