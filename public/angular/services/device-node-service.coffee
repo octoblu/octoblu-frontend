@@ -29,6 +29,7 @@ class DeviceNodeService
       type:     true
       logo:     true
       category: true
+      online:   true
 
     @ThingService.getThings {type: {$ne: 'octoblu:user'}}, projection
       .then (devices) =>
