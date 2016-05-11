@@ -111,35 +111,37 @@ angular.module('octobluApp')
       return;
     }
 
-    $scope.setActiveFlow(activeFlow);
-    refreshFlows();
-    checkDeviceStatus();
-    mergeFlowNodeTypes(activeFlow);
+    $q.all([
+      refreshFlows(),
+      checkDeviceStatus(),
+      mergeFlowNodeTypes(activeFlow)
+    ]).then(function(){
+      $scope.setActiveFlow(activeFlow);
+      FirehoseService.removeAllListeners();
 
-    FirehoseService.removeAllListeners();
+      FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
+        updateFlowDevice(message.data);
+      });
 
-    FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
-      updateFlowDevice(message.data);
-    });
-
-    FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
-      var data = message.data;
-      if (data.topic === 'message-batch') {
-        if (data.payload) {
-          BatchMessageService.parseMessages(data.payload.messages, $scope);
-        }
-      }
-
-      if (data.topic === 'device-status') {
-        if (data.payload) {
-          var hop = _.first(message.route);
-          activeFlow.online = data.payload.online;
-          var flow = _.findWhere($scope.flows, {flowId: activeFlow.flowId});
-          if (flow) {
-            flow.online = data.payload.online;
+      FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
+        var data = message.data;
+        if (data.topic === 'message-batch') {
+          if (data.payload) {
+            BatchMessageService.parseMessages(data.payload.messages, $scope);
           }
         }
-      }
+
+        if (data.topic === 'device-status') {
+          if (data.payload) {
+            var hop = _.first(message.route);
+            activeFlow.online = data.payload.online;
+            var flow = _.findWhere($scope.flows, {flowId: activeFlow.flowId});
+            if (flow) {
+              flow.online = data.payload.online;
+            }
+          }
+        }
+      });
     });
   });
 
