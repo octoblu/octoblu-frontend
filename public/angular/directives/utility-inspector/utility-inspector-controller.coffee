@@ -16,10 +16,11 @@ class UtilityInspectorController
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>
-        flows           = _.filter flowNodeTypes, type: 'device:flow'
-        flows           = _.filter flows, type: 'octoblu:flow'
+        deviceFlows     = _.filter flowNodeTypes, type: 'device:flow'
+        octobluFlows    = _.filter flowNodeTypes, type: 'octoblu:flow'
         connectedThings = _.filter flowNodeTypes, @flowNodeTypeIsConfiguredNode
 
+        flows = _.union deviceFlows, octobluFlows
         @scope.things = _.union(@scope.things, connectedThings, flows)
         @scope.tools  = _.filter flowNodeTypes, category: 'operation'
 
