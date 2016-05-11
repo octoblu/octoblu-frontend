@@ -26,7 +26,7 @@ angular.module('octobluApp')
   });
 
   $scope.isAvailable = function (node) {
-    if (node.category === 'device' || node.category === 'microblu') {
+    if (node && node.resource) {
       return node.resource.online;
     }
     return true;

@@ -19,7 +19,7 @@ angular.module('octobluApp')
     var sref;
     var params = {};
     if (node.category === 'channel') {
-      sref = 'material.' + node.category;
+      sref = 'material.channel';
       params.id = node.channelid;
     } else if (node.category === 'microblu') {
       sref = 'material.microblu';
@@ -32,7 +32,7 @@ angular.module('octobluApp')
   };
 
   $scope.isAvailable = function (node) {
-    if (node.category === 'device' || node.category === 'microblu') {
+    if (node && node.resource) {
       return node.resource.online;
     }
     return true;
