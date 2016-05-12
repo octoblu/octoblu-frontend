@@ -13,7 +13,7 @@ angular.module('octobluApp')
     CREDENTIALS: 'c339f6ce-fe26-4788-beee-c97605f50403'
   }
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
-  .constant 'MESHBLU_HOST', 'meshblu.octoblu.com'
+  .constant 'MESHBLU_HOST', 'meshblu-http.octoblu.com'
   .constant 'MESHBLU_PORT', '443'
   .constant 'MESHBLU_PROTOCOL', 'https'
   .constant 'MESHBLU_FIREHOSE_HOSTNAME', 'meshblu-firehose-socket-io.octoblu.com'
