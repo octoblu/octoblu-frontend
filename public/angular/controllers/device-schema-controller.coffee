@@ -2,8 +2,10 @@ class DeviceSchemaController
   constructor: ($scope, $http) ->
     @scope = $scope
     @http = $http
+
     @scope.$watch 'device', (device) =>
       return unless device?
+      @scope.loading = true
 
       async.parallel [
         async.apply @addSchemaToScope, device, "#{@scope.schemaType}Schema"
@@ -12,6 +14,7 @@ class DeviceSchemaController
         [schema, form] = results
         @scope.schema = schema ? {}
         @scope.form = form ? ['*']
+        @scope.loading = false
 
     @scope.$watch 'model.subschema', (newSubschema, oldSubschema) =>
       return unless oldSubschema? && newSubschema?

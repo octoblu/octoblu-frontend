@@ -3,6 +3,7 @@ angular.module('octobluApp')
   'use strict';
 
   var selectResources = function(oldNode, newNode) {
+    $scope.loading = true;
     if (!$scope.node.channelid) {
       return;
     }
@@ -28,6 +29,7 @@ angular.module('octobluApp')
       });
 
       $scope.resources = resources;
+      $scope.loading = false;
     });
   };
 

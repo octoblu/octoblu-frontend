@@ -1,14 +1,15 @@
 <div>
-  <div class="form-group">
+  <spinner loading="loading" size="large"></spinner>
+  <div ng-hide="loading" class="form-group">
     <label for="selectedEndpoint">Endpoint</label>
     <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in resources | filter: {displayName: endpointFilter}" class="form-control"></select>
   </div>
 
-  <div class="form-group" >
+  <div ng-hide="loading" class="form-group" >
     <small>{{ selectedEndpoint.httpMethod + ' ' + selectedEndpoint.url  }}</small>
   </div>
 
-  <div ng-hide="node.useStaticMessage === false">
+  <div ng-hide="loading || node.useStaticMessage === false">
     <param-input ng-model="node.headerParams" param-definitions="headerParamDefinitions"></param-input>
     <param-input ng-model="node.urlParams"   	param-definitions="urlParamDefinitions"></param-input>
     <param-input ng-model="node.queryParams" 	param-definitions="queryParamDefinitions"></param-input>
