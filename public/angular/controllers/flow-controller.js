@@ -10,6 +10,7 @@ angular.module('octobluApp')
   $scope.debugLines = [];
   $scope.deployProgress = 0;
   $scope.documentHidden = false;
+  $scope.loading = true;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
@@ -117,6 +118,7 @@ angular.module('octobluApp')
       mergeFlowNodeTypes(activeFlow)
     ]).then(function(){
       $scope.setActiveFlow(activeFlow);
+      $scope.loading = false;
       FirehoseService.removeAllListeners();
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){

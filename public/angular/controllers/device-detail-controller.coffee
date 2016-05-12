@@ -1,5 +1,5 @@
 class DeviceDetailController
-  constructor: ($mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, DeviceLogo) ->
+  constructor: ($q, $mdDialog, $scope, $state, $stateParams, NotifyService, ThingService, DeviceLogo) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
@@ -9,8 +9,18 @@ class DeviceDetailController
     @form = ['*']
     @firstRun = true
     @showLink = false
+    @loading = true
+    @q = $q
+    @stateParams = $stateParams
 
-    @ThingService.getThing(uuid: $stateParams.uuid).then (device) =>
+    @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
+
+    @q.all [@getThing(), @getPermissions()]
+      .then =>
+        @loading = false
+
+  getThing: =>
+    @ThingService.getThing(uuid: @stateParams.uuid).then (device) =>
       @device = device
       @device.options ?= {}
       @device.type ?= 'device:other'
@@ -20,7 +30,9 @@ class DeviceDetailController
       @hideDelete = @deviceIsFlow @device
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
+      return
 
+  getPermissions: =>
     projection =
       uuid: true
       type: true
@@ -35,8 +47,7 @@ class DeviceDetailController
       @devices = devices
       @scope.$watch 'controller.devices', @updatePermissionRows, true
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
-
-    @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
+      return
 
   deviceIsFlow: (device) =>
     device.type == 'octoblu:flow' || device.type == 'device:flow'
@@ -108,5 +119,4 @@ class DeviceDetailController
   updateSchemas: =>
     return unless @device?
 
-angular.module 'octobluApp'
-       .controller 'DeviceDetailController', DeviceDetailController
+angular.module('octobluApp').controller 'DeviceDetailController', DeviceDetailController

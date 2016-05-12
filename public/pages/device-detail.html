@@ -1,5 +1,7 @@
 <breadcrumb-tab-bar fragments="controller.fragments"></breadcrumb-tab-bar>
-<md-content class="interior__wrapper">
+<spinner loading="controller.loading" size="large"></spinner>
+
+<md-content ng-hide="controller.loading" class="interior__wrapper">
   <div class="interior device-container">
     <div class="device-header">
       <div class="logo-header">

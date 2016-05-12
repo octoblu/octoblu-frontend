@@ -186,6 +186,9 @@ angular.module('octobluApp')
   self.notifyFlowSaved = _.debounce(self.immediateNotifyFlowSaved, 3000);
 
   self.selectNode = function(flowNode){
+    if (activeFlow.selectedFlowNode === flowNode) {
+      return;
+    }
     activeFlow.selectedFlowNode = flowNode;
   };
 
