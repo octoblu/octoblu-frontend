@@ -16,6 +16,7 @@ class DeviceNodeService
   convertDevice: (node) =>
     defaults =
       category: 'device'
+      useStaticMessage: true
 
     _.extend defaults, node
 
