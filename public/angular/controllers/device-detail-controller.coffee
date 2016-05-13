@@ -7,7 +7,6 @@ class DeviceDetailController
     @ThingService = ThingService
     @DeviceLogo = DeviceLogo
     @form = ['*']
-    @firstRun = true
     @showLink = false
     @loading = true
     @q = $q
@@ -15,9 +14,8 @@ class DeviceDetailController
 
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
-    @q.all [@getThing(), @getPermissions()]
-      .then =>
-        @loading = false
+    @getThing().then =>
+      @loading = false
 
   getThing: =>
     @ThingService.getThing(uuid: @stateParams.uuid).then (device) =>
@@ -33,6 +31,8 @@ class DeviceDetailController
       return
 
   getPermissions: =>
+    return if @devices?
+    @permissionsLoading = true
     projection =
       uuid: true
       type: true
@@ -43,11 +43,11 @@ class DeviceDetailController
       sendWhitelist: true
       receiveWhitelist: true
 
-    @ThingService.getThings(null, projection).then (devices) =>
-      @devices = devices
-      @scope.$watch 'controller.devices', @updatePermissionRows, true
+    @ThingService.getThings(null, projection).then (@devices) =>
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
-      return
+      @updatePermissionRows()
+    .then =>
+      @permissionsLoading = false
 
   deviceIsFlow: (device) =>
     device.type == 'octoblu:flow' || device.type == 'device:flow'
@@ -103,11 +103,8 @@ class DeviceDetailController
 
   updateDeviceWithPermissions: =>
     @ThingService.updateDeviceWithPermissionRows(@device, @permissionRows)
-      .then =>
-        if @firstRun
-          @firstRun = false
-        else
-          @notifyDeviceUpdated()
+      .then (updated) =>
+        @notifyDeviceUpdated() if updated
 
   updatePermissionRows: =>
     things = @ThingService.combineDeviceWithPeers @device, @devices

@@ -66,7 +66,7 @@
       <md-tab label="Properties">
         <div ng-include="'/pages/device-detail-properties.html'"></div>
       </md-tab>
-      <md-tab label="Permissions">
+      <md-tab md-on-select="controller.getPermissions()" label="Permissions">
         <div ng-include="'/pages/device-detail-permissions.html'"></div>
       </md-tab>
     </md-tabs>

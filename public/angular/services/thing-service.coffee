@@ -38,21 +38,20 @@ class ThingService
     {uuid, token} = query
     return @q.reject 'Unable to claim device, missing uuid'  unless uuid?
     return @q.reject 'Unable to claim device, missing token' unless token?
-    deferred = @q.defer()
-    meshbluHttp ?= new @MeshbluHttp {
-      hostname: @MESHBLU_HOST,
-      port: @MESHBLU_PORT,
-      uuid: uuid,
-      token: token
-    }
-    meshbluHttp.whoami (error, thing) =>
-      return deferred.reject error if error?
-      thing = @addUuidToWhitelists user.uuid, thing
-      thing.name = params.name
-      meshbluHttp.update uuid, thing, (error) =>
-        return deferred.reject error if error?
-        deferred.resolve()
-    return deferred.promise
+    @q (resolve, reject) =>
+      meshbluHttp ?= new @MeshbluHttp {
+        hostname: @MESHBLU_HOST,
+        port: @MESHBLU_PORT,
+        uuid: uuid,
+        token: token
+      }
+      meshbluHttp.whoami (error, thing) =>
+        return reject error if error?
+        thing = @addUuidToWhitelists user.uuid, thing
+        thing.name = params.name
+        meshbluHttp.update uuid, thing, (error) =>
+          return reject error if error?
+          resolve()
 
   combineDeviceWithPeers: (device, peers) =>
     return unless device? && peers?
@@ -95,30 +94,19 @@ class ThingService
     rows
 
   deleteThing: (device) =>
-    deferred = @q.defer()
+    @q (resolve, reject) =>
 
-    @MeshbluHttpService.unregister device.uuid, (error) =>
-      if error?
-        console.error "Error unregistering: #{device.uuid}", error.stack()
-        deferred.reject error
-        return
-
-      deferred.resolve()
-
-    deferred.promise
+      @MeshbluHttpService.unregister device.uuid, (error) =>
+        return reject error if error?
+        resolve()
 
   generateSessionToken: (device, metadata={}) =>
-    deferred      = @q.defer()
-    metadata.tag ?= 'app.octoblu.com'
+    @q (resolve, reject) =>
+      metadata.tag ?= 'app.octoblu.com'
 
-    @MeshbluHttpService.generateAndStoreToken device.uuid, metadata, (error, token) =>
-      if error?
-        console.error "Error generating session token: #{device.uuid}", error.stack()
-        deferred.reject error
-        return
-      deferred.resolve token
-
-    deferred.promise
+      @MeshbluHttpService.generateAndStoreToken device.uuid, metadata, (error, token) =>
+        return reject error if error?
+        resolve token
 
   getThing: ({uuid}) =>
     @q (resolve, reject) =>
@@ -139,32 +127,24 @@ class ThingService
         resolve things
 
   revokeToken: (device={}) =>
-    deferred = @q.defer()
-    @MeshbluHttpService.revokeToken device, (error, result) =>
-      return deferred.reject(error) if error?
-      deferred.resolve {}
-    deferred.promise
+    @q (resolve, reject) =>
+      @MeshbluHttpService.revokeToken device, (error, result) =>
+        return reject(error) if error?
+        resolve {}
 
   registerThing: (data) =>
-    deferred = @q.defer()
+    @q (resolve, reject) =>
+      data.owner = @cookies.meshblu_auth_uuid
 
-    data.owner = @cookies.meshblu_auth_uuid
-
-    @MeshbluHttpService.register data, (error, result) =>
-      return deferred.reject(error) if error?
-      deferred.resolve result
-    return deferred.promise
+      @MeshbluHttpService.register data, (error, result) =>
+        return reject(error) if error?
+        resolve result
 
   updateDevice: (device={}) =>
-    deferred = @q.defer()
-    @MeshbluHttpService.update device.uuid, device, (error, response) =>
-      if error?
-        console.error "Error updating device: #{device.uuid}", error.stack()
-        deferred.reject error
-        return
-      deferred.resolve()
-
-    deferred.promise
+    @q (resolve, reject) =>
+      @MeshbluHttpService.update device.uuid, device, (error, response) =>
+        return reject error if error?
+        resolve()
 
   updateDangerously: (uuid, update) =>
     @q (resolve, reject) =>
@@ -173,15 +153,24 @@ class ThingService
         resolve()
 
   updateDeviceWithPermissionRows: (device, rows) =>
-    return @q.when() unless device? && rows?
+    return @q.when(false) unless device? && rows?
     uncategorizedRows = _.flatten(_.valuesIn rows)
 
-    @updateDevice(
+    update =
       uuid: device.uuid
       discoverWhitelist: _.pluck(_.where(uncategorizedRows, discover: true), 'uuid')
       configureWhitelist: _.pluck(_.where(uncategorizedRows, configure: true), 'uuid')
       sendWhitelist: _.pluck(_.where(uncategorizedRows, send: true), 'uuid')
       receiveWhitelist: _.pluck(_.where(uncategorizedRows, receive: true), 'uuid')
-    )
+
+    return @q.when(false) if @whitelistsAreSame device, update
+
+    @updateDevice update
+      .then =>
+        return true
+
+  whitelistsAreSame: (device, whitelists) =>
+    _.every ['discoverWhitelist', 'configureWhitelist', 'receiveWhitelist', 'sendWhitelist'], (whitelist) =>
+      _.isEqual device[whitelist], whitelists[whitelist]
 
 angular.module('octobluApp').service 'ThingService', ThingService
