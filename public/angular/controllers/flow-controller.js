@@ -58,6 +58,9 @@ angular.module('octobluApp')
     var query = {owner: $cookies.meshblu_auth_uuid, type: 'octoblu:flow'};
     var projection = {uuid: true, online: true};
     MeshbluHttpService.search({query: query, projection: projection}, function(error, devices) {
+      if (error) {
+        return;
+      }
       _.each(devices, function(device){
         var flow = _.findWhere($scope.flows, {flowId: device.uuid});
         if (flow) {
@@ -447,10 +450,13 @@ angular.module('octobluApp')
       .then(function(flow){
         $scope.flowDevice.deploying = flow.deploying;
         $scope.flowDevice.stopping  = flow.stopping;
+        $scope.flowDevice.online = flow.online;
       })
       .catch(function(error){
         clearInterval(flowDeployingInterval);
+        clearInterval(flowStoppingInterval);
         flowDeployingInterval = undefined;
+        flowStoppingInterval = undefined;
         NotifyService.notifyError(error);
       });
   }
@@ -469,13 +475,13 @@ angular.module('octobluApp')
     }
   };
 
-  var watchFlowStoppingImmediate = function(deploying){
-    if (!deploying) {
+  var watchFlowStoppingImmediate = function(stopping){
+    if (!stopping) {
       clearInterval(flowStoppingInterval);
       flowStoppingInterval = undefined;
       return;
     }
-    if (deploying) {
+    if (stopping) {
       if (flowStoppingInterval) {
         return;
       }
