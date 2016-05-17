@@ -4,7 +4,15 @@
 </md-input-container>
 
 <div>
-  <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
+  <device-message-form
+    uuid="flowNode.uuid"
+    model="flowNode.staticMessage"
+    selected-schema-key="flowNode.selectedSchemaKey" ></device-message-form>
+</div>
+
+<div>
+  <h1>Message</h1>
+  <pre>{{ flowNode.staticMessage | json }}</pre>
 </div>
 
 <md-input-container>

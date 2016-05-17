@@ -7,8 +7,8 @@ angular.module('octobluApp')
     replace: true,
     scope: {
       model: '=',
-      uuid:  '=',
-      token: '='
+      selectedSchemaKey: '=',
+      uuid:  '='
     }
   };
 });
