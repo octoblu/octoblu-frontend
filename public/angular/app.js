@@ -24,6 +24,7 @@ angular.module('octobluApp', [
   'ng-autofocus',
   'draganddrop',
   'ngPostMessage',
+  'angular-meshblu-device-editor',
   'truncate'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {

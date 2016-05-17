@@ -22,7 +22,6 @@ gulp.task('bower:concat', ['bower'], function(){
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat('dependencies.js'))
-    .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
