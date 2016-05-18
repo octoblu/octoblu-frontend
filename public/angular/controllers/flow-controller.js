@@ -136,10 +136,10 @@ angular.module('octobluApp')
             var hop = _.first(metadata.route);
             if (hop) {
               var uuid = hop.from;
-              var node = _.findWhere(activeFlow.nodes, {uuid: uuid});
-              if (node) {
+              var nodes = _.where(activeFlow.nodes, {uuid: uuid});
+              _.each(nodes, function(node){
                 node.online = data.payload.online;
-              }
+              });
             }
           }
         }
