@@ -58,13 +58,11 @@ angular.module('octobluApp')
         }
 
         function renderIsOnline(node, nodeElement) {
-          deviceService.getDeviceByUUID(node.uuid)
-            .then(function(device){
-              if(!device){
-                return;
-              }
-              nodeElement.toggleClass('faded', !device.online);
-            });
+          var online = node.online;
+          if (_.isUndefined(online)) {
+            online = true;
+          }
+          nodeElement.toggleClass('faded', !online);
         }
 
         var nodeHeight = getNodeHeight(node);

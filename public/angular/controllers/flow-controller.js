@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, UserSubscriptionService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -128,22 +128,28 @@ angular.module('octobluApp')
         updateFlowDevice(message.data);
       });
 
+      FirehoseService.on('broadcast.**', function(message){
+        var data = message.data;
+        var metadata = message.metadata;
+        if (data.topic === 'device-status') {
+          if (data.payload) {
+            var hop = _.first(metadata.route);
+            if (hop) {
+              var uuid = hop.from;
+              var node = _.findWhere(activeFlow.nodes, {uuid: uuid});
+              if (node) {
+                node.online = data.payload.online;
+              }
+            }
+          }
+        }
+      });
+
       FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
         var data = message.data;
         if (data.topic === 'message-batch') {
           if (data.payload) {
             BatchMessageService.parseMessages(data.payload.messages, $scope);
-          }
-        }
-
-        if (data.topic === 'device-status') {
-          if (data.payload) {
-            var hop = _.first(message.route);
-            activeFlow.online = data.payload.online;
-            var flow = _.findWhere($scope.flows, {flowId: activeFlow.flowId});
-            if (flow) {
-              flow.online = data.payload.online;
-            }
           }
         }
       });
