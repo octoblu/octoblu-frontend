@@ -2,21 +2,15 @@
 
   <div class="md-toolbar-tools BluToolbar-tools">
     <div class="BluToolbar-align BluToolbar-align--left">
-      <md-select
-        class="flow-toolbar--dropdown BluToolbar-select"
-        ng-model="cats"
-        placeholder="{{activeFlow.name}}"
-        aria-label="Select Flow"
-        style="max-height: {{flowSelectorHeight}}px;">
-        <md-option ui-sref="material.flow({flowId: flow.flowId})" class="flow-toolbar--dropdown-item" ng-repeat="flow in flows | orderBy: 'name'">
-          <i class="fa fa-fw fa-power-off" ng-class="{'online' : flow.online}"></i>
-          <a class="flow-toolbar--flow-name"
-              data-ng-bind="flow.name"
-              data-ellipsis>
-            {{flow.name}}
+      <div class="BreadcrumbBar-section BreadcrumbBar-section--BluToolbar">
+        <span class="BreadcrumbBar-section-container">
+          <a ui-sref="material.my-flows" class="BreadcrumbBar-item BreadcrumbBar-link">
+            Flows
           </a>
-        </md-option>
-      </md-select>
+        <i class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
+          <span class="BreadcrumbBar-item">{{activeFlow.name}}</span>
+        </span>
+      </div>
     </div>
 
     <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"

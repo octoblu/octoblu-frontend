@@ -4,7 +4,7 @@
       <a ng-if="tab.linkTo" class="BreadcrumbBar-item BreadcrumbBar-link" ui-sref="{{tab.linkTo}}({{tab.params}})">
         {{tab.label}}
       </a>
-      <i ng-if="tab.linkTo" class="fa fa-angle-right"></i>
+      <i ng-if="tab.linkTo" class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
       <span ng-if="!tab.linkTo" class="BreadcrumbBar-item">{{tab.label}}</span>
     </span>
   </div>

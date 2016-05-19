@@ -26,6 +26,11 @@
   .justify-content(flex-start);
 }
 
+.BreadcrumbBar-section--BluToolbar {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+}
+
 .BreadcrumbBar-item {
   position: relative;
   display: inline-block;
@@ -33,7 +38,7 @@
   padding: 14px 10px;
 
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'citrixsans-regular', sans-serif;
   text-transform: none;
 
   &:hover {
@@ -46,9 +51,24 @@
 
   &--is-selected {
     border-color: #4CAF50;
+    color: #14568f;
+    font-family: 'citrixsans-semibold', sans-serif;
     text-decoration: none;
+    font-weight:bold;
     cursor: default;
   }
+
+  span& {
+    color: #14568f;
+    font-family: 'citrixsans-semibold', sans-serif;
+    text-decoration: none;
+    font-weight:bold;
+    cursor: default;
+  }
+}
+
+.BreadcrumbBar-itemSeperator {
+  color: #babbbf;
 }
 
 .BreadcrumbBar-link {
