@@ -66,7 +66,7 @@
     "jquery.sparkline": "^2.1.2",
     "angular-truncate-2": "^0.4.2",
     "prism": "^1.5.0",
-    "angular-meshblu-device-editor": "^1.6.0"
+    "angular-meshblu-device-editor": "^2.1.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
