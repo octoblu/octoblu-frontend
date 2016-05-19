@@ -40,7 +40,7 @@ class FlowModel
 
   nodesForJSON: =>
     _.map @nodes, (node) =>
-      _.omit node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output'
+      _.omit node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output', 'online'
 
   getDevicesNeedingPermissions: =>
     @ThingService.getThing(uuid: @flowId)
