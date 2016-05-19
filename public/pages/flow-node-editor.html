@@ -6,6 +6,9 @@
     <div class="Sidebar-pane-form">
       <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
       </div>
+      <pre>
+        {{flowNodeType | json}}
+      </pre>
       <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
       <md-switch ng-model="flowNode.debug">Debug</md-switch>
       <button class="Sidebar-pane-thing--delete BluButton" title="Delete Thing" ng-click="deleteNode(flowNode, flow)" aria-label="Delete">

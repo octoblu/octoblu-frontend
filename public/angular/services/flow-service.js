@@ -206,30 +206,6 @@ angular.module('octobluApp')
     return activeFlow;
   };
 
-  self.processFlows = function(flows){
-    return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
-      _.each(flows, function(flow){
-        _.each(flow.nodes, function(node){
-          if(node.type === 'operation:device'){
-            return;
-          }
-          node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
-          node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
-
-          if(node.needsConfiguration && !node.needsSetup){
-            var matchingNode = _.findWhere(flowNodeTypes, {type: node.type});
-
-            node.channelActivationId = matchingNode.defaults.channelActivationId;
-            node.uuid                = matchingNode.defaults.uuid;
-            node.token               = matchingNode.defaults.token;
-            node.needsConfiguration  = false;
-          }
-        });
-      });
-      return flows;
-    });
-  };
-
   self.getAllFlows = function () {
     return $http.get(OCTOBLU_API_URL + '/api/flows').then(function(response){
       var flowData = _.reject(response.data, function(flow){
@@ -238,14 +214,12 @@ angular.module('octobluApp')
 
       if (_.isEmpty(flowData)) {
         return self.createFlow().then(function(flow){
-          return self.processFlows([flow]);
+          return [flow];
         });
       }
 
-      return self.processFlows(flowData).then(function(flows) {
-        return _.map(flows, function(flow) {
-          return new FlowModel(flow);
-        });
+      return _.map(flowData, function(flow) {
+        return new FlowModel(flow);
       });
     });
   };
@@ -258,24 +232,19 @@ angular.module('octobluApp')
 
       if (_.isEmpty(flowData)) {
         return self.createFlow().then(function(flow){
-          return self.processFlows([flow]);
+          return [flow];
         });
       }
 
-      return self.processFlows(flowData).then(function(flows) {
-        return _.map(flows, function(flow) {
-          return new FlowModel(flow);
-        });
+      return _.map(flowData, function(flow) {
+        return new FlowModel(flow);
       });
     });
   };
 
   self.getFlow = function(flowId) {
     return $http.get(OCTOBLU_API_URL + '/api/flows/' + flowId).then(function(response){
-      var flowData = response.data;
-      return self.processFlows([flowData]);
-    }).then(function(flows){
-      return new FlowModel(_.first(flows));
+      return new FlowModel(response.data);
     });
   };
 

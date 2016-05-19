@@ -446,6 +446,24 @@ angular.module('octobluApp')
     }
 
     subscribeFlowToDevices(newNodes);
+    return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
+      _.each(newNodes, function(node){
+        if(node.type === 'operation:device'){
+          return;
+        }
+        node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
+        node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
+
+        if(node.needsConfiguration && !node.needsSetup){
+          var matchingNode = _.findWhere(flowNodeTypes, {type: node.type});
+
+          node.channelActivationId = matchingNode.defaults.channelActivationId;
+          node.uuid                = matchingNode.defaults.uuid;
+          node.token               = matchingNode.defaults.token;
+          node.needsConfiguration  = false;
+        }
+      });
+    });
   };
 
   var flowDeployingInterval;
@@ -477,7 +495,7 @@ angular.module('octobluApp')
       if (flowDeployingInterval) {
         return;
       }
-      flowDeployingInterval = setInterval(checkFlowDeploying, 1000);
+      flowDeployingInterval = $interval(checkFlowDeploying, 1000);
     }
   };
 
@@ -491,7 +509,7 @@ angular.module('octobluApp')
       if (flowStoppingInterval) {
         return;
       }
-      flowStoppingInterval = setInterval(checkFlowDeploying, 1000);
+      flowStoppingInterval = $interval(checkFlowDeploying, 1000);
     }
   };
 
@@ -503,7 +521,7 @@ angular.module('octobluApp')
       return node.meshblu || node.class === 'device-flow';
     });
     var deviceNodeUuids = _.pluck(deviceNodes, 'uuid');
-    FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
+    return FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
   };
 
   $scope.$watch('activeFlow', calculateFlowHash, true);
