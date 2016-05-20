@@ -24,7 +24,7 @@
       <input ng-model="device.name" required ng-model-options="{updateOn: 'default blur', debounce: {default: 3000, blur: 0}}">
     </md-input-container>
 
-    <device-schema device="device" model="device.options" schema-type="options"></device-schema>
+    <device-schema device="device" model="device"></device-schema>
 
     <div class="BluButton--actions">
       <a class="BluButton BluButton--save" ng-click="saveDevice()">Save</a>
