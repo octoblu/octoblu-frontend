@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  if (!verifyWorkspaceCloudUser()
-  || !referredFromCitrixCloudDomain(document.referrer)) return
+  if (verifyWorkspaceCloudUser() === false
+  || referredFromCitrixCloudDomain(document.referrer) === false) return
 
   var body                = $('body')
   var navbarElement       = $("<cwc-navbar></cwc-navbar>")
@@ -37,6 +37,6 @@ function referredFromCitrixCloudDomain(referrer){
   if(referrer.indexOf('cloud.com') > -1) return true;
   if(referrer.indexOf('cloudburrito.com') > -1) return true;
   if(referrer.indexOf('cloud.com') > -1) return true;
-  if(referrer.indexOf('tryworkspaces.com') > -1) return true; 
+  if(referrer.indexOf('tryworkspaces.com') > -1) return true;
   return false;
 }
