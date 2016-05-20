@@ -34,12 +34,9 @@ TODO - Remove after Synergy. Checking if the referrer is from
 **/
 function referredFromCitrixCloudDomain(referrer){
   if(!referrer)return false;
-  if("*\.cloud\.com".test(referrer)){
-    return true;
-  } else if("*\.cloudburrito\.com".test(referrer)){
-    return true;
-  } else if("*\.tryworkspaces\.com".test(referrer)){
-    return true;
-  }
+  if(referrer.indexOf('cloud.com') > -1) return true;
+  if(referrer.indexOf('cloudburrito.com') > -1) return true;
+  if(referrer.indexOf('cloud.com') > -1) return true;
+  if(referrer.indexOf('tryworkspaces.com') > -1) return true; 
   return false;
 }
