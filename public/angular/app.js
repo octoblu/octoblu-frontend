@@ -660,6 +660,12 @@ angular.module('octobluApp', [
         templateUrl : '/pages/oauth.html',
         controller: 'OAuthProviderController'
       })
+      .state('material.permissions', {
+        url: '/permissions/:uuid',
+        controller: 'PermissionsController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/permissions.html'
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',
