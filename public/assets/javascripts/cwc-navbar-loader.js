@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (verifyWorkspaceCloudUser() === false
-  || referredFromCitrixCloudDomain(document.referrer) === false) return
+  && referredFromCitrixCloudDomain(document.referrer) === false) return
 
   var body                = $('body')
   var navbarElement       = $("<cwc-navbar></cwc-navbar>")
