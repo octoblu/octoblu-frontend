@@ -4,7 +4,7 @@ class FlowTagsController
 
     @scope.tags = @getTags()
 
-    @scope.watch 'flow.nodes', =>
+    @scope.$watch 'flow.nodes', =>
       @scope.tags = @getTags()
 
   getTags: () =>
