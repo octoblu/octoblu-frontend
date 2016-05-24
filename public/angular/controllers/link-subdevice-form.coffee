@@ -1,8 +1,9 @@
 class LinkSubdeviceFormController
-  constructor: ($scope, $state, ThingService, NotifyService) ->
+  constructor: ($scope, $state, ThingService, NotifyService, MeshbluHttpService) ->
     @state = $state
     @ThingService = ThingService
     @NotifyService = NotifyService
+    @MeshbluHttpService = MeshbluHttpService
     {@device, @gateblu, @nodeType} = $scope.subdeviceLink
 
     return @state.go 'material.nodewizard-linksubdevice.selectgateblu' unless @gateblu?
@@ -19,13 +20,11 @@ class LinkSubdeviceFormController
     @state.go 'material.things'
 
   updateGatebluDevice: =>
-    propertiesToUpdate =
-      uuid: @gateblu.uuid
-      devices: _.union @gateblu.devices, [uuid: @device.uuid, type: @device.type, connector: @device.connector]
+    update =
+      $addToSet:
+        devices: [uuid: @device.uuid, type: @device.type, connector: @device.connector]
 
-    @gateblu = _.extend @gateblu, propertiesToUpdate
-
-    @ThingService.updateDevice propertiesToUpdate
+    @MeshbluHttpService.updateDangerously @gateblu.uuid, update
 
   updateSubdevice: =>
     propertiesToUpdate =
