@@ -3,12 +3,16 @@ class UtilityInspectorController
     @scope = $scope
     @scope.tab = {}
     @scope.things = []
-    @scope.collectionViewStyle = 'list'
     @scope.viewSource = false
     @scope.loading = true
     @scope.paneCollapsed = false
     @scope.showCategory = true
     @scope.unreadDebug = false
+
+    if localStorage.getItem 'octoblu.designer.collectionViewStyle'
+      @scope.collectionViewStyle = localStorage.getItem 'octoblu.designer.collectionViewStyle'
+    else
+      @scope.collectionViewStyle = 'list'
 
     @toggleActiveTab 'things'
     @FlowNodeTypeService = FlowNodeTypeService
@@ -60,6 +64,8 @@ class UtilityInspectorController
     (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.thingsByCategory['Flows']
 
   setCollectionViewStyle: (viewStyle) =>
+    console.log 'viewStyle', viewStyle
+    localStorage.setItem 'octoblu.designer.collectionViewStyle', viewStyle
     @scope.collectionViewStyle = viewStyle
 
   flowNodeTypeIsConfiguredNode: (node) =>
