@@ -8,16 +8,11 @@ class UtilityInspectorController
     @scope.paneCollapsed = false
     @scope.showCategory = true
     @scope.unreadDebug = false
+    @scope.collectionViewStyle = 'list'
 
-    if localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
-      @scope.collectionViewStyle = localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
-    else
-      @scope.collectionViewStyle = 'list'
+    @getPreferences()
 
-    if localStorage.getItem 'octoblu.designer.sidebar.tools.active'
-      @scope.tab.state = localStorage.getItem 'octoblu.designer.sidebar.tools.active'
-    else
-      @toggleActiveTab 'things'
+
 
 
     @FlowNodeTypeService = FlowNodeTypeService
@@ -55,6 +50,15 @@ class UtilityInspectorController
 
       @scope.unreadDebug = true
     , true
+
+  getPreferences: =>
+    if localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
+      @scope.collectionViewStyle = localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
+
+    if localStorage.getItem 'octoblu.designer.sidebar.tools.active'
+      @scope.tab.state = localStorage.getItem 'octoblu.designer.sidebar.tools.active'
+    else
+      @toggleActiveTab 'things'
 
   updateThingsByCategory: (things) =>
     @scope.noThings = !things.length

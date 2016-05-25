@@ -6,12 +6,7 @@ class FlowPermissionManagerController
     @REGISTRY_URL = REGISTRY_URL
     @http         = $http
     @loading      = true
-
-    if localStorage.getItem 'octoblu.designer.sidebar.permissionsHide'
-      @scope.hideSection = localStorage.getItem 'octoblu.designer.sidebar.permissionsHide'
-    else
-      @scope.hideSection = true
-
+    @scope.hideSection = true
     @scope.$watchCollection 'flow.nodes', @renderPermissionManager
     @scope.$watch 'flow.pendingPermissions', @updateHideSection
 
@@ -20,8 +15,6 @@ class FlowPermissionManagerController
 
   updateHideSection: (pendingPermissions) =>
     return unless pendingPermissions?
-    console.log '!pendingPermissions', !pendingPermissions
-    localStorage.setItem 'octoblu.designer.sidebar.permissionsHide', !pendingPermissions
     @scope.hideSection = !pendingPermissions
 
   renderPermissionManager: (nodes) =>
