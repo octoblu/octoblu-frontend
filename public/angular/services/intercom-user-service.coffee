@@ -1,7 +1,7 @@
 class IntercomUserService
-  constructor: ($cookies, $intercom, $q, MeshbluHttpService) ->
+  constructor: ($cookies, IntercomService, $q, MeshbluHttpService) ->
     @cookies = $cookies
-    @intercom = $intercom
+    @IntercomService = IntercomService
     @q = $q
     @MeshbluHttpService = MeshbluHttpService
 
@@ -22,8 +22,7 @@ class IntercomUserService
       user_id: userDevice.uuid
       unsubscribed_from_emails: !userDevice.octoblu.optInEmail
 
-    @intercom.boot userInfo
-    @intercom.update userInfo
-
+    @IntercomService.boot userInfo
+    @IntercomService.update userInfo
 
 angular.module('octobluApp').service 'IntercomUserService', IntercomUserService

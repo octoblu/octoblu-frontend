@@ -2,8 +2,6 @@ xdescribe 'UtilityInspectorController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
-      $provide.value '$intercom', sinon.stub()
-      $provide.value '$intercomProvider', sinon.stub()
       $provide.value 'reservedProperties', ['$$hashKey', '_id']
       $provide.value 'OCTOBLU_ICON_URL', ''
       $provide.value('MESHBLU_HOST', 'http://whatever.com');

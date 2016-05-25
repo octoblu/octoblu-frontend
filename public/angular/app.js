@@ -15,7 +15,6 @@ angular.module('octobluApp', [
   'ngClipboard',
   'hc.marked',
   'ngAnimate',
-  'ngIntercom',
   'chart.js',
   'angulartics',
   'dibari.angular-ellipsis',
@@ -69,22 +68,6 @@ angular.module('octobluApp', [
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
-  .constant('INTERCOM_APPID', 'ux5bbkjz')
-
-  // Configure your $intercom module with appID
-  .config(function($intercomProvider, INTERCOM_APPID) {
-    // Either include your app_id here or later on boot
-    if (window.location.hostname === 'app.octoblu.com'){
-      $intercomProvider
-        .appID(INTERCOM_APPID);
-    } else {
-      $intercomProvider.appID('thuyk9s6');
-    }
-
-    // you can include the Intercom's script yourself or use the built in async loading feature
-    $intercomProvider
-      .asyncLoading(true)
-  })
   .constant('reservedProperties', ['$$hashKey', '_id'])
   // enabled CORS by removing ajax header
   .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -92,10 +75,6 @@ angular.module('octobluApp', [
 
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
-      'http://*:*@red.meshines.com:*/**',
-      'http://*:*@designer.octoblu.com:*/**',
-      'http://skynet.im/**',
-      'http://54.203.249.138:8000/**',
       '**'
     ]);
 
@@ -689,7 +668,7 @@ angular.module('octobluApp', [
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
 
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
@@ -708,19 +687,14 @@ angular.module('octobluApp', [
       }
     });
 
-    // $rootScope.$on('$octobluUserLoggedOff', function(event, data) {
-    //   $window.location = CWC_LOGIN_URL
-    // });
-
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-      console.log('error from ' + fromState.name + ' to ' + toState.name, error);
-      console.log(error.stack);
+      console.error('error from ' + fromState.name + ' to ' + toState.name, error);
+      console.error(error.stack);
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-      $intercom.update();
+      IntercomService.update()
       if (!toState.unsecured) {
-
         if(toState.name !== 'profile-new'){
           IntercomUserService.updateIntercom().catch(function(error){
             if(error.message === 'meshblu connection error'){
@@ -731,13 +705,11 @@ angular.module('octobluApp', [
         }
 
         return AuthService.getCurrentUser(true).then(null, function (err) {
-          console.log('LOGIN ERROR:');
-          console.log(err);
+          console.error('LOGIN ERROR:', err);
           event.preventDefault();
           $location.url('/login');
         });
       }
-
     });
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';
