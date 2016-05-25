@@ -1,4 +1,9 @@
-<div class="materialize">
+<div ng-if="showErrorState" class="materialize">
+  <top-bar></top-bar>
+  <div ng-include="'/pages/error.html'">
+  </div>
+</div>
+<div ng-if="!showErrorState" class="materialize">
   <top-bar></top-bar>
   <ui-view></ui-view>
 </div>
