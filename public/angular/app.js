@@ -70,7 +70,7 @@ angular.module('octobluApp', [
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   // enabled CORS by removing ajax header
-  .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
+  .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $sceDelegateProvider.resourceUrlWhitelist([
@@ -87,26 +87,13 @@ angular.module('octobluApp', [
     // change page event name
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-    $httpProvider.interceptors.push(function ($window,$location) {
+    $provide.factory('TheInterceptor', function(InterceptorService) {
       return {
-        responseError: function (response) {
-          if (_.indexOf([401,403], response.status) >= 0) {
-            if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
-            }
-          }
-          if (response.status === 412) {
-            return $window.location = '/profile/new?callbackUrl=' + encodeURIComponent($location.url());
-          }
-          if (_.indexOf([502, 503, 504], response.status) >= 0) {
-            if($window.location.pathname !== '/error') {
-              return $window.location = '/error';
-            }
-          }
-          return response;
-        }
-      };
+        response: InterceptorService.handle
+      }
     });
+
+    $httpProvider.interceptors.push('TheInterceptor');
 
     $stateProvider
       .state('material', {
@@ -118,12 +105,6 @@ angular.module('octobluApp', [
         url: '/',
         templateUrl: '/pages/root.html',
         controller: 'RootController'
-      })
-      .state('material.error', {
-        url: '/error',
-        templateUrl: '/pages/error.html',
-        controller: 'ErrorController',
-        controllerAs: 'controller',
       })
       .state('material.schemaeditortest', {
         url: '/schema-editor-test',
@@ -669,6 +650,7 @@ angular.module('octobluApp', [
     $urlRouterProvider.otherwise('/');
   })
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+    $rootScope.showErrorState = false;
 
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
@@ -693,6 +675,7 @@ angular.module('octobluApp', [
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+      $rootScope.showErrorState = false;
       IntercomService.update()
       if (!toState.unsecured) {
         if(toState.name !== 'profile-new'){
@@ -711,6 +694,9 @@ angular.module('octobluApp', [
         });
       }
     });
+
+
+
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';
       modalHtml += '<h3>' + title + '</h3>';
