@@ -46,12 +46,15 @@ class NewProfileController
     @FlowService.createDemoFlow name: 'Demo Flow'
 
   emailRequiredError: =>
+    return false unless @newProfileForm?
     return true if @newProfileForm.email.$error.required && @newProfileForm.email.$touched
 
   firstNameRequiredError: =>
+    return false unless @newProfileForm?
     return true if @newProfileForm.firstName.$error.required && @newProfileForm.firstName.$touched
 
   lastNameRequiredError: =>
+    return false unless @newProfileForm?
     return true if @newProfileForm.lastName.$error.required && @newProfileForm.lastName.$touched
 
 angular.module('octobluApp').controller 'NewProfileController', NewProfileController

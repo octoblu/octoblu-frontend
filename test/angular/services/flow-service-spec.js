@@ -11,8 +11,6 @@ xdescribe('FlowService', function () {
       $provide.value('NotifyService', fakeNotifyService);
       $provide.value('$cookies', {});
       $provide.value('reservedProperties', []);
-      $provide.value('$intercom', {boot: sinon.stub()});
-      $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
       $provide.constant('OCTOBLU_ICON_URL', '');
