@@ -9,13 +9,13 @@ class UtilityInspectorController
     @scope.showCategory = true
     @scope.unreadDebug = false
 
-    if localStorage.getItem 'octoblu.designer.tools.collectionViewStyle'
-      @scope.collectionViewStyle = localStorage.getItem 'octoblu.designer.tools.collectionViewStyle'
+    if localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
+      @scope.collectionViewStyle = localStorage.getItem 'octoblu.designer.sidebar.tools.collectionViewStyle'
     else
       @scope.collectionViewStyle = 'list'
 
-    if localStorage.getItem 'octoblu.designer.tools.active'
-      @scope.tab.state = localStorage.getItem 'octoblu.designer.tools.active'
+    if localStorage.getItem 'octoblu.designer.sidebar.tools.active'
+      @scope.tab.state = localStorage.getItem 'octoblu.designer.sidebar.tools.active'
     else
       @toggleActiveTab 'things'
 
@@ -69,8 +69,7 @@ class UtilityInspectorController
     (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.thingsByCategory['Flows']
 
   setCollectionViewStyle: (viewStyle) =>
-    console.log 'viewStyle', viewStyle
-    localStorage.setItem 'octoblu.designer.tools.collectionViewStyle', viewStyle
+    localStorage.setItem 'octoblu.designer.sidebar.tools.collectionViewStyle', viewStyle
     @scope.collectionViewStyle = viewStyle
 
   flowNodeTypeIsConfiguredNode: (node) =>
@@ -83,11 +82,10 @@ class UtilityInspectorController
     @scope.viewSource = !@scope.viewSource
 
   toggleActiveTab: (tabState) =>
-    console.log 'toggleActiveTab'
     @scope.thingNameFilter = ''
     if tabState in ['things', 'tools', 'debug']
       @scope.paneCollapsed = false
-      localStorage.setItem 'octoblu.designer.tools.active', tabState
+      localStorage.setItem 'octoblu.designer.sidebar.tools.active', tabState
       @scope.tab.state = tabState
       @scope.unreadDebug = false if tabState == 'debug'
     else
