@@ -70,8 +70,8 @@ class FlowConfigureController
     uuid
 
   updatePermissions: () =>
-    @addFlowToWhitelists()
-    @addSendWhitelistsToFlow()
+    # @addFlowToWhitelists()
+    # @addSendWhitelistsToFlow()
     @checkPermissions()
 
   getNodeId: (node) =>
