@@ -10,26 +10,24 @@ class IntercomUserService
     @user_hash = null
 
   getUserDevice: =>
-    deferred = @q.defer()
-    return deferred.resolve() if @userDevice?
-    @MeshbluHttpService.device @uuid, (error, userDevice) =>
-      return deferred.reject(error) if error?
-      return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
-      @userDevice = userDevice
-      deferred.resolve()
-    return deferred.promise
+    @q (resolve, reject) =>
+      return resolve() if @userDevice?
+      @MeshbluHttpService.device @uuid, (error, userDevice) =>
+        return reject(error) if error?
+        return reject new Error('Missing Profile') unless userDevice.octoblu?
+        @userDevice = userDevice
+        resolve()
 
   getUserHash: =>
-    deferred = @q.defer()
-    return deferred.resolve() if @user_hash?
-    @http.get(@OCTOBLU_API_URL + '/api/intercom/user_hash')
-      .then (response) =>
-        if response?.status != 200
-          return deferred.reject(response.data)
-        @user_hash = response.data.user_hash
-        deferred.resolve()
-      .catch deferred.reject
-    return deferred.promise
+    @q (resolve, reject) =>
+      return resolve() if @user_hash?
+      @http.get(@OCTOBLU_API_URL + '/api/intercom/user_hash')
+        .then (response) =>
+          if response?.status != 200
+            return reject(response.data)
+          @user_hash = response.data.user_hash
+          resolve()
+        .catch reject
 
   updateIntercom: =>
     deferred = @q.defer()
