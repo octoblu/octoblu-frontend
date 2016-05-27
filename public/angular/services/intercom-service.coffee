@@ -19,15 +19,17 @@ class IntercomService
       created_at,
       name,
       user_id,
+      user_hash,
       unsubscribed_from_emails
     } = user
-
+    
     return {
       @app_id,
       email,
       created_at: @convertDate(created_at),
       name,
       user_id,
+      user_hash,
       unsubscribed_from_emails: !!unsubscribed_from_emails,
     }
 
