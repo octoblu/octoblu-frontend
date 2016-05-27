@@ -22,12 +22,12 @@ class ConfigureController
         @scope.loadingConnectedThings = false
         @updateThingsByCategory connectedThings
 
-    @scope.$watch 'deviceNameFilter', (deviceNameFilter) =>
-      deviceNameFilter = deviceNameFilter || '';
+    @scope.$watch 'filterByName', (filterByName) =>
+      filterByName = filterByName || '';
       filteredDevices = _.filter connectedThings, (device) =>
         name = (device.name || device.type).toLowerCase()
-        deviceNameFilter = deviceNameFilter.toLowerCase()
-        return _.contains name, deviceNameFilter
+        filterByName = filterByName.toLowerCase()
+        return _.contains name, filterByName
       @updateThingsByCategory(filteredDevices)
 
   checkRedirectToFlowConfigure: () =>

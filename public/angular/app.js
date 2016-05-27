@@ -133,9 +133,8 @@ angular.module('octobluApp', [
       })
       .state('material.things', {
         url: '/things',
-        abstract: true,
-        template: '<ui-view />',
-        redirectTo: 'material.things.my'
+        templateUrl: '/pages/thing-viewer/index.html',
+        controller: 'ThingsController'
       })
       .state('material.things.my', {
         url: '/my?added&deleted',
