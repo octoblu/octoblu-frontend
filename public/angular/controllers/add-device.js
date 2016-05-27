@@ -11,7 +11,7 @@ angular.module('octobluApp')
   NodeTypeService.getNodeTypeById($stateParams.nodeTypeId)
   .then(function (nodeType) {
     $scope.nodeType  = nodeType;
-    $scope.fragments = [{linkTo: 'material.things', label: 'All Things'}, {label: "Add " + nodeType.name}];
+    $scope.fragments = [{linkTo: 'material.things.all', label: 'All Things'}, {label: "Add " + nodeType.name}];
   })
   .then(function (unclaimedDevices) {
     _.each(unclaimedDevices, function(device){
@@ -58,7 +58,7 @@ angular.module('octobluApp')
         var redirectToDesign = $stateParams.designer || false;
         var redirectToWizard = $stateParams.wizard || false;
 
-        var route = 'material.configure';
+        var route = 'material.things.my';
         var params = {added: name};
 
         if (redirectToDesign) {

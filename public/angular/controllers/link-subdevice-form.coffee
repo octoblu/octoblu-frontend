@@ -17,7 +17,7 @@ class LinkSubdeviceFormController
 
   finish: =>
     @NotifyService.notify "#{@device.name} successfully linked to #{@gateblu.name}"
-    @state.go 'material.things'
+    @state.go 'material.things.all'
 
   updateGatebluDevice: =>
     update =

@@ -125,15 +125,6 @@ angular.module('octobluApp', [
         controller: 'DashboardController',
         controllerAs: 'controller'
       })
-      .state('material.configure', {
-        url: '/configure?added&deleted',
-        params: {
-          added: null,
-          deleted: null
-        },
-        controller: 'ConfigureController',
-        templateUrl: '/pages/thing-viewer/configure.html'
-      })
       .state('material.my-flows', {
         url: '/my-flows',
         templateUrl: '/pages/my-flows.html',
@@ -142,6 +133,21 @@ angular.module('octobluApp', [
       })
       .state('material.things', {
         url: '/things',
+        abstract: true,
+        template: '<ui-view />',
+        redirectTo: 'material.things.my'
+      })
+      .state('material.things.my', {
+        url: '/my?added&deleted',
+        params: {
+          added: null,
+          deleted: null
+        },
+        controller: 'ConfigureController',
+        templateUrl: '/pages/thing-viewer/configure.html'
+      })
+      .state('material.things.all', {
+        url: '/all',
         controller: 'addNodeController',
         templateUrl: '/pages/thing-viewer/add-node.html'
       })

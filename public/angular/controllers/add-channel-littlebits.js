@@ -12,7 +12,7 @@ angular.module('octobluApp')
       $http.post(OCTOBLU_API_URL + '/api/littlebits/auth', profile).then(function(){
         var redirectToDesign = $stateParams.designer || false;
         var redirectToWizard = $stateParams.wizard || false;
-        var route = 'material.configure';
+        var route = 'material.things.my';
         var params = {added: nodeType.name};
         if(redirectToWizard){
           route = 'material.flowConfigure';

@@ -56,7 +56,7 @@ class DeviceDetailController
     !@deviceIsFlow device
 
   generateBreadcrumbFragments: (device) =>
-    return [{linkTo: 'material.configure', label: 'My Things'},
+    return [{linkTo: 'material.things.my', label: 'My Things'},
       {label: "Manage #{device.name || device.uuid}"}]
 
   linkToGateblu: =>
@@ -77,7 +77,7 @@ class DeviceDetailController
         @ThingService.deleteThing(@device)
       .then =>
         name = @device.name || @device.type
-        @state.go "material.configure", deleted: name
+        @state.go "material.things.my", deleted: name
 
   generateSessionToken: =>
     @ThingService.generateSessionToken(@device).then (session) =>

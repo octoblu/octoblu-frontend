@@ -8,7 +8,7 @@ angular.module('octobluApp')
   var redirectToWizard = $stateParams.wizard || false;
 
   var linkTo = {
-    linkTo: 'material.things',
+    linkTo: 'material.things.all',
     label: 'All Things'
   };
 

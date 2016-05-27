@@ -31,7 +31,7 @@ class AddNodeWizardController
     @state.go @scope.nextState, stateParams, location: true
 
   generateBreadcrumbFragments: (nodeType) =>
-    @linkTo = linkTo: 'material.things', label: 'All Things'
+    @linkTo = linkTo: 'material.things.all', label: 'All Things'
     if @redirectToDesign
       @linkTo = linkTo: 'material.design', label: 'Designer'
     if @redirectToWizard
