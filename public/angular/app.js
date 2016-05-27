@@ -143,12 +143,12 @@ angular.module('octobluApp', [
           deleted: null
         },
         controller: 'ConfigureController',
-        templateUrl: '/pages/thing-viewer/configure.html'
+        templateUrl: '/pages/thing-viewer/my-things.html'
       })
       .state('material.things.all', {
         url: '/all',
         controller: 'addNodeController',
-        templateUrl: '/pages/thing-viewer/add-node.html'
+        templateUrl: '/pages/thing-viewer/all-things.html'
       })
       .state('material.nodewizard-add', {
         url: '/node-wizard/add/:nodeTypeId',
