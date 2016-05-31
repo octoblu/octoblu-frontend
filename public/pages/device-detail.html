@@ -66,7 +66,7 @@
       <md-tab label="Properties">
         <div ng-include="'/pages/device-detail-properties.html'"></div>
       </md-tab>
-      <md-tab md-on-select="controller.getPermissions()" label="Permissions">
+      <md-tab ng-if="!(controller.device.meshblu.version == '2.0.0')" md-on-select="controller.getPermissions()" label="Permissions">
         <div ng-include="'/pages/device-detail-permissions.html'"></div>
       </md-tab>
     </md-tabs>
