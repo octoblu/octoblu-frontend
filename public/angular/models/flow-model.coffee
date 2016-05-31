@@ -117,13 +117,22 @@ class FlowModel
 
   _flowCanMessageDevice: (device) =>
     return true if @flowDevice.uuid == device.uuid
+    return @_flowCanMessageDeviceV2 device if device.meshblu.version == "2.0.0"
     return true if _.includes device.sendWhitelist, '*'
     return true if _.includes device.sendWhitelist, @flowDevice.uuid
 
     false
 
+  _flowCanMessageDeviceV2: (device) =>
+    return true if _.some device.meshblu?.whitelists?.message?.from, uuid: '*'
+    return true if _.some device.meshblu?.whitelists?.message?.from, uuid: @flowDevice.uuid
+
+    false
+
   _flowCanSubscribeBroadcastSentDevice: (device) =>
     return true if @flowDevice.uuid == device.uuid
+    return @_flowCanSubscribeBroadcastSentDeviceV2 device if device.meshblu.version == "2.0.0"
+
     return true if _.includes device.receiveAsWhitelist, '*'
     return true if _.includes device.receiveAsWhitelist, @flowDevice.uuid
 
@@ -132,15 +141,32 @@ class FlowModel
 
     false
 
+  _flowCanSubscribeBroadcastSentDeviceV2: (device) =>
+    return true if _.some device.meshblu?.whitelists?.broadcast?.sent, uuid: '*'
+    return true if _.some device.meshblu?.whitelists?.broadcast?.sent, uuid: @flowDevice.uuid
+
+    false
+
   _updatePermission: ({device, permissions}) =>
-    update = @_buildUpdate permissions
+    if device.meshblu?.version == '2.0.0'
+      update = @_buildUpdateV2 permissions
+    else
+      update = @_buildUpdate permissions
+
     @ThingService.updateDangerously(device.uuid, update) if update?
 
   _buildUpdate: (permissions) =>
-    update =
-      $addToSet: {}
+    update = $addToSet: {}
     update.$addToSet.sendWhitelist = @flowDevice.uuid if permissions.messageFromFlow?
     update.$addToSet.receiveWhitelist = @flowDevice.uuid if permissions.subscribeBroadcastSent?
+
+    return if _.isEmpty update.$addToSet
+    return update
+
+  _buildUpdateV2: (permissions) =>
+    update = $addToSet: {}
+    update.$addToSet['meshblu.whitelists.message.from']   = uuid: @flowDevice.uuid if permissions.messageFromFlow?
+    update.$addToSet['meshblu.whitelists.broadcast.sent'] = uuid: @flowDevice.uuid if permissions.subscribeBroadcastSent?
 
     return if _.isEmpty update.$addToSet
     return update
