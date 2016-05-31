@@ -185,6 +185,18 @@ angular.module('octobluApp', [
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
+      .state('material.nodewizard-addendo', {
+        url: '/node-wizard/add-endo/:nodeTypeId',
+        params: {
+          designer: null,
+          wizard: null,
+          wizardFlowId: null,
+          wizardNodeIndex: null
+        },
+        controller: 'AddEndoController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/add-endo/index.html'
+      })
       .state('material.nodewizard-addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         params: {

@@ -1,0 +1,21 @@
+<breadcrumb-tab-bar fragments="fragments"></breadcrumb-tab-bar>
+<md-content class="interior__wrapper">
+  <div class="interior">
+    <div class="node-wizard-logo-container">
+      <img src="{{nodeType.logo}}">
+    </div>
+    <h2 class="node-wizard__title">{{nodeType.name}}</h2>
+    <div class="node-wizard__description">
+      <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
+      <a class="node-wizard_description" ng-if="nodeType.documentation" href={{nodeType.documentation}} target="_blank" >Read Documentation</a>
+    </div>
+    <h1>THIS IS THE ENDO PAGE</h1>
+    <div class="node-wizard__body">
+      <form method="get" action="{{nodeType.url}}" class="node-wizard__form">
+        <button class="BluButton node-wizard__connect--btn">
+          Connect {{nodeType.name}}
+        </button>
+      </form>
+    </div>
+  </div>
+</md-content>

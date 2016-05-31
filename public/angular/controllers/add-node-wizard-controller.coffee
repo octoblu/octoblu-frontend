@@ -18,7 +18,10 @@ class AddNodeWizardController
     if @scope.nodeType.category == 'channel'
       @scope.nextState = 'material.nodewizard-addchannel.default-options'
 
-    if @scope.nodeType.connector
+    if @scope.nodeType.category == 'endo'
+      @scope.nextState = 'material.nodewizard-addendo'
+
+    if @scope.nodeType.connector?
       @scope.nextState = 'material.nodewizard-addsubdevice.selectgateblu'
 
     stateParams =
