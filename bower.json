@@ -48,7 +48,6 @@
     "angular-bootstrap": "~0.12.1",
     "eventEmitter": "~4.2.11",
     "moment": "~2.9.0",
-    "angular-intercom": "~2.0.4",
     "angular-chart.js": "~0.3.19",
     "angulartics": "~0.17.2",
     "MutationObservers": "Polymer/MutationObservers#~0.4.2",
@@ -66,7 +65,7 @@
     "jquery.sparkline": "^2.1.2",
     "angular-truncate-2": "^0.4.2",
     "prism": "^1.5.0",
-    "angular-meshblu-device-editor": "^2.1.1"
+    "angular-meshblu-device-editor": "^3.4.0"
   },
   "devDependencies": {
     "chai": "~1.9.1",

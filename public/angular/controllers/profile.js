@@ -61,14 +61,6 @@ angular.module('octobluApp')
         });
   };
 
-  $scope.changePassword = function(event) {
-    $mdDialog.show({
-      controller: 'ChangePasswordController',
-      templateUrl: '/pages/change-password.html',
-      targetEvent: event,
-    })
-  };
-
   AuthService.getCurrentUser().then(function(user){
     $scope.currentUser = user;
   });

@@ -15,17 +15,6 @@ class FlowDetailEditorController
       .then (template) =>
         @state.go 'material.bluprintEdit', bluprintId: template.uuid, createMode: true
 
-  deleteFlow: (flow) ->
-    @NotifyService
-      .confirm
-        title: 'Delete Flow'
-        content: 'Are you sure you want to delete ' + flow.name + '?'
-      .then =>
-        delete @cookies.currentFlowId
-        @FlowService.deleteFlow(flow.flowId)
-          .then =>
-            @state.go 'material.design'
-
   saveflow: (flow) ->
     @FlowService.saveFlow(flow)
 

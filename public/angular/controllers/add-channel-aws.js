@@ -7,7 +7,7 @@ angular.module('octobluApp')
       userService.saveAWSApi(user.resource.uuid, nodeType.channelid,$scope.newChannel.user, $scope.newChannel.pass,function () {
         var redirectToDesign = $stateParams.designer || false;
         var redirectToWizard = $stateParams.wizard || false;
-        var route = 'material.configure';
+        var route = 'material.things.my';
         var params = {added: nodeType.name};
         if(redirectToWizard){
           route = 'material.flowConfigure';

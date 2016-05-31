@@ -7,7 +7,7 @@ angular.module('octobluApp')
       userService.savePagerdutyApi(nodeType.channelid, $scope.newChannel.token, function(){
         var redirectToDesign = $stateParams.designer || false;
         var redirectToWizard = $stateParams.wizard || false;
-        var route = 'material.configure';
+        var route = 'material.things.my';
         var params = {added: nodeType.name};
         if(redirectToWizard){
           route = 'material.flowConfigure';

@@ -7,5 +7,4 @@ angular.module('octobluApp')
     scope:
       device: '='
       model: '='
-      schemaType: '@'
   }

@@ -12,8 +12,6 @@ xdescribe('FlowNodeRenderer', function () {
     module('octobluApp', function($provide){
       $provide.value('$cookies', {});
       $provide.value('reservedProperties', []);
-      $provide.value('$intercom', {boot: sinon.stub()});
-      $provide.value('$intercomProvider', {});
       $provide.constant('MESHBLU_HOST', '');
       $provide.constant('MESHBLU_PORT', '');
       $provide.constant('OCTOBLU_ICON_URL', 'https://icons.octoblu.com/');

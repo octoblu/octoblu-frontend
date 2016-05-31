@@ -5,7 +5,7 @@ angular.module('octobluApp')
 
   channelService.getById($stateParams.id).then(function(channel){
     $scope.channel = channel;
-    $scope.fragments = [{linkTo: 'material.configure', label: 'My Things'},
+    $scope.fragments = [{linkTo: 'material.things.my', label: 'My Things'},
     {label: "Manage " + channel.name}]
   })
 
@@ -37,7 +37,7 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         channelService.getActiveChannels(true);
         channelService.getAvailableChannels(true);
-        _.defer($state.go, 'material.configure', {deleted: $scope.channel.name});
+        _.defer($state.go, 'material.things.my', {deleted: $scope.channel.name});
       });
     });
   };

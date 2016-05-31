@@ -14,11 +14,11 @@ angular.module('octobluApp')
     updateDevicesByCategory(devices);
   });
 
-  $scope.$watch('nodeNameSearch', function(nodeNameSearch) {
-    nodeNameSearch = nodeNameSearch || '';
+  $scope.$watch('filterByName', function(filterByName) {
+    filterByName = filterByName || '';
     var filteredDevices = _.filter(devices, function(device){
       var name = (device.name || '').toLowerCase();
-      var search = nodeNameSearch.toLowerCase();
+      var search = filterByName.toLowerCase();
       return _.contains(name, search);
     });
 

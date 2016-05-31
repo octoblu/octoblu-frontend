@@ -25,7 +25,6 @@ angular.module('octobluApp')
 
   function updateFlowDeviceImmediately(data) {
     $scope.flowDevice = data;
-    $scope.$applyAsync();
   }
 
   var updateFlowDevice = _.throttle(updateFlowDeviceImmediately, 500, {leading: false, trailing: true});
@@ -43,7 +42,7 @@ angular.module('octobluApp')
     };
   }
 
-  setInterval(pulseKeepalive, 60*1000);
+  $interval(pulseKeepalive, 60*1000);
 
   var setCookie = function(flowId) {
     deleteCookie();
@@ -477,8 +476,8 @@ angular.module('octobluApp')
         $scope.flowDevice.online = flow.online;
       })
       .catch(function(error){
-        clearInterval(flowDeployingInterval);
-        clearInterval(flowStoppingInterval);
+        $interval.cancel(flowDeployingInterval);
+        $interval.cancel(flowStoppingInterval);
         flowDeployingInterval = undefined;
         flowStoppingInterval = undefined;
         NotifyService.notifyError(error);
@@ -487,7 +486,7 @@ angular.module('octobluApp')
 
   var watchFlowDeployingImmediate = function(deploying){
     if (!deploying) {
-      clearInterval(flowDeployingInterval);
+      $interval.cancel(flowDeployingInterval);
       flowDeployingInterval = undefined;
       return;
     }
@@ -501,7 +500,7 @@ angular.module('octobluApp')
 
   var watchFlowStoppingImmediate = function(stopping){
     if (!stopping) {
-      clearInterval(flowStoppingInterval);
+      $interval.cancel(flowStoppingInterval);
       flowStoppingInterval = undefined;
       return;
     }

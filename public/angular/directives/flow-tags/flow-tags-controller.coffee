@@ -1,9 +1,14 @@
 class FlowTagsController
   constructor: ($scope, $state) ->
     @scope      = $scope
+
     @scope.tags = @getTags()
 
+    @scope.$watch 'flow.nodes', =>
+      @scope.tags = @getTags()
+
   getTags: () =>
+    return unless @scope.flow?
     {nodes} = @scope.flow
 
     return unless nodes?

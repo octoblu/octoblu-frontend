@@ -9,11 +9,17 @@
     <random-robot
       ng-show="(bluprints.length == 0) && !bluprintNameFilter && !isLoading"
       title="You have no shared Bluprints.">
+      <button class="BluButton node-wizard__connect--btn" href ui-sref="material.discover">
+        Discover
+      </button>
     </random-robot>
 
     <random-robot
       ng-show="(bluprints.length == 0) && bluprintNameFilter"
       title='There are no Bluprints for "{{bluprintNameFilter}}" filter.'>
+      <button class="BluButton node-wizard__connect--btn" href ui-sref="material.discover">
+        Discover
+      </button>
     </random-robot>
 
     <spinner size="large" loading="isLoading"></spinner>

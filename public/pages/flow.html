@@ -21,8 +21,12 @@
       <md-button class="flow-toolbar--add-flow" ng-click="addFlow()">
         <md-tooltip>Create Flow</md-tooltip>
         <i class="fa fa-plus"></i>
-        Create Flow
       </md-button>
+      <md-button class="flow-toolbar--add-flow" ng-click="deleteFlow(activeFlow)">
+        <md-tooltip>Delete Flow</md-tooltip>
+        <i class="fa fa-trash fa-lg"></i>
+      </md-button>
+
       <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
         <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
           <md-tooltip>Undo</md-tooltip>

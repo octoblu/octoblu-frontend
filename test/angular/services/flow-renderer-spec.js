@@ -51,7 +51,6 @@ describe('FlowRenderer', function () {
 
       //$provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
       // $provide.value('$cookies',{});
-      // $provide.value('$intercom',{});
 
       $provide.value('deviceService',
       {

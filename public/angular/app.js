@@ -15,7 +15,6 @@ angular.module('octobluApp', [
   'ngClipboard',
   'hc.marked',
   'ngAnimate',
-  'ngIntercom',
   'chart.js',
   'angulartics',
   'dibari.angular-ellipsis',
@@ -69,33 +68,13 @@ angular.module('octobluApp', [
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
-  .constant('INTERCOM_APPID', 'ux5bbkjz')
-
-  // Configure your $intercom module with appID
-  .config(function($intercomProvider, INTERCOM_APPID) {
-    // Either include your app_id here or later on boot
-    if (window.location.hostname === 'app.octoblu.com'){
-      $intercomProvider
-        .appID(INTERCOM_APPID);
-    } else {
-      $intercomProvider.appID('thuyk9s6');
-    }
-
-    // you can include the Intercom's script yourself or use the built in async loading feature
-    $intercomProvider
-      .asyncLoading(true)
-  })
   .constant('reservedProperties', ['$$hashKey', '_id'])
   // enabled CORS by removing ajax header
-  .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
+  .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
-      'http://*:*@red.meshines.com:*/**',
-      'http://*:*@designer.octoblu.com:*/**',
-      'http://skynet.im/**',
-      'http://54.203.249.138:8000/**',
       '**'
     ]);
 
@@ -108,26 +87,13 @@ angular.module('octobluApp', [
     // change page event name
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-    $httpProvider.interceptors.push(function ($window,$location) {
+    $provide.factory('TheInterceptor', function(InterceptorService) {
       return {
-        responseError: function (response) {
-          if (_.indexOf([401,403], response.status) >= 0) {
-            if($window.location.pathname !== '/login') {
-              return $window.location = '/login?callbackUrl=' + encodeURIComponent($location.url());
-            }
-          }
-          if (response.status === 412) {
-            return $window.location = '/profile/new?callbackUrl=' + encodeURIComponent($location.url());
-          }
-          if (_.indexOf([502, 503, 504], response.status) >= 0) {
-            if($window.location.pathname !== '/error') {
-              return $window.location = '/error';
-            }
-          }
-          return response;
-        }
-      };
+        response: InterceptorService.handle
+      }
     });
+
+    $httpProvider.interceptors.push('TheInterceptor');
 
     $stateProvider
       .state('material', {
@@ -139,12 +105,6 @@ angular.module('octobluApp', [
         url: '/',
         templateUrl: '/pages/root.html',
         controller: 'RootController'
-      })
-      .state('material.error', {
-        url: '/error',
-        templateUrl: '/pages/error.html',
-        controller: 'ErrorController',
-        controllerAs: 'controller',
       })
       .state('material.schemaeditortest', {
         url: '/schema-editor-test',
@@ -165,15 +125,6 @@ angular.module('octobluApp', [
         controller: 'DashboardController',
         controllerAs: 'controller'
       })
-      .state('material.configure', {
-        url: '/configure?added&deleted',
-        params: {
-          added: null,
-          deleted: null
-        },
-        controller: 'ConfigureController',
-        templateUrl: '/pages/thing-viewer/configure.html'
-      })
       .state('material.my-flows', {
         url: '/my-flows',
         templateUrl: '/pages/my-flows.html',
@@ -182,8 +133,22 @@ angular.module('octobluApp', [
       })
       .state('material.things', {
         url: '/things',
+        templateUrl: '/pages/thing-viewer/index.html',
+        controller: 'ThingsController'
+      })
+      .state('material.things.my', {
+        url: '/my?added&deleted',
+        params: {
+          added: null,
+          deleted: null
+        },
+        controller: 'ConfigureController',
+        templateUrl: '/pages/thing-viewer/my-things.html'
+      })
+      .state('material.things.all', {
+        url: '/all',
         controller: 'addNodeController',
-        templateUrl: '/pages/thing-viewer/add-node.html'
+        templateUrl: '/pages/thing-viewer/all-things.html'
       })
       .state('material.nodewizard-add', {
         url: '/node-wizard/add/:nodeTypeId',
@@ -219,6 +184,18 @@ angular.module('octobluApp', [
         },
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
+      })
+      .state('material.nodewizard-addendo', {
+        url: '/node-wizard/add-endo/:nodeTypeId',
+        params: {
+          designer: null,
+          wizard: null,
+          wizardFlowId: null,
+          wizardNodeIndex: null
+        },
+        controller: 'AddEndoController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/add-endo/index.html'
       })
       .state('material.nodewizard-addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
@@ -695,7 +672,8 @@ angular.module('octobluApp', [
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, $intercom, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+    $rootScope.showErrorState = false;
 
     $rootScope.$on('$messageIncoming', function (event, data){
       if (data.name === "$cwcNavbarUserLoggedOff") {
@@ -714,19 +692,15 @@ angular.module('octobluApp', [
       }
     });
 
-    // $rootScope.$on('$octobluUserLoggedOff', function(event, data) {
-    //   $window.location = CWC_LOGIN_URL
-    // });
-
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-      console.log('error from ' + fromState.name + ' to ' + toState.name, error);
-      console.log(error.stack);
+      console.error('error from ' + fromState.name + ' to ' + toState.name, error);
+      console.error(error.stack);
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-      $intercom.update();
+      $rootScope.showErrorState = false;
+      IntercomService.update()
       if (!toState.unsecured) {
-
         if(toState.name !== 'profile-new'){
           IntercomUserService.updateIntercom().catch(function(error){
             if(error.message === 'meshblu connection error'){
@@ -737,14 +711,15 @@ angular.module('octobluApp', [
         }
 
         return AuthService.getCurrentUser(true).then(null, function (err) {
-          console.log('LOGIN ERROR:');
-          console.log(err);
+          console.error('LOGIN ERROR:', err);
           event.preventDefault();
           $location.url('/login');
         });
       }
-
     });
+
+
+
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';
       modalHtml += '<h3>' + title + '</h3>';

@@ -1,29 +1,66 @@
 class IntercomUserService
-  constructor: ($cookies, $intercom, $q, MeshbluHttpService) ->
-    @cookies = $cookies
-    @intercom = $intercom
+  constructor: ($cookies, IntercomService, $q, $http, MeshbluHttpService, OCTOBLU_API_URL) ->
+    @IntercomService = IntercomService
     @q = $q
+    @http = $http
+    @uuid = $cookies.meshblu_auth_uuid
+    @OCTOBLU_API_URL = OCTOBLU_API_URL
     @MeshbluHttpService = MeshbluHttpService
+    @userDevice = null
+    @user_hash = null
+
+  getUserDevice: =>
+    @q (resolve, reject) =>
+      return resolve() if @userDevice?
+      @MeshbluHttpService.device @uuid, (error, userDevice) =>
+        return reject(error) if error?
+        return reject new Error('Missing Profile') unless userDevice.octoblu?
+        @userDevice = userDevice
+        resolve()
+
+  getUserHash: =>
+    @q (resolve, reject) =>
+      return resolve() if @user_hash?
+      @http.get(@OCTOBLU_API_URL + '/api/intercom/user_hash')
+        .then (response) =>
+          if response?.status != 200
+            return reject(response.data)
+          @user_hash = response.data.user_hash
+          resolve()
+        .catch reject
 
   updateIntercom: =>
     deferred = @q.defer()
-    @MeshbluHttpService.device @cookies.meshblu_auth_uuid, (error, userDevice) =>
-      return deferred.reject(error) if error?
-      return deferred.reject new Error('Missing Profile') unless userDevice.octoblu?
-      @setupIntercom userDevice
-      deferred.resolve()
+    @getUserDevice()
+      .catch (error) =>
+        deferred.reject error
+      .then =>
+        return @getUserHash()
+      .catch (error) =>
+        deferred.reject error
+      .then =>
+        @setupIntercom()
     return deferred.promise
 
-  setupIntercom: (userDevice) =>
-    userInfo =
-      email: userDevice.octoblu.email
-      name: "#{userDevice.octoblu.firstName} #{userDevice.octoblu.lastName}"
-      created_at: userDevice.octoblu.termsAcceptedAt
-      user_id: userDevice.uuid
-      unsubscribed_from_emails: !userDevice.octoblu.optInEmail
+  setupIntercom: =>
+    {
+      email,
+      firstName,
+      lastName,
+      optInEmail,
+      termsAcceptedAt
+    } = @userDevice.octoblu
 
-    @intercom.boot userInfo
-    @intercom.update userInfo
+    userInfo = {
+      email,
+      name: "#{firstName} #{lastName}"
+      created_at: termsAcceptedAt
+      user_id: @userDevice.uuid
+      @user_hash,
+      unsubscribed_from_emails: !optInEmail
+    }
 
+    @IntercomService.boot userInfo
+    @IntercomService.update userInfo
 
 angular.module('octobluApp').service 'IntercomUserService', IntercomUserService

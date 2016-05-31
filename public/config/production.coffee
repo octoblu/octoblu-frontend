@@ -32,3 +32,4 @@ angular.module('octobluApp')
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.com"
+  .constant 'INTERCOM_APPID', 'ux5bbkjz'

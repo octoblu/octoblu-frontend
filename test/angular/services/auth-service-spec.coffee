@@ -2,8 +2,6 @@ describe 'AuthService', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$cookies', {}
-      $provide.value '$intercom', {}
-      $provide.value '$intercomProvider', {}
       return
 
     inject ($httpBackend, AuthService) =>

@@ -7,7 +7,7 @@ angular.module('octobluApp')
       userService.saveBasicApi(user.resource.uuid, nodeType.channelid, $scope.newChannel.apiKey, 'XX', function(){
         var redirectToDesign = $stateParams.designer || false;
         var redirectToWizard = $stateParams.wizard || false;
-        var route = 'material.configure';
+        var route = 'material.things.my';
         var params = {added: nodeType.name};
         if(redirectToWizard){
           route = 'material.flowConfigure';

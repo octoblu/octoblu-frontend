@@ -22,7 +22,7 @@ class ClaimNodeController
       @deviceName = device.name
       @device = device
       @device.logo = @logoUrl @device
-      @fragments = [{linkTo: 'material.things', label: 'All Things'},{label: "Claim Thing"}]
+      @fragments = [{linkTo: 'material.things.all', label: 'All Things'},{label: "Claim Thing"}]
 
   logoUrl: (device) =>
     new @DeviceLogo(device).get()
@@ -33,7 +33,7 @@ class ClaimNodeController
       .then =>
         @errorMessage = null
         @loading = false
-        @state.go 'material.configure', added: @deviceName
+        @state.go 'material.things.my', added: @deviceName
       .catch (error) =>
         @loading = false
         @errorMessage = error
