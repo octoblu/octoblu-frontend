@@ -197,6 +197,18 @@ angular.module('octobluApp', [
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/add-endo/index.html'
       })
+      .state('material.nodewizard-add-forwarder', {
+        url: '/node-wizard/add-forwarder/:nodeTypeId',
+        params: {
+          designer: null,
+          wizard: null,
+          wizardFlowId: null,
+          wizardNodeIndex: null
+        },
+        controller: 'AddEndoController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/add-endo/index.html'
+      })
       .state('material.nodewizard-addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         params: {
