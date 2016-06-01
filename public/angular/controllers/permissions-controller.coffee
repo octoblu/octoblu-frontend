@@ -31,6 +31,7 @@ class PermissionsController
       .then => @ThingService.getThing @thing
       .then (@thing) =>
 
+
   addPermission: (permission, {uuid}) =>
     @ThingService.updateDangerously(@thing.uuid, $addToSet: "meshblu.whitelists.#{permission}": {uuid})
       .then => @ThingService.getThing @thing
