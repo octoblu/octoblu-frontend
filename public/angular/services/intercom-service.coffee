@@ -22,7 +22,7 @@ class IntercomService
       user_hash,
       unsubscribed_from_emails
     } = user
-    
+
     return {
       @app_id,
       email,
@@ -34,6 +34,6 @@ class IntercomService
     }
 
   convertDate: (date) =>
-    moment(date).valueOf()
+    moment(date).unix()
 
 angular.module('octobluApp').service 'IntercomService', IntercomService
