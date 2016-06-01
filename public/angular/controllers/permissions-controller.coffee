@@ -1,5 +1,6 @@
 class PermissionsController
   constructor: ($stateParams, ThingService) ->
+    @ThingService = ThingService
     @PERMISSION_TYPES = [
         'broadcast.as'
         'broadcast.received'
@@ -24,8 +25,15 @@ class PermissionsController
 
   getPermissionList: (permission) =>
     return _.get(@thing.meshblu?.whitelists, permission)
-  
-  removePermission: (permission, device) =>
-    console.log {permission, device}
+
+  removePermission: (permission, {uuid}) =>
+    @ThingService.updateDangerously(@thing.uuid, $pull: "meshblu.whitelists.#{permission}": {uuid})
+      .then => @ThingService.getThing @thing
+      .then (@thing) =>
+
+  addPermission: (permission, {uuid}) =>
+    @ThingService.updateDangerously(@thing.uuid, $addToSet: "meshblu.whitelists.#{permission}": {uuid})
+      .then => @ThingService.getThing @thing
+      .then (@thing) =>
 
 angular.module('octobluApp').controller 'PermissionsController', PermissionsController

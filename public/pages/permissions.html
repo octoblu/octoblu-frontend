@@ -12,7 +12,8 @@
         ng-repeat="permission in controller.PERMISSION_TYPES"
         type="permission"
         list="controller.getPermissionList(permission)"
-        on-delete="controller.removePermission"
+        remove-permission="controller.removePermission"
+        add-permission="controller.addPermission"
         >
       </permission-v2>
   </div>

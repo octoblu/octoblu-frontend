@@ -1,17 +1,17 @@
 <md-card>
-
     <md-card-title>
       <md-card-title-text>
-        <span class="md-headline">{{type}}</span>
+        <span class="md-headline">{{controller.type}}</span>
       </md-card-title-text>
+      <md-switch ng-model="everyone">Everyone</md-switch>
     </md-card-title>
 
   <md-card-content>
     <md-list>
-      <md-list-item ng-click="false" ng-repeat="device in list">
+      <md-list-item ng-click="false" ng-repeat="device in controller.list">
         <md-icon></md-icon>
         <p>{{ device.uuid }}</p>
-        <i class="fa fa-lg fa-trash" ng-click="onDelete(type, device)"></i>
+        <md-button class="md-icon-button" aria-label="Share"> <i class="fa fa-lg fa-trash" ng-click="removePermission(type, device)"></i></md-button>
       </md-list-item>
     </md-list>
   </md-card-content>

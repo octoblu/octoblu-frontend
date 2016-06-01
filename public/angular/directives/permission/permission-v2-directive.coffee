@@ -3,8 +3,11 @@ angular.module('octobluApp')
   {
     restrict: 'E'
     templateUrl: '/angular/directives/permission/permission-v2.html'
+    controller: "PermissionV2Controller"
+    controllerAs: 'controller'
     scope:
       type: '='
       list: '='
-      onDelete: '='
+      removePermission: '='
+      addPermission: '='
   }
