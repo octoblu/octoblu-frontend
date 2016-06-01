@@ -1,4 +1,18 @@
-<li>
-  {{name}}
-  <pre>{{list | json}}</pre>
-</li>
+<md-card>
+
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{type}}</span>
+      </md-card-title-text>
+    </md-card-title>
+
+  <md-card-content>
+    <md-list>
+      <md-list-item ng-click="false" ng-repeat="device in list">
+        <md-icon></md-icon>
+        <p>{{ device.uuid }}</p>
+        <i class="fa fa-lg fa-trash" ng-click="onDelete(type, device)"></i>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

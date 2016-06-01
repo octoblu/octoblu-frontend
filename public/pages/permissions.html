@@ -8,9 +8,12 @@
   </div>
   <div ng-if="!controller.loading" class="interior">
     <h1>{{controller.thing.name || controller.thing.uuid}}</h1>
-    <ul>
-      <permission-v2 name="permission" list="controller.getPermissionList(permission)" ng-repeat="permission in controller.PERMISSION_TYPES">        
+      <permission-v2
+        ng-repeat="permission in controller.PERMISSION_TYPES"
+        type="permission"
+        list="controller.getPermissionList(permission)"
+        on-delete="controller.removePermission"
+        >
       </permission-v2>
-    </ul>
   </div>
 </md-content>

@@ -24,5 +24,8 @@ class PermissionsController
 
   getPermissionList: (permission) =>
     return _.get(@thing.meshblu?.whitelists, permission)
+  
+  removePermission: (permission, device) =>
+    console.log {permission, device}
 
 angular.module('octobluApp').controller 'PermissionsController', PermissionsController

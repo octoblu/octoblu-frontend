@@ -4,6 +4,7 @@ angular.module('octobluApp')
     restrict: 'E'
     templateUrl: '/angular/directives/permission/permission-v2.html'
     scope:
-      name: '='
+      type: '='
       list: '='
+      onDelete: '='
   }
