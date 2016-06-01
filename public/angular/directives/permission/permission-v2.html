@@ -14,7 +14,9 @@
         <md-button class="md-icon-button" aria-label="Share"> <i class="fa fa-lg fa-trash" ng-click="removePermission(type, device)"></i></md-button>
       </md-list-item>
       <md-list-item ng-click="false">
-        <md-autocomplete
+        <md-icon></md-icon>
+        <p>
+          <md-autocomplete
           md-selected-item="controller.newDevice"
           md-search-text="controller.newDeviceSearch"
           md-item-text="item.name || item.uuid"
@@ -22,13 +24,14 @@
           md-items="item in controller.searchForDevice(controller.newDeviceSearch)"
           md-min-length="3"
           placeholder="UUID or name of device">
-        <md-item-template>
-          <span md-highlight-flags="^i">{{item.name || item.uuid}}</span>
-        </md-item-template>
-        <md-not-found>
-          No devices found.
-        </md-not-found>
-      </md-autocomplete>
+            <md-item-template>
+              <span>{{item.name || item.uuid}}</span>
+            </md-item-template>
+            <md-not-found>
+              No devices found.
+            </md-not-found>
+        </md-autocomplete>
+      </p>
       </md-list-item>
     </md-list>
   </md-card-content>
