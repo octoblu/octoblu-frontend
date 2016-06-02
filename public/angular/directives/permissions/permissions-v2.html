@@ -1,5 +1,7 @@
 <md-content class="interior__wrapper">
+      <spinner loading="controller.loading" size="large"></spinner>
       <permission-v2
+        ng-if="!controller.loading"
         ng-repeat="permission in controller.PERMISSION_TYPES"
         type="permission"
         list="controller.getPermissionList(permission)"

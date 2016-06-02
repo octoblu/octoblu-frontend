@@ -9,14 +9,15 @@
   <md-card-content>
     <md-list>
       <md-list-item ng-click="false" ng-repeat="device in controller.list">
-        <md-icon></md-icon>
-        <p>{{ device.uuid }}</p>
+        <img style="width:50px; margin-right:15px;" ng-src="{{device.logo}}">
+        <p>{{ device.name || device.octoblu.email || device.uuid }}</p>
         <md-button class="md-icon-button" aria-label="Share"> <i class="fa fa-lg fa-trash" ng-click="removePermission(type, device)"></i></md-button>
       </md-list-item>
       <md-list-item ng-click="false">
         <md-icon></md-icon>
         <p>
           <md-autocomplete
+          md-no-cache="true"
           md-selected-item="controller.newDevice"
           md-search-text="controller.newDeviceSearch"
           md-item-text="item.name || item.uuid"
@@ -25,7 +26,7 @@
           md-min-length="3"
           placeholder="UUID or name of device">
             <md-item-template>
-              <span>{{item.name || item.uuid}}</span>
+              <img style="width:50px; margin-right:15px;" ng-src="{{item.logo}}"> <span>{{item.name || item.uuid}}</span>
             </md-item-template>
             <md-not-found>
               No devices found.

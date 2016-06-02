@@ -115,6 +115,12 @@ class ThingService
         thing = @addLogo thing
         resolve thing
 
+  search: ({query, projection}) =>
+    @q (resolve, reject) =>
+      @MeshbluHttpService.search {query, projection}, (error, things) =>
+        return reject error if error?
+        resolve _.map things, @addLogo
+
   getThings: (query={}, projection) =>
     @q (resolve, reject) =>
       query = _.clone query
