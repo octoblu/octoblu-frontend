@@ -1,5 +1,7 @@
-class PermissionsController
-  constructor: ($stateParams, ThingService) ->
+class PermissionsV2Controller
+  constructor: ($scope, $stateParams, ThingService) ->
+    {@thing} = $scope
+    console.log {@thing}
     @ThingService = ThingService
     @PERMISSION_TYPES = [
         'broadcast.as'
@@ -18,10 +20,6 @@ class PermissionsController
     ]
 
     {uuid} = $stateParams
-    @loading = true
-    ThingService.getThing({uuid})
-      .then (@thing) => @loading = false
-      .catch (@error) => @loading = false
 
   getPermissionList: (permission) =>
     return _.get(@thing.meshblu?.whitelists, permission)
@@ -37,4 +35,4 @@ class PermissionsController
       .then => @ThingService.getThing @thing
       .then (@thing) =>
 
-angular.module('octobluApp').controller 'PermissionsController', PermissionsController
+angular.module('octobluApp').controller 'PermissionsV2Controller', PermissionsV2Controller

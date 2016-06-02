@@ -1,13 +1,4 @@
-<header class="TabBar">
-  <h2 class="TabBar-title">Permissions</h2>
-</header>
-
 <md-content class="interior__wrapper">
-  <div ng-if="controller.loading" class="interior">
-    <h1 >LOADING</h1>
-  </div>
-  <div ng-if="!controller.loading" class="interior">
-    <h1>{{controller.thing.name || controller.thing.uuid}}</h1>
       <permission-v2
         ng-repeat="permission in controller.PERMISSION_TYPES"
         type="permission"
@@ -16,5 +7,4 @@
         add-permission="controller.addPermission"
         >
       </permission-v2>
-  </div>
 </md-content>
