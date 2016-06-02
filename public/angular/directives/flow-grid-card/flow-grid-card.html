@@ -3,10 +3,10 @@
     <header class="BluCard-header">
       <a ui-sref="material.flow({flowId: flow.flowId})" class="BluCard-title">{{flow.name | characters:30 :true}}</a>
       <span class="BluCard-status" ng-show="flow.online == false" ng-click="cardController.startFlow()">
-        <i class="fa fa-power-off"></i>
+        <i class="fa fa-circle-o"></i>
       </span>
       <span class="BluCard-status BluCard-status--online" ng-show="flow.online" ng-click="cardController.stopFlow()">
-        <i class="fa fa-power-off"></i>
+        <i class="fa fa-circle"></i>
       </span>
     </header>
 
