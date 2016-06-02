@@ -5,16 +5,6 @@
       <img src="{{nodeType.logo}}">
     </div>
     <h2 class="node-wizard__title">{{nodeType.name}}</h2>
-    <div class="node-wizard__description">
-      <p class="node-wizard__description--text">{{nodeType.helpText}}</p>
-      <a class="node-wizard_description" ng-if="nodeType.documentation" href={{nodeType.documentation}} target="_blank" >Read Documentation</a>
-    </div>
-    <div class="node-wizard__body">
-      <form method="get" action="{{nodeType.url}}" class="node-wizard__form">
-        <button class="BluButton node-wizard__connect--btn">
-          Connect {{nodeType.name}}
-        </button>
-      </form>
-    </div>
+    <spinner size="large" loading="loadingNodeType"></spinner>
   </div>
 </md-content>
