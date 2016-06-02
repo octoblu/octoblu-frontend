@@ -17,8 +17,8 @@ class FlowTagsController
       true unless node.category == 'operation'
 
     mappedTags = _.map filteredTags, (tag) =>
-      category = tag.type.split(':')[0]
-      type = tag.type.split(':')[1]
+      category = tag?.type?.split(':')[0]
+      type = tag?.type?.split(':')[1]
 
       { category: category, type: type }
 
