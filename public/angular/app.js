@@ -711,26 +711,20 @@ angular.module('octobluApp', [
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
       $rootScope.showErrorState = false;
-      IntercomService.update()
-      if (!toState.unsecured) {
-        if(toState.name !== 'profile-new'){
-          IntercomUserService.updateIntercom().catch(function(error){
-            if(error.message === 'meshblu connection error'){
-              return;
-            }
-            $state.go('profile-new');
-          });
-        }
+      IntercomService.update();
+      if (toState.unsecured) return;
 
-        return AuthService.getCurrentUser(true).then(null, function (err) {
-          console.error('LOGIN ERROR:', err);
+      return AuthService.getCurrentUser(true)
+        .then(function(user) {
+          if(!user.userDevice.octoblu) return $state.go('profile-new')
+          if(toState.name === 'profile-new') return;
+          return IntercomUserService.updateIntercom()
+        })
+        .catch(function (err) {
           event.preventDefault();
           $location.url('/login');
         });
-      }
     });
-
-
 
     $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
       var modalHtml = '<div class="modal-header">';
