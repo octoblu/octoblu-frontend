@@ -1,8 +1,9 @@
 class PermissionsV2Controller
-  constructor: ($scope, $stateParams, ThingService) ->
+  constructor: ($scope, $stateParams, ThingService, NotifyService) ->
     {@thing} = $scope
     console.log {@thing}
     @ThingService = ThingService
+    @NotifyService = NotifyService
     @PERMISSION_TYPES = [
         'broadcast.as'
         'broadcast.received'
@@ -22,16 +23,21 @@ class PermissionsV2Controller
     {uuid} = $stateParams
 
   getPermissionList: (permission) =>
-    return _.get(@thing.meshblu?.whitelists, permission)
+    path = "meshblu.whitelists.#{permission}"
+    _.set(@thing, path, []) unless _.get(@thing, path)?
+    return _.get(@thing, path)
 
   removePermission: (permission, {uuid}) =>
     @ThingService.updateDangerously(@thing.uuid, $pull: "meshblu.whitelists.#{permission}": {uuid})
+      .catch (error) => @NotifyService.notify 'Could not edit device'
       .then => @ThingService.getThing @thing
       .then (@thing) =>
 
 
+
   addPermission: (permission, {uuid}) =>
     @ThingService.updateDangerously(@thing.uuid, $addToSet: "meshblu.whitelists.#{permission}": {uuid})
+      .catch (error) => @NotifyService.notify 'Could not edit device'
       .then => @ThingService.getThing @thing
       .then (@thing) =>
 
