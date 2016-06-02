@@ -1,4 +1,4 @@
-<md-content class="TopBar">
+<div class="TopBar">
   <a class="TopBar-link TopBar-link--logo" ui-sref-active="TopBar-link--is-selected" ui-sref="material.dashboard">
     <img class="TopBar-logo" src="//d2zw6j512x6z0x.cloudfront.net/master/d48dc0bf063ecc1477d1163831ee8ff17efbbfae/assets/images/octoblu_logo.png">
   </a>
@@ -9,18 +9,27 @@
     <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.my-flows">Flows</a>
     <a class="TopBar-link" ui-sref-active="TopBar-link--is-selected" ui-sref="material.bluprints">Bluprints</a>
   </nav>
-
-  <nav class="TopBar-nav TopBar-nav--secondary">
-    <status-widget></status-widget>
-    <span ng-show="showUserNav">
-      <a class="TopBar-link" ui-sref="material.profile">Profile</a>
-      <a class="TopBar-link" ui-sref="material.guides">Guides</a>
-      <a ng-hide="isCWCUser" ui-sref="material.signout" class="TopBar-link">Sign Out</a>
-    </span>
-
-    <span aria-label="Open settings menu" class="TopBar-link" ng-click="showUserNav = !showUserNav">
+  <status-widget></status-widget>
+  <md-menu>
+    <md-button aria-label="Open Settings Menu" class="md-icon-button TopBar-settings" ng-click="$mdOpenMenu($event)">
       <i class="fa fa-cog fa-lg"></i>
-    </span>
-  </nav>
-
-</md-content>
+    </md-button>
+    <md-menu-content width="2">
+      <md-menu-item>
+        <md-button ui-sref="material.profile" ng-click="ctrl.announceClick($index)">
+          Profile
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ui-sref="material.guides" ng-click="ctrl.announceClick($index)">
+          Guides
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ui-sref="material.signout" ng-hide="isCWCUser" ng-click="ctrl.announceClick($index)">
+          Sign Out
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </md-menu>
+</div>

@@ -1,12 +1,21 @@
+.status-widget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
 .status-widget--description {
   color: white;
+  font-size: 12px;
+  margin-left:5px;
+
 }
 .status-widget--dot {
   border-radius: 99px;
   display:inline-block;
   width:10px;
   height:10px;
-  margin-right:5px;
 
   &.major {
     background-color: orange;
@@ -19,5 +28,11 @@
   }
   &.none {
     background-color: green;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .status-widget--description {
+    display: none;
   }
 }

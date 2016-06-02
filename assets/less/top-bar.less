@@ -1,4 +1,6 @@
 .TopBar {
+  color: white;
+  display: flex;
   padding: 0;
   height: 52px;
   min-height: 52px;
@@ -12,29 +14,24 @@
   font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
+  .fa-lg {
+    vertical-align: 0;
+  }
 }
-
 .TopBar-nav {
   display: block;
   height: 100%;
 }
 
 .TopBar-nav--primary {
-  float: left;
-}
-
-.TopBar-nav--secondary {
-  float: right;
+  flex: 1;
 }
 
 .TopBar-logo {
   width: 125px;
-  margin-top: 13px;
-  float: left;
 }
 
 .TopBar-link--logo {
-  float: left;
   height: 52px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 0;
