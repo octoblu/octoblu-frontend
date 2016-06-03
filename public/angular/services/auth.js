@@ -3,6 +3,7 @@ angular.module('octobluApp')
     .service('AuthService', function ($q, $cookies,  $http, $window, OCTOBLU_API_URL) {
         var service;
         var currentUser = {skynet: {}};
+        var currentAuthRequest = null;
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
@@ -18,6 +19,7 @@ angular.module('octobluApp')
         }
 
         function loginHandler(result) {
+            currentAuthRequest = null;
             if(_.indexOf([502, 503, 504], result.status) >= 0){
               return result.data;
             }
@@ -30,6 +32,7 @@ angular.module('octobluApp')
         }
 
         function logoutHandler(err) {
+            currentAuthRequest = null;
             angular.copy({}, currentUser);
             delete $cookies.meshblu_auth_uuid;
             delete $cookies.meshblu_auth_token;
@@ -60,10 +63,16 @@ angular.module('octobluApp')
             },
 
             getCurrentUser: function (force) {
+                if (currentAuthRequest != null) {
+                    return currentAuthRequest;
+                }
+                if (! ($cookies.meshblu_auth_uuid && $cookies.meshblu_auth_token)) {
+                    return $q.reject("uuid and token not in cookies");
+                }
                 if (currentUser.id && !force) {
                     return $q.when(currentUser);
                 } else {
-                    return $http.get(OCTOBLU_API_URL + '/api/auth').then(loginHandler, function (err) {
+                    return currentAuthRequest = $http.get(OCTOBLU_API_URL + '/api/auth').then(loginHandler, function (err) {
                         logoutHandler(err);
                         throw err;
                     });
