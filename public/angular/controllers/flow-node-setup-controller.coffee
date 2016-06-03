@@ -6,7 +6,6 @@ class FlowNodeSetupController
     @NodeTypeService   = NodeTypeService
     @FlowEditorService = FlowEditorService
     @DeviceLogo        = DeviceLogo
-
     @activeFlow = @FlowService.getActiveFlow()
 
   logoUrl: () =>
