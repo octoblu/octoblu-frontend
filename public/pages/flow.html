@@ -1,33 +1,31 @@
 <md-toolbar class="BluToolbar">
 
   <div class="md-toolbar-tools BluToolbar-tools">
-    <div class="BluToolbar-align BluToolbar-align--left">
-      <div class="BreadcrumbBar-section BreadcrumbBar-section--BluToolbar">
-        <span class="BreadcrumbBar-section-container">
-          <a ui-sref="material.my-flows" class="BreadcrumbBar-item BreadcrumbBar-link">
-            Flows
-          </a>
-        <i class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
-          <span class="BreadcrumbBar-item">{{activeFlow.name}}</span>
-        </span>
-      </div>
-    </div>
+    <span class="BreadcrumbBar-section-container FlowBreadCrumbBar">
+      <a ui-sref="material.my-flows" class="BreadcrumbBar-item BreadcrumbBar-link">
+        Flows
+      </a>
+    <i class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
+      <span class="BreadcrumbBar-item BreadcrumbBar-flow-name">{{activeFlow.name}}</span>
+    </span>
 
     <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
       omni-search="omniSearch"
       flow-nodes="activeFlow.nodes"
       selected-flow-node="activeFlow.selectedFlowNode"></flow-editor-omnibox>
-    <div class="BluToolbar-align BluToolbar-align--right">
-      <md-button class="flow-toolbar--add-flow" ng-click="addFlow()">
-        <md-tooltip>Create Flow</md-tooltip>
-        <i class="fa fa-plus"></i>
-      </md-button>
-      <md-button class="flow-toolbar--add-flow" ng-click="deleteFlow(activeFlow)">
-        <md-tooltip>Delete Flow</md-tooltip>
-        <i class="fa fa-trash fa-lg"></i>
-      </md-button>
 
+    <div class="BluToolbar-align BluToolbar-align--right">
       <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
+        <md-button ng-click="addFlow()" aria-label="Add Flow">
+          <md-tooltip>Create Flow</md-tooltip>
+          <i class="fa fa-plus"></i>
+        </md-button>
+
+        <md-button ng-click="deleteFlow(activeFlow)" aria-label="Delete Flow">
+          <md-tooltip>Delete Flow</md-tooltip>
+          <i class="fa fa-trash fa-lg"></i>
+        </md-button>
+
         <md-button ng-click="undoEdit()" ng-disabled="!undoable()" aria-label="Undo Edit">
           <md-tooltip>Undo</md-tooltip>
           <i class="fa fa-reply fa-lg"></i>
@@ -41,6 +39,7 @@
         <flow-deploy-button device="flowDevice" flow="activeFlow"></flow-deploy-button>
       </div>
     </div>
+
   </div>
 </md-toolbar>
 
