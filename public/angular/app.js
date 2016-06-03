@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict'; // Firefox?
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
 angular.module('octobluApp', [
