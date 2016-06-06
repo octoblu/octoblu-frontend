@@ -225,9 +225,10 @@ angular.module('octobluApp')
   };
 
   $scope.deleteFlow = function (flow) {
+    var name = flow.name || flow.flowId;
     NotifyService.confirm({
       title: 'Delete Flow',
-      content: 'Are you sure you want to delete ' + flow.name + '?'
+      content: 'Are you sure you want to delete ' + name + '?'
     }).then(function(){
       deleteCookie();
       FlowService.deleteFlow(flow.flowId).then(function(){
