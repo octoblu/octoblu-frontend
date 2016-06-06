@@ -55,6 +55,10 @@ angular.module('octobluApp')
     }
 
     function select(snapElement) {
+      var currentSelected = snap.select('.selected');
+      if (currentSelected) {
+        currentSelected.toggleClass('selected',false);
+      }
       snapElement.toggleClass('selected',true);
     }
 
