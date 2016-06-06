@@ -4,14 +4,6 @@
   .flex-display();
   .flex-direction(column);
 
-  &:first-child {
-    border-bottom: 1px solid @sidebar-border-color;
-
-    &.Sidebar-pane--is-collapsed {
-      border: none;
-    }
-  }
-
   -webkit-transition: all 0.2s;
           transition: all 0.2s;
 
@@ -62,6 +54,7 @@
   .flex(1);
   .flex-display();
   .flex-direction(column);
+  border-bottom: 1px solid @sidebar-border-color;
 
   .Sidebar-pane--is-collapsed & {
     display: none;
