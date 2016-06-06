@@ -1,13 +1,13 @@
 class FlowDetailEditorController
-  constructor: ($cookies, $scope, $state, BluprintService, FlowService, NotifyService, AuthService) ->
-    @cookies = $cookies
-    @scope = $scope
+  constructor: ($window, $state, IS_IN_CWC_MODE, BluprintService, FlowService, BLUPRINTER_URL) ->
+    @window = $window
+    @BLUPRINTER_URL = BLUPRINTER_URL
+    @IS_IN_CWC_MODE = IS_IN_CWC_MODE
     @state = $state
     @BluprintService = BluprintService
     @FlowService = FlowService
-    @NotifyService = NotifyService
 
-  createBluprint: (flow) ->
+  createBluprint: (flow) =>
     @BluprintService
       .createBluprint
         name: flow.name
@@ -15,7 +15,10 @@ class FlowDetailEditorController
       .then (template) =>
         @state.go 'material.bluprintEdit', bluprintId: template.uuid, createMode: true
 
-  saveflow: (flow) ->
+  createIotApp: (flow) =>
+    @window.location = "#{@BLUPRINTER_URL}/flows/#{flow.flowId}"
+
+  saveflow: (flow) =>
     @FlowService.saveFlow(flow)
 
 angular.module('octobluApp').controller 'FlowDetailEditorController', FlowDetailEditorController

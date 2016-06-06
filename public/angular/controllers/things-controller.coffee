@@ -8,7 +8,7 @@ class ThingsController
 
   setSelectedTab: (stateName) =>
     if stateName == 'material.things'
-      return @state.go 'material.things.my', { replace: true }
+      return @state.go 'material.things.my', {}, {location: 'replace'}
     @scope.selectedTab = stateName
 
 angular.module('octobluApp').controller 'ThingsController', ThingsController

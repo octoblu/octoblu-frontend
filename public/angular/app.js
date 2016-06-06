@@ -69,6 +69,7 @@ angular.module('octobluApp', [
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
+  .constant('IS_IN_CWC_MODE', isInCWCMode())
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
