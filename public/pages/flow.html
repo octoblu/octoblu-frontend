@@ -1,21 +1,26 @@
 <md-toolbar class="BluToolbar">
-
   <div class="md-toolbar-tools BluToolbar-tools">
-    <span class="BreadcrumbBar-section-container FlowBreadCrumbBar">
-      <a ui-sref="material.my-flows" class="BreadcrumbBar-item BreadcrumbBar-link">
-        Flows
-      </a>
-    <i class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
-      <span class="BreadcrumbBar-item BreadcrumbBar-flow-name">{{activeFlow.name}}</span>
-    </span>
 
-    <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
-      omni-search="omniSearch"
-      flow-nodes="activeFlow.nodes"
-      selected-flow-node="activeFlow.selectedFlowNode"></flow-editor-omnibox>
+    <div class="BluToolbar-item BreadcrumbBar-item">
+      <div class="BluToolbar-nowrap">
+        <a ui-sref="material.my-flows" class="BreadcrumbBar-link">
+          Flows
+        </a>
+        <i class="fa fa-angle-right BreadcrumbBar-itemSeperator"></i>
+        <span class="BreadcrumbBar-item">{{activeFlow.name}}</span>
+      </div>
+    </div>
 
-    <div class="BluToolbar-align BluToolbar-align--right">
+    <div class="BluToolbar-item" style="min-width:6em; max-width:18em">
+      <flow-editor-omnibox class="flow-top-bar-tool flow-top-bar-tool--omni-search"
+        omni-search="omniSearch"
+        flow-nodes="activeFlow.nodes"
+        selected-flow-node="activeFlow.selectedFlowNode"></flow-editor-omnibox>
+    </div>
+
+    <div class="BluToolbar-item BluToolbar-align BluToolbar-align--right" style="min-width:218px">
       <div class="flow-controls flow-top-bar-tool flow-top-bar-tool--controls">
+
         <md-button ng-click="addFlow()" aria-label="Add Flow">
           <md-tooltip>Create Flow</md-tooltip>
           <i class="fa fa-plus"></i>
