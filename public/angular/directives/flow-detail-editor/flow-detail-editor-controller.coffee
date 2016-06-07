@@ -16,7 +16,7 @@ class FlowDetailEditorController
         @state.go 'material.bluprintEdit', bluprintId: template.uuid, createMode: true
 
   createIotApp: (flow) =>
-    @window.location = "#{@BLUPRINTER_URL}/flows/#{flow.flowId}"
+    @window.location = "#{@BLUPRINTER_URL}/flows/#{flow.flowId}/new"
 
   saveflow: (flow) =>
     @FlowService.saveFlow(flow)
