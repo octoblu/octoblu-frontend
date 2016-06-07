@@ -210,6 +210,18 @@ angular.module('octobluApp', [
         controllerAs: 'controller',
         templateUrl: '/pages/node-wizard/add-endo/index.html'
       })
+      .state('material.nodewizard-add-octosite', {
+        url: '/node-wizard/add-octosite/:nodeTypeId',
+        params: {
+          designer: null,
+          wizard: null,
+          wizardFlowId: null,
+          wizardNodeIndex: null
+        },
+        controller: 'AddOctositeController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/node-wizard/add-octosite/index.html'
+      })
       .state('material.nodewizard-addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         params: {

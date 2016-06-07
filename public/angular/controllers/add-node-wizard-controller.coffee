@@ -24,6 +24,9 @@ class AddNodeWizardController
     if @scope.nodeType.category == 'forwarder'
       @scope.nextState = 'material.nodewizard-add-forwarder'
 
+    if @scope.nodeType.category == 'octosite'
+      @scope.nextState = 'material.nodewizard-add-octosite'
+
     if @scope.nodeType.connector?
       @scope.nextState = 'material.nodewizard-addsubdevice.selectgateblu'
 
