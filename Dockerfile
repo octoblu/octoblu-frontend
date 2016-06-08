@@ -1,6 +1,8 @@
 FROM nginx
 MAINTAINER Octoblu <docker@octoblu.com>
 
+ENV NPM_CONFIG_LOGLEVEL error
+
 RUN apt-get update && \
     apt-get install -y curl && \
     apt-get clean && \
