@@ -103,6 +103,7 @@ angular.module('octobluApp')
     var promises = _.map(flow.nodes, mergeFlowNodeType);
     $q.all(promises).then(function(nodes) {
       flow.nodes = nodes;
+      flow.mergedFlowNodeTypes = true;
     });
   };
 
@@ -279,7 +280,7 @@ angular.module('octobluApp')
     if (!oldFlow) return;
 
     undid = true;
-    redoBuffer.push($scope.activeFlow);
+    addToBuffer($scope.activeFlow, redoBuffer);
     FlowService.setActiveFlow(oldFlow);
     $scope.activeFlow = oldFlow;
   };
@@ -293,7 +294,7 @@ angular.module('octobluApp')
     if (!oldFlow) return;
 
     undid = true;
-    undoBuffer.push($scope.activeFlow);
+    addToBuffer($scope.activeFlow, undoBuffer);
     $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
   }
@@ -403,25 +404,44 @@ angular.module('octobluApp')
   };
 
   var immediateCalculateFlowHash = function(newFlow, oldFlow) {
-    if(!newFlow){
+    if (!newFlow){
       return;
     }
-    newFlow.hash = FlowService.hashFlow(newFlow);
-    addToUndoBuffer(oldFlow);
-  };
 
-  var addToUndoBuffer = function(oldFlow) {
+    if (!oldFlow || !oldFlow.mergedFlowNodeTypes) {
+      return;
+    }
 
     if(undid){
       undid = false;
       return;
     }
 
+    newFlow.hash = FlowService.hashFlow(newFlow);
+    if (!oldFlow.hash || oldFlow.hash == newFlow.hash) {
+      return;
+    }
+
     redoBuffer = [];
-    undoBuffer.push(oldFlow);
+    addToBuffer(oldFlow, undoBuffer);
   };
 
-  var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 500);
+  var addToBuffer = function(flow, buffer) {
+    var lastFlow = _.last(buffer);
+    lastFlow = lastFlow || {};
+
+    if (flow.hash == lastFlow.hash) {
+      return;
+    }
+
+    flow.selectedLink = null;
+    flow.selectedFlowNode = null;
+
+    buffer.push(flow);
+  }
+
+  var calculateFlowHash = immediateCalculateFlowHash;
+  //_.debounce(immediateCalculateFlowHash, 500);
 
   var compareFlowHash = function(newHash, oldHash){
     if (!oldHash) {

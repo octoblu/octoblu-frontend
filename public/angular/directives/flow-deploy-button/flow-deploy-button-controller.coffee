@@ -1,5 +1,5 @@
 class FlowDeployButtonController
-  constructor: ($scope, FlowService, ThingService, NotifyService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
+  constructor: ($scope, FlowService, FlowPermissionService, ThingService, NotifyService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
     @scope = $scope
     @FlowService = FlowService
     @ThingService = ThingService
@@ -7,6 +7,7 @@ class FlowDeployButtonController
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
     @NotifyService = NotifyService
+    @FlowPermissionService = FlowPermissionService
 
     @start = _.throttle @immediateStart, 1000, leading: true, trailing: false
     @stop = _.throttle @immediateStop, 1000, leading: true, trailing: false
@@ -19,8 +20,9 @@ class FlowDeployButtonController
       content: 'In order to communicate with your devices, some permissions need to be updated.'
       ok: 'Update and Deploy'
       cancel: 'Deploy Without Update'
+    permissionManager = FlowPermissionService.createPermissionManager @scope.flow
     @NotifyService.confirm options
-      .then @scope.flow.updatePendingPermissions
+      .then permissionManager.updatePendingPermissions
       .catch => return
       .finally @deployFlow
 

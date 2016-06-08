@@ -6,6 +6,25 @@ angular.module('octobluApp')
   var previousHashableFlow;
 
   //Flow cruds
+
+  self.sanitizeNodes = function(nodes) {
+    return _.map(nodes, function(node) {
+      return _.omit(node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output', 'online', 'errorMessage');
+    });
+  }
+
+  self.sanitizeFlow = function(flow) {
+    return {
+      flowId: flow.flowId,
+      token: flow.token,
+      name: flow.name,
+      description: flow.description,
+      hash: flow.hash,
+      links: flow.links,
+      nodes: self.sanitizeNodes(flow.nodes)
+    }
+  }
+
   self.createFlow = function(flowAttributes) {
     var deploymentUuid = UUIDService.v1();
     var logger = new FlowLogService(null, 'flow-create', deploymentUuid);
@@ -32,6 +51,7 @@ angular.module('octobluApp')
     var deploymentUuid = UUIDService.v1();
     flow = flow || activeFlow;
     if(!flow) return;
+    flow = self.sanitizeFlow(flow);
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
     flow.hash = self.hashFlow(flow);
@@ -42,9 +62,8 @@ angular.module('octobluApp')
       headers: {
         deploymentUuid: deploymentUuid
       },
-      data: flow.toJSON()
+      data: flow
     });
-
     return HttpResponseHandler.handle(request);
   };
 
@@ -128,6 +147,7 @@ angular.module('octobluApp')
 
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
+    hashableFlow.nodes = self.sanitizeNodes(hashableFlow.nodes);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
   };
 

@@ -9,8 +9,7 @@ class FlowDebugBrowserController
     @edit = !@edit
 
   save: =>
-    newFlow = JSON.parse @flowText
-    angular.copy newFlow, @scope.flow
+    @scope.flow = JSON.parse @flowText
 
   syncFromFlow: =>
     @flowText = JSON.stringify @scope.flow, null, 2

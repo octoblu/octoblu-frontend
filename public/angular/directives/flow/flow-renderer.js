@@ -534,17 +534,24 @@ angular.module('octobluApp')
       });
     }
 
-    function deleteOldLinks(newLinksDiff, oldLinksDiff) {
+    function renderLinks(newLinksDiff, oldLinksDiff) {
       _.each(oldLinksDiff, function (link, linkId) {
         if (!newLinksDiff[linkId]) {
           delete linkElements[linkId];
           snap.selectAll('#'+linkId).remove();
         }
       });
+
+      _.each(newLinksDiff, function (link, linkId) {
+        if (!oldLinksDiff[linkId]) {
+          renderLink(link, linkId);
+        }
+      });
     }
 
     function renderLink(link, linkId, loc, nodeMap) {
       snap.selectAll('#'+linkId).remove();
+      nodeMap = nodeMap || tmpNodeMap;
       var linkElement = linkElements[linkId] =
         FlowLinkRenderer.render(snap, link, nodeMap, loc, linkElements[linkId]);
       if (!linkElement) {
@@ -641,8 +648,10 @@ angular.module('octobluApp')
         var oldNodesDiff = objDiff(tmpNodeMap,flowNodeMap);
         tmpNodeMap = _.cloneDeep(flowNodeMap);
 
-        deleteOldLinks(newLinksDiff,oldLinksDiff);
         renderNodes(newNodesDiff,oldNodesDiff);
+        if (!firstView) {
+          renderLinks(newLinksDiff,oldLinksDiff);
+        }
 
         if (firstView && _.size(flowNodeMap)>0) {
           if (readonly) {

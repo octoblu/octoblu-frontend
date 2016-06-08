@@ -1,8 +1,9 @@
 class FlowPermissionManagerController
-  constructor: ($q, $scope, $state, $http, ThingService, REGISTRY_URL) ->
+  constructor: ($q, $scope, $state, $http, ThingService, FlowPermissionService, REGISTRY_URL) ->
     @scope        = $scope
     @q            = $q
     @ThingService = ThingService
+    @FlowPermissionService = FlowPermissionService
     @REGISTRY_URL = REGISTRY_URL
     @http         = $http
     @loading      = true
@@ -11,7 +12,7 @@ class FlowPermissionManagerController
     @scope.$watch 'flow.pendingPermissions', @updateHideSection
 
   approveAll: =>
-    @scope.flow.updatePendingPermissions()
+    @FlowPermissionService.createPermissionManager(@scope.flow).updatePendingPermissions()
 
   updateHideSection: (pendingPermissions) =>
     return unless pendingPermissions?
@@ -19,7 +20,8 @@ class FlowPermissionManagerController
 
   renderPermissionManager: (nodes) =>
     return unless nodes?
-    @scope.flow.getDevicesNeedingPermissions()
+    permissionManager = @FlowPermissionService.createPermissionManager @scope.flow
+    permissionManager.getDevicesNeedingPermissions()
       .then =>
         @loading = false
         @scope.hideSection = !@scope.flow.pendingPermissions
