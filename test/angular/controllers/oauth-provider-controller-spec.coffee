@@ -6,17 +6,25 @@ describe 'OAuthProviderController', ->
       $provide.value 'OAUTH_PROVIDER', 'https://smurfs.bikes'
       return
 
-    inject ($controller, $rootScope, $q) =>
+    inject ($controller, $rootScope, $q, MeshbluHttpService) =>
       @rootScope = $rootScope
       @scope = @rootScope.$new()
       @q = $q
       @controller = $controller
+      @MeshbluHttpService = MeshbluHttpService
 
       class FakeAuthService
         constructor: (@q)->
           @getCurrentUser = sinon.stub().returns(@q.when(true))
           @resetToken = sinon.stub().returns(@q.when(true))
       @AuthService = new FakeAuthService @q
+
+      class FakeMeshbluHttpService
+        constructor: (@q) ->
+          @device = (device, callback) ->
+            callback null, {}
+
+      @MeshbluHttpService = new FakeMeshbluHttpService @q
 
   describe '->constructor', ->
     describe 'when MeshbluDeviceService never resolves', ->
@@ -31,6 +39,7 @@ describe 'OAuthProviderController', ->
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
+          MeshbluHttpService: @MeshbluHttpService
 
       it 'should indicate that it is loading', ->
         expect(@scope.loading).to.be.true
@@ -46,6 +55,7 @@ describe 'OAuthProviderController', ->
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
+          MeshbluHttpService: @MeshbluHttpService
 
         @rootScope.$digest()
 
@@ -69,6 +79,7 @@ describe 'OAuthProviderController', ->
           $stateParams : @stateParams
           $scope : @scope
           AuthService: @AuthService
+          MeshbluHttpService: @MeshbluHttpService
 
         @rootScope.$digest()
 
@@ -91,6 +102,7 @@ describe 'OAuthProviderController', ->
           $scope: @scope
           $window: @window
           AuthService: @AuthService
+          MeshbluHttpService: @MeshbluHttpService
 
         @sut.authorize()
         @rootScope.$digest()
@@ -113,6 +125,7 @@ describe 'OAuthProviderController', ->
           $stateParams: {uuid: 'mars', state: '123', redirect_uri: 'foo', redirect: '/bar', response_type: 'code'}
           $window: @window
           AuthService: @AuthService
+          MeshbluHttpService: @MeshbluHttpService
 
         @sut.authorize()
         @rootScope.$digest()
