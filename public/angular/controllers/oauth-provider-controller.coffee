@@ -1,5 +1,5 @@
 class OAuthProviderController
-  constructor: ($scope, $stateParams, $cookies, $window, OAUTH_PROVIDER, MeshbluDeviceService, AuthService, ThingService) ->
+  constructor: ($scope, $stateParams, $cookies, $q, $window, OAUTH_PROVIDER, MeshbluDeviceService, AuthService, ThingService, MeshbluHttpService) ->
     @window = $window
     @cookies = $cookies
     @AuthService = AuthService
@@ -7,6 +7,7 @@ class OAuthProviderController
     @oauthUUID = $stateParams.uuid
     @OAUTH_PROVIDER = OAUTH_PROVIDER
     @stateParams = $stateParams
+    @q = $q
 
     $scope.loading = true
     MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) =>
@@ -15,24 +16,30 @@ class OAuthProviderController
       oauthDevice.options.imageUrl ?= 'https://icons.octoblu.com/device/oauth.svg'
       oauthDevice.options.description ?= 'No extended description provided.'
       $scope.oauthDevice = oauthDevice
-
-    .finally =>
+    .then =>
+      @AuthService.getCurrentUser().then (user) =>
+        $scope.currentUser = user
+    .then =>
+      @q (resolve, reject) =>
+        MeshbluHttpService.device @cookies.meshblu_auth_uuid, (error, userDevice) =>
+          return reject error if error?
+          $scope.userDevice = userDevice
+          resolve userDevice
+    .then (userDevice) =>
+      return @authorize() if _.some userDevice?.meshblu?.tokens, client_id: @oauthUUID
       $scope.loading = false
-
-    @AuthService.getCurrentUser().then (user) =>
-      $scope.currentUser = user
 
     $scope.authorize = @authorize
     $scope.cancel = @cancel
 
   authorize: =>
     device   = uuid: @cookies.meshblu_auth_uuid
-    metadata = tag: @oauthUUID
+    metadata = tag: "oauth-exchange-#{@oauthUUID}"
 
     @ThingService.generateSessionToken(device, metadata).then (session) =>
       {token,uuid} = session
       @window.location = "#{@OAUTH_PROVIDER}#{@stateParams.redirect}?response_type=#{@stateParams.response_type}&client_id=#{@oauthUUID}&redirect_uri=#{encodeURIComponent(@stateParams.redirect_uri)}&token=#{token}&uuid=#{uuid}&state=#{@stateParams.state}"
-      
+
   cancel: =>
     url = @stateParams.cancel_uri || 'https://app.octoblu.com'
     @window.location = url
