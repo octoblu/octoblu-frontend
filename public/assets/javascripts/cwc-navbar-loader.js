@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 
 function isInCWCMode(referrer) {
-  return verifyWorkspaceCloudUser() && referredFromCitrixCloudDomain(referrer);
+  return verifyWorkspaceCloudUser() || referredFromCitrixCloudDomain(referrer);
 
   /**
   TODO - Remove after Synergy. Checking if the referrer is from
