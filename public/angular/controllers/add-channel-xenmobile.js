@@ -2,7 +2,6 @@
 angular.module('octobluApp')
 .controller('addChannelXenMobileController', function(OCTOBLU_API_URL, $scope, $window, nodeType, channelService, AuthService) {
   'use strict';
-  console.log('addChannelXenMobileController');
 
   var getPath, currentUserPromise;
   getPath = function(serverUrl){

@@ -18,7 +18,6 @@ class WorkspaceCloudController
     $rootScope.$on "$cwcUserAuthorized", (event, data) =>
       # $cookies.workspaceCloud = true
       localStorage.setItem('workspaceCloud', true);
-      console.log @buildQueryParams()
       $state.go 'login', @buildQueryParams()
 
   buildQueryParams: =>
