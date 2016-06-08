@@ -56,7 +56,7 @@ gulp.task('coffee:compile', ['coffee:clean'], function(){
 
   return gulp.src(['./public/angular/**/*.coffee', configFile])
     .pipe(plumber())
-    .pipe(coffee({bare: true}))
+    .pipe(coffee())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/angular/compiled/'));
 });
