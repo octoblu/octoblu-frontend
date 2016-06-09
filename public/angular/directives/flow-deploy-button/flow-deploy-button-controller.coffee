@@ -20,7 +20,7 @@ class FlowDeployButtonController
       content: 'In order to communicate with your devices, some permissions need to be updated.'
       ok: 'Update and Deploy'
       cancel: 'Deploy Without Update'
-    permissionManager = FlowPermissionService.createPermissionManager @scope.flow
+    permissionManager = @FlowPermissionService.createPermissionManager @scope.flow
     @NotifyService.confirm options
       .then permissionManager.updatePendingPermissions
       .catch => return
