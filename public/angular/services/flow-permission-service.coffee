@@ -7,11 +7,13 @@ class PermissionManager
     {@flow} = options
 
   updatePendingPermissions: =>
-    promises = _.map(@flow.devicesNeedingPermission, @_updatePermission)
-    promises.push @_updateFlowSendWhitelist()
+    @ThingService.getThing(uuid: @flow.flowId)
+      .then (@flowDevice) =>
+        promises = _.map(@flow.devicesNeedingPermission, @_updatePermission)
+        promises.push @_updateFlowSendWhitelist()
 
-    @q.all promises
-      .then @getDevicesNeedingPermissions
+        @q.all promises
+          .then @getDevicesNeedingPermissions
 
   getDevicesNeedingPermissions: =>
     @ThingService.getThing(uuid: @flow.flowId)
