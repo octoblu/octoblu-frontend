@@ -21,7 +21,7 @@
     </div>
 
     <button
-      ng-show="controller.IS_IN_CWC_MODE && flow && false"
+      ng-show="controller.IS_IN_CWC_MODE && flow && controller.iotAppFeatureEnabled"
       ng-click="controller.createIotApp(flow)"
       class="Sidebar-pane-thing--primary BluButton"
       title="Create IoT App"

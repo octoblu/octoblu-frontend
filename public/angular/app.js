@@ -24,6 +24,7 @@ angular.module('octobluApp', [
   'draganddrop',
   'ngPostMessage',
   'angular-meshblu-device-editor',
+  'LocalStorageModule',
   'truncate'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
@@ -67,6 +68,9 @@ angular.module('octobluApp', [
   }])
   .config(['ngClipProvider', function(ngClipProvider) {
     ngClipProvider.setPath('/lib/zeroclipboard/dist/ZeroClipboard.swf');
+  }])
+  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
+    localStorageServiceProvider.setPrefix('beta-features');
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())
