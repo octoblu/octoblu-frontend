@@ -1,4 +1,4 @@
-angular.module('octobluApp').factory 'FlowModel', (UUIDService) ->
+angular.module('octobluApp').service 'FlowModel', (UUIDService) ->
   (options={}) ->
     {
       flowId      : options.flowId || UUIDService.v1(),

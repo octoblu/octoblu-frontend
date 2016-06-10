@@ -66,8 +66,6 @@ angular.module('octobluApp')
         }
 
         var nodeHeight = getNodeHeight(node);
-        node.inputLocations = [];
-        node.outputLocations = [];
 
         if (!_.isNumber(node.x) || !_.isNumber(node.y)) {
           var vbox = snap.attr('viewBox');

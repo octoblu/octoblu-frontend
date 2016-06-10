@@ -6,6 +6,8 @@ angular.module('octobluApp')
   var undid = false;
   var lastDeployedHash;
   var progressId;
+  var currentFlow;
+
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
   $scope.deployProgress = 0;
@@ -103,7 +105,7 @@ angular.module('octobluApp')
     var promises = _.map(flow.nodes, mergeFlowNodeType);
     $q.all(promises).then(function(nodes) {
       flow.nodes = nodes;
-      flow.mergedFlowNodeTypes = true;
+      flow.hashable = true;
     });
   };
 
@@ -120,8 +122,8 @@ angular.module('octobluApp')
       checkDeviceStatus(),
       mergeFlowNodeTypes(activeFlow)
     ]).then(function(){
-      $scope.setActiveFlow(activeFlow);
       $scope.loading = false;
+      $scope.setActiveFlow(activeFlow);
       FirehoseService.removeAllListeners();
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
@@ -280,7 +282,7 @@ angular.module('octobluApp')
     if (!oldFlow) return;
 
     undid = true;
-    addToBuffer($scope.activeFlow, redoBuffer);
+    addToBuffer(_.cloneDeep($scope.activeFlow), redoBuffer);
     FlowService.setActiveFlow(oldFlow);
     $scope.activeFlow = oldFlow;
   };
@@ -294,7 +296,7 @@ angular.module('octobluApp')
     if (!oldFlow) return;
 
     undid = true;
-    addToBuffer($scope.activeFlow, undoBuffer);
+    addToBuffer(_.cloneDeep($scope.activeFlow), undoBuffer);
     $scope.activeFlow = oldFlow;
     FlowService.setActiveFlow(oldFlow);
   }
@@ -399,57 +401,59 @@ angular.module('octobluApp')
   $scope.toggleSidebarView = function() {
     $scope.sidebarIsExpanded = !$scope.sidebarIsExpanded;
     if (!$scope.sidebarIsExpanded) {
-      _.delay(unselectSelectedFlowNode, 500);
+      _.delay(unselectSelectedFlowNode, 100);
     }
   };
 
-  var immediateCalculateFlowHash = function(newFlow, oldFlow) {
-    if (!newFlow){
-      return;
-    }
-
-    if (!oldFlow || !oldFlow.mergedFlowNodeTypes) {
-      return;
-    }
-
-    if(undid){
-      undid = false;
-      return;
-    }
-
+  var immediateCalculateFlowHash = function(newFlow) {
+    if (!newFlow || !newFlow.hashable) { return; }
+    newFlow = _.cloneDeep(newFlow);
     newFlow.hash = FlowService.hashFlow(newFlow);
-    if (!oldFlow.hash || oldFlow.hash == newFlow.hash) {
-      return;
-    }
+    newFlow.minHash = FlowService.minimalFlow(newFlow).minHash;
 
-    redoBuffer = [];
-    addToBuffer(oldFlow, undoBuffer);
+    if (!undid && currentFlow &&
+      currentFlow.minHash !== newFlow.minHash &&
+      addToBuffer(currentFlow, undoBuffer)) {
+      redoBuffer = [];
+    }
+    compareFlowHash(newFlow, currentFlow);
+
+    if (undid){
+      undid = false;
+    }
+    currentFlow = newFlow
   };
+
+  var calculateFlowHash =  _.debounce(immediateCalculateFlowHash, 500);
 
   var addToBuffer = function(flow, buffer) {
-    var lastFlow = _.last(buffer);
-    lastFlow = lastFlow || {};
-
-    if (flow.hash == lastFlow.hash) {
-      return;
-    }
+    var lastIndex = buffer.length-1;
+    var lastFlow = buffer[lastIndex] || {};
 
     flow.selectedLink = null;
     flow.selectedFlowNode = null;
 
+    if (!flow.minHash) {
+      flow.minHash = FlowService.minimalFlow(flow).minHash;
+    }
+    if (flow.minHash === lastFlow.minHash) {
+      buffer[lastIndex] = flow;
+      return false;
+    }
     buffer.push(flow);
+    return true;
   }
 
-  var calculateFlowHash = immediateCalculateFlowHash;
-  //_.debounce(immediateCalculateFlowHash, 500);
-
-  var compareFlowHash = function(newHash, oldHash){
-    if (!oldHash) {
-      return;
+  var compareFlowHash = function(newFlow, oldFlow) {
+    if (!newFlow || !oldFlow) { return; }
+    if (!newFlow.hash){
+      newFlow.hash = FlowService.hashFlow(newFlow);
     }
-    if (_.isEqual(newHash, oldHash)) { return }
-    $scope.needsToBeDeployed = lastDeployedHash !== newHash
-
+    if (!oldFlow.hash){
+      oldFlow.hash = FlowService.hashFlow(oldFlow);
+    }
+    if (_.isEqual(newFlow.hash, oldFlow.hash)) { return }
+    $scope.needsToBeDeployed = lastDeployedHash !== newFlow.hash;
     FlowService.saveActiveFlow();
   };
 
@@ -461,10 +465,10 @@ angular.module('octobluApp')
   };
 
   var watchNodes = function(newNodes) {
-    if(!$scope.activeFlow) {
+    var flow = $scope.activeFlow;
+    if(!flow) {
       return;
     }
-
     subscribeFlowToDevices(newNodes);
     return FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
       _.each(newNodes, function(node){
@@ -545,7 +549,6 @@ angular.module('octobluApp')
   };
 
   $scope.$watch('activeFlow', calculateFlowHash, true);
-  $scope.$watch('activeFlow.hash', compareFlowHash);
   $scope.$watchCollection('activeFlow.nodes', watchNodes);
   $scope.$watch('activeFlow.selectedFlowNode', expandSidebarIfNodeType);
   $scope.$watch('flowDevice.deploying', watchFlowDeploying);

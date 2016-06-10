@@ -3,13 +3,22 @@ angular.module('octobluApp')
   'use strict';
   var self, activeFlow = {};
   self = this;
-  var previousHashableFlow;
 
   //Flow cruds
 
   self.sanitizeNodes = function(nodes) {
     return _.map(nodes, function(node) {
-      return _.omit(node, 'defaults', 'formTemplatePath', 'helpText', 'logo', 'input', 'output', 'online', 'errorMessage');
+      return _.omit(node, [
+        '$$hashKey',
+        'defaults',
+        'formTemplatePath',
+        'helpText',
+        'logo',
+        'input',
+        'output',
+        'online',
+        'errorMessage'
+      ]);
     });
   }
 
@@ -19,10 +28,46 @@ angular.module('octobluApp')
       token: flow.token,
       name: flow.name,
       description: flow.description,
-      hash: flow.hash,
       links: flow.links,
       nodes: self.sanitizeNodes(flow.nodes)
     }
+  }
+
+  self.minimalNodes = function(nodes) {
+    return _.map(nodes, function(node) {
+      return _.omit(node,
+        [
+          '$$hashKey',
+          'defaults',
+          'formTemplatePath',
+          'helpText',
+          'logo',
+          'input',
+          'output',
+          'online',
+          'errorMessage',
+          'needsConfiguration',
+          'needsSetup',
+          'channelActivationId',
+          'uuid',
+          'token',
+          'omniboxItemTemplateUrl',
+          'staticMessage'
+        ]);
+    }).filter(function(node) {
+      return node.x !== undefined && node.y !== undefined;
+    });
+  }
+
+  self.minimalFlow = function(flow) {
+    var minFlow = {
+      name: flow.name,
+      description: flow.description,
+      links: flow.links,
+      nodes: self.minimalNodes(flow.nodes)
+    }
+    minFlow.minHash = self.hashFlow(minFlow);
+    return minFlow;
   }
 
   self.createFlow = function(flowAttributes) {
@@ -54,7 +99,6 @@ angular.module('octobluApp')
     flow = self.sanitizeFlow(flow);
 
     var url = OCTOBLU_API_URL + "/api/flows/" + flow.flowId;
-    flow.hash = self.hashFlow(flow);
 
     var request = $http({
       url: url,
@@ -147,7 +191,6 @@ angular.module('octobluApp')
 
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
-    hashableFlow.nodes = self.sanitizeNodes(hashableFlow.nodes);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
   };
 
