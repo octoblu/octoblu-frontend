@@ -37,11 +37,11 @@ describe 'DeviceNodeService', ->
       it 'should detect my schema version and not add a noPayloadWrapper key', ->
         expect(@result.noPayloadWrapper).not.to.exist
 
-    describe 'given a schema 1.0.0 device', ->
+    describe 'given a schema 2.0.0 device', ->
       beforeEach ->
         @result = @sut.convertDevice {
           schemas:
-            version: '1.0.0'
+            version: '2.0.0'
         }
 
       it 'should add a category', ->
