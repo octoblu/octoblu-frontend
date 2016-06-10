@@ -734,6 +734,7 @@ angular.module('octobluApp', [
       return AuthService.getCurrentUser(true)
         .then(function(user) {
           if(!user.userDevice.octoblu) return $state.go('profile-new')
+          if(!user.userDevice.octoblu.termsAcceptedAt) return $state.go('profile-new');
           if(toState.name === 'profile-new') return;
           return IntercomUserService.updateIntercom()
         })
