@@ -1,3 +1,5 @@
+{_,angular} = window
+
 class DeviceNodeService
   constructor: ($q, ThingService, NodeConversionService) ->
     @q = $q
@@ -17,6 +19,8 @@ class DeviceNodeService
     defaults =
       category: 'device'
       useStaticMessage: true
+
+    defaults.noPayloadWrapper = true if node?.schemas?.version == '1.0.0'
 
     _.extend defaults, node
 
