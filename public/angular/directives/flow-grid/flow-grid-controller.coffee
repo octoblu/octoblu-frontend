@@ -29,7 +29,7 @@ class FlowGridController
     @ThingService.getThings({type: 'octoblu:flow'}, {uuid: true, online: true}).then (things) =>
       updatedFlows = _.map flows, (flow) =>
         flowDevice = _.find things, 'uuid': flow.flowId
-        flow.online = flowDevice.online
+        flow.online = flowDevice?.online
         flow
       @scope.flows = updatedFlows
 
