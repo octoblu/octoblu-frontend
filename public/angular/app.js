@@ -74,6 +74,7 @@ angular.module('octobluApp', [
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())
+  .constant('RefParser', window.$RefParser)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

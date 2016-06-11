@@ -11,8 +11,6 @@ class NodeConversionService
 
         if node.category == 'channel'
           formTemplatePath = '/pages/node_forms/channel_form.html'
-        else if node.category == 'microblu'
-          formTemplatePath = '/pages/node_forms/microblu_form.html'
         else
           formTemplatePath = '/pages/node_forms/device_form.html'
 

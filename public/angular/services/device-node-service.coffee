@@ -1,10 +1,10 @@
 {_,angular} = window
 
 class DeviceNodeService
-  constructor: ($q, ThingService, NodeConversionService) ->
+  constructor: ($q, NodeConversionService, ThingService) ->
     @q = $q
-    @ThingService = ThingService
     @NodeConversionService = NodeConversionService
+    @ThingService = ThingService
 
   convertFlow: (node) =>
     return node unless node.type == 'octoblu:flow' || node.type == 'device:flow'

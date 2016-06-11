@@ -8,7 +8,8 @@ angular.module('octobluApp')
     scope: {
       model: '=',
       selectedSchemaKey: '=',
-      uuid:  '='
+      uuid:  '=',
+      sendResponseTo: '='
     }
   };
 });
