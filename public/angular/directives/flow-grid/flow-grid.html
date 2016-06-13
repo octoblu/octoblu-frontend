@@ -9,17 +9,22 @@
     <button ng-click="controller.addFlow()" class="BluButton BluButton--save">Create Flow</button>
   </div>
 
- <article class="FlowGrid-Add-flow-card" ng-show="!isLoading && flows.length > 0 && showadd && location == 'left'">
-   <button class="FlowGrid-Add-Flow" ng-click="controller.addFlow()">
-     <i class="fa fa-plus fa-lg"></i>
-   </button>
- </article>
-
-  <flow-grid-card ng-repeat="flow in flows | filter:flowFilterText"></flow-grid-card>
-
-  <article class="FlowGrid-Add-flow-card" ng-show="!isLoading && flows.length > 0 && showadd && location == 'right'">
+  <article class="FlowGrid-Add-flow-card" ng-show="!isLoading && flows.length > 0 && showadd && location == 'left'">
     <button class="FlowGrid-Add-Flow" ng-click="controller.addFlow()">
       <i class="fa fa-plus fa-lg"></i>
     </button>
   </article>
+
+  <random-robot
+  ng-show="(filteredFlows.length == 0)"
+  title="Sorry, we couldn't find a flow by that name.">
+  </random-robot>
+
+<flow-grid-card ng-repeat="flow in filteredFlows = (flows | filter:{name:filtertext})"></flow-grid-card>
+
+<article class="FlowGrid-Add-flow-card" ng-show="!isLoading && flows.length > 0 && showadd && location == 'right'">
+  <button class="FlowGrid-Add-Flow" ng-click="controller.addFlow()">
+    <i class="fa fa-plus fa-lg"></i>
+  </button>
+</article>
 </div>

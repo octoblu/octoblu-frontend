@@ -10,5 +10,6 @@ angular.module('octobluApp')
       limit: '@'
       showadd: '@'
       location: '@'
+      filtertext: '@'
     }
   }

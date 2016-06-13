@@ -1,9 +1,7 @@
-<header class="TabBar">
-  <h2 class="TabBar-title">Flows</h2>
-</header>
+<flow-tab-bar filter-model="flowNameFilter"></flow-tab-bar>
 
 <md-content class="interior__wrapper">
   <div class="interior">
-    <flow-grid showadd="true" location="left"></flow-grid>
+    <flow-grid showadd="true" location="left" filtertext='{{flowNameFilter}}'></flow-grid>
   </div>
 </md-content>
