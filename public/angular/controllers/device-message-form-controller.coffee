@@ -17,8 +17,8 @@ class DeviceMessageFormController
   injectRespondTo: =>
     return unless @shouldResponseTo()
     _.set @scope.model, 'metadata.respondTo', {
-      flowId: @scope.flowUuid
-      nodeId: @scope.uuid
+      flowId: @scope.flowId
+      nodeId: @scope.nodeId
     }
 
   refreshDevice: =>
