@@ -9,6 +9,7 @@ angular.module('octobluApp')
       model: '=',
       selectedSchemaKey: '=',
       uuid:  '=',
+      flowUuid: '=',
       sendResponseTo: '='
     }
   };

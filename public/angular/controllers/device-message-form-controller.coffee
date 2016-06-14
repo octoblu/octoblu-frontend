@@ -9,11 +9,17 @@ class DeviceMessageFormController
     @ThingService = ThingService
 
     @scope.$watch 'uuid', @refreshDevice
-    @scope.$watch 'selectedSchemaKey', @updateSendResponseTo
-    @scope.$watch 'device', @updateSendResponseTo
+    @scope.$watch 'model', @injectRespondTo, true
 
   getDevice: =>
     @ThingService.getThing(uuid: @scope.uuid).then @resolveSchemas
+
+  injectRespondTo: =>
+    return unless @shouldResponseTo()
+    _.set @scope.model, 'metadata.respondTo', {
+      flowId: @scope.flowUuid
+      nodeId: @scope.uuid
+    }
 
   refreshDevice: =>
     @scope.device  = null
@@ -32,10 +38,10 @@ class DeviceMessageFormController
     @scope.device.options ?= {}
     @scope.loading = false
 
-  updateSendResponseTo: =>
+  shouldResponseTo: =>
     schemas   = _.get @scope, 'device.schemas.message'
     schema    = _.get schemas, @scope.selectedSchemaKey
     respondTo = _.get schema, 'properties.metadata.properties.respondTo'
-    @scope.sendResponseTo = respondTo?
+    respondTo?
 
 angular.module('octobluApp').controller 'DeviceMessageFormController', DeviceMessageFormController
