@@ -95,11 +95,11 @@ class DeviceDetailController
   generateMeshbluJson: =>
     @ThingService.generateSessionToken(@device).then ({token}) =>
       meshbluJson =
-        host: @MESHBLU_HOST
+        server: @MESHBLU_HOST
         port: @MESHBLU_PORT
         uuid: @device.uuid
         token: token
-      @meshbluJsonDataUri = "data:text/json;charset=utf-8,#{encodeURIComponent(JSON.stringify(meshbluJson, null, 2))}'"
+      @meshbluJsonDataUri = "data:text/json;charset=utf-8,#{encodeURIComponent(JSON.stringify(meshbluJson, null, 2))}"
 
   saveDevice: =>
     return unless @device?
