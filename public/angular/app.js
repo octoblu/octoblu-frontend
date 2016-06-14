@@ -72,6 +72,9 @@ angular.module('octobluApp', [
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('beta-features');
   }])
+  .config(['$compileProvider',function( $compileProvider ){
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);    
+  }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())
   .constant('RefParser', window.$RefParser)

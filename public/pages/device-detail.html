@@ -52,7 +52,7 @@
     <div class="device-meta">
       <div class="meta-item">
         <div class="meta-key">
-          Type
+          Type:
         </div>
         <div class="meta-value">
           {{controller.device.type}}
@@ -61,16 +61,24 @@
 
       <div class="meta-item">
         <div class="meta-key">
-          Uuid
+          Uuid:
         </div>
         <div class="meta-value">
           {{controller.device.uuid}}
         </div>
       </div>
-
       <div class="meta-item">
         <div class="meta-key">
-          Token
+          Credentials:
+        </div>
+        <div class="meta-value">
+          <md-button ng-hide="controller.meshbluJsonDataUri" ng-click="controller.generateMeshbluJson()" class="md-primary">Generate</md-button>
+          <md-button ng-if="controller.meshbluJsonDataUri" ng-href="{{controller.meshbluJsonDataUri}}" download="meshblu.json">Download</md-button>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">
+          Token:
         </div>
         <div class="meta-value">
           <md-button ng-click="controller.generateSessionToken()" class="md-primary">Generate Token</md-button>

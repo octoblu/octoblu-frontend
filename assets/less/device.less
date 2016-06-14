@@ -111,15 +111,15 @@
 
 .device-meta {
   margin: 2em 0;
+  width: 23em;
   .meta-item {
     height: 2em;
     line-height: 2;
 
     .flex-display;
     .flex-direction(row);
-
+    .justify-content(space-between);
     .meta-key {
-      width: 4em;
       font-weight: bold;
     }
 
@@ -127,10 +127,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      .md-button {
-        line-height: 1;
-        padding-bottom: 8px;
-      }
     }
   }
 }
