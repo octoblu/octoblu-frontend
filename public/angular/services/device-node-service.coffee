@@ -21,6 +21,7 @@ class DeviceNodeService
       useStaticMessage: true
 
     defaults.noPayloadWrapper = true if node?.schemas?.version == '2.0.0'
+    delete node.schemas
 
     _.extend defaults, node
 
@@ -35,6 +36,7 @@ class DeviceNodeService
       logo:     true
       category: true
       online:   true
+      schemas:  true
 
     @ThingService.getThings {type: {$ne: 'octoblu:user'}}, projection
       .then (devices) =>
