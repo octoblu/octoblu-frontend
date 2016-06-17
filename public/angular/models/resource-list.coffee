@@ -9,9 +9,17 @@ angular.module 'octobluApp'
       icon: "fa fa-book"
     },
     {
-      title: 'Octoblu Connectors'
+      title: 'Connectors'
       link: 'https://meshblu-connectors.readme.io'
-      summary: 'Documentation for all plugins and connectors'
+      summary: 'Documentation for new Connectors'
+      category: 'Docs'
+      featured: true
+      icon: "fa fa-book"
+    },
+    {
+      title: 'Legacy Connectors'
+      link: 'https://legacy-connectors.readme.io'
+      summary: 'Documentation for legacy plugins and connectors'
       category: 'Docs'
       featured: true
       icon: "fa fa-book"
@@ -86,7 +94,7 @@ angular.module 'octobluApp'
     },
     {
       title: 'Freeboard Dashboard'
-      link: 'https://meshblu-connectors.readme.io/docs/freeboard'
+      link: 'https://legacy-connectors.readme.io/docs/freeboard'
       summary: 'An Octoblu hosted freeboard dashboard.'
       category: 'Octo-Sites'
     },
@@ -112,7 +120,7 @@ angular.module 'octobluApp'
     },
     {
       title: 'BeaconBlu'
-      link: 'https://meshblu-connectors.readme.io/docs/beaconblu'
+      link: 'https://legacy-connectors.readme.io/docs/beaconblu'
       summary: 'Use your phone to watch for BLE beacons in Octoblu.'
       category: 'Mobile Apps'
     },
