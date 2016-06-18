@@ -7,6 +7,7 @@ class DeviceMessageFormController
     @NotifyService = NotifyService
     @RefParser = RefParser
     @ThingService = ThingService
+    @Transmogrifier = OctobluDeviceSchemaTransmogrifier
 
     @scope.$watch 'uuid', @refreshDevice
     @scope.$watch 'model', @injectRespondTo, true
@@ -29,7 +30,8 @@ class DeviceMessageFormController
 
   resolveSchemas: (device) =>
     @q (resolve, reject) =>
-      @RefParser.dereference device.schemas, (error, schemas) =>
+      schemas = device.schemas ? {}
+      @RefParser.dereference schemas, (error, schemas) =>
         return reject error if error?
         return resolve _.extend({schemas}, device)
 
