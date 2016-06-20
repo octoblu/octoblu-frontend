@@ -11,7 +11,6 @@ class DeviceNodeService
     defaults =
       type: 'octoblu:flow'
       topic: 'flow'
-      filterTopic: 'message'
 
     _.extend defaults, node
 
