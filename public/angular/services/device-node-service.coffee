@@ -19,7 +19,7 @@ class DeviceNodeService
       category: 'device'
       useStaticMessage: true
 
-    defaults.noPayloadWrapper = true if node?.schemas?.version == '2.0.0'
+    defaults.noPayloadWrapper = node?.schemas?.version == '2.0.0'
     delete node.schemas
 
     _.extend defaults, node
