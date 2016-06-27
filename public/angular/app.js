@@ -1,4 +1,4 @@
-// 'use strict'; // Firefox?
+'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
 angular.module('octobluApp', [
@@ -73,7 +73,7 @@ angular.module('octobluApp', [
     localStorageServiceProvider.setPrefix('beta-features');
   }])
   .config(['$compileProvider',function( $compileProvider ){
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);    
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())

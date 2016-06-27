@@ -83,6 +83,7 @@ angular.module('octobluApp')
         $scope.addNode = function(data, event){
           var flowNodeType = data['json/flow-node-type'];
           if (!flowNodeType) {
+            console.error("addNode didn't get a flow-node-type!")
             return;
           }
           var newLoc = CoordinatesService.transform(snap.node, event.clientX, event.clientY);
