@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict'; // Casper/Phantom?
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
 angular.module('octobluApp', [
