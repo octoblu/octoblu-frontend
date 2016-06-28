@@ -8,21 +8,35 @@
 .oauth-provider-header {
   .flex-display;
   .flex-direction(row);
+  .flex-flow(row wrap);
+  align-items: center;
 }
 
 .oauth-logo {
+  padding: 10px;
+  .flex(1);
+  .flex-grow(0);
   width: 150px;
   height: 150px;
   display: inline-block;
-  vertical-align: middle;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
+.oauth-gravatar {
+  .flex(1);
+  .flex-grow(0);
+  padding: 10px;
+}
+
+.oauth-user-text {
+  .flex(1);
+  font-size: 1.3em;
+  padding-left: 20px;
+}
+
 .oauth-user-info {
-  height: 150px;
-  vertical-align: middle;
-  font-size: 2em;
+  white-space: nowrap;
 }
 
 .oauth-provider-information {

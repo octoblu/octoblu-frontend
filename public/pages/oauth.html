@@ -10,20 +10,17 @@
       </div>
 
       <div ng-show="oauthDevice">
+
         <div class="oauth-provider-header">
           <img class="oauth-logo" ng-src="{{oauthDevice.options.imageUrl}}">
-          <div class="profile-cardContent">
-            <div class="profile-card-user">
-              <div class="profile-card-user-image">
-                <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
-                <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
-              </div>
-              <h1 class="profile-card-user-text">
-                <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
-                <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
-                <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
-              </h1>
-            </div>
+          <div class="oauth-gravatar">
+            <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
+            <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
+          </div>
+          <div class="oauth-user-text">
+            <div class="oauth-user-info"><big><b>{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</b></big></div>
+            <div class="oauth-user-info"><small>email: {{currentUser.userDevice.octoblu.email}}</small></div>
+            <div class="oauth-user-info"><small>UUID: {{currentUser.skynet.uuid}}</small></div>
           </div>
         </div>
 

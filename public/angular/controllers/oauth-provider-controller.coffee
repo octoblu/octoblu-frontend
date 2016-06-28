@@ -14,7 +14,7 @@ class OAuthProviderController
       oauthDevice ?= {}
       oauthDevice.options ?= {}
       oauthDevice.options.imageUrl ?= 'https://icons.octoblu.com/device/oauth.svg'
-      oauthDevice.options.description ?= 'No extended description provided.'
+      oauthDevice.options.description ?= ''
       $scope.oauthDevice = oauthDevice
     .then =>
       @AuthService.getCurrentUser().then (user) =>
