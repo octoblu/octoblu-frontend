@@ -34,8 +34,8 @@ describe 'DeviceNodeService', ->
       it 'should add useStaticMessage', ->
         expect(@result.useStaticMessage).to.be.true
 
-      it 'should detect my schema version and not add a noPayloadWrapper key', ->
-        expect(@result.noPayloadWrapper).not.to.exist
+      it 'should detect my schema version and set noPayloadWrapper to false', ->
+        expect(@result.noPayloadWrapper).to.be.false
 
     describe 'given a schema 2.0.0 device', ->
       beforeEach ->
