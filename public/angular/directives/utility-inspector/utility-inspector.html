@@ -23,7 +23,6 @@
       </a>
     </div>
 
-
     <button class="Sidebar-pane-collapse-button" title="Toggle Pane" ng-click="paneCollapsed = !paneCollapsed">
       <i class="fa" ng-class="{'fa-plus': paneCollapsed, 'fa-minus': !paneCollapsed}"></i>
     </button>
@@ -33,7 +32,6 @@
     <div ng-show="loading" class="Sidebar-pane-content">
       <spinner loading="loading" size="large"></spinner>
     </div>
-
 
     <div ng-show="tab.state == 'things' && !loading" class="Sidebar-pane-content">
       <h3 class="node-collection-no-matches" ng-show="noThings">
@@ -73,6 +71,7 @@
             nodes="registry.items"
             view-style="collectionViewStyle">
           </node-collection>
+        </div>
       </div>
     </div>
 
