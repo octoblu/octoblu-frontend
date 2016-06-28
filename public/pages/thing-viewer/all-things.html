@@ -10,7 +10,7 @@
     <device-collection devices="devices"></device-collection>
   </div>
   <div ng-if="!showAllThings" ng-repeat="(category, devices) in devicesByCategory">
-    <device-collection devices="devices" category="category"></device-collection>
+    <device-collection devices="devices" category="category" collapsed="category.indexOf('Deprecated') > -1"></device-collection>
   </div>
   <registries-collection registries="registries"></registries-collection>
 </div>

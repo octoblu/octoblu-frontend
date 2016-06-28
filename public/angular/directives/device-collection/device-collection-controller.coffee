@@ -3,15 +3,16 @@ class DeviceCollectionController
     @scope = $scope
     @DeviceLogo = DeviceLogo
     @RegistryService = RegistryService
-    @scope.showCategory = true
     @state = $state
 
   logoUrl: (device) =>
     new @DeviceLogo(device).get()
 
   nextStepUrl: (device) =>
-    registryUrl = @RegistryService.getDeviceUrl device
-    return registryUrl if registryUrl?
+    unless device?.defaults?.nodeType?.deprecated
+      registryUrl = @RegistryService.getDeviceUrl device
+      return registryUrl if registryUrl?
+
     return @state.href 'material.nodewizard-add', { nodeTypeId: device._id } unless device.uuid
 
     params = {}

@@ -96,7 +96,6 @@ module.exports = function(config) {
         "angular/config/**/*.js",
         "angular/controllers/**/*.js",
         "angular/directives/**/*.js",
-        "angular/models/**/*.js",
         "angular/services/**/*.js",
         "../test/angular/**/*-spec.js",
         "../test/angular/**/*-spec.coffee",

@@ -14,7 +14,8 @@
 
     <div class="node-collection-description">
       <h3 class="node-collection-title">
-        {{flowNodeType.name || flowNodeType.type}}
+        <div class="node-collection-title-text">{{flowNodeType.name || flowNodeType.type}}</div>
+        <small ng-if="flowNodeType.deprecated" class="node-deprecrated">DEPRECATED</small>
       </h3>
 
       <p class="node-collection-text">

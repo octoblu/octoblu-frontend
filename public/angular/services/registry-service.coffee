@@ -74,7 +74,7 @@ class RegistryService
         callback error
     return
 
-  _addLogoUrl: (node={}) =>
+  _mapItem: (node={}) =>
     node.logo = new @DeviceLogo(node).get()
     return node
 
@@ -94,7 +94,7 @@ class RegistryService
       .then (response) =>
         return callback new Error('invalid response code') unless response.status == 200
         registry = response.data ? {}
-        registry.items = _.map registry.items, @_addLogoUrl
+        registry.items = _.map registry.items, @_mapItem
         callback null, registry
       .catch (error) =>
         callback error

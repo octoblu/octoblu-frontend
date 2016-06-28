@@ -5,5 +5,5 @@
 </random-robot>
 
 <div ng-repeat="category in categories" ng-hide="loadingConnectedThings">
-  <device-collection devices="connectedThingsByCategory[category]" category="category"></device-collection>
+  <device-collection devices="connectedThingsByCategory[category]" category="category" collapsed="false"></device-collection>
 </div>

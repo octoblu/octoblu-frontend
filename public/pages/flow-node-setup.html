@@ -5,7 +5,15 @@
     <p class="text-center">
       Click Setup to start configuring this thing
     </p>
-    <md-button ng-click="controller.getNodeId()" class="md-raised md-primary Sidebar-setup-button">Setup</md-button>
+    <div ng-if="controller.deprecated">
+      <h4 class="text-center">This node is old and is no longer fully supported.</h4>
+      <md-button ng-if="controller.hasNewAlternative" ng-click="controller.setup()" class="md-raised md-primary Sidebar-setup-button">Setup Newer Version</md-button>
+      <hr />
+      <md-button ng-click="controller.setupDeprecated()" class="md-raised md-warn Sidebar-setup-button">Setup Old</md-button>
+    </div>
+    <div ng-if="!controller.deprecated">
+      <md-button ng-click="controller.setup()" class="md-raised md-primary Sidebar-setup-button">Setup</md-button>
+    </div>
     <button ng-if="controller.showDelete()" ng-click="controller.deleteNode()" class="Sidebar-pane-thing--delete BluButton" aria-label="Delete">Delete</button>
   </div>
 </div>

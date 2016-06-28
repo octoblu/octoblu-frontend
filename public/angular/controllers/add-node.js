@@ -60,7 +60,7 @@ angular.module('octobluApp')
 
   var updateDevicesByCategory = function(devices) {
     $scope.devices = devices;
-    $scope.devicesByCategory = _.groupBy(devices, 'categories');
+    $scope.devicesByCategory = _.groupBy(devices, 'categories')
   };
 
   var updateRegistries = function(registries) {

@@ -3,14 +3,14 @@
     <h4 class="header-label">
       {{category | uppercase}}
     </h4>
-    <button ng-click="showCategory = !showCategory" class="device-collection__button header-label" aria-label="Show/Hide Nodes in Category">
-      <span ng-show="showCategory">Hide</span>
-      <span ng-show="!showCategory">Show</span>
+    <button ng-click="collapsed = !collapsed" class="device-collection__button header-label" aria-label="Show/Hide Nodes in Category">
+      <span ng-hide="collapsed">Hide</span>
+      <span ng-show="collapsed">Show</span>
     </button>
   </header>
 
 
-  <div ng-show="showCategory" class="device-collection__items device-collection__items--grid">
+  <div ng-hide="collapsed" class="device-collection__items device-collection__items--grid">
     <a ng-repeat="device in filteredDevices = (devices | orderBy: 'name')"
       href="{{controller.nextStepUrl(device)}}"
       class="device-collection__item">

@@ -1,30 +1,38 @@
 class FlowNodeSetupController
-  constructor: ($scope, $state, FlowService, FlowEditorService, NodeTypeService, DeviceLogo) ->
+  constructor: ($scope, $state, FlowService, RegistryService, FlowEditorService, NodeTypeService, DeviceLogo) ->
     @scope             = $scope
     @state             = $state
     @FlowService       = FlowService
     @NodeTypeService   = NodeTypeService
     @FlowEditorService = FlowEditorService
     @DeviceLogo        = DeviceLogo
-    @activeFlow = @FlowService.getActiveFlow()
+    @activeFlow        = @FlowService.getActiveFlow()
+    @deprecated        = @activeFlow.selectedFlowNode.deprecated
+    @registryItem      = RegistryService.getItem(@activeFlow.selectedFlowNode)
+    @hasNewAlternative = !!@registryItem
 
-  logoUrl: () =>
+  logoUrl: =>
     new @DeviceLogo(@activeFlow.selectedFlowNode).get()
 
-  getNodeId: () =>
-    return window.location=@activeFlow.selectedFlowNode.createUri if @activeFlow.selectedFlowNode.createUri?
+  setupDeprecated: =>
     @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
       nodeTypeId = '53c9b832f400e177dca325b3'
       nodeTypeId = nodeType._id if nodeType?._id
       @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, designer: true
 
-  showDelete: () =>
+  setup: =>
+    return window.location=@registryItem.createUri if @registryItem.createUri?
+    @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
+      nodeTypeId = '53c9b832f400e177dca325b3'
+      nodeTypeId = nodeType._id if nodeType?._id
+      @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, designer: true
+
+  showDelete: =>
     @activeFlow.selectedFlowNode.needsConfiguration
 
-  deleteNode: () =>
+  deleteNode: =>
     newActiveFlow = @FlowEditorService.deleteSelection @activeFlow
     @activeFlow = newActiveFlow
     @FlowService.saveActiveFlow @activeFlow
-
 
 angular.module('octobluApp').controller 'FlowNodeSetupController', FlowNodeSetupController
