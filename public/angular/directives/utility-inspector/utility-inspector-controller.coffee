@@ -1,5 +1,5 @@
 class UtilityInspectorController
-  constructor: ($scope, FlowNodeTypeService, NodeTypeService) ->
+  constructor: ($scope, RegistryService, NotifyService, FlowNodeTypeService, NodeTypeService) ->
     @scope = $scope
     @scope.tab = {}
     @scope.things = []
@@ -12,11 +12,16 @@ class UtilityInspectorController
 
     @getPreferences()
 
-
-
-
     @FlowNodeTypeService = FlowNodeTypeService
     @NodeTypeService     = NodeTypeService
+    @NotifyService       = NotifyService
+    @RegistryService     = RegistryService
+
+    @RegistryService.getRegistries()
+      .then (registries) =>
+        @scope.registries = registries
+      , (error) =>
+        @NotifyService.notifyError(error)
 
     @FlowNodeTypeService.getFlowNodeTypes()
       .then (flowNodeTypes) =>

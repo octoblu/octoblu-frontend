@@ -1,0 +1,30 @@
+<div>
+  <div ng-if="hasItems" ng-repeat="(registryType, registryTypes) in registries">
+    <div ng-repeat="(registryKey, registry) in registryTypes">
+      <div class="interior device-collection">
+        <header class="device-collection__header">
+          <h4 class="header-label">
+            {{registry.name | uppercase}}
+          </h4>
+          <button ng-click="hideCategory = !hideCategory" class="device-collection__button header-label" aria-label="Show/Hide Nodes in Category">
+            <span ng-hide="hideCategory">Hide</span>
+            <span ng-show="hideCategory">Show</span>
+          </button>
+        </header>
+
+        <div ng-hide="hideCategory" class="device-collection__items device-collection__items--grid">
+          <a ng-repeat="item in filteredItems = (registry.items | orderBy: 'name')"
+            ng-href="{{item.createUri}}"
+            class="device-collection__item">
+
+            <img ng-src="{{item.logo}}"
+              class="device-collection__item-thumbnail"
+              title="{{item.name}}">
+
+            <div class="device-collection__item-name truncate">{{item.name || item.type}}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  <div>
+</div>

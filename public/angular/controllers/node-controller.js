@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('NodeController', function ($scope, $state, NodeService, DeviceLogo) {
+.controller('NodeController', function ($scope, $state, $window, NodeService, NotifyService, DeviceLogo, CONNECTOR_FACTORY_UI) {
   'use strict';
 
   $scope.loading = true;

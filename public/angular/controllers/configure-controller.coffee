@@ -1,13 +1,15 @@
 class ConfigureController
-  constructor: ($scope, $state, $stateParams, $cookies, FlowNodeTypeService, NotifyService) ->
+  constructor: ($scope, $state, $stateParams, $cookies, RegistryService, FlowNodeTypeService, NotifyService) ->
     @scope = $scope
     @state = $state
     @cookies = $cookies
     @FlowNodeTypeService = FlowNodeTypeService
     @NotifyService = NotifyService
+    @RegistryService = RegistryService
     @scope.loadingConnectedThings = true
     @scope.noThings = false
     connectedThings = []
+    @scope.registries = {}
 
     @NotifyService.notify "#{$stateParams.added} successfully added" if $stateParams.added
     @NotifyService.notify "#{$stateParams.deleted} successfully deleted" if $stateParams.deleted
@@ -21,6 +23,12 @@ class ConfigureController
           node.category != 'operation'
         @scope.loadingConnectedThings = false
         @updateThingsByCategory connectedThings
+
+    @RegistryService.getRegistries()
+      .then (registries) =>
+        @scope.registries = registries
+      , (error) =>
+        @NotifyService.notifyError(error)
 
     @scope.$watch 'filterByName', (filterByName) =>
       filterByName = filterByName || '';

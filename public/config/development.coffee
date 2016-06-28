@@ -33,4 +33,6 @@ angular.module('octobluApp')
   .constant 'OAUTH_PROVIDER', "http://#{window.location.hostname}:55871"
   .constant 'OCTOBLU_API_URL', "http://#{window.location.hostname}:8080"
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
+  .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'REGISTRY_URL', 'http://localhost:9999/registry.json'
+  .constant 'OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY', 'https://raw.githubusercontent.com/octoblu/meshblu-connector-official-registry/master/registry.json'

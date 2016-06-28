@@ -1,6 +1,7 @@
 class OmniService
-  constructor: (FlowNodeTypeService, NodeTypeService, FlowService, $q) ->
+  constructor: (FlowNodeTypeService, RegistryService, NodeTypeService, FlowService, $q) ->
     @FlowNodeTypeService = FlowNodeTypeService
+    @RegistryService = RegistryService
     @NodeTypeService = NodeTypeService
     @FlowService = FlowService
     @q = $q
@@ -8,6 +9,7 @@ class OmniService
   fetch: (omniItems) =>
     @q.all([
       @getOmniItems omniItems
+      @getRegistries()
       @getFlowNodeTypes()
       @getUnconfiguredNodeTypes()
     ]).then (results) =>
@@ -27,6 +29,16 @@ class OmniService
     @NodeTypeService.getUnconfiguredNodeTypes().then (nodeTypes) =>
       _.map nodeTypes, (nodeType) =>
         _.extend nodeType, omniboxItemTemplateUrl: '/pages/omnibox-node-type.html'
+
+  getRegistries: =>
+    return @RegistryService.getRegistries().then (registries) =>
+      nodes = []
+      _.each _.values(registries), (registrySet) =>
+        _.each _.values(registrySet), (registry) =>
+          _.each registry.items, (item) =>
+            item.omniboxItemTemplateUrl = '/pages/omnibox-flow-node-type.html'
+            nodes.push item
+      return nodes
 
   selectItem: (item) =>
     if item.id?

@@ -56,6 +56,24 @@
           view-style="collectionViewStyle">
         </node-collection>
       </div>
+      <div ng-repeat="(registryType, registryTypes) in registries">
+        <div ng-repeat="(registryKey, registry) in registryTypes">
+          <header class="category-header">
+            <h4 class="header-label">
+              {{registry.name | uppercase}}
+            </h4>
+            <button ng-click="showCategory = !showCategory" class="Sidebar-button header-label" aria-label="Show/Hide Nodes in Category">
+              <span ng-show="showCategory">Hide</span>
+              <span ng-show="!showCategory">Show</span>
+            </button>
+          </header>
+          <node-collection
+            ng-show="showCategory"
+            flow="flow"
+            nodes="registry.items"
+            view-style="collectionViewStyle">
+          </node-collection>
+      </div>
     </div>
 
     <node-collection

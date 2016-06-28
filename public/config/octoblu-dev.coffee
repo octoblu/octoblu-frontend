@@ -38,3 +38,5 @@ angular.module('octobluApp')
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.dev"
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
+  .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
+  .constant 'OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY', 'https://raw.githubusercontent.com/octoblu/meshblu-connector-official-registry/master/registry.json'

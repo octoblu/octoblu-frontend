@@ -8,10 +8,12 @@ describe('OmniService', function () {
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
       fakeNodeTypeService = new FakeNodeTypeService();
       fakeFlowService = new FakeFlowService();
+      fakeRegistryService = new FakeRegistryService()
 
       $provide.value('FlowNodeTypeService', fakeFlowNodeTypeService);
       $provide.value('NodeTypeService', fakeNodeTypeService);
       $provide.value('FlowService', fakeFlowService);
+      $provide.value('RegistryService', fakeRegistryService);
       $provide.value('MESHBLU_HOST', 'https://whatever.com');
     });
 
@@ -104,6 +106,13 @@ describe('OmniService', function () {
     var self = this;
     self.addNodeFromFlowNodeType = sinon.spy();
     self.selectNode = sinon.spy();
+  };
+
+  var FakeRegistryService = function(){
+    var self = this;
+    self.getRegistries = function(){
+      return $q.when({})
+    };
   };
 
   var FakeNodeTypeService = function(){
