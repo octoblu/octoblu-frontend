@@ -39,7 +39,7 @@ angular.module('octobluApp')
   $scope.$watch('filterByName', function(filterByName) {
     filterByName = (filterByName || '').toLowerCase();
     updateDevicesByCategory(filterCollection(devices, filterByName));
-    updateRegistries(RegistryService.filterByName('name', filterByName));
+    updateRegistries(RegistryService.filterBy('name', filterByName));
   });
 
   $scope.isAvailable = function (node) {

@@ -16,13 +16,17 @@ class RegistryService
         return reject error if error?
         resolve _.cloneDeep @registries
 
+  sanifyStr: (str='') =>
+    return '' unless _.isString str
+    return str.toLowerCase()
+
   _filterCollection: (items, key, search, exact) =>
     return _.filter items, (item) =>
-      value = (item[key] || '').toLowerCase()
-      return value == key if exact
-      return _.contains value, search.toLowerCase()
+      value = @sanifyStr item[key]
+      return value == search if exact
+      return _.contains value, @sanifyStr search
 
-  filterByName: (key, search, exact) =>
+  filterBy: (key, search, exact) =>
     return _.mapValues _.cloneDeep(@registries), (registrySet) =>
       return _.mapValues registrySet, (registry) =>
         registry.items = @_filterCollection registry.items, key, search, exact

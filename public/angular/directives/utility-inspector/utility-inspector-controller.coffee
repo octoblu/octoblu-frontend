@@ -37,13 +37,15 @@ class UtilityInspectorController
       @scope.things = _.union(@scope.things, nodeTypes)
       @scope.loading = false
 
-    @scope.$watch 'thingNameFilter', (thingNameFilter) =>
-      thingNameFilter = thingNameFilter || '';
-      filteredThings = _.filter @scope.things, (thing) =>
-        name = (thing.name || '').toLowerCase()
-        thingNameFilter = thingNameFilter.toLowerCase();
-        return _.contains name, thingNameFilter
+    sanifyStr = (str='') =>
+      return '' unless _.isString str
+      return str.toLowerCase()
 
+    @scope.$watch 'thingNameFilter', (thingNameFilter) =>
+      filteredThings = _.filter @scope.things, ({ name }) =>
+        return _.contains sanifyStr(name), sanifyStr(thingNameFilter)
+
+      @scope.registries = @RegistryService.filterBy 'name', thingNameFilter
       @updateThingsByCategory(filteredThings)
 
     @scope.$watch 'things', @updateThingsByCategory
