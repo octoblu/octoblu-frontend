@@ -744,7 +744,7 @@ angular.module('octobluApp', [
         })
         .catch(function (err) {
           event.preventDefault();
-          $location.url('/login');
+          $location.url('/login?callbackUrl=' + encodeURIComponent($location.$$absUrl));
         });
     });
 
