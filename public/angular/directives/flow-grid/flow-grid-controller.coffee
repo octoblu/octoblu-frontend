@@ -17,13 +17,13 @@ class FlowGridController
     @someFlows()
 
   allFlows: () =>
-    @FlowService.getAllFlows().then (flows) =>
+    @ThingService.getThings({type: 'octoblu:flow'}).then (flows) =>
       flows.reverse()
       @scope.flows = flows
 
   someFlows: () =>
-    @FlowService.getSomeFlows(@scope.limit).then (flows) =>
-      @scope.flows = flows
+    @ThingService.getThings({type: 'octoblu:flow'}).then (flows) =>
+      @scope.flows = _.slice flows, 0, @scope.limit
 
   getFlowStatus: (flows) =>
     @ThingService.getThings({type: 'octoblu:flow'}, {uuid: true, online: true}).then (things) =>
