@@ -8,22 +8,22 @@ class FlowGridCardController
     @scope.flowLoading = false
 
   createBluprint: () =>
-    { name, flowId } = @scope.flow
+    { name, uuid } = @scope.flow
     @BluprintService
       .createBluprint
         name: name
-        flowId: flowId
+        flowId: uuid
       .then (template) =>
         @state.go 'material.bluprintEdit', bluprintId: template.uuid, createMode: true
 
   deleteFlow: () =>
-    { name, flowId } = @scope.flow
+    { name, uuid } = @scope.flow
     @NotifyService
       .confirm
         title: 'Delete Flow'
         content: 'Are you sure you want to delete ' + name + '?'
-      .then =>
-        @FlowService.deleteFlow(flowId).then => @state.go @state.current, {}, {reload: true}
+      .then => @FlowService.deleteFlow(uuid).then =>
+        @state.go @state.current, {}, {reload: true}
 
   startFlow: () =>
     @FlowService.start @scope.flow

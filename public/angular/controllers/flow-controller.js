@@ -390,7 +390,7 @@ angular.module('octobluApp')
 
   $scope.createBluprint = function(flow) {
     BluprintService.createBluprint({name: flow.name, flowId: flow.flowId}).then(function(template) {
-      $state.go('material.bluprint', {templateId: template.uuid});
+      $state.go('material.bluprintEdit', {bluprintId: template.uuid});
     });
   };
 
