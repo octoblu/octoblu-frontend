@@ -5,5 +5,4 @@ class NodeCollectionController
   addFlowNodeType: (flowNodeType) =>
     @scope.$emit('flow-node-type-selected', flowNodeType)
 
-
 angular.module('octobluApp').controller 'NodeCollectionController', NodeCollectionController

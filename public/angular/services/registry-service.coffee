@@ -43,12 +43,14 @@ class RegistryService
 
   getItemFromDevice: (device) =>
     githubSlug = @getGithubSlugFromDevice device
+    return null unless githubSlug?
     return @getItem { githubSlug, type: device.type }
 
   getGithubSlugFromDevice: (device) =>
     githubSlug = _.get device, 'connectorMetadata.githubSlug'
     return githubSlug if githubSlug?
     connector = _.get device, 'connector'
+    return unless connector?
     return "octoblu/#{connector}" if connector?
 
   getDeviceUrl: (device) =>
@@ -80,6 +82,7 @@ class RegistryService
 
   _mapItem: (node={}) =>
     node.logo = new @DeviceLogo(node).get()
+    node.categories = node.tags
     return node
 
   # 0.9 async.map doesn't handle mapping objects

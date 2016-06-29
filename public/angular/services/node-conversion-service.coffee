@@ -1,10 +1,26 @@
 class NodeConversionService
-  constructor: (NodeTypeService, DeviceLogo) ->
+  constructor: (RegistryService, NodeTypeService, DeviceLogo) ->
+    @RegistryService = RegistryService
     @NodeTypeService = NodeTypeService
     @DeviceLogo = DeviceLogo
 
+  getRegistryItem: (node, nodeType) =>
+    @RegistryService.getRegistries()
+      .then =>
+        item = @RegistryService.getItemFromDevice node
+        return nodeType unless item?
+        return item
+
+  getNodeType: (node) =>
+    return @NodeTypeService
+      .getNodeTypeByType node.type
+      .then (nodeType) =>
+        return @getRegistryItem(node) unless nodeType?
+        return @getRegistryItem(node, nodeType) if nodeType.deprecated
+        return nodeType
+
   convert: (node) =>
-    @NodeTypeService.getNodeTypeByType node.type
+    @getNodeType(node)
       .then (nodeType) =>
         node.defaults ?= _.omit node, 'defaults'
         node.defaults.nodeType = nodeType

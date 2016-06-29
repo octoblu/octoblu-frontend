@@ -1,6 +1,7 @@
 class DeviceCollectionController
   constructor: ($scope, $state, RegistryService, DeviceLogo) ->
     @scope = $scope
+    @scope.collapsed = @scope.collapsedByDefault
     @DeviceLogo = DeviceLogo
     @RegistryService = RegistryService
     @state = $state

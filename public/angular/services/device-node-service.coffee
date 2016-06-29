@@ -36,6 +36,7 @@ class DeviceNodeService
       category: true
       online:   true
       schemas:  true
+      connectorMetadata: true
 
     @ThingService.getThings {type: {$ne: 'octoblu:user'}}, projection
       .then (devices) =>

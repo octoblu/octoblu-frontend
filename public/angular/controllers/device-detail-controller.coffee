@@ -44,6 +44,7 @@ class DeviceDetailController
       discoverWhitelist: true
       sendWhitelist: true
       receiveWhitelist: true
+      connectorMetadata: true
 
     @ThingService.getThings(null, projection).then (@devices) =>
       @scope.$watch 'controller.permissionRows', @updateDeviceWithPermissions, true
