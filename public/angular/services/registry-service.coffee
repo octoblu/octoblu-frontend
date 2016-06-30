@@ -47,7 +47,6 @@ class RegistryService
     return @getItem { _id: registryItemId } if registryItemId?
     githubSlug = @getGithubSlugFromDevice device
     return @getItem { githubSlug } if githubSlug?
-    return @getItem { type: device.type } if device.type?
     return null
 
   getGithubSlugFromDevice: (device) =>
@@ -56,7 +55,6 @@ class RegistryService
     githubSlug = _.get device, 'connectorMetadata.githubSlug'
     return githubSlug if githubSlug?
     connector = _.get device, 'connector'
-    return unless connector?
     return "octoblu/#{connector}" if connector?
 
   getDeviceUrl: (device) =>
