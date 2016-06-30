@@ -9,7 +9,7 @@ class FlowGridController
     @projection =
       uuid: true
       online: true
-      name:true
+      name: true
       'draft.description': true
       'draft.nodes.category': true
       'draft.nodes.type': true
@@ -24,13 +24,13 @@ class FlowGridController
     @someFlows()
 
   allFlows: () =>
-    @ThingService.getThings({type: 'octoblu:flow'}, @projection).then (flows) =>
+    @FlowService.getAllFlows().then (flows) =>
       flows.reverse()
       @scope.flows = flows
 
   someFlows: () =>
-    @ThingService.getThings({type: 'octoblu:flow'}, @projection).then (flows) =>
-      @scope.flows = _.slice flows, 0, @scope.limit
+    @FlowService.getSomeFlows(@scope.limit).then (flows) =>
+      @scope.flows = flows
 
   getFlowStatus: (flows) =>
     @ThingService.getThings({type: 'octoblu:flow'}, {uuid: true, online: true}).then (things) =>
