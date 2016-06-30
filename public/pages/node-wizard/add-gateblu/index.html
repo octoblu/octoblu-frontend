@@ -18,8 +18,8 @@
     <img ng-src="{{nodeType.logo}}" width="100%" height="100%">
   </div>
   <h2 class="text-center">{{nodeType.name}}</h2>
-  <p class="node-wizard__description--text" ng-show="nodeType.helpText">
-    {{nodeType.helpText}}
+  <p class="node-wizard__description--text" ng-show="nodeType.helpText || nodeType.description">
+    {{nodeType.helpText || nodeType.description}}
   </p>
   <p>
     This Thing requires a Gateblu to function.

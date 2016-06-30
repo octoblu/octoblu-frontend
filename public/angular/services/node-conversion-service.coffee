@@ -35,7 +35,7 @@ class NodeConversionService
           logo:             new @DeviceLogo(node).get()
           input:            1
           output:           1
-          helpText:         node.defaults?.nodeType?.helpText
+          helpText:         nodeType?.helpText ? nodeType?.description
           formTemplatePath: formTemplatePath
 
         _.extend defaults, node

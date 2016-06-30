@@ -32,21 +32,27 @@ class RegistryService
         registry.items = @_filterCollection registry.items, key, search, exact
         return registry
 
-  getItem: ({ githubSlug, type }) =>
+  getItem: ({ _id, githubSlug, type }) =>
     found = null
     _.some _.values(@registries), (registrySet) =>
       return _.some registrySet, (registry) =>
+        found = _.find registry.items, { _id } if _id?
         found = _.find registry.items, { githubSlug } if githubSlug?
         found = _.find registry.items, { type } if type?
         return true if found
     return found
 
   getItemFromDevice: (device) =>
+    registryItemId = _.get(device, 'octoblu.registryItem._id')
+    return @getItem { _id: registryItemId } if registryItemId?
     githubSlug = @getGithubSlugFromDevice device
-    return null unless githubSlug?
-    return @getItem { githubSlug, type: device.type }
+    return @getItem { githubSlug } if githubSlug?
+    return @getItem { type: device.type } if device.type?
+    return null
 
   getGithubSlugFromDevice: (device) =>
+    registryGithubSlug = _.get device, 'octoblu.registryItem.githubSlug'
+    return registryGithubSlug if registryGithubSlug?
     githubSlug = _.get device, 'connectorMetadata.githubSlug'
     return githubSlug if githubSlug?
     connector = _.get device, 'connector'

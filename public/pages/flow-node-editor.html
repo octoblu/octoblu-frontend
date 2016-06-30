@@ -4,7 +4,7 @@
   </div>
   <div class="Sidebar-section flow-node-editor" ng-show="showFlowNodeEditor">
     <div class="Sidebar-pane-form">
-      <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || 'No help is available for this node'">
+      <div class="flow-node-editor-help-block" ng-if="showHelp" marked="flowNodeType.helpText || flowNodeType.description || 'No help is available for this node'">
       </div>
       <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
       <md-switch ng-model="flowNode.debug">Debug</md-switch>
