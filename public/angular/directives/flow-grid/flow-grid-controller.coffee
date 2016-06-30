@@ -6,13 +6,6 @@ class FlowGridController
     @ThingService = ThingService
     @NotifyService = NotifyService
     @scope.isLoading = true
-    @projection =
-      uuid: true
-      online: true
-      name: true
-      'draft.description': true
-      'draft.nodes.category': true
-      'draft.nodes.type': true
 
     @fetchFlows()
       .then () =>
