@@ -7,6 +7,8 @@ class FlowGridCardController
     @NotifyService = NotifyService
     @scope.flowLoading = false
 
+    @scope.flow = @getNodesInDraft @scope.flow
+
   createBluprint: () =>
     { name, flowId } = @scope.flow
     @BluprintService
@@ -24,6 +26,12 @@ class FlowGridCardController
         content: 'Are you sure you want to delete ' + name + '?'
       .then => @FlowService.deleteFlow(flowId).then =>
         @state.go @state.current, {}, {reload: true}
+
+  getNodesInDraft: (flow) =>
+    return if flow.draft?.nodes?
+    flow.draft =
+      nodes: flow.nodes
+    flow
 
   startFlow: () =>
     @FlowService.start @scope.flow
