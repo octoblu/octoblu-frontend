@@ -8,10 +8,8 @@ class FlowTagsController
       @scope.tags = @getTags()
 
   getTags: () =>
-    return unless @scope.flow?
-    {nodes} = @scope.flow
-
-    return unless nodes?
+    return unless @scope.flow?.draft?.nodes?
+    {nodes} = @scope.flow.draft
 
     filteredTags = _.filter nodes, (node) =>
       true unless node.category == 'operation'

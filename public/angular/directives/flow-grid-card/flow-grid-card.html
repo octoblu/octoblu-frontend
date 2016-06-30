@@ -3,7 +3,7 @@
     <header class="BluCard-header">
       <a ui-sref="material.flow({flowId: flow.uuid})" ng-show="flow.name" class="BluCard-title">{{flow.name | characters:30 :true}}</a>
       <a ui-sref="material.flow({flowId: flow.uuid})" ng-hide="flow.name" class="BluCard-title">{{flow.uuid | characters:20 :true}}</a>
-      <span class="BluCard-status" ng-show="flow.online == false" ng-click="cardController.startFlow()">
+      <span class="BluCard-status" ng-hide="flow.online" ng-click="cardController.startFlow()">
         <md-tooltip>Offline</md-tooltip>
         <i class="fa fa-circle-o"></i>
       </span>
@@ -14,11 +14,11 @@
     </header>
 
     <div class="BluCard-body">
-      <p class="BluCard-description" ng-show="!flow.description">
+      <p class="BluCard-description" ng-show="!flow.draft.description">
         Add a description
       </p>
-      <p class="BluCard-description" ng-show="flow.description">
-        {{flow.description | characters:50 :true}}
+      <p class="BluCard-description" ng-show="flow.draft.description">
+        {{flow.draft.description | characters:50 :true}}
       </p>
     </div>
   </main>
