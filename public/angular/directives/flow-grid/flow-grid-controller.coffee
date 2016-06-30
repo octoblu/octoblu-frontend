@@ -26,9 +26,9 @@ class FlowGridController
       @scope.flows = flows
 
   getFlowStatus: (flows) =>
-    @ThingService.getThings({type: 'octoblu:flow'}, {uuid: true, online: true}).then (things) =>
+    @ThingService.getThings({type: 'octoblu:flow'}, { uuid: true, online: true }).then (things) =>
       updatedFlows = _.map flows, (flow) =>
-        flowDevice = _.find things, 'uuid': flow.uuid
+        flowDevice = _.find things, 'uuid': flow.flowId
         flow.online = flowDevice?.online if flowDevice?.online?
         flow
       @scope.flows = updatedFlows
