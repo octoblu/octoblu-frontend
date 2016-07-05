@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, $debug, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -7,6 +7,7 @@ angular.module('octobluApp')
   var lastDeployedHash;
   var progressId;
   var currentFlow;
+  var debug = $debug('octoblu:FlowController');
 
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
@@ -39,12 +40,14 @@ angular.module('octobluApp')
   if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);
 
   var pulseKeepalive = function() {
-    if (!$scope.documentHidden && $scope.activeFlow) {
-      MeshbluHttpService.message({devices: [$scope.activeFlow.flowId], topic: 'subscribe:pulse'}, _.noop);
-    };
+    if ($scope.documentHidden) return debug("Tab not in the foreground, no subscribe:pulse");
+    if (!$scope.activeFlow) return debug("No active flow, no subscribe:pulse");;
+    debug('subscribe:pulse');
+    MeshbluHttpService.message({devices: [$scope.activeFlow.flowId], topic: 'subscribe:pulse'}, _.noop);
   }
 
   $interval(pulseKeepalive, 60*1000);
+  $scope.$watch('activeFlow', pulseKeepalive);
 
   var setCookie = function(flowId) {
     deleteCookie();
