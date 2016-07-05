@@ -1,3 +1,5 @@
+{_, angular} = window
+
 class PermissionManager
   constructor: (options, {ThingService, $q, $http, REGISTRY_URL}) ->
     @ThingService = ThingService
@@ -23,10 +25,12 @@ class PermissionManager
           @_getDevicesFromRegistry()
         ]
       .then ([devicesWithPermissionsFromNodes, registryDevices]) =>
-        @flow.devicesWithPermissions = _.union devicesWithPermissionsFromNodes, registryDevices, 'uuid'
+        @flow.devicesWithPermissions = _.union _.compact(devicesWithPermissionsFromNodes), registryDevices, 'uuid'
         @flow.devicesNeedingPermission = _.filter @flow.devicesWithPermissions, ({permissions}) =>
           _.includes _.values(permissions), false
         @flow.pendingPermissions = ! _.isEmpty @flow.devicesNeedingPermission
+      .catch (error) =>
+        console.error 'promises, promises', error
 
   _getDevicesFromRegistry: =>
     @http.get @REGISTRY_URL
@@ -42,28 +46,34 @@ class PermissionManager
   _getRegistryDevice: (uuid) =>
     @ThingService.getThing {uuid}
       .then (device) =>
-        deviceWithPermissions =
+        return {
           device: device
           permissions:
             messageToFlow: @_deviceCanMessageFlow device
+        }
       .catch (error) =>
-        device =
-            logo: 'https://icons.octoblu.com/unknown-device.svg'
-            name: 'Unknown Device'
-            uuid: uuid
-        deviceWithPermissions =
+        console.error '_getRegistryDevice error:', error
+        device = {
+          logo: 'https://icons.octoblu.com/unknown-device.svg'
+          name: 'Unknown Device'
+          uuid: uuid
+        }
+        return {
           device: device
           permissions:
             messageToFlow: @_deviceCanMessageFlow device
+        }
 
   _getDevicesWithPermissionsFromNodes: =>
     @_getDevicesFromNodes()
       .then (devices) =>
-        @_getDevicesWithPermissions devices
+        @_getDevicesWithPermissions _.compact devices
 
   _getDevicesFromNodes: =>
     deviceNodes = _.uniq @_getDeviceNodes(), 'uuid'
-    promises = _.map deviceNodes, @ThingService.getThing
+    promises = _.map deviceNodes, (node) =>
+      @ThingService.getThing(node).catch (error) =>
+        console.warn 'ignored: ', error
     return @q.all promises
 
   _getDeviceNodes: =>
@@ -74,12 +84,13 @@ class PermissionManager
     _.map devices, @_getDeviceWithPermissions
 
   _getDeviceWithPermissions: (device) =>
-    deviceWithPermissions =
+    return {
       device: device
       permissions:
         messageToFlow: @_deviceCanMessageFlow device
         messageFromFlow: @_flowCanMessageDevice device
         subscribeBroadcastSent: @_flowCanSubscribeBroadcastSentDevice device
+    }
 
   _deviceCanMessageFlow: (device) =>
     return true if @flowDevice.uuid == device.uuid
