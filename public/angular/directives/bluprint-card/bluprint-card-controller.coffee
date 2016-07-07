@@ -7,7 +7,7 @@ class BluprintCardController
     @BluprintService = BluprintService
 
     @scope.referrer = 'edit' if @state.current.name == 'material.bluprints'
-    @scope.flow = @putNodesInDraft @scope.bluprint.flow
+    @scope.flow = @scope.bluprint.flow
 
   togglePublic: (bluprint) =>
     bluprint.public = !bluprint.public
@@ -15,12 +15,6 @@ class BluprintCardController
 
   getBluprintImportUrl: (bluprintId) =>
     @UrlService.withNewPath "/bluprints/import/#{bluprintId}"
-
-  putNodesInDraft: (bluprint) =>
-    return if bluprint.draft?.nodes?
-    bluprint.draft =
-      nodes: bluprint.nodes
-    bluprint
 
   toastBluprintUrl: (bluprintId) =>
     url = @getBluprintImportUrl bluprintId
