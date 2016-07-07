@@ -7,7 +7,11 @@
   <h4>{{controller.device.name}}</h4>
 </div>
 
-<device-schema device="controller.device" model="controller.device"></device-schema>
+<device-schema ng-if="controller.resolvedDevice"
+  device="controller.resolvedDevice"
+  model="controller.device">
+</device-schema>
+
 <div class="BluButton--actions">
   <a class="BluButton BluButton--save" ng-click="controller.saveDevice()">Save</a>
 </div>

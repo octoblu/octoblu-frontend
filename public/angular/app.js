@@ -76,8 +76,7 @@ angular.module('octobluApp', [
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
-  .constant('IS_IN_CWC_MODE', isInCWCMode())
-  .constant('RefParser', window.$RefParser)
+  .constant('IS_IN_CWC_MODE', isInCWCMode())  
   .constant('$debug', window.debug)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
