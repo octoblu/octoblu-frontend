@@ -77,7 +77,7 @@ angular.module('octobluApp', [
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())
-  .constant('RefParser', window.$RefParser)
+  .constant('MeshbluJsonSchemaResolver', window.MeshbluJsonSchemaResolver)
   .constant('$debug', window.debug)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {

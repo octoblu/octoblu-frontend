@@ -1,11 +1,11 @@
 {angular, _} = window
 
 class DeviceMessageFormController
-  constructor: ($q, $scope, NotifyService, RefParser, ThingService) ->
+  constructor: ($q, $scope, NotifyService, MeshbluJsonSchemaResolver, meshbluConfig, ThingService) ->
     @q = $q
     @scope = $scope
     @NotifyService = NotifyService
-    @RefParser = RefParser
+    @meshbluJsonSchemaResolver = new MeshbluJsonSchemaResolver {meshbluConfig}
     @ThingService = ThingService
     @Transmogrifier = OctobluDeviceSchemaTransmogrifier
 
@@ -31,7 +31,7 @@ class DeviceMessageFormController
   resolveSchemas: (device) =>
     @q (resolve, reject) =>
       schemas = device.schemas ? {}
-      @RefParser.dereference schemas, (error, schemas) =>
+      @meshbluJsonSchemaResolver.resolve schemas, (error, schemas) =>
         return reject error if error?
         return resolve _.extend({schemas}, device)
 
