@@ -7,9 +7,8 @@
   <h4>{{controller.device.name}}</h4>
 </div>
 
-<device-schema
-  meshblu-config="controller.meshbluConfig"
-  device="controller.device"
+<device-schema ng-if="controller.resolvedDevice"
+  device="controller.resolvedDevice"
   model="controller.device">
 </device-schema>
 

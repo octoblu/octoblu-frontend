@@ -1,5 +1,5 @@
 class DeviceDetailController
-  constructor: ($q, $mdDialog, $scope, $state, $stateParams, meshbluConfig, MESHBLU_HOST, MESHBLU_PORT, NotifyService, ThingService, DeviceLogo) ->
+  constructor: ($q, $mdDialog, $scope, $state, $stateParams, meshbluConfig, MESHBLU_HOST, MESHBLU_PORT, NotifyService, MeshbluJsonSchemaResolverService, ThingService, DeviceLogo) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
@@ -14,8 +14,7 @@ class DeviceDetailController
     @MESHBLU_HOST = MESHBLU_HOST
     @MESHBLU_PORT = MESHBLU_PORT
     @meshbluConfig = meshbluConfig
-    @meshbluJsonSchemaResolver = new MeshbluJsonSchemaResolver {meshbluConfig}
-    console.log @meshbluJsonSchemaResolver
+    @meshbluJsonSchemaResolverService = new MeshbluJsonSchemaResolverService {meshbluConfig}
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
 
     @getThing().then =>
@@ -31,10 +30,9 @@ class DeviceDetailController
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
       @showLink = @deviceIsGatebluDevice @device
-      @fragments = @generateBreadcrumbFragments @device      
-      @meshbluJsonSchemaResolver.resolve (error, @resolvedDevice) =>
-        console.log "RESOLVED DEVICE", @resolvedDevice
-        @scope.$apply()
+      @fragments = @generateBreadcrumbFragments @device
+      @meshbluJsonSchemaResolverService.resolve(device).then (@resolvedDevice) =>
+
       return
 
   getPermissions: =>
