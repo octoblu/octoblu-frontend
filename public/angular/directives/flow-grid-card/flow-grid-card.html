@@ -14,11 +14,11 @@
     </header>
 
     <div class="BluCard-body">
-      <p class="BluCard-description" ng-show="!flow.draft.description">
+      <p class="BluCard-description" ng-show="!flow.description">
         Add a description
       </p>
-      <p class="BluCard-description" ng-show="flow.draft.description">
-        {{flow.draft.description | characters:50 :true}}
+      <p class="BluCard-description" ng-show="flow.description">
+        {{flow.description | characters:50 :true}}
       </p>
     </div>
   </main>
