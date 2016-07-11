@@ -7,8 +7,6 @@ class FlowGridCardController
     @NotifyService = NotifyService
     @scope.flowLoading = false
 
-    @scope.flow = @getNodesInDraft @scope.flow
-
   createBluprint: () =>
     { name, flowId } = @scope.flow
     @BluprintService
