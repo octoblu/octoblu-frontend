@@ -270,7 +270,7 @@ angular.module('octobluApp')
   };
 
   self.getAllFlows = function () {
-    return $http.get(OCTOBLU_API_URL + '/api/flows').then(function(response){
+    return $http.get(OCTOBLU_API_URL + '/api/v2/flows').then(function(response){
       var flowData = _.reject(response.data, function(flow){
         return !flow.flowId;
       });
@@ -281,14 +281,12 @@ angular.module('octobluApp')
         });
       }
 
-      return _.map(flowData, function(flow) {
-        return new FlowModel(flow);
-      });
+      return flowData
     });
   };
 
   self.getSomeFlows = function (limit) {
-    return $http.get(OCTOBLU_API_URL + '/api/flows/' + limit + '/paged').then(function(response){
+    return $http.get(OCTOBLU_API_URL + '/api/v2/flows/' + limit + '/paged').then(function(response){
       var flowData = _.reject(response.data, function(flow){
         return !flow.flowId;
       });
@@ -299,9 +297,7 @@ angular.module('octobluApp')
         });
       }
 
-      return _.map(flowData, function(flow) {
-        return new FlowModel(flow);
-      });
+      return flowData
     });
   };
 

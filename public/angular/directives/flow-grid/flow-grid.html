@@ -20,7 +20,7 @@
   title="Sorry, we couldn't find a flow by that name.">
   </random-robot>
 
-<flow-grid-card ng-repeat="flow in filteredFlows = (flows | filter:{name:filtertext})"></flow-grid-card>
+<flow-grid-card ng-repeat="flow in filteredFlows = (flows | filter:{ name: filtertext } )"></flow-grid-card>
 
 <article class="FlowGrid-Add-flow-card" ng-show="!isLoading && flows.length > 0 && showadd && location == 'right'">
   <button class="FlowGrid-Add-Flow" ng-click="controller.addFlow()">
