@@ -1,16 +1,11 @@
-<spinner loading="loadingThings && loadingRegistries" size="large"></spinner>
+<spinner loading="loading" size="large"></spinner>
 
-<div ng-hide="loadingThings && loadingRegistries">
+<div ng-hide="loading">
   <p class="BluAlert">
     Already know your thing's uuid and token? <a ui-sref="material.manualclaim">claim your device manually.</a>
   </p>
-
-  <random-robot title='No Things Found for "{{filterByName}}"' ng-show="!hasResults && !loadingThings && !loadingRegistries"></random-robot>
-  <div ng-if="showAllThings">
-    <device-collection devices="devices"></device-collection>
+  <random-robot title='No Things Found for "{{filterByName}}"' ng-show="allItems.length < 1 && !loading"></random-robot>
+  <div ng-repeat="(category, items) in itemsByCategory">
+    <device-collection devices="items" category="category" collapsed-by-default="category.indexOf('Deprecated') > -1"></device-collection>
   </div>
-  <div ng-if="!showAllThings" ng-repeat="(category, devices) in devicesByCategory">
-    <device-collection devices="devices" category="category" collapsed-by-default="category.indexOf('Deprecated') > -1"></device-collection>
-  </div>
-  <registries-collection registries="registries"></registries-collection>
 </div>

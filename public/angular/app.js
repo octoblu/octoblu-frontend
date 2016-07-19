@@ -156,8 +156,14 @@ angular.module('octobluApp', [
       })
       .state('material.things.all', {
         url: '/all',
-        controller: 'addNodeController',
+        controller: 'AllThingsController',
         templateUrl: '/pages/thing-viewer/all-things.html'
+      })
+      .state('material.things.registries', {
+        url: '/registries',
+        controller: 'RegistriesController',
+        controllerAs: 'controller',
+        templateUrl: '/pages/thing-viewer/registries.html'
       })
       .state('material.nodewizard-add', {
         url: '/node-wizard/add/:nodeTypeId',

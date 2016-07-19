@@ -1,0 +1,6 @@
+<spinner loading="controller.loading" size="large"></spinner>
+
+<div ng-hide="controller.loading">
+  <random-robot title='No Things Found for "{{controller.filterByName}}"' ng-show="!controller.hasResults && !controller.loading"></random-robot>
+  <registries-collection registries="controller.registries"></registries-collection>
+</div>
