@@ -39,4 +39,5 @@ angular.module('octobluApp')
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
+  .constant 'SENTRY_DSN', ''
   .constant 'OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY', 'https://raw.githubusercontent.com/octoblu/meshblu-connector-official-registry/master/registry.json'

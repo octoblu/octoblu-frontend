@@ -76,7 +76,7 @@ angular.module('octobluApp', [
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
-  .constant('IS_IN_CWC_MODE', isInCWCMode())  
+  .constant('IS_IN_CWC_MODE', isInCWCMode())
   .constant('$debug', window.debug)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -705,7 +705,7 @@ angular.module('octobluApp', [
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, RavenService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
     $rootScope.showErrorState = false;
 
     $rootScope.$on('$messageIncoming', function (event, data){
@@ -740,6 +740,7 @@ angular.module('octobluApp', [
           if(!user.userDevice.octoblu) return $state.go('profile-new')
           if(!user.userDevice.octoblu.termsAcceptedAt) return $state.go('profile-new');
           if(toState.name === 'profile-new') return;
+          RavenService.update()
           return IntercomUserService.updateIntercom()
         })
         .catch(function (err) {

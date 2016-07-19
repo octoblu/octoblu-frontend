@@ -68,7 +68,8 @@
     "angular-meshblu-device-editor": "^3.7.1",
     "angular-local-storage": "^0.2.7",
     "visionmedia-debug": "^2.2.0",
-    "meshblu-json-schema-resolver": "^1.0.4"
+    "meshblu-json-schema-resolver": "^1.0.4",
+    "raven-js": "^3.2.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
@@ -104,6 +105,12 @@
     },
     "marked": {
       "main": "lib/marked.js"
+    },
+    "raven-js": {
+      "main": [
+        "dist/raven.js",
+        "dist/plugins/angular.js"
+      ]
     }
   },
   "resolutions": {

@@ -35,4 +35,5 @@ angular.module('octobluApp')
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'REGISTRY_URL', 'http://localhost:9999/registry.json'
+  .constant 'SENTRY_DSN', ''
   .constant 'OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY', 'https://raw.githubusercontent.com/octoblu/meshblu-connector-official-registry/master/registry.json'
