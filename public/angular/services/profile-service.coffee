@@ -4,18 +4,32 @@ class ProfileService
     @cookies       = $cookies
     @q             = $q
 
-  update: (firstName, lastName, email, optInEmail) =>
+  updateNew: (firstName, lastName, email, optInEmail) =>
     deferred = @q.defer()
 
-    data =
-      octoblu:
-        firstName: firstName
-        lastName: lastName
-        email: email
-        optInEmail: optInEmail?
-        termsAcceptedAt: new Date()
+    query =
+      'octoblu.firstName': firstName
+      'octoblu.lastName': lastName
+      'octoblu.email': email
+      'octoblu.optInEmail': !!optInEmail
+      'octoblu.termsAcceptedAt': new Date()
 
-    @MeshbluHttpService.update @cookies.meshblu_auth_uuid, data, (error) =>
+    @MeshbluHttpService.updateDangerously @cookies.meshblu_auth_uuid, { $set: query }, (error) =>
+      return deferred.reject(error) if error?
+      deferred.resolve()
+
+    deferred.promise
+
+  updateAfter: ({ firstName, lastName, email, optInEmail }) =>
+    deferred = @q.defer()
+
+    query =
+      'octoblu.firstName': firstName
+      'octoblu.lastName': lastName
+      'octoblu.email': email
+      'octoblu.optInEmail': !!optInEmail
+
+    @MeshbluHttpService.updateDangerously @cookies.meshblu_auth_uuid, { $set: query }, (error) =>
       return deferred.reject(error) if error?
       deferred.resolve()
 

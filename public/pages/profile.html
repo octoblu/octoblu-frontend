@@ -2,7 +2,6 @@
   <h2 class="TabBar-title">Profile</h2>
 </header>
 
-
 <md-content class="interior__wrapper">
   <div class="profile-card-container">
     <div class="profile-card">
@@ -15,17 +14,20 @@
         <div class="profile-card-user">
           <div class="profile-card-user-image">
             <md-tooltip>To Change Your Image, visit gravatar.com</md-tooltip>
-            <gravatar-image email=currentUser.userDevice.octoblu.email size="100"></gravatar-image>
+            <gravatar-image email="controller.userDevice.octoblu.email" size="100"></gravatar-image>
           </div>
           <h1 class="profile-card-user-text">
-            <span class="profile-card-user--info">{{currentUser.userDevice.octoblu.firstName + ' ' + currentUser.userDevice.octoblu.lastName }}</span>
-            <small class="profile-card-user--info">email: {{currentUser.userDevice.octoblu.email}}</small>
-            <small class="profile-card-user--info">UUID: {{currentUser.skynet.uuid}}</small>
+            <span class="profile-card-user--info">{{controller.userDevice.octoblu.firstName + ' ' + controller.userDevice.octoblu.lastName }}</span>
+            <small class="profile-card-user--info">email: {{controller.userDevice.octoblu.email}}</small>
+            <small class="profile-card-user--info">UUID: {{controller.userDevice.uuid}}</small>
           </h1>
       </div>
 
         <p>
-          To obtain a token, you must click <md-button md-no-ink ng-click="generateSessionToken()" class="md-button md-default-theme"><i class="fa fa-key"></i> Generate Token</md-button> and it will be displayed one time only.
+          To obtain a token, you must click
+          <md-button md-no-ink ng-click="controller.generateSessionToken()" class="md-button md-default-theme">
+            <i class="fa fa-key"></i> Generate Token
+          </md-button> and it will be displayed one time only.
         </p>
         <p>
             Your token gives you full access to your account and connected devices, be sure to keep it secret.
@@ -36,31 +38,50 @@
     <div class="profile-card">
       <md-toolbar class="md-primary">
         <div class="md-toolbar-tools">
-          <h2>Authorized Sessions</h2>
+          <h2>Edit Profile</h2>
         </div>
       </md-toolbar>
 
-      <spinner loading="loadingTokens" size="large"></spinner>
+      <div class="profile">
+        <form name="controller.profileForm" class="auth__form" ng-submit="controller.submitProfile()" novalidate>
 
-      <div class="profile-cardContent">
-        <md-content class="sessions-list">
-          <div ng-if="!hasTokens() && !loadingTokens" class="text-center">
-            <h1 class="text-center">You have no authorized sessions.</h1>
+          <md-input-container class="profile-auth__form-row">
+            <label>First Name</label>
+            <input required autofocus name="firstName" ng-model="controller.userModel.firstName">
+            <div ng-messages="controller.profileForm.firstName.$error">
+              <div ng-message="required" ng-show="controller.firstNameRequiredError()">Required.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="profile-auth__form-row">
+            <label>Last Name</label>
+            <input required name="lastName" ng-model="controller.userModel.lastName">
+            <div ng-messages="controller.profileForm.lastName.$error">
+              <div ng-message="required" ng-show="controller.lastNameRequiredError()">Required.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="profile-auth__form-row">
+            <label>Email</label>
+            <input required name="email" ng-model="controller.userModel.email" type="email">
+            <div ng-messages="controller.profileForm.email.$error">
+              <div ng-message="required" ng-show="controller.emailRequiredError()">Required.</div>
+              <div ng-message="email" ng-show="controller.profileForm.email.$error.email">Must be a valid email address.</div>
+            </div>
+          </md-input-container>
+
+          <md-checkbox class="auth__form-checkbox" name="optInEmail" ng-model="controller.userModel.optInEmail">
+            May we send you email updates?
+          </md-checkbox>
+
+          <p class="auth__form-message--error" ng-show="controller.errorMessage">{{errorMessage}}</p>
+
+          <div class="profile-auth__form-row">
+            <md-button type="submit" ng-disabled="loading" class="md-raised md-primary full__bleed auth__button">
+              Update Profile
+            </md-button>
           </div>
-          <md-list ng-if="hasTokens()">
-            <md-item ng-repeat="(tokenHash, tokenData) in tokens">
-              <md-item-content>
-                <div class="profile-card-tokens">
-                  <h3 class="profile-card-tokenData">{{tokenData.createdAt | date : 'medium'}}</h3>
-                  <md-button class="md-warn" ng-click="confirmDeleteToken(tokenHash)" aria-label="Delete Session">
-                    <i class="fa fa-lg fa-trash-o"></i>
-                  </md-button>
-                </div>
-              </md-item-content>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-item>
-          </md-list>
-        </md-content>
+        </form>
       </div>
     </div>
   </div>

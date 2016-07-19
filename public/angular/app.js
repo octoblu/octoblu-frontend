@@ -634,7 +634,8 @@ angular.module('octobluApp', [
       .state('material.profile', {
         url: '/profile',
         templateUrl: '/pages/profile.html',
-        controller: 'profileController'
+        controllerAs: 'controller',
+        controller: 'ProfileController'
       })
       .state('profile-new', {
         url: '/profile/new?firstName&lastName&email',

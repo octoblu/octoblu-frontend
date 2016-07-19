@@ -23,7 +23,7 @@ class NewProfileController
     @loading = true
 
     @ProfileService
-      .update firstName, lastName, email, optInEmail, @workspaceCloudUser
+      .updateNew firstName, lastName, email, optInEmail, @workspaceCloudUser
       .then =>
         async.series [
           (callback) => @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:weather', callback
