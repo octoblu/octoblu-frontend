@@ -46,6 +46,7 @@ angular.module('octobluApp')
     _.each(_.values(filteredRegistries), function(registryType) {
       _.each(_.values(registryType), function(registry) {
         _.each(registry.items, function(item) {
+          item.useCreateUri = true
           $scope.allItems.push(item)
         })
       })
