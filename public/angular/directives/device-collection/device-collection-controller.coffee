@@ -19,8 +19,6 @@ class DeviceCollectionController
 
     return @state.href 'material.nodewizard-add', { nodeTypeId: device._id } unless device.uuid
 
-
-
     params = {}
 
     if device.category == 'channel'

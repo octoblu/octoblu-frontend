@@ -84,7 +84,8 @@
         "src-noconflict/mode-javascript.js",
         "src-noconflict/mode-json.js",
         "src-noconflict/theme-chrome.js",
-        "src-noconflict/worker-javascript.js"
+        "src-noconflict/worker-javascript.js",
+        "src-noconflict/worker-json.js"
       ]
     },
     "prism": [
