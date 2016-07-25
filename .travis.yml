@@ -9,9 +9,7 @@ node_js:
 - '5'
 after_success:
 - find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
-- mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -cf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar Dockerfile default.conf public
-- tar --append -f build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar public/lib/zeroclipboard/dist/ZeroClipboard.swf
-- gzip build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar
+- mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -zcvf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
 - mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
 - mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
 - for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done

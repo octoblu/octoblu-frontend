@@ -2,6 +2,7 @@ var gulp         = require('gulp'),
   bower          = require('gulp-bower'),
   mainBowerFiles = require('main-bower-files'),
   concat         = require('gulp-concat'),
+  rename         = require('gulp-rename'),
   less           = require('gulp-less'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
@@ -13,7 +14,12 @@ var gulp         = require('gulp'),
   replace        = require('gulp-replace'),
   uglify         = require('gulp-uglify');
 
-gulp.task('bower', function() {
+gulp.task('bower:clean', function() {
+  return gulp.src(['./public/lib-assets'])
+    .pipe(rimraf())
+})
+
+gulp.task('bower', ['bower:clean'], function() {
   return bower('./public/lib');
 });
 
@@ -25,6 +31,25 @@ gulp.task('bower:concat', ['bower'], function(){
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
+
+var bowerAssets = [
+  './public/lib/ace-builds/src-noconflict/ace.js',
+  './public/lib/ace-builds/src-noconflict/mode-javascript.js',
+  './public/lib/ace-builds/src-noconflict/mode-json.js',
+  './public/lib/ace-builds/src-noconflict/theme-chrome.js',
+  './public/lib/ace-builds/src-noconflict/worker-javascript.js',
+  './public/lib/ace-builds/src-noconflict/worker-json.js',
+  './public/lib/zeroclipboard/dist/ZeroClipboard.swf',
+]
+
+gulp.task('bower:build', ['bower:concat'], function() {
+  return gulp.src(bowerAssets, { base: '.' })
+    .pipe(plumber())
+    .pipe(rename(function (path) {
+      path.dirname = path.dirname.replace('public/lib', '')
+    }))
+    .pipe(gulp.dest('./public/lib-assets'))
+})
 
 var cssDependencies = [
   './public/lib/fontawesome/css/font-awesome.css',
@@ -70,7 +95,7 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
-gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat']);
+gulp.task('default', ['bower:build', 'less:compile', 'javascript:concat']);
 
 gulp.task('webserver', ['static']);
 

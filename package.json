@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu",
-  "version": "7.0.3",
+  "version": "7.0.4",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -31,6 +31,7 @@
     "colors": "^1.0.3",
     "commander": "^2.3.0",
     "errorhandler": "^1.1.1",
+    "gulp-rename": "^1.2.2",
     "karma": "^0.12.31",
     "karma-blink1-reporter": "git://github.com/iamruinous/karma-blink1-reporter",
     "karma-chai-plugins": "^0.2.3",
