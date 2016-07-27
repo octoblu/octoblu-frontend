@@ -21,7 +21,7 @@ class FlowNodeSetupController
       @state.go 'material.nodewizard-add', nodeTypeId: nodeTypeId, designer: true
 
   setup: =>
-    return window.location=@registryItem.createUri if @registryItem.createUri?
+    return window.location=@registryItem.createUri if @registryItem?.createUri?
     @NodeTypeService.getNodeTypeByType(@activeFlow.selectedFlowNode.type).then (nodeType) =>
       nodeTypeId = '53c9b832f400e177dca325b3'
       nodeTypeId = nodeType._id if nodeType?._id
