@@ -51,8 +51,8 @@ describe('OmniService', function () {
       var flowNodeType, nodeType;
 
       beforeEach(function () {
-        flowNodeType = {type: 'flowNodeType', uuid: '1'};
-        nodeType     = {type: 'nodeType', uuid: '2'};
+        flowNodeType = {input: 1, output: 1, type: 'flowNodeType', uuid: '1'};
+        nodeType     = {input: 1, output: 1, type: 'nodeType', uuid: '2'};
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([flowNodeType]);
         fakeNodeTypeService.getUnconfiguredNodeTypes.resolve([nodeType]);
       });
