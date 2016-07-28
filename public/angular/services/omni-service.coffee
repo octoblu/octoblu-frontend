@@ -28,7 +28,7 @@ class OmniService
   getUnconfiguredNodeTypes: =>
     @NodeTypeService.getUnconfiguredNodeTypes().then (nodeTypes) =>
       _.map nodeTypes, (nodeType) =>
-        _.extend nodeType, omniboxItemTemplateUrl: '/pages/omnibox-node-type.html'
+        _.extend {input: 1, output: 1}, nodeType, omniboxItemTemplateUrl: '/pages/omnibox-node-type.html'
 
   getRegistries: =>
     return @RegistryService.getRegistries().then (registries) =>
@@ -36,6 +36,8 @@ class OmniService
       _.each _.values(registries), (registrySet) =>
         _.each _.values(registrySet), (registry) =>
           _.each registry.items, (item) =>
+            item.input = 1
+            item.output = 1
             item.omniboxItemTemplateUrl = '/pages/omnibox-node-type.html'
             nodes.push item
       return nodes
