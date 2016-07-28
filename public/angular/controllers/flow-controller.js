@@ -484,9 +484,11 @@ angular.module('octobluApp')
         if(node.needsConfiguration && !node.needsSetup){
           var matchingNode = _.findWhere(flowNodeTypes, {type: node.type});
 
-          node.channelActivationId = matchingNode.defaults.channelActivationId;
-          node.uuid                = matchingNode.defaults.uuid;
-          node.token               = matchingNode.defaults.token;
+          if (matchingNode && matchingNode.defaults) {
+            node.channelActivationId = matchingNode.defaults.channelActivationId;
+            node.uuid                = matchingNode.defaults.uuid;
+            node.token               = matchingNode.defaults.token;
+          }
           node.needsConfiguration  = false;
         }
       });

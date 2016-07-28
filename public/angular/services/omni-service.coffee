@@ -36,7 +36,7 @@ class OmniService
       _.each _.values(registries), (registrySet) =>
         _.each _.values(registrySet), (registry) =>
           _.each registry.items, (item) =>
-            item.omniboxItemTemplateUrl = '/pages/omnibox-flow-node-type.html'
+            item.omniboxItemTemplateUrl = '/pages/omnibox-node-type.html'
             nodes.push item
       return nodes
 
