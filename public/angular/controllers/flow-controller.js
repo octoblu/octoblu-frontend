@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, $debug, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, $debug, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, RegistryService) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];

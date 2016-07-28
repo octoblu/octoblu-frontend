@@ -2,6 +2,7 @@
   <div class="omnibox-item-header">
     {{match.model.name || match.model.defaults.type}}
     <small>Activate and configure</small>
+    <small ng-if="match.model.deprecated" class="node-deprecated">DEPRECATED</small>
   </div>
   <div class="omnibox-action-icon"><i class="fa fa-lg fa-plug"></i></div>
 </div>
