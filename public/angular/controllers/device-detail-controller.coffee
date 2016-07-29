@@ -21,17 +21,16 @@ class DeviceDetailController
       @loading = false
 
   getThing: =>
-    @ThingService.getThing(uuid: @stateParams.uuid).then (device) =>
-      @device = device
+    @ThingService.getThing(uuid: @stateParams.uuid).then (@device) =>
       @device.options ?= {}
       @device.type ?= 'device:other'
       @device.logo = @logoUrl @device
-      @deviceCopy = _.cloneDeep device
+      @deviceCopy = _.cloneDeep @device
       @readOnlyName = @deviceIsFlow @device
       @hideDelete = @deviceIsFlow @device
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
-      @meshbluJsonSchemaResolverService.resolve(device).then (@resolvedDevice) =>
+      @meshbluJsonSchemaResolverService.resolve(@device).then (@resolvedDevice) =>
 
       return
 
@@ -70,6 +69,19 @@ class DeviceDetailController
 
   logoUrl: (device) =>
     new @DeviceLogo(device).get()
+
+  confirmSchemaChange: (callback) =>
+    confirmOptions = {
+      title: 'Are You Sure?'
+      content: 'This will overwrite your data with the schema defaults.'
+      ok: 'Confirm'
+      cancel: 'Cancel'
+    }
+    @mdDialog.show(@mdDialog.confirm(confirmOptions))
+      .then =>
+        callback(true)
+      .catch =>
+        callback(false)
 
   confirmDeleteDevice: =>
     confirmOptions = {

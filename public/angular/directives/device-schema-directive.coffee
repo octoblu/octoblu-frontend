@@ -7,4 +7,5 @@ angular.module('octobluApp')
     scope:
       device: '='
       model: '='
+      confirmSchemaChangeFn: '='
   }
