@@ -8,7 +8,7 @@ angular.module('octobluApp')
   .service('FlowNodeRenderer', function (FlowNodeDimensions, deviceService, IconCodes, OCTOBLU_ICON_URL, DeviceLogo) {
 
     var SOCKET_URL = OCTOBLU_ICON_URL + "socket.svg";
-
+    var CONFIGURE_LOGO_URL = OCTOBLU_ICON_URL + "experimental/configure-device.svg"
     function getNodeHeight(node) {
       return FlowNodeDimensions.minHeight;
     }
@@ -94,14 +94,18 @@ angular.module('octobluApp')
         nodeElement.append(
           snap.rect(0,0,FlowNodeDimensions.width,nodeHeight,6,6));
 
+        if(node.eventType === 'configure') {
+          nodeElement.append(snap.image(CONFIGURE_LOGO_URL,FlowNodeDimensions.width-20,-20,20,20)
+              .attr({'preserveAspectRatio':'xMidYMax'}))
+          renderIsOnline(node, nodeElement);
+        }
+
         var logo = logoUrl(node);
         if (logo) {
           nodeElement.append(
             snap.image(logo,0,0,FlowNodeDimensions.width,nodeHeight)
               .attr({'preserveAspectRatio':'xMidYMax'}));
         }
-
-        renderIsOnline(node, nodeElement);
 
         if(node.needsConfiguration){
           nodeElement.append(
