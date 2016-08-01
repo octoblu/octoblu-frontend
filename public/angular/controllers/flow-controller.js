@@ -179,6 +179,7 @@ angular.module('octobluApp')
     $scope.debugLines.unshift(debug);
     if ($scope.debugLines.length > 100) {
       $scope.debugLines.pop();
+      $scope.debugLines.truncatedAt = (new Date()).toString();
     }
   }
 

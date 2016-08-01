@@ -23,6 +23,10 @@
       	<small>{{ bug.date | date: 'shortDate'}} {{ bug.date | date: 'mediumTime'}} - {{ bug.message.name }}</small>
         <prism code="bug.message"></prism>
       </li>
+      <li ng-if="debug.truncatedAt">
+        {{date = debug[debug.length-1].date; ""}}
+        <small>Debug truncated after {{date | date: 'shortDate'}} {{date | date: 'mediumTime'}} </small>
+      </li>
     </ul>
   </div>
   <div ng-if="!debug.length && !viewSource" class="Sidebar-alert">
