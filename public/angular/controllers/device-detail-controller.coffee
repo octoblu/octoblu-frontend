@@ -1,5 +1,7 @@
+{_, angular} = window
+
 class DeviceDetailController
-  constructor: ($q, $mdDialog, $scope, $state, $stateParams, meshbluConfig, MESHBLU_HOST, MESHBLU_PORT, NotifyService, MeshbluJsonSchemaResolverService, ThingService, DeviceLogo) ->
+  constructor: ($q, $mdDialog, $scope, $state, $stateParams, meshbluConfig, MESHBLU_HOST, NotifyService, MeshbluJsonSchemaResolverService, ThingService, DeviceLogo) ->
     @mdDialog = $mdDialog
     @scope = $scope
     @state = $state
@@ -11,8 +13,7 @@ class DeviceDetailController
     @loading = true
     @q = $q
     @stateParams = $stateParams
-    @MESHBLU_HOST = MESHBLU_HOST
-    @MESHBLU_PORT = MESHBLU_PORT
+    @MESHBLU_DOMAIN = MESHBLU_HOST.replace /^\w+-?\w+\./, ''
     @meshbluConfig = meshbluConfig
     @meshbluJsonSchemaResolverService = new MeshbluJsonSchemaResolverService {meshbluConfig}
     @notifyDeviceUpdated = _.debounce @notifyDeviceUpdatedImmediate, 1000
@@ -111,10 +112,10 @@ class DeviceDetailController
   generateMeshbluJson: =>
     @ThingService.generateSessionToken(@device).then ({token}) =>
       meshbluJson =
-        server: @MESHBLU_HOST
-        port: @MESHBLU_PORT
         uuid: @device.uuid
         token: token
+        domain: @MESHBLU_DOMAIN
+        resolveSrv: true
       @meshbluJsonDataUri = "data:text/json;charset=utf-8,#{encodeURIComponent(JSON.stringify(meshbluJson, null, 2))}"
 
   saveDevice: =>
