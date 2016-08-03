@@ -9,7 +9,7 @@ class FlowDeviceController
     @Transmogrifier                   = OctobluDeviceSchemaTransmogrifier
 
     @scope.$watch 'flowNode.uuid', @refreshDevice
-    AuthService.getCurrentUser().then ({userDevice}) => @scope.beta = userDevice.octoblu?.beta
+    AuthService.getCurrentUser().then ({userDevice}) => @scope.beta = userDevice.octoblu?.beta?.configurationFlow
   getDevice: (uuid) =>
     @ThingService.getThing({uuid}).then @resolveSchemas
 
