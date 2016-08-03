@@ -191,7 +191,7 @@ angular.module('octobluApp')
 
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name', 'description']);
-    return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
+    return XXH.h32( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
   };
 
   self.needsPermissions = function(receiverUuid, uuids) {

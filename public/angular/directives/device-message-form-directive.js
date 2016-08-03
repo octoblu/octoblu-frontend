@@ -8,7 +8,7 @@ angular.module('octobluApp')
     scope: {
       model: '=',
       selectedSchemaKey: '=',
-      uuid:  '=',
+      device:  '=',
       flowId: '=',
       nodeId: '=',
       sendResponseTo: '='
