@@ -5,8 +5,4 @@ angular.module('octobluApp').directive 'deviceConfigureForm', ->
   replace: true
   scope:
     model: '='
-    selectedSchemaKey: '='
-    uuid: '='
-    flowId: '='
-    nodeId: '='
-    sendResponseTo: '='
+    device: '='

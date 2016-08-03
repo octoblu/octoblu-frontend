@@ -1,0 +1,21 @@
+<div>
+  <div ng-if="flowNode && device">
+    <!-- <md-switch ng-true-value="'configure'" ng-false-value="'message'" ng-model="flowNode.eventType">Use Configure Events</md-switch> -->
+      <device-message-form
+        ng-show="flowNode.eventType != 'configure'"
+        node-id="flowNode.id"
+        flow-id="flow.flowId"
+        device="device"
+        model="flowNode.staticMessage"
+        send-response-to="flowNode.sendResponseTo"
+        selected-schema-key="flowNode.selectedSchemaKey" ></device-message-form>
+
+      <device-configure-form
+        ng-show="flowNode.eventType == 'configure'"
+        device="device"
+        node-id="flowNode.id"
+        flow-id="flow.flowId"
+        model="flowNode.configuration"
+        selected-schema-key="flowNode.selectedSchemaKey" ></device-configure-form>
+  </div>
+</div>

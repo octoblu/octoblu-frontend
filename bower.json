@@ -65,7 +65,7 @@
     "jquery.sparkline": "^2.1.2",
     "angular-truncate-2": "^0.4.2",
     "prism": "^1.5.0",
-    "angular-meshblu-device-editor": "^3.8.2",
+    "angular-meshblu-device-editor": "^3.9.17",
     "angular-local-storage": "^0.2.7",
     "visionmedia-debug": "^2.2.0",
     "meshblu-json-schema-resolver": "^1.0.4",

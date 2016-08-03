@@ -3,25 +3,7 @@
   <input ng-model="flowNode.name">
 </md-input-container>
 
-<div>
-  <device-message-form
-    ng-if="flowNode.eventType != 'configure'"
-    uuid="flowNode.uuid"
-    node-id="flowNode.id"
-    flow-id="flow.flowId"
-    model="flowNode.staticMessage"
-    send-response-to="flowNode.sendResponseTo"
-    selected-schema-key="flowNode.selectedSchemaKey" ></device-message-form>
-
-  <device-configure-form
-    ng-if="flowNode.eventType == 'configure'"
-    uuid="flowNode.uuid"
-    node-id="flowNode.id"
-    flow-id="flow.flowId"
-    model="flowNode.configuration"
-    send-response-to="flowNode.sendResponseTo"
-    selected-schema-key="flowNode.selectedSchemaKey" ></device-configure-form>
-</div>
+<flow-device flow-node="flowNode"></flow-device>
 
 <br>
 <h4>Available Things</h4>
