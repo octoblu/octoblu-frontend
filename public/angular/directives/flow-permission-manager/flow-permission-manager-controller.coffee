@@ -8,7 +8,8 @@ class FlowPermissionManagerController
     @http         = $http
     @loading      = true
     @scope.hideSection = true
-    @scope.$watchCollection 'flow.nodes', @renderPermissionManager
+    @renderPermissionManager = _.throttle @renderPermissionManagerImmediately, 1000
+    @scope.$watch 'flow.nodes', @renderPermissionManager, true
     @scope.$watch 'flow.pendingPermissions', @updateHideSection
 
   approveAll: =>
@@ -18,7 +19,7 @@ class FlowPermissionManagerController
     return unless pendingPermissions?
     @scope.hideSection = !pendingPermissions
 
-  renderPermissionManager: (nodes) =>
+  renderPermissionManagerImmediately: (nodes) =>
     return unless nodes?
     permissionManager = @FlowPermissionService.createPermissionManager @scope.flow
     permissionManager.getDevicesNeedingPermissions()

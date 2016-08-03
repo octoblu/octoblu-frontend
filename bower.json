@@ -51,7 +51,7 @@
     "angular-chart.js": "~0.3.19",
     "angulartics": "~0.17.2",
     "MutationObservers": "Polymer/MutationObservers#~0.4.2",
-    "xxhash": "*",
+    "xxhash": "^0.2.1",
     "angular-material": "~1.0.3",
     "ng-autofocus": "~0.0.1",
     "angular-draganddrop": "~0.2.1",
