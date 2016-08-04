@@ -1,6 +1,6 @@
 <div>
   <div ng-if="flowNode && device">
-    <md-switch ng-if="beta" ng-true-value="'configure'" ng-false-value="'message'" ng-model="flowNode.eventType">Use Configure Events</md-switch>
+    <md-switch ng-if="beta.configurationFlow" ng-true-value="'configure'" ng-false-value="'message'" ng-model="flowNode.eventType">Use Configure Events</md-switch>
       <device-message-form
         ng-if="flowNode.eventType != 'configure'"
         node-id="flowNode.id"
