@@ -186,16 +186,20 @@ class PermissionManager
 
   _buildUpdate: (permissions) =>
     update = $addToSet: {}
-    update.$addToSet.sendWhitelist = @flowDevice.uuid if permissions.messageFromFlow?
-    update.$addToSet.receiveWhitelist = @flowDevice.uuid if permissions.subscribeBroadcastSent?
+    update.$addToSet.sendWhitelist = @flowDevice.uuid if permissions.messageFromFlow == false
+    update.$addToSet.receiveWhitelist = @flowDevice.uuid if permissions.subscribeBroadcastSent == false
+    update.$addToSet.configureWhitelist = @flowDevice.uuid if permissions.configureFromFlow == false
+    update.$addToSet.discoverWhitelist = @flowDevice.uuid if permissions.discoverFromFlow == false
 
     return if _.isEmpty update.$addToSet
     return update
 
   _buildUpdateV2: (permissions) =>
     update = $addToSet: {}
-    update.$addToSet['meshblu.whitelists.message.from']   = uuid: @flowDevice.uuid if permissions.messageFromFlow?
-    update.$addToSet['meshblu.whitelists.broadcast.sent'] = uuid: @flowDevice.uuid if permissions.subscribeBroadcastSent?
+    update.$addToSet['meshblu.whitelists.message.from']   = uuid: @flowDevice.uuid if permissions.messageFromFlow == false
+    update.$addToSet['meshblu.whitelists.broadcast.sent'] = uuid: @flowDevice.uuid if permissions.subscribeBroadcastSent == false
+    update.$addToSet['meshblu.whitelists.configure.update'] = uuid: @flowDevice.uuid if permissions.configureFromFlow == false
+    update.$addToSet['meshblu.whitelists.discover.view'] = uuid: @flowDevice.uuid if permissions.discoverFromFlow == false
 
     return if _.isEmpty update.$addToSet
     return update
