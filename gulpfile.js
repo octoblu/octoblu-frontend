@@ -48,7 +48,7 @@ gulp.task('bower:build', ['bower:concat'], function() {
     .pipe(rename(function (path) {
       path.dirname = path.dirname.replace('public/lib', '')
     }))
-    .pipe(gulp.dest('./public/lib-assets'))
+    .pipe(gulp.dest('./public/assets'))
 })
 
 var cssDependencies = [
@@ -76,10 +76,7 @@ gulp.task('coffee:clean', function(){
 })
 
 gulp.task('coffee:compile', ['coffee:clean'], function(){
-  var environment = process.env.NODE_ENV || 'development';
-  var configFile = "./public/config/" + environment + ".coffee"
-
-  return gulp.src(['./public/angular/**/*.coffee', configFile])
+  return gulp.src(['./public/angular/**/*.coffee'])
     .pipe(plumber())
     .pipe(coffee())
     .pipe(sourcemaps.write('.'))

@@ -1,47 +1,23 @@
 language: node_js
-sudo: false
-cache:
-  bundler: true
-  directories:
-  - node_modules
-  - public/lib
 node_js:
 - '5'
-after_success:
-- find public -name *.html | xargs sed -ir -e "s%=\"/assets%=\"//d2zw6j512x6z0x.cloudfront.net/$TRAVIS_BRANCH/$TRAVIS_COMMIT/assets%"
-- mkdir -p build/$TRAVIS_BRANCH && tar --exclude public/lib --exclude public/assets -zcvf build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz Dockerfile default.conf public
-- mkdir -p dpl_static && cp build/$TRAVIS_BRANCH/$TRAVIS_COMMIT-public.tar.gz dpl_static/public.tar.gz
-- mkdir -p dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT && cp -rf public/assets dpl_cdn/$TRAVIS_BRANCH/$TRAVIS_COMMIT
-- for file in `find dpl_cdn -type f`; do gzip --best $file && mv $file.gz $file; done
+branches:
+  only:
+  - /^v[0-9]/
 before_script:
-- if [ ${TRAVIS_BRANCH} == master ]; then export NODE_ENV=production; else export
-  NODE_ENV=staging; fi
 - npm install
 - node_modules/.bin/bower install
 - node_modules/.bin/gulp
 - export NODE_ENV=test
+after_success:
+- mkdir -p dpl_assets/$TRAVIS_TAG
+- cp -r public/assets/* dpl_assets/$TRAVIS_TAG 
 deploy:
 - provider: s3
   access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: &1
-      secure: "ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE="
-  bucket: app.octoblu.com
+  secret_access_key: 
+    secure: "ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE="
+  bucket: app-static.octoblu.com
   region: us-west-2
   skip_cleanup: true
-  detect_encoding: true
-  cache_control: max-age=31536000
-  local-dir: dpl_cdn
-- provider: s3
-  access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: *1
-  bucket: deploy-octoblu-static
-  region: us-west-2
-  skip_cleanup: true
-  local-dir: build
-- provider: s3
-  access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: *1
-  bucket: deploy-octoblu-static
-  region: us-west-2
-  skip_cleanup: true
-  local-dir: dpl_static
+  local-dir: dpl_assets 
