@@ -26,7 +26,7 @@ class PermissionManager
         ]
       .then ([devicesWithPermissionsFromNodes, registryDevices]) =>
         @flow.devicesWithPermissions = _.union _.compact(devicesWithPermissionsFromNodes), registryDevices, 'uuid'
-        @flow.devicesNeedingPermission = _.filter @flow.devicesWithPermissions, ({permissions}) =>
+        @flow.devicesNeedingPermission = _.filter @flow.devicesWithPermissions, ({devices, permissions}) =>
           _.includes _.values(permissions), false
         @flow.pendingPermissions = ! _.isEmpty @flow.devicesNeedingPermission
       .catch (error) =>
@@ -40,7 +40,6 @@ class PermissionManager
           type = node.type.replace /operation:/, ''
           type = type.replace /:.*/, ''
           data[type]?.sendWhitelist
-
         @q.all _.map sendWhitelistUuids, @_getRegistryDevice
 
   _getRegistryDevice: (uuid) =>
@@ -72,8 +71,8 @@ class PermissionManager
   _getDevicesFromNodes: =>
     deviceNodes = _.uniq @_getDeviceNodes(), 'uuid'
     promises = _.map deviceNodes, (node) =>
-      @ThingService.getThing(node).catch (error) =>
-        console.warn 'ignored: ', error
+      @ThingService.getThing(node)
+        .catch (error) => console.warn 'ignored: ', error
     return @q.all promises
 
   _getDeviceNodes: =>
@@ -84,13 +83,59 @@ class PermissionManager
     _.map devices, @_getDeviceWithPermissions
 
   _getDeviceWithPermissions: (device) =>
+    permissions = {}
+    eventTypesForDevice = _(@flow.nodes)
+      .filter(uuid: device.uuid)
+      .map (node) => node.eventType || 'message'
+      .uniq()
+      .value()
+
+    _.extend permissions, @_getMessagePermissions device if _.includes eventTypesForDevice, 'message'
+    _.extend permissions, @_getConfigurePermissions device if _.includes eventTypesForDevice, 'configure'
+
+    return { device, permissions }
+
+  _getMessagePermissions: (device) =>
     return {
-      device: device
-      permissions:
-        messageToFlow: @_deviceCanMessageFlow device
-        messageFromFlow: @_flowCanMessageDevice device
-        subscribeBroadcastSent: @_flowCanSubscribeBroadcastSentDevice device
+      messageToFlow: @_deviceCanMessageFlow device
+      messageFromFlow: @_flowCanMessageDevice device
+      subscribeBroadcastSent: @_flowCanSubscribeBroadcastSentDevice device
     }
+
+  _getConfigurePermissions: (device) =>
+    return {
+      configureFromFlow: @_flowCanConfigureDevice device
+      discoverFromFlow: @_flowCanDiscoverDevice device
+    }
+
+  _flowCanConfigureDevice: (device) =>
+    return true if @flowDevice.uuid == device.uuid
+    return @_flowCanConfigureDeviceV2 device if device.meshblu.version == "2.0.0"
+    return true if _.includes device.configureWhitelist, '*'
+    return true if _.includes device.configureWhitelist, @flowDevice.uuid
+
+    false
+
+  _flowCanConfigureDeviceV2: (device) =>
+    return true if _.some device.meshblu?.whitelists?.configure?.update, uuid: '*'
+    return true if _.some device.meshblu?.whitelists?.configure?.update, uuid: @flowDevice.uuid
+
+    false
+
+  _flowCanDiscoverDevice: (device) =>
+    return true if @flowDevice.uuid == device.uuid
+    return @_flowCanDiscoverDeviceV2 device if device.meshblu.version == "2.0.0"
+    return true if _.includes device.discoverWhitelist, '*'
+    return true if _.includes device.discoverWhitelist, @flowDevice.uuid
+
+    false
+
+  _flowCanDiscoverDeviceV2: (device) =>
+    return true if _.some device.meshblu?.whitelists?.discover?.view, uuid: '*'
+    return true if _.some device.meshblu?.whitelists?.discover?.view, uuid: @flowDevice.uuid
+
+    false
+
 
   _deviceCanMessageFlow: (device) =>
     return true if @flowDevice.uuid == device.uuid

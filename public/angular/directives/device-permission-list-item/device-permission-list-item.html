@@ -6,15 +6,25 @@
   <ul class="permission-list">
     <li ng-if="permissions.messageToFlow !== undefined">
       <i class="{{controller.getPermissionClass(permissions.messageToFlow)}}"></i>
-      Send to Flow
+      Send to flow
      </li>
     <li ng-if="permissions.messageFromFlow !== undefined">
        <i class="{{controller.getPermissionClass(permissions.messageFromFlow)}}"></i>
-       Messages from Flow
+       Messages from flow
      </li>
     <li ng-if="permissions.subscribeBroadcastSent !== undefined">
       <i class="{{controller.getPermissionClass(permissions.subscribeBroadcastSent)}}"></i>
-        Broadcast to Flow
+        Broadcast to flow
      </li>
+     <li ng-if="permissions.discoverFromFlow !== undefined">
+       <i class="{{controller.getPermissionClass(permissions.discoverFromFlow)}}"></i>
+         Viewable from flow
+      </li>
+
+     <li ng-if="permissions.configureFromFlow !== undefined">
+       <i class="{{controller.getPermissionClass(permissions.configureFromFlow)}}"></i>
+         Configurable by flow
+      </li>
+      
   </ul>
 </li>
