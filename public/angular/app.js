@@ -67,7 +67,7 @@ angular.module('octobluApp', [
     marked.setOptions({gfm: true, breaks: true});
   }])
   .config(['ngClipProvider', function(ngClipProvider) {
-    ngClipProvider.setPath('/assets/zeroclipboard/dist/ZeroClipboard.swf');
+    ngClipProvider.setPath('https://app-static.octoblu.com/lib-assets/zeroclipboard/dist/ZeroClipboard.swf');
   }])
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('beta-features');

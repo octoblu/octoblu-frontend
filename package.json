@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu",
-  "version": "7.4.1",
+  "version": "7.4.2-local",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -59,7 +59,8 @@
     "test": "node_modules/karma/bin/karma start --single-run",
     "start": "node_modules/.bin/gulp static",
     "protractor": "protractor test/protractor.conf.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "build": "gulp"
   },
   "engines": {
     "node": ">=0.6"

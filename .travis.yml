@@ -11,7 +11,9 @@ before_script:
 - export NODE_ENV=test
 after_success:
 - mkdir -p dpl_assets/$TRAVIS_TAG
+- mkdir -p dpl_assets/lib-assets
 - cp -r public/assets/* dpl_assets/$TRAVIS_TAG 
+- cp -r public/lib-assets/* dpl_assets/lib-assets 
 deploy:
 - provider: s3
   access_key_id: AWS_ACCESS_KEY_ID

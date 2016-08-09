@@ -48,7 +48,7 @@ gulp.task('bower:build', ['bower:concat'], function() {
     .pipe(rename(function (path) {
       path.dirname = path.dirname.replace('public/lib', '')
     }))
-    .pipe(gulp.dest('./public/assets'))
+    .pipe(gulp.dest('./public/lib-assets'))
 })
 
 var cssDependencies = [
@@ -76,7 +76,7 @@ gulp.task('coffee:clean', function(){
 })
 
 gulp.task('coffee:compile', ['coffee:clean'], function(){
-  return gulp.src(['./public/angular/**/*.coffee'])
+  return gulp.src(['./public/angular/**/*.coffee', './public/config/*.coffee'])
     .pipe(plumber())
     .pipe(coffee())
     .pipe(sourcemaps.write('.'))
@@ -98,8 +98,13 @@ gulp.task('webserver', ['static']);
 
 gulp.task('static', ['default'], function(){
 
-  var port = process.env.PORT || process.env.OCTOBLU_FRONTEND_PORT || 8080;
-  var apiBackendUri = process.env.OCTOBLU_BACKEND_URI || 'http://localhost:8081/api';
+  var port = process.env.PORT || 80;
+  var apiBackendUri = process.env.OCTOBLU_BACKEND_URI;
+  if (!apiBackendUri) {
+    console.error('missing OCTOBLU_BACKEND_URI')
+    process.exit(1)
+    return
+  }
 
   return gulp.src('./public').pipe(webserver({
     host: '0.0.0.0',
