@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu",
-  "version": "7.4.2",
+  "version": "7.4.1",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
