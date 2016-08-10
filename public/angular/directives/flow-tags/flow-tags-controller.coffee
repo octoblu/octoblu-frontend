@@ -1,6 +1,9 @@
+{_, angular} = window
+
 class FlowTagsController
-  constructor: ($scope, $state) ->
+  constructor: ($scope, $state, DeviceLogo) ->
     @scope      = $scope
+    @DeviceLogo = DeviceLogo
 
     @scope.tags = @getTags()
 
@@ -15,11 +18,8 @@ class FlowTagsController
       true unless node.category == 'operation'
 
     mappedTags = _.map filteredTags, (tag) =>
-      category = tag?.type?.split(':')[0]
-      type = tag?.type?.split(':')[1]
+      url: new @DeviceLogo(tag).get()
 
-      { category: category, type: type }
-
-    _.take _.uniq(mappedTags, 'type'), 6
+    _.take _.uniq(mappedTags, 'url'), 6
 
 angular.module('octobluApp').controller 'FlowTagsController', FlowTagsController

@@ -13,7 +13,6 @@ angular.module('octobluApp')
         'defaults',
         'formTemplatePath',
         'helpText',
-        'logo',
         'input',
         'output',
         'online',
