@@ -10,9 +10,10 @@ before_script:
 - node_modules/.bin/gulp
 - export NODE_ENV=test
 after_success:
-- mkdir -p dpl_assets/$TRAVIS_TAG
+- export PKG_VERSION="$(node -e 'console.log(require("package.json").version)')"
+- mkdir -p dpl_assets/$PKG_VERSION
 - mkdir -p dpl_assets/lib-assets
-- cp -r public/assets/* dpl_assets/$TRAVIS_TAG 
+- cp -r public/assets/* dpl_assets/$PKG_VERSION 
 - cp -r public/lib-assets/* dpl_assets/lib-assets 
 deploy:
 - provider: s3

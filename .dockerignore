@@ -3,6 +3,7 @@ test
 public/lib
 public/lib-assets
 public/assets/javascripts/dist/
+dpl_*
 
 .git/branches
 .git/hooks

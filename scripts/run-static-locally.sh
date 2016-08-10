@@ -28,7 +28,7 @@ build_docker() {
 
 run_it() {
   echo '* running it normally'
-  docker run --rm \
+  docker run --rm -it \
     --name app-octoblu-local \
     -e BACKEND_URI='http://app.octoblu.dev' \
     -p 9997:80 local/app-octoblu $@ 
@@ -47,9 +47,9 @@ fatal() {
 main() {
   local cmd="$1"
 
-  gulp_build || fatal 'unable to gulp'
-  build_upload || fatal 'build upload'
-  push_to_s3 || fatal 'unable to push to s3'
+  #gulp_build || fatal 'unable to gulp'
+  #build_upload || fatal 'build upload'
+  #push_to_s3 || fatal 'unable to push to s3'
   build_docker || fatal 'unable to build docker'
 
   if [ "$DEBUG_NGINX" == 'true' -o "$cmd" == "-d" -o "$cmd" == '--debug' ]; then

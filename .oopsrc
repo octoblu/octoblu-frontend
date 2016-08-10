@@ -1,6 +1,0 @@
-{
-  "elb-name": "app-octoblu-com",
-  "application-name": "app-octoblu-frontend",
-  "deployment-group": "master",
-  "s3-bucket": "octoblu-deploy"
-}
