@@ -1,6 +1,11 @@
 language: node_js
 node_js:
 - '5'
+cache:
+  bundler: true
+  directories:
+  - node_modules
+  - public/lib
 branches:
   only:
   - /^v[0-9]/
@@ -8,7 +13,7 @@ before_script:
 - npm install
 - node_modules/.bin/bower install
 - node_modules/.bin/gulp
-- export NODE_ENV=test
+- export NODE_ENV="test"
 after_success:
 - export PKG_VERSION="$(node -e 'console.log(require("package.json").version)')"
 - mkdir -p dpl_assets/$PKG_VERSION
@@ -24,3 +29,5 @@ deploy:
   region: us-west-2
   skip_cleanup: true
   local-dir: dpl_assets 
+  on:
+    tags: true
