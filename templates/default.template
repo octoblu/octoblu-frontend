@@ -19,6 +19,7 @@ server {
   }
 
   location / {
+    expires -1;
     access_log off;
 
     if ($http_x_forwarded_proto = 'http') {

@@ -12,13 +12,13 @@ RUN cat package.json \
 
 COPY public/ public/ 
 COPY scripts/ scripts/
-COPY default.conf org-default.conf 
+COPY templates/ templates/ 
 
-RUN ./scripts/rewrite-files.sh "https://s3-us-west-2.amazonaws.com/app-static.octoblu.com/v$(cat .PKG_VERSION)" '/public' '/usr/share/nginx/html'
+RUN ./scripts/rewrite-files.sh "https://app-static.octoblu.com/v$(cat .PKG_VERSION)" '/public' '/usr/share/nginx/html'
   
 RUN sed -e \
   "s/PKG_VERSION/$(cat .PKG_VERSION)/" \
-  org-default.conf > \
-  default.conf
+  /templates/default.template > \
+  /templates/default.conf
 
 CMD [ "./scripts/run-nginx.sh" ]
