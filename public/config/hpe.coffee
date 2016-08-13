@@ -1,4 +1,4 @@
-return unless location.href == 'app.hpe.octoblu.com'
+return unless location.hostname == 'app.hpe.octoblu.com'
 console.log 'using hpe configuration'
 
 angular.module('octobluApp')
