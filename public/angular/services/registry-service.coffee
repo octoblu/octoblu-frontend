@@ -1,11 +1,14 @@
 class RegistryService
-  constructor: ($window, $q, $http, AuthService, DeviceLogo, OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY) ->
+  constructor: ($window, $q, $http, AuthService, DeviceLogo, OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL, OCTOBLU_REGISTRY_ENDO_OFFICIAL, OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY, OCTOBLU_REGISTRY_ENDO_COMMUNITY) ->
     @window = $window
     @q = $q
     @http = $http
     @AuthService = AuthService
     @DeviceLogo = DeviceLogo
-    @OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY = OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY
+    @OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL = OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL
+    @OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY = OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY
+    @OCTOBLU_REGISTRY_ENDO_OFFICIAL = OCTOBLU_REGISTRY_ENDO_OFFICIAL
+    @OCTOBLU_REGISTRY_ENDO_COMMUNITY = OCTOBLU_REGISTRY_ENDO_COMMUNITY
     @getRegistriesQueue = async.queue @_getRegistriesAndCache
 
   getRegistries: =>
@@ -76,8 +79,18 @@ class RegistryService
       .then (user) =>
         registries = user?.octoblu?.registries ? {}
         registries.connectors ?= {}
-        registries.connectors['octoblu-official'] = {
-          uri: @OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY,
+        registries.endos ?= {}
+        registries.connectors['octoblu-official'] ?= {
+          uri: @OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL,
+        }
+        registries.connectors['octoblu-community'] ?= {
+          uri: @OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY,
+        }
+        registries.endos['octoblu-official'] ?= {
+          uri: @OCTOBLU_REGISTRY_ENDO_OFFICIAL,
+        }
+        registries.endos['octoblu-community'] ?= {
+          uri: @OCTOBLU_REGISTRY_ENDO_COMMUNITY,
         }
         callback null, registries
       .catch (error) =>

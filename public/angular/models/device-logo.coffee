@@ -13,6 +13,7 @@ class DeviceLogo
 
   _getLogoFromDevice: (device) =>
     return @getIconUrl 'other' unless device?
+    return device.iconUri if device.iconUri?
     return device.logo if device.logo?
     return device.nodeType?.logo if device?.nodeType?.logo?
     return @getIconUrl 'other' unless device.type?

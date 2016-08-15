@@ -38,4 +38,7 @@ angular.module('octobluApp')
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'SENTRY_DSN', 'https://0a67cc3d923040a886bbf04ba3456734@app.getsentry.com/87643'
-  .constant 'OCTOBLU_CONNECTOR_OFFICIAL_REGISTRY', 'https://raw.githubusercontent.com/octoblu/meshblu-connector-official-registry/master/registry.json'
+  .constant 'OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL', 'https://raw.githubusercontent.com/octoblu/registry-meshblu-connector-official/master/registry.json'
+  .constant 'OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY', 'https://raw.githubusercontent.com/octoblu/registry-meshblu-connector-community/master/registry.json'
+  .constant 'OCTOBLU_REGISTRY_ENDO_OFFICIAL', 'https://raw.githubusercontent.com/octoblu/registry-endo-official/master/registry.json'
+  .constant 'OCTOBLU_REGISTRY_ENDO_COMMUNITY', 'https://raw.githubusercontent.com/octoblu/registry-endo-community/master/registry.json'
