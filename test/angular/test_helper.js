@@ -19,5 +19,6 @@ beforeEach(function () {
     $provide.constant('MESHBLU_HOST', 'localhost');
     $provide.constant('OCTOBLU_ICON_URL', '');
     $provide.constant('FLOW_LOGGER_UUID', 'asdf');
+    $provide.constant('CLUSTER_DOMAIN', 'octoblu.dev');
   });
 });
