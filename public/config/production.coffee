@@ -14,6 +14,7 @@ angular.module('octobluApp')
     INTERVAL: '765bd3a4-546d-45e6-a62f-1157281083f0',
     CREDENTIALS: 'c339f6ce-fe26-4788-beee-c97605f50403'
   }
+  .constant 'CLUSTER_DOMAIN', 'octoblu.com'
   .constant 'BLUPRINTER_URL', 'https://bluprinter.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.octoblu.com"

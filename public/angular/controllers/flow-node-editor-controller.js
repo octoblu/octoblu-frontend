@@ -1,7 +1,7 @@
 angular.module('octobluApp')
-.controller('FlowNodeEditorController', function ($timeout, $scope, FlowService, FlowEditorService, FlowNodeTypeService) {
+.controller('FlowNodeEditorController', function ($timeout, $scope, FlowService, FlowEditorService, FlowNodeTypeService, CLUSTER_DOMAIN) {
   'use strict';
-
+  $scope.clusterDomain = CLUSTER_DOMAIN
   var setFlowNodeType = function() {
     $scope.showFlowNodeEditor = false;
     $scope.showHelp = false;

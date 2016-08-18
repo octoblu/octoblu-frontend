@@ -18,6 +18,7 @@ angular.module('octobluApp')
   .constant 'BLUPRINTER_URL', 'https://bluprinter.hpe.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.hpe.octoblu.com'
   .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.hpe.octoblu.com"
+  .constant 'CLUSTER_DOMAIN', 'hpe.octoblu.com'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'

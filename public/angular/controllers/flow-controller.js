@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, $debug, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, RegistryService) {
+.controller('FlowController', function ( $q, $timeout, $interval, $log, $state, $rootScope, $stateParams, $scope, $window, $cookies, $debug, AuthService, BatchMessageService, FlowEditorService, FlowService, FlowNodeTypeService, NodeTypeService, reservedProperties, BluprintService, NotifyService, FlowNodeDimensions, FlowModel, ThingService, CoordinatesService, UUIDService, NodeRegistryService, SERVICE_UUIDS, FirehoseService, MeshbluHttpService, RegistryService, CLUSTER_DOMAIN) {
   var originalNode;
   var undoBuffer = [];
   var redoBuffer = [];
@@ -14,6 +14,7 @@ angular.module('octobluApp')
   $scope.deployProgress = 0;
   $scope.documentHidden = false;
   $scope.loading = true;
+  $scope.clusterDomain = CLUSTER_DOMAIN;
 
   $scope.flowSelectorHeight = $($window).height() - 100;
   $($window).resize(function(){
