@@ -16,7 +16,7 @@ angular.module('octobluApp')
     CREDENTIALS: '7f5fa746-c537-4d7c-aabc-25880592b2d5'
   }
   .constant 'BLUPRINTER_URL', 'https://bluprinter.hpe.octoblu.com'
-  .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.hpe.octoblu.com'
+  .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.hpe.octoblu.com"
   .constant 'CLUSTER_DOMAIN', 'hpe.octoblu.com'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
@@ -31,11 +31,11 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PROTOCOL', 'https'
   .constant 'OAUTH_PROVIDER', 'https://oauth.hpe.octoblu.com'
   .constant 'OCTOBLU_API_URL', 'https://app.hpe.octoblu.com'
-  .constant 'OCTOBLU_ICON_URL', 'https://icons.hpe.octoblu.com/'
+  .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
   .constant "CWC_APP_STORE_URL", "https://cwc-store.hpe.octoblu.com"
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.hpe.octoblu.com"
-  .constant "CWC_LOGIN_URL", "https://workspace.hpe.tryworkspaces.com/login"
+  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
   .constant "CWC_PRODUCTION_URL", "https://workspace.hpe.cloud.com"
   .constant "CWC_STAGING_URL", "https://workspace.hpe.cloudburrito.com"
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.hpe.octoblu.com'
