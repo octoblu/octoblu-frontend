@@ -32,7 +32,7 @@ angular.module('octobluApp')
   .constant 'OAUTH_PROVIDER', 'https://oauth.hpe.octoblu.com'
   .constant 'OCTOBLU_API_URL', 'https://app.hpe.octoblu.com'
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
-  .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
+  .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/hpe/registry.json'
   .constant "CWC_APP_STORE_URL", "https://cwc-store.hpe.octoblu.com"
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.hpe.octoblu.com"
   .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
