@@ -23,6 +23,8 @@ describe 'OAuthProviderController', ->
         constructor: (@q) ->
           @device = (device, callback) ->
             callback null, {}
+          @searchTokens = (options, callback) ->
+            callback null, []
 
       @MeshbluHttpService = new FakeMeshbluHttpService @q
 

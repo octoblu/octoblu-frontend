@@ -26,15 +26,22 @@ class OAuthProviderController
           $scope.userDevice = userDevice
           resolve userDevice
     .then (userDevice) =>
-      return @authorize() if _.some userDevice?.meshblu?.tokens, client_id: @oauthUUID
-      $scope.loading = false
+      @q (resolve, reject) =>
+        query = 'metadata.client_id': @oauthUUID
+        MeshbluHttpService.searchTokens {query}, (error, tokens) =>
+          return reject error if error?
+          console.log {tokens}
+
+          return @authorize() unless _.isEmpty tokens
+          $scope.loading = false
 
     $scope.authorize = @authorize
     $scope.cancel = @cancel
 
   authorize: =>
     device   = uuid: @cookies.meshblu_auth_uuid
-    metadata = tag: "oauth-exchange-#{@oauthUUID}"
+    metadata =
+      tag: "oauth-exchange-#{@oauthUUID}"
 
     @ThingService.generateSessionToken(device, metadata).then (session) =>
       {token,uuid} = session
