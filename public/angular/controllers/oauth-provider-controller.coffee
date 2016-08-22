@@ -30,10 +30,10 @@ class OAuthProviderController
         query = 'metadata.client_id': @oauthUUID
         MeshbluHttpService.searchTokens {query}, (error, tokens) =>
           return reject error if error?
-          console.log {tokens}
 
           return @authorize() unless _.isEmpty tokens
           $scope.loading = false
+          resolve()
 
     $scope.authorize = @authorize
     $scope.cancel = @cancel
