@@ -21,12 +21,6 @@ class OAuthProviderController
         $scope.currentUser = user
     .then =>
       @q (resolve, reject) =>
-        MeshbluHttpService.device @cookies.meshblu_auth_uuid, (error, userDevice) =>
-          return reject error if error?
-          $scope.userDevice = userDevice
-          resolve userDevice
-    .then (userDevice) =>
-      @q (resolve, reject) =>
         query = 'metadata.client_id': @oauthUUID
         MeshbluHttpService.searchTokens {query}, (error, tokens) =>
           return reject error if error?
