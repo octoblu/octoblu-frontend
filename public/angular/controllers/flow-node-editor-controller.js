@@ -23,6 +23,7 @@ angular.module('octobluApp')
 
     FlowNodeTypeService.getOtherMatchingFlowNodeTypes($scope.flowNode.type).then(function(otherMatchingFlowNodeTypes){
       $scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes;
+      $scope.showAvailableThings = _.size(otherMatchingFlowNodeTypes) > 1;
     });
   };
 

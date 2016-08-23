@@ -10,4 +10,5 @@ angular.module('octobluApp')
       needsSetup: '='
       isThing: '='
       isFlow: '='
+      beta: '='
   }

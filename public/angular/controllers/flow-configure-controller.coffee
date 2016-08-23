@@ -198,6 +198,6 @@ class FlowConfigureController
     @FlowNodeTypeService.getOtherMatchingFlowNodeTypes(@scope.flowNode.type).
       then (otherMatchingFlowNodeTypes)=>
         @scope.otherMatchingFlowNodeTypes = otherMatchingFlowNodeTypes
-
+        @scope.showAvailableThings = _.size(otherMatchingFlowNodeTypes) > 1
 
 angular.module('octobluApp').controller 'FlowConfigureController', FlowConfigureController

@@ -9,4 +9,5 @@ angular.module('octobluApp')
       flow: '='
       expandedState: '='
       debug: '='
+      beta: '='
   }

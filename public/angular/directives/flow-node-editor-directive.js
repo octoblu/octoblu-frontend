@@ -7,7 +7,8 @@ angular.module('octobluApp')
     replace: true,
     scope: {
       flowNode: '=',
-      flow: '='
+      flow: '=',
+      beta: '='
     }
   }
 });

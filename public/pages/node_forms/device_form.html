@@ -5,10 +5,11 @@
 
 <flow-device flow-node="flowNode"></flow-device>
 
-<br>
-<h4>Available Things</h4>
+<div ng-show="showAvailableThings">
+  <h4>Available Things</h4>
+  <device-picker model="flowNode" devices="otherMatchingFlowNodeTypes"></device-picker>
+</div>
 
-<device-picker model="flowNode" devices="otherMatchingFlowNodeTypes">
-</device-picker>
-
+<h4>Options</h4>
+<md-switch ng-if="beta.configurationFlow" ng-true-value="'configure'" ng-false-value="'message'" ng-model="flowNode.eventType">Use Configure Events</md-switch>
 <md-switch ng-true-value="false" ng-false-value="true" ng-model="flowNode.useStaticMessage">Use Incoming Message</md-switch>
