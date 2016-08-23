@@ -21,12 +21,6 @@ angular.module('octobluApp')
     $scope.flowSelectorHeight = $($window).height() - 100;
   });
 
-  AuthService.getCurrentUser().then(function(result){
-    if (result && result.userDevice && result.userDevice && result.userDevice.beta) {
-      $scope.beta = result.userDevice.octoblu.beta || {};
-    }
-  });
-
   FirehoseService.connect({uuid: $cookies.meshblu_auth_uuid}, function(error){
     if (error) {
       NotifyService.notify('Unable to connect to the Firehose');
@@ -64,6 +58,14 @@ angular.module('octobluApp')
   var deleteCookie = function() {
     delete $cookies.currentFlowId;
   };
+
+  var getBeta = function() {
+    return AuthService.getCurrentUser().then(function(result){
+      if (result && result.userDevice && result.userDevice.octoblu && result.userDevice.octoblu.beta) {
+        $scope.beta = result.userDevice.octoblu.beta || {};
+      }
+    });
+  }
 
   var checkDeviceStatus = function() {
     var query = {owner: $cookies.meshblu_auth_uuid, type: 'octoblu:flow'};
@@ -128,6 +130,7 @@ angular.module('octobluApp')
     }
 
     $q.all([
+      getBeta(),
       refreshFlows(),
       checkDeviceStatus(),
       mergeFlowNodeTypes(activeFlow)
