@@ -19,20 +19,19 @@ angular.module('octobluApp')
         var snap = Snap(element.find(".flow-editor-workspace")[0]);
         var flowRenderer = new FlowRenderer(snap, {readonly: ($scope.readonly||$scope.displayOnly)});
         var pulseNodeById = function(nodeId) {
-          var nodeToPulse = Snap.select('#node-' + nodeId + ' > image');
+          var nodesToPulse = Snap.selectAll('#node-' + nodeId + ' > image');
 
-          if(!nodeToPulse) {
-            return;
-          }
-
-          nodeToPulse.animate({
-            width :FlowNodeDimensions.width * 1.2,
-            height:FlowNodeDimensions.minHeight * 1.2
-          }, 250, mina.easeout, function() {
+          _.each(nodesToPulse, function(nodeToPulse) {
+            var bbox = nodeToPulse.getBBox();
             nodeToPulse.animate({
-              width :FlowNodeDimensions.width,
-              height:FlowNodeDimensions.minHeight
-            }, 250, mina.easein);
+              width : bbox.width * 1.2,
+              height: bbox.height * 1.2
+            }, 250, mina.easeout, function() {
+              nodeToPulse.animate({
+                width : bbox.width,
+                height: bbox.height
+              }, 250, mina.easein);
+            });
           });
         };
 
