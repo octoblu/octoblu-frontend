@@ -23,6 +23,9 @@ angular.module('octobluApp')
 
           _.each(nodesToPulse, function(nodeToPulse) {
             var bbox = nodeToPulse.getBBox();
+            if (!_.isEmpty(nodeToPulse.inAnim())) {
+              return;
+            }
             nodeToPulse.animate({
               width : bbox.width * 1.2,
               height: bbox.height * 1.2
