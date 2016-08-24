@@ -1,0 +1,9 @@
+<md-input-container>
+  <label>Name</label>
+  <input ng-model="flowNode.name">
+</md-input-container>
+
+<div class="form-group">
+  <label for="template">JSON Template</label>
+  <div id="template" ui-ace="{theme: 'chrome', mode: 'json'}" class="code-editor" ng-model="flowNode.templateJson"></div>
+</div>
