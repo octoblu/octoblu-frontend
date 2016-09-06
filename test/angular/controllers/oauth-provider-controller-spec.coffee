@@ -93,9 +93,9 @@ describe 'OAuthProviderController', ->
 
   describe '->authorize', ->
     describe 'when called with session-token', ->
-      beforeEach ->
+      beforeEach (done) ->
         @ThingService = generateSessionToken: sinon.stub().returns @q.when(token: 'session-token', uuid: 'junior-mints')
-        @window = location: null
+        @window = location: href: null
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: get: => @q.when()
@@ -106,19 +106,20 @@ describe 'OAuthProviderController', ->
           AuthService: @AuthService
           MeshbluHttpService: @MeshbluHttpService
 
-        @sut.authorize()
+        @sut.authorize().then =>
+          _.delay done
         @rootScope.$digest()
 
       it 'should call ThingService.generateSessionToken', ->
         expect(@ThingService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
-        expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=snickers&redirect_uri=foo&token=session-token&uuid=junior-mints&state=123'
+        expect(@window.location.href).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=snickers&redirect_uri=foo&token=session-token&uuid=junior-mints&state=123'
 
     describe 'when called with token-session', ->
-      beforeEach ->
+      beforeEach (done) ->
         @ThingService = generateSessionToken: sinon.stub().returns @q.when(token: 'token-session', uuid: 'mnms')
-        @window = location: null
+        @window = location: href: null
 
         @sut = @controller 'OAuthProviderController',
           MeshbluDeviceService: get: => @q.when()
@@ -129,11 +130,12 @@ describe 'OAuthProviderController', ->
           AuthService: @AuthService
           MeshbluHttpService: @MeshbluHttpService
 
-        @sut.authorize()
+        @sut.authorize().then =>
+          _.delay done
         @rootScope.$digest()
 
       it 'should call ThingService.generateSessionToken', ->
         expect(@ThingService.generateSessionToken).to.have.been.called
 
       it 'should redirect the user', ->
-        expect(@window.location).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=mars&redirect_uri=foo&token=token-session&uuid=mnms&state=123'
+        expect(@window.location.href).to.equal 'https://smurfs.bikes/bar?response_type=code&client_id=mars&redirect_uri=foo&token=token-session&uuid=mnms&state=123'
