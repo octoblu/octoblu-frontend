@@ -2,19 +2,5 @@
   <label for="name">Name</label>
   <input  id="name" type="text" ng-model="flowNode.name">
 </md-input-container>
-<md-input-container>
-  <label for="url">Callback Url</label>
-  <input  id="url" ng-model="flowNode.url" placeholder="{{msg.callbackUrl}}" required>
-</md-input-container>
-<md-input-container ng-show='!flowNode.enable'>
-  <label for="responseText">Response Text</label>
-  <input  id="responseText" ng-model="flowNode.responseText" placeholder="Success!" >
-</md-input-container>
-<md-input-container ng-show='flowNode.enable'>
-  <label for="response">Response Object</label>
-  <input  id="response" ng-model="flowNode.response" placeholder="Reference an object here">
-</md-input-container>
-<md-switch ng-model="flowNode.enable">
-    <div ng-show='!flowNode.enable'>Send Response Object</div>
-    <div ng-show='flowNode.enable'>Send Response Text</div>
-</md-switch>
+
+<echo-out url="flowNode.url" response="flowNode.response" text="flowNode.responseText" enable="flowNode.enableResponse"/>

@@ -1,0 +1,18 @@
+<div class="echo-out">
+  <md-input-container>
+    <label for="url">Callback Url</label>
+    <input  id="url" ng-model="url" placeholder="{{msg.callbackUrl}}" required>
+  </md-input-container>
+  <md-input-container ng-show='!enable'>
+    <label for="text">Response Text</label>
+    <input  id="text" ng-model="text" placeholder="Success!" >
+  </md-input-container>
+  <md-input-container ng-show='enable'>
+    <label for="response">Response Object</label>
+    <input  id="response" ng-model="response" placeholder="Reference an object here">
+  </md-input-container>
+  <md-switch ng-click="clearResponse()" ng-model="enable">
+      <div ng-show='!enable'>Send Response Object</div>
+      <div ng-show='enable'>Send Response Text</div>
+  </md-switch>
+</div>
