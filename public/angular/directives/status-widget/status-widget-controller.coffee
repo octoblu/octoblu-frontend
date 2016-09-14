@@ -1,10 +1,12 @@
 class StatusWidgetController
-  constructor: ->
+  constructor: (STATUS_PAGE_URL, STATUS_PAGE_ID) ->
     setInterval @update, 5*60*1000
+    @page = STATUS_PAGE_ID
+    @statusPageUrl = STATUS_PAGE_URL
     @update()
 
   update: =>
-    sp = new StatusPage.page page: 'c3jcws6d2z45'
+    sp = new StatusPage.page { @page }
 
     sp.incidents
       filter : 'unresolved'
