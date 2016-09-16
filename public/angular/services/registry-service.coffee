@@ -1,3 +1,5 @@
+{_, async, angular} = window
+
 class RegistryService
   constructor: ($window, $q, $http, AuthService, DeviceLogo, OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL, OCTOBLU_REGISTRY_ENDO_OFFICIAL, OCTOBLU_REGISTRY_CONNECTOR_COMMUNITY, OCTOBLU_REGISTRY_ENDO_COMMUNITY) ->
     @window = $window
@@ -77,7 +79,7 @@ class RegistryService
   _getRegistriesFromUser: (callback) =>
     @AuthService.getCurrentUser()
       .then (user) =>
-        registries = user?.octoblu?.registries ? {}
+        registries = _.get user, 'userDevice.octoblu.registries', {}
         registries.connectors ?= {}
         registries.endos ?= {}
         registries.connectors['octoblu-official'] ?= {
