@@ -15,6 +15,7 @@ before_script:
 - node_modules/.bin/gulp
 - export NODE_ENV="test"
 after_success:
+- bash <(curl -s https://codecov.io/bash) -t b02ca742-f105-4b2d-b052-29a5fb5c709d
 - export PKG_VERSION="$(node -e 'console.log(require("./package.json").version)')"
 - if [ -z "$PKG_VERSION" ]; then echo 'Missing PKG_VERSION env' && exit 1; fi
 - mkdir -p dpl_assets/v$PKG_VERSION
