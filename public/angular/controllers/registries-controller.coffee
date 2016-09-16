@@ -1,5 +1,7 @@
+{angular} = window
+
 class RegistriesController
-  constructor:  ($scope, NotifyService, RegistryService, NodeTypeService) ->
+  constructor:  ($scope, NotifyService, RegistryService) ->
     @scope = $scope
     @NotifyService = NotifyService
     @RegistryService = RegistryService
