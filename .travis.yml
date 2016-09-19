@@ -30,3 +30,6 @@ deploy:
     tags: true
 after_success:
 - bash <(curl -s https://codecov.io/bash) -t b02ca742-f105-4b2d-b052-29a5fb5c709d
+branches:
+  only:
+  - "/^v[0-9]/"
