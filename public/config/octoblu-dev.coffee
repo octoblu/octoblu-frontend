@@ -24,6 +24,7 @@ angular.module('octobluApp')
   .constant 'CWC_AUTHENTICATOR_URL', "#{protocol}://cwc-authenticator-proxy.octoblu.dev"
   .constant 'CWC_LOGIN_URL', 'https://workspace.tryworkspaces.com/login'
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
+  .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.dev'
   .constant 'FLOW_LOGGER_UUID', 'none'
   .constant 'GATEBLU_LOGGER_UUID', 'none'
   .constant 'INTERCOM_APPID', 'thuyk9s6'

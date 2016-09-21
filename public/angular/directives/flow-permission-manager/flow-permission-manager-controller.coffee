@@ -5,7 +5,6 @@ class FlowPermissionManagerController
     @ThingService = ThingService
     @FlowPermissionService = FlowPermissionService
     @REGISTRY_URL = REGISTRY_URL
-    @http         = $http
     @loading      = true
     @scope.hideSection = true
     @renderPermissionManager = _.throttle @renderPermissionManagerImmediately, 1000

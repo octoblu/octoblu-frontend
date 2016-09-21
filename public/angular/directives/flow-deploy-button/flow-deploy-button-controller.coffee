@@ -1,7 +1,9 @@
 class FlowDeployButtonController
-  constructor: ($scope, FlowService, FlowPermissionService, ThingService, NotifyService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
+  constructor: ($scope, $http, AuthService, IotAppService, FlowService, FlowPermissionService, ThingService, NotifyService, MESHBLU_HOST, MESHBLU_PORT, $cookies) ->
     @scope = $scope
+    @http = $http
     @FlowService = FlowService
+    @IotAppService = IotAppService
     @ThingService = ThingService
     @cookies = $cookies
     @MESHBLU_HOST = MESHBLU_HOST
@@ -11,6 +13,8 @@ class FlowDeployButtonController
 
     @start = _.throttle @immediateStart, 1000, leading: true, trailing: false
     @stop = _.throttle @immediateStop, 1000, leading: true, trailing: false
+
+    AuthService.getCurrentUser().then ({userDevice}) => @scope.beta = userDevice.octoblu.beta
 
   immediateStart : (e) =>
     e?.preventDefault()
@@ -25,6 +29,9 @@ class FlowDeployButtonController
       .then permissionManager.updatePendingPermissions
       .catch => return
       .finally @deployFlow
+
+  publishBluprint: =>
+    @IotAppService.publish {flowId: @scope.device.uuid, appId: @scope.device.bluprint}
 
   deployFlow: =>
     lastDeployedHash = _.clone @scope.flow.hash
