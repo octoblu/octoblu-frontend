@@ -11,7 +11,7 @@
 
 
   <div ng-hide="collapsed" class="device-collection__items device-collection__items--grid">
-    <a ng-repeat="device in filteredDevices = (devices | orderBy: 'name')"
+    <a ng-repeat="device in devices | orderBy: 'name'"
       href="{{controller.nextStepUrl(device)}}"
       class="device-collection__item">
 
