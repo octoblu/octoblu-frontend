@@ -30,12 +30,14 @@ class ConfigureController
       , (error) =>
         @NotifyService.notifyError(error)
 
-    @scope.$watch 'filterByName', (filterByName) =>
-      filterByName = filterByName || '';
-      filteredDevices = _.filter connectedThings, (device) =>
-        name = (device.name || device.type).toLowerCase()
-        filterByName = filterByName.toLowerCase()
-        return _.contains name, filterByName
+    @scope.$watch 'filterByName', (filter='') =>
+      filter = filter.toLowerCase()
+      filteredDevices = _.filter connectedThings, ({name='', type='', uuid=''}) =>
+        return true if _.contains name.toLowerCase(), filter
+        return true if _.contains type.toLowerCase(), filter
+        return true if _.contains uuid.toLowerCase(), filter
+        return false
+
       @updateThingsByCategory(filteredDevices)
 
   checkRedirectToFlowConfigure: () =>
