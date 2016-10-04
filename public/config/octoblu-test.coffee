@@ -5,12 +5,12 @@ port = '443' if protocol == 'https'
 console.log 'using octoblu-test env'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
-    EMAIL_PASSWORD: "#{protocol}://email-password-site.octoblu.test"
-    GOOGLE: "#{protocol}://email-password-site.octoblu.test"
-    FACEBOOK: "#{protocol}://email-password-site.octoblu.test"
-    TWITTER: "#{protocol}://email-password-site.octoblu.test"
-    CITRIX: "#{protocol}://email-password-site.octoblu.test"
-    GITHUB: "#{protocol}://email-password-site.octoblu.test"
+    EMAIL_PASSWORD: "#{protocol}://login.octoblu.test"
+    GOOGLE: "#{protocol}://login.octoblu.test"
+    FACEBOOK: "#{protocol}://login.octoblu.test"
+    TWITTER: "#{protocol}://login.octoblu.test"
+    CITRIX: "#{protocol}://login.octoblu.test"
+    GITHUB: "#{protocol}://login.octoblu.test"
   }
   .constant 'SERVICE_UUIDS', {
     TRIGGER: 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64',
