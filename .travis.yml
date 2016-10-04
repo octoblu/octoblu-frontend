@@ -15,17 +15,17 @@ before_script:
 - if [ -z "$PKG_VERSION" ]; then echo 'Missing PKG_VERSION env' && exit 1; fi
 - mkdir -p dpl_assets/v$PKG_VERSION
 - mkdir -p dpl_assets/lib-assets
-- cp -r public/assets/* dpl_assets/v$PKG_VERSION 
-- cp -r public/lib-assets/* dpl_assets/lib-assets 
+- cp -r public/assets/* dpl_assets/v$PKG_VERSION
+- cp -r public/lib-assets/* dpl_assets/lib-assets
 deploy:
 - provider: s3
   access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: 
+  secret_access_key:
     secure: "ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE="
   bucket: app-static.octoblu.com
   region: us-west-2
   skip_cleanup: true
-  local-dir: dpl_assets 
+  local-dir: dpl_assets
   on:
     tags: true
 after_success:
@@ -33,3 +33,5 @@ after_success:
 branches:
   only:
   - "/^v[0-9]/"
+notifications:
+  webhooks: 'https://deploy-state.octoblu.com/deployments/travis-ci/pro'
