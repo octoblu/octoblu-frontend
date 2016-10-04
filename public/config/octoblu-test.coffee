@@ -31,7 +31,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_FIREHOSE_HOSTNAME', "meshblu-firehose-socket-io.octoblu.test"
   .constant 'MESHBLU_FIREHOSE_PORT', port
   .constant 'MESHBLU_FIREHOSE_PROTOCOL', protocol
-  .constant 'MESHBLU_HOST', "meshblu.octoblu.test"
+  .constant 'MESHBLU_HOST', "meshblu-http.octoblu.test"
   .constant 'MESHBLU_PORT', port
   .constant 'MESHBLU_PROTOCOL', protocol
   .constant 'OAUTH_PROVIDER', "#{protocol}://oauth.octoblu.test"
