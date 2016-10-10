@@ -1,8 +1,6 @@
 FROM nginx
 MAINTAINER Octoblu <docker@octoblu.com>
 
-HEALTHCHECK CMD curl --fail http://localhost:80/healthcheck || exit 1
-
 EXPOSE 80
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
