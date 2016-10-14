@@ -39,4 +39,5 @@ branches:
   only:
     - '/^v[0-9]/'
 notifications:
-  webhooks: 'https://deploy-state.octoblu.com/deployments/travis-ci/pro'
+  webhooks:
+    - 'https://beekeeper.octoblu.com/webhooks/travis:ci'

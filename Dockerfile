@@ -3,6 +3,8 @@ MAINTAINER Octoblu <docker@octoblu.com>
 
 EXPOSE 80
 
+HEALTHCHECK CMD curl --fail http://localhost:80/healthcheck || exit 1
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
       curl \
