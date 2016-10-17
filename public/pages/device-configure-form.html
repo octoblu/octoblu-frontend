@@ -1,7 +1,7 @@
 <div>
   <h4> {{device.schemas.configure[device.schemas.selected.configure].title}}</h4>
   <meshblu-schema-form
-    selected-schema-key="device.schemas.selected.configure"
+    selected-schema-key="device.schemas.selected.configure || 'Default'"
     schemas="device.schemas.configure"
     form-schemas="device.schemas.form.configure"
     clear-on-change="true"
