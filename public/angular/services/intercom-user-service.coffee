@@ -14,7 +14,7 @@ class IntercomUserService
       return resolve() if @userDevice?
       @MeshbluHttpService.device @uuid, (error, userDevice) =>
         return reject(error) if error?
-        return reject new Error('Missing Profile') unless userDevice.octoblu?
+        return reject new Error('Missing Profile') unless userDevice?.octoblu?
         @userDevice = userDevice
         resolve()
 

@@ -18,7 +18,7 @@ class RavenService
       return resolve @userDevice if @userDevice?
       @MeshbluHttpService.device @uuid, (error, userDevice) =>
         return reject(error) if error?
-        return reject new Error('Missing Profile') unless userDevice.octoblu?
+        return reject new Error('Missing Profile') unless userDevice?.octoblu?
         resolve userDevice
 
   update: =>
