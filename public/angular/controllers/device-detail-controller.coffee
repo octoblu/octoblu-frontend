@@ -121,7 +121,7 @@ class DeviceDetailController
   saveDevice: =>
     return unless @device?
     return if _.isEqual @deviceCopy, @device
-    @ThingService.updateDevice _.omit(@device, 'meshblu', 'schemas')
+    @ThingService.updateDevice _.omit(@device, 'meshblu', 'schemas', 'online')
     .then =>
       @notifyDeviceUpdated()
       @deviceCopy = _.cloneDeep @device
