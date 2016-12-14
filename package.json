@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu",
-  "version": "8.6.31",
+  "version": "8.6.32",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -54,6 +54,7 @@
   "scripts": {
     "test": "karma start --single-run",
     "start": "gulp static",
+    "start:watch": "gulp watch",
     "protractor": "protractor test/protractor.conf.js",
     "postinstall": "bower install",
     "build": "gulp"
