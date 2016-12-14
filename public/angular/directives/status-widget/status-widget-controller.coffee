@@ -1,9 +1,16 @@
 class StatusWidgetController
-  constructor: (STATUS_PAGE_URL, STATUS_PAGE_ID) ->
+  constructor: (STATUS_PAGE_URL, STATUS_PAGE_ID, $timeout) ->
     setInterval @update, 5*60*1000
     @page = STATUS_PAGE_ID
     @statusPageUrl = STATUS_PAGE_URL
-    @update()
+    @timeout = $timeout
+    @shouldUpdate()
+
+  shouldUpdate: =>
+    return @update() if StatusPage?
+    @timeout =>
+      @shouldUpdate()
+    , 100
 
   update: =>
     sp = new StatusPage.page { @page }

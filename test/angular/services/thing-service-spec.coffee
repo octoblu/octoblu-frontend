@@ -29,6 +29,7 @@ describe 'ThingService', ->
 
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).then (@device) => done()
+        return
 
       it 'should call update with the new device properties', ->
         device =
@@ -57,6 +58,7 @@ describe 'ThingService', ->
         @sut.MeshbluHttp = () => @meshbluHttp
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).then (@device) => done()
+        return
 
       it 'should call claimDevice with the new device properties', ->
         device =
@@ -78,6 +80,7 @@ describe 'ThingService', ->
         }
         @sut.MeshbluHttp = () => @meshbluHttp
         @sut.claimThing().catch (@error) => done()
+        return
 
       it 'should not call whoami', ->
         expect(@meshbluHttp.whoami).not.to.have.been.called
@@ -99,6 +102,7 @@ describe 'ThingService', ->
         @sut.MeshbluHttp = () => @meshbluHttp
         _.defer => @rootScope.$digest()
         @sut.claimThing(@query, @user, @params).catch (@error) => done()
+        return
 
       it 'should not call whoami', ->
         expect(@meshbluHttp.whoami).to.have.been.called

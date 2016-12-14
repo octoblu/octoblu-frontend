@@ -60,7 +60,7 @@ class ConfigureController
       return 'Flows' if device.type == 'octoblu:flow'
       return 'Flows' if device.type == 'device:flow'
       return 'Other' unless device.defaults.nodeType?.categories?
-      device.defaults.nodeType.categories;
+      return device.defaults.nodeType.categories
     @scope.categories = _.sortBy(_.keys @scope.connectedThingsByCategory)
     (_.pull @scope.categories, 'Flows').push 'Flows' if @scope.connectedThingsByCategory['Flows']
 

@@ -1,43 +1,44 @@
 language: node_js
 node_js:
-  - '5'
+- '6'
 cache:
+  yarn: true
   bundler: true
   directories:
-    - node_modules
-    - public/lib
+  - node_modules
+  - public/lib
+before_install:
+- npm install --global yarn
 before_script:
-  - npm install
-  - node_modules/.bin/bower install
-  - node_modules/.bin/gulp
-  - export NODE_ENV="test"
-  - >-
-    export PKG_VERSION="$(node -e
-    'console.log(require("./package.json").version)')"
-  - 'if [ -z "$PKG_VERSION" ]; then echo ''Missing PKG_VERSION env'' && exit 1; fi'
-  - mkdir -p dpl_assets/v$PKG_VERSION
-  - mkdir -p dpl_assets/lib-assets
-  - cp -r public/assets/* dpl_assets/v$PKG_VERSION
-  - cp -r public/lib-assets/* dpl_assets/lib-assets
+- yarn install
+- yarn run build
+- export NODE_ENV="test"
+- >-
+  export PKG_VERSION="$(node -e
+  'console.log(require("./package.json").version)')"
+- 'if [ -z "$PKG_VERSION" ]; then echo ''Missing PKG_VERSION env'' && exit 1; fi'
+- mkdir -p dpl_assets/v$PKG_VERSION
+- mkdir -p dpl_assets/lib-assets
+- cp -r public/assets/* dpl_assets/v$PKG_VERSION
+- cp -r public/lib-assets/* dpl_assets/lib-assets
+script:
+-  yarn test
 deploy:
-  - provider: s3
-    access_key_id: AWS_ACCESS_KEY_ID
-    secret_access_key:
-      secure: >-
-        ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE=
-    bucket: app-static.octoblu.com
-    region: us-west-2
-    skip_cleanup: true
-    local-dir: dpl_assets
-    'on':
-      tags: true
+- provider: s3
+  access_key_id: AWS_ACCESS_KEY_ID
+  secret_access_key:
+    secure: ab91UByJQUb+InbiIeB9uik4zpwaV8Grxqj5TSKVi967hXH1FXZOxNU9xwbREZt/hgWOwhTCiCD5Exf5Jf0Y5s0hY/M8ULsrMqsrFCML+wY9tE3gOERfGFZUyM8qkhu/dCrzGTb8nob7fWTHcWYxVmVytFg+Fw9DowaX4fDPebE=
+  bucket: app-static.octoblu.com
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: dpl_assets
+  on:
+    tags: true
 after_success:
-  - >-
-    bash <(curl -s https://codecov.io/bash) -t
-    b02ca742-f105-4b2d-b052-29a5fb5c709d
+- 'bash <(curl -s https://codecov.io/bash)'
 branches:
   only:
-    - '/^v[0-9]/'
+  - '/^v[0-9]/'
 notifications:
   webhooks:
     - 'https://beekeeper.octoblu.com/webhooks/travis:ci'

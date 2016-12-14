@@ -51,7 +51,10 @@ class RegistryService
     registryItemId = _.get(device, 'octoblu.registryItem._id')
     return @getItem { _id: registryItemId } if registryItemId?
     githubSlug = @getGithubSlugFromDevice device
-    return @getItem { githubSlug } if githubSlug?
+    foundRegistryItem = @getItem { githubSlug } if githubSlug?
+    return foundRegistryItem if foundRegistryItem?
+    deviceRegistryItem = _.get device, 'octoblu.registryItem'
+    return deviceRegistryItem if deviceRegistryItem?
     return null
 
   getGithubSlugFromDevice: (device) =>

@@ -49,6 +49,7 @@ class ThingService
         return reject error if error?
         thing = @addUuidToWhitelists user.uuid, thing
         thing.name = params.name
+        console.log(thing)
         meshbluHttp.update uuid, thing, (error) =>
           return reject error if error?
           resolve()

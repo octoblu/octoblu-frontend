@@ -13,31 +13,31 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "lib/angular/angular.js",
-        "lib/lodash/lodash.js",
-        "lib/async/lib/async.js",
-        "lib/d3/d3.js",
-        "lib/snap.svg/dist/snap.svg.js",
-        "lib/angular-ui-router/release/angular-ui-router.js",
-        "lib/angular-mocks/angular-mocks.js",
-        "lib/moment/moment.js",
-        "lib/jquery/dist/jquery.js",
-        "lib/node-uuid/uuid.js",
-        "lib/angular-sanitize/angular-sanitize.js",
-        "lib/eventEmitter/EventEmitter.js",
-        "lib/objectpath/lib/ObjectPath.js",
-        "lib/tv4/tv4.js",
-        "lib/angular-schema-form/dist/schema-form.js",
-        "lib/angular-schema-form/dist/bootstrap-decorator.js",
-        "**/*.html",
-        "../test/angular/test_helper.js",
-        "angular/config/**/*.js",
-        "angular/controllers/**/*.js",
-        "angular/directives/**/*.js",
-        "angular/services/**/*.js",
-        "../test/angular/**/*-spec.js",
-        "../test/angular/**/*-spec.coffee",
-        "angular/**/*.coffee"
+      "lib/angular/angular.js",
+      "lib/lodash/lodash.js",
+      "lib/async/lib/async.js",
+      "lib/d3/d3.js",
+      "lib/snap.svg/dist/snap.svg.js",
+      "lib/angular-ui-router/release/angular-ui-router.js",
+      "lib/angular-mocks/angular-mocks.js",
+      "lib/moment/moment.js",
+      "lib/jquery/dist/jquery.js",
+      "lib/node-uuid/uuid.js",
+      "lib/angular-sanitize/angular-sanitize.js",
+      "lib/eventEmitter/EventEmitter.js",
+      "lib/objectpath/lib/ObjectPath.js",
+      "lib/tv4/tv4.js",
+      "lib/angular-schema-form/dist/schema-form.js",
+      "lib/angular-schema-form/dist/bootstrap-decorator.js",
+      "**/*.html",
+      "../test/angular/test_helper.js",
+      "angular/config/**/*.js",
+      "angular/controllers/**/*.js",
+      "angular/directives/**/*.js",
+      "angular/services/**/*.js",
+      "../test/angular/**/*-spec.js",
+      "../test/angular/**/*-spec.coffee",
+      "angular/**/*.coffee"
     ],
 
     // list of files to exclude
@@ -70,7 +70,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'growl'],
+    reporters: ['spec'],
 
     // web server port
     port: 9876,
