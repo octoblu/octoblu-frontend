@@ -20,7 +20,7 @@ class FlowTagsController
     mappedTags = _.map filteredTags, (tag) =>
       {
         url: new @DeviceLogo(tag).get()
-        name: tag.name
+        class: tag.class
       }
 
     _.take _.uniq(mappedTags, 'url'), 6
