@@ -18,7 +18,10 @@ class FlowTagsController
       true unless node.category == 'operation'
 
     mappedTags = _.map filteredTags, (tag) =>
-      url: new @DeviceLogo(tag).get()
+      {
+        url: new @DeviceLogo(tag).get()
+        name: tag.name
+      }
 
     _.take _.uniq(mappedTags, 'url'), 6
 
