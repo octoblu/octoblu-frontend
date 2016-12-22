@@ -181,7 +181,6 @@ angular.module('octobluApp')
         }
 
         loadFlow(message.data.draft)
-
       });
 
       FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){

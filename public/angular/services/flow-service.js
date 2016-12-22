@@ -28,7 +28,8 @@ angular.module('octobluApp')
       name: flow.name,
       description: flow.description,
       links: flow.links,
-      nodes: self.sanitizeNodes(flow.nodes)
+      nodes: self.sanitizeNodes(flow.nodes),
+      sessionId: flow.sessionId
     }
   }
 
