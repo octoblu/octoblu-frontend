@@ -8,6 +8,7 @@ angular.module('octobluApp')
   var progressId;
   var currentFlow;
   var debug = $debug('octoblu:FlowController');
+  var showingFlowModifiedDialog = false
 
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
@@ -121,7 +122,7 @@ angular.module('octobluApp')
     });
   };
 
-  FlowService.getFlow($stateParams.flowId).then(function(activeFlow){
+  var loadFlow = function(activeFlow){
     deleteCookie();
 
     if(!activeFlow){
@@ -160,6 +161,22 @@ angular.module('octobluApp')
         }
       });
 
+      FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
+        var minOldHash = currentFlow ? currentFlow.minHash : null
+        var minNewHash = FlowService.minimalFlow(message.data.draft).minHash
+        if (minOldHash !== minNewHash) {
+          if (!showingFlowModifiedDialog) {
+            showingFlowModifiedDialog = true
+            NotifyService.alert({title: 'Warning, flow modified!', content: 'Your flow may be open in another window.',
+              onRemoving: function(element, removePromise) {
+                showingFlowModifiedDialog = false
+              }
+            });
+          }
+          loadFlow(message.data.draft)
+        }
+      });
+
       FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
         var data = message.data;
         if (data.topic === 'message-batch') {
@@ -169,7 +186,9 @@ angular.module('octobluApp')
         }
       });
     });
-  });
+  };
+
+  FlowService.getFlow($stateParams.flowId).then(loadFlow)
 
   function escapeLargeValue(value){
     var str = JSON.stringify(value);
@@ -468,6 +487,7 @@ angular.module('octobluApp')
     }
     if (_.isEqual(newFlow.hash, oldFlow.hash)) { return }
     $scope.needsToBeDeployed = lastDeployedHash !== newFlow.hash;
+    if (showingFlowModifiedDialog) { return }
     FlowService.saveActiveFlow();
   };
 

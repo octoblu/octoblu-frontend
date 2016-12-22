@@ -48,6 +48,7 @@ angular.module('octobluApp')
 
     async.series([
       async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: $cookies.meshblu_auth_uuid, types: ['broadcast.received']}),
+      async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: $cookies.meshblu_auth_uuid, types: ['configure.received']}),
       async.apply(UserSubscriptionService.createSubscriptions, {emitterUuid: device.uuid, types: ['broadcast.sent']})
     ]);
   };
