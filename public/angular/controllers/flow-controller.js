@@ -9,6 +9,7 @@ angular.module('octobluApp')
   var currentFlow;
   var debug = $debug('octoblu:FlowController');
   var showingFlowModifiedDialog = false
+  var sessionId = UUIDService.v1()
 
   $scope.zoomLevel = 0;
   $scope.debugLines = [];
@@ -136,8 +137,12 @@ angular.module('octobluApp')
       checkDeviceStatus(),
       mergeFlowNodeTypes(activeFlow)
     ]).then(function(){
+
+      activeFlow.sessionId = sessionId
+
       $scope.loading = false;
       $scope.setActiveFlow(activeFlow);
+
       FirehoseService.removeAllListeners();
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
@@ -162,19 +167,21 @@ angular.module('octobluApp')
       });
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
-        var minOldHash = currentFlow ? currentFlow.minHash : null
-        var minNewHash = FlowService.minimalFlow(message.data.draft).minHash
-        if (minOldHash !== minNewHash) {
-          if (!showingFlowModifiedDialog) {
-            showingFlowModifiedDialog = true
-            NotifyService.alert({title: 'Warning, flow modified!', content: 'Your flow may be open in another window.',
-              onRemoving: function(element, removePromise) {
-                showingFlowModifiedDialog = false
-              }
-            });
-          }
-          loadFlow(message.data.draft)
+        var newSessionId = _.get(message, 'data.draft.sessionId')
+        if (!newSessionId) return
+        if (sessionId == newSessionId) return
+
+        if (!showingFlowModifiedDialog) {
+          showingFlowModifiedDialog = true
+          NotifyService.alert({title: 'Warning, flow modified!', content: 'Your flow may be open in another window.',
+            onRemoving: function(element, removePromise) {
+              showingFlowModifiedDialog = false
+            }
+          });
         }
+
+        loadFlow(message.data.draft)
+
       });
 
       FirehoseService.on('broadcast.*.' + activeFlow.flowId, function(message){
@@ -394,15 +401,6 @@ angular.module('octobluApp')
   $scope.center = function () {
     $scope.$broadcast('centerViewBox');
   };
-
-  $scope.immediateSave = function (e) {
-    if (e) {
-      e.preventDefault();
-    }
-    FlowService.saveActiveFlow();
-  };
-
-  $scope.save = _.throttle($scope.immediateSave, 1000);
 
   $scope.setMousePosition = function (e) {
     if (!$scope.activeFlow) {
