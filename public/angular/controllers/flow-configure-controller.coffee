@@ -16,16 +16,15 @@ class FlowConfigureController
     @clearLocalStorage()
     @permissionsUpdated = false
 
-    @FlowService.getFlow(@stateParams.flowId).
-      then (flow) =>
-        @scope.nodesToConfigure = @removeOperatorNodes flow.nodes
-        @scope.flow = flow
-        @scope.fragments = [{label: "Configure #{flow.name}"}]
+    @FlowService.getFlow(@stateParams.flowId).then (flow) =>
+      @scope.nodesToConfigure = @removeOperatorNodes flow.nodes
+      @scope.flow = flow
+      @scope.fragments = [{label: "Configure #{flow.name}"}]
 
-        @nodeIndex = @stateParams.nodeIndex
+      @nodeIndex = @stateParams.nodeIndex
 
-        @setFlowNodeType @scope.nodesToConfigure[@nodeIndex]
-        @checkPermissions()
+      @setFlowNodeType @scope.nodesToConfigure[@nodeIndex]
+      @checkPermissions()
 
   clearLocalStorage: =>
     return unless localStorage.getItem 'redirectFlowConfig'
@@ -46,15 +45,13 @@ class FlowConfigureController
         @scope.thingsNeedingReceiveAs = thingsNeedingReceiveAs
         @updatePermissions()
 
-
   checkDevicePermission: (flowId, nodes) =>
     deviceNodes = _.filter nodes, (node) => node.meshblu || node.class == 'device-flow'
 
     deviceUuids = _.pluck deviceNodes, 'uuid'
-    @FlowService.needsPermissions(flowId, deviceUuids).
-      then (thingsNeedingReceiveAs)=>
-        return if _.isEmpty thingsNeedingReceiveAs
-        thingsNeedingReceiveAs
+    @FlowService.needsPermissions(flowId, deviceUuids).then (thingsNeedingReceiveAs) =>
+      return if _.isEmpty thingsNeedingReceiveAs
+      thingsNeedingReceiveAs
 
   checkNodeRegistryPermissions: (flowId, nodes)=>
     nodeTypes = _.pluck nodes, 'type'
