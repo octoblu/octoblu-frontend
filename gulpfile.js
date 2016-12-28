@@ -12,6 +12,7 @@ var gulp         = require('gulp'),
   cors           = require('cors'),
   _              = require('lodash'),
   replace        = require('gulp-replace'),
+  cleanCSS       = require('gulp-clean-css'),
   uglify         = require('gulp-uglify');
 
 gulp.task('bower:clean', function() {
@@ -28,6 +29,7 @@ gulp.task('bower:concat', ['bower'], function(){
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat('dependencies.js'))
+    .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
@@ -62,10 +64,8 @@ gulp.task('less:compile', function(){
   return gulp.src(cssDependencies)
     .pipe(replace('\\0',''))
     .pipe(concat('styles.css'))
-    .pipe(less().on('error', function(err){
-      console.error(err);
-      this.emit('end');
-    }))
+    .pipe(less())
+    .pipe(cleanCSS())
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
@@ -88,6 +88,7 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat('application.js'))
+    .pipe(uglify({mangle:false}))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });

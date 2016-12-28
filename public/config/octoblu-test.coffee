@@ -1,4 +1,4 @@
-return unless location.hostname in ['app.octoblu.test']
+return unless location.hostname in ['app.octoblu.test', 'localhost']
 protocol = location.protocol.replace(/\W*$/,'')
 port = '80'
 port = '443' if protocol == 'https'
