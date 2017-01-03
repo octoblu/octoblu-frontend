@@ -167,9 +167,14 @@ angular.module('octobluApp')
       });
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
-        var newSessionId = _.get(message, 'data.draft.sessionId')
-        if (!newSessionId) return
-        if (sessionId == newSessionId) return
+        var draftSessionId = _.get(message, 'data.draft.sessionId')
+        if (!draftSessionId) return
+        if (sessionId == draftSessionId) return
+
+        var newDraft = _.get(message, 'data.draft')
+        var draftMinHash = FlowService.minimalFlow(newDraft).minHash
+        var activeMinHash = FlowService.minimalFlow($scope.activeFlow).minHash
+        if (draftMinHash == activeMinHash) return
 
         if (!showingFlowModifiedDialog) {
           showingFlowModifiedDialog = true
