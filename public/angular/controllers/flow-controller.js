@@ -171,6 +171,10 @@ angular.module('octobluApp')
         if (!draftSessionId) return
         if (sessionId == draftSessionId) return
 
+        var deploying = _.get(message, 'data.deploying')
+        var stopping = _.get(message, 'data.stopping')
+        if (deploying || stopping) return
+
         var newDraft = _.get(message, 'data.draft')
         var draftMinHash = FlowService.minimalFlow(newDraft).minHash
         var activeMinHash = FlowService.minimalFlow($scope.activeFlow).minHash
