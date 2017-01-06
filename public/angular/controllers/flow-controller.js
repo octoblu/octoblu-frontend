@@ -143,7 +143,10 @@ angular.module('octobluApp')
       $scope.loading = false;
       $scope.setActiveFlow(activeFlow);
 
-      FirehoseService.removeAllListeners();
+      $scope.$on('$destroy', function() {
+          FirehoseService.removeAllListeners()
+        }
+      )
 
       FirehoseService.on('configure.sent.' + activeFlow.flowId, function(message){
         updateFlowDevice(message.data);
