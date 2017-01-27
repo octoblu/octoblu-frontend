@@ -43,6 +43,7 @@ class DeviceDetailController
       type: true
       name: true
       logo: true
+      meshblu: true
       configureWhitelist: true
       discoverWhitelist: true
       sendWhitelist: true
@@ -121,12 +122,26 @@ class DeviceDetailController
   saveDevice: =>
     return unless @device?
     return if _.isEqual @deviceCopy, @device
-    updateProperties = _.omit @device, 'meshblu', 'schemas', 'online', 'connectorMetadata'
+    omitFields = [
+      'meshblu'
+      'schemas'
+      'online'
+      'connectorMetadata'
+      'discoverWhitelist'
+      'discoverAsWhitelist'
+      'configureWhitelist'
+      'configureAsWhitelist'
+      'receiveWhitelist'
+      'receiveAsWhitelist'
+      'sendWhitelist'
+      'sendAsWhitelist'
+    ]
+    updateProperties = _.omit @device, omitFields
     updateProperties['schemas.selected.configure'] = _.get @device, 'schemas.selected.configure'
     @ThingService.updateDevice updateProperties
-    .then =>
-      @notifyDeviceUpdated()
-      @deviceCopy = _.cloneDeep @device
+      .then =>
+        @notifyDeviceUpdated()
+        @deviceCopy = _.cloneDeep @device
 
   notifyDeviceUpdatedImmediate: =>
     @NotifyService.notify 'Changes Saved'

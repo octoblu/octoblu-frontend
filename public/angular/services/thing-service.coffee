@@ -13,6 +13,11 @@ class ThingService
     data
 
   addUuidToWhitelists: (uuid, device={}) =>
+    deviceVersion = _.get(device, 'meshblu.version')
+    return @addUuidToV2Whitelists uuid, device if deviceVersion == '2.0.0'
+    return @addUuidToV1Whitelists uuid, device
+
+  addUuidToV1Whitelists: (uuid, device={}) =>
     thing = {}
     thing.owner = uuid
     thing.discoverWhitelist  = _.union [uuid], device.discoverWhitelist ? []
@@ -23,7 +28,23 @@ class ThingService
     _.pull thing.configureWhitelist, '*'
     _.pull thing.sendWhitelist, '*'
     _.pull thing.receiveWhitelist, '*'
-    thing
+    return thing
+
+  addUuidToV2Whitelists: (uuid, device={}) =>
+    thing = {}
+    thing.owner = uuid
+    thing = @_addToV2Whitelist thing, 'meshblu.whitelists.discover.view', uuid, device
+    thing = @_addToV2Whitelist thing, 'meshblu.whitelists.configure.update', uuid, device
+    return thing
+
+  _addToV2Whitelist: (thing, key, uuid, device={}) =>
+    thing = _.cloneDeep thing
+    existing = _.get device, key, []
+    updated = _.reject existing, { uuid }
+    updated.push { uuid }
+    updated = _.reject updated, { uuid: '*' }
+    _.set thing, key, updated
+    return thing
 
   calculateTheEverything: (device, peers) =>
     uuid: '*'
@@ -49,7 +70,6 @@ class ThingService
         return reject error if error?
         thing = @addUuidToWhitelists user.uuid, thing
         thing.name = params.name
-        console.log(thing)
         meshbluHttp.update uuid, thing, (error) =>
           return reject error if error?
           resolve()
@@ -161,6 +181,7 @@ class ThingService
 
   updateDeviceWithPermissionRows: (device, rows) =>
     return @q.when(false) unless device? && rows?
+    return @q.when(false) if _.get(device, 'meshblu.version') == '2.0.0'
     uncategorizedRows = _.flatten(_.valuesIn rows)
 
     update =

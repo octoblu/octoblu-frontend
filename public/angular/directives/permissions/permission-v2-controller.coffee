@@ -14,7 +14,6 @@ class PermissionV2Controller
       return $scope.addPermission @type, uuid: '*' if newEveryone
       $scope.removePermission @type, uuid: '*'
 
-
   searchForDevice: (deviceSearch) =>
     @ThingService.getThings(
       {$or: [ {uuid: deviceSearch}, {name: deviceSearch} ]}
