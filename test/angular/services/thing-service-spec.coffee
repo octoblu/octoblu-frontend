@@ -91,12 +91,23 @@ describe 'ThingService', ->
         device =
           name:  'mokka'
           owner: 'user-holla'
-          'meshblu.whitelists.discover.view': [
-            { uuid: 'user-holla' }
-          ]
+          'meshblu.whitelists.broadcast.as': []
+          'meshblu.whitelists.broadcast.received': []
+          'meshblu.whitelists.broadcast.sent': []
+          'meshblu.whitelists.configure.as': []
+          'meshblu.whitelists.configure.received': []
+          'meshblu.whitelists.configure.sent': []
           'meshblu.whitelists.configure.update': [
             { uuid: 'user-holla' }
           ]
+          'meshblu.whitelists.discover.as': []
+          'meshblu.whitelists.discover.view': [
+            { uuid: 'user-holla' }
+          ]
+          'meshblu.whitelists.message.as': []
+          'meshblu.whitelists.message.from': []
+          'meshblu.whitelists.message.received': []
+          'meshblu.whitelists.message.sent': []
         expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called with 2.0.0 device and it has existing whitelists', ->
@@ -132,14 +143,26 @@ describe 'ThingService', ->
         device =
           name:  'mokka'
           owner: 'user-holla'
-          'meshblu.whitelists.discover.view': [
-            { uuid: 'other-holla' }
-            { uuid: 'user-holla' }
-          ]
+          'meshblu.whitelists.broadcast.as': []
+          'meshblu.whitelists.broadcast.received': []
+          'meshblu.whitelists.broadcast.sent': []
+          'meshblu.whitelists.configure.as': []
+          'meshblu.whitelists.configure.received': []
+          'meshblu.whitelists.configure.sent': []
           'meshblu.whitelists.configure.update': [
             { uuid: 'other-holla' }
             { uuid: 'user-holla' }
           ]
+          'meshblu.whitelists.discover.as': []
+          'meshblu.whitelists.discover.view': [
+            { uuid: 'other-holla' }
+            { uuid: 'user-holla' }
+          ]
+          'meshblu.whitelists.message.as': []
+          'meshblu.whitelists.message.from': []
+          'meshblu.whitelists.message.received': []
+          'meshblu.whitelists.message.sent': []
+
         expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called without a uuid or token', ->

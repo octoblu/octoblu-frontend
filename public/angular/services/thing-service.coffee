@@ -33,16 +33,36 @@ class ThingService
   addUuidToV2Whitelists: (uuid, device={}) =>
     thing = {}
     thing.owner = uuid
-    thing = @_addToV2Whitelist thing, 'meshblu.whitelists.discover.view', uuid, device
-    thing = @_addToV2Whitelist thing, 'meshblu.whitelists.configure.update', uuid, device
+    thing = @_removeStarFromV2Whitelist thing, 'broadcast.as', device
+    thing = @_removeStarFromV2Whitelist thing, 'broadcast.received', device
+    thing = @_removeStarFromV2Whitelist thing, 'broadcast.sent', device
+    thing = @_removeStarFromV2Whitelist thing, 'discover.as', device
+    thing = @_addToV2Whitelist thing, 'discover.view', uuid, device
+    thing = @_removeStarFromV2Whitelist thing, 'configure.as', device
+    thing = @_addToV2Whitelist thing, 'configure.update', uuid, device
+    thing = @_removeStarFromV2Whitelist thing, 'configure.received', device
+    thing = @_removeStarFromV2Whitelist thing, 'configure.sent', device
+    thing = @_removeStarFromV2Whitelist thing, 'message.as', device
+    thing = @_removeStarFromV2Whitelist thing, 'message.from', device
+    thing = @_removeStarFromV2Whitelist thing, 'message.received', device
+    thing = @_removeStarFromV2Whitelist thing, 'message.sent', device
     return thing
 
   _addToV2Whitelist: (thing, key, uuid, device={}) =>
+    key = "meshblu.whitelists.#{key}"
     thing = _.cloneDeep thing
-    existing = _.get device, key, []
+    existing = _.get(device, key, [])
     updated = _.reject existing, { uuid }
-    updated.push { uuid }
     updated = _.reject updated, { uuid: '*' }
+    updated.push { uuid }
+    thing[key] = updated
+    return thing
+
+  _removeStarFromV2Whitelist: (thing, key, device={}) =>
+    key = "meshblu.whitelists.#{key}"
+    thing = _.cloneDeep thing
+    existing =  _.get(device, key, [])
+    updated = _.reject existing, { uuid: '*' }
     thing[key] = updated
     return thing
 
