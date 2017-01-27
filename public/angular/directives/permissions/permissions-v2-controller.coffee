@@ -50,7 +50,14 @@ class PermissionsV2Controller
     search =
       query:
         uuid: $in: whitelistedDevices
-      projection: {name: true, type: true, uuid: true, logo: true, octoblu: true}
+      projection: {
+        meshblu: true
+        name: true
+        type: true
+        uuid: true
+        logo: true
+        octoblu: true
+      }
 
     @ThingService.search search
       .then @_buildPermissionsModel

@@ -91,16 +91,12 @@ describe 'ThingService', ->
         device =
           name:  'mokka'
           owner: 'user-holla'
-          meshblu:
-            whitelists:
-              discover:
-                view: [
-                  { uuid: 'user-holla' }
-                ]
-              configure:
-                update: [
-                  { uuid: 'user-holla' }
-                ]
+          'meshblu.whitelists.discover.view': [
+            { uuid: 'user-holla' }
+          ]
+          'meshblu.whitelists.configure.update': [
+            { uuid: 'user-holla' }
+          ]
         expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called with 2.0.0 device and it has existing whitelists', ->
@@ -113,6 +109,7 @@ describe 'ThingService', ->
             owner: 'some-owner'
             meshblu:
               version: '2.0.0'
+              something: 'else'
               whitelists:
                 discover:
                   view: [
@@ -135,18 +132,14 @@ describe 'ThingService', ->
         device =
           name:  'mokka'
           owner: 'user-holla'
-          meshblu:
-            whitelists:
-              discover:
-                view: [
-                  { uuid: 'other-holla' }
-                  { uuid: 'user-holla' }
-                ]
-              configure:
-                update: [
-                  { uuid: 'other-holla' }
-                  { uuid: 'user-holla' }
-                ]
+          'meshblu.whitelists.discover.view': [
+            { uuid: 'other-holla' }
+            { uuid: 'user-holla' }
+          ]
+          'meshblu.whitelists.configure.update': [
+            { uuid: 'other-holla' }
+            { uuid: 'user-holla' }
+          ]
         expect(@meshbluHttp.update).to.have.been.calledWith 'holla', device
 
     describe 'when called without a uuid or token', ->

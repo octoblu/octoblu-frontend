@@ -43,7 +43,7 @@ class ThingService
     updated = _.reject existing, { uuid }
     updated.push { uuid }
     updated = _.reject updated, { uuid: '*' }
-    _.set thing, key, updated
+    thing[key] = updated
     return thing
 
   calculateTheEverything: (device, peers) =>

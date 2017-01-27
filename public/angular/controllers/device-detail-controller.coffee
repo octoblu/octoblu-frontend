@@ -32,7 +32,6 @@ class DeviceDetailController
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
       @meshbluJsonSchemaResolverService.resolve(@device).then (@resolvedDevice) =>
-
       return
 
   getPermissions: =>
