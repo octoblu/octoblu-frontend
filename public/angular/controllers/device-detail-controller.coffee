@@ -31,7 +31,11 @@ class DeviceDetailController
       @hideDelete = @deviceIsFlow @device
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
-      @meshbluJsonSchemaResolverService.resolve(@device).then (@resolvedDevice) =>
+      @meshbluJsonSchemaResolverService
+        .resolve(@device.schemas)
+        .then (resolvedSchemas) =>
+          @resolvedDevice = _.cloneDeep @device
+          @resolvedDevice.schemas = resolvedSchemas
       return
 
   getPermissions: =>
