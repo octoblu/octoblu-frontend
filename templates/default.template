@@ -8,7 +8,7 @@ server {
     expires -1;
     access_log off;
     default_type application/json;
-    return 200 '{"online" : true}';
+    return 200 '{"online":true}';
   }
 
   location /version {
