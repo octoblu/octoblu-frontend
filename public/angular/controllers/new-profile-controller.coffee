@@ -28,12 +28,14 @@ class NewProfileController
         async.series [
           (callback) => @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:weather', callback
           (callback) => @userService.activateNoAuthChannelByType @cookies.meshblu_auth_uuid, 'channel:stock-price', callback
-          (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, emailID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
-          (callback) => @userService.saveBasicApi @cookies.meshblu_auth_uuid, smsID, @cookies.meshblu_auth_uuid, @cookies.meshblu_auth_token, callback
+          (callback) => @userService.saveMeshbluApi emailID, @cookies.meshblu_auth_uuid, callback
+          (callback) => @userService.saveMeshbluApi smsID, @cookies.meshblu_auth_uuid, callback
         ], (error) =>
+          console.error(error)
           @addDemoFlow().then (flow) =>
             @state.go 'material.flow', flowId: flow.flowId
       .catch (error) =>
+        console.error(error)
         @loading = false
 
   populateProfileFromParams: =>

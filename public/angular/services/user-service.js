@@ -1,8 +1,8 @@
 'use strict';
 angular.module('octobluApp')
-.service('userService', function ($http, $q, OCTOBLU_API_URL) {
-
-this.activateNoAuthChannel = function(user, channelid, callback) {
+.service('userService', function ($http, $q, MeshbluHttpService, OCTOBLU_API_URL) {
+var self = this;
+self.activateNoAuthChannel = function(user, channelid, callback) {
   $http.put(OCTOBLU_API_URL + '/api/user/' + user + '/activate/' + channelid)
   .success(function(data) {
     callback(null, data);
@@ -13,7 +13,7 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
   });
 };
 
-this.activateNoAuthChannelByType = function(user, channeltype, callback) {
+self.activateNoAuthChannelByType = function(user, channeltype, callback) {
   $http.put(OCTOBLU_API_URL + '/api/user/' + user + '/activate/' + channeltype + '/type')
   .success(function(data) {
     callback(null, data);
@@ -24,7 +24,7 @@ this.activateNoAuthChannelByType = function(user, channeltype, callback) {
   });
 };
 
-this.saveAWSApi = function (uuid, channelid, username, password, callback) {
+self.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
   $http.post(OCTOBLU_API_URL + '/api/channel/aws/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
@@ -37,7 +37,7 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 };
 
-this.savePagerdutyApi = function (channelId, token, callback) {
+self.savePagerdutyApi = function (channelId, token, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/pagerduty/channel/' + channelId, {token: token})
   .success(function (data) {
     callback(data);
@@ -48,7 +48,7 @@ this.savePagerdutyApi = function (channelId, token, callback) {
   });
 };
 
-this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
+self.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/google-places/channel/' + channelid, { apikey: apikey })
   .success(function (data) {
     callback(data);
@@ -59,7 +59,7 @@ this.saveGooglePlacesApi = function(uuid, channelid, apikey, callback) {
   });
 };
 
-this.saveBasicApi = function (uuid, channelid, username, password, callback) {
+self.saveBasicApi = function (uuid, channelid, username, password, callback) {
   $http.post(OCTOBLU_API_URL + '/api/channel/basic/channel/' + channelid, { username: username, password: password })
   .success(function (data) {
     callback(null, data);
@@ -71,7 +71,16 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
 };
 
-this.saveApiKey = function(channelid, apikey, callback){
+self.saveMeshbluApi = function (channelid, uuid, callback) {
+  MeshbluHttpService.generateAndStoreToken(uuid, { tag: channelid }, function(error, token) {
+    if (error) {
+      return callback(error)
+    }
+    self.saveBasicApi(uuid, channelid, uuid, token, callback)
+  })
+};
+
+self.saveApiKey = function(channelid, apikey, callback){
   $http.post(OCTOBLU_API_URL + '/api/channel/apikey/channel/' + channelid, {apikey: apikey})
   .success(function(data){
     callback(data);
@@ -81,7 +90,7 @@ this.saveApiKey = function(channelid, apikey, callback){
   });
 };
 
-this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey, callback){
+self.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey, callback){
   $http.post(OCTOBLU_API_URL + '/api/channel/simpleauthquery/channel/' + channelid, {
       userId : userId,
       domain : domain,
@@ -95,7 +104,7 @@ this.saveSimpleAuthQuery = function(channelid, userId, password, domain, appKey,
   });
 };
 
-this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams, defaultHeaderParams) {
+self.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams, defaultHeaderParams) {
   $http.put(OCTOBLU_API_URL + '/api/user/' + uuid+ '/channel/' + channelid,
   	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams, defaultHeaderParams: defaultHeaderParams})
   .success(function (data) {
@@ -107,7 +116,7 @@ this.saveConnection = function (uuid, channelid, key, token, custom_tokens, call
   });
 };
 
-this.removeConnection = function (channelid) {
+self.removeConnection = function (channelid) {
   return $http.delete(OCTOBLU_API_URL + '/api/user/channel/' + channelid);
 };
 
