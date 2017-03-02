@@ -72,10 +72,12 @@ self.saveBasicApi = function (uuid, channelid, username, password, callback) {
 };
 
 self.saveMeshbluApi = function (channelid, uuid, callback) {
-  MeshbluHttpService.generateAndStoreToken(uuid, { tag: channelid }, function(error, token) {
+  MeshbluHttpService.generateAndStoreToken(uuid, { tag: channelid }, function(error, result) {
     if (error) {
       return callback(error)
     }
+    result = result || {};
+    var token = result.token;
     self.saveBasicApi(uuid, channelid, uuid, token, callback)
   })
 };
