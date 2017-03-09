@@ -30,7 +30,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PORT', '443'
   .constant 'MESHBLU_PROTOCOL', 'https'
   .constant 'OAUTH_PROVIDER', 'https://oauth.hpe.octoblu.com'
-  .constant 'OCTOBLU_API_URL', 'https://app.hpe.octoblu.com'
+  .constant 'OCTOBLU_API_URL', 'https://api.hpe.octoblu.com'
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/hpe/registry.json'
   .constant "CWC_APP_STORE_URL", "https://cwc-store.hpe.octoblu.com"

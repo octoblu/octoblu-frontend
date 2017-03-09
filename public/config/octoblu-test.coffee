@@ -35,7 +35,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PORT', port
   .constant 'MESHBLU_PROTOCOL', protocol
   .constant 'OAUTH_PROVIDER', "#{protocol}://oauth.octoblu.test"
-  .constant 'OCTOBLU_API_URL', "#{protocol}://app.octoblu.test"
+  .constant 'OCTOBLU_API_URL', "#{protocol}://api.octoblu.test"
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.test"
