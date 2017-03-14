@@ -35,6 +35,11 @@ describe('ParamInputController', function () {
         expect(scope.params).to.have.property('foo');
         expect(scope.params.foo).to.equal('foursquare');
       });
+
+      it('should update ngModel with the foo paramDefinition and default value', function () {
+        expect(scope.ngModel).to.have.property('foo');
+        expect(scope.ngModel.foo).to.equal('foursquare');
+      });
     });
   });
 
