@@ -32,7 +32,7 @@ class DeviceDetailController
       @showLink = @deviceIsGatebluDevice @device
       @fragments = @generateBreadcrumbFragments @device
       @meshbluJsonSchemaResolverService
-        .resolve(@device.schemas)
+        .resolve _.get(@device, 'schemas', {})
         .then (resolvedSchemas) =>
           @resolvedDevice = _.cloneDeep @device
           @resolvedDevice.schemas = resolvedSchemas
