@@ -43,7 +43,7 @@ class UtilityInspectorController
 
     @scope.$watch 'thingNameFilter', (thingNameFilter) =>
       filteredThings = _.filter @scope.things, ({ name }) =>
-        return _.contains sanifyStr(name), sanifyStr(thingNameFilter)
+        return _.includes sanifyStr(name), sanifyStr(thingNameFilter)
 
       @scope.registries = @RegistryService.filterBy 'name', thingNameFilter
       @updateThingsByCategory(filteredThings)

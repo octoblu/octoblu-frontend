@@ -4059,8 +4059,8 @@ var JSHINT = (function() {
     var isDangerous =
       state.option.asi &&
       state.tokens.prev.line !== startLine(state.tokens.curr) &&
-      _.contains(["]", ")"], state.tokens.prev.id) &&
-      _.contains(["[", "("], state.tokens.curr.id);
+      _.includes(["]", ")"], state.tokens.prev.id) &&
+      _.includes(["[", "("], state.tokens.curr.id);
 
     if (isDangerous)
       warning("W014", state.tokens.curr, state.tokens.curr.id);
@@ -4409,7 +4409,7 @@ var JSHINT = (function() {
     values = state.inES6() ? typeofValues.es6 : typeofValues.es3;
 
     if (right.type === "(identifier)" && right.value === "typeof" && left.type === "(string)")
-      return !_.contains(values, left.value);
+      return !_.includes(values, left.value);
 
     return false;
   }
@@ -5638,7 +5638,7 @@ var JSHINT = (function() {
     advance("(");
     state.funct["(comparray)"].setState("define");
     res.left = expression(130);
-    if (_.contains(["in", "of"], state.tokens.next.value)) {
+    if (_.includes(["in", "of"], state.tokens.next.value)) {
       advance();
     } else {
       error("E045", state.tokens.curr);
@@ -5802,7 +5802,7 @@ var JSHINT = (function() {
       arity++;
       var currentParams = [];
 
-      if (_.contains(["{", "["], state.tokens.next.id)) {
+      if (_.includes(["{", "["], state.tokens.next.id)) {
         tokens = destructuringPattern();
         for (t in tokens) {
           t = tokens[t];
@@ -6410,7 +6410,7 @@ var JSHINT = (function() {
     statement.first = [];
     for (;;) {
       var names = [];
-      if (_.contains(["{", "["], state.tokens.next.value)) {
+      if (_.includes(["{", "["], state.tokens.next.value)) {
         tokens = destructuringPattern();
         lone = false;
       } else {
@@ -6496,7 +6496,7 @@ var JSHINT = (function() {
     this.first = [];
     for (;;) {
       var names = [];
-      if (_.contains(["{", "["], state.tokens.next.value)) {
+      if (_.includes(["{", "["], state.tokens.next.value)) {
         tokens = destructuringPattern();
         lone = false;
       } else {
@@ -7069,9 +7069,9 @@ var JSHINT = (function() {
         if (!comma && checkPunctuator(nextop, ",")) comma = nextop;
         else if (!initializer && checkPunctuator(nextop, "=")) initializer = nextop;
       }
-    } while (level > 0 || !_.contains(inof, nextop.value) && nextop.value !== ";" &&
+    } while (level > 0 || !_.includes(inof, nextop.value) && nextop.value !== ";" &&
     nextop.type !== "(end)"); // Is this a JSCS bug? This looks really weird.
-    if (_.contains(inof, nextop.value)) {
+    if (_.includes(inof, nextop.value)) {
       if (!state.inES6() && nextop.value === "of") {
         warning("W104", nextop, "for of", "6");
       }
@@ -7627,7 +7627,7 @@ var JSHINT = (function() {
   }
   function checkPunctuators(token, values) {
     if (token.type === "(punctuator)") {
-      return _.contains(values, token.value);
+      return _.includes(values, token.value);
     }
     return false;
   }
@@ -7691,7 +7691,7 @@ var JSHINT = (function() {
           _current = _carrays[_carrays.length - 1];
         },
         setState: function(s) {
-          if (_.contains(["use", "define", "generate", "filter"], s))
+          if (_.includes(["use", "define", "generate", "filter"], s))
             _current.mode = s;
         },
         check: function(v) {

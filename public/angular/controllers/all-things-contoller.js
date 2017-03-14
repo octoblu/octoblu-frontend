@@ -30,7 +30,7 @@ angular.module('octobluApp')
   function filterCollection(items, filterByName) {
     return _.filter(items, function(item){
       var name = (item.name || '').toLowerCase();
-      return _.contains(name, filterByName);
+      return _.includes(name, filterByName);
     });
   }
 

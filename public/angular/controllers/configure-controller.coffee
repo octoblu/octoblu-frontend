@@ -33,9 +33,9 @@ class ConfigureController
     @scope.$watch 'filterByName', (filter='') =>
       filter = filter.toLowerCase()
       filteredDevices = _.filter connectedThings, ({name='', type='', uuid=''}) =>
-        return true if _.contains name.toLowerCase(), filter
-        return true if _.contains type.toLowerCase(), filter
-        return true if _.contains uuid.toLowerCase(), filter
+        return true if _.includes name.toLowerCase(), filter
+        return true if _.includes type.toLowerCase(), filter
+        return true if _.includes uuid.toLowerCase(), filter
         return false
 
       @updateThingsByCategory(filteredDevices)

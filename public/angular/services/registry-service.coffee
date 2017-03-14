@@ -29,7 +29,7 @@ class RegistryService
     return _.filter items, (item) =>
       value = @sanifyStr item[key]
       return value == search if exact
-      return _.contains value, @sanifyStr search
+      return _.includes value, @sanifyStr search
 
   filterBy: (key, search, exact) =>
     return _.mapValues _.cloneDeep(@registries), (registrySet) =>

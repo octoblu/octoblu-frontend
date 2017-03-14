@@ -29,7 +29,7 @@ angular.module('octobluApp')
         message.devices = [message.devices];
       }
       var devices = _.filter(self.devices, function(device) {
-        if(_.contains(message.devices, device.uuid)){
+        if(_.includes(message.devices, device.uuid)){
           return device;
         }
       });

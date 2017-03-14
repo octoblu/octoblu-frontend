@@ -13,8 +13,8 @@ class ResourcesController
         title = (resource.title || '').toLowerCase()
         summary = (resource.summary || '').toLowerCase()
         search = resourceSearch.toLowerCase()
-        return true if _.contains title, search
-        return _.contains summary, search
+        return true if _.includes title, search
+        return _.includes summary, search
 
       @updateResources(filteredResources)
 

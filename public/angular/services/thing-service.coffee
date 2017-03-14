@@ -118,7 +118,7 @@ class ThingService
     sortedRows = []
 
     [everything,rows] = _.partition rows, uuid: '*'
-    [users,devices] = _.partition rows, (row) -> _.contains ['octoblu:user','user'], row.type
+    [users,devices] = _.partition rows, (row) -> _.includes ['octoblu:user','user'], row.type
     users = _.sortBy users, 'uuid'
     devices = _.sortBy devices, 'uuid'
     _.union everything, users, devices

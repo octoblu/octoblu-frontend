@@ -203,22 +203,22 @@ angular.module('octobluApp')
     return ThingService.getThings(null, projection)
       .then(function(things){
         var thingsToCheck = _.filter(things, function(thing){
-          return _.contains(uuids, thing.uuid);
+          return _.includes(uuids, thing.uuid);
         });
 
         return _.reject(thingsToCheck, function(thing){
           var receiveAsOk = false;
           var sendOk = false;
-          if( _.contains(thing.receiveAsWhitelist, '*') ) {
+          if( _.includes(thing.receiveAsWhitelist, '*') ) {
             receiveAsOk = true;
           }
-          if ( _.contains(thing.receiveAsWhitelist, receiverUuid) ) {
+          if ( _.includes(thing.receiveAsWhitelist, receiverUuid) ) {
             receiveAsOk = true;
           }
-          if( _.contains(thing.sendWhitelist, '*') ) {
+          if( _.includes(thing.sendWhitelist, '*') ) {
             sendOk = true;
           }
-          if ( _.contains(thing.sendWhitelist, receiverUuid) ) {
+          if ( _.includes(thing.sendWhitelist, receiverUuid) ) {
             sendOk = true;
           }
 
