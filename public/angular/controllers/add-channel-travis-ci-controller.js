@@ -8,7 +8,7 @@ angular.module('octobluApp')
   channelPromise = channelService.getById(nodeType.channelid);
 
   AuthService.getCurrentUser().then(function(user){
-    $scope.githubIsActive = _.findWhere(user.api, {type: 'channel:github'});
+    $scope.githubIsActive = _.find(user.api, {type: 'channel:github'});
   });
 
   $scope.activate = function(){

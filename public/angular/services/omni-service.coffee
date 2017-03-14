@@ -40,7 +40,7 @@ class OmniService
         _.each _.values(registries), (registrySet) =>
           _.each _.values(registrySet), (registry) =>
             _.each registry.items, (item) =>
-              return if _.findWhere(flowNodeTypes, {type: item.type})
+              return if _.find(flowNodeTypes, {type: item.type})
               item.input = 1
               item.output = 1
               item.omniboxItemTemplateUrl = '/pages/omnibox-node-type.html'

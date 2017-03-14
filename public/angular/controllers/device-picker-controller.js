@@ -8,7 +8,7 @@ angular.module('octobluApp')
       return;
     }
 
-    var device = _.findWhere($scope.devices, {uuid: $scope.model.uuid});
+    var device = _.find($scope.devices, {uuid: $scope.model.uuid});
 
     if(device){
       $scope.model.token = device.token;

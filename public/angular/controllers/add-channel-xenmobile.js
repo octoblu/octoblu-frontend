@@ -19,7 +19,7 @@ angular.module('octobluApp')
     currentUserPromise.then(function(user){
       var api, hostname, port, serverUrl;
 
-      api       = _.findWhere(user.api, {type: 'channel:xenmobile'});
+      api       = _.find(user.api, {type: 'channel:xenmobile'});
       hostname  = api.defaultParams[':hostname'];
       port      = api.defaultParams[':port'];
       serverUrl = hostname + ':' + port;

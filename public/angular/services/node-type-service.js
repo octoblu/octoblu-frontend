@@ -32,7 +32,7 @@ angular.module('octobluApp')
           if(nodeType.category !== 'channel') {
             return true;
           }
-          return ! _.findWhere(configuredNodes, { channelid:  nodeType.channelid});
+          return ! _.find(configuredNodes, { channelid:  nodeType.channelid});
         });
       });
   }
@@ -44,19 +44,19 @@ angular.module('octobluApp')
 
   self.getNodeTypeById = function(id){
     return self.getNodeTypes().then(function(nodeTypes){
-      return _.findWhere(nodeTypes, {_id: id});
+      return _.find(nodeTypes, {_id: id});
     });
   };
 
   self.getNodeTypeByType = function(type){
     return self.getNodeTypes().then(function(nodeTypes){
-      return _.findWhere(nodeTypes, {type: type});
+      return _.find(nodeTypes, {type: type});
     });
   };
 
   self.getNodeTypeByObject = function(node){
     return self.getNodeTypes().then(function(nodeTypes){
-      return _.defaults(node, _.findWhere(nodeTypes, {type: node.type}));
+      return _.defaults(node, _.find(nodeTypes, {type: node.type}));
     });
   };
 

@@ -40,7 +40,7 @@ angular.module('octobluApp')
 
         var debugErrorEmitter = function(payload) {
           if ($scope.flow) {
-            var debugNode = _.findWhere($scope.flow.nodes, { id: payload.node });
+            var debugNode = _.find($scope.flow.nodes, { id: payload.node });
             if (debugNode && debugNode.debug) {
               $scope.$emit('flow-node-debug', {node: debugNode, message: payload})
             }

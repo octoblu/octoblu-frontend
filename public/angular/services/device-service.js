@@ -84,7 +84,7 @@ angular.module('octobluApp')
       if (device.type === 'octoblu:flow') {
         return;
       }
-      var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
+      var existingDevice = _.find(myDevices, {uuid: device.uuid});
       if(existingDevice) {
         _.extend(existingDevice, device);
         return;
@@ -114,7 +114,7 @@ angular.module('octobluApp')
 
     getDeviceByUUID: function(uuid, force){
       return service.getDevices(force).then(function(devices){
-        return _.findWhere(devices, {uuid: uuid});
+        return _.find(devices, {uuid: uuid});
       });
     },
 

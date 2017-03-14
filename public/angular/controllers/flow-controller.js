@@ -77,7 +77,7 @@ angular.module('octobluApp')
         return;
       }
       _.each(devices, function(device){
-        var flow = _.findWhere($scope.flows, {flowId: device.uuid});
+        var flow = _.find($scope.flows, {flowId: device.uuid});
         if (flow) {
           flow.online = device.online;
         }
@@ -160,7 +160,7 @@ angular.module('octobluApp')
             var hop = _.first(metadata.route);
             if (hop) {
               var uuid = hop.from;
-              var nodes = _.where(activeFlow.nodes, {uuid: uuid});
+              var nodes = _.filter(activeFlow.nodes, {uuid: uuid});
               _.each(nodes, function(node){
                 node.online = data.payload.online;
               });
@@ -518,11 +518,11 @@ angular.module('octobluApp')
         if(node.type === 'operation:device'){
           return;
         }
-        node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
-        node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
+        node.needsConfiguration = !_.find(flowNodeTypes, {uuid: node.uuid});
+        node.needsSetup         = !_.find(flowNodeTypes, {type: node.type});
 
         if(node.needsConfiguration && !node.needsSetup){
-          var matchingNode = _.findWhere(flowNodeTypes, {type: node.type});
+          var matchingNode = _.find(flowNodeTypes, {type: node.type});
 
           if (matchingNode && matchingNode.defaults) {
             node.channelActivationId = matchingNode.defaults.channelActivationId;
@@ -589,7 +589,7 @@ angular.module('octobluApp')
     var deviceNodes = _.filter(newNodes, function(node){
       return node.meshblu || node.class === 'device-flow';
     });
-    var deviceNodeUuids = _.pluck(deviceNodes, 'uuid');
+    var deviceNodeUuids = _.map(deviceNodes, 'uuid');
     return FlowService.subscribeFlowToDevices($scope.activeFlow.flowId, deviceNodeUuids);
   };
 

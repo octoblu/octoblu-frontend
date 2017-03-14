@@ -15,11 +15,11 @@ class FlowNodeTypeService
 
   getFlowNodeType: (type) =>
     @getFlowNodeTypes().then (flowNodeTypes) =>
-      _.findWhere flowNodeTypes, type: type
+      _.find flowNodeTypes, type: type
 
   getFlowNodeTypeByUUID: (uuid) =>
     @getFlowNodeTypes().then (flowNodeTypes) =>
-      _.findWhere flowNodeTypes, uuid: uuid
+      _.find flowNodeTypes, uuid: uuid
 
   getFlowNodeTypes: =>
     return @q.when @flowNodeTypes if @flowNodeTypes?
@@ -38,7 +38,7 @@ class FlowNodeTypeService
 
   getOtherMatchingFlowNodeTypes: (type) =>
     @getFlowNodeTypes().then (flowNodeTypes) =>
-      _.where flowNodeTypes, type: type
+      _.filter flowNodeTypes, type: type
 
   _getFlowNodeTypesAndCache: (task, callback) =>
     return callback() if @flowNodeTypes?

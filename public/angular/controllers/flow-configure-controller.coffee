@@ -48,13 +48,13 @@ class FlowConfigureController
   checkDevicePermission: (flowId, nodes) =>
     deviceNodes = _.filter nodes, (node) => node.meshblu || node.class == 'device-flow'
 
-    deviceUuids = _.pluck deviceNodes, 'uuid'
+    deviceUuids = _.map deviceNodes, 'uuid'
     @FlowService.needsPermissions(flowId, deviceUuids).then (thingsNeedingReceiveAs) =>
       return if _.isEmpty thingsNeedingReceiveAs
       thingsNeedingReceiveAs
 
   checkNodeRegistryPermissions: (flowId, nodes)=>
-    nodeTypes = _.pluck nodes, 'type'
+    nodeTypes = _.map nodes, 'type'
     @NodeRegistryService.needsPermissions(flowId, nodeTypes).
       then (thingsNeedingSendWhitelist)=>
         return if _.isEmpty thingsNeedingSendWhitelist

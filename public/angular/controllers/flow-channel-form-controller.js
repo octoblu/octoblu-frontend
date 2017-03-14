@@ -42,7 +42,7 @@ angular.module('octobluApp')
 
     node = $scope.node;
     resources = $scope.resources;
-    selectedEndpoint = _.findWhere(resources, {url: node.url, httpMethod: node.method});
+    selectedEndpoint = _.find(resources, {url: node.url, httpMethod: node.method});
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
   };
 
@@ -52,7 +52,7 @@ angular.module('octobluApp')
         param.style = param.style.toLowerCase();
       }
     });
-    return _.where(params, {style: style});
+    return _.filter(params, {style: style});
   };
 
   var updateNodeWithSelectedEndpoint = function(){

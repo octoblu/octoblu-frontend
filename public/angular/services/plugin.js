@@ -41,7 +41,7 @@ angular.module('octobluApp').
             var _this = this;
 
             return this.getInstalledPlugins(hub).then(function(result){
-                var plugin = _.findWhere(result.result, {name: pluginName});
+                var plugin = _.find(result.result, {name: pluginName});
 
                 if(plugin){
                     return plugin;
@@ -83,7 +83,7 @@ angular.module('octobluApp').
             return this.getInstalledPlugins(hub).then(function(result){
                 var defer, plugin;
 
-                plugin = _.findWhere(result.result, {name: pluginName});
+                plugin = _.find(result.result, {name: pluginName});
                 defer = $q.defer();
 
                 if(plugin){

@@ -14,7 +14,7 @@ class OctoService
     deferred = @q.defer()
     @deviceService.getDevices()
       .then (devices) =>
-        octos = _.where devices, type: 'octoblu:octo'
+        octos = _.filter devices, type: 'octoblu:octo'
         deferred.resolve(octos)
       .catch (error) =>
         deferred.reject new Error('Error retrieving octos')

@@ -7,7 +7,7 @@ angular.module('octobluApp')
   FlowService.getAllFlows().then(function (flows) {
     var flowId;
     $state.flows = flows;
-    if ($cookies.currentFlowId && _.findWhere(flows, {flowId: $cookies.currentFlowId})) {
+    if ($cookies.currentFlowId && _.find(flows, {flowId: $cookies.currentFlowId})) {
       flowId = $cookies.currentFlowId;
     } else {
       flowId = _.first(flows).flowId;

@@ -206,10 +206,10 @@ class ThingService
 
     update =
       uuid: device.uuid
-      discoverWhitelist: _.pluck(_.where(uncategorizedRows, discover: true), 'uuid')
-      configureWhitelist: _.pluck(_.where(uncategorizedRows, configure: true), 'uuid')
-      sendWhitelist: _.pluck(_.where(uncategorizedRows, send: true), 'uuid')
-      receiveWhitelist: _.pluck(_.where(uncategorizedRows, receive: true), 'uuid')
+      discoverWhitelist: _.map(_.filter(uncategorizedRows, discover: true), 'uuid')
+      configureWhitelist: _.map(_.filter(uncategorizedRows, configure: true), 'uuid')
+      sendWhitelist: _.map(_.filter(uncategorizedRows, send: true), 'uuid')
+      receiveWhitelist: _.map(_.filter(uncategorizedRows, receive: true), 'uuid')
 
     return @q.when(false) if @whitelistsAreSame device, update
 
