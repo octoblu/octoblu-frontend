@@ -16,7 +16,7 @@ angular.module('octobluApp')
 
 
       link: function ($scope, element) {
-        var snap = Snap(element.find(".flow-editor-workspace")[0]);
+        var snap = Snap($(element).find("svg.flow-editor-workspace")[0]);
         var flowRenderer = new FlowRenderer(snap, {readonly: ($scope.readonly||$scope.displayOnly)});
         var pulseNodeById = function(nodeId) {
           var nodesToPulse = Snap.selectAll('#node-' + nodeId + ' > image');

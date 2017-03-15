@@ -20,13 +20,15 @@ RUN cat package.json \
   | sed 's/[",]//g' \
   | tr -d '[[:space:]]' > .PKG_VERSION
 
-COPY public/ public/ 
+COPY public/ public/
 COPY public/ /usr/share/nginx/bundled/
 COPY scripts/ scripts/
-COPY templates/ templates/ 
+COPY templates/ templates/
 
+# Comment the run and uncomment the COPY statement to run on local docker
 RUN ./scripts/rewrite-files.sh "https://app-static.octoblu.com/v$(cat .PKG_VERSION)" '/public' '/usr/share/nginx/html'
-  
+# COPY public/ /usr/share/nginx/html
+
 RUN sed -e \
   "s/PKG_VERSION/$(cat .PKG_VERSION)/" \
   /templates/default.template > \

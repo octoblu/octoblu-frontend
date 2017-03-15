@@ -22,7 +22,6 @@ angular.module('octobluApp', [
   'angulartics.google.analytics',
   'ng-autofocus',
   'draganddrop',
-  'ngPostMessage',
   'angular-meshblu-device-editor',
   'LocalStorageModule',
   'truncate'])
