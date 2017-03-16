@@ -22,4 +22,5 @@ assets/json/operations.json
 
 # dev files
 .*-dev
+dist
 dpl_assets

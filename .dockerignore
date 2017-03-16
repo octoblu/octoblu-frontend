@@ -1,7 +1,7 @@
 node_modules
-test
-public/lib
 dpl_*
+dist
+meshblu.json
 
 .git/branches
 .git/hooks

@@ -1,48 +1,45 @@
-return unless location.hostname in ['app.octoblu.test', 'localhost']
-protocol = location.protocol.replace(/\W*$/,'')
-port = '80'
-port = '443' if protocol == 'https'
-console.log 'using octoblu-test env'
+return unless location.host in ['localhost:5555']
+console.log 'using test config'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
-    EMAIL_PASSWORD: "#{protocol}://login.octoblu.test"
-    GOOGLE: "#{protocol}://login.octoblu.test"
-    FACEBOOK: "#{protocol}://login.octoblu.test"
-    TWITTER: "#{protocol}://login.octoblu.test"
-    CITRIX: "#{protocol}://login.octoblu.test"
-    GITHUB: "#{protocol}://login.octoblu.test"
+    EMAIL_PASSWORD: 'https://login.octoblu.com'
+    GOOGLE: 'https://google-oauth.octoblu.com/login'
+    CITRIX: 'https://citrix-oauth.octoblu.com/login'
+    FACEBOOK: 'https://facebook-oauth.octoblu.com/login'
+    TWITTER: 'https://twitter-oauth.octoblu.com/login'
+    GITHUB: 'https://github-oauth.octoblu.com/login'
   }
   .constant 'SERVICE_UUIDS', {
     TRIGGER: 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64',
-    INTERVAL: '11d64fbe-1633-4e56-ade8-3517e0ff3bae',
+    INTERVAL: '765bd3a4-546d-45e6-a62f-1157281083f0',
     CREDENTIALS: 'c339f6ce-fe26-4788-beee-c97605f50403'
   }
-  .constant 'CLUSTER_DOMAIN', 'octoblu.test'
-  .constant 'BLUPRINTER_URL', 'https://bluprinter.octoblu.test'
-  .constant 'CONNECTOR_DETAIL_SERVICE_URL', "#{protocol}://connector.octoblu.test"
-  .constant 'CWC_APP_STORE_URL', "#{protocol}://cwc-store.octoblu.test"
-  .constant 'CWC_AUTHENTICATOR_URL', "#{protocol}://cwc-authenticator-proxy.octoblu.test"
-  .constant 'CWC_LOGIN_URL', 'https://workspace.tryworkspaces.com/login'
+  .constant 'CLUSTER_DOMAIN', 'octoblu.com'
+  .constant 'BLUPRINTER_URL', 'https://bluprinter.octoblu.com'
+  .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
+  .constant 'CWC_AUTHENTICATOR_URL', "https://cwc-auth.octoblu.com"
   .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
-  .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.test'
-  .constant 'FLOW_LOGGER_UUID', 'none'
-  .constant 'GATEBLU_LOGGER_UUID', 'none'
-  .constant 'INTERCOM_APPID', 'thuyk9s6'
-  .constant 'MESHBLU_FIREHOSE_HOSTNAME', "meshblu-firehose-socket-io.octoblu.test"
-  .constant 'MESHBLU_FIREHOSE_PORT', port
-  .constant 'MESHBLU_FIREHOSE_PROTOCOL', protocol
-  .constant 'MESHBLU_HOST', "meshblu-http.octoblu.test"
-  .constant 'MESHBLU_PORT', port
-  .constant 'MESHBLU_PROTOCOL', protocol
-  .constant 'OAUTH_PROVIDER', "#{protocol}://oauth.octoblu.test"
-  .constant 'OCTOBLU_API_URL', "#{protocol}://app.octoblu.test"
+  .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
+  .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.com'
+  .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
+  .constant 'INTERCOM_APPID', 'ux5bbkjz'
+  .constant 'MESHBLU_FIREHOSE_HOSTNAME', 'meshblu-firehose-socket-io.octoblu.com'
+  .constant 'MESHBLU_FIREHOSE_PORT', '443'
+  .constant 'MESHBLU_FIREHOSE_PROTOCOL', 'https'
+  .constant 'MESHBLU_HOST', 'meshblu-http.octoblu.com'
+  .constant 'MESHBLU_PORT', '443'
+  .constant 'MESHBLU_PROTOCOL', 'https'
+  .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
+  .constant 'OCTOBLU_API_URL', "#{location.protocol}//#{location.host}"
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
-  .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
-  .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.test"
+  .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/major/registry.json'
+  .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com"
+  .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.com"
+  .constant "CWC_LOGIN_URL", "https://workspace.tryworkspaces.com/login"
   .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
   .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
-  .constant 'SENTRY_DSN', ''
+  .constant 'SENTRY_DSN', 'https://0a67cc3d923040a886bbf04ba3456734@app.getsentry.com/87643'
   .constant 'STATUS_PAGE_ID', 'c3jcws6d2z45'
   .constant 'STATUS_PAGE_URL', 'http://status.octoblu.com'
   .constant 'OCTOBLU_REGISTRY_CONNECTOR_OFFICIAL', 'https://raw.githubusercontent.com/octoblu/registry-meshblu-connector-official/master/registry.json'
