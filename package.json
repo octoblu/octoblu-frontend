@@ -1,6 +1,6 @@
 {
   "name": "app-octoblu",
-  "version": "11.0.1",
+  "version": "11.0.2",
   "description": "octoblu.com",
   "main": "server.js",
   "private": true,
@@ -61,7 +61,7 @@
     "start": "gulp static",
     "start:watch": "gulp watch",
     "protractor": "protractor test/protractor.conf.js",
-    "build": "gulp && mkdir -p dist && cp -rfp public/* dist",
+    "build": "gulp bower:build && gulp build && mkdir -p dist && cp -rfp public/* dist",
     "coverage": "nyc npm test",
     "mocha:json": "env NPM_ENV=test mocha --reporter json > coverage/mocha.json"
   },

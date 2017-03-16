@@ -1,4 +1,4 @@
-return unless location.hostname in ['app.octoblu.com']
+return unless location.hostname == 'app.octoblu.com'
 console.log 'using production config'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {

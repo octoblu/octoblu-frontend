@@ -69,7 +69,6 @@ gulp.task('less:compile', function(){
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
-
 gulp.task('coffee:clean', function(){
   return gulp.src(['./public/angular/compiled'], {read: false})
     .pipe(rimraf())
@@ -92,6 +91,8 @@ gulp.task('javascript:concat', ['coffee:compile'], function(){
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
+
+gulp.task('build', ['less:compile', 'javascript:concat'])
 
 gulp.task('default', ['bower:build', 'less:compile', 'javascript:concat']);
 

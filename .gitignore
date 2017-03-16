@@ -1,6 +1,7 @@
 *.swp
 *.swo
 .DS_Store
+
 node_modules
 dist
 public/lib
@@ -19,8 +20,7 @@ meshblu.json
 public/angular/compiled
 public/lib-assets
 assets/json/operations.json
+dpl_*
 
 # dev files
 .*-dev
-dist
-dpl_assets

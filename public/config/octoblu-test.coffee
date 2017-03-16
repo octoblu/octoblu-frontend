@@ -1,5 +1,5 @@
-return unless location.host in ['localhost:5555']
-console.log 'using test config'
+return unless location.hostname == 'localhost'
+console.log 'using localhost config'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
     EMAIL_PASSWORD: 'https://login.octoblu.com'
