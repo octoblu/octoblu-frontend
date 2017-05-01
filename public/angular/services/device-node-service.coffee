@@ -33,6 +33,7 @@ class DeviceNodeService
       name:     true
       type:     true
       logo:     true
+      logoUri:  true
       category: true
       online:   true
       schemas:  true

@@ -46,6 +46,7 @@ class DeviceDetailController
       type: true
       name: true
       logo: true
+      logoUri: true
       meshblu: true
       configureWhitelist: true
       discoverWhitelist: true
