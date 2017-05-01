@@ -52,7 +52,7 @@ class PermissionsV2Controller
         uuid: $in: whitelistedDevices
       projection: {
         meshblu: true
-        logoUri: true
+        iconUri: true
         name: true
         type: true
         uuid: true
