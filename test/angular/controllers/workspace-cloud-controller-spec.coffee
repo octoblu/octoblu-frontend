@@ -1,4 +1,4 @@
-describe 'WorkspaceCloudController', ->
+xdescribe 'WorkspaceCloudController', ->
   beforeEach ->
     module 'octobluApp', ($provide) =>
       $provide.value '$state', go: sinon.spy()
