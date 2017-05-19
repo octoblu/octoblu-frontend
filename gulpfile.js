@@ -1,6 +1,7 @@
 var gulp         = require('gulp'),
   bower          = require('gulp-bower'),
   mainBowerFiles = require('main-bower-files'),
+  chalk          = require('chalk'),
   concat         = require('gulp-concat'),
   rename         = require('gulp-rename'),
   less           = require('gulp-less'),
@@ -98,15 +99,30 @@ gulp.task('default', ['bower:build', 'less:compile', 'javascript:concat']);
 
 gulp.task('webserver', ['static']);
 
-gulp.task('static', ['default'], function(){
 
-  var port = process.env.PORT || 80;
+
+gulp.task('static-preflight', function(){
   var apiBackendUri = process.env.OCTOBLU_BACKEND_URI;
+
   if (!apiBackendUri) {
-    console.error('missing OCTOBLU_BACKEND_URI')
+    console.error(chalk.red('\n======================= ERROR =======================\n'))
+    console.error(chalk.red('  Missing OCTOBLU_BACKEND_URI environment variable.'))
+    console.error(chalk.red('\n======================= ERROR =======================\n'))
     process.exit(1)
     return
   }
+
+  if (!_.endsWith(apiBackendUri, '/api')) {
+    console.error(chalk.yellow('\n================== WARNING ==================\n'))
+    console.error(chalk.yellow('    OCTOBLU_BACKEND_URI should end with /api'))
+    console.error(chalk.yellow('    you probably want: "'+apiBackendUri+'/api"'))
+    console.error(chalk.yellow('\n================== WARNING ==================\n'))
+  }
+})
+
+gulp.task('static', ['static-preflight', 'default'], function(){
+  var port = process.env.PORT || 80;
+  var apiBackendUri = process.env.OCTOBLU_BACKEND_URI;
 
   return gulp.src('./public').pipe(webserver({
     host: '0.0.0.0',

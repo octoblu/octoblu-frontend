@@ -1,4 +1,4 @@
-FROM node:5.1.0
+FROM octoblu/node:7
 MAINTAINER Octoblu <docker@octoblu.com>
 
 EXPOSE 80
