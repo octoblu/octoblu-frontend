@@ -76,6 +76,7 @@ angular.module('octobluApp', [
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
   .constant('IS_IN_CWC_MODE', isInCWCMode())
+  .constant('loadCWCNavBar', loadCWCNavBar)
   .constant('$debug', window.debug)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
