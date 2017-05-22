@@ -9,22 +9,13 @@ class WorkspaceCloudController
     CWCAuthProxyService.authenticateCWCUser(otp, customerId, @referrer)
       .then (results) =>
         sessionId = _.get results, 'cwc.sessionId'
-        loadCWCNavBar {sessionId, customerId, @referrer, hostname: 'cloud.com'}
+        localStorage.setItem('workspaceCloudSessionId', sessionId)
+        localStorage.setItem('workspaceCloudCustomerId', customerId)
 
-    window.addEventListener 'message', (event) =>      
-      return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
-      $cookies.workspaceCloud = true
-      localStorage.setItem('workspaceCloud', true)
-      $state.go 'login', @buildQueryParams()
+        window.addEventListener 'message', (event) =>
+          return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
+          window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}"
 
-  buildQueryParams: =>
-    {customerId, otp} = @stateParams
-
-    queryParams                   = {}
-    queryParams["customerId"]     = customerId if customerId?
-    queryParams["otp"]            = otp if otp?
-    queryParams["cwcReferralUrl"] = @referrer
-    queryParams["redirectUrl"]    = @CWC_APP_STORE_URL
-    return queryParams
+        loadCWCNavBar()
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController

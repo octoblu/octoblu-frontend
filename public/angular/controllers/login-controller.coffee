@@ -5,7 +5,7 @@ class LoginController
     host         = $location.host()
     port         = $location.port()
 
-    @CWCAccount = @isCWCAccount() || localStorage.getItem('workspaceCloud')
+    @CWCAccount = @isCWCAccount()
     @loggingIn = true
 
     callbackUrl = $location.search().callbackUrl
@@ -23,6 +23,10 @@ class LoginController
     @googleLoginUri        = AUTHENTICATOR_URIS.GOOGLE + '?' + loginParams
     @twitterLoginUri       = AUTHENTICATOR_URIS.TWITTER + '?' + loginParams
     @signUpUri             = AUTHENTICATOR_URIS.EMAIL_PASSWORD + '/signup?' + loginParams
+
+    unless @CWCAccount
+      localStorage.removeItem('workspaceCloudSessionId')
+      localStorage.removeItem('workspaceCloudCustomerId')
 
   isCWCAccount: () =>
       { otp, customerId } = @stateParams
