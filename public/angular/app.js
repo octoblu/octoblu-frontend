@@ -715,23 +715,6 @@ angular.module('octobluApp', [
   .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, RavenService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
     $rootScope.showErrorState = false;
 
-    $rootScope.$on('$messageIncoming', function (event, data){
-      if (data.name === "$cwcNavbarUserLoggedOff") {
-        AuthService.logout().then(function () {
-          localStorage.removeItem('workspaceCloud')
-          $rootScope.$emit('$messageOutgoing', {name: "$octobluUserLoggedOff"});
-          $window.location = CWC_LOGIN_URL
-        });
-      }
-
-      if (data.name === "$cwcNavbarUserAuthorized") {
-        $rootScope.$broadcast("$cwcUserAuthorized");
-      }
-
-      if (data.name === "$octobluUserLoggedOff") {
-      }
-    });
-
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.error('error from ' + fromState.name + ' to ' + toState.name, error);
       console.error(error.stack);

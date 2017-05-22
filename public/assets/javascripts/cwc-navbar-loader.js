@@ -1,5 +1,7 @@
 function loadCWCNavBar(options) {
   if (!isInCWCMode()) return
+  AuthService = options.AuthService
+  $state = options.$state
   window.cwcSessionId = localStorage.getItem("workspaceCloudSessionId")
   window.cwcCustomerId = localStorage.getItem("workspaceCloudCustomerId")
 
@@ -13,6 +15,14 @@ function loadCWCNavBar(options) {
   navbarScriptElement.attr("id", "cwc-navbar-source")
   body.append(navbarScriptElement)
   navbarElement.prependTo(body)
+
+  window.addEventListener('message', function(event) {
+    if (event.origin === location.origin && event.data && event.data.name === '$cwcNavbarUserLoggedOff') {
+      AuthService.logout().then(function() {
+        window.postMessage({name: '$octobluUserLoggedOff'}, '*')
+      })
+    }
+  })
 }
 
 function isInCWCMode() {
