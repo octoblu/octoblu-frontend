@@ -497,7 +497,11 @@ angular.module('octobluApp')
     if (_.isEqual(newFlow.hash, oldFlow.hash)) { return }
     $scope.needsToBeDeployed = lastDeployedHash !== newFlow.hash;
     if (showingFlowModifiedDialog) { return }
-    FlowService.saveActiveFlow();
+    FlowService.saveActiveFlow()
+      .catch(function(httpError){
+        var error = new Error(httpError.statusText);
+        NotifyService.notifyError(error);
+      })
   };
 
   var expandSidebarIfNodeType = function(nodeType) {

@@ -16,7 +16,7 @@ angular.module('octobluApp')
       if(error && error.message) {
         message = error.message;
       }
-      var toast = $mdToast.simple('Error:', message.replace(/error/i, ''));
+      var toast = $mdToast.simple('Error: ' + message.replace(/^error/i, ''));
       $mdToast.show(toast);
       window.$mdToast = $mdToast;
     },
