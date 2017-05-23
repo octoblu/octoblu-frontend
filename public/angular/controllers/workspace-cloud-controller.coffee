@@ -19,5 +19,7 @@ class WorkspaceCloudController
           window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}"
 
         loadCWCNavBar({ AuthService, $state })
+      .catch =>
+        $state.go 'login'
 
 angular.module('octobluApp').controller 'WorkspaceCloudController', WorkspaceCloudController
