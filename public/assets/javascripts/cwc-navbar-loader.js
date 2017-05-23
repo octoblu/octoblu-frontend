@@ -22,6 +22,9 @@ function loadCWCNavBar(options) {
         window.postMessage({name: '$octobluUserLoggedOff'}, '*')
       })
     }
+    if (event.origin === location.origin && event.data && event.data.name === '$cwcNavbarUserNotAuthorized') {
+      AuthService.logout()
+    }
   })
 }
 
