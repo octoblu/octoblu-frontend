@@ -9,6 +9,7 @@ function loadCWCNavBar(options) {
   var navbarElement = $("<cwc-navbar></cwc-navbar>")
   var navbarScriptElement = $("<script></script>")
 
+  navbarElement.attr("service", "Octoblu" )
   navbarElement.attr("domain", "https://citrix.cloud.com")
   navbarElement.attr("logoff-event", "$octobluUserLoggedOff")
   navbarScriptElement.attr("src", "https://citrix.cloud.com/navbar/scripts/cwc-navbar.min.js")
