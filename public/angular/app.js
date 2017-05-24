@@ -712,7 +712,7 @@ angular.module('octobluApp', [
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/');
   })
-  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, RavenService, IntercomService, IntercomUserService, $cookies, CWC_LOGIN_URL) {
+  .run(function ($log, $rootScope, $window, $state, $urlRouter, $location, AuthService, RavenService, IntercomService, IntercomUserService, $cookies) {
     $rootScope.showErrorState = false;
 
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
