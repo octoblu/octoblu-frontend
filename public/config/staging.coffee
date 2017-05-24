@@ -21,7 +21,7 @@ angular.module('octobluApp')
   .constant 'CWC_TRUST_URL', 'https://trust.cloudburrito.com'
   .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu-staging.com"
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.com"
-  .constant "CWC_DOMAIN", "cloud.com"
+  .constant "CWC_DOMAIN", "cloudburrito.com"
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.com'
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
