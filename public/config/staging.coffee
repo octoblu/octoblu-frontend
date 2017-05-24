@@ -1,5 +1,5 @@
-return unless location.hostname == 'localhost'
-console.log 'using localhost config'
+return unless location.hostname == 'app.octoblu-staging.com'
+console.log 'using staging config'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
     EMAIL_PASSWORD: 'https://login.octoblu.com'
@@ -19,9 +19,9 @@ angular.module('octobluApp')
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'CWC_TRUST_URL', 'https://trust.cloudburrito.com'
-  .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com"
+  .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu-staging.com"
   .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.octoblu.com"
-  .constant "CWC_DOMAIN", "cloudburrito.com"
+  .constant "CWC_DOMAIN", "cloud.com"
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.com'
   .constant 'GATEBLU_LOGGER_UUID', '4dd6d1a8-0d11-49aa-a9da-d2687e8f9caf'
@@ -33,7 +33,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PORT', '443'
   .constant 'MESHBLU_PROTOCOL', 'https'
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
-  .constant 'OCTOBLU_API_URL', "#{location.protocol}//#{location.host}"
+  .constant 'OCTOBLU_API_URL', 'https://app.octoblu-staging.com'
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/major/registry.json'
   .constant 'SENTRY_DSN', 'https://0a67cc3d923040a886bbf04ba3456734@app.getsentry.com/87643'

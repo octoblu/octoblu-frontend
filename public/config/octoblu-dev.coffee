@@ -21,9 +21,8 @@ angular.module('octobluApp')
   .constant 'BLUPRINTER_URL', 'https://bluprinter.octoblu.dev'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', "#{protocol}://connector.octoblu.dev"
   .constant 'CWC_APP_STORE_URL', "#{protocol}://cwc-store.octoblu.dev"
-  .constant 'CWC_AUTHENTICATOR_URL', "#{protocol}://cwc-authenticator-proxy.octoblu.dev"
-  .constant 'CWC_LOGIN_URL', 'https://workspace.tryworkspaces.com/login'
-  .constant 'CWC_TRUST_URL', 'https://trust-eastus-release-a.tryworkspacesapi.net'
+  .constant "CWC_DOMAIN": "cloudburrito.com"
+  .constant 'CWC_TRUST_URL', 'https://trust.cloudburrito.com'
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.octoblu.dev'
   .constant 'FLOW_LOGGER_UUID', 'none'
   .constant 'GATEBLU_LOGGER_UUID', 'none'

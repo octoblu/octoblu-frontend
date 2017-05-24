@@ -1,10 +1,10 @@
 class WorkspaceCloudController
-  constructor: ($scope, $window, $cookies, $rootScope, $state, $stateParams, loadCWCNavBar, CWC_APP_STORE_URL, CWC_STAGING_URL, CWCAuthProxyService, AuthService) ->
+  constructor: ($scope, $window, $cookies, $rootScope, $state, $stateParams, loadCWCNavBar, CWC_APP_STORE_URL, CWCAuthProxyService, AuthService, CWC_DOMAIN) ->
     @state             = $state
     @referrer          = $window.document.referrer || 'https://citrix.cloud.com/'
     @stateParams       = $stateParams
     @CWC_APP_STORE_URL = CWC_APP_STORE_URL
-    @CWC_STAGING_URL   = CWC_STAGING_URL
+    @CWC_DOMAIN        = CWC_DOMAIN
     {customerId, otp} = @stateParams
     CWCAuthProxyService.authenticateCWCUser(otp, customerId, @referrer)
       .then (results) =>
@@ -18,7 +18,7 @@ class WorkspaceCloudController
           return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
           window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}"
 
-        loadCWCNavBar({ AuthService, $state })
+        loadCWCNavBar({ AuthService, $state, @CWC_DOMAIN })
       .catch =>
         $state.go 'login'
 
