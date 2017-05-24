@@ -1,4 +1,4 @@
-return unless location.hostname == 'app.octoblu.com'
+return unless location.hostname in ['app.octoblu.com', 'app.octoblu-staging.com']
 console.log 'using production config'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
@@ -30,7 +30,7 @@ angular.module('octobluApp')
   .constant 'MESHBLU_PORT', '443'
   .constant 'MESHBLU_PROTOCOL', 'https'
   .constant 'OAUTH_PROVIDER', 'https://oauth.octoblu.com'
-  .constant 'OCTOBLU_API_URL', 'https://app.octoblu.com'
+  .constant 'OCTOBLU_API_URL', 'https://' + location.hostname,
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/major/registry.json'
   .constant "CWC_APP_STORE_URL", "https://cwc-store.octoblu.com"
