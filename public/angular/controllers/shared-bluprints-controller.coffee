@@ -18,11 +18,11 @@ class SharedBluprintsController
 
     @refreshBluprintsPaged @limitPerPage, @currentPage
 
-    @scope.$watch 'bluprintNameFilter', _.debounce(@nameFilterChange, 200, { leading: true })
+    @scope.$watch 'bluprintNameFilter', _.debounce(@nameFilterChange, 500, { leading: true })
 
   nameFilterChange: =>
     return @refreshBluprintsPaged @limitPerPage, 1 if _.isEmpty @scope.bluprintNameFilter
-    return if @scope.isLoading
+    # return if @scope.isLoading
     @searchPublic @scope.bluprintNameFilter
 
   searchPublic: (name)=>
