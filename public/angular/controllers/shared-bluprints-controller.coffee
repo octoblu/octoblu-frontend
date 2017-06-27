@@ -27,6 +27,7 @@ class SharedBluprintsController
 
   searchPublic: (name)=>
     @scope.isLoading = true
+    @noneLeft = true
     @BluprintService.getPublicBluprintsNameFilter(@collectionName, name)
       .then (bluprints) =>
         @bluprints = bluprints
@@ -43,6 +44,7 @@ class SharedBluprintsController
 
   refreshBluprintsPaged: (limit, page)=>
     @scope.isLoading = true
+    @noneLeft = true
     @BluprintService.getPublicBluprintsPaged(@collectionName, limit, page)
       .then (bluprints) =>
         @bluprints = bluprints
