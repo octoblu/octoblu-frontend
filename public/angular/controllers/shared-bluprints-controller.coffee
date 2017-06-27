@@ -22,9 +22,11 @@ class SharedBluprintsController
 
   nameFilterChange: =>
     return @refreshBluprintsPaged @limitPerPage, 1 if _.isEmpty @scope.bluprintNameFilter
+    return if @scope.isLoading
     @searchPublic @scope.bluprintNameFilter
 
   searchPublic: (name)=>
+    @scope.isLoading = true
     @BluprintService.getPublicBluprintsNameFilter(@collectionName, name)
       .then (bluprints) =>
         @bluprints = bluprints
@@ -40,6 +42,7 @@ class SharedBluprintsController
         @scope.isLoading = false
 
   refreshBluprintsPaged: (limit, page)=>
+    @scope.isLoading = true
     @BluprintService.getPublicBluprintsPaged(@collectionName, limit, page)
       .then (bluprints) =>
         @bluprints = bluprints
