@@ -115,6 +115,7 @@ class RegistryService
       return callback error if error?
       finalObject = {}
       _.each keys, (key, i) =>
+        return if _.isEmpty mappedValues[i]
         finalObject[key] = mappedValues[i]
       callback null, finalObject
 
@@ -126,7 +127,8 @@ class RegistryService
         registry.items = _.map registry.items, @_mapItem
         callback null, registry
       .catch (error) =>
-        callback error
+        console.error 'error fetching registry', { uri, error }
+        callback null
     return
 
   _getRegistrySet: (registrySet, callback) =>
@@ -135,6 +137,7 @@ class RegistryService
   _getRegistriesAndCache: (task, callback) =>
     return callback() if @registries?
     @_getRegistriesFromUser (error, registries) =>
+      return callback error if error?
       @_mapObject registries, @_getRegistrySet, (error, @registries) =>
         return callback error if error?
         callback null

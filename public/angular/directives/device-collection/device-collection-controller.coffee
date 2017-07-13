@@ -23,7 +23,7 @@ class DeviceCollectionController
 
     if device.category == 'channel'
       sref = 'material.channel'
-      params.id = device.defaults.nodeType.channelid
+      params.id = device.defaults?.nodeType?.channelid
     else if device.category == 'microblu'
       sref = 'material.microblu'
       params.uuid = device.uuid
