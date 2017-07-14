@@ -31,6 +31,7 @@ class DeviceNodeService
     projection =
       uuid:     true
       name:     true
+      meshblu:  true
       type:     true
       logo:     true
       iconUri:  true
