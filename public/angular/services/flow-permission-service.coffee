@@ -77,7 +77,7 @@ class PermissionManager
 
   _getDeviceNodes: =>
     _.filter @flow.nodes, (node) =>
-      node?.meshblu || node?.class == 'device-flow'
+      node?.meshblu || node?.class == 'device-flow' || node?.category == 'device'
 
   _getDevicesWithPermissions: (devices) =>
     _.map devices, @_getDeviceWithPermissions
