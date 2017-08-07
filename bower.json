@@ -29,7 +29,7 @@
     "angular-local-storage": "0.2.7",
     "angular-marked": "0.0.21",
     "angular-material": "1.0.9",
-    "angular-meshblu-device-editor": "4.0.3",
+    "angular-meshblu-device-editor": "4.0.6",
     "angular-messages": "1.6.2",
     "angular-mocks": "1.3.20",
     "angular-post-message": "1.3.1",
@@ -58,7 +58,7 @@
     "json-schema-ref-parser": "3.1.2",
     "lodash": "3.10.1",
     "marked": "0.3.6",
-    "meshblu-json-schema-resolver": "3.0.0",
+    "meshblu-json-schema-resolver": "3.0.1",
     "mgo-mousetrap": "https://github.com/octoblu/mgo-mousetrap.git#0.1.5",
     "modernizr": "2.8.3",
     "moment": "2.9.0",
@@ -137,8 +137,7 @@
     "angular-messages": "1.3.20",
     "d3": "3.3.13",
     "angular": "1.3.20",
-    "lodash": "3.10.1",
     "octoblu-device-schema-transmogrifier": "^6.1.2",
-    "meshblu-json-schema-resolver": "^3.0.0"
+    "meshblu-json-schema-resolver": "3.0.1"
   }
 }
