@@ -2,7 +2,7 @@ function loadCWCNavBar(options) {
   if (!isInCWCMode()) return
   AuthService = options.AuthService
   $state = options.$state
-  CWC_DOMAIN = options.CWC_DOMAIN
+  hostname = options.hostname
 
   window.cwcSessionId = localStorage.getItem("workspaceCloudSessionId")
   window.cwcCustomerId = localStorage.getItem("workspaceCloudCustomerId")
@@ -12,9 +12,9 @@ function loadCWCNavBar(options) {
   var navbarScriptElement = $("<script></script>")
 
   navbarElement.attr("service", "Octoblu" )
-  navbarElement.attr("domain", "https://citrix." + CWC_DOMAIN)
+  navbarElement.attr("domain", "https://" + hostname)
   navbarElement.attr("logoff-event", "$octobluUserLoggedOff")
-  navbarScriptElement.attr("src", "https://citrix." + CWC_DOMAIN + "/navbar/scripts/cwc-navbar.min.js")
+  navbarScriptElement.attr("src", "https://" + hostname + "/navbar/scripts/cwc-navbar.min.js")
   navbarScriptElement.attr("id", "cwc-navbar-source")
   body.append(navbarScriptElement)
   navbarElement.prependTo(body)

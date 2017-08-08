@@ -9,6 +9,7 @@ class WorkspaceCloudController
     CWCAuthProxyService.authenticateCWCUser(otp, customerId, @referrer)
       .then (results) =>
         sessionId = _.get results, 'cwc.sessionId'
+        hostname = _.get results, 'cwc.hostname'
         $cookies.meshblu_auth_uuid = results.userDevice.uuid
         $cookies.meshblu_auth_token = results.userDevice.token
         localStorage.setItem('workspaceCloudSessionId', sessionId)
@@ -18,7 +19,7 @@ class WorkspaceCloudController
           return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
           window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}"
 
-        loadCWCNavBar({ AuthService, $state, @CWC_DOMAIN })
+        loadCWCNavBar({ AuthService, $state, hostname })
       .catch =>
         $state.go 'login'
 
