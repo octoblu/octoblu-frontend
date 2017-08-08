@@ -14,6 +14,7 @@ class WorkspaceCloudController
         $cookies.meshblu_auth_token = results.userDevice.token
         localStorage.setItem('workspaceCloudSessionId', sessionId)
         localStorage.setItem('workspaceCloudCustomerId', customerId)
+        localStorage.setItem('workspaceCloudHostname', hostname)
 
         window.addEventListener 'message', (event) =>
           return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
