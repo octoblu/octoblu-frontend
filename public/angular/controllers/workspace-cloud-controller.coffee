@@ -17,7 +17,7 @@ class WorkspaceCloudController
 
         window.addEventListener 'message', (event) =>
           return unless event.origin == location.origin && event.data?.name == '$cwcNavbarUserAuthorized'
-          window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}"
+          window.location = "#{@CWC_APP_STORE_URL}?customerId=#{customerId}&sessionId=#{sessionId}&cwcHostname=#{hostname}"
 
         loadCWCNavBar({ AuthService, $state, hostname })
       .catch =>
