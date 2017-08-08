@@ -2,7 +2,7 @@ function loadCWCNavBar(options) {
   if (!isInCWCMode()) return
   AuthService = options.AuthService
   $state = options.$state
-  hostname = options.hostname
+  hostname = options.hostname || localStorage.getItem("workspaceCloudHostname")
 
   window.cwcSessionId = localStorage.getItem("workspaceCloudSessionId")
   window.cwcCustomerId = localStorage.getItem("workspaceCloudCustomerId")
