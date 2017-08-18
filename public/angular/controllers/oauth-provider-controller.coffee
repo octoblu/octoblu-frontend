@@ -6,6 +6,7 @@ class OAuthProviderController
     @ThingService = ThingService
     @oauthUUID = $stateParams.uuid
     @OAUTH_PROVIDER = OAUTH_PROVIDER
+    @MeshbluHttpService = MeshbluHttpService
     @stateParams = $stateParams
     @q = $q
 
@@ -20,14 +21,12 @@ class OAuthProviderController
       @AuthService.getCurrentUser().then (user) =>
         $scope.currentUser = user
     .then =>
-      @q (resolve, reject) =>
-        query = 'metadata.client_id': @oauthUUID
-        MeshbluHttpService.searchTokens {query}, (error, tokens) =>
-          return reject error if error?
-
-          return @authorize() unless _.isEmpty tokens
-          $scope.loading = false
-          resolve()
+      @q (resolve) =>
+        user = $scope.currentUser.userDevice
+        hasAuthorizedClientBefore = _.get user, ['octoblu','oauth', 'clients', @oauthUUID]
+        return @authorize() if hasAuthorizedClientBefore
+        $scope.loading = false
+        resolve()
 
     $scope.authorize = @authorize
     $scope.cancel = @cancel
@@ -36,11 +35,13 @@ class OAuthProviderController
     device   = uuid: @cookies.meshblu_auth_uuid
     metadata =
       tag: "oauth-exchange-#{@oauthUUID}"
-
-    @ThingService.generateSessionToken(device, metadata).then (session) =>
-      {token,uuid} = session
-      _.delay =>
-        @window.location.href = "#{@OAUTH_PROVIDER}#{@stateParams.redirect}?response_type=#{@stateParams.response_type}&client_id=#{@oauthUUID}&redirect_uri=#{encodeURIComponent(@stateParams.redirect_uri)}&token=#{token}&uuid=#{uuid}&state=#{@stateParams.state}"
+    updateBody = { "$set": { "octoblu.oauth.clients.#{@oauthUUID}": true } }
+    @MeshbluHttpService.updateDangerously device.uuid, updateBody, (error) =>
+      console.error('Error updating oauth client', error) if error?
+      @ThingService.generateSessionToken(device, metadata).then (session) =>
+        { token,uuid } = session
+        _.delay =>
+          @window.location.href = "#{@OAUTH_PROVIDER}#{@stateParams.redirect}?response_type=#{@stateParams.response_type}&client_id=#{@oauthUUID}&redirect_uri=#{encodeURIComponent(@stateParams.redirect_uri)}&token=#{token}&uuid=#{uuid}&state=#{@stateParams.state}"
 
   cancel: =>
     url = @stateParams.cancel_uri || 'https://app.octoblu.com'
