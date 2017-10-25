@@ -1,6 +1,7 @@
 node_modules
 dpl_*
 meshblu.json
+public/lib
 
 .git/branches
 .git/hooks
