@@ -97,8 +97,7 @@ run_server() {
     sed -i'' -e "s|SSL_REDIRECT_HOOK|$ssl_redirect_snippet|" /etc/nginx/nginx.conf
   fi
 
-  cat /etc/nginx/nginx.conf
-  # nginx -g 'daemon off;'
+  nginx -g 'daemon off;'
 }
 
 main() {
