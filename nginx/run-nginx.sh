@@ -92,9 +92,9 @@ run_server() {
 
   skip_ssl="$1"
 
-  if [ "$skip_ssl" == 'true' ]; then
-    local ssl_redirect_snippet='if ($http_x_forwarded_proto = "http") { \n return 301 https://$host$request_uri; \n }'
-    sed -i'' -e "s|SSL_REDIRECT_HOOK|$ssl_redirect_snippet|" /etc/nginx/nginx.conf
+  if [ "$skip_ssl" != 'true' ]; then
+    local ssl_redirect_snippet='if ($http_x_forwarded_proto = "http") { \n      return 301 https://$host$request_uri; \n    }'
+    sed -i'' -e "s|# SSL_REDIRECT_HOOK|$ssl_redirect_snippet|" /etc/nginx/conf.d/default.conf
   fi
 
   nginx -g 'daemon off;'
