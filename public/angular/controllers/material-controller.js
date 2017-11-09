@@ -1,4 +1,3 @@
-angular.module("octobluApp").controller("MaterialController", function($scope, $state, AuthService, loadCWCNavBar, CWC_DOMAIN) {
+angular.module("octobluApp").controller("MaterialController", function($scope, $state, AuthService) {
   "use strict"
-  loadCWCNavBar({ AuthService: AuthService, $state: $state, CWC_DOMAIN: CWC_DOMAIN })
 })

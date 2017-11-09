@@ -1,7 +1,6 @@
 class FlowDetailEditorController
-  constructor: ($state, localStorageService, BluprintService, FlowService, IS_IN_CWC_MODE) ->
+  constructor: ($state, localStorageService, BluprintService, FlowService) ->
     @iotAppFeatureEnabled = localStorageService.get('iotAppFeatureEnabled')
-    @IS_IN_CWC_MODE = IS_IN_CWC_MODE
     @state = $state
     @BluprintService = BluprintService
     @FlowService = FlowService

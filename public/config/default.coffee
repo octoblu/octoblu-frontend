@@ -8,11 +8,6 @@ console.log 'using octoblu-dev env'
 angular.module('octobluApp')
   .constant 'AUTHENTICATOR_URIS', {
     EMAIL_PASSWORD: "#{protocol}://email-password-site.#{hostname}"
-    GOOGLE: "#{protocol}://email-password-site.#{hostname}"
-    FACEBOOK: "#{protocol}://email-password-site.#{hostname}"
-    TWITTER: "#{protocol}://email-password-site.#{hostname}"
-    CITRIX: "#{protocol}://email-password-site.#{hostname}"
-    GITHUB: "#{protocol}://email-password-site.#{hostname}"
   }
   .constant 'SERVICE_UUIDS', {
     TRIGGER: 'b560b6ee-c264-4ed9-b98e-e3376ce6ce64',
@@ -22,9 +17,6 @@ angular.module('octobluApp')
   .constant 'CLUSTER_DOMAIN', '#{hostname}'
   .constant 'BLUPRINTER_URL', 'https://bluprinter.#{hostname}'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', "#{protocol}://connector.#{hostname}"
-  .constant 'CWC_APP_STORE_URL', "#{protocol}://cwc-store.#{hostname}"
-  .constant "CWC_DOMAIN": "cloudburrito.com"
-  .constant 'CWC_TRUST_URL', 'https://trust.cloudburrito.com'
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.#{hostname}'
   .constant 'FLOW_LOGGER_UUID', 'none'
   .constant 'GATEBLU_LOGGER_UUID', 'none'
@@ -39,9 +31,6 @@ angular.module('octobluApp')
   .constant 'OCTOBLU_API_URL', "#{protocol}://app.#{hostname}"
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
-  .constant "CWC_AUTHENTICATOR_PROXY_URL", "https://cwc-authenticator-proxy.#{hostname}"
-  .constant "CWC_PRODUCTION_URL", "https://workspace.cloud.com"
-  .constant "CWC_STAGING_URL", "https://workspace.cloudburrito.com"
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'SENTRY_DSN', ''
   .constant 'STATUS_PAGE_ID', 'c3jcws6d2z45'

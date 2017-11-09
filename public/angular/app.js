@@ -75,8 +75,6 @@ angular.module('octobluApp', [
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data):/);
   }])
   .constant('reservedProperties', ['$$hashKey', '_id'])
-  .constant('IS_IN_CWC_MODE', isInCWCMode())
-  .constant('loadCWCNavBar', loadCWCNavBar)
   .constant('$debug', window.debug)
   // enabled CORS by removing ajax header
   .config(function ($provide, $httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -660,7 +658,7 @@ angular.module('octobluApp', [
         templateUrl: '/pages/resources.html'
       })
       .state('login', {
-        url: '/login?otp&customerId&cwcReferralUrl&redirectUrl',
+        url: '/login?otp&customerId&redirectUrl',
         templateUrl: '/pages/login.html',
         controller: 'LoginController',
         controllerAs: 'controller',
@@ -694,13 +692,6 @@ angular.module('octobluApp', [
         url: '/reset/:resetToken',
         templateUrl: '/pages/reset/reset.html',
         controller: 'resetController',
-        unsecured: true
-      })
-      .state('cwclanding', {
-        url: '/workspacecloud?otp&customerId',
-        templateUrl: '/pages/workspace-cloud.html',
-        controller: 'WorkspaceCloudController',
-        controllerAs: 'controller',
         unsecured: true
       });
 
