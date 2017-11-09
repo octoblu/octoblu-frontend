@@ -1,3 +1,3 @@
-# app-octoblu-frontend
+# app-octoblu
 
 Frontend for app.octoblu.com
