@@ -1,3 +1,3 @@
 # app-octoblu
 
-Frontend for app.octoblu.com
+Frontend service for Octoblu
