@@ -2,8 +2,8 @@
   "name": "app-octoblu",
   "version": "12.3.0",
   "description": "octoblu.com",
-  "main": "server.js",
-  "private": true,
+  "main": "index.js",
+  "license": "MIT",
   "author": "Octoblu Inc.",
   "dependencies": {
     "cors": "^2.7.1",
