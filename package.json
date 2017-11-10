@@ -1,7 +1,7 @@
 {
-  "name": "app-octoblu",
-  "version": "12.3.0",
-  "description": "octoblu.com",
+  "name": "octoblu-frontend",
+  "version": "12.3.1",
+  "description": "app.octoblu.com",
   "main": "index.js",
   "license": "MIT",
   "author": "Octoblu Inc.",
