@@ -744,8 +744,6 @@ angular
     $location,
     AuthService,
     RavenService,
-    IntercomService,
-    IntercomUserService,
     $cookies
   ) {
     $rootScope.showErrorState = false;
@@ -772,14 +770,12 @@ angular
       fromState
     ) {
       $rootScope.showErrorState = false;
-      IntercomService.update();
       if (toState.unsecured) return;
 
       return AuthService.getCurrentUser(true)
         .then(function(user) {
           if (toState.name === "profile-new") return;
-          RavenService.update();
-          return IntercomUserService.updateIntercom();
+          return RavenService.update();
         })
         .catch(function(err) {
           event.preventDefault();

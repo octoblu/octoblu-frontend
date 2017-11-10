@@ -20,7 +20,6 @@ angular.module('octobluApp')
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.#{hostname}'
   .constant 'FLOW_LOGGER_UUID', 'none'
   .constant 'GATEBLU_LOGGER_UUID', 'none'
-  .constant 'INTERCOM_APPID', 'thuyk9s6'
   .constant 'MESHBLU_FIREHOSE_HOSTNAME', "meshblu-firehose-socket-io.#{hostname}"
   .constant 'MESHBLU_FIREHOSE_PORT', port
   .constant 'MESHBLU_FIREHOSE_PROTOCOL', protocol
