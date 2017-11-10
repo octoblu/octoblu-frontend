@@ -24,11 +24,11 @@ angular.module('octobluApp')
   .constant 'MESHBLU_FIREHOSE_HOSTNAME', "meshblu-firehose-socket-io.#{hostname}"
   .constant 'MESHBLU_FIREHOSE_PORT', port
   .constant 'MESHBLU_FIREHOSE_PROTOCOL', protocol
-  .constant 'MESHBLU_HOST', "meshblu.#{hostname}"
+  .constant 'MESHBLU_HOST', "meshblu-http.#{hostname}"
   .constant 'MESHBLU_PORT', port
   .constant 'MESHBLU_PROTOCOL', protocol
   .constant 'OAUTH_PROVIDER', "#{protocol}://oauth.#{hostname}"
-  .constant 'OCTOBLU_API_URL', "#{protocol}://app.#{hostname}"
+  .constant 'OCTOBLU_API_URL', "#{protocol}://#{location.hostname}"
   .constant 'OCTOBLU_ICON_URL', 'https://icons.octoblu.com/'
   .constant 'REGISTRY_URL', 'https://s3-us-west-2.amazonaws.com/nanocyte-registry/latest/registry.json'
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
