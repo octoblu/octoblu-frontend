@@ -16,6 +16,7 @@ angular.module('octobluApp')
   }
   .constant 'CLUSTER_DOMAIN', '#{hostname}'
   .constant 'BLUPRINTER_URL', 'https://bluprinter.#{hostname}'
+  .constant 'MESHBLU_OTP_URL', 'https://meshblu-otp.#{hostname}'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', "#{protocol}://connector.#{hostname}"
   .constant 'FLOW_DEPLOY_SERVICE_URL', 'https://nanocyte-flow-deploy.#{hostname}'
   .constant 'FLOW_LOGGER_UUID', 'none'

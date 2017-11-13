@@ -82,7 +82,7 @@ angular
     "ngClipProvider",
     function(ngClipProvider) {
       ngClipProvider.setPath(
-        "https://app-static.octoblu.com/lib-assets/zeroclipboard/dist/ZeroClipboard.swf"
+        location.protocol + "//"+ location.hostname + "/lib-assets/zeroclipboard/dist/ZeroClipboard.swf"
       );
     }
   ])
@@ -117,13 +117,13 @@ angular
     $sceDelegateProvider.resourceUrlWhitelist(["self", "**"]);
 
     // initial configuration - https://github.com/revolunet/angular-google-analytics
-    AnalyticsProvider.setAccount("UA-2483685-30");
+    // AnalyticsProvider.setAccount("UA-2483685-30");
     //Optional set domain (Use 'none' for testing on localhost)
-    AnalyticsProvider.setDomainName("octoblu.com");
+    // AnalyticsProvider.setDomainName("octoblu.com");
     // Use analytics.js instead of ga.js
-    AnalyticsProvider.useAnalytics(true);
+    // AnalyticsProvider.useAnalytics(true);
     // change page event name
-    AnalyticsProvider.setPageEvent("$stateChangeSuccess");
+    // AnalyticsProvider.setPageEvent("$stateChangeSuccess");
 
     $provide.factory("TheInterceptor", function(InterceptorService) {
       return {

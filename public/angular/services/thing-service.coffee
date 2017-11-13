@@ -143,7 +143,7 @@ class ThingService
 
   generateSessionToken: (device, metadata={}) =>
     @q (resolve, reject) =>
-      metadata.tag ?= 'app.octoblu.com'
+      metadata.tag ?= 'octoblu'
 
       @MeshbluHttpService.generateAndStoreToken device.uuid, metadata, (error, token) =>
         return reject error if error?

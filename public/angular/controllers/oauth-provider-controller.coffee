@@ -1,5 +1,5 @@
 class OAuthProviderController
-  constructor: ($scope, $stateParams, $cookies, $q, $window, OAUTH_PROVIDER, MeshbluDeviceService, AuthService, ThingService, MeshbluHttpService) ->
+  constructor: ($scope, $stateParams, $cookies, $q, $window, OAUTH_PROVIDER, OCTOBLU_API_URL, OCTOBLU_ICON_URL, MeshbluDeviceService, AuthService, ThingService, MeshbluHttpService) ->
     @window = $window
     @cookies = $cookies
     @AuthService = AuthService
@@ -8,13 +8,15 @@ class OAuthProviderController
     @OAUTH_PROVIDER = OAUTH_PROVIDER
     @MeshbluHttpService = MeshbluHttpService
     @stateParams = $stateParams
+    @OCTOBLU_API_URL = OCTOBLU_API_URL
+    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     @q = $q
 
     $scope.loading = true
     MeshbluDeviceService.get(@oauthUUID).then (oauthDevice) =>
       oauthDevice ?= {}
       oauthDevice.options ?= {}
-      oauthDevice.options.imageUrl ?= 'https://icons.octoblu.com/device/oauth.svg'
+      oauthDevice.options.imageUrl ?= "#{@OCTOBLU_ICON_URL}/device/oauth.svg"
       oauthDevice.options.description ?= ''
       $scope.oauthDevice = oauthDevice
     .then =>
@@ -44,7 +46,7 @@ class OAuthProviderController
           @window.location.href = "#{@OAUTH_PROVIDER}#{@stateParams.redirect}?response_type=#{@stateParams.response_type}&client_id=#{@oauthUUID}&redirect_uri=#{encodeURIComponent(@stateParams.redirect_uri)}&token=#{token}&uuid=#{uuid}&state=#{@stateParams.state}"
 
   cancel: =>
-    url = @stateParams.cancel_uri || 'https://app.octoblu.com'
+    url = @stateParams.cancel_uri || @OCTOBLU_API_URL
     _.delay =>
       @window.location.href = url
 

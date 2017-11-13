@@ -1,10 +1,12 @@
 class InterceptorService
-  constructor: ($window, $q, $cookies, $location, $rootScope) ->
+  constructor: ($window, $q, $cookies, $location, $rootScope, MESHBLU_HOST) ->
     @window = $window
     @q = $q
     @location = $location
     @uuid = $cookies.meshblu_auth_uuid
     @rootScope = $rootScope
+    @MESHBLU_HOST = MESHBLU_HOST
+    @OCTOBLU_HOSTNAME = location.hostname
 
   handle: (response) =>
     return response if response.status < 400
@@ -16,17 +18,17 @@ class InterceptorService
   handleAuthError: (response) =>
     { url } = response.config
     return response unless url?
-    return response if url.indexOf('app.octoblu') < 0 && url.indexOf('meshblu.octoblu') < 0
+    return response if url.indexOf(@OCTOBLU_HOSTNAME) < 0 && url.indexOf(@MESHBLU_HOST) < 0
     return response if _.get(response, 'data.uuid') != @uuid && url.indexOf('/api/auth') < 0
     return @goTo '/login', response
 
   handleProfileUpdate: (response) =>
     { url } = response.config
     return response unless url?
-    return response unless url.indexOf('app.octoblu') >= 0
+    return response unless url.indexOf(@OCTOBLU_HOSTNAME) >= 0
     return @goTo '/profile/new', response
 
-  handleServerError: (response) =>
+  handleServerError: =>
     @rootScope.showErrorState = true
     return false
 

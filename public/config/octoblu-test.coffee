@@ -11,6 +11,7 @@ angular.module('octobluApp')
   }
   .constant 'CLUSTER_DOMAIN', 'octoblu.com'
   .constant 'BLUPRINTER_URL', 'https://bluprinter.octoblu.com'
+  .constant 'MESHBLU_OTP_URL', 'https://meshblu-otp.octoblu.com'
   .constant 'CONNECTOR_DETAIL_SERVICE_URL', 'https://connector.octoblu.com'
   .constant 'CONNECTOR_FACTORY_UI', 'https://connector-factory.octoblu.com'
   .constant 'FLOW_LOGGER_UUID', 'f952aacb-5156-4072-bcae-f830334376b1'

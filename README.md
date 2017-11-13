@@ -1,3 +1,3 @@
-# app-octoblu
+# octoblu-frontend
 
 Frontend service for Octoblu

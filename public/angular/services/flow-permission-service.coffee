@@ -1,11 +1,12 @@
 {_, angular} = window
 
 class PermissionManager
-  constructor: (options, {ThingService, $q, $http, REGISTRY_URL}) ->
+  constructor: (options, {ThingService, $q, $http, REGISTRY_URL, OCTOBLU_ICON_URL}) ->
     @ThingService = ThingService
     @q            = $q
     @http         = $http
     @REGISTRY_URL = REGISTRY_URL
+    @OCTOBLU_ICON_URL = OCTOBLU_ICON_URL
     {@flow} = options
 
   updatePendingPermissions: =>
@@ -53,7 +54,7 @@ class PermissionManager
       .catch (error) =>
         console.error '_getRegistryDevice error:', error
         device = {
-          logo: 'https://icons.octoblu.com/unknown-device.svg'
+          logo: @OCTOBLU_ICON_URL + '/unknown-device.svg'
           name: 'Unknown Device'
           uuid: uuid
         }
@@ -215,8 +216,8 @@ class PermissionManager
     @ThingService.updateDangerously(@flowDevice.uuid, update)
 
 class FlowPermissionService
-  constructor: (ThingService, $q, $http, REGISTRY_URL) ->
-    @depends = {ThingService, $q, $http, REGISTRY_URL}
+  constructor: (ThingService, $q, $http, REGISTRY_URL, OCTOBLU_ICON_URL) ->
+    @depends = {ThingService, $q, $http, REGISTRY_URL, OCTOBLU_ICON_URL}
 
   createPermissionManager: (flow) =>
     return new PermissionManager {flow}, @depends
