@@ -65,7 +65,7 @@ describe 'OAuthProviderController', ->
         expect(@MeshbluDeviceService.get).to.have.been.calledWith 'lemon'
 
       it 'should set $scope.oauthDevice', ->
-        expect(@scope.oauthDevice).to.deep.equal {uuid: 'lemon', name: 'heads', options: {imageUrl: 'https://icons.octoblu.com/device/oauth.svg', description : ''}}
+        expect(@scope.oauthDevice).to.deep.equal {uuid: 'lemon', name: 'heads', options: {imageUrl: '/device/oauth.svg', description : ''}}
 
       it 'should set loading to false', ->
         expect(@scope.loading).to.be.false
@@ -89,7 +89,7 @@ describe 'OAuthProviderController', ->
         expect(@MeshbluDeviceService.get).to.have.been.calledWith 'skittles'
 
       it 'should set $scope.oauthDevice', ->
-        expect(@scope.oauthDevice).to.deep.equal {uuid: 'skittles', name: 'rainbow', options: {imageUrl: 'https://icons.octoblu.com/device/oauth.svg', description : ''}}
+        expect(@scope.oauthDevice).to.deep.equal {uuid: 'skittles', name: 'rainbow', options: {imageUrl: '/device/oauth.svg', description : ''}}
 
   describe '->authorize', ->
     describe 'when called with session-token', ->
